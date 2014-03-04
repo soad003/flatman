@@ -75,6 +75,21 @@ Flatman::Application.configure do
   # Disable automatic flushing of the log to improve performance.
   # config.autoflush_log = false
 
+  #config.action_mailer.delivery_method = :smtp
+  #config.action_mailer.smtp_settings = {
+  #  openssl_verify_mode:  OpenSSL::SSL::VERIFY_NONE,
+  #  address:              'test.test.test',
+  #  port:                 25,
+  #  user_name:            'foo',
+  #  password:             'bar',
+  #  authentication:       'plain',
+  #  enable_starttls_auto: true  }
+
+  #config.action_mailer.default_url_options = { :host => 'localhost:3000' }
+  #config.action_mailer.default_options = {
+  #  :from => "foo@bar.com"
+  #}
+
   # Use default logging formatter so that PID and timestamp are not suppressed.
   config.log_formatter = ::Logger::Formatter.new
 end

@@ -10,27 +10,55 @@ Flatman::Application.configure do
   # Do not eager load code on boot. This avoids loading your whole application
   # just for the purpose of running a single test. If you are using a tool that
   # preloads Rails for running tests, you may have to set it to true.
-  config.eager_load = false
+  config.eager_load = true
 
   # Configure static asset server for tests with Cache-Control for performance.
   config.serve_static_assets  = true
   config.static_cache_control = "public, max-age=3600"
 
   # Show full error reports and disable caching.
-  config.consider_all_requests_local       = true
-  config.action_controller.perform_caching = false
+  config.consider_all_requests_local       = false
+  config.action_controller.perform_caching = true
 
   # Raise exceptions instead of rendering exception templates.
-  config.action_dispatch.show_exceptions = false
+  config.action_dispatch.show_exceptions = true
 
   # Disable request forgery protection in test environment.
-  config.action_controller.allow_forgery_protection = false
+  #config.action_controller.allow_forgery_protection = false
+
+  # Compress JavaScripts and CSS.
+  config.assets.js_compressor = :uglifier
+
+  # Generate digests for assets URLs.
+  config.assets.digest = true
 
   # Tell Action Mailer not to deliver emails to the real world.
   # The :test delivery method accumulates sent emails in the
   # ActionMailer::Base.deliveries array.
   config.action_mailer.delivery_method = :test
 
+  # Enable locale fallbacks for I18n (makes lookups for any locale fall back to
+  # the I18n.default_locale when a translation can not be found).
+  config.i18n.fallbacks = true
+
+  # Version of your assets, change this if you want to expire all your assets.
+  config.assets.version = '1.0'
+
   # Print deprecation notices to the stderr.
   config.active_support.deprecation = :stderr
+
+  #config.action_mailer.delivery_method = :smtp
+  #config.action_mailer.smtp_settings = {
+  #  openssl_verify_mode:  OpenSSL::SSL::VERIFY_NONE,
+  #  address:              'test.test.test',
+  #  port:                 25,
+  #  user_name:            'foo',
+  #  password:             'bar',
+  #  authentication:       'plain',
+  #  enable_starttls_auto: true  }
+
+  #config.action_mailer.default_url_options = { :host => 'localhost:3000' }
+  #config.action_mailer.default_options = {
+  #  :from => "foo@bar.com"
+  #}
 end

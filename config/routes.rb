@@ -1,4 +1,19 @@
 Flatman::Application.routes.draw do
+
+scope "(:locale)", locale: /en|de/ do
+  root :to => 'welcome#index'
+
+  # Static routes
+  get '/about', :to => 'static#about'
+  get '/contact', :to => 'static#contact'
+  get '/terms', :to => 'static#terms_and_privacy'
+
+   # Error Routes
+  match '/404', :to => 'errors#not_found', via: :all
+  match '/500', :to => 'errors#server_error', via: :all
+end
+
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
@@ -39,7 +54,7 @@ Flatman::Application.routes.draw do
   #       get 'recent', on: :collection
   #     end
   #   end
-  
+
   # Example resource route with concerns:
   #   concern :toggleable do
   #     post 'toggle'
