@@ -2,7 +2,7 @@ language: ruby
 rvm:
   - 2.1.0
 notifications:
-	email:
-		- michael.froewis@gmx.at
-	on_success: never
-	on_failture: always
+ email:
+  - michael.froewis@gmx.at
+ on_success: never
+ on_failture: always
