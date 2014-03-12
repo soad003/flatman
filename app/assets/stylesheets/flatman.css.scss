@@ -24,6 +24,11 @@ form.button_to div, form.button_to div input, form.button_to button {
     @extend .has-error;
 }
 
+/* fix navbar scroller on collapse */
+.navbar-collapse.in {
+    overflow-y: visible;
+}
+
 .alert-notice {
     @extend .alert-success;
 }
