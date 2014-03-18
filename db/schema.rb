@@ -11,6 +11,29 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 0) do
+ActiveRecord::Schema.define(version: 20140316141851) do
+
+  create_table "shopping_lists", force: true do |t|
+    t.string   "item_name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "test2s", force: true do |t|
+    t.string   "test"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "users", force: true do |t|
+    t.string   "provider"
+    t.string   "uid"
+    t.string   "name"
+    t.string   "oauth_token"
+    t.datetime "oauth_expires_at"
+    t.string   "image_path"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
 end

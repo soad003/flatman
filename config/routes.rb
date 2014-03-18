@@ -1,12 +1,27 @@
 Flatman::Application.routes.draw do
 
 scope "(:locale)", locale: /en|de/ do
-  root :to => 'welcome#index'
+  root :to => 'dashboard#index'
 
   # Static routes
-  get '/about', :to => 'static#about'
-  get '/contact', :to => 'static#contact'
-  get '/terms', :to => 'static#terms_and_privacy'
+  get '/about', :to => 'public#about'
+  get '/contact', :to => 'public#contact'
+  get '/terms', :to => 'public#terms_and_privacy'
+
+  get '/finances', :to => 'dashboard#finance'
+  get '/flat_settings', :to => 'dashboard#flat_settings'
+  get '/messages', :to => 'dashboard#messages'
+  get '/resources', :to => 'dashboard#resources'
+  get '/share', :to => 'dashboard#share'
+  get '/shopping', :to => 'dashboard#shopping'
+  get '/user_settings', :to => 'dashboard#user_settings'
+  get '/search', :to => 'search#show'
+
+
+  match 'auth/:provider/callback', to: 'session#create', via: [:get, :post]
+  match 'auth/failure', to: redirect('/'), via: [:get, :post]
+  match 'signout', to: 'session#destroy', as: 'signout', via: [:get, :post]
+  match 'signin', to: 'session#index', as: 'signin', via: [:get, :post]
 
    # Error Routes
   match '/404', :to => 'errors#not_found', via: :all

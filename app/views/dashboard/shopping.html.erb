@@ -1,0 +1,14 @@
+<div class="container-fluid">
+  Current viewport width:<span id="monitor"></span>
+</div>
+
+ <% content_for :script do %>
+    <script type="text/javascript">
+        $('#monitor').html($(window).width());
+
+        $(window).resize(function() {
+            var viewportWidth = $(window).width();
+            $('#monitor').html(viewportWidth);
+        });
+    </script>
+<% end %>

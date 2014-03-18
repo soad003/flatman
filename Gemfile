@@ -41,13 +41,21 @@ gem 'bootstrap-sass', '~> 3.1.1'
 #gem 'bootstrap-sass', github: 'thomas-mcdonald/bootstrap-sass', branch: '3'
 
 ## Use unicorn as the app server
-gem 'unicorn'
+#gem 'unicorn'
 
 # http accept lang
 gem 'http_accept_language'
 
 # chart js
 gem 'chart-js-rails'
+
+gem "font-awesome-rails"
+
+#authz
+gem 'omniauth-facebook'
+gem "omniauth-google-oauth2"
+
+#gem omniauth-identity'
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'

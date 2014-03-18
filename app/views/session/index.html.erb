@@ -1,0 +1,23 @@
+<% content_for :robots, "INDEX, FOLLOW" %>
+
+<% content_for :title, t('.page_title') %>
+
+<div class="row">
+  <div class="col-md-4">&nbsp;</div>
+  <div class="col-md-4">
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <strong><%= t(".page_header") %></strong>
+      </div>
+      <div class="panel-body">
+        <a href="/auth/facebook" class="btn btn-block btn-social btn-facebook">
+            <i class="fa fa-facebook"></i> <%= t(".sign_in_Facebook") %>
+        </a>
+        <a href="/auth/google_oauth2" class="btn btn-block btn-social btn-google-plus">
+            <i class="fa fa-google-plus"></i> <%= t(".sign_in_Google") %>
+        </a>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-4">&nbsp;</div>
+</div>

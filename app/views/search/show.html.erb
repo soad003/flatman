@@ -1,0 +1,47 @@
+<% content_for :robots, "NOINDEX, NOFOLLOW" %>
+
+<% content_for :title, t('.page_title') %>
+
+<% content_for :page_header, t('.page_header') << " " << h(@search)%>
+
+<h2>Items</h2>
+
+<table class="table table-striped table-hover">
+  <tbody>
+    <tr>
+      <td>drill</td>
+      <td>
+        <button type="button" class="btn btn-success btn-sm pull-right">
+        <span class="glyphicon glyphicon-send"></span> send borrow request</button>
+      </td>
+    </tr>
+    <tr>
+      <td>bike</td>
+      <td>
+        <button type="button" class="btn btn-success btn-sm pull-right">
+        <span class="glyphicon glyphicon-send"></span> send borrow request</button>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<h2>Users</h2>
+
+<table class="table table-striped table-hover">
+  <tbody>
+    <tr>
+      <td>michi</td>
+      <td>
+        <button type="button" class="btn btn-success btn-sm pull-right">
+        <span class="glyphicon glyphicon-plus"></span> add to flat</button>
+      </td>
+    </tr>
+    <tr>
+      <td>peter</td>
+      <td>
+        <button type="button" class="btn btn-success btn-sm pull-right">
+        <span class="glyphicon glyphicon-plus"></span> add to flat</button>
+      </td>
+    </tr>
+  </tbody>
+</table>

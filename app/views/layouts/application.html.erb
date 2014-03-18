@@ -26,7 +26,7 @@
 
   <body>
 
-    <div class="navbar navbar-default navbar-fixed-top" role="navigation">
+    <div class="navbar navbar-default navbar-fixed-top navbar-inverse" role="navigation">
       <div class="container-fluid">
         <div class="navbar-header">
           <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
@@ -35,39 +35,41 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" href="#"><%= image_tag("flatman_logo.png", width: 50) %></a>
+          <a class="navbar-brand" href="/"><%= image_tag("flatman_logo.png", width: 30) %> flatman</a>
         </div>
-        <div class="navbar-collapse collapse">
-          <ul class="nav navbar-nav">
-            <li class="active"><a href="#"><span class="glyphicon glyphicon-home"></span> Dashboard</a></li>
-            <li><a href="#buy"><span class="glyphicon glyphicon-shopping-cart"></span> Einkaufen</a></li>
-            <li><a href="#finance"><span class="glyphicon glyphicon-euro"></span> Finanzen</a></li>
-            <li><a href="#sharing"><span class="glyphicon glyphicon-share"></span> Teilen</a></li>
-            <li><a href="#messages"><span class="glyphicon glyphicon-envelope"></span> Messages <span class="badge">42</span></a></li>
-            <li><a href="#resources"><span class="glyphicon glyphicon-globe"></span> Gas\Strom</a></li>
-            <li class="dropdown">
-              <a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="glyphicon glyphicon-cog"></span> Einstellungen <b class="caret"></b></a>
-              <ul class="dropdown-menu">
-                <li><a href="#"><span class="glyphicon glyphicon-wrench"></span> WG</a></li>
-                <li><a href="#"><span class="glyphicon glyphicon-user"></span> User</a></li>
-                <li class="divider"></li>
-                <li><a href="#"><span class="glyphicon glyphicon-off"></span> Logout</a></li>
-              </ul>
-            </li>
-          </ul>
+        <% if logged_in %>
+          <div class="navbar-collapse collapse">
+            <ul class="nav navbar-nav">
+              <li class="active"><a href="/"><span class="glyphicon glyphicon-home"></span> <%=t(".navbar.dashboard")%></a></li>
+              <li><a href="/shopping"><span class="glyphicon glyphicon-shopping-cart"></span>  <%=t(".navbar.shopping")%></a></li>
+              <li><a href="/finances"><span class="glyphicon glyphicon-euro"></span> <%=t(".navbar.finances")%></a></li>
+              <li><a href="/share"><span class="glyphicon glyphicon-share"></span> <%=t(".navbar.share")%></a></li>
+              <li><a href="/messages"><span class="glyphicon glyphicon-envelope"></span> <%=t(".navbar.messages")%> <span class="badge">42</span></a></li>
+              <li><a href="/resources"><span class="glyphicon glyphicon-globe"></span>  <%=t(".navbar.resources")%></a></li>
+              <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="glyphicon glyphicon-user"></span> <%=current_user.name%> <b class="caret"></b></a>
+                <ul class="dropdown-menu">
+                  <li><a href="/flat_settings"><span class="glyphicon glyphicon-wrench"></span> <%=t(".navbar.flat_settings")%></a></li>
+                  <li><a href="/user_settings"><span class="glyphicon glyphicon-cog"></span> <%=t(".navbar.user_settings")%></a></li>
+                  <li class="divider"></li>
+                  <li><a href="/signout"><span class="glyphicon glyphicon-off"></span> <%=t("misc.titles.logout")%></a></li>
+                </ul>
+              </li>
+            </ul>
 
-          <div class="col-sm-3 col-md-3 pull-right">
-            <!-- nasty navbar Hack  http://stackoverflow.com/questions/18619740/how-to-add-a-search-box-with-icon-to-the-navbar-in-bootstrap-3/18620303#18620303 -->
-            <form class="navbar-form navbar-right" role="search">
-              <div class="input-group">
-                <input type="text" class="form-control" placeholder="Search...">
-                <span class="input-group-btn">
-                  <button class="btn btn-success" type="button"><span class="glyphicon glyphicon-search"></span></button>
-                </span>
-              </div>
-            </form>
+            <div class="col-sm-2 col-md-2 pull-right">
+              <!-- nasty navbar Hack  http://stackoverflow.com/questions/18619740/how-to-add-a-search-box-with-icon-to-the-navbar-in-bootstrap-3/18620303#18620303 -->
+              <form class="navbar-form navbar-right" role="search" method="get" action="search">
+                <div class="input-group">
+                  <input type="text" class="form-control" name="term" placeholder="<%=t(".navbar.search_placeholder")%>">
+                  <span class="input-group-btn">
+                    <button class="btn btn-success" type="button"><span class="glyphicon glyphicon-search"></span></button>
+                  </span>
+                </div>
+              </form>
+            </div>
           </div>
-        </div>
+        <% end %>
       </div>
     </div>
 

@@ -1,4 +1,4 @@
-class StaticController < ApplicationController
+class PublicController < ApplicationController
 
     def about
     end

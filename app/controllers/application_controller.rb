@@ -5,6 +5,9 @@ class ApplicationController < ActionController::Base
 
   before_action :set_locale
 
+  helper_method :current_user
+  helper_method :logged_in
+
     def wrap_in_transaction
         ActiveRecord::Base.transaction do
             begin
@@ -17,6 +20,14 @@ class ApplicationController < ActionController::Base
         { locale: I18n.locale }
     end
 
+    def current_user
+         @current_user ||= User.find(session[:user_id]) if session[:user_id]
+    end
+
+    def logged_in
+        !current_user.nil?
+    end
+
     private
 
     def set_locale
@@ -27,5 +38,7 @@ class ApplicationController < ActionController::Base
         end
         I18n.locale = I18n.locale || I18n.default_locale
     end
+
+
 
 end

@@ -1,9 +1,8 @@
-<% content_for :robots, "INDEX, FOLLOW" %>
+<% content_for :robots, "NOINDEX, NOFOLLOW" %>
 
 <% content_for :title, t('.page_title') %>
 
 <% content_for :page_header, t('.page_header') %>
-
 
 <div class="row">
   <div class="col-md-6">
@@ -70,7 +69,7 @@
       <div class="panel-body">
           <div class="row">
             <div class="col-md-6">
-              <div class="panel panel-default">
+              <div class="panel panel-success">
                   <div class="panel-heading">Verfügbar</div>
                   <div class="panel-body">
                     <ul>
@@ -82,7 +81,7 @@
               </div>
             </div>
             <div class="col-md-6">
-              <div class="panel panel-default">
+              <div class="panel panel-warning">
                   <div class="panel-heading">Verliehen</div>
                   <div class="panel-body">
                     <ul>
