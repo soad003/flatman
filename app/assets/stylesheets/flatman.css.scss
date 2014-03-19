@@ -36,6 +36,11 @@
     }
 }
 
+/* http://stackoverflow.com/questions/13432311/ng-cloak-and-ng-show-flashes-the-hidden-element-on-screen */
+[ng\:cloak], [ng-cloak], .ng-cloak {
+  display: none !important;
+}
+
 /* cursor for readonly field*/
 input[readonly=readonly]{
     cursor:pointer !important;
@@ -75,4 +80,18 @@ form.button_to div, form.button_to div input, form.button_to button {
 }
 .alert-alert {
     @extend .alert-warning;
+}
+
+.done-true {
+  text-decoration: line-through;
+  color: grey;
+}
+
+.announcement-heading {
+  font-size: 50px;
+  margin: 0;
+}
+
+.announcement-text {
+  margin: 0;
 }

@@ -55,6 +55,12 @@ gem "font-awesome-rails"
 gem 'omniauth-facebook'
 gem "omniauth-google-oauth2"
 
+#angular js
+gem 'angularjs-rails'
+
+#Underscore js
+gem 'underscore-rails'
+
 #gem omniauth-identity'
 
 # Use ActiveModel has_secure_password
