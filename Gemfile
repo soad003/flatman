@@ -54,6 +54,7 @@ gem "font-awesome-rails"
 #authz
 gem 'omniauth-facebook'
 gem "omniauth-google-oauth2"
+#gem omniauth-identity'
 
 #angular js
 gem 'angularjs-rails'
@@ -61,7 +62,10 @@ gem 'angularjs-rails'
 #Underscore js
 gem 'underscore-rails'
 
-#gem omniauth-identity'
+
+# scheduler
+gem 'rufus-scheduler'
+
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
