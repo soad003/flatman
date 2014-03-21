@@ -1,21 +1,21 @@
 Flatman::Application.routes.draw do
 
 scope "(:locale)", locale: /en|de/ do
-  root :to => 'dashboard#index'
+  root :to => 'dashboard#index', as: 'dashboard'
 
   # Static routes
   get '/about', :to => 'public#about'
   get '/contact', :to => 'public#contact'
   get '/terms', :to => 'public#terms_and_privacy'
 
-  get '/finances', :to => 'dashboard#finance'
-  get '/flat_settings', :to => 'dashboard#flat_settings'
-  get '/messages', :to => 'dashboard#messages'
-  get '/resources', :to => 'dashboard#resources'
-  get '/share', :to => 'dashboard#share'
-  get '/shopping', :to => 'dashboard#shopping'
-  get '/user_settings', :to => 'dashboard#user_settings'
-  get '/search', :to => 'search#show'
+  get '/finances', :to => 'dashboard#finances', as: 'finances'
+  get '/flat_settings', :to => 'dashboard#flat_settings', as: 'flat_settings'
+  get '/messages', :to => 'dashboard#messages', as: 'messages'
+  get '/resources', :to => 'dashboard#resources', as: 'resources'
+  get '/share', :to => 'dashboard#share',as: 'share'
+  get '/shopping', :to => 'dashboard#shopping', as: 'shopping'
+  get '/user_settings', :to => 'dashboard#user_settings', as: 'user_settings'
+  get '/search', :to => 'search#show', as: 'search'
 
 
   match 'auth/:provider/callback', to: 'session#create', via: [:get, :post]

@@ -1,6 +1,8 @@
 class CreateUsers < ActiveRecord::Migration
   def change
     create_table :users do |t|
+      t.belongs_to  :flat
+      t.string :email
       t.string :provider
       t.string :uid
       t.string :name
