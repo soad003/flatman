@@ -1,0 +1,50 @@
+<form role="form" ng-submit="createFlat()">
+
+    <fieldset>
+
+    <!-- Form Name -->
+        <legend>Form Name</legend>
+
+        <!-- Text input-->
+        <div class="control-group">
+          <label class="control-label" for="flat_name">Name</label>
+          <div class="controls">
+            <input id="flat_name" ng-model="newFlat.name" type="text" placeholder="flat name" >
+          </div>
+        </div>
+
+        <!-- Text input-->
+        <div class="control-group">
+          <label class="control-label" for="street">Street</label>
+          <div class="controls">
+            <input id="street" ng-model="newFlat.street" type="text" placeholder="street" >
+          </div>
+        </div>
+
+        <!-- Text input-->
+        <div class="control-group">
+          <label class="control-label" for="post_code">postal code</label>
+          <div class="controls">
+            <input id="post_code" ng-model="newFlat.zip" type="text" placeholder="postal code" >
+          </div>
+        </div>
+
+        <!-- Text input-->
+        <div class="control-group">
+          <label class="control-label" for="city">City</label>
+          <div class="controls">
+            <input id="city" ng-model="newFlat.city" type="text" placeholder="placeholder" >
+
+          </div>
+        </div>
+
+        <!-- Button -->
+        <div class="control-group">
+          <label class="control-label" for="create"></label>
+          <div class="controls">
+            <button id="create" class="btn btn-primary" type="submit">save</button>
+          </div>
+        </div>
+
+    </fieldset>
+</form>

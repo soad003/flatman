@@ -1,7 +1,7 @@
 Flatman::Application.routes.draw do
 
 scope "(:locale)", locale: /en|de/ do
-  root :to => 'templates#index', as: 'dashboard'
+  root :to => 'templates/templates#index', as: 'dashboard'
 
   # Static routes
   get '/about', :to => 'public#about'
@@ -9,18 +9,27 @@ scope "(:locale)", locale: /en|de/ do
   get '/terms', :to => 'public#terms_and_privacy'
 
   # template routes
-  get '/templates/finances', :to => 'templates#finances', as: 'finances'
-  get '/templates/flat_settings', :to => 'templates#flat_settings', as: 'flat_settings'
-  get '/templates/messages', :to => 'templates#messages', as: 'messages'
-  get '/templates/resources', :to => 'templates#resources', as: 'resources'
-  get '/templates/share', :to => 'templates#share',as: 'share'
-  get '/templates/shopping', :to => 'templates#shopping', as: 'shopping'
-  get '/templates/user_settings', :to => 'templates#user_settings', as: 'user_settings'
-  get '/templates/dashboard', :to => 'templates#dashboard', as: 'dashboard_template'
+  namespace :templates do
+    get '/finances', :to => 'templates#finances', as: 'finances'
+    get '/flat_settings', :to => 'templates#flat_settings', as: 'flat_settings'
+    get '/messages', :to => 'templates#messages', as: 'messages'
+    get '/resources', :to => 'templates#resources', as: 'resources'
+    get '/share', :to => 'templates#share',as: 'share'
+    get '/shopping', :to => 'templates#shopping', as: 'shopping'
+    get '/user_settings', :to => 'templates#user_settings', as: 'user_settings'
+    get '/dashboard', :to => 'templates#dashboard', as: 'dashboard_template'
+    get '/new_flat', :to => 'templates#new_flat'
+  end
 
   get '/search', :to => 'search#show', as: 'search'
 
+  #REST API
+  namespace :api, defaults: {format: :json} do
+   resources :flat, only: [:index, :create]
+   resources :user, only: [:index]
+  end
 
+  # Authentication
   match 'auth/:provider/callback', to: 'session#create', via: [:get, :post]
   match 'auth/failure', to: redirect('/'), via: [:get, :post]
   match 'signout', to: 'session#destroy', as: 'signout', via: [:get, :post]

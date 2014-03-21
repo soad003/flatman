@@ -1,9 +1,13 @@
 // Angular Config / Routes
-angular.module('flatman', ['ngRoute']).config(function($httpProvider, $routeProvider){
+angular.module('flatman', ['ngRoute','ngResource']).config(function($httpProvider, $routeProvider){
   $httpProvider.defaults.headers.post = {'X-CSRF-Token': $("meta[name='csrf-token']").attr("content"),
                                           'Content-Type': 'application/json'};
 
   $routeProvider.
+      when('/new_flat', {
+        templateUrl: '/templates/new_flat',
+        controller: 'flatCtrl'
+      }).
       when('/shopping', {
         templateUrl: '/templates/shopping',
         controller: 'shoppingCtrl'

@@ -1,5 +1,9 @@
-class TemplatesController < ProtectedController
+class Templates::TemplatesController < ProtectedController
  layout false, except: [:index]
+
+  def self.controller_path
+    "templates"
+  end
 
   def index
   end
@@ -26,6 +30,9 @@ class TemplatesController < ProtectedController
   end
 
   def flat_settings
+  end
+
+  def new_flat
   end
 
 end
