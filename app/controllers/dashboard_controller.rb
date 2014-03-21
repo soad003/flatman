@@ -1,5 +1,10 @@
 class DashboardController < ProtectedController
+ layout false, except: [:index]
+
   def index
+  end
+
+  def dashboard
   end
 
   def share

@@ -8,13 +8,14 @@ scope "(:locale)", locale: /en|de/ do
   get '/contact', :to => 'public#contact'
   get '/terms', :to => 'public#terms_and_privacy'
 
-  get '/finances', :to => 'dashboard#finances', as: 'finances'
-  get '/flat_settings', :to => 'dashboard#flat_settings', as: 'flat_settings'
-  get '/messages', :to => 'dashboard#messages', as: 'messages'
-  get '/resources', :to => 'dashboard#resources', as: 'resources'
-  get '/share', :to => 'dashboard#share',as: 'share'
-  get '/shopping', :to => 'dashboard#shopping', as: 'shopping'
-  get '/user_settings', :to => 'dashboard#user_settings', as: 'user_settings'
+  get '/templates/finances', :to => 'dashboard#finances', as: 'finances'
+  get '/templates/flat_settings', :to => 'dashboard#flat_settings', as: 'flat_settings'
+  get '/templates/messages', :to => 'dashboard#messages', as: 'messages'
+  get '/templates/resources', :to => 'dashboard#resources', as: 'resources'
+  get '/templates/share', :to => 'dashboard#share',as: 'share'
+  get '/templates/shopping', :to => 'dashboard#shopping', as: 'shopping'
+  get '/templates/user_settings', :to => 'dashboard#user_settings', as: 'user_settings'
+  get '/templates/dashboard', :to => 'dashboard#dashboard', as: 'dashboard_template'
   get '/search', :to => 'search#show', as: 'search'
 
 

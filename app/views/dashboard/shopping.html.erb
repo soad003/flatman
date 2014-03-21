@@ -1,4 +1,4 @@
-<div ng-controller="shoppingCtrl">
+<div>
     <div class="row">
         <div class="col-md-2">&nbsp;</div>
         <div class="form-group col-md-8">
@@ -26,8 +26,10 @@
                     </div>
                     <ul class="list-unstyled">
                         <li ng-repeat="todo in list.todos track by $index">
-                          <input type="checkbox" ng-model="todo.done">
-                          <span class="done-{{todo.done}}">{{todo.text}}</span>
+                          <input id="{{''+$parent.$index+$index}}" type="checkbox" ng-model="todo.done">
+                          <label for="{{''+$parent.$index+$index}}" class="done-{{todo.done}}">
+                            {{todo.text}}
+                          </label>
                           <a href="" class="pull-right" ng-click="removeTodo(list,todo)">
                             <span class="glyphicon glyphicon-remove"></span>
                           </a>

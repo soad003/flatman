@@ -99,8 +99,11 @@ en:
 
   dashboard:
     index:
-      page_title                         : "Welcome!"
+      page_title                         : "Dashboard"
+    dashboard:
       page_header                        : "Dashboard"
+
+
 
   session:
     index:
