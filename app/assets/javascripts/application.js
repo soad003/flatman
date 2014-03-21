@@ -14,6 +14,11 @@
 //= require jquery_ujs
 //= require bootstrap
 //= require Chart
-//= require_tree .
+//= require angular
+//= require underscore
 
-
+// Angular Config / Routes
+angular.module('flatman', []).config(function($httpProvider){
+    $httpProvider.defaults.headers.post = {'X-CSRF-Token': $("meta[name='csrf-token']").attr("content"),
+                                            'Content-Type': 'application/json'};
+});

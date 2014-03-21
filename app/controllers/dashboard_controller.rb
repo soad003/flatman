@@ -5,7 +5,7 @@ class DashboardController < ProtectedController
   def share
   end
 
-  def finance
+  def finances
   end
 
   def resources
