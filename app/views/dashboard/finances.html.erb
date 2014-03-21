@@ -1,0 +1,106 @@
+<div class="row">
+  <div class="col-md-2">
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <center>Monat</center>
+      </div>
+      <div class="panel-body">
+        <ul style="list-style-type:none">
+          <li>Jänner</li>
+          <li>Februar</li>
+          <li>März</li>
+          <li>April</li>
+          <li>Mai</li>
+          <li>Juni</li>
+          <li>Juli</li>
+          <li>August</li>
+          <li>September</li>
+          <li>Oktober</li>
+          <li>November</li>
+          <li>Dezember</li>
+        </ul>
+      </div>
+      <div class="panel-body">
+        <ul style="list-style-type:none">
+          <li>2014</li>
+          <li>2015</li>
+      </div>
+    </div>
+  </div>
+
+
+  <div class="col-md-8">
+    <center><h3>Ausgaben</h3></center>
+    
+    <center>
+    <% content_for :script do %>
+    <script type="text/javascript">
+    
+    var data =[
+      {
+        value: 30,
+        color:"#F7464A"
+      },
+      {
+        value:100,
+        color:"#E2EAE9"
+      },
+      {
+        value:43,
+        color:"#D4CCC5"
+      },
+      {
+        value: 30,
+        color:"#949FB1"
+      },
+      {
+        value: 10,
+        color:"#4D5360"
+      }
+
+    ];
+    var ctx = document.getElementById("myChart").getContext("2d");
+   
+    new Chart(ctx).Doughnut(data,null);
+    </script>
+   <% end %>
+  <canvas id="myChart" width="400" height="400"></canvas>
+</center>
+  </div>
+
+  <div class="col-md-2">
+
+    <center><h3>Schulden</h3></center>
+    <ul style="list-style-type:none">
+      <li>100€  Franz</li>
+      <li>130€  Herbert</li>
+    </ul>
+    <p><center><h3>Guthaben</h3></center>
+      <ul style="list-style-type:none">
+        <li>50€ Sepp </li></p>
+  </div>
+
+  <--<div class="row">
+   
+    <div class="col-md-2">
+      </div>
+
+    <div class="col-md-8">
+
+<!--
+      <center>Kategorien:</center>
+      <center>
+      <div class="panel panel-deafault">
+        <div class="panel-body">
+          <div style="text-align: left; padding:20px; margin:25px">
+        <ul style="list-style-type:none">
+          <li>Miete:        300</li>
+          <li>Auto:         100</li>
+          <li>Lebensmittel: 200</li>
+          <li>Strom:        20</li>
+        </div>
+        </div>
+      </center>
+    
+  </div> -->
+</div>

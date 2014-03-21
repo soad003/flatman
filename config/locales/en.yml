@@ -103,8 +103,6 @@ en:
     dashboard:
       page_header                        : "Dashboard"
 
-
-
   session:
     index:
       page_title                         : "Please sign in"
