@@ -101,7 +101,11 @@ en:
     index:
       page_title                         : "Welcome!"
       page_header                        : "Dashboard"
-
+    
+    messages:
+      page_header                        : "Chats"
+      page_title                         : "Messages"
+  
   session:
     index:
       page_title                         : "Please sign in"
@@ -113,3 +117,4 @@ en:
     show:
       page_header                        : "Searching for"
       page_title                         : "Search"
+
