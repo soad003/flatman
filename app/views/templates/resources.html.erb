@@ -1,0 +1,106 @@
+<div class="row">
+    <div class="col-sm-12">
+        <h1>Strom</h1>
+    </div>
+            <div class="col-sm-6">
+                 <div class="btn-group">
+                    <p>
+                                    <button id="editable-sample_new" class="btn btn-primary">
+                                        Add New <i class="fa fa-plus"></i>
+                                    </button>
+                                </p>
+                                </div>
+
+                        <div class="adv-table editable-table ">
+                            <table class="table table-striped table-hover table-bordered table-scrollable" id="editable-sample">
+                                <thead>
+                                <tr>
+                                    <th>Datum</th>
+                                    <th>Wert</th>
+                                    <th>Verbrauch</th>
+                                   </tr>
+                                </thead>
+                                <tbody style="overflow:scroll; height:200px">
+                                <tr class="">
+                                    <td>12.01.2013</td>
+                                    <td>36984</td>
+                                    <td>€ 14,00</td>
+                                   
+                                </tr>
+                                <tr class="">
+                                    <td>12.01.2013</td>
+                                    <td>36984</td>
+                                    <td>€ 14,00</td>
+                                   
+                                </tr>
+                                <tr class="">
+                                    <td>12.01.2013</td>
+                                    <td>36984</td>
+                                    <td>€ 14,00</td>
+                                   
+                                </tr>
+                                <tr class="">
+                                    <td>12.01.2013</td>
+                                    <td>36984</td>
+                                    <td>€ 14,00</td>
+                                   
+                                </tr>
+                                <tr class="">
+                                    <td>12.01.2013</td>
+                                    <td>36984</td>
+                                    <td>€ 14,00</td>
+                                   
+                                </tr>
+                               
+                                </tbody>
+                            </table>
+                        </div>
+            </div>
+        <div class="col-sm-6">
+
+            <ul class="nav nav-tabs">
+                <li class="active"><a href="#">Chart</a></li>
+                <li><a href="#">Info</a></li>
+        </ul>
+            <p>
+            <canvas id="myChart" width="400" height="200"></canvas>
+            </p>
+        <script type="text/javascript">
+
+           var data = {
+                    labels : ["January","February","March","April","May","June","July"],
+                    datasets : [
+                      {
+                        fillColor : "rgba(220,220,220,0.5)",
+                        strokeColor : "rgba(220,220,220,1)",
+                        pointColor : "rgba(220,220,220,1)",
+                        pointStrokeColor : "#fff",
+                        data : [65,59,90,81,56,55,40]
+                      },
+                      {
+                        fillColor : "rgba(151,187,205,0.5)",
+                        strokeColor : "rgba(151,187,205,1)",
+                        pointColor : "rgba(151,187,205,1)",
+                        pointStrokeColor : "#fff",
+                        data : [28,48,40,19,96,27,100]
+                      }
+                    ]
+                  }
+            var ctx = document.getElementById("myChart").getContext("2d");
+            new Chart(ctx).Line(data,null);
+        </script>
+        </div>
+        <div class="col-sm-12">
+            <hr>
+
+</div>
+       
+
+    <div class="col-sm-12">
+            <div class="btn-group">
+                            <button class="btn btn-primary" type="submit">add ressource <i class="fa fa-plus"></i></button>
+            </div>                        
+                          
+    </div>
+
+     </div>
