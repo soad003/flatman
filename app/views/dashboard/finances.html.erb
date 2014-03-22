@@ -1,3 +1,8 @@
+<% content_for :title, t('.page_title') %>
+
+<% content_for :page_header, t('.page_header') %>
+
+<div class ="container">
 <div class="row">
   <div class="col-md-2">
     <div class="panel panel-default">
@@ -5,32 +10,32 @@
         <center>Monat</center>
       </div>
       <div class="panel-body">
-        <ul style="list-style-type:none">
-          <li>Jänner</li>
-          <li>Februar</li>
-          <li>März</li>
-          <li>April</li>
-          <li>Mai</li>
-          <li>Juni</li>
-          <li>Juli</li>
-          <li>August</li>
-          <li>September</li>
-          <li>Oktober</li>
-          <li>November</li>
-          <li>Dezember</li>
-        </ul>
+        <div class="list-group">
+         <a href="#" class="list-group-item">Jänner</a>
+         <a href="#" class="list-group-item">Februar</a>
+         <a href="#" class="list-group-item active">März</a>
+         <a href="#" class="list-group-item">April</a>
+         <a href="#" class="list-group-item">Mai</a>
+         <a href="#" class="list-group-item">Juni</a>
+         <a href="#" class="list-group-item">Juli</a>
+         <a href="#" class="list-group-item">August</a>
+         <a href="#" class="list-group-item">September</a>
+         <a href="#" class="list-group-item">Oktober</a>
+         <a href="#" class="list-group-item">November</a>
+         <a href="#" class="list-group-item">Dezember</a>
+      </div>
       </div>
       <div class="panel-body">
-        <ul style="list-style-type:none">
-          <li>2014</li>
-          <li>2015</li>
+        <div class="list-group">
+          <a href="#" class="list-group-item active">2014</a>
+          <a href="#" class="list-group-item">2015</a>
       </div>
     </div>
   </div>
-
+  </div>
 
   <div class="col-md-8">
-    <center><h3>Ausgaben</h3></center>
+    <center><h3>GESAMT : 340 <t><i class="fa fa-eur"></i></t> </h3></center>
     
     <center>
     <% content_for :script do %>
@@ -69,38 +74,83 @@
   </div>
 
   <div class="col-md-2">
+    <table class="table table-hover">
+     <!--<ul style="list-style-type:none"; >-->
+      <tr>
+        <th><a style="cursor:pointer; text-decoration: none;" data-toggle="modal" data-target="#myModal">
+          <button type="button" class="btn btn-primary">+ neuer Eintrag</button>
+        </th>
+      <tr>
+        <th><button type="button" class="btn btn-primary">+ Eintrag bearbeiten</button></th>
+      </tr>
+    </table>
 
-    <center><h3>Schulden</h3></center>
-    <ul style="list-style-type:none">
-      <li>100€  Franz</li>
-      <li>130€  Herbert</li>
-    </ul>
-    <p><center><h3>Guthaben</h3></center>
-      <ul style="list-style-type:none">
-        <li>50€ Sepp </li></p>
+    <table class ="table">
+    <tr>
+      <th><center><h3>Schulden</h3></center>
+      </th>
+    </tr>
+    <tr>
+      <th>100€  Franz</th>
+    <tr>
+      <th>130€  Herbert</th>
+    </tr>
+  </table>
+
+    <table class="table">
+      <tr>
+    <th><center><h3>Guthaben</h3></center>
+      </th>
+      <tr>
+        <th>50€ Sepp</th>
+      </tr>
+    </table>
   </div>
 
-  <--<div class="row">
-   
-    <div class="col-md-2">
+
+    <div class="col-md-8 ">
+
+
+ <div class="panel-body">
+ <div style="margin:auto; width:450px; padding:40px border: 1px solid black;">
+  <table class="table table-striped">
+    <tr>
+      <th><i class="fa fa-cutlery"></i> Lebensmittel</th>
+      <th><i class="fa fa-shopping-cart"></i> Einkäufe</th>
+      <th><i class="fa fa-truck"></i> Verkehrsmittel</th>
+    </tr>
+    <tr>
+      <th>300
+      </th>
+      <th>120
+      </th>
+      <th>50
+      </th>
+    </tr>
+    <tr>
+      <th><i class="fa fa-bolt"></i> Resourcen</th>
+    <th><i class="fa fa-plus"></i> Sonstiges</th>
+    <th>
+    </th>
+  </tr>
+  <tr>
+    <th>50
+    </th>
+    <th>20
+    </th>
+    <th>
+    </th>
+  </table>
+  </div>
+
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <center><h4 class="modal-title" id="myModalLabel">Neuer Eintrag</h4></center>
       </div>
-
-    <div class="col-md-8">
-
-<!--
-      <center>Kategorien:</center>
-      <center>
-      <div class="panel panel-deafault">
-        <div class="panel-body">
-          <div style="text-align: left; padding:20px; margin:25px">
-        <ul style="list-style-type:none">
-          <li>Miete:        300</li>
-          <li>Auto:         100</li>
-          <li>Lebensmittel: 200</li>
-          <li>Strom:        20</li>
-        </div>
-        </div>
-      </center>
-    
-  </div> -->
+      <div class="modal-body">
+        test
+      </div>
 </div>

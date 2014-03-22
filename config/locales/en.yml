@@ -106,6 +106,10 @@ en:
       page_header                        : "Chats"
       page_title                         : "Messages"
   
+  finances:
+    page_header                          : "Finances"
+    page_title                           : "Finance"
+    
   session:
     index:
       page_title                         : "Please sign in"
@@ -117,4 +121,3 @@ en:
     show:
       page_header                        : "Searching for"
       page_title                         : "Search"
-
