@@ -1,33 +1,38 @@
 Flatman::Application.routes.draw do
 
 scope "(:locale)", locale: /en|de/ do
-  root :to => 'templates/templates#index', as: 'dashboard'
+  root :to => 'templates#index'
 
   # Static routes
-  get '/about', :to => 'public#about'
-  get '/contact', :to => 'public#contact'
-  get '/terms', :to => 'public#terms_and_privacy'
+  get '/about', :to => :about, controller: :public
+  get '/contact', :to => :contact, controller: :public
+  get '/terms', :to => :terms_and_privacy, controller: :public
 
   # template routes
   namespace :templates do
-    get '/finances', :to => 'templates#finances', as: 'finances'
-    get '/flat_settings', :to => 'templates#flat_settings', as: 'flat_settings'
-    get '/messages', :to => 'templates#messages', as: 'messages'
-    get '/resources', :to => 'templates#resources', as: 'resources'
-    get '/share', :to => 'templates#share',as: 'share'
-    get '/shopping', :to => 'templates#shopping', as: 'shopping'
-    get '/user_settings', :to => 'templates#user_settings', as: 'user_settings'
-    get '/dashboard', :to => 'templates#dashboard', as: 'dashboard_template'
-    get '/create_flat', :to => 'templates#create_flat'
-    get '/search', :to => 'templates#search', as: 'search'
+    get '/finances', to: :finances, as: 'finances'
+    get '/flat_settings', to: :flat_settings, as: 'flat_settings'
+    get '/messages', to: :messages, as: 'messages'
+    get '/resources', to: :resources, as: 'resources'
+    get '/share', to: :share,as: 'share'
+    get '/shopping', to: :shopping, as: 'shopping'
+    get '/user_settings', to: :user_settings, as: 'user_settings'
+    get '/dashboard', to: :dashboard, as: 'dashboard_template'
+    get '/create_flat', to: :create_flat
+    get '/search', to: :search, as: 'search'
   end
-
-
 
   #REST API
   namespace :api, defaults: {format: :json} do
-   resources :flat, only: [:index, :create, :show]
+   namespace :flat do
+      get '/', to: :index
+      put '/', to: :create
+      post '/', to: :update
+   end
    resources :user, only: [:index]
+   resources :shoppinglist, only: [:index, :create, :destroy] do
+      resources :shoppingitem, only: [:create, :destroy]
+   end
   end
 
   # Authentication

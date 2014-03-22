@@ -26,7 +26,51 @@ en:
         not_found                         : "Hmmm... You requested something that is either lost or never has been there..."
     server_error:
       messages:
-        server_error                      : "Ouuu no... Something went wrong, we are sorry!"
+        server_error                      : "Ouuu no... Something went wrong, please try again later!"
+
+  api:
+    flat:
+      create:
+        already_in_flat                   : "Your user already belongs to a flat"
+
+
+  buttons:
+    titles:
+      decision:
+        cancel                : ""
+        close               : "Voting won't be possible afterwards"
+        create                : ""
+        edit                : ""
+        delete                : ""
+        save                : ""
+      option:
+        add               : ""
+        delete                : ""
+      vote:
+        save                : "Vote and help to make a descision!"
+    labels:
+      decision:
+        cancel                : "cancel"
+        close               : "close"
+        create:
+          enabled             : "create Quision"
+          disabled              : "work in progress..."
+        edit                : "settings"
+        delete:
+          enabled             : "delete"
+          disabled              : "work in progress..."
+        save:
+          enabled             : "save"
+          disabled              : "work in progress..."
+      option:
+        add               : "add option"
+        delete                : "delete option"
+      vote:
+        save:
+          enabled             : "vote!"
+          disabled              : "work in progress..."
+    confirmations:
+      delete                : "Are you sure?"
 
   #misc
   misc:
@@ -68,7 +112,7 @@ en:
         share                             : "Share"
         finances                          : "Finances"
         flat_settings                     : "Flat Settings"
-        user_settings                     : "Settings"
+        user_settings                     : "User Profile"
         resources                         : "Gas/Electricity"
         dashboard                         : "Dashboard"
         shopping                          : "Shopping"
@@ -104,6 +148,29 @@ en:
       page_header                        : "Dashboard"
     search:
       page_header                        : "Searching for"
+    flat_settings:
+      page_header                        : "Your Flat"
+      city                               : "city"
+      city_placeholder                   : "Innsbruck"
+      zip                                : "postal code"
+      zip_placeholder                    : "6020"
+      name                               : "name"
+      name_placeholder                   : "WG-2000"
+      street                             : "street"
+      street_placeholder                 : "Doestreet 10"
+    finances:
+      page_title                         : "Finances"
+      page_header                        : "Finance status"
+    user_settings:
+      page_header                        : "Your Profile"
+      name                               : "name"
+      email                              : "email"
+    shopping:
+      add                                : "add"
+      new_list_placeholder               : "groceries"
+      new_item_placeholder               : "jellybeans"
+
+
 
   session:
     index:

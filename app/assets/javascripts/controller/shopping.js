@@ -1,25 +1,38 @@
-angular.module('flatman').controller("shoppingCtrl",function($scope,shoppingService){
-    $scope.lists = shoppingService.get();
+angular.module('flatman').controller("shoppingCtrl",function($scope,shoppinglistService,shoppingitemService,Util){
+    $scope.lists = shoppinglistService.get();
 
-    $scope.removeTodo=function(list,item){
-        list.todos = _(list.todos).without(item);
-        shoppingService.save($scope.lists);
+    $scope.removeItem=function(list,item){
+        shoppingitemService.destroy({l_id: list.id,id: item.id},function(){
+            if(!Util.has_server_errors()){
+                list.items = _(list.items).without(item);
+            }
+        });
     };
 
-    $scope.removeTodoList=function(list){
-        $scope.lists=_($scope.lists).without(list);
-        shoppingService.save($scope.lists);
+    $scope.removeList=function(list){
+        shoppinglistService.destroy({id: list.id},function(){
+            if(!Util.has_server_errors()){
+                $scope.lists = _($scope.lists).without(list);
+            }
+        });
     };
 
-    $scope.addTodo=function(list){
-        list.todos.push({text:list.new_Text,done:false});
-        list.new_Text=''
-        shoppingService.save($scope.lists);
+    $scope.addItem=function(list){
+        shoppingitemService.create({l_id: list.id},{name:list.new_Text},function(data){
+            if(!Util.has_server_errors()){
+                list.items.push(data);
+                list.new_Text='';
+            }
+        });
     };
 
-    $scope.addTodoList=function(){
-        $scope.lists.push({name:$scope.todoListName,todos:new Array()});
-        $scope.todoListName=''
-        shoppingService.save($scope.lists);
+    $scope.addList=function(){
+        shoppinglistService.create(null,{name:$scope.ListName},function(data){
+            if(!Util.has_server_errors()){
+                $scope.lists.push(data);
+                $scope.ListName='';
+                list.lists = _(list.lists).without(list);
+            }
+        });
     };
 });

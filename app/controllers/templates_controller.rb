@@ -1,9 +1,5 @@
-class Templates::TemplatesController < ProtectedController
+class TemplatesController < ProtectedController
  layout false, except: [:index]
-
-  def self.controller_path
-    "templates"
-  end
 
   def index
   end

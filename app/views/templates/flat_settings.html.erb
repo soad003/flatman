@@ -1,0 +1,46 @@
+<div class="row">
+  <div class="col-md-offset-3 col-md-6">
+      <section class="hidden-print">
+          <h1 class="page-header"><%= t('.page_header') %></h1>
+      </section>
+
+      <form name="content_form" class="form" role="form" ng-submit="update_flat()">
+        <div class="form-group">
+          <label class="control-label" for="flat_name"><%=t('.name')%></label>
+          <div>
+            <input id="flat_name" ng-model="flat.name" type="text" placeholder="<%=t('.name_placeholder')%>" >
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="control-label" for="street"><%=t('.street')%></label>
+          <div>
+            <input id="street" ng-model="flat.street" type="text" placeholder="<%=t('.street_placeholder')%>" >
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="control-label" for="post_code"><%=t('.zip')%></label>
+          <div>
+            <input id="post_code" ng-model="flat.zip" type="text" placeholder="<%=t('.zip_placeholder')%>" >
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="control-label" for="city"><%=t('.city')%></label>
+          <div>
+            <input id="city" ng-model="flat.city" type="text" placeholder="<%=t('.city_placeholder')%>" >
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-md-2 col-md-offset-10">
+           <button class = "btn btn-sm btn-success btn-block" title ="<%= t('buttons.titles.decision.save') %>" ng-disabled="!is_dirty()">
+              <span class="glyphicon glyphicon-ok"></span> <%= t('buttons.labels.decision.save.enabled') %>
+            </button>
+          </div>
+        </div>
+      </form>
+  </div>
+</div>
+

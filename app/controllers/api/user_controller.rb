@@ -7,7 +7,7 @@ class Api::UserController < Api::RestController
 
     private
         # Never trust parameters from the scary internet, only allow the white list through.
-    def shopping_list_params
+    def user_params
       #params.require(:task).permit(:item_name)
     end
 

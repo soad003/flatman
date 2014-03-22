@@ -3,11 +3,13 @@
         <div class="col-md-2">&nbsp;</div>
         <div class="form-group col-md-8">
           <!--<label for="disabledTextInput">new list</label>-->
-          <form role="form" ng-submit="addTodoList()">
+          <form role="form" ng-submit="addList()" name="listForm">
               <div class="input-group">
-                  <input type="text" class="form-control" ng-model="todoListName" maxlength="30" placeholder="new shopping list">
+                  <input type="text" class="form-control" ng-model="ListName" maxlength="30" placeholder="<%= t('.new_list_placeholder') %>" required>
                   <span class="input-group-btn">
-                    <button class="btn btn-primary" type="submit" type="submit">add</button>
+                    <button class="btn btn-primary" type="submit" type="submit" ng-disabled="!listForm.$valid">
+                      <span class="glyphicon glyphicon-plus"></span> <%= t(".add") %>
+                    </button>
                   </span>
                </div>
            </form>
@@ -20,28 +22,36 @@
                 <div class="panel-heading">
                     <div class="form-group">
                         <strong>{{list.name}}</strong>
-                        <button class="btn btn-default btn-xs pull-right" type="button" ng-click="removeTodoList(list)">
+                        <button class="btn btn-default btn-xs pull-right" type="button" ng-click="removeList(list)">
                             <span class="glyphicon glyphicon-trash"></span>
                         </button>
                     </div>
                     <ul class="list-unstyled">
-                        <li ng-repeat="todo in list.todos track by $index">
-                          <input id="{{''+$parent.$index+$index}}" type="checkbox" ng-model="todo.done">
-                          <label for="{{''+$parent.$index+$index}}" class="done-{{todo.done}}">
-                            {{todo.text}}
+                        <li ng-repeat="item in list.items">
+                          <input id="{{''+$parent.$index+$index}}" type="checkbox" ng-model="item.checked">
+                          <label for="{{''+$parent.$index+$index}}" class="done-{{item.checked}}">
+                            {{item.name}}
                           </label>
-                          <a href="" class="pull-right" ng-click="removeTodo(list,todo)">
+                          <a href="" class="pull-right" ng-click="removeItem(list,item)">
                             <span class="glyphicon glyphicon-remove"></span>
                           </a>
                         </li>
                     </ul>
                 </div>
                 <div class="panel-footer announcement-bottom">
-                    <form role="form" ng-submit="addTodo(list)">
+                    <form role="form" name="Itemform" ng-submit="addItem(list)">
                         <div class="input-group">
-                          <input type="text" class="form-control" ng-model="list.new_Text" maxlength="30" placeholder="add item here">
+                          <input type="text" class="form-control"
+                                  ng-model="list.new_Text"
+                                  maxlength="30"
+                                  placeholder="<%= t(".new_item_placeholder") %>" required>
                           <span class="input-group-btn">
-                            <button class="btn btn-primary" type="submit">add</button>
+                            <button class="btn btn-primary"
+                                    type="submit"
+                                    ng-disabled="!Itemform.$valid">
+
+                              <span class="glyphicon glyphicon-plus"></span> <%= t(".add") %>
+                            </button>
                           </span>
                         </div>
                     </form>

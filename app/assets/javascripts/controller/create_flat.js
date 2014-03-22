@@ -1,4 +1,4 @@
-angular.module('flatman').controller("flatCtrl",function($scope,flatService,Util){
+angular.module('flatman').controller("createFlatCtrl",function($scope,flatService,Util){
     $scope.newFlat={};
 
     $scope.create_flat=function(){

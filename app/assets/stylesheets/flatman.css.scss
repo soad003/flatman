@@ -107,3 +107,11 @@ input[type=checkbox] + label:before { letter-spacing: 10px; } /* space between c
 
 input[type=checkbox]:checked + label:before { content: "\f046"; } /* checked icon */
 input[type=checkbox]:checked + label:before { letter-spacing: 5px; }
+
+// input.ng-dirty {
+//     border-color: #8a6d3b;
+// }
+
+input.ng-error {
+    border-color: #a94442;
+}

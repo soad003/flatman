@@ -1,12 +1,11 @@
 // Angular Config / Routes
 angular.module('flatman', ['ngRoute','ngResource']).config(function($httpProvider, $routeProvider){
-  $httpProvider.defaults.headers.post = {'X-CSRF-Token': $("meta[name='csrf-token']").attr("content"),
+  $httpProvider.defaults.headers.common = {'X-CSRF-Token': $("meta[name='csrf-token']").attr("content"),
                                           'Content-Type': 'application/json'};
-
   $routeProvider.
       when('/create_flat', {
         templateUrl: '/templates/create_flat',
-        controller: 'flatCtrl'
+        controller: 'createFlatCtrl'
       }).
       when('/shopping', {
         templateUrl: '/templates/shopping',
@@ -34,11 +33,11 @@ angular.module('flatman', ['ngRoute','ngResource']).config(function($httpProvide
       }).
       when('/user_settings', {
         templateUrl: '/templates/user_settings',
-        controller: 'shoppingCtrl'
+        controller: 'userSettingsCtrl'
       }).
       when('/flat_settings', {
         templateUrl: '/templates/flat_settings',
-        controller: 'shoppingCtrl'
+        controller: 'flatSettingsCtrl'
       }).
       when('/search/:term', {
         templateUrl: '/templates/search',
@@ -47,7 +46,6 @@ angular.module('flatman', ['ngRoute','ngResource']).config(function($httpProvide
       otherwise({
         redirectTo: '/dashboard'
       });
-
 
       $httpProvider.interceptors.push(function ($q,Util) {
         return {

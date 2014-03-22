@@ -15,11 +15,11 @@ class Api::RestController < ProtectedController
     end
 
     def record_not_found
-        render :json => {:errors => ['resource not found']}, :status => :not_found
+        render :json => {:errors => [t('errors.not_found.messages.not_found')]}, :status => :not_found
     end
 
     def general_error(error)
         puts error.message
-        render :json => {:errors => ['general error. please try again later!']}, :status => :internal_server_error
+        render :json => {:errors => [t('errors.server_error.messages.server_error')]}, :status => :internal_server_error
     end
 end
