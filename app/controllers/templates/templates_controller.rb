@@ -32,7 +32,10 @@ class Templates::TemplatesController < ProtectedController
   def flat_settings
   end
 
-  def new_flat
+  def create_flat
+  end
+
+  def search
   end
 
 end

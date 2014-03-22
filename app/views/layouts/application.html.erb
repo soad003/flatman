@@ -24,7 +24,7 @@
     <![endif]-->
   </head>
 
-  <body>
+  <body ng-controller="rootCtrl">
 
     <div class="navbar navbar-default navbar-fixed-top navbar-inverse" role="navigation">
       <div class="container-fluid">
@@ -35,13 +35,13 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" href="/"><%= image_tag("flatman_logo.png", width: 30) %> flatman</a>
+          <a class="navbar-brand" href="/#/dashboard"><%= image_tag("flatman_logo.png", width: 30) %> flatman</a>
         </div>
         <% if logged_in %>
           <div class="navbar-collapse collapse">
             <ul class="nav navbar-nav">
               <li class="flatman-navbar-item active">
-                <a href="/"><span class="fa fa-dashboard"></span> <%=t(".navbar.dashboard")%></a>
+                <a href="/#/dashboard"><span class="fa fa-dashboard"></span> <%=t(".navbar.dashboard")%></a>
               </li>
               <li class="flatman-navbar-item">
                 <a href="/#/shopping"><span class="glyphicon glyphicon-shopping-cart"></span>  <%=t(".navbar.shopping")%></a>
@@ -77,11 +77,11 @@
 
             <div class="col-sm-2 col-md-2 pull-right">
               <!-- nasty navbar Hack  http://stackoverflow.com/questions/18619740/how-to-add-a-search-box-with-icon-to-the-navbar-in-bootstrap-3/18620303#18620303 -->
-              <form class="navbar-form navbar-right" role="search" method="get" action="search">
+              <form class="navbar-form navbar-right" role="search" ng-submit="search()">
                 <div class="input-group">
-                  <input type="text" class="form-control" name="term" placeholder="<%=t(".navbar.search_placeholder")%>">
+                  <input type="text" class="form-control" ng-model="search_term" placeholder="<%=t(".navbar.search_placeholder")%>">
                   <span class="input-group-btn">
-                    <button class="btn btn-success" type="button"><span class="glyphicon glyphicon-search"></span></button>
+                    <button class="btn btn-success" type="submit"><span class="glyphicon glyphicon-search"></span></button>
                   </span>
                 </div>
               </form>
@@ -99,6 +99,10 @@
             <%=message%>
           </div>
         <% end %>
+
+        <div ng-show="Util.has_server_errors" class="alert alert-error" ng-repeat="error in server_errors">
+            {{error}}
+        </div>
 
         <%= yield :validation %>
       </section>

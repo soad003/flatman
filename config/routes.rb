@@ -18,14 +18,15 @@ scope "(:locale)", locale: /en|de/ do
     get '/shopping', :to => 'templates#shopping', as: 'shopping'
     get '/user_settings', :to => 'templates#user_settings', as: 'user_settings'
     get '/dashboard', :to => 'templates#dashboard', as: 'dashboard_template'
-    get '/new_flat', :to => 'templates#new_flat'
+    get '/create_flat', :to => 'templates#create_flat'
+    get '/search', :to => 'templates#search', as: 'search'
   end
 
-  get '/search', :to => 'search#show', as: 'search'
+
 
   #REST API
   namespace :api, defaults: {format: :json} do
-   resources :flat, only: [:index, :create]
+   resources :flat, only: [:index, :create, :show]
    resources :user, only: [:index]
   end
 

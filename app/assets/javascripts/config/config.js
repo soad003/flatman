@@ -4,8 +4,8 @@ angular.module('flatman', ['ngRoute','ngResource']).config(function($httpProvide
                                           'Content-Type': 'application/json'};
 
   $routeProvider.
-      when('/new_flat', {
-        templateUrl: '/templates/new_flat',
+      when('/create_flat', {
+        templateUrl: '/templates/create_flat',
         controller: 'flatCtrl'
       }).
       when('/shopping', {
@@ -40,8 +40,30 @@ angular.module('flatman', ['ngRoute','ngResource']).config(function($httpProvide
         templateUrl: '/templates/flat_settings',
         controller: 'shoppingCtrl'
       }).
+      when('/search/:term', {
+        templateUrl: '/templates/search',
+        controller: 'searchCtrl'
+      }).
       otherwise({
         redirectTo: '/dashboard'
       });
 
+
+      $httpProvider.interceptors.push(function ($q,Util) {
+        return {
+            'response': function (response) {
+              Util.clear_server_errors();
+              return response;
+            },
+            'responseError': function (rejection) {
+               Util.set_server_errors(rejection.data.errors);
+               return $q.reject(rejection);
+            }
+        };
+      });
+
+}).run(function($rootScope){
+  $rootScope.$on('$routeChangeStart',function(){
+    $('.modal.in').modal('hide'); //dirty nasty ugly hack!!! DON'T DO THIS AT HOME
+  });
 });

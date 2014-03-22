@@ -102,15 +102,15 @@ en:
       page_title                         : "Dashboard"
     dashboard:
       page_header                        : "Dashboard"
+    search:
+      page_header                        : "Searching for"
 
   session:
     index:
       page_title                         : "Please sign in"
-      page_header                        : "Sign in with ..."
+      login                              : "Login"
+      or                                 : "or"
+      signup                             : "Sign up"
       sign_in_Facebook                   : "Facebook"
       sign_in_Google                     : "Google"
-
-  search:
-    show:
-      page_header                        : "Searching for"
-      page_title                         : "Search"
+      forgot_pw                          : "forgot password?"
