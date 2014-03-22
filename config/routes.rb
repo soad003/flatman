@@ -1,20 +1,23 @@
 Flatman::Application.routes.draw do
 
 scope "(:locale)", locale: /en|de/ do
-  root :to => 'dashboard#index', as: 'dashboard'
+  root :to => 'templates#index', as: 'dashboard'
 
   # Static routes
   get '/about', :to => 'public#about'
   get '/contact', :to => 'public#contact'
   get '/terms', :to => 'public#terms_and_privacy'
 
-  get '/finances', :to => 'dashboard#finances', as: 'finances'
-  get '/flat_settings', :to => 'dashboard#flat_settings', as: 'flat_settings'
-  get '/messages', :to => 'dashboard#messages', as: 'messages'
-  get '/resources', :to => 'dashboard#resources', as: 'resources'
-  get '/share', :to => 'dashboard#share',as: 'share'
-  get '/shopping', :to => 'dashboard#shopping', as: 'shopping'
-  get '/user_settings', :to => 'dashboard#user_settings', as: 'user_settings'
+  # template routes
+  get '/templates/finances', :to => 'templates#finances', as: 'finances'
+  get '/templates/flat_settings', :to => 'templates#flat_settings', as: 'flat_settings'
+  get '/templates/messages', :to => 'templates#messages', as: 'messages'
+  get '/templates/resources', :to => 'templates#resources', as: 'resources'
+  get '/templates/share', :to => 'templates#share',as: 'share'
+  get '/templates/shopping', :to => 'templates#shopping', as: 'shopping'
+  get '/templates/user_settings', :to => 'templates#user_settings', as: 'user_settings'
+  get '/templates/dashboard', :to => 'templates#dashboard', as: 'dashboard_template'
+
   get '/search', :to => 'search#show', as: 'search'
 
 
