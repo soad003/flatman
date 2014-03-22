@@ -102,7 +102,9 @@ en:
       page_title                         : "Dashboard"
     dashboard:
       page_header                        : "Dashboard"
-
+    finances:
+      page_title                         : "Finances"
+      page_header                        : "Finanzstatus"
   session:
     index:
       page_title                         : "Please sign in"
@@ -114,3 +116,4 @@ en:
     show:
       page_header                        : "Searching for"
       page_title                         : "Search"
+
