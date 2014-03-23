@@ -14,7 +14,7 @@ class Api::ShoppinglistController < Api::RestController
     end
 
     def destroy
-        sl = Shoppinglist.find_list_with_user(params[:id], current_user)
+        sl = Shoppinglist.find_list_with_user_constraint(params[:id], current_user)
         sl.destroy!
         respond_with(nil)
     end

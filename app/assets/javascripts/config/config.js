@@ -60,6 +60,14 @@ angular.module('flatman', ['ngRoute','ngResource']).config(function($httpProvide
         };
       });
 
+      $httpProvider.interceptors.push(function($q,$rootScope) {
+          return {
+              request: function(config){ $rootScope.is_loading=true; return config; },
+              response: function(response) { $rootScope.is_loading=false;  return response }
+          };
+      });
+
+
 }).run(function($rootScope){
   $rootScope.$on('$routeChangeStart',function(){
     $('.modal.in').modal('hide'); //dirty nasty ugly hack!!! DON'T DO THIS AT HOME
