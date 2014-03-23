@@ -63,7 +63,11 @@ angular.module('flatman', ['ngRoute','ngResource']).config(function($httpProvide
       $httpProvider.interceptors.push(function($q,$rootScope) {
           return {
               request: function(config){ $rootScope.is_loading=true; return config; },
-              response: function(response) { $rootScope.is_loading=false;  return response }
+              response: function(response) { $rootScope.is_loading=false;  return response; },
+              responseError: function(rejection) {
+                                                  $rootScope.is_loading=false;
+                                                  return $q.reject(rejection);
+                                                 }
           };
       });
 

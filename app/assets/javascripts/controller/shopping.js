@@ -9,8 +9,8 @@ angular.module('flatman').controller("shoppingCtrl",function($scope,shoppingServ
 
     $scope.removeList=function(list){
         shoppingService.list.destroy(list.id,function(){
-                                        $scope.lists = _($scope.lists).without(list);
-                                    });
+            $scope.lists = _($scope.lists).without(list);
+        });
     };
 
     $scope.addItem=function(list){
@@ -22,9 +22,9 @@ angular.module('flatman').controller("shoppingCtrl",function($scope,shoppingServ
 
     $scope.addList=function(){
         shoppingService.list.create($scope.ListName, function(data){
+                data.items=[];
                 $scope.lists.push(data);
                 $scope.ListName='';
-                list.lists = _(list.lists).without(list);
         });
     };
 

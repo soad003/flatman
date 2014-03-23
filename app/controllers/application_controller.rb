@@ -7,6 +7,8 @@ class ApplicationController < ActionController::Base
 
   helper_method :current_user
   helper_method :logged_in
+  helper_method :is_user_ready_to_go
+
 
     def wrap_in_transaction
         ActiveRecord::Base.transaction do
@@ -26,6 +28,10 @@ class ApplicationController < ActionController::Base
 
     def logged_in
         !current_user.nil?
+    end
+
+    def is_user_ready_to_go
+      logged_in && !current_user.flat.nil?
     end
 
     private

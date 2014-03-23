@@ -37,7 +37,7 @@
           </button>
           <a class="navbar-brand" href="/#/dashboard"><%= image_tag("flatman_logo.png", width: 30) %> flatman</a>
         </div>
-        <% if logged_in %>
+        <% if is_user_ready_to_go %>
           <div class="navbar-collapse collapse">
             <ul class="nav navbar-nav">
               <li class="flatman-navbar-item active">
@@ -73,8 +73,8 @@
                   <li><a href="/signout"><span class="glyphicon glyphicon-off"></span> <%=t("misc.titles.logout")%></a></li>
                 </ul>
               </li>
-              <li class="flatman-navbar-item">
-                <span class="fa fa-refresh navbar-brand" ng-show="is_loading"></span>
+              <li class="flatman-navbar-item" ng-show="is_loading">
+                <a><span class="fa fa-refresh" ></span> <%=t("misc.titles.in_progress")%></a>
               </li>
             </ul>
 
