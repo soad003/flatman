@@ -33,19 +33,6 @@ en:
       create:
         already_in_flat                   : "Your user already belongs to a flat"
 
-  activerecord:
-    errors:
-      models:
-        flat:
-          attributes:
-            name:
-              blank             : "Please provide a name for your flat!"
-            city:
-              blank             : "Please enter your city!"
-            zip:
-              blank             : "Please enter your zip code!"
-            street:
-              blank             : "Please enter your flat's street!"
 
   buttons:
     titles:
@@ -97,7 +84,6 @@ en:
       login                               : "login"
       logged_out                          : "Successfully logged out!"
       logged_in                           : "Successfully logged in!"
-      in_progress                         : "working..."
       menus:
         about:
           title                           : "About us"
@@ -160,6 +146,9 @@ en:
       page_title                         : "Dashboard"
     dashboard:
       page_header                        : "Dashboard"
+    messages: 
+      page_header                        : "Messages"
+      page_title                         : "Messages"
     search:
       page_header                        : "Searching for"
     flat_settings:
