@@ -1,0 +1,205 @@
+<% content_for :robots, "NOINDEX, NOFOLLOW" %>
+
+<% content_for :title, t('.page_title') %>
+
+
+  <section class="hidden-print">
+    <h1 class="page-header"><%= t('.page_header') %></h1>
+  </section>
+
+<div class ="container">
+<div class="row">
+  <div class="col-md-2">
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <center>Monat</center>
+      </div>
+      <div class="panel-body">
+        <div class="list-group">
+         <a href="#" class="list-group-item">Jänner</a>
+         <a href="#" class="list-group-item">Februar</a>
+         <a href="#" class="list-group-item active">März</a>
+         <a href="#" class="list-group-item">April</a>
+         <a href="#" class="list-group-item">Mai</a>
+         <a href="#" class="list-group-item">Juni</a>
+         <a href="#" class="list-group-item">Juli</a>
+         <a href="#" class="list-group-item">August</a>
+         <a href="#" class="list-group-item">September</a>
+         <a href="#" class="list-group-item">Oktober</a>
+         <a href="#" class="list-group-item">November</a>
+         <a href="#" class="list-group-item">Dezember</a>
+      </div>
+      </div>
+      <div class="panel-body">
+        <div class="list-group">
+          <a href="#" class="list-group-item active">2014</a>
+          <a href="#" class="list-group-item">2015</a>
+      </div>
+    </div>
+  </div>
+  </div>
+
+  <div class="col-md-8">
+    <center><h3>GESAMT : 340 <t><i class="fa fa-eur"></i></t> </h3></center>
+    
+    <center>
+    
+    <script type="text/javascript">
+    
+    var data =[
+      {
+        value: 30,
+        color:"#F7464A"
+      },
+      {
+        value:100,
+        color:"#E2EAE9"
+      },
+      {
+        value:43,
+        color:"#D4CCC5"
+      },
+      {
+        value: 30,
+        color:"#949FB1"
+      },
+      {
+        value: 10,
+        color:"#4D5360"
+      }
+
+    ];
+    var ctx = document.getElementById("myChart").getContext("2d");
+   
+    new Chart(ctx).Doughnut(data,null);
+    </script>
+   
+  <canvas id="myChart" width="400" height="400"></canvas>
+</center>
+  </div>
+
+  <div class="col-md-2">
+    <table class="table table-hover">
+     <!--<ul style="list-style-type:none"; >-->
+      <tr>
+        <th><a style="cursor:pointer; text-decoration: none;" data-toggle="modal" data-target="#myModal">
+          <button type="button" class="btn btn-primary">+ neuer Eintrag</button>
+        </th>
+      <tr>
+        <th><button type="button" class="btn btn-primary">+ Eintrag bearbeiten</button></th>
+      </tr>
+    </table>
+
+    <table class ="table">
+    <tr>
+      <th><center><h3>Schulden</h3></center>
+      </th>
+    </tr>
+    <tr>
+      <th>100€  Franz</th>
+    <tr>
+      <th>130€  Herbert</th>
+    </tr>
+  </table>
+
+    <table class="table">
+      <tr>
+    <th><center><h3>Guthaben</h3></center>
+      </th>
+      <tr>
+        <th>50€ Sepp</th>
+      </tr>
+    </table>
+  </div>
+
+
+    <div class="col-md-8 ">
+
+
+ <div class="panel-body">
+ <div style="margin:auto; width:450px; padding:40px border: 1px solid black;">
+  <table class="table table-striped">
+    <tr>
+      <th><i class="fa fa-cutlery"></i> Lebensmittel</th>
+      <th><i class="fa fa-shopping-cart"></i> Einkäufe</th>
+      <th><i class="fa fa-truck"></i> Verkehrsmittel</th>
+    </tr>
+    <tr>
+      <th>300
+      </th>
+      <th>120
+      </th>
+      <th>50
+      </th>
+    </tr>
+    <tr>
+      <th><i class="fa fa-bolt"></i> Resourcen</th>
+    <th><i class="fa fa-plus"></i> Sonstiges</th>
+    <th>
+    </th>
+  </tr>
+  <tr>
+    <th>50
+    </th>
+    <th>20
+    </th>
+    <th>
+    </th>
+  </table>
+  </div>
+
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <center><h4 class="modal-title" id="myModalLabel">Neuer Eintrag</h4></center>
+      </div>
+      <div class="modal-body">
+
+        <form role="form">
+          <div class="form-group">
+            <label for="exampleInputText">Name</label>
+              <input type="text" class="form-control" id="exampleInputText" placeholder="Eingabe Name">
+          </div>
+          <div class="form-group">
+            <label for="exampleInputAmount">Betrag</label>
+              <input type="amount" class="form-control" id="exampleInputAmount" placeholder="Eingabe Betrag">
+          </div>
+          <div class="form-group">
+           
+            <label for="exampleInputDate">Datum</label>
+              <input type="date" class="form-control" id="exampleInputDate" placeholder="Eingabe Datum">
+          <div class="form-group">
+
+            <label for="exampleInputCategorie">Kategorie</label>
+              <input t<pe="date" class="form-control" id="exampleInputCategorie" placeholder="Kategorie">
+          </div>
+          <div class="form-group">
+            <label for="exampleWG">betrifft:</label>
+             <div class="checkbox">
+              <label>
+                 <input type="checkbox"> mich
+             </label>
+           </div>
+            <div class="checkbox">
+            <label>
+              <input type="checkbox"> BW1
+            </label>
+          </div>
+          <div class="checkbox">
+            <label>
+              <input type="checkbox"> BW2
+            </label>
+          </div>
+          <div class="checkbox">
+            <label>
+              <input type="checkbox"> BW3
+            </label>
+          </div>
+             </div>
+  <button type="submit" class="btn btn-default">Speichern</button>
+</form>
+
+      </div>
+</div>

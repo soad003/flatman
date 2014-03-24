@@ -1,25 +1,36 @@
-angular.module('flatman').controller("shoppingCtrl",function($scope,shoppingService){
-    $scope.lists = shoppingService.get();
+angular.module('flatman').controller("shoppingCtrl",function($scope,shoppingService,Util){
+    $scope.lists = shoppingService.list.get();
 
-    $scope.removeTodo=function(list,item){
-        list.todos = _(list.todos).without(item);
-        shoppingService.save($scope.lists);
-    }
+    $scope.removeItem=function(list,item){
+        shoppingService.item.destroy(item.id,list.id,function(){
+                list.items = _(list.items).without(item);
+        });
+    };
 
-    $scope.removeTodoList=function(list){
-        $scope.lists=_($scope.lists).without(list);
-        shoppingService.save($scope.lists);
-    }
+    $scope.removeList=function(list){
+        shoppingService.list.destroy(list.id,function(){
+            $scope.lists = _($scope.lists).without(list);
+        });
+    };
 
-    $scope.addTodo=function(list){
-        list.todos.push({text:list.new_Text,done:false});
-        list.new_Text=''
-        shoppingService.save($scope.lists);
-    }
+    $scope.addItem=function(list){
+        shoppingService.item.create(list.id,list.new_Text,function(data){
+                list.items.push(data);
+                list.new_Text='';
+        });
+    };
 
-    $scope.addTodoList=function(){
-        $scope.lists.push({name:$scope.todoListName,todos:new Array()});
-        $scope.todoListName=''
-        shoppingService.save($scope.lists);
+    $scope.addList=function(){
+        shoppingService.list.create($scope.ListName, function(data){
+                data.items=[];
+                $scope.lists.push(data);
+                $scope.ListName='';
+        });
+    };
+
+    $scope.changeChecked=function(list,item){
+        shoppingService.item.update(item,list.id,null, function(){
+            item.checked=!item.checked
+        });
     }
-})
+});

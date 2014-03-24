@@ -1,23 +1,41 @@
 Flatman::Application.routes.draw do
 
 scope "(:locale)", locale: /en|de/ do
-  root :to => 'dashboard#index', as: 'dashboard'
+  root :to => 'templates#index'
 
   # Static routes
-  get '/about', :to => 'public#about'
-  get '/contact', :to => 'public#contact'
-  get '/terms', :to => 'public#terms_and_privacy'
+  get '/about', :to => :about, controller: :public
+  get '/contact', :to => :contact, controller: :public
+  get '/terms', :to => :terms_and_privacy, controller: :public
 
-  get '/finances', :to => 'dashboard#finances', as: 'finances'
-  get '/flat_settings', :to => 'dashboard#flat_settings', as: 'flat_settings'
-  get '/messages', :to => 'dashboard#messages', as: 'messages'
-  get '/resources', :to => 'dashboard#resources', as: 'resources'
-  get '/share', :to => 'dashboard#share',as: 'share'
-  get '/shopping', :to => 'dashboard#shopping', as: 'shopping'
-  get '/user_settings', :to => 'dashboard#user_settings', as: 'user_settings'
-  get '/search', :to => 'search#show', as: 'search'
+  # template routes
+  namespace :templates do
+    get '/finances', to: :finances, as: 'finances'
+    get '/flat_settings', to: :flat_settings, as: 'flat_settings'
+    get '/messages', to: :messages, as: 'messages'
+    get '/resources', to: :resources, as: 'resources'
+    get '/share', to: :share,as: 'share'
+    get '/shopping', to: :shopping, as: 'shopping'
+    get '/user_settings', to: :user_settings, as: 'user_settings'
+    get '/dashboard', to: :dashboard, as: 'dashboard_template'
+    get '/create_flat', to: :create_flat
+    get '/search', to: :search, as: 'search'
+  end
 
+  #REST API
+  namespace :api, defaults: {format: :json} do
+   namespace :flat do
+      get '/', to: :index
+      put '/', to: :create
+      post '/', to: :update
+   end
+   resources :user, only: [:index]
+   resources :shoppinglist, only: [:index, :create, :destroy] do
+      resources :shoppingitem, only: [:create, :update, :destroy]
+   end
+  end
 
+  # Authentication
   match 'auth/:provider/callback', to: 'session#create', via: [:get, :post]
   match 'auth/failure', to: redirect('/'), via: [:get, :post]
   match 'signout', to: 'session#destroy', as: 'signout', via: [:get, :post]

@@ -7,7 +7,7 @@ class User < ActiveRecord::Base
     has_many    :receivedMessages, :class_name => 'Message', :foreign_key => 'receiver_id'
     has_many    :paidPayments, :class_name => 'Payment', :foreign_key => 'payer_id'
     has_many    :receivedPayments, :class_name => 'Payment', :foreign_key => 'payee_id'
-    
+
     def self.from_omniauth(auth)
         where(auth.slice(:provider,:uid)).first_or_initialize.tap do |user|
             user.provider = auth.provider
@@ -16,6 +16,7 @@ class User < ActiveRecord::Base
             user.oauth_token = auth.credentials.oauth_token
             user.oauth_expires_at = Time.at(auth.credentials.expires_at)
             user.image_path = auth.info.image
+            user.email = auth.info.email
             user.save!
         end
 

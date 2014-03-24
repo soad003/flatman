@@ -1,0 +1,79 @@
+<div class="jumbotron">
+  <h1><small>Welcome to </small>Flatman</h1>
+  <p class="lead">You are currently not member of a flat!</p>
+  <p>You can either create one or just wait until you get assigned to one by your roommates</p>
+  <p><button class="btn btn-lg btn-success" type="button" data-toggle="modal" data-target="#create_flat_modal">create a flat!</button></p>
+</div>
+
+<div class="row marketing">
+  <div class="col-lg-6">
+    <h4>Shopping</h4>
+    <p>bla bla</p>
+
+    <h4>Bills</h4>
+    <p>Morbi leo risus, porta ac consectetur ac, vestibulum at eros. Cras mattis consectetur purus sit amet fermentum.</p>
+
+    <h4>Resource usage</h4>
+    <p>Maecenas sed diam eget risus varius blandit sit amet non magna.</p>
+  </div>
+
+  <div class="col-lg-6">
+    <h4>Sharing</h4>
+    <p>Donec id elit non mi porta gravida at eget metus. Maecenas faucibus mollis interdum.</p>
+
+    <h4>Stay informed</h4>
+    <p>Morbi leo risus, porta ac consectetur ac, vestibulum at eros. Cras mattis consectetur purus sit amet fermentum.</p>
+
+    <h4>Connect</h4>
+    <p>Maecenas sed diam eget risus varius blandit sit amet non magna.</p>
+  </div>
+</div>
+
+<div class="modal" id="create_flat_modal" tabindex="-1" role="dialog" aria-labelledby="create_flat_modal" aria-hidden="true">
+  <form role="form" ng-submit="create_flat()">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+          <h4 class="modal-title" id="create_flat_modal">Create your flat</h4>
+        </div>
+        <div class="modal-body">
+
+
+          <div class="form-group">
+            <label class="control-label" for="flat_name">name</label>
+            <div>
+              <input id="flat_name" ng-model="newFlat.name" type="text" placeholder="flat name" >
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="control-label" for="street">street</label>
+            <div>
+              <input id="street" ng-model="newFlat.street" type="text" placeholder="street" >
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="control-label" for="post_code">postal code</label>
+            <div>
+              <input id="post_code" ng-model="newFlat.zip" type="text" placeholder="postal code" >
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="control-label" for="city">city</label>
+            <div>
+              <input id="city" ng-model="newFlat.city" type="text" placeholder="placeholder" >
+            </div>
+          </div>
+
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">close</button>
+          <button class="btn btn-primary" type="submit">save</button>
+        </div>
+      </div>
+    </form>
+</div>
+

@@ -1,5 +1,10 @@
-class DashboardController < ProtectedController
+class TemplatesController < ProtectedController
+ layout false, except: [:index]
+
   def index
+  end
+
+  def dashboard
   end
 
   def share
@@ -21,6 +26,12 @@ class DashboardController < ProtectedController
   end
 
   def flat_settings
+  end
+
+  def create_flat
+  end
+
+  def search
   end
 
 end

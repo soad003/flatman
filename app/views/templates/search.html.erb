@@ -1,8 +1,4 @@
-<% content_for :robots, "NOINDEX, NOFOLLOW" %>
-
-<% content_for :title, t('.page_title') %>
-
-<% content_for :page_header, t('.page_header') << " " << h(@search)%>
+<h1><%= t('.page_header') %> "{{term}}"</h1>
 
 <h2>Items</h2>
 
