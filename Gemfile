@@ -66,6 +66,8 @@ gem 'underscore-rails'
 # scheduler
 gem 'rufus-scheduler'
 
+#lightbox pictures
+#gem 'magnific-popup-rails'
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
