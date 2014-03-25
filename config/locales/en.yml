@@ -97,7 +97,7 @@ en:
       login                               : "login"
       logged_out                          : "Successfully logged out!"
       logged_in                           : "Successfully logged in!"
-      in_progress                         : "working..."
+      in_progress                         : ""
       menus:
         about:
           title                           : "About us"
