@@ -60,7 +60,6 @@ GEM
     jwt (0.1.11)
       multi_json (>= 1.5)
     libv8 (3.16.14.3)
-    magnific-popup-rails (0.9.9)
     mail (2.5.4)
       mime-types (~> 1.16)
       treetop (~> 1.4.8)
@@ -158,7 +157,6 @@ DEPENDENCIES
   http_accept_language
   jbuilder (~> 1.2)
   jquery-rails
-  magnific-popup-rails
   omniauth-facebook
   omniauth-google-oauth2
   rails (= 4.0.0)
