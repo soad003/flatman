@@ -1,0 +1,258 @@
+<!--<div ng-controller="sharingCtrl"> <!--ng-controller="sharingCtrl"  <div ng-init="shareditems = [
+			    	{name: 'Lötkolben', available: true},
+			    	{name: 'Fahrradschlauch-Reperaturset', available: true}
+				  ]">-->
+<div ng-init="shareditems = [
+			    	{id: 101, name: 'Lötkolben', status: 1},
+			    	{id: 102, name: 'Fahrradschlauch-Reperaturset', status: 1},
+			    	{id: 103, name: 'Reiter-Set', status: 2},
+			    	{id: 104, name: 'Schlagbohrmaschine', status: 1},
+			    	{id: 105, name: 'Lötkolben', status: 1},
+			    	{id: 106, name: 'Fahrradschlauch-Reperaturset', status: 1},
+			    	{id: 107, name: 'Lötkolben', status: 1},
+			    	{id: 108, name: 'mein handy reparatur set', status: 3, description: 'Wassermelone, Wassermelone, Wassermelone,Wassermelone, WassermeloneWassermelone, Wassermelone, WassermeloneWassermelone,Wassermelone'},
+			    	{id: 1042, name: 'mein 2. handy reparatur set', status: 3, description: 'besteht aus einem komischen Schraubenzieher, einen kleinen dicken Wulst und auch aus einer leicht grünlichen Wassermelone.'},
+			    	{id: 1043, name: 'silent brass', status: 2}
+				  ]">
+				  
+	<div class="row">
+		<h2>sharing is caring</h2>
+		
+		
+		<div class="col-md-6">	
+			<div class="panel panel-success">
+				  <div class="panel-heading">
+				    <h3 class="panel-title">available items</h3>
+				  </div>
+				 <div class="panel-group" id="availableItemsAccordeon">	
+				 <ul class="list-group" >
+					  	<!--filter --> 
+					  	<li class="list-group-item">
+					    	<div class="input-group">
+							<span class="input-group-addon"><span class="glyphicon glyphicon-filter"></span></span>
+								<input type="search" class="form-control" ng-model="qa" placeholder="filter" >
+							</div>
+				    	</li> <!--filter -->
+			    	
+			    		<!--item -->
+			    		<li class="list-group-item" ng-repeat="item in shareditems | filter:status=1 | filter:qa">
+              				
+              				<!-- item header-->
+              				<div class="input-group">
+       
+                  				<h3 class="panel-title form-control ">
+                      				<a data-toggle="collapse" data-parent="#availableItemsAccordeon" href="/#/share/#collapsItem_{{item.id}}">{{item.name}}</a>
+                  				</h3>
+                  				
+                  				<!-- edit box -->
+                  				<div class="input-group-btn">
+							        <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
+							        	<span class="glyphicon glyphicon-pencil"></span>
+							        </button>
+						        
+							        <ul class="dropdown-menu pull-right">
+							        	<li>
+							        	 	<a href="#"><span class="glyphicon glyphicon-eye-open"></span> publish </a>
+	               						 </li>
+							        	 <li>
+							        	 	<a href="#"><span class="glyphicon glyphicon-remove"></span> delete </a>
+	               						 </li>
+							        	 <li>
+							        	 	<a href="#"><span class="glyphicon glyphicon-pencil"></span> edit </a>
+	               						 </li>	      
+							        </ul>
+						        
+						     	 </div><!-- edit box-->
+              				
+              				</div><!-- item header -->
+              				
+              				
+              				<!-- item body -->
+              				<div id="collapsItem_{{item.id}}" class="panel-collapse collapse panel-body">
+              					<div class="row">
+							       <div class="col-md-2">
+							         <img src="https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcSTxlijUAI8y-1Tnrmf1wzkply5YF0HKgRdMSbcf9Vft1x5IKqldw" class="img-circle"
+							         		 style="width: 100px; height: 100px">
+							       </div>
+							       <div class="col-md-1">
+							       </div>
+							       <div class="col-md-9">
+							       		{{item.description}}
+							       </div>
+							     </div>
+							              					
+                  				
+				              </div><!-- item body -->
+				        </li>
+			   		
+			     	<div class="panel-footer">
+				     	 <form role="form" ng-submit="addSharingItem()">
+	                        <div class="input-group">
+	                          <span class="input-group-addon"><span class="glyphicon glyphicon-plus"></span></span>
+	                          
+	                          <input type="text" class="form-control" ng-model="list.new_Text" maxlength="30" placeholder="add new item">
+	                          
+	                          <span class="input-group-btn">
+	                            <button class="btn btn-primary" type="submit">add</button>
+	                          </span>
+	                        </div>
+	                    </form>
+			     	</div>
+			     
+			     
+			    </ul>
+			   </div>
+			</div>
+		</div>
+	
+	
+		<!-- shared items !-->
+		<div class="col-md-6">
+			<div class="panel panel-danger">
+				  <div class="panel-heading">
+				    <h3 class="panel-title">borrowed items</h3>
+				  </div>
+				  <div class="panel-group" id="borrowedItemsAccordeon">
+					<ul class="list-group" >
+					  	<!--filter --> 
+					  	<li class="list-group-item">
+					    	<div class="input-group">
+							<span class="input-group-addon"><span class="glyphicon glyphicon-filter"></span></span>
+								<input type="search" class="form-control" ng-model="qb" placeholder="filter" >
+							</div>
+				    	</li> <!--filter -->
+			    	
+			    		<!--item -->
+			    		<li class="list-group-item" ng-repeat="item in shareditems | filter:status=2 | filter:qb">
+              				
+              				<!-- item header-->
+              				<div class="input-group">
+       
+                  				<h3 class="panel-title form-control ">
+                      				<a data-toggle="collapse" data-parent="#borrowedItemsAccordeon" href="/#/share/#collapsItem_{{item.id}}">{{item.name}}</a>
+                  				</h3>
+                  				
+                  				<!-- edit box -->
+                  				<div class="input-group-btn">
+							        <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
+							        	<span class="glyphicon glyphicon-pencil"></span>
+							        </button>
+						        
+							        <ul class="dropdown-menu pull-right">
+							        	<li>
+							        	 	<a href="#"><span class="glyphicon glyphicon-eye-open"></span> publish </a>
+	               						 </li>
+							        	 <li>
+							        	 	<a href="#"><span class="glyphicon glyphicon-remove"></span> delete </a>
+	               						 </li>
+							        	 <li>
+							        	 	<a href="#"><span class="glyphicon glyphicon-pencil"></span> edit </a>
+	               						 </li>	      
+							        </ul>
+						        
+						     	 </div><!-- edit box-->
+              				
+              				</div><!-- item header -->
+              				
+              				
+              				<!-- item body -->
+              				<div id="collapsItem_{{item.id}}" class="panel-collapse collapse panel-body">
+              					<div class="row">
+							       <div class="col-md-2">
+							         <img src="https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcSTxlijUAI8y-1Tnrmf1wzkply5YF0HKgRdMSbcf9Vft1x5IKqldw" class="img-circle"
+							         		 style="width: 100px; height: 100px">
+							       </div>
+							       <div class="col-md-1">
+							       </div>
+							       <div class="col-md-9">
+							       		{{item.description}}
+							       </div>
+							     </div>
+							              					
+                  				
+				              </div><!-- item body -->
+				        </li>
+			    </ul>
+			   </div>
+			</div>
+		</div>
+		
+		
+		
+		<div class="col-md-6">
+			<div class="panel panel-warning">
+				  <div class="panel-heading">
+				    <h3 class="panel-title">hidden items</h3>
+				  </div>
+					
+					
+				  <div class="panel-group" id="hiddenItemsAccordeon">
+					  <ul class="list-group" >
+					  	
+					  	<!--filter --> 
+					  	<li class="list-group-item">
+					    	<div class="input-group">
+							<span class="input-group-addon"><span class="glyphicon glyphicon-filter"></span></span>
+								<input type="search" class="form-control" ng-model="qh" placeholder="filter" >
+							</div>
+				    	</li> <!--filter -->
+			    	
+			    		<!--item -->
+			    		<li class="list-group-item" ng-repeat="item in shareditems | filter:status=3 | filter:qh">
+              				
+              				<!-- item header-->
+              				<div class="input-group">
+       
+                  				<h3 class="panel-title form-control ">
+                      				<a data-toggle="collapse" data-parent="#hiddenItemsAccordeon" href="/#/share/#collapsItem_{{item.id}}">{{item.name}}</a>
+                  				</h3>
+                  				
+                  				<!-- edit box -->
+                  				<div class="input-group-btn">
+							        <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
+							        	<span class="glyphicon glyphicon-pencil"></span>
+							        </button>
+						        
+							        <ul class="dropdown-menu pull-right">
+							        	<li>
+							        	 	<a href="#"><span class="glyphicon glyphicon-eye-open"></span> publish </a>
+	               						 </li>
+							        	 <li>
+							        	 	<a href="#"><span class="glyphicon glyphicon-remove"></span> delete </a>
+	               						 </li>
+							        	 <li>
+							        	 	<a href="#"><span class="glyphicon glyphicon-pencil"></span> edit </a>
+	               						 </li>	      
+							        </ul>
+						        
+						     	 </div><!-- edit box-->
+              				
+              				</div><!-- item header -->
+              				
+              				
+              				<!-- item body -->
+              				<div id="collapsItem_{{item.id}}" class="panel-collapse collapse panel-body">
+              					<div class="row">
+							       <div class="col-md-2">
+							         <img src="https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcSTxlijUAI8y-1Tnrmf1wzkply5YF0HKgRdMSbcf9Vft1x5IKqldw" class="img-circle"
+							         		 style="width: 100px; height: 100px">
+							       </div>
+							       <div class="col-md-1">
+							       </div>
+							       <div class="col-md-9">
+							       		{{item.description}}
+							       </div>
+							     </div>
+							              					
+                  				
+				              </div><!-- item body -->
+				        </li>
+			   		</ul>
+				</div>
+			</div>
+		</div>
+		
+		
+	</div>
+	
+</div>

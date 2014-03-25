@@ -32,7 +32,7 @@ en:
     flat:
       create:
         already_in_flat                   : "Your user already belongs to a flat"
-
+  
   activerecord:
     errors:
       models:
@@ -160,6 +160,9 @@ en:
       page_title                         : "Dashboard"
     dashboard:
       page_header                        : "Dashboard"
+    messages: 
+      page_header                        : "Messages"
+      page_title                         : "Messages"
     search:
       page_header                        : "Searching for"
     flat_settings:
