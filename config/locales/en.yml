@@ -127,7 +127,7 @@ en:
         finances                          : "Finances"
         flat_settings                     : "Flat Settings"
         user_settings                     : "User Profile"
-        resources                         : "Gas/Electricity"
+        resources                         : "Resource"
         dashboard                         : "Dashboard"
         shopping                          : "Shopping"
         search_placeholder                : "Search items/user"
@@ -163,6 +163,17 @@ en:
     messages: 
       page_header                        : "Messages"
       page_title                         : "Messages"
+    resources:
+      page_header                        : "Resources"
+      page_title                         : "Resource"
+      chart                              : "Chart"
+      data                               : "Data"
+      date                               : "Date"
+      value                              : "Value"
+      usage                              : "Usage"
+      costs                              : "Costs"
+      resourceValue                      : "resource value"
+
     search:
       page_header                        : "Searching for"
     flat_settings:
