@@ -62,7 +62,6 @@ gem 'angularjs-rails'
 #Underscore js
 gem 'underscore-rails'
 
-
 # scheduler
 gem 'rufus-scheduler'
 
