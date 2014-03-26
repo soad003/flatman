@@ -7,11 +7,15 @@ class Api::RestController < ProtectedController
 
 
     def respond_with_record_invalid(e)
-        respond_with_errors(e.record.errors)
+        respond_with_val_errors(e.record.errors)
+    end
+
+    def respond_with_val_errors(errors)
+      render :json => {:errors => errors.map{|key,value| value}.flatten, :validations => errors}, :status => :unprocessable_entity
     end
 
     def respond_with_errors(errors)
-      render :json => {:errors => errors.map{|key,value| value}.flatten, :validations => errors}, :status => :unprocessable_entity
+      render :json => {:errors => errors}, :status => :unprocessable_entity
     end
 
     def record_not_found
