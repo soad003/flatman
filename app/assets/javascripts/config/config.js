@@ -31,6 +31,10 @@ angular.module('flatman', ['ngRoute','ngResource','google-maps']).config(functio
         templateUrl: '/templates/resources',
         controller: 'shoppingCtrl'
       }).
+      when('/create_resource', {
+        templateUrl: '/templates/create_resource',
+        controller: 'shoppingCtrl'
+      }).
       when('/user_settings', {
         templateUrl: '/templates/user_settings',
         controller: 'userSettingsCtrl'

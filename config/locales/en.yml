@@ -173,7 +173,21 @@ en:
       usage                              : "Usage"
       costs                              : "Costs"
       resourceValue                      : "resource value"
-
+    create_resource:
+        page_title                       : "add Resource"
+        page_header                      : "add Resource"
+        name                             : "Name"
+        name_placeholder                 : "electricity"
+        unitName                         : "Unit Name"
+        unitName_placeholder             : "kw/h"
+        priceUnit                        : "Price/Unit"
+        priceUnit_placeholder            : "0,13"
+        monthlyCosts                     : "Monthly Costs"
+        monthlyCosts_placeholder         : "6,30"
+        annualCosts                      : "Annual Costs"
+        annualCosts_placeholder          : "12,30"
+        startValue                       : "Start Value"
+        startValue_placeholder           : "82767"
     search:
       page_header                        : "Searching for"
     flat_settings:

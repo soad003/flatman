@@ -4,7 +4,7 @@
 
 <div class="row">
   <div class="page-head">
-      <h1 class="page-header"><span class="glyphicon glyphicon-globe"></span> <%= t('.page_header') %> <a href="/#/add/ressource"><button class="btn btn-primary pull-right" data-toggle='modal' data-target="#addRessource" type="submit"><i class="fa fa-plus"></i> <%= t('.page_title') %></button></a></h1>
+      <h1 class="page-header"><span class="glyphicon glyphicon-globe"></span> <%= t('.page_header') %> <a href="/#/create_resource"><button class="btn btn-primary pull-right" data-toggle='modal' data-target="#addRessource" type="submit"><i class="fa fa-plus"></i> <%= t('.page_title') %></button></a></h1>
      
   </div>
 
@@ -66,12 +66,11 @@
                           
                                <div class="input-group-btn">
                   <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
-            25.04.2014
+            <span an class="glyphicon glyphicon-calendar"> </span> 25.04.2014
               <span class="caret"></span>
                 </button>
                 <ul class="dropdown-menu">
-                  <li><a href="#">Dropdown link</a></li>
-                  <li><a href="#">Dropdown link</a></li>
+                  <li><img src="http://webtv.feratel.com/thumbnails/5645.jpeg?dcsdesign=WTP_partner&t=37"/></li>
                 </ul>
               </div>
                           
@@ -89,9 +88,10 @@
                           </span>
                         </div>
                     </form>
+                    
                 </div>
       </div>
-   <div id="chartdiv" class="col-sm-6 hidden-xs"">
+   <div id="chartdiv" class="col-sm-6 hidden-xs">
  <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav nav-tabs">
                     <li class="active"><a href="#"><%= t('.chart') %></a></li>
@@ -99,9 +99,9 @@
                 
                 <ul class="nav navbar-right">
                     <li class="dropdown">
-                        <a href="#" data-toggle="dropdown" class="dropdown-toggle">01.05.2013 - 05.3.2014 <b class="caret"></b></a>
+                        <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">01.05.2013 - 05.3.2014 <b class="caret"></b></button>
                         <ul class="dropdown-menu">
-                            <li><a href="#">Action</a></li>
+                            <li><img src="http://webtv.feratel.com/thumbnails/5645.jpeg?dcsdesign=WTP_partner&t=37"/></li>
                         </ul>
                     </li>
                 </ul>
@@ -140,78 +140,4 @@
 
    </div>
  </div>
-   <div class="modal fade" id="addRessource" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-        <h4 class="modal-title" id="myModalLabel">Add Ressource</h4>
-      </div>
-      <div class="modal-body" style="overflow-y: auto; overflow-x: hidden;">
-          <div class="form-group">
-          <label for="ressource_name">Name</label>
-            <div class="input-group">
-              <input autofocus="autofocus" id="ressource_name" name="ressource_name" placeholder="electricity" type="text" />
-              <span class="input-group-addon">
-                <span class="glyphicon glyphicon-pencil"></span>
-              </span>
-            </div>
-          </div>
-
-          <div class="form-group">
-          <label for="ressource_unit">Unit Name</label>
-            <div class="input-group">
-              <input autofocus="autofocus" id="ressource_unit" name="ressource_unit" placeholder="kw/h" type="text" />
-              <span class="input-group-addon">
-                <span class="glyphicon glyphicon-pencil"></span>
-              </span>
-            </div>
-          </div>
-
-          <div class="form-group">
-          <label for="ressource_pricePerUnit">Price/Unit</label>
-            <div class="input-group">
-              <input autofocus="autofocus" id="ressource_pricePerUnit" name="ressource_pricePerUnit" placeholder="€ 0,13" type="text" />
-              <span class="input-group-addon">
-                <span class="glyphicon glyphicon-euro"></span>
-              </span>
-            </div>
-          </div>
-
-          <div class="form-group">
-          <label for="ressource_priceMonth">Monthly Costs</label>
-            <div class="input-group">
-              <input autofocus="autofocus" id="ressource_priceMonth" name="ressource_priceMonth" placeholder="€ 5,45" type="text" />
-              <span class="input-group-addon">
-                <span class="glyphicon glyphicon-euro"></span>
-              </span>
-            </div>
-          </div>
-
-          <div class="form-group">
-          <label for="ressource_priceYear">Annual Costs</label>
-            <div class="input-group">
-              <input autofocus="autofocus" id="ressource_priceYear" name="ressource_priceYear" placeholder="€ 13,14" type="text" />
-              <span class="input-group-addon">
-                <span class="glyphicon glyphicon-euro"></span>
-              </span>
-            </div>
-          </div>
-
-          <div class="form-group">
-          <label for="ressource_name">Start Value</label>
-            <div class="input-group">
-              <input autofocus="autofocus" id="ressource_startValue" name="ressource_startValue" placeholder="52140" type="text" />
-              <span class="input-group-addon">
-                <span class="glyphicon glyphicon-wrench"></span>
-              </span>
-            </div>
-          </div>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save</button>
-      </div>
-    </div>
-  </div>
-</div>
+   

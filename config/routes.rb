@@ -12,6 +12,7 @@ scope "(:locale)", locale: /en|de/ do
   namespace :templates do
     get '/finances', to: :finances, as: 'finances'
     get '/flat_settings', to: :flat_settings, as: 'flat_settings'
+    get '/create_resource', to: :create_resource, as: 'create_resource'
     get '/messages', to: :messages, as: 'messages'
     get '/resources', to: :resources, as: 'resources'
     get '/share', to: :share,as: 'share'
