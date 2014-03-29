@@ -40,22 +40,22 @@
         <% if is_user_ready_to_go %>
           <div class="navbar-collapse collapse">
             <ul class="nav navbar-nav">
-              <li class="flatman-navbar-item active">
+              <li ng-class="{active:isActive('/dashboard')}">
                 <a href="/#/dashboard"><span class="fa fa-dashboard"></span> <%=t(".navbar.dashboard")%></a>
               </li>
-              <li class="flatman-navbar-item">
+              <li ng-class="{active:isActive('/shopping')}">
                 <a href="/#/shopping"><span class="glyphicon glyphicon-shopping-cart"></span>  <%=t(".navbar.shopping")%></a>
               </li>
-              <li class="flatman-navbar-item">
+              <li ng-class="{active:isActive('/finances')}">
                 <a href="/#/finances"><span class="glyphicon glyphicon-euro"></span> <%=t(".navbar.finances")%></a>
               </li>
-              <li class="flatman-navbar-item">
+              <li ng-class="{active:isActive('/share')}">
                 <a href="/#/share"><span class="glyphicon glyphicon-share"></span> <%=t(".navbar.share")%></a>
               </li>
-              <li class="flatman-navbar-item">
+              <li ng-class="{active:isActive('/messages')}">
                 <a href="/#/messages"><span class="glyphicon glyphicon-envelope"></span> <%=t(".navbar.messages")%> <span class="badge">42</span></a>
               </li>
-              <li class="flatman-navbar-item">
+              <li ng-class="{active:isActive('/resources')}">
                 <a href="/#/resources"><span class="glyphicon glyphicon-globe"></span>  <%=t(".navbar.resources")%></a>
               </li>
               <li class="dropdown">
@@ -63,10 +63,10 @@
                   <span class="glyphicon glyphicon-user"></span> <%=current_user.name%> <b class="caret"></b>
                 </a>
                 <ul class="dropdown-menu">
-                  <li class="flatman-navbar-item">
+                  <li ng-class="{active:isActive('/flat_settings')}">
                     <a href="/#/flat_settings"><span class="glyphicon glyphicon-wrench"></span> <%=t(".navbar.flat_settings")%></a>
                   </li>
-                  <li class="flatman-navbar-item">
+                  <li ng-class="{active:isActive('/user_settings')}">
                     <a href="/#/user_settings"><span class="glyphicon glyphicon-cog"></span> <%=t(".navbar.user_settings")%></a>
                   </li>
                   <li class="divider"></li>
@@ -122,12 +122,10 @@
               &copy; flatman <%= Time.now.year %>
             </div>
             <div class="col-md-4 col-xs-4 text-center">
-              <%= link_to_unless I18n.locale == :en,
-                      t('misc.titles.language.english'),
-                      locale: :en %> |
-              <%= link_to_unless I18n.locale == :de,
-                      t('misc.titles.language.german'),
-                      locale: :de %>
+              <%= link_to_unless(I18n.locale == :en,
+                      t('misc.titles.language.english'),{locale: :en},{:onclick => "this.href=this.href+'/'+window.location.hash" })%> |
+              <%= link_to_unless(I18n.locale == :de,
+                      t('misc.titles.language.german'),{locale: :de},{:onclick => "this.href=this.href+'/'+window.location.hash" })%>
             </div>
             <div class="col-md-4 col-xs-4 text-right">
               <%= link_to t('misc.titles.menus.terms_and_privacy.title'), terms_path %>
