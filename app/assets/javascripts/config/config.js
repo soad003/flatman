@@ -27,6 +27,14 @@ angular.module('flatman', ['ngRoute','ngResource','google-maps']).config(functio
         templateUrl: '/templates/messages',
         controller: 'shoppingCtrl'
       }).
+      when('/message_window', {
+        templateUrl: '/templates/message_window',
+        controller: 'messageWindowCtrl'
+      }).
+      when('/message_new', {
+        templateUrl: '/templates/message_new',
+        controller: 'messageNewCtrl'
+      }).
       when('/resources', {
         templateUrl: '/templates/resources',
         controller: 'shoppingCtrl'

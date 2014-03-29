@@ -163,6 +163,10 @@ en:
     messages: 
       page_header                        : "Messages"
       page_title                         : "Messages"
+    message_window:
+      page_header                        : "Messages"
+    message_new:
+      page_header                        : "New Message"
     resources:
       page_header                        : "Resources"
       page_title                         : "Resource"

@@ -87,17 +87,11 @@ ActiveRecord::Schema.define(version: 20140321054655) do
   create_table "shareditems", force: true do |t|
     t.string   "name"
     t.string   "tags"
-    t.integer  "status"
+    t.boolean  "available"
     t.string   "description"
     t.string   "sharingNote"
     t.string   "image_path"
     t.integer  "flat_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  create_table "shopping_lists", force: true do |t|
-    t.string   "item_name"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -118,13 +112,9 @@ ActiveRecord::Schema.define(version: 20140321054655) do
     t.datetime "updated_at"
   end
 
-  create_table "test2s", force: true do |t|
-    t.string   "test"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
   create_table "users", force: true do |t|
+    t.integer  "flat_id"
+    t.string   "email"
     t.string   "provider"
     t.string   "uid"
     t.string   "name"
