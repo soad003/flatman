@@ -21,6 +21,8 @@ scope "(:locale)", locale: /en|de/ do
     get '/dashboard', to: :dashboard, as: 'dashboard_template'
     get '/create_flat', to: :create_flat
     get '/search', to: :search, as: 'search'
+    get '/message_window', to: :message_window, as: 'message_window'
+    get '/message_new', to: :message_new, as: 'message_new'
   end
 
   #REST API

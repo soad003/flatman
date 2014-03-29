@@ -1,0 +1,10 @@
+@media screen and (max-width: 568px) {
+    h2 {
+    	font-size:140%;
+    }
+
+    .modal-body {
+    	font-size:80%;
+    }
+
+}
