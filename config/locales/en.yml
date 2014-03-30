@@ -243,8 +243,7 @@ en:
         info_text                        : "Morbi leo risus, porta ac consectetur ac, vestibulum at eros. Cras mattis consectetur purus sit amet fermentum."
         connect_title                    : "Connect"
         connect_text                     : "Maecenas sed diam eget risus varius blandit sit amet non magna."
-
-share:
+    share:
       title                              : "sharing is caring"
       available_items                    : "available items"
       filter                             : "filter"
