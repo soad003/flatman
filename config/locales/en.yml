@@ -244,7 +244,16 @@ en:
         connect_title                    : "Connect"
         connect_text                     : "Maecenas sed diam eget risus varius blandit sit amet non magna."
 
-
+share:
+      title                              : "sharing is caring"
+      available_items                    : "available items"
+      filter                             : "filter"
+      item_borrow                        : "borrowed"
+      item_hide                          : "hide"
+      item_edit                          : "edit"
+      item_remove                        : "remove"
+      item_new                           : "new item"
+      add                                : "add"
 
   session:
     index:
