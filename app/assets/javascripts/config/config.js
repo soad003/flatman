@@ -17,7 +17,11 @@ angular.module('flatman', ['ngRoute','ngResource']).config(function($httpProvide
       }).
       when('/share', {
         templateUrl: '/templates/share',
-        controller: 'shoppingCtrl'
+        controller: 'shareCtrl'
+      }).
+      when('/shareditem', {
+        templateUrl: '/templates/shareditem',
+        controller: 'shareCtrl'
       }).
       when('/finances', {
         templateUrl: '/templates/finances',

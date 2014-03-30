@@ -186,8 +186,16 @@ en:
       add                                : "add"
       new_list_placeholder               : "groceries"
       new_item_placeholder               : "jellybeans"
-
-
+    share:
+      title                              : "sharing is caring"
+      available_items                    : "available items"
+      filter                             : "filter"
+      item_borrow                        : "borrowed"
+      item_hide                          : "hide"
+      item_edit                          : "edit"
+      item_remove                        : "remove"
+      item_new                           : "new item"
+      add                                : "add"
 
   session:
     index:

@@ -14,7 +14,8 @@ scope "(:locale)", locale: /en|de/ do
     get '/flat_settings', to: :flat_settings, as: 'flat_settings'
     get '/messages', to: :messages, as: 'messages'
     get '/resources', to: :resources, as: 'resources'
-    get '/share', to: :share,as: 'share'
+    get '/share', to: :share, as: 'share'
+    get '/shareditem', to: :shareditem, as: 'shareditem'
     get '/shopping', to: :shopping, as: 'shopping'
     get '/user_settings', to: :user_settings, as: 'user_settings'
     get '/dashboard', to: :dashboard, as: 'dashboard_template'
@@ -33,6 +34,8 @@ scope "(:locale)", locale: /en|de/ do
    resources :shoppinglist, only: [:index, :create, :destroy] do
       resources :shoppingitem, only: [:create, :update, :destroy]
    end
+   resources :share, only: [:index, :create] 
+   resources :shareditem, only: [:index, :create]
   end
 
   # Authentication
