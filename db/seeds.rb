@@ -6,7 +6,7 @@ Billcategory.create!([
 ])
 Flat.create!([
   {name: "MC", street: "Seilergasse 14", city: "Innsbruck", zip: "6020", image_path: nil},
-  {name: "MSM", street: "Holzhammerstraße 14", city: "Innsbruck", zip: "6020", image_path: nil}
+  {name: "MSM", street: "Holzhammerstraße 13", city: "Innsbruck", zip: "6020", image_path: nil}
 ])
 Message.create!([
   {sender_id: 1, receiver_id: 2, text: "hallo", header: "header", read: nil}
@@ -21,7 +21,7 @@ Ressourceentry.create!([
   {ressource_id: 1, date: nil, value: 1000.0}
 ])
 Shareditem.create!([
-  {name: "bohrer", tags: nil, available: nil, description: nil, sharingNote: nil, image_path: nil, flat_id: 1}
+  {name: "bohrer", tags: nil, available: nil, hidden: nil, description: nil, sharingNote: nil, image_path: nil, flat_id: 1}
 ])
 Shoppinglist.create!([
   {name: "merkur", flat_id: 2},
@@ -37,4 +37,3 @@ User.create!([
   {flat_id: 2, email: nil, provider: nil, uid: nil, name: "michi", oauth_token: nil, oauth_expires_at: nil, image_path: nil},
   {flat_id: 2, email: nil, provider: nil, uid: nil, name: "sahin", oauth_token: nil, oauth_expires_at: nil, image_path: nil}
 ])
-Bill.users << 

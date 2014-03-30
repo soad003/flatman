@@ -97,7 +97,7 @@ en:
       login                               : "login"
       logged_out                          : "Successfully logged out!"
       logged_in                           : "Successfully logged in!"
-      in_progress                         : "working..."
+      in_progress                         : ""
       menus:
         about:
           title                           : "About us"
@@ -127,7 +127,7 @@ en:
         finances                          : "Finances"
         flat_settings                     : "Flat Settings"
         user_settings                     : "User Profile"
-        resources                         : "Gas/Electricity"
+        resources                         : "Resource"
         dashboard                         : "Dashboard"
         shopping                          : "Shopping"
         search_placeholder                : "Search items/user"
@@ -163,6 +163,35 @@ en:
     messages: 
       page_header                        : "Messages"
       page_title                         : "Messages"
+    message_window:
+      page_header                        : "Messages"
+    message_new:
+      page_header                        : "New Message"
+    resources:
+      page_header                        : "Resources"
+      page_title                         : "Resource"
+      chart                              : "Chart"
+      data                               : "Data"
+      date                               : "Date"
+      value                              : "Value"
+      usage                              : "Usage"
+      costs                              : "Costs"
+      resourceValue                      : "resource value"
+    create_resource:
+        page_title                       : "add Resource"
+        page_header                      : "add Resource"
+        name                             : "Name"
+        name_placeholder                 : "electricity"
+        unitName                         : "Unit Name"
+        unitName_placeholder             : "kw/h"
+        priceUnit                        : "Price/Unit"
+        priceUnit_placeholder            : "0,13"
+        monthlyCosts                     : "Monthly Costs"
+        monthlyCosts_placeholder         : "6,30"
+        annualCosts                      : "Annual Costs"
+        annualCosts_placeholder          : "12,30"
+        startValue                       : "Start Value"
+        startValue_placeholder           : "82767"
     search:
       page_header                        : "Searching for"
     flat_settings:

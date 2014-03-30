@@ -4,6 +4,7 @@ class CreateShareditems < ActiveRecord::Migration
 		t.string 		:name
     	t.string		:tags
     	t.boolean		:available
+      t.boolean   :hidden
     	t.string		:description
     	t.string		:sharingNote
     	t.string 		:image_path

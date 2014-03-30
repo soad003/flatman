@@ -11,6 +11,7 @@ angular.module('flatman').factory("Util",function($rootScope,$location) {
             share: function(){$location.path("share");},
             finances: function(){$location.path("finances");},
             messages: function(){$location.path("messages");},
+            message_window: function(){$location.path("message_window")},
             resources: function(){$location.path("resources");},
             user_settings: function(){$location.path("user_settings");},
             flat_settings: function(){$location.path("flat_settings");},

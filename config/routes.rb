@@ -12,6 +12,7 @@ scope "(:locale)", locale: /en|de/ do
   namespace :templates do
     get '/finances', to: :finances, as: 'finances'
     get '/flat_settings', to: :flat_settings, as: 'flat_settings'
+    get '/create_resource', to: :create_resource, as: 'create_resource'
     get '/messages', to: :messages, as: 'messages'
     get '/resources', to: :resources, as: 'resources'
     get '/share', to: :share, as: 'share'
@@ -21,10 +22,13 @@ scope "(:locale)", locale: /en|de/ do
     get '/dashboard', to: :dashboard, as: 'dashboard_template'
     get '/create_flat', to: :create_flat
     get '/search', to: :search, as: 'search'
+    get '/message_window', to: :message_window, as: 'message_window'
+    get '/message_new', to: :message_new, as: 'message_new'
   end
 
   #REST API
   namespace :api, defaults: {format: :json} do
+   resources :status, only: [:index]
    namespace :flat do
       get '/', to: :index
       put '/', to: :create
