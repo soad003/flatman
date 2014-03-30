@@ -32,5 +32,10 @@ angular.module('flatman').controller("shoppingCtrl",function($scope,shoppingServ
         shoppingService.item.update(item,list.id,null, function(){
             item.checked=!item.checked
         });
-    }
+    };
+
+    $scope.getColor=function(index){
+        var colors=['success','info','warning','danger'];
+        return colors[index%4];
+    };
 });

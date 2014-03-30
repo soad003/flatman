@@ -32,7 +32,7 @@ en:
     flat:
       create:
         already_in_flat                   : "Your user already belongs to a flat"
-  
+
   activerecord:
     errors:
       models:
@@ -160,7 +160,7 @@ en:
       page_title                         : "Dashboard"
     dashboard:
       page_header                        : "Dashboard"
-    messages: 
+    messages:
       page_header                        : "Messages"
       page_title                         : "Messages"
     message_window:
@@ -215,6 +215,34 @@ en:
       add                                : "add"
       new_list_placeholder               : "groceries"
       new_item_placeholder               : "jellybeans"
+    create_flat:
+      subtitle                           : "Welcome to"
+      title                              : "Flatman"
+      description1                       : "You are currently not member of a flat!"
+      description2                       : "You can either create one or"
+      description3                       : "just wait until you get assigned to one by your roommates"
+      name_label                         : "name"
+      name_placeholder                   : "Wayne Manor"
+      street_label                       : "street"
+      street_placeholder                 : "1007 Mountain Drive"
+      zip_label                          : "postal code"
+      zip_placeholder                    : "12345"
+      city_label                         : "city"
+      city_placeholder                   : "Gotham"
+      create_flat                        : "create a flat!"
+      marketing:
+        shopping_title                   : "Shopping"
+        shopping_text                    : "Maecenas sed diam eget risus varius blandit sit amet non magna."
+        finances_title                   : "Bills"
+        finances_text                    : "Morbi leo risus, porta ac consectetur ac, vestibulum at eros. Cras mattis consectetur purus sit amet fermentum."
+        resources_title                  : "Resource usage"
+        resources_text                   : "Maecenas sed diam eget risus varius blandit sit amet non magna."
+        share_title                      : "Sharing"
+        share_text                       : "Donec id elit non mi porta gravida at eget metus. Maecenas faucibus mollis interdum."
+        info_title                       : "Stay up to date"
+        info_text                        : "Morbi leo risus, porta ac consectetur ac, vestibulum at eros. Cras mattis consectetur purus sit amet fermentum."
+        connect_title                    : "Connect"
+        connect_text                     : "Maecenas sed diam eget risus varius blandit sit amet non magna."
 
 
 

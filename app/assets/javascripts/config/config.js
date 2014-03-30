@@ -62,7 +62,6 @@ angular.module('flatman', ['ngRoute','ngResource','google-maps']).config(functio
       $httpProvider.interceptors.push(function ($q,Util) {
         return {
             'response': function (response) {
-              Util.clear_server_errors();
               return response;
             },
             'responseError': function (rejection) {
@@ -84,8 +83,9 @@ angular.module('flatman', ['ngRoute','ngResource','google-maps']).config(functio
       });
 
 
-}).run(function($rootScope){
+}).run(function($rootScope,Util){
   $rootScope.$on('$routeChangeStart',function(){
-    $('.modal.in').modal('hide'); //dirty nasty ugly hack!!! DON'T DO THIS AT HOME
+    Util.clear_server_errors();     //clear errors on view change
+    $('.modal.in').modal('hide');   //dirty nasty ugly hack!!! DON'T DO THIS AT HOME
   });
 });
