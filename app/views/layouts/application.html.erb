@@ -24,7 +24,7 @@
     <![endif]-->
   </head>
 
-  <body ng-controller="rootCtrl">
+  <body ng-controller="rootCtrl" ng-cloak>
 
     <div class="navbar navbar-default navbar-fixed-top navbar-inverse" role="navigation">
       <div class="container-fluid">
@@ -53,7 +53,7 @@
                 <a href="/#/share"><span class="glyphicon glyphicon-share"></span> <%=t(".navbar.share")%></a>
               </li>
               <li ng-class="{active:isActive('/messages')}">
-                <a href="/#/messages"><span class="glyphicon glyphicon-envelope"></span> <%=t(".navbar.messages")%> <span class="badge">42</span></a>
+                <a href="/#/messages"><span class="glyphicon glyphicon-envelope"></span> <%=t(".navbar.messages")%> <span class="badge">{{server_status.unread_messages}}</span></a>
               </li>
               <li ng-class="{active:isActive('/resources')}">
                 <a href="/#/resources"><span class="glyphicon glyphicon-globe"></span>  <%=t(".navbar.resources")%></a>
@@ -95,7 +95,7 @@
     </div>
 
 
-    <div class="container" ng-cloak>
+    <div class="container">
       <section>
         <% flash.each do |key,message| %>
           <div class="alert alert-<%= key.to_s %> alert-dismissable">

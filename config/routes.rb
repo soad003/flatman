@@ -27,6 +27,7 @@ scope "(:locale)", locale: /en|de/ do
 
   #REST API
   namespace :api, defaults: {format: :json} do
+   resources :status, only: [:index]
    namespace :flat do
       get '/', to: :index
       put '/', to: :create

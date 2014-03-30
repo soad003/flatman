@@ -1,4 +1,4 @@
-angular.module('flatman').controller("rootCtrl",function($scope,Util,$location){
+angular.module('flatman').controller("rootCtrl",function($scope,$timeout,$location,Util,statusService){
     $scope.Util=Util;
 
     $scope.isActive = function(route) {
@@ -8,5 +8,11 @@ angular.module('flatman').controller("rootCtrl",function($scope,Util,$location){
     $scope.search=function(){
         Util.redirect_to.search($scope.search_term);
     };
+
+    (function tick() {
+        $scope.server_status=statusService.get(function(){
+            $timeout(tick, 5000);
+        });
+    })();
 
 });
