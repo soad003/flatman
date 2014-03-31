@@ -194,6 +194,9 @@ en:
         startValue_placeholder           : "82767"
     search:
       page_header                        : "Searching for"
+      no_items_found                     : "no items found for your query..."
+      borrow_heading                     : "borrow..."
+      send_request                       : "send borrow request"
     flat_settings:
       page_header                        : "Your Flat"
       city                               : "city"

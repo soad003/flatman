@@ -29,6 +29,7 @@ scope "(:locale)", locale: /en|de/ do
   #REST API
   namespace :api, defaults: {format: :json} do
    resources :status, only: [:index]
+   get '/search/:term' => 'search#search'
    namespace :flat do
       get '/', to: :index
       put '/', to: :create
@@ -38,7 +39,7 @@ scope "(:locale)", locale: /en|de/ do
    resources :shoppinglist, only: [:index, :create, :destroy] do
       resources :shoppingitem, only: [:create, :update, :destroy]
    end
-   resources :share, only: [:index, :create] 
+   resources :share, only: [:index, :create]
    resources :shareditem, only: [:index, :create]
   end
 
