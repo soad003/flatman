@@ -174,8 +174,8 @@ en:
       costs                              : "Costs"
       resourceValue                      : "resource value"
     create_resource:
-        page_title                       : "add Resource"
-        page_header                      : "add Resource"
+        page_title                       : "Resource"
+        page_header                      : "Resource"
         name                             : "Name"
         name_placeholder                 : "electricity"
         unitName                         : "Unit Name"
@@ -188,6 +188,7 @@ en:
         annualCosts_placeholder          : "12,30"
         startValue                       : "Start Value"
         startValue_placeholder           : "82767"
+        startDate                       : "Start Date"
     search:
       page_header                        : "Searching for"
     flat_settings:

@@ -34,6 +34,9 @@ scope "(:locale)", locale: /en|de/ do
    resources :shoppinglist, only: [:index, :create, :destroy] do
       resources :shoppingitem, only: [:create, :update, :destroy]
    end
+   resources :resource, only: [:index, :create, :update, :destroy] do
+      resources :resourceentry, only: [:index, :create, :destroy]
+   end
   end
 
   # Authentication

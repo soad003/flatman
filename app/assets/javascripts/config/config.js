@@ -1,5 +1,6 @@
 // Angular Config / Routes
-angular.module('flatman', ['ngRoute','ngResource','google-maps']).config(function($httpProvider, $routeProvider){
+
+angular.module('flatman', ['ngRoute','ngResource','google-maps','ui.bootstrap']).config(function($httpProvider, $routeProvider){
   $httpProvider.defaults.headers.common = {'X-CSRF-Token': $("meta[name='csrf-token']").attr("content"),
                                           'Content-Type': 'application/json'};
   $routeProvider.
@@ -17,7 +18,7 @@ angular.module('flatman', ['ngRoute','ngResource','google-maps']).config(functio
       }).
       when('/share', {
         templateUrl: '/templates/share',
-        controller: 'shoppingCtrl'
+        controller: 'sharingCtrl'
       }).
       when('/finances', {
         templateUrl: '/templates/finances',
@@ -29,11 +30,11 @@ angular.module('flatman', ['ngRoute','ngResource','google-maps']).config(functio
       }).
       when('/resources', {
         templateUrl: '/templates/resources',
-        controller: 'shoppingCtrl'
+        controller: 'resourceCtrl'
       }).
       when('/create_resource', {
         templateUrl: '/templates/create_resource',
-        controller: 'shoppingCtrl'
+        controller: 'resourceCtrl'
       }).
       when('/user_settings', {
         templateUrl: '/templates/user_settings',

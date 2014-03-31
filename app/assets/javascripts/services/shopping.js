@@ -6,7 +6,7 @@ angular.module('flatman').factory("shoppingService",function($resource) {
                             'destroy': {method: "DELETE"}
                         });
 
-    var itemService = $resource('/api/shoppinglist/:l_id/shoppingitem/:id',{},
+   var itemService = $resource('/api/shoppinglist/:l_id/shoppingitem/:id',{},
                         {
                             'create': {method: "POST"},
                             'destroy': {method: "DELETE"},
