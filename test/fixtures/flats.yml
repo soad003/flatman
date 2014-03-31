@@ -4,8 +4,20 @@
 # model remove the '{}' from the fixture names and add the columns immediately
 # below each fixture, per the syntax in the comments below
 #
-one: {}
-# column: value
-#
-two: {}
-#  column: value
+luisi: 
+  name: Luisi Zuegg
+  street: Luis Zuegg Straße
+  city: Innsbruck
+  zip: 6020
+
+wg_clemi: 
+  name: Cle WG
+  street: Seilergasse
+  city: Innsbruck
+  zip: 6020
+  
+wg_michi: 
+  name: Michi WG
+  street: Westbahnhof
+  city: Innsbruck
+  zip: 6020

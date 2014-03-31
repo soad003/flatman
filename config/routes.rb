@@ -15,16 +15,21 @@ scope "(:locale)", locale: /en|de/ do
     get '/create_resource', to: :create_resource, as: 'create_resource'
     get '/messages', to: :messages, as: 'messages'
     get '/resources', to: :resources, as: 'resources'
-    get '/share', to: :share,as: 'share'
+    get '/share', to: :share, as: 'share'
+    get '/shareditem', to: :shareditem, as: 'shareditem'
     get '/shopping', to: :shopping, as: 'shopping'
     get '/user_settings', to: :user_settings, as: 'user_settings'
     get '/dashboard', to: :dashboard, as: 'dashboard_template'
     get '/create_flat', to: :create_flat
     get '/search', to: :search, as: 'search'
+    get '/message_window', to: :message_window, as: 'message_window'
+    get '/message_new', to: :message_new, as: 'message_new'
   end
 
   #REST API
   namespace :api, defaults: {format: :json} do
+   resources :status, only: [:index]
+   get '/search/:term' => 'search#search'
    namespace :flat do
       get '/', to: :index
       put '/', to: :create
@@ -34,9 +39,14 @@ scope "(:locale)", locale: /en|de/ do
    resources :shoppinglist, only: [:index, :create, :destroy] do
       resources :shoppingitem, only: [:create, :update, :destroy]
    end
+<<<<<<< HEAD
    resources :resource, only: [:index, :create, :update, :destroy] do
       resources :resourceentry, only: [:index, :create, :destroy]
    end
+=======
+   resources :share, only: [:index, :create]
+   resources :shareditem, only: [:index, :create]
+>>>>>>> 9b0f7c9c361c3bbb1b21159e63c63f84b322c8de
   end
 
   # Authentication

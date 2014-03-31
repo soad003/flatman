@@ -4,8 +4,23 @@
 # model remove the '{}' from the fixture names and add the columns immediately
 # below each fixture, per the syntax in the comments below
 #
-one: {}
-# column: value
-#
-two: {}
-#  column: value
+  
+cle_strom:
+  flat_id: cle
+  name: Strom
+  unit: kw/h
+  pricePerUnit: 4.5
+  monthlyCost: 0
+  annualCost: 23.1
+  description: IKB
+  startValue: 3433.454
+  
+cle_wasser:
+  flat_id: cle
+  name: Wasser
+  unit: Liter
+  pricePerUnit: 4.5
+  monthlyCost: 0
+  annualCost: 23.1
+  description: IKB
+  startValue: 3433.454

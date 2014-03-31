@@ -17,13 +17,15 @@
     </div>
     <div class="row">
         <div class="col-md-4" ng-repeat="list in lists track by $index">
-            <div class="panel panel-success">
+            <div class="panel panel-{{getColor($index)}}">
                 <div class="panel-heading">
                     <div class="form-group">
                         <strong>{{list.name}}</strong>
-                        <button class="btn btn-default btn-xs pull-right" type="button" ng-click="removeList(list)">
+                        <div class="btn-group pull-right">
+                          <button class="btn btn-default btn-xs " type="button" ng-click="removeList(list)">
                             <span class="glyphicon glyphicon-trash"></span>
-                        </button>
+                          </button>
+                        </div>
                     </div>
                     <ul class="list-unstyled">
                         <li ng-repeat="item in list.items">
