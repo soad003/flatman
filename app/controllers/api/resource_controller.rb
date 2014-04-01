@@ -1,0 +1,43 @@
+class Api::ResourceController < Api::RestController
+    around_filter :wrap_in_transaction, only: [:create,:destroy]
+
+    def index
+        @r=Ressource.calc(current_user.flat.ressources);
+        #logic model calc call
+
+        #respond_with(current_user.flat.ressources)
+    end
+
+    def create
+       flat=current_user.flat
+       r=Ressource.new(r_params)
+       flat.ressources << r
+       flat.save!
+       re=Ressourceentry.new(ressource_id:r.id,date:r.startDate,value:r.startValue,isFirst:true)
+       r.ressourceentries << re
+       r.save!
+       respond_with(nil, :location => nil);
+    end
+
+    def update
+        r = Ressource.find_resource_with_user_constraint(params[:id], current_user)
+        r.update_attributes!(r_params)
+        re_first = r.ressourceentries.where(:isFirst => true).first()
+        re_first.date = r.startDate
+        re_first.value = r.startValue
+        re_first.save!
+        respond_with(r, :location => nil)
+    end
+
+    def destroy
+        r = Ressource.find_resource_with_user_constraint(params[:id], current_user)
+        r.destroy!  
+        respond_with(nil)
+    end
+
+    private
+        # Never trust parameters from the scary internet, only allow the white list through.
+    def r_params
+      params.require(:resource).permit(:name, :description, :monthlyCost, :pricePerUnit,:startDate,:annualCost, :startValue,:unit)
+    end
+end

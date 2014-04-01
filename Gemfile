@@ -65,6 +65,9 @@ gem 'underscore-rails'
 # scheduler
 gem 'rufus-scheduler'
 
+gem 'angular-ui-bootstrap-rails'
+gem 'haml_coffee_assets'
+gem 'execjs'
 #lightbox pictures
 #gem 'magnific-popup-rails'
 

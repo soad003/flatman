@@ -1,0 +1,91 @@
+<% content_for :robots, "NOINDEX, NOFOLLOW" %>
+
+<% content_for :title, t('.page_title') %>
+
+  <section class="hidden-print">
+    <h1 class="page-header"><%= t('.page_header') %></h1>
+  </section>
+
+  <div class="container">
+  	<div class="row">
+  		<div class ="col-md-10 col-md-offset-2">
+
+  			<!--CREATE TABLE TO GET NEW FINANCE DATA-->
+  			<div class="panel panel-defaul">
+  				<div class="panel-heading">
+  					<h3>Neuer Eintrag</h3>
+  				</div>
+  				<div class="panel-body">
+  					<table class="table table-striped">
+  						<tr>
+  							<th>
+  								<label for="InputName">Name:</label>
+  							</th>
+  						</tr>
+  						<tr>
+  							<th>
+  								<input type="text" class="form-control" id="InputName" placeholder="Einkauf Nudeln">
+  							</th>
+  						</tr>
+  						<tr>
+  							<th>
+  								<label for="InputAusgaben">Nudeln:</label>
+  							</th>
+  						</tr>
+  						<tr>
+  							<th>
+  								<input type="text" class="form-control" id="InputAusgaben" placeholder="144,40">
+  							</th>
+  						</tr>
+  						<tr>
+  							<th>
+  								<label for"InputDate">Datum:</label>
+  							</th>
+  							<th>
+  								<label for="InputCategorie">Kategorie:</label>
+  							</th>
+  						</tr>
+  						<tr>
+  							<th>
+  								<input type="text" class="form-control" id="Inputdate" placeholder="01.06.2014">
+  							</th>
+  							<th>
+  								<input type="text" class="form-control" id="InputCategorie" placeholder="Lebensmittel">
+  							</th>
+  						</tr>
+  						<tr>
+  							<th>
+  								<label for="who">betrifft:</label>
+  							</th>
+  						</tr>
+  						<tr>
+  							<th>
+                  <div class="checkbox">
+                   <label>
+                     BW1
+                  </label> <input type="checkbox">
+                 </div>
+  							</th>
+  							<th>
+  								<input type="checkbox">Chk BW2
+  							</th>
+  						</tr>
+  						<tr>
+  							<th>
+  								<input type="checkbox">Chk BW3
+  							</th>
+  							<th>
+  								<input type="checkbox">Chk BW4
+  							</th>
+  						</tr>
+  						
+            </table>
+  				</div>
+          <div class="panel-footer">
+          <button type="submit" class="btn btn-default" text-align="left">BACK</button>
+                  <button type="submit" class="btn btn-default" text-align="right">SUBMIT</button>
+                </div>
+        </div>
+      </div>
+    </div>
+  </div>

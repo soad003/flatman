@@ -180,8 +180,8 @@ en:
       costs                              : "Costs"
       resourceValue                      : "resource value"
     create_resource:
-        page_title                       : "add Resource"
-        page_header                      : "add Resource"
+        page_title                       : "Resource"
+        page_header                      : "Resource"
         name                             : "Name"
         name_placeholder                 : "electricity"
         unitName                         : "Unit Name"
@@ -194,8 +194,12 @@ en:
         annualCosts_placeholder          : "12,30"
         startValue                       : "Start Value"
         startValue_placeholder           : "82767"
+        startDate                       : "Start Date"
     search:
       page_header                        : "Searching for"
+      no_items_found                     : "no items found for your query..."
+      borrow_heading                     : "borrow..."
+      send_request                       : "send borrow request"
     flat_settings:
       page_header                        : "Your Flat"
       city                               : "city"
@@ -209,6 +213,10 @@ en:
     finances:
       page_title                         : "Finances"
       page_header                        : "Finance status"
+    finances_new:
+      page_header                        : "New Entry"
+    finances_overview:
+      page_header                        : "Overview"
     user_settings:
       page_header                        : "Your Profile"
       name                               : "name"

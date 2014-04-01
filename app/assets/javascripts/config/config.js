@@ -1,5 +1,6 @@
 // Angular Config / Routes
-angular.module('flatman', ['ngRoute','ngResource','google-maps']).config(function($httpProvider, $routeProvider){
+
+angular.module('flatman', ['ngRoute','ngResource','google-maps','ui.bootstrap']).config(function($httpProvider, $routeProvider){
   $httpProvider.defaults.headers.common = {'X-CSRF-Token': $("meta[name='csrf-token']").attr("content"),
                                           'Content-Type': 'application/json'};
   $routeProvider.
@@ -41,11 +42,11 @@ angular.module('flatman', ['ngRoute','ngResource','google-maps']).config(functio
       }).
       when('/resources', {
         templateUrl: '/templates/resources',
-        controller: 'shoppingCtrl'
+        controller: 'resourceCtrl'
       }).
       when('/create_resource', {
         templateUrl: '/templates/create_resource',
-        controller: 'shoppingCtrl'
+        controller: 'resourceCtrl'
       }).
       when('/user_settings', {
         templateUrl: '/templates/user_settings',
@@ -54,6 +55,14 @@ angular.module('flatman', ['ngRoute','ngResource','google-maps']).config(functio
       when('/flat_settings', {
         templateUrl: '/templates/flat_settings',
         controller: 'flatSettingsCtrl'
+      }).
+      when('/finances_new', {
+        templateUrl: '/templates/finances_new',
+        controller: 'shoppingCtrl'
+      }).
+      when('/finances_overview', {
+        templateUrl: '/templates/finances_overview',
+        controller: 'shoppingCtrl'
       }).
       when('/search/:term', {
         templateUrl: '/templates/search',

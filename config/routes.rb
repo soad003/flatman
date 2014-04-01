@@ -22,6 +22,8 @@ scope "(:locale)", locale: /en|de/ do
     get '/dashboard', to: :dashboard, as: 'dashboard_template'
     get '/create_flat', to: :create_flat
     get '/search', to: :search, as: 'search'
+    get '/finances_new', to: :finances_new, as: 'finances_new'
+    get '/finances_overview', to: :finances_overview, as: 'finances_overview'
     get '/message_window', to: :message_window, as: 'message_window'
     get '/message_new', to: :message_new, as: 'message_new'
   end
@@ -29,6 +31,7 @@ scope "(:locale)", locale: /en|de/ do
   #REST API
   namespace :api, defaults: {format: :json} do
    resources :status, only: [:index]
+   get '/search/:term' => 'search#search'
    namespace :flat do
       get '/', to: :index
       put '/', to: :create
@@ -38,7 +41,10 @@ scope "(:locale)", locale: /en|de/ do
    resources :shoppinglist, only: [:index, :create, :destroy] do
       resources :shoppingitem, only: [:create, :update, :destroy]
    end
-   resources :share, only: [:index, :create] 
+   resources :resource, only: [:index, :create, :update, :destroy] do
+      resources :resourceentry, only: [:index, :create, :destroy]
+   end
+   resources :share, only: [:index, :create]
    resources :shareditem, only: [:index, :create]
   end
 
