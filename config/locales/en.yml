@@ -189,6 +189,10 @@ en:
     finances:
       page_title                         : "Finances"
       page_header                        : "Finance status"
+    finances_new:
+      page_header                        : "New Entry"
+    finances_overview:
+      page_header:                       : "Overview"
     user_settings:
       page_header                        : "Your Profile"
       name                               : "name"

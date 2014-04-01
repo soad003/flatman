@@ -20,6 +20,8 @@ scope "(:locale)", locale: /en|de/ do
     get '/dashboard', to: :dashboard, as: 'dashboard_template'
     get '/create_flat', to: :create_flat
     get '/search', to: :search, as: 'search'
+    get '/finances_new', to: :finances_new, as: 'finances_new'
+    get '/finances_overview', to: :finances_overview, as: 'finances_overview'
   end
 
   #REST API

@@ -13,6 +13,12 @@ class TemplatesController < ProtectedController
   def finances
   end
 
+  def finances_new
+  end
+
+  def finances_overview
+  end
+  
   def resources
   end
 

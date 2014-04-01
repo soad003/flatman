@@ -39,6 +39,14 @@ angular.module('flatman', ['ngRoute','ngResource','google-maps']).config(functio
         templateUrl: '/templates/flat_settings',
         controller: 'flatSettingsCtrl'
       }).
+      when('/finances_new', {
+        templateUrl: '/templates/finances_new',
+        controller: 'shoppingCtrl'
+      }).
+      when('/finances_overview', {
+        templateUrl: '/templates/finances_overview',
+        controller: 'shoppingCtrl'
+      }).
       when('/search/:term', {
         templateUrl: '/templates/search',
         controller: 'searchCtrl'
