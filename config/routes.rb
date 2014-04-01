@@ -24,7 +24,7 @@ scope "(:locale)", locale: /en|de/ do
     get '/search', to: :search, as: 'search'
     get '/finances_new', to: :finances_new, as: 'finances_new'
     get '/finances_overview', to: :finances_overview, as: 'finances_overview'
-  	get '/message_window', to: :message_window, as: 'message_window'
+    get '/message_window', to: :message_window, as: 'message_window'
     get '/message_new', to: :message_new, as: 'message_new'
   end
 

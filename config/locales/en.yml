@@ -214,7 +214,7 @@ en:
     finances_new:
       page_header                        : "New Entry"
     finances_overview:
-      page_header:                       : "Overview"
+      page_header                        : "Overview"
     user_settings:
       page_header                        : "Your Profile"
       name                               : "name"
