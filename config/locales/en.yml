@@ -167,8 +167,10 @@ en:
       page_title                         : "Messages"
     message_window:
       page_header                        : "Messages"
+      send                               : "send"
     message_new:
       page_header                        : "New Message"
+      send                               : "send"
     resources:
       page_header                        : "Resources"
       page_title                         : "Resource"
@@ -222,6 +224,7 @@ en:
       name                               : "name"
       email                              : "email"
     shopping:
+      page_header                        : "shopping"
       add                                : "add"
       new_list_placeholder               : "groceries"
       new_item_placeholder               : "jellybeans"
