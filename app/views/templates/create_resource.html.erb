@@ -1,7 +1,6 @@
 <% content_for :title, t('.page_title') %>
 <% content_for :page_header, t('.page_header') %>
   
-<div ng-init="updateInit()" />
 <div class="page-head">
   <h1 class="page-header">
     <span class="glyphicon glyphicon-globe"></span>
@@ -11,7 +10,7 @@
 <div class="row">
 
   <div class="col-md-offset-3 col-md-6">
-    <form ng-submit="update_resource()">
+    <form ng-submit="update()">
 
       <div class="form-group">
         <label for="resource_name">
@@ -89,8 +88,8 @@
         <label for="resource_startDate">
           <%= t('.startDate') %></label>
         
-          <div class="input-group">
-              <input type="text" name="resource_startDate" class="form-control" datepicker-popup="{{'dd.MM yyyy'}}" ng-model="resourceTmp.startDate" is-open="opened" min="minDate" max="'2015-06-22'" date-disabled="disabled(date, mode)" ng-required="true" close-text="Close" />
+          <div class="input-group"> <!--class="form-control"  close-text="Close" is-open="opened" date-disabled="disabled(date, mode)" -->
+              <input type="text" name="resource_startDate"  datepicker-popup="{{'dd.MM yyyy'}}" ng-model="resourceTmp.startDate"  min="minDate" max="'2015-06-22'" ng-required="true" />
               <span class="input-group-addon">
                   <span class="glyphicon glyphicon-calendar"></span>
               </span>

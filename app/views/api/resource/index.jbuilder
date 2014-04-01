@@ -7,9 +7,5 @@ json.array!(@r) do |resource|
   json.description resource.description
   json.startValue resource.startValue
   json.startDate resource.startDate
-
-   json.entries resource.ressourceentries.sort {|a,b| b.date <=> a.date} do |entry|
-      json.(entry , :id, :value, :date, :usage, :costs, :isFirst)
-  end
-
+  json.entryLength resource.entryLength
 end

@@ -46,7 +46,11 @@ angular.module('flatman', ['ngRoute','ngResource','google-maps','ui.bootstrap'])
       }).
       when('/create_resource', {
         templateUrl: '/templates/create_resource',
-        controller: 'resourceCtrl'
+        controller: 'update_resourceCtrl'
+      }).
+      when('/update_resource/:id', {
+        templateUrl: '/templates/create_resource',
+        controller: 'update_resourceCtrl'
       }).
       when('/user_settings', {
         templateUrl: '/templates/user_settings',
