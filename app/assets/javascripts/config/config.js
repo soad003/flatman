@@ -33,11 +33,11 @@ angular.module('flatman', ['ngRoute','ngResource','google-maps']).config(functio
       }).
       when('/message_window', {
         templateUrl: '/templates/message_window',
-        controller: 'messageWindowCtrl'
+        controller: 'messageCtrl'
       }).
       when('/message_new', {
         templateUrl: '/templates/message_new',
-        controller: 'messageNewCtrl'
+        controller: 'messageCtrl'
       }).
       when('/resources', {
         templateUrl: '/templates/resources',
