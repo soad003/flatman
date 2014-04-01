@@ -1,4 +1,4 @@
-angular.module('flatman').controller("flatSettingsCtrl",function($scope,flatService,Util){
+angular.module('flatman').controller("flatSettingsCtrl",function($scope,flatService,inviteService,Util){
 
     $scope.is_dirty=function(){
        return $scope.content_form.$dirty;
@@ -25,6 +25,19 @@ angular.module('flatman').controller("flatSettingsCtrl",function($scope,flatServ
                 }
         });
 
+    };
+
+    $scope.send_invite=function(){
+        inviteService.invite($scope.invite_email,function(data){
+            $scope.flat.invites.push(data);
+            $scope.invite_email='';
+        });
+    };
+
+    $scope.remove_invite=function(invite){
+        inviteService.destroy(invite.id ,function(){
+            $scope.flat.invites=_($scope.flat.invites).without(invite);
+        });
     };
 
     $scope.map = {

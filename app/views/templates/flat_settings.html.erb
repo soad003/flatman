@@ -68,7 +68,14 @@
     <div class="panel panel-primary">
       <div class="panel-heading"><strong><%=t('.invites')%></strong></div>
       <div class="panel-body">
-          <form role="form" name="Inviteform" ng-submit="sendIntite()">
+          <ul class="list-unstyled">
+            <li ng-repeat="invite in flat.invites">{{invite.email}}
+              <a href="" class="pull-right" ng-click="remove_invite(invite)">
+                <span class="glyphicon glyphicon-remove"></span>
+              </a>
+            </li>
+          </ul>
+          <form role="form" name="Inviteform" ng-submit="send_invite()">
             <div class="input-group">
               <input type="email" class="form-control"
                       ng-model="invite_email"
@@ -77,7 +84,7 @@
               <span class="input-group-btn">
                 <button class="btn btn-primary"
                         type="submit"
-                        ng-disabled="!Itemform.$valid">
+                        ng-disabled="!Inviteform.$valid">
                   <span class="glyphicon glyphicon-plus"></span>
                 </button>
               </span>
@@ -85,13 +92,7 @@
           </form>
       </div>
     </div>
-
-
-
   </div>
-
-
-
 </div>
 
 

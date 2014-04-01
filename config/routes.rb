@@ -31,6 +31,7 @@ scope "(:locale)", locale: /en|de/ do
   #REST API
   namespace :api, defaults: {format: :json} do
    resources :status, only: [:index]
+   resources :invite, only: [:create,:destroy]
    get '/search/:term' => 'search#search'
 
    namespace :flat do

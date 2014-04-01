@@ -48,6 +48,11 @@ en:
               blank                       : "Please enter your zip code!"
             street:
               blank                       : "Please enter your flat's street!"
+        invite:
+          attributes:
+            email:
+              invalid                     : "Your email doesn't look right!"
+              blank                       : "Email must be provided!"
 
   buttons:
     titles:
