@@ -90,10 +90,6 @@ ActiveRecord::Schema.define(version: 20140330120115) do
     t.string   "name"
     t.string   "tags"
     t.boolean  "available"
-<<<<<<< HEAD
-    t.boolean  "hidden"
-=======
->>>>>>> 9b0f7c9c361c3bbb1b21159e63c63f84b322c8de
     t.string   "description"
     t.string   "sharingNote"
     t.string   "image_path"
