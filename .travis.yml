@@ -3,6 +3,7 @@ rvm:
   - 2.1.0
 notifications:
  email:
-  - michael.froewis@gmx.at
+  - michael.froewis@gmail.com
+  - cle1000.cb@gmail.com
  on_success: never
  on_failture: always
