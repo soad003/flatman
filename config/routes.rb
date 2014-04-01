@@ -39,14 +39,11 @@ scope "(:locale)", locale: /en|de/ do
    resources :shoppinglist, only: [:index, :create, :destroy] do
       resources :shoppingitem, only: [:create, :update, :destroy]
    end
-<<<<<<< HEAD
    resources :resource, only: [:index, :create, :update, :destroy] do
       resources :resourceentry, only: [:index, :create, :destroy]
    end
-=======
    resources :share, only: [:index, :create]
    resources :shareditem, only: [:index, :create]
->>>>>>> 9b0f7c9c361c3bbb1b21159e63c63f84b322c8de
   end
 
   # Authentication
