@@ -1,13 +1,17 @@
 angular.module('flatman').controller("resourceCtrl",function($scope, resourceService, Util){
     $scope.resources = resourceService.resource.get(function(){
-        _.each($scope.resources, function(resource){resource.date = new Date(); });
+        _.each($scope.resources, function(resource){
+                                        resource.date = new Date(); 
+                                        resource.page = 1;
+                                        resource.entries = $scope.getEntries(resource);
+                                    });
     });
 
 
-    $scope.recalcEntryValues=function(resource, index){
+   /* $scope.recalcEntryValues=function(resource, index){
         resource.entries[index].usage = resource.entries[index].value - resource.entries[index+1].value;
         resource.entries[index].costs = parseInt(resource.entries[index].usage) * parseFloat(resource.pricePerUnit);
-    };
+    };*/
 
      $scope.removeResource=function(resource){
         resourceService.resource.destroy(resource.id,function(){
@@ -22,6 +26,10 @@ angular.module('flatman').controller("resourceCtrl",function($scope, resourceSer
     $scope.updateResource=function(){
         resourceService.resource.update($scope.resourceTmp, function(){});
     };
+
+    $scope.getEntries=function(resource){
+        resource.entries = resourceService.entry.get(resource.page);
+    }
 
      $scope.addEntry=function(resource){
         resourceService.entry.create(resource.id,{date:resource.date,value:resource.entryvalue}, function(data){

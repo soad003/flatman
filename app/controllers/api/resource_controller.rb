@@ -2,10 +2,10 @@ class Api::ResourceController < Api::RestController
     around_filter :wrap_in_transaction, only: [:create,:destroy]
 
     def index
-        @r=Ressource.calc(current_user.flat.ressources);
+        #@r=Ressource.calc(current_user.flat.ressources);
         #logic model calc call
 
-        #respond_with(current_user.flat.ressources)
+        respond_with(current_user.flat.ressources)
     end
 
     def create

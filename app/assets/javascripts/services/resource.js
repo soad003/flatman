@@ -9,8 +9,10 @@ angular.module('flatman').service("resourceService",function($resource) {
 
    var entryService = $resource('/api/resource/:r_id/resourceentry/:id',{},
                         {
+                            'get': {method: "GET", isArray:true},
                             'create': {method: "POST"},
-                            'destroy': {method: "DELETE"}                        });
+                            'destroy': {method: "DELETE"}                        
+                        });
     return {
         resource: {
             get: function(succH, errH){
@@ -27,6 +29,9 @@ angular.module('flatman').service("resourceService",function($resource) {
             }
         },
         entry: {
+            get: function(resource_id, page, succH, errH){
+                return entryService.get({r_id: resource_id, id: page},succH, errH);
+            },
             create: function(resource_id,entry,succH,errH){
                 entryService.create({r_id: resource_id},entry,succH,errH);
             },

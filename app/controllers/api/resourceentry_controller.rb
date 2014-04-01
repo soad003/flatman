@@ -1,5 +1,13 @@
 class Api::ResourceentryController < Api::RestController
 
+     def index
+        #@r=Ressource.calc(current_user.flat.ressources);
+        #logic model calc call
+        r = Ressource.find_resource_with_user_constraint(params[:resource_id], current_user)
+
+        respond_with(r.ressourceentires)
+    end
+
     def create
         entry=Ressourceentry.new(entry_params)
         r = Ressource.find_resource_with_user_constraint(params[:resource_id], current_user)
