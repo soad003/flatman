@@ -1,0 +1,27 @@
+<% content_for :robots, "NOINDEX, NOFOLLOW" %>
+
+<% content_for :title, t('.page_title') %>
+
+
+<div class="row">
+  <div class="page-head">
+      <h2 class="page-header"><span class="fa fa-envelope"></span> <%= t('.page_header') %> <a href="/#/messages"><button class="close" aria-hidden="true">&times;</button></a></h2>
+  </div>
+   	<div class="modal-body">
+		<div class="input-group">
+           <span class="input-group-addon">@</span>
+           <input type="text" class="form-control" placeholder="Username">
+        </div>
+    </div>
+    <div class="modal-footer">
+    	<div class="row">
+        	<div class="col-lg-10 col-md-10 col-xs-8">
+            	<textarea class="form-control" rows="3"></textarea>
+          	</div>
+          	<div class="col-lg-2 col-md-2 col-xs-4">
+            	<button class="btn btn-primary btn-block" type="button">Send</button>
+            	<a href="/#/messages"><button type="button" class="btn btn-default btn-block">Close</button></a>
+          	</div>
+		</div>
+ 	</div>
+</div>

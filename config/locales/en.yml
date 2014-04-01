@@ -32,7 +32,7 @@ en:
     flat:
       create:
         already_in_flat                   : "Your user already belongs to a flat"
-  
+
   activerecord:
     errors:
       models:
@@ -160,9 +160,13 @@ en:
       page_title                         : "Dashboard"
     dashboard:
       page_header                        : "Dashboard"
-    messages: 
+    messages:
       page_header                        : "Messages"
       page_title                         : "Messages"
+    message_window:
+      page_header                        : "Messages"
+    message_new:
+      page_header                        : "New Message"
     resources:
       page_header                        : "Resources"
       page_title                         : "Resource"
@@ -173,9 +177,27 @@ en:
       usage                              : "Usage"
       costs                              : "Costs"
       resourceValue                      : "resource value"
-
+    create_resource:
+        page_title                       : "Resource"
+        page_header                      : "Resource"
+        name                             : "Name"
+        name_placeholder                 : "electricity"
+        unitName                         : "Unit Name"
+        unitName_placeholder             : "kw/h"
+        priceUnit                        : "Price/Unit"
+        priceUnit_placeholder            : "0,13"
+        monthlyCosts                     : "Monthly Costs"
+        monthlyCosts_placeholder         : "6,30"
+        annualCosts                      : "Annual Costs"
+        annualCosts_placeholder          : "12,30"
+        startValue                       : "Start Value"
+        startValue_placeholder           : "82767"
+        startDate                       : "Start Date"
     search:
       page_header                        : "Searching for"
+      no_items_found                     : "no items found for your query..."
+      borrow_heading                     : "borrow..."
+      send_request                       : "send borrow request"
     flat_settings:
       page_header                        : "Your Flat"
       city                               : "city"
@@ -201,8 +223,44 @@ en:
       add                                : "add"
       new_list_placeholder               : "groceries"
       new_item_placeholder               : "jellybeans"
-
-
+    create_flat:
+      subtitle                           : "Welcome to"
+      title                              : "Flatman"
+      description1                       : "You are currently not member of a flat!"
+      description2                       : "You can either create one or"
+      description3                       : "just wait until you get assigned to one by your roommates"
+      name_label                         : "name"
+      name_placeholder                   : "Wayne Manor"
+      street_label                       : "street"
+      street_placeholder                 : "1007 Mountain Drive"
+      zip_label                          : "postal code"
+      zip_placeholder                    : "12345"
+      city_label                         : "city"
+      city_placeholder                   : "Gotham"
+      create_flat                        : "create a flat!"
+      marketing:
+        shopping_title                   : "Shopping"
+        shopping_text                    : "Maecenas sed diam eget risus varius blandit sit amet non magna."
+        finances_title                   : "Bills"
+        finances_text                    : "Morbi leo risus, porta ac consectetur ac, vestibulum at eros. Cras mattis consectetur purus sit amet fermentum."
+        resources_title                  : "Resource usage"
+        resources_text                   : "Maecenas sed diam eget risus varius blandit sit amet non magna."
+        share_title                      : "Sharing"
+        share_text                       : "Donec id elit non mi porta gravida at eget metus. Maecenas faucibus mollis interdum."
+        info_title                       : "Stay up to date"
+        info_text                        : "Morbi leo risus, porta ac consectetur ac, vestibulum at eros. Cras mattis consectetur purus sit amet fermentum."
+        connect_title                    : "Connect"
+        connect_text                     : "Maecenas sed diam eget risus varius blandit sit amet non magna."
+    share:
+      title                              : "sharing is caring"
+      available_items                    : "available items"
+      filter                             : "filter"
+      item_borrow                        : "borrowed"
+      item_hide                          : "hide"
+      item_edit                          : "edit"
+      item_remove                        : "remove"
+      item_new                           : "new item"
+      add                                : "add"
 
   session:
     index:

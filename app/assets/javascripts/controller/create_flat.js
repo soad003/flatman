@@ -3,7 +3,10 @@ angular.module('flatman').controller("createFlatCtrl",function($scope,flatServic
 
     $scope.create_flat=function(){
         flatService.create({},$scope.newFlat, function(){
-            location.href="/"; //real pege reload to get all menues
+            if(!Util.has_server_errors()){
+                $scope.newFlat ={};
+                location.href="/"; //real page reload to get all menues
+            }
         });
     };
 

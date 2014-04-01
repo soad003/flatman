@@ -33,4 +33,9 @@ angular.module('flatman').controller("shoppingCtrl",function($scope,shoppingServ
             item.checked=!item.checked
         });
     }
+
+    $scope.getColor=function(index){
+        var colors=['success','info','warning','danger'];
+        return colors[index%4];
+    };
 });

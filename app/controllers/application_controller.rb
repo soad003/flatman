@@ -18,10 +18,6 @@ class ApplicationController < ActionController::Base
         end
     end
 
-    def default_url_options(options={})
-        { locale: I18n.locale }
-    end
-
     def current_user
          @current_user ||= User.find_by_id(session[:user_id]) if session[:user_id]
     end
@@ -37,12 +33,17 @@ class ApplicationController < ActionController::Base
     private
 
     def set_locale
-        if params[:locale].nil? || params[:locale].empty?
+
+        if (params[:locale].nil? || params[:locale].empty?) && (cookies[:locale].nil? || cookies[:locale].empty?)
             I18n.locale = http_accept_language.compatible_language_from(I18n.available_locales)
-        else
+        elsif !(params[:locale].nil? || params[:locale].empty?)
             I18n.locale = params[:locale]
+        elsif !(cookies[:locale].nil? || cookies[:locale].empty?)
+            I18n.locale = cookies[:locale]
         end
+
         I18n.locale = I18n.locale || I18n.default_locale
+        cookies[:locale]=I18n.locale
     end
 
 

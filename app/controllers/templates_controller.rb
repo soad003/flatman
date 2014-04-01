@@ -25,6 +25,12 @@ class TemplatesController < ProtectedController
   def messages
   end
 
+  def message_window
+  end
+
+  def message_new
+  end
+  
   def shopping
   end
 

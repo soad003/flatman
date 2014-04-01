@@ -15,12 +15,14 @@
 //= require bootstrap
 //= require Chart
 //= require angular
+//= require angular-ui-bootstrap-tpls
 //= require underscore
 //= require angular-route
 //= require_tree ./layout
 //= require angular-resource
+
 //= require_tree ./config
 //= require_tree ./services
 //= require_tree ./controller
-
+//= require hamlcoffee
 

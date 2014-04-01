@@ -1,117 +1,141 @@
 <% content_for :title, t('.page_title') %>
 <% content_for :page_header, t('.page_header') %>
 
-
 <div class="row">
-  <div class="page-head">
-      <h1 class="page-header"><span class="glyphicon glyphicon-globe"></span> <%= t('.page_header') %> <a href="/#/add/ressource"><button class="btn btn-primary pull-right" data-toggle='modal' data-target="#addRessource" type="submit"><i class="fa fa-plus"></i> <%= t('.page_title') %></button></a></h1>
-     
-  </div>
+   <div class="page-head">
+      <h1 class="page-header">
+         <span class="glyphicon glyphicon-globe"></span>
+         <%= t('.page_header') %>
+         <a href="/#/create_resource">
+            <button ng-click="setUpdateResource('add','')" class="btn btn-primary pull-right"> <i class="fa fa-plus"></i>
+               <%= t('.page_title') %></button>
+       </a>
+      </h1>
 
-  
-  
-  
-   <div id="strom" class="col-sm-12">
-      <h1>Strom  <button class="btn btn-default btn-xs"><i class="fa fa-edit"></i></button> </h1>
-      
    </div>
-   <div class="col-sm-6">
-      <div class="adv-table editable-table ">
-         <table class="table table-striped table-hover table-borderless table-scrollable" id="editable-sample">
-            <thead>
-               <tr>
-                  <th><%= t('.date') %></th>
-                  <th><%= t('.value') %></th>
-                  <th><%= t('.usage') %></th>  
-                  <th><%= t('.costs') %></th>
-                </tr>
-            </thead>
-            <tbody>
-               <tr class="">
-                  <td>12.01.2013</td>
-                  <td>36984</td>
-                  <td>84</td>
-                  <td>€ 14,00 <button class="btn btn-default btn-xs pull-right"><span class="glyphicon glyphicon-trash"></span> </button></td>
-               </tr>
-               <tr class="">
-                  <td>12.01.2013</td>
-                  <td>36984</td>
-                  <td>64</td>
-                  <td>€ 14,00 <button class="btn btn-default btn-xs pull-right"><span class="glyphicon glyphicon-trash"></span> </button></td>
-               </tr>
-               <tr class="">
-                  <td>12.01.2013</td>
-                  <td>36984</td>
-                  <td>184</td>
-                  <td>€ 14,00 <button class="btn btn-default btn-xs pull-right"><span class="glyphicon glyphicon-trash"></span> </button></td>
-               </tr>
-               <tr class="">
-                  <td>12.01.2013</td>
-                  <td>36984</td>
-                  <td>384</td>
-                  <td>€ 14,00 <button class="btn btn-default btn-xs pull-right"><span class="glyphicon glyphicon-trash"></span> </button></td>
-               </tr>
-               <tr class="">
-                  <td>12.01.2013</td>
-                  <td>36984</td>
-                  <td>384</td>
-                  <td>€ 14,00 <button class="btn btn-default btn-xs pull-right"><span class="glyphicon glyphicon-trash"></span> </button></td>
-               </tr>
-            </tbody>
-         </table>
-      </div>
-                  <div class="panel-footer announcement-bottom">
-                    <form role="form" name="Itemform" ng-submit="addItem(list)">
-                        <div class="input-group">
-                          
-                               <div class="input-group-btn">
-                  <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
-            25.04.2014
-              <span class="caret"></span>
-                </button>
-                <ul class="dropdown-menu">
-                  <li><a href="#">Dropdown link</a></li>
-                  <li><a href="#">Dropdown link</a></li>
-                </ul>
-              </div>
-                          
-                          <input type="text" class="form-control"
-                                  ng-model="list.new_Text"
-                                  maxlength="30"
-                                  placeholder="<%= t('.resourceValue') %>" required>
-                          <span class="input-group-btn">
-                            <button class="btn btn-primary"
-                                    type="submit"
-                                    ng-disabled="!Itemform.$valid">
 
-                              <span class="glyphicon glyphicon-plus"></span> <%= t(".add") %>
-                            </button>
-                          </span>
-                        </div>
-                    </form>
-                </div>
+   <div ng-repeat="resource in resources">
+      <div id="strom" class="col-sm-12">
+         <h1>
+            {{resource.name}}
+            <a href="/#/create_resource/{{resource.id}}">
+               <button class="btn btn-default btn-xs" ng-click="setUpdateResource('update',resource)"> <i class="fa fa-edit"></i>
+               </button>
+             </a>
+            <button class="btn btn-default btn-xs"  ng-click="removeResource(resource)">
+                  <span class="glyphicon glyphicon-trash"></span>
+            </button>
+         </h1>
+
       </div>
-   <div id="chartdiv" class="col-sm-6 hidden-xs"">
- <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                <ul class="nav nav-tabs">
-                    <li class="active"><a href="#"><%= t('.chart') %></a></li>
-                    <li><a href="#"><%= t('.data') %></a></li>
-                
-                <ul class="nav navbar-right">
-                    <li class="dropdown">
-                        <a href="#" data-toggle="dropdown" class="dropdown-toggle">01.05.2013 - 05.3.2014 <b class="caret"></b></a>
-                        <ul class="dropdown-menu">
-                            <li><a href="#">Action</a></li>
-                        </ul>
-                    </li>
-                </ul>
-                </ul>
-            </div><!-- /.navbar-collapse -->
-      
+      <div class="col-sm-6">
+         <div class="adv-table editable-table">
+            <table class="table table-striped table-hover table-borderless table-scrollable" id="editable-sample">
+               <thead>
+                  <tr>
+                     <th>
+                        <%= t('.date') %></th>
+                     <th>
+                        <%= t('.value') %></th>
+                     <th>
+                        <%= t('.usage') %></th>
+                     <th>
+                        <%= t('.costs') %></th>
+                  </tr>
+               </thead>
+               <tbody>
+                  <tr ng-repeat="entry in resource.entries" class="">
+                     <td>{{entry.date | date:'dd.MM yyyy' }}</td>
+                     <td>{{entry.value}} {{resource.unit}}</td>
+                     <td>{{entry.usage}} {{resource.unit}}</td>
+                     <td>
+                        € {{entry.costs}}
+                        <button class="btn btn-default btn-xs pull-right" ng-hide="entry.isFirst == true" ng-click="removeEntry(resource,entry)">
+                           <span class="glyphicon glyphicon-trash"></span>
+                        </button>
+                     </td>
+                  </tr>
+                 
+               </tbody>
+            </table>
+         </div>
+
+         <div class="panel-footer announcement-bottom">
+            <form role="form" name="Itemform" ng-submit="addEntry(resource)">
+               <div class="input-group">
+                  <div id="datetimepicker2" class="input-group-btn">
+                     <button type="button" name="date" bs-datepicker class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+                        <span an class="glyphicon glyphicon-calendar"></span>
+                        {{resource.date| date:'dd.MM yyyy' }} 
+                        <span class="caret"></span>
+                     </button>
+                     <ul class="dropdown-menu">
+                          <div style="display:inline-block; min-height:290px;">
+                            <div class="well well-sm" ng-model="resource.date">
+                              <datepicker min="minDate" show-weeks="showWeeks"></datepicker>
+                            </div>
+                          </div>
+                     </ul>
+                  </div>
+
+                  <input type="text" class="form-control"
+                      ng-model="resource.entryvalue"
+                      maxlength="30"
+                      placeholder="<%= t('.resourceValue') %>
+                  " required>
+                  <span class="input-group-btn">
+                     <button class="btn btn-primary"
+                        type="submit"
+                        ng-disabled="!Itemform.$valid">
+
+                        <span class="glyphicon glyphicon-plus"></span>
+                        <%= t(".add") %></button>
+                  </span>
+               </div>
+            </form>
+
+         </div>
+      </div>
+
+      <!--div style="display:inline-block; min-height:290px;">
+      <div class="well well-sm" ng-model="dt">
+         <datepicker min="minDate" show-weeks="showWeeks"></datepicker>
+      </div>
+   </div-->
+
+   <div id="chartdiv" class="col-sm-6 hidden-xs">
+      <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+         <ul class="nav nav-tabs">
+            <li class="active">
+               <a href="#">
+                  <%= t('.chart') %></a>
+            </li>
+            <li>
+               <a href="#">
+                  <%= t('.data') %></a>
+            </li>
+
+            <ul class="nav navbar-right">
+               <li class="dropdown">
+                  <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+                     01.05.2013 - 05.3.2014 <b class="caret"></b>
+                  </button>
+                  <ul class="dropdown-menu">
+                     <li>
+                        <img src="http://webtv.feratel.com/thumbnails/5645.jpeg?dcsdesign=WTP_partner&t=37"/>
+                     </li>
+                  </ul>
+               </li>
+            </ul>
+         </ul>
+      </div>
+      <!-- /.navbar-collapse -->
+
       <p>
-         <canvas id="myChart" height="100" width="300" ></canvas>
+         <canvas id="myChart" height="200" width="400" ></canvas>
       </p>
       <script type="text/javascript">
+          
          var data = {
              labels : ["January","February","March","April","May","June","July"],
              datasets : [
@@ -125,93 +149,13 @@
              ]
          }
         var chart = document.getElementById("myChart");
-        chart.height =  document.getElementById('chartdiv').offsetHeight +100;
-                chart.width = document.getElementById('chartdiv').offsetWidth;
+        //chart.height =  document.getElementById('chartdiv').offsetHeight +100;
+          //      chart.width = document.getElementById('chartdiv').offsetWidth;
          var ctx = document.getElementById("myChart").getContext("2d");
          new Chart(ctx).Line(data,null);
       </script>
    </div>
-
-
-<div class="col-sm-12">
-      <hr>
-   </div>
-
-
-   </div>
- </div>
-   <div class="modal fade" id="addRessource" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-        <h4 class="modal-title" id="myModalLabel">Add Ressource</h4>
-      </div>
-      <div class="modal-body" style="overflow-y: auto; overflow-x: hidden;">
-          <div class="form-group">
-          <label for="ressource_name">Name</label>
-            <div class="input-group">
-              <input autofocus="autofocus" id="ressource_name" name="ressource_name" placeholder="electricity" type="text" />
-              <span class="input-group-addon">
-                <span class="glyphicon glyphicon-pencil"></span>
-              </span>
-            </div>
-          </div>
-
-          <div class="form-group">
-          <label for="ressource_unit">Unit Name</label>
-            <div class="input-group">
-              <input autofocus="autofocus" id="ressource_unit" name="ressource_unit" placeholder="kw/h" type="text" />
-              <span class="input-group-addon">
-                <span class="glyphicon glyphicon-pencil"></span>
-              </span>
-            </div>
-          </div>
-
-          <div class="form-group">
-          <label for="ressource_pricePerUnit">Price/Unit</label>
-            <div class="input-group">
-              <input autofocus="autofocus" id="ressource_pricePerUnit" name="ressource_pricePerUnit" placeholder="€ 0,13" type="text" />
-              <span class="input-group-addon">
-                <span class="glyphicon glyphicon-euro"></span>
-              </span>
-            </div>
-          </div>
-
-          <div class="form-group">
-          <label for="ressource_priceMonth">Monthly Costs</label>
-            <div class="input-group">
-              <input autofocus="autofocus" id="ressource_priceMonth" name="ressource_priceMonth" placeholder="€ 5,45" type="text" />
-              <span class="input-group-addon">
-                <span class="glyphicon glyphicon-euro"></span>
-              </span>
-            </div>
-          </div>
-
-          <div class="form-group">
-          <label for="ressource_priceYear">Annual Costs</label>
-            <div class="input-group">
-              <input autofocus="autofocus" id="ressource_priceYear" name="ressource_priceYear" placeholder="€ 13,14" type="text" />
-              <span class="input-group-addon">
-                <span class="glyphicon glyphicon-euro"></span>
-              </span>
-            </div>
-          </div>
-
-          <div class="form-group">
-          <label for="ressource_name">Start Value</label>
-            <div class="input-group">
-              <input autofocus="autofocus" id="ressource_startValue" name="ressource_startValue" placeholder="52140" type="text" />
-              <span class="input-group-addon">
-                <span class="glyphicon glyphicon-wrench"></span>
-              </span>
-            </div>
-          </div>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save</button>
-      </div>
-    </div>
-  </div>
+   <div class="col-sm-12">
+      <hr></div>
+</div>
 </div>

@@ -1,5 +1,6 @@
 // Angular Config / Routes
-angular.module('flatman', ['ngRoute','ngResource','google-maps']).config(function($httpProvider, $routeProvider){
+
+angular.module('flatman', ['ngRoute','ngResource','google-maps','ui.bootstrap']).config(function($httpProvider, $routeProvider){
   $httpProvider.defaults.headers.common = {'X-CSRF-Token': $("meta[name='csrf-token']").attr("content"),
                                           'Content-Type': 'application/json'};
   $routeProvider.
@@ -17,7 +18,11 @@ angular.module('flatman', ['ngRoute','ngResource','google-maps']).config(functio
       }).
       when('/share', {
         templateUrl: '/templates/share',
-        controller: 'shoppingCtrl'
+        controller: 'shareCtrl'
+      }).
+      when('/shareditem', {
+        templateUrl: '/templates/shareditem',
+        controller: 'shareCtrl'
       }).
       when('/finances', {
         templateUrl: '/templates/finances',
@@ -27,9 +32,21 @@ angular.module('flatman', ['ngRoute','ngResource','google-maps']).config(functio
         templateUrl: '/templates/messages',
         controller: 'shoppingCtrl'
       }).
+      when('/message_window', {
+        templateUrl: '/templates/message_window',
+        controller: 'messageWindowCtrl'
+      }).
+      when('/message_new', {
+        templateUrl: '/templates/message_new',
+        controller: 'messageNewCtrl'
+      }).
       when('/resources', {
         templateUrl: '/templates/resources',
-        controller: 'shoppingCtrl'
+        controller: 'resourceCtrl'
+      }).
+      when('/create_resource', {
+        templateUrl: '/templates/create_resource',
+        controller: 'resourceCtrl'
       }).
       when('/user_settings', {
         templateUrl: '/templates/user_settings',
@@ -58,7 +75,6 @@ angular.module('flatman', ['ngRoute','ngResource','google-maps']).config(functio
       $httpProvider.interceptors.push(function ($q,Util) {
         return {
             'response': function (response) {
-              Util.clear_server_errors();
               return response;
             },
             'responseError': function (rejection) {
@@ -80,8 +96,9 @@ angular.module('flatman', ['ngRoute','ngResource','google-maps']).config(functio
       });
 
 
-}).run(function($rootScope){
+}).run(function($rootScope,Util){
   $rootScope.$on('$routeChangeStart',function(){
-    $('.modal.in').modal('hide'); //dirty nasty ugly hack!!! DON'T DO THIS AT HOME
+    Util.clear_server_errors();     //clear errors on view change
+    $('.modal.in').modal('hide');   //dirty nasty ugly hack!!! DON'T DO THIS AT HOME
   });
 });
