@@ -15,35 +15,35 @@
 			    	{id: 1043, name: 'silent brass', status: 2}
 				  ]"> -->
 	<div class="row">
-		<h1 class="page-header"><%= t(".title") %></h1>
+		<h1 class="page-header"><span class="fa fa-share"></span> <%= t(".title") %></h1>
 	</div>
 	<div class="row">
-		
-		
-		
-		
-		<div class="col-md-6">	
+
+
+
+
+		<div class="col-md-6">
 			<div class="panel panel-success">
 				  <div class="panel-heading">
 				    <h3 class="panel-title"><%= t(".available_items") %></h3>
 				  </div>
-				 <div class="panel-group">	
+				 <div class="panel-group">
 				 <ul class="list-group" >
-					  	
-					  	<!--filter --> 
+
+					  	<!--filter -->
 					  	<li class="list-group-item">
 					    	<div class="input-group">
 							<span class="input-group-addon"><span class="glyphicon glyphicon-filter"></span></span>
 								<input type="search" class="form-control" ng-model="qa" placeholder="<%= t(".filter") %>" >
 							</div>
 				    	</li> <!--filter -->
-			    	
+
 			    		<!--item -->
-			    		<li class="list-group-item" 
+			    		<li class="list-group-item"
 			    			ng-repeat="item in shareditems | filter:qa">
               				<!-- item header-->
               				<div class="input-group">
-                  				<h3 class="panel-title form-control ">{{item.name}}</h3>                  				
+                  				<h3 class="panel-title form-control ">{{item.name}}</h3>
                   				<!-- edit box -->
                   				<div class="input-group-btn">
 							        <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
@@ -53,23 +53,23 @@
 							        	<li><a href="#"><span class="glyphicon glyphicon-eye-open"></span> <%= t(".item_borrow") %></a></li>
 							        	<li><a href="#"><span class="glyphicon glyphicon-eye-open"></span> <%= t(".item_hide") %></a></li>
 							        	<li><a href="#"><span class="glyphicon glyphicon-remove"></span> <%= t(".item_remove") %></a></li>
-							        	<li><a href="/#/shareditem/{{item.id}}"><span class="glyphicon glyphicon-pencil"></span> <%= t(".item_edit") %></a> </li>	      
+							        	<li><a href="/#/shareditem/{{item.id}}"><span class="glyphicon glyphicon-pencil"></span> <%= t(".item_edit") %></a> </li>
 							        </ul>
 						     	 </div><!-- edit box-->
-              				</div><!-- item header -->            
+              				</div><!-- item header -->
 				        </li>
-			   		
+
 			     	<div class="panel-footer">
 				     	 <form role="form" ng-submit="addItem()" name="addItemForm">
 	                        <div class="input-group">
 	                          <span class="input-group-addon"><span class="glyphicon glyphicon-plus"></span></span>
-	                          
-	                          <input 	type="text" 
+
+	                          <input 	type="text"
 	                          			maxlength="30" required
 	                          			ng-model="newItemName"
-	                          			class="form-control" 
+	                          			class="form-control"
 	                          			placeholder="<%= t(".item_new") %>">
-	                          
+
 	                          <span class="input-group-btn">
 	                          	<button class="btn btn-primary" type="submit" ng-disabled="!addItemForm.$valid" >
 			                      <span class="glyphicon glyphicon-plus"></span> <%= t(".add") %>
@@ -81,8 +81,8 @@
 			   </div>
 			</div>
 		</div>
-	
-	
-					
+
+
+
 	</div>
-	
+

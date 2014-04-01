@@ -220,6 +220,7 @@ en:
       name                               : "name"
       email                              : "email"
     shopping:
+      page_header                        : "shopping"
       add                                : "add"
       new_list_placeholder               : "groceries"
       new_item_placeholder               : "jellybeans"
