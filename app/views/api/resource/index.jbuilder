@@ -6,10 +6,6 @@ json.array!(@r) do |json, resource|
   json.annualCost resource.annualCost
   json.description resource.description
   json.startValue resource.startValue
-  json.startDate resource.startDate
-
-   json.entries resource.ressourceentries.sort {|a,b| b.date <=> a.date} do |json, entry|
-      json.(entry , :id, :value, :date, :usage, :costs, :isFirst)
-  end
-
+   json.startDate resource.startDate
+  json.entryLength resource.entryLength
 end

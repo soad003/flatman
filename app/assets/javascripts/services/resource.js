@@ -1,7 +1,8 @@
 angular.module('flatman').service("resourceService",function($resource) {
   var resourceService = $resource('/api/resource/:id',{},
                         {
-                            'get': {method: "GET", isArray:true},
+                            'getAll': {method: "GET", isArray:true},
+                            'get': {method: "GET"},
                             'create': {method: "POST"},
                             'destroy': {method: "DELETE"},
                             'update': {method: "PUT"}
@@ -15,8 +16,11 @@ angular.module('flatman').service("resourceService",function($resource) {
                         });
     return {
         resource: {
-            get: function(succH, errH){
-                return resourceService.get(null,succH, errH);
+            getAll: function(succH, errH){
+                return resourceService.getAll(null,succH, errH);
+            },
+            get: function(resource_id, succH, errH){
+                return resourceService.get({id: resource_id},succH, errH);
             },
             create: function(resource,succH,errH) {
                 resourceService.create(null,resource,succH,errH);

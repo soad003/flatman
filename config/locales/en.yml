@@ -32,7 +32,9 @@ en:
     flat:
       create:
         already_in_flat                   : "Your user already belongs to a flat"
-
+    resourceentry:
+      create:
+        entryDate_before_startDate        : "The date for your entry is before the start date"
   activerecord:
     errors:
       models:
