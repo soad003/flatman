@@ -3,16 +3,20 @@
 </style>
 
 <div class="row">
-  <div class="col-md-offset-3 col-md-6">
+  <div class="col-md-offset-2 col-md-8">
+     <google-map center="map.center" zoom="map.zoom">
+        <marker coords="map.marker"></marker>
+      </google-map>
+
+      <section class="hidden-print">
+          <h1 class="page-header"><span class="fa fa-wrench"></span> <%= t('.page_header') %></h1>
+      </section>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-md-offset-2 col-md-5">
      <form name="content_form" class="form" role="form" ng-submit="update_flat()">
-        <google-map center="map.center" zoom="map.zoom">
-          <marker coords="map.marker"></marker>
-        </google-map>
-
-        <section class="hidden-print">
-            <h1 class="page-header"><span class="fa fa-wrench"></span> <%= t('.page_header') %></h1>
-        </section>
-
         <div class="form-group">
           <label class="control-label" for="flat_name"><%=t('.name')%></label>
           <div>
@@ -41,15 +45,53 @@
           </div>
         </div>
 
-        <div class="row">
-          <div class="col-md-2 col-md-offset-10">
-           <button class = "btn btn-sm btn-success btn-block" title ="<%= t('buttons.titles.decision.save') %>" ng-disabled="!is_dirty()">
-              <span class="glyphicon glyphicon-ok"></span> <%= t('buttons.labels.decision.save.enabled') %>
-            </button>
+        <div class="form-group">
+          <div class="row">
+            <div class="col-md-2 col-md-offset-10">
+             <button class = "btn btn-sm btn-success btn-block" title ="<%= t('buttons.titles.decision.save') %>" ng-disabled="!is_dirty()">
+                <span class="glyphicon glyphicon-ok"></span> <%= t('buttons.labels.decision.save.enabled') %>
+              </button>
+            </div>
           </div>
         </div>
       </form>
   </div>
+  <div class="col-md-3">
+    <div class="panel panel-success">
+      <div class="panel-heading"><strong><%=t('.members')%></strong></div>
+      <div class="panel-body">
+        <ul class="list-unstyled">
+          <li ng-repeat="t in flat.users">{{t.name}}</li>
+        </ul>
+      </div>
+    </div>
+    <div class="panel panel-primary">
+      <div class="panel-heading"><strong><%=t('.invites')%></strong></div>
+      <div class="panel-body">
+          <form role="form" name="Inviteform" ng-submit="sendIntite()">
+            <div class="input-group">
+              <input type="email" class="form-control"
+                      ng-model="invite_email"
+                      maxlength="30"
+                      placeholder="<%=t('.email')%>" required>
+              <span class="input-group-btn">
+                <button class="btn btn-primary"
+                        type="submit"
+                        ng-disabled="!Itemform.$valid">
+                  <span class="glyphicon glyphicon-plus"></span>
+                </button>
+              </span>
+            </div>
+          </form>
+      </div>
+    </div>
+
+
+
+  </div>
+
+
+
 </div>
 
 

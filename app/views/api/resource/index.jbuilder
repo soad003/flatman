@@ -1,4 +1,4 @@
-json.array!(@r) do |json, resource|
+json.array!(@r) do |resource|
   json.id resource.id
   json.name resource.name
   json.pricePerUnit resource.pricePerUnit
@@ -8,7 +8,7 @@ json.array!(@r) do |json, resource|
   json.startValue resource.startValue
   json.startDate resource.startDate
 
-   json.entries resource.ressourceentries.sort {|a,b| b.date <=> a.date} do |json, entry|
+   json.entries resource.ressourceentries.sort {|a,b| b.date <=> a.date} do |entry|
       json.(entry , :id, :value, :date, :usage, :costs, :isFirst)
   end
 

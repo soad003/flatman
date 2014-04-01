@@ -2,7 +2,7 @@ class Api::FlatController < Api::RestController
     around_filter :wrap_in_transaction, only: [:create,:update]
 
     def index
-        respond_with(current_user.flat)
+        @flat=current_user.flat
     end
 
     def create
