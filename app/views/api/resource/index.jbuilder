@@ -2,6 +2,7 @@ json.array!(@r) do |json, resource|
   json.id resource.id
   json.name resource.name
   json.pricePerUnit resource.pricePerUnit
+  json.unit resource.unit
   json.monthlyCost resource.monthlyCost
   json.annualCost resource.annualCost
   json.description resource.description
