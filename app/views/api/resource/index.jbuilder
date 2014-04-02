@@ -1,4 +1,4 @@
-json.array!(@r) do |json, resource|
+json.array!(@r) do |resource|
   json.id resource.id
   json.name resource.name
   json.pricePerUnit resource.pricePerUnit
@@ -7,6 +7,6 @@ json.array!(@r) do |json, resource|
   json.annualCost resource.annualCost
   json.description resource.description
   json.startValue resource.startValue
-   json.startDate resource.startDate
+  json.startDate resource.startDate
   json.entryLength resource.entryLength
 end
