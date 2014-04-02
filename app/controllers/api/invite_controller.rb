@@ -2,11 +2,24 @@ class Api::InviteController < Api::RestController
     around_filter :wrap_in_transaction, only: [:create,:destroy]
 
     def create
-        invite=Invite.new(invite_params)
-        current_user.flat.invites << invite
-        invite.save!
-        #send email here
-        respond_with(invite, :location => nil)
+        user = User.find_by_email(invite_params[:email])
+        if user.nil?
+            invite=Invite.new(invite_params)
+            current_user.flat.invites << invite
+            invite.save!
+            UserMailer.invite(invite.email,current_user.flat.name).deliver
+            @return = OpenStruct.new({already_registred: false, invite: invite})
+        else
+            if current_user.flat.is_member?(user)
+                respond_with_errors([t('.already_member_flat')])
+            elsif user.has_flat?
+                respond_with_errors([t('.already_in_flat')])
+            else
+                current_user.flat.add_user(user)
+                UserMailer.added_to_flat(user).deliver
+                @return = OpenStruct.new({already_registred: true, user: user})
+            end
+        end
     end
 
     def destroy

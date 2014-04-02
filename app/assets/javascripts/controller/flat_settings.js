@@ -29,7 +29,8 @@ angular.module('flatman').controller("flatSettingsCtrl",function($scope,flatServ
 
     $scope.send_invite=function(){
         inviteService.invite($scope.invite_email,function(data){
-            $scope.flat.invites.push(data);
+            if(!data.already_registred) $scope.flat.invites.push(data.invite);
+            else $scope.flat.users.push(data.user);
             $scope.invite_email='';
         });
     };

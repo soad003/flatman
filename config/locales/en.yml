@@ -32,9 +32,25 @@ en:
     flat:
       create:
         already_in_flat                   : "Your user already belongs to a flat"
+    invite:
+      create:
+        already_in_flat                   : "The user(email) already belongs to an other flat"
+        already_member_flat               : "User is already member of this flat"
     resourceentry:
       create:
         entryDate_before_startDate        : "The date for your entry is before the start date"
+
+  # mail
+  user_mailer:
+    invite:
+      subject                             : "You have been invited to flatman"
+      heading                             : "You have been invited to the flat"
+      text                                : "To join click"
+    added_to_flat:
+      subject                             : "You have been added to a flat"
+      heading                             : "You have been added to the flat"
+      text                                : "You have been added to the flat"
+
   activerecord:
     errors:
       models:
