@@ -24,5 +24,7 @@
 //= require_tree ./config
 //= require_tree ./services
 //= require_tree ./controller
+//= require angles.js
+//= require angular-google-maps.min.js
 //= require hamlcoffee
 
