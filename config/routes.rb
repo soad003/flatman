@@ -47,7 +47,8 @@ scope "(:locale)", locale: /en|de/ do
       resources :resourceentry, only: [:create, :destroy]
    end
    get '/resource/:resource_id/resourceentry/:page' => 'resourceentry#page'
-   get '/resource/:id' => 'resource#getById'
+   get '/resource/:resource_id/chart' => 'resource#getChart'
+   get '/resource/:resource_id' => 'resource#getById'
 
    resources :share, only: [:index, :create]
    resources :shareditem, only: [:index, :create]

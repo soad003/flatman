@@ -1,11 +1,22 @@
 angular.module('flatman').controller("resourceCtrl",function($scope, resourceService, Util){
     $scope.resources = resourceService.resource.getAll(function(){
         _.each($scope.resources, function(resource){
-                                        resource.date = new Date(); 
+                                        resource.date = new Date();
+                                        resource.infoStartDate = new Date();
+                                        resource.infoEndDate = new Date();
                                         resource.page = 1;
                                         $scope.setEntries(resource);
+                                        $scope.initChart(resource);
+                                        $scope.getChartData(resource);
                                     });
+
     });
+
+    $scope.showChart = true;
+
+    $scope.showInfos = function (flag){
+        $scope.showChart=flag;
+    };
 
 
      $scope.removeResource=function(resource){
@@ -14,6 +25,23 @@ angular.module('flatman').controller("resourceCtrl",function($scope, resourceSer
         });
     };
 
+    $scope.getChartData=function (resource){
+        var response = resourceService.chart.get(resource.id,new Date(), new Date(), 
+            function (response){ 
+                resource.chart = {
+                    "labels":response.labels,
+                    "datasets":[
+                    {
+                        "fillColor":"rgba(151,187,205,0.5)",
+                        "strokeColor":"rgba(151,187,205,1)",
+                        "pointColor":"rgba(151,187,205,1)",
+                        "pointStrokeColor":"#fff",
+                        "data":response.data
+                    }]
+            };
+
+            });
+    };
 
 
     $scope.setEntries=function(resource){
@@ -37,7 +65,6 @@ angular.module('flatman').controller("resourceCtrl",function($scope, resourceSer
 
     $scope.getRange=function (length){
         max = length/5;
-
         return _.range (1, max+1);
     };
 
@@ -47,7 +74,7 @@ angular.module('flatman').controller("resourceCtrl",function($scope, resourceSer
     };
 
     $scope.changePage=function(resource, value){
-        resource.page += value;
+    resource.page += value;
         if (resource.page > resource.pages){
             resource.page = resource.pages;
         }
@@ -56,4 +83,20 @@ angular.module('flatman').controller("resourceCtrl",function($scope, resourceSer
         }
         $scope.setEntries(resource);
     };
+
+    $scope.initChart=function(resource){
+        resource.chart = {
+            "labels":["Monday","Tuesday","Wednesday","Thursday","Friday"],
+            "datasets":[
+                {
+                    "fillColor":"rgba(151,187,205,0.5)",
+                    "strokeColor":"rgba(151,187,205,1)",
+                    "pointColor":"rgba(151,187,205,1)",
+                    "pointStrokeColor":"#fff",
+                    "data":[65.4,59,90,81,56]
+                }]
+            };
+    }; 
+    
+
 });

@@ -1,10 +1,11 @@
 <% content_for :title, t('.page_title') %>
 <% content_for :page_header, t('.page_header') %>
 
-<div class="row">
+<div class="row modal-body">
    <div class="page-head">
       <h1 class="page-header">
-         <span class="glyphicon glyphicon-globe"></span>
+                     <i class="fa fa-flash"></i>
+
          <%= t('.page_header') %>
          <a href="/#/create_resource">
             <button ng-click="setUpdateResource('add','')" class="btn btn-primary pull-right"> <i class="fa fa-plus"></i>
@@ -14,7 +15,7 @@
 
    </div>
 
-   <div ng-repeat="resource in resources">
+   <div ng-repeat="resource in resources" resources-repeat-directive>
       <div id="strom" class="col-sm-6">
 
          <h1 class="pull-left">
@@ -112,59 +113,35 @@
       </div>
    </div-->
 
-   <div id="chartdiv" class="col-sm-6 hidden-xs">
+   <div id="info" class="col-sm-6 hidden-xs">
       <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
          <ul class="nav nav-tabs">
             <li class="active">
-               <a href="#">
+               <a ng-click="showInfos(true)" href="">
                   <%= t('.chart') %></a>
             </li>
             <li>
-               <a href="#">
+               <a ng-click="showInfos(false)" href="">
                   <%= t('.data') %></a>
             </li>
 
             <ul class="nav navbar-right">
-               <li class="dropdown">
-                  <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
-                     01.05.2013 - 05.3.2014 <b class="caret"></b>
-                  </button>
-                  <ul class="dropdown-menu">
-                     <li>
-                        <img src="http://webtv.feratel.com/thumbnails/5645.jpeg?dcsdesign=WTP_partner&t=37"/>
-                     </li>
-                  </ul>
-               </li>
+              
             </ul>
          </ul>
       </div>
       <!-- /.navbar-collapse -->
 
-      <p>
-         <canvas id="myChart" height="200" width="400" ></canvas>
+      <div class="row-fluid" ng-show="showChart">
+        <canvas linechart options="resource.options" data="resource.chart" width="520" height="250"></canvas>
+      </div>
+
+      <p ng-hide="showChart">
+          infos 
       </p>
-      <script type="text/javascript">
-          
-         var data = {
-             labels : ["January","February","March","April","May","June","July"],
-             datasets : [
-             {
-                  fillColor : "rgba(151,187,205,0.5)",
-                  strokeColor : "rgba(151,187,205,1)",
-                  pointColor : "rgba(151,187,205,1)",
-                  pointStrokeColor : "#fff",
-                 data : [65,59,90,81,56,55,40]
-             }
-             ]
-         }
-        var chart = document.getElementById("myChart");
-        //chart.height =  document.getElementById('chartdiv').offsetHeight +100;
-          //      chart.width = document.getElementById('chartdiv').offsetWidth;
-         var ctx = document.getElementById("myChart").getContext("2d");
-         new Chart(ctx).Line(data,null);
-      </script>
    </div>
    <div class="col-sm-12">
+
       <hr></div>
 </div>
 </div>
