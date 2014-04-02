@@ -18,8 +18,19 @@ class Api::ResourceController < Api::RestController
        respond_with(nil, :location => nil);
     end
 
+    def getChart
+      resource = current_user.flat.ressources.where(id:params[:resource_id]).first
+
+      #define ranges for calc
+      dateFrom = DateTime.parse(params[:from])
+      dateFrom = DateTime.new(dateFrom.year, dateFrom.month, 1)
+      dateTo = DateTime.parse(params[:to])
+      dateTo = DateTime.new(dateTo.year, dateTo.month, -1)
+      respond_with(Ressource.getChartData(dateFrom, dateTo, resource))
+    end
+
     def getById
-        respond_with(current_user.flat.ressources.where(id:params[:id]).first)
+        respond_with(current_user.flat.ressources.where(id:params[:resource_id]).first)
     end
 
     def update

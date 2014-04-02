@@ -5,7 +5,12 @@ angular.module('flatman').service("resourceService",function($resource) {
                             'get': {method: "GET"},
                             'create': {method: "POST"},
                             'destroy': {method: "DELETE"},
-                            'update': {method: "PUT"}
+                            'update': {method: "PUT"},
+                        });
+
+   var chartService = $resource('/api/resource/:id/chart',{},
+                        {
+                            'get': {method: "GET"}
                         });
 
    var entryService = $resource('/api/resource/:r_id/resourceentry/:id',{},
@@ -41,6 +46,11 @@ angular.module('flatman').service("resourceService",function($resource) {
             },
             destroy: function(resource_id, entry_id, succH,errH){
                 entryService.destroy({r_id: resource_id,id: entry_id},succH,errH);
+            }
+        },
+        chart: {
+            get: function(resource_id, date_from, date_to, succH, errH){
+                return chartService.get({id: resource_id, from: date_from, to: date_to},succH, errH);
             }
         }
 

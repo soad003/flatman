@@ -1,7 +1,7 @@
 angular.module('flatman').factory("shoppingService",function($resource) {
     var listService = $resource('/api/shoppinglist/:id',{},
                         {
-                            'get': {method: "GET", isArray:true},
+                            'get': {method: "GET"},
                             'create': {method: "POST"},
                             'destroy': {method: "DELETE"}
                         });
