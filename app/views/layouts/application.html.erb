@@ -94,7 +94,6 @@
       </div>
     </div>
 
-
     <div class="container">
       <section>
         <% flash.each do |key,message| %>
@@ -104,8 +103,19 @@
           </div>
         <% end %>
 
-        <div ng-show="Util.has_server_errors" class="alert alert-error" ng-repeat="error in server_errors">
-            {{error}}
+<!--         <div class="alert alert-error flyover flyover-top" ng-repeat="error in server_errors" ng-class="{in:Util.has_server_errors}">
+            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+            <ul>
+              <li>
+                <i class="fa fa-exclamation-triangle fa-lg"></i> <strong>{{error}}</strong>
+              </li>
+            </ul>
+        </div> -->
+        <div class="flyover flyover-top"
+              ng-class="{in:Util.has_server_errors}">
+          <alert ng-repeat="error in server_errors" type="error_type" close="delete_error($index)">
+            <i class="fa fa-exclamation-triangle fa-lg"></i> {{error}}
+          </alert>
         </div>
 
         <%= yield :validation %>

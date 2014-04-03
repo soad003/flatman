@@ -234,7 +234,7 @@ en:
       street                             : "street"
       street_placeholder                 : "Doestreet 10"
       members                            : "flat members"
-      invites                            : "invite friends"
+      invites                            : "invite flat member"
       email                              : "email"
     finances:
       page_title                         : "Finances"
