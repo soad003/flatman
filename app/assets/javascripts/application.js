@@ -15,16 +15,19 @@
 //= require bootstrap
 //= require Chart
 //= require angular
-//= require angular-ui-bootstrap-tpls
 //= require underscore
 //= require angular-route
 //= require_tree ./layout
 //= require angular-resource
-
+//= require moment
+//= require daterangepicker
+//= require ng-bs-daterangepicker.js
+//= require angular-strap.js
+//= require angular-strap.tpl.js
+//= require angular-animate.js
 //= require_tree ./config
 //= require_tree ./services
 //= require_tree ./controller
 //= require angles.js
 //= require angular-google-maps.min.js
-//= require hamlcoffee
 

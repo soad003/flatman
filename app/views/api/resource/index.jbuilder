@@ -10,4 +10,9 @@ json.array!(@r) do |resource|
   json.startDate resource.startDate
   json.entryLength resource.entryLength
   json.chart = resource.chart
+
+
+  json.chartDateRange do
+        json.(resource.chartDateRange, :startDate, :endDate)
+    end
 end

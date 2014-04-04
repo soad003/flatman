@@ -2,7 +2,7 @@ class Api::ResourceController < Api::RestController
     around_filter :wrap_in_transaction, only: [:create,:destroy]
 
     def index
-        @r=Ressource.setEntryLength(current_user.flat.ressources)
+        @r=Ressource.setAttributes(current_user.flat.ressources)
         #logic model calc call
         #respond_with(current_user.flat.ressources)
     end
@@ -23,9 +23,9 @@ class Api::ResourceController < Api::RestController
 
       #define ranges for calc
       dateFrom = DateTime.parse(params[:from])
-      dateFrom = DateTime.new(dateFrom.year, dateFrom.month, 1)
+      #dateFrom = DateTime.new(dateFrom.year, dateFrom.month, 1)
       dateTo = DateTime.parse(params[:to])
-      dateTo = DateTime.new(dateTo.year, dateTo.month, -1)
+      #dateTo = DateTime.new(dateTo.year, dateTo.month, -1)
       respond_with(Ressource.getChartData(dateFrom, dateTo, resource))
     end
 

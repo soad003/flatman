@@ -1,7 +1,7 @@
 angular.module('flatman').controller("update_resourceCtrl",function($scope, $routeParams, resourceService, Util){
     if ($routeParams.id === undefined){
         $scope.isUpdate = false;
-        $scope.resourceTmp={name:"",unit:"", pricePerUnit: "", monthlyCost:"", annualCost: "", startValue: "", startDate: new Date()};
+        $scope.resourceTmp={name:"",unit:"", pricePerUnit: "", description:"", monthlyCost:"", annualCost: "", startValue: "", startDate: new Date()};
     }else{
         $scope.isUpdate = true;
         $scope.resourceTmp = resourceService.resource.get($routeParams.id);

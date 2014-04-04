@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140401181940) do
+ActiveRecord::Schema.define(version: 20140404185217) do
 
   create_table "billcategories", force: true do |t|
     t.integer  "flat_id"
@@ -86,7 +86,7 @@ ActiveRecord::Schema.define(version: 20140401181940) do
     t.float    "pricePerUnit"
     t.float    "monthlyCost"
     t.float    "annualCost"
-    t.float    "description"
+    t.string   "description"
     t.float    "startValue"
     t.datetime "created_at"
     t.datetime "updated_at"

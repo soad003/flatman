@@ -196,7 +196,7 @@ en:
       page_header                        : "Resources"
       page_title                         : "Resource"
       chart                              : "Chart"
-      data                               : "Data"
+      data                               : "Overview"
       date                               : "Date"
       value                              : "Value"
       usage                              : "Usage"
@@ -209,6 +209,9 @@ en:
       name_placeholder                   : "electricity"
       unitName                           : "Unit Name"
       unitName_placeholder               : "kw/h"
+      description                        : "Description"
+      description_placeholder            : "Nightenergy"
+      
       priceUnit                          : "Price/Unit"
       priceUnit_placeholder              : "0,13"
       monthlyCosts                       : "Monthly Costs"
