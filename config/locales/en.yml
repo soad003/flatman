@@ -183,6 +183,20 @@ en:
       page_title                         : "Dashboard"
     dashboard:
       page_header                        : "Dashboard"
+      items_to_buy                       : "items to buy"
+      view_shopping_details              : "view lists"
+      you_owe                            : "you owe ..."
+      view_finance_details               : "show clearing"
+      items_borrowed                     : "items borrowed"
+      view_share_details                 : "view items"
+      view_resource_details              : "view resources"
+      view_resource_titel                : "avg. eur/month"
+      view_details                       : "View Details"
+      panel_shopping_header              : "Shopping"
+      panel_finances_header              : "Finances"
+      panel_share_header                 : "Shared Items"
+      panel_resources_header             : "Ressource Usage"
+
     messages:
       page_header                        : "Messages"
       page_title                         : "Messages"

@@ -20,6 +20,9 @@ angular.module('flatman').factory("shoppingService",function($resource) {
             },
             destroy: function(list_id,succH,errH){
                 listService.destroy({id: list_id},succH,errH);
+            },
+            get_item_count: function(lists){
+                return _(lists).reduce(function(memo, l){ return memo + l.items.length; }, 0);;
             }
         },
         item: {

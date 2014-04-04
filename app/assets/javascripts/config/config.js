@@ -14,7 +14,7 @@ angular.module('flatman', ['ngRoute','ngAnimate','ngResource','google-maps','ang
       }).
       when('/dashboard', {
         templateUrl: '/templates/dashboard',
-        controller: 'shoppingCtrl'
+        controller: 'dashboardCtrl'
       }).
       when('/share', {
         templateUrl: '/templates/share',
