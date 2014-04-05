@@ -4,7 +4,7 @@ class Api::ResourceentryController < Api::RestController
         #@r=Ressource.calc(current_user.flat.ressources);
         #logic model calc call
         r = Ressource.find_resource_with_user_constraint(params[:resource_id], current_user)
-        @re = Ressource.calc(r, params[:page]) # respond_with(Ressource.calc(r, params[:page]))
+        @re = Ressource.calc(r, params[:page])
     end
 
     def create
@@ -13,6 +13,8 @@ class Api::ResourceentryController < Api::RestController
         firstEntry = r.ressourceentries.where(isFirst:true).first
         if (firstEntry.date > entry.date)
             respond_with_errors([t('.entryDate_before_startDate')])
+        elsif r.ressourceentries.where('date BETWEEN ? AND ?', entry.date.beginning_of_day, entry.date.end_of_day).all.count != 0
+             respond_with_errors([t('.entryDate_exists')])
         else
 
             r.ressourceentries << entry

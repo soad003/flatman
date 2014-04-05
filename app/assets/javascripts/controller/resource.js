@@ -1,21 +1,24 @@
 angular.module('flatman').controller("resourceCtrl",function($scope, resourceService, Util){
     $scope.resources = resourceService.resource.getAll(function(){
-        _.each($scope.resources, function(resource){
-                                        resource.date = new Date();
-                                        resource.page = 1;
-                                        resource.chartDateRange.startDate = moment (resource.chartDateRange.startDate);
-                                        resource.chartDateRange.endDate = moment (resource.chartDateRange.endDate);
+        _.each($scope.resources, function(resource){                            
+                                        $scope.init(resource);
                                         $scope.setEntries(resource);
                                         $scope.initChart(resource);
                                         $scope.getChartData(resource);
+                                        $scope.setOverview(resource);
                                     });
     });
 
+    $scope.init = function (resource) {
+        resource.date = new Date();
+        resource.page = 1;
+        $scope.showInfos(resource,true);
+        resource.chartDateRange.startDate = moment (resource.chartDateRange.startDate);
+        resource.chartDateRange.endDate = moment (resource.chartDateRange.endDate);
+    }
 
-    $scope.showChart = true;
-
-    $scope.showInfos = function (flag){
-        $scope.showChart=flag;
+    $scope.showInfos = function (resource, flag){
+        resource.showChart=flag;
     };
 
 
@@ -43,6 +46,14 @@ angular.module('flatman').controller("resourceCtrl",function($scope, resourceSer
 
             });
     };
+
+    $scope.setOverview =function (resource){
+        resourceService.overview.get(resource.id,resource.chartDateRange.startDate, resource.chartDateRange.endDate, 
+            function (response){ 
+                resource.infos = response;
+            });
+    };
+
 
 
     $scope.setEntries=function(resource){
@@ -87,7 +98,7 @@ angular.module('flatman').controller("resourceCtrl",function($scope, resourceSer
     };
 
     $scope.getPages = function (resource){
-        return Math.round(resource.entryLength/5);
+        return Math.ceil(resource.entryLength/5);
     }
 
     $scope.changePage=function(resource, value){

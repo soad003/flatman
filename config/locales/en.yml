@@ -39,7 +39,7 @@ en:
     resourceentry:
       create:
         entryDate_before_startDate        : "The date for your entry is before the start date"
-
+        entryDate_exists                  : "There is already an entry for this date"
   # mail
   user_mailer:
     invite:
@@ -69,6 +69,21 @@ en:
             email:
               invalid                     : "Your email doesn't look right!"
               blank                       : "Email must be provided!"
+        ressource:
+          attributes:
+            name:
+              blank                       : "Please provide a name for your resource!"
+            startDate:
+              blank                       : "Please enter a start date!"
+            unit:
+              blank                       : "Please provide a name for the unit of the resource!"
+            startValue:
+              blank                       : "Please enter a start value!"
+    ressource:
+      info_all                        : "Total"
+      info_currentMonth               : "this month"
+      info_lastthreemonths            : "last 3 months"
+
 
   buttons:
     titles:

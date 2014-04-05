@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140404185217) do
+ActiveRecord::Schema.define(version: 20140405121834) do
 
   create_table "billcategories", force: true do |t|
     t.integer  "flat_id"
@@ -72,7 +72,7 @@ ActiveRecord::Schema.define(version: 20140404185217) do
 
   create_table "ressourceentries", force: true do |t|
     t.integer  "ressource_id"
-    t.datetime "date"
+    t.date     "date"
     t.float    "value"
     t.datetime "created_at"
     t.datetime "updated_at"

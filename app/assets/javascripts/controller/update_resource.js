@@ -8,19 +8,18 @@ angular.module('flatman').controller("update_resourceCtrl",function($scope, $rou
     }
 
     $scope.update=function (){
-        if ($scope.isUpdate == true){
+        if ($scope.isUpdate){
             $scope.updateResource();
         }else{
             $scope.addResource();
         }
-        location.href ="/#/resources";
     }
     
     $scope.addResource=function(){
-        resourceService.resource.create($scope.resourceTmp, function(data){});
+        resourceService.resource.create($scope.resourceTmp, function(data){location.href ="/#/resources";});
     };
 
     $scope.updateResource=function(){
-        resourceService.resource.update($scope.resourceTmp, function(){});
+        resourceService.resource.update($scope.resourceTmp, function(){location.href ="/#/resources";});
     };
 });

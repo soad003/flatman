@@ -17,7 +17,7 @@
         <label for="resource_name">
           <%= t('.name') %></label>
         <div class="input-group">
-          <input autofocus="autofocus" id="resource_name" ng-model="resourceTmp.name" name="resource_name" placeholder="<%= t('.name_placeholder') %>" type="text" ng-required="true"/>
+          <input autofocus="autofocus" id="resource_name" ng-model="resourceTmp.name" name="resource_name" placeholder="<%= t('.name_placeholder') %>" type="text"/>
           <span class="input-group-addon">
             <span class="glyphicon glyphicon-pencil"></span>
           </span>
@@ -39,7 +39,7 @@
         <label for="resource_unit">
           <%= t('.unitName') %></label>
         <div class="input-group">
-          <input autofocus="autofocus" id="resource_unit" ng-required="true" ng-model="resourceTmp.unit" name="resource_unit" placeholder="<%= t('.unitName_placeholder') %>
+          <input autofocus="autofocus" id="resource_unit" ng-model="resourceTmp.unit" name="resource_unit" placeholder="<%= t('.unitName_placeholder') %>
           " type="text" />
           <span class="input-group-addon">
             <span class="glyphicon glyphicon-pencil"></span>
@@ -51,7 +51,7 @@
         <label for="resource_pricePerUnit">
           <%= t('.priceUnit') %></label>
         <div class="input-group">
-          <input autofocus="autofocus" ng-require="true" id="resource_pricePerUnit" ng-required="true" ng-model="resourceTmp.pricePerUnit"  name="resource_pricePerUnit" placeholder="<%= t('.priceUnit_placeholder') %>
+          <input autofocus="autofocus" ng-require="true" id="resource_pricePerUnit" ng-model="resourceTmp.pricePerUnit"  name="resource_pricePerUnit" placeholder="<%= t('.priceUnit_placeholder') %>
           " type="text" />
           <span class="input-group-addon">
             <span class="glyphicon glyphicon-euro"></span>
@@ -87,7 +87,7 @@
         <label for="resource_name">
           <%= t('.startValue') %></label>
         <div class="input-group">
-          <input autofocus="autofocus" id="resource_startValue" ng-required="true"  ng-model="resourceTmp.startValue"  name="resource_startValue" placeholder="<%= t('.startValue_placeholder') %>
+          <input autofocus="autofocus" id="resource_startValue"  ng-model="resourceTmp.startValue"  name="resource_startValue" placeholder="<%= t('.startValue_placeholder') %>
           " type="text" />
           <span class="input-group-addon">
             <span class="glyphicon glyphicon-wrench"></span>
@@ -100,7 +100,7 @@
           <%= t('.startDate') %></label>
         
           <div class="input-group"> <!--class="form-control"  close-text="Close" is-open="opened" date-disabled="disabled(date, mode)" -->
-            <input ng-model="resourceTmp.startDate" name="date" bs-datepicker ng-required="true" type="text">              
+            <input type="text" class="form-control" datepicker-popup="{{format}}" ng-model="resourceTmp.startDate" is-open="opened" date-disabled="disabled(date, mode)" ng-required="true" close-text="Close" />          
               <span class="input-group-addon">
                   <span class="glyphicon glyphicon-calendar"></span>
               </span>

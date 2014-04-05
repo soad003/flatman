@@ -65,8 +65,9 @@ gem 'underscore-rails'
 # scheduler
 gem 'rufus-scheduler'
 
-#gem 'momentjs-rails'
+gem 'angular-ui-bootstrap-rails'
 gem 'bootstrap-daterangepicker-rails'
+gem 'seed_dump'
 
 #lightbox pictures
 #gem 'magnific-popup-rails'

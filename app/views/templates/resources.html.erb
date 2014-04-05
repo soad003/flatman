@@ -79,7 +79,7 @@
                   <span class="glyphicon glyphicon-calendar"></span>
                 </span>
                   <span class="input-group-btn">
-                    <input style="width:90px" ng-model="resource.date" name="date" bs-datepicker type="text"> 
+                    <input style="width:100px" type="text" class="form-control" datepicker-popup="{{format}}" ng-model="resource.date" is-open="opened" date-disabled="disabled(date, mode)" ng-required="true" close-text="Close" />
                   </span>
 
                   <input type="text" class="form-control"
@@ -105,12 +105,12 @@
    <div id="info" class="col-sm-6 hidden-xs">
       <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
          <ul class="nav nav-tabs">
-            <li class="active">
-               <a ng-click="showInfos(true)" href="">
+            <li ng-class="{active: resource.showChart}"class="active">
+               <a ng-click="showInfos(resource, true)" href="">
                   <%= t('.chart') %></a>
             </li>
-            <li>
-               <a ng-click="showInfos(false)" href="">
+            <li ng-class="{active: resource.showChart == false}">
+               <a ng-click="showInfos(resource, false)" href="">
                   <%= t('.data') %></a>
             </li>
 
@@ -126,14 +126,31 @@
          </ul>
       </div>
       <!-- /.navbar-collapse -->
-
-      <div class="row-fluid" ng-show="showChart">
+      <div ng-show="resource.showChart" class="">
         <canvas linechart options="resource.options" data="resource.chart" width="520" height="250"></canvas>
       </div>
 
-      <p ng-hide="showChart">
-          {{resource.chartDateRange}}
-      </p>
+      <div ng-hide="resource.showChart" class="col-md-12">
+          <div class="adv-table">
+            <table class="table table-striped table-hover table-borderless " >
+               <tbody>
+                  <tr ng-repeat="info in resource.infos.general">
+                     <td>{{info.name}}</td>
+                     <td>{{info.usage}} {{resource.unit}}</td>
+                     <td>€ {{info.costs}}</td>
+                 </tr>
+                     <tr ng-repeat="info in resource.infos.years">
+                     <td>...{{info.name}}</td>
+                     <td>{{info.usage}} {{resource.unit}}</td>
+                     <td>€ {{info.costs}}</td>
+                  
+                  </tr>
+               </tbody>
+            </table>
+            
+         </div>
+      </div>
+
    </div>
    <div class="col-sm-12">
 
