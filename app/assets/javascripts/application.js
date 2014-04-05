@@ -19,6 +19,7 @@
 //= require angular-route
 //= require_tree ./layout
 //= require angular-resource
+//= require angular-animate
 //= require moment
 //= require daterangepicker
 //= require ng-bs-daterangepicker.js

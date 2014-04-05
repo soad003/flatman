@@ -27,6 +27,8 @@ GEM
       tzinfo (~> 0.3.37)
     angular-ui-bootstrap-rails (0.10.0)
     angularjs-rails (1.2.15)
+    animate-rails (1.0.5)
+      rails
     arel (4.0.2)
     atomic (1.1.16)
     bootstrap-daterangepicker-rails (0.0.8)
@@ -157,6 +159,7 @@ PLATFORMS
 DEPENDENCIES
   angular-ui-bootstrap-rails
   angularjs-rails
+  animate-rails
   bootstrap-daterangepicker-rails
   bootstrap-sass (~> 3.1.1)
   chart-js-rails

@@ -14,11 +14,7 @@ angular.module('flatman').controller("dashboardCtrl",
         };
 
         $scope.get_shoppinglist_summary=function(list){
-            return _(list.items).take(3)
-                                .reduce(function(mem,item){
-                                                            return mem + item.name + ", "
-                                                        },"")
-                                .slice(0,50)+"...";
+            return shoppingService.list.get_summary_string(list)+"...";
         };
 
     }
