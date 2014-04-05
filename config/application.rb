@@ -22,5 +22,7 @@ module Flatman
     #
     #custom error handling
     config.exceptions_app = self.routes
+
+    I18n.enforce_available_locales = false
   end
 end

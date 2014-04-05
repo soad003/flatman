@@ -7,7 +7,7 @@ class Api::FlatController < Api::RestController
 
     def create
         if current_user.has_flat?
-            flat=Flat.create!(current_user, flat_params)
+            flat=Flat.create_with_user!(current_user, flat_params)
             respond_with(flat, :location => api_flat_path(flat))
         else
             respond_with_errors([t('.already_in_flat')])

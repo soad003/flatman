@@ -48,4 +48,5 @@ Flatman::Application.configure do
   }
   #Mail.register_interceptor(DevelopmentMailInterceptor) if Rails.env.development?
   #
+
 end

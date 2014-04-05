@@ -16,7 +16,7 @@ class Flat < ActiveRecord::Base
         users.any? {|u| u.id==user.id}
     end
 
-    def self.create!(user, params)
+    def self.create_with_user!(user, params)
         nf=Flat.new(params)
         nf.save!
         nf.add_user(user)
