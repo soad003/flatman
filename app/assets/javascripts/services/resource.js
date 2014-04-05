@@ -13,6 +13,11 @@ angular.module('flatman').service("resourceService",function($resource) {
                             'get': {method: "GET"}
                         });
 
+   var overviewService = $resource('/api/resource/:id/overview',{},
+                        {
+                            'get': {method: "GET"}
+                        });
+
    var entryService = $resource('/api/resource/:r_id/resourceentry/:id',{},
                         {
                             'get': {method: "GET", isArray:true},
@@ -51,6 +56,11 @@ angular.module('flatman').service("resourceService",function($resource) {
         chart: {
             get: function(resource_id, date_from, date_to, succH, errH){
                 return chartService.get({id: resource_id, from: date_from, to: date_to},succH, errH);
+            }
+        },
+        overview: {
+            get: function(resource_id, date_from, date_to, succH, errH){
+                return overviewService.get({id: resource_id, from: date_from, to: date_to},succH, errH);
             }
         }
 

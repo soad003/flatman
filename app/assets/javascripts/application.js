@@ -22,9 +22,7 @@
 //= require moment
 //= require daterangepicker
 //= require ng-bs-daterangepicker.js
-//= require angular-strap.js
-//= require angular-strap.tpl.js
-//= require angular-animate.js
+//= require angular-ui-bootstrap-tpls
 //= require_tree ./config
 //= require_tree ./services
 //= require_tree ./controller
