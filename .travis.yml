@@ -5,5 +5,8 @@ notifications:
  email:
   - michael.froewis@gmail.com
   - cle1000.cb@gmail.com
+  - niko1003@gmx.net
+  - ch.schoepf1@hotmail.com
+  - raphael.gwiggner@gmail.com
  on_success: never
  on_failture: always

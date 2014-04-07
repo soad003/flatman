@@ -8,6 +8,14 @@ class User < ActiveRecord::Base
     has_many    :paidPayments, :class_name => 'Payment', :foreign_key => 'payer_id'
     has_many    :receivedPayments, :class_name => 'Payment', :foreign_key => 'payee_id'
 
+    def has_flat?()
+        !flat.nil?
+    end
+
+    def self.find_by_email(email)
+        find_by email: email
+    end
+
     def self.from_omniauth(auth)
         where(auth.slice(:provider,:uid)).first_or_initialize.tap do |user|
             user.provider = auth.provider

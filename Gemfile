@@ -66,8 +66,11 @@ gem 'underscore-rails'
 gem 'rufus-scheduler'
 
 gem 'angular-ui-bootstrap-rails'
-gem 'haml_coffee_assets'
-gem 'execjs'
+gem 'bootstrap-daterangepicker-rails'
+gem 'seed_dump'
+
+#gem "animate-rails"
+
 #lightbox pictures
 #gem 'magnific-popup-rails'
 

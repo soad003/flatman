@@ -1,13 +1,26 @@
 angular.module('flatman').controller("resourceCtrl",function($scope, resourceService, Util){
-    $scope.resources = resourceService.resource.get(function(){
-        _.each($scope.resources, function(resource){resource.date = new Date(); });
+    $scope.resources = resourceService.resource.getAll(function(){
+        _.each($scope.resources, function(resource){                            
+                                        $scope.init(resource);
+                                        $scope.setEntries(resource);
+                                        $scope.initChart(resource);
+                                        $scope.getChartData(resource);
+                                        $scope.setOverview(resource);
+                                    });
     });
 
+    $scope.init = function (resource) {
+        resource.date = new Date();
+        resource.page = 1;
+        $scope.showInfos(resource,true);
+        resource.chartDateRange.startDate = moment (resource.chartDateRange.startDate);
+        resource.chartDateRange.endDate = moment (resource.chartDateRange.endDate);
+    }
 
-    $scope.recalcEntryValues=function(resource, index){
-        resource.entries[index].usage = resource.entries[index].value - resource.entries[index+1].value;
-        resource.entries[index].costs = parseInt(resource.entries[index].usage) * parseFloat(resource.pricePerUnit);
+    $scope.showInfos = function (resource, flag){
+        resource.showChart=flag;
     };
+
 
      $scope.removeResource=function(resource){
         resourceService.resource.destroy(resource.id,function(){
@@ -15,54 +28,109 @@ angular.module('flatman').controller("resourceCtrl",function($scope, resourceSer
         });
     };
 
-    $scope.addResource=function(){
-        resourceService.resource.create($scope.resourceTmp, function(data){});
+    $scope.getChartData=function (resource){
+        var response = resourceService.chart.get(resource.id,resource.chartDateRange.startDate, resource.chartDateRange.endDate, 
+            function (response){ 
+                resource.chart = {
+                    "labels":response.labels,
+                    "datasets":[
+                    {
+                        "fillColor":"rgba(151,187,205,0.5)",
+                        "strokeColor":"rgba(151,187,205,1)",
+                        "pointColor":"rgba(151,187,205,1)",
+                        "pointStrokeColor":"#fff",
+                        "data":response.data
+                    }]
+            };
+
+
+            });
     };
 
-    $scope.updateResource=function(){
-        resourceService.resource.update($scope.resourceTmp, function(){});
+    $scope.setOverview =function (resource){
+        resourceService.overview.get(resource.id,resource.chartDateRange.startDate, resource.chartDateRange.endDate, 
+            function (response){ 
+                resource.infos = response;
+            });
     };
+
+
+
+    $scope.setEntries=function(resource){
+        resource.entries = resourceService.entry.get(resource.id, resource.page);
+        resource.entryvalue = "";
+    }
 
      $scope.addEntry=function(resource){
         resourceService.entry.create(resource.id,{date:resource.date,value:resource.entryvalue}, function(data){
-                $scope.resources = resourceService.resource.get();
+                 $scope.setEntries(resource);
+                 resource.entryLength++;
+                 $scope.getChartData(resource);
         });
     };
 
     $scope.removeEntry=function(resource, entry){
         resourceService.entry.destroy(resource.id, entry.id, function(){
-            $scope.resources = resourceService.resource.get();
-            /*resource.entries = _(resource.entries).without(entry);
-            if (index != 0){
-                $scope.recalcEntryValues(resource, --index);
-            }*/
+            $scope.setEntries(resource);                 
+            resource.entryLength--;
+            $scope.getChartData(resource);
         });
     };
 
-   
+    $scope.getRange=function (resource){
+        var pages = $scope.getPages(resource);
 
-    $scope.setUpdateResource=function (typ, resource){
-    	if (typ == "add"){
-    		$scope.resourceTmp={"name":"","unit":"", "pricePerUnit": "", "monthlyCost":"", "annualCost": "", "startValue": "", "startDate":""};
-    	}else{
-    		$scope.resourceTmp= resource;
-   		}
-   		localStorage.setItem ("resourceTmp", JSON.stringify($scope.resourceTmp));
-   		localStorage.setItem ("updateTyp", typ);
+        if (pages <= 5){
+            return _.range(1, pages+1);
+        }else{
+            if (resource.page <= 3){
+                return _.range(1, 6);
+            } else if (resource.page >= (pages-2)){
+                return _.range(pages-4, pages+1);
+            }
+            return _.range((resource.page-2), (resource.page+3));
+        } 
     };
 
-	$scope.updateInit=function (){
-    	$scope.resourceTmp = JSON.parse(localStorage.getItem ("resourceTmp"));
-    	$scope.updateTyp = localStorage.getItem ("updateTyp");
-        $scope.resourceTmp.startDate = new Date();
-	};	
+    $scope.setEntriesForPage=function (i, resource){
+        resource.page = i;
+        $scope.setEntries(resource);
+    };
 
-	$scope.update_resource=function (){
-		if ($scope.updateTyp == "add"){
-          $scope.addResource();
-		}else{
-		  $scope.updateResource();
-		}
-    	location.href ="/#/resources";
-    };    
+    $scope.getPages = function (resource){
+        return Math.ceil(resource.entryLength/5);
+    }
+
+    $scope.changePage=function(resource, value){
+        var pages = $scope.getPages(resource);
+        var changeflag = true;
+        resource.page += value;
+        if (resource.page > pages){
+            resource.page = pages;
+            changeflag =false;
+        }
+        if(resource.page < 1){
+            resource.page = 1;
+            changeflag = false;
+        }
+        if (changeflag){
+            $scope.setEntries(resource);
+        }
+    };
+
+    $scope.initChart=function(resource){
+        resource.chart = {
+            "labels":[],
+            "datasets":[
+                {
+                    "fillColor":"rgba(151,187,205,0.5)",
+                    "strokeColor":"rgba(151,187,205,1)",
+                    "pointColor":"rgba(151,187,205,1)",
+                    "pointStrokeColor":"#fff",
+                    "data":[]
+                }]
+            };
+    }; 
+    
+
 });

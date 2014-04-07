@@ -2,21 +2,44 @@ class Api::ResourceController < Api::RestController
     around_filter :wrap_in_transaction, only: [:create,:destroy]
 
     def index
-        @r=Ressource.calc(current_user.flat.ressources);
+        @r=Ressource.setAttributes(current_user.flat.ressources)
         #logic model calc call
-
         #respond_with(current_user.flat.ressources)
     end
 
     def create
        flat=current_user.flat
        r=Ressource.new(r_params)
-       flat.ressources << r
-       flat.save!
+       r.flat = flat
+       r.save!
        re=Ressourceentry.new(ressource_id:r.id,date:r.startDate,value:r.startValue,isFirst:true)
        r.ressourceentries << re
        r.save!
        respond_with(nil, :location => nil);
+    end
+
+    def getChart
+      resource = current_user.flat.ressources.where(id:params[:resource_id]).first
+
+      #define ranges for calc
+      dateFrom = DateTime.parse(params[:from])
+      #dateFrom = DateTime.new(dateFrom.year, dateFrom.month, 1)
+      dateTo = DateTime.parse(params[:to])
+      #dateTo = DateTime.new(dateTo.year, dateTo.month, -1)
+      respond_with(Ressource.getChartData(dateFrom, dateTo, resource))
+    end
+
+    def getOverview
+      resource = current_user.flat.ressources.where(id:params[:resource_id]).first
+
+      #define ranges for calc
+      dateFrom = DateTime.parse(params[:from])
+      dateTo = DateTime.parse(params[:to])
+      @overview = Ressource.getOverviewData(dateFrom, dateTo, resource)
+    end
+
+    def getById
+        respond_with(current_user.flat.ressources.where(id:params[:resource_id]).first)
     end
 
     def update

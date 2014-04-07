@@ -1,15 +1,18 @@
-json.array!(@r) do |json, resource|
+json.array!(@r) do |resource|
   json.id resource.id
   json.name resource.name
   json.pricePerUnit resource.pricePerUnit
+  json.unit resource.unit
   json.monthlyCost resource.monthlyCost
   json.annualCost resource.annualCost
   json.description resource.description
   json.startValue resource.startValue
   json.startDate resource.startDate
+  json.entryLength resource.entryLength
+  json.chart = resource.chart
 
-   json.entries resource.ressourceentries.sort {|a,b| b.date <=> a.date} do |json, entry|
-      json.(entry , :id, :value, :date, :usage, :costs, :isFirst)
-  end
 
+  json.chartDateRange do
+        json.(resource.chartDateRange, :startDate, :endDate)
+    end
 end

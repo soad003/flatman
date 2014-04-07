@@ -1,24 +1,34 @@
 <% content_for :title, t('.page_title') %>
 <% content_for :page_header, t('.page_header') %>
   
-<div ng-init="updateInit()" />
 <div class="page-head">
   <h1 class="page-header">
-    <span class="glyphicon glyphicon-globe"></span>
-    <%= t('.page_header') %></h1>
+    <i class="glyphicon glyphicon-globe"></i>
+
+    <%= t('.page_header') %><a href="/#/resources"><button class="close" aria-hidden="true">&times;</button></a></h1>
 </div>
 
 <div class="row">
 
   <div class="col-md-offset-3 col-md-6">
-    <form ng-submit="update_resource()">
+    <form ng-submit="update()">
 
       <div class="form-group">
         <label for="resource_name">
           <%= t('.name') %></label>
         <div class="input-group">
-          <input autofocus="autofocus" id="resource_name" ng-model="resourceTmp.name" name="resource_name" placeholder="<%= t('.name_placeholder') %>
-          " type="text" />
+          <input autofocus="autofocus" id="resource_name" ng-model="resourceTmp.name" name="resource_name" placeholder="<%= t('.name_placeholder') %>" type="text"/>
+          <span class="input-group-addon">
+            <span class="glyphicon glyphicon-pencil"></span>
+          </span>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="resource_description">
+          <%= t('.description') %></label>
+        <div class="input-group">
+          <input autofocus="autofocus" id="resource_description" ng-model="resourceTmp.description" name="resource_description" placeholder="<%= t('.description_placeholder') %>" type="text"/>
           <span class="input-group-addon">
             <span class="glyphicon glyphicon-pencil"></span>
           </span>
@@ -41,7 +51,7 @@
         <label for="resource_pricePerUnit">
           <%= t('.priceUnit') %></label>
         <div class="input-group">
-          <input autofocus="autofocus" id="resource_pricePerUnit"  ng-model="resourceTmp.pricePerUnit"  name="resource_pricePerUnit" placeholder="<%= t('.priceUnit_placeholder') %>
+          <input autofocus="autofocus" ng-require="true" id="resource_pricePerUnit" ng-model="resourceTmp.pricePerUnit"  name="resource_pricePerUnit" placeholder="<%= t('.priceUnit_placeholder') %>
           " type="text" />
           <span class="input-group-addon">
             <span class="glyphicon glyphicon-euro"></span>
@@ -53,7 +63,7 @@
         <label for="resource_priceMonth">
           <%= t('.monthlyCosts') %></label>
         <div class="input-group">
-          <input autofocus="autofocus" id="resource_priceMonth"  ng-model="resourceTmp.monthlyCost"  name="resource_priceMonth" placeholder="<%= t('.monthlyCosts_placeholder') %>
+          <input autofocus="autofocus" id="resource_priceMonth" ng-model="resourceTmp.monthlyCost"  name="resource_priceMonth" placeholder="<%= t('.monthlyCosts_placeholder') %>
           " type="text" />
           <span class="input-group-addon">
             <span class="glyphicon glyphicon-euro"></span>
@@ -77,7 +87,7 @@
         <label for="resource_name">
           <%= t('.startValue') %></label>
         <div class="input-group">
-          <input autofocus="autofocus" id="resource_startValue" ng-model="resourceTmp.startValue"  name="resource_startValue" placeholder="<%= t('.startValue_placeholder') %>
+          <input autofocus="autofocus" id="resource_startValue"  ng-model="resourceTmp.startValue"  name="resource_startValue" placeholder="<%= t('.startValue_placeholder') %>
           " type="text" />
           <span class="input-group-addon">
             <span class="glyphicon glyphicon-wrench"></span>
@@ -89,8 +99,8 @@
         <label for="resource_startDate">
           <%= t('.startDate') %></label>
         
-          <div class="input-group">
-              <input type="text" name="resource_startDate" class="form-control" datepicker-popup="{{'dd.MM yyyy'}}" ng-model="resourceTmp.startDate" is-open="opened" min="minDate" max="'2015-06-22'" date-disabled="disabled(date, mode)" ng-required="true" close-text="Close" />
+          <div class="input-group"> <!--class="form-control"  close-text="Close" is-open="opened" date-disabled="disabled(date, mode)" -->
+            <input type="text" class="form-control" datepicker-popup="{{format}}" ng-model="resourceTmp.startDate" is-open="opened" date-disabled="disabled(date, mode)" ng-required="true" close-text="Close" />          
               <span class="input-group-addon">
                   <span class="glyphicon glyphicon-calendar"></span>
               </span>
@@ -100,6 +110,7 @@
 
 
       <div class="row">
+       
         <div class="col-md-2 col-md-offset-10">
           
           <button class = "btn btn-sm btn-success btn-block">

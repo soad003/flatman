@@ -1,6 +1,6 @@
 // Angular Config / Routes
 
-angular.module('flatman', ['ngRoute','ngResource','google-maps','ui.bootstrap']).config(function($httpProvider, $routeProvider){
+angular.module('flatman', ['ngRoute','ngResource','google-maps','angles','ngBootstrap','ui.bootstrap','ngAnimate']).config(function($httpProvider, $routeProvider){
   $httpProvider.defaults.headers.common = {'X-CSRF-Token': $("meta[name='csrf-token']").attr("content"),
                                           'Content-Type': 'application/json'};
   $routeProvider.
@@ -14,7 +14,7 @@ angular.module('flatman', ['ngRoute','ngResource','google-maps','ui.bootstrap'])
       }).
       when('/dashboard', {
         templateUrl: '/templates/dashboard',
-        controller: 'shoppingCtrl'
+        controller: 'dashboardCtrl'
       }).
       when('/share', {
         templateUrl: '/templates/share',
@@ -34,11 +34,11 @@ angular.module('flatman', ['ngRoute','ngResource','google-maps','ui.bootstrap'])
       }).
       when('/message_window', {
         templateUrl: '/templates/message_window',
-        controller: 'messageWindowCtrl'
+        controller: 'messageCtrl'
       }).
       when('/message_new', {
         templateUrl: '/templates/message_new',
-        controller: 'messageNewCtrl'
+        controller: 'messageCtrl'
       }).
       when('/resources', {
         templateUrl: '/templates/resources',
@@ -46,7 +46,11 @@ angular.module('flatman', ['ngRoute','ngResource','google-maps','ui.bootstrap'])
       }).
       when('/create_resource', {
         templateUrl: '/templates/create_resource',
-        controller: 'resourceCtrl'
+        controller: 'update_resourceCtrl'
+      }).
+      when('/update_resource/:id', {
+        templateUrl: '/templates/create_resource',
+        controller: 'update_resourceCtrl'
       }).
       when('/user_settings', {
         templateUrl: '/templates/user_settings',

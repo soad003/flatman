@@ -34,6 +34,24 @@
     .collapse.in{
         display:block !important;
     }
+
+    .flyover {
+       left: 180% !important;
+       overflow: hidden;
+       position: fixed;
+       width: 80% !important;
+       opacity: 1;
+       z-index: 1050;
+       transition: left 0.6s ease-out 0s;
+    }
+
+    .flyover-top {
+       top: 60px;
+    }
+
+    .flyover.in {
+       left: 10% !important;
+    }
 }
 
 /* http://stackoverflow.com/questions/13432311/ng-cloak-and-ng-show-flashes-the-hidden-element-on-screen */
@@ -114,4 +132,46 @@ input[type=checkbox]:checked + label:before { letter-spacing: 5px; }
 
 input.ng-error {
     border-color: #a94442;
+}
+
+.flyover {
+   left: 140%;
+   overflow: hidden;
+   position: fixed;
+   width: 39%;
+   opacity: 1;
+   z-index: 1050;
+   transition: left 0.6s ease-out 0s;
+}
+
+.flyover-top {
+   top: 60px;
+}
+
+.flyover.in {
+   left: 60%;
+}
+
+
+.mainview-animation.ng-enter {
+  -webkit-transition: .3s linear all; /* Safari/Chrome */
+  -moz-transition: .3s linear all; /* Firefox */
+  -o-transition: .3s linear all; /* Opera */
+  transition: .3s linear all; /* IE10+ and Future Browsers */
+}
+
+/**
+ * Pre animation -> enter
+ */
+.mainview-animation.ng-enter{
+  /* The animation preparation code */
+  opacity: 0;
+}
+
+/**
+ * Post animation -> enter
+ */
+.mainview-animation.ng-enter.ng-enter-active {
+  /* The animation code itself */
+  opacity: 1;
 }
