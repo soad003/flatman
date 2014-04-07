@@ -210,7 +210,7 @@ en:
       street_placeholder                 : "Doestreet 10"
     finances:
       page_title                         : "Finances"
-      page_header                        : "Finance status"
+      page_header                        : "Financal status"
     finances_new:
       page_header                        : "New Entry"
     finances_overview:
