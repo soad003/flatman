@@ -13,11 +13,13 @@ class SessionController < ApplicationController
                 user.flat=invite.flat
                 user.save!
                 invite.destroy!
+                redirect_to root_url, :notice => t('misc.titles.logged_in')
             else
                 redirect_to root_url(:anchor => "create_flat")
             end
+        else
+            redirect_to root_url, :notice => t('misc.titles.logged_in')
         end
-        redirect_to root_url, :notice => t('misc.titles.logged_in')
     end
 
     def destroy
