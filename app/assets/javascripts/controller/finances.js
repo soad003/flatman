@@ -12,11 +12,15 @@ angular.module('flatman').controller("financesCtrl", function($scope, financeSer
 	};
 
 	$scope.removeEntry=function(){
-
+		financeService.destroy(.id,function(){
+            $scope.finance = _($scope.finance).without(finance);
+        });
 	};
 
 	$scope.updateEntry=function(){
-
+		financeService.update(.id,function(){
+			$scope.finance = _($scope.finance).without(finance);
+		})
 	};
 
 	$scope.showAll=function(){
@@ -40,4 +44,17 @@ angular.module('flatman').controller("financesCtrl", function($scope, financeSer
 
 	};
 
+	$scope.initChart=function(resource){
+        finance.chart = {
+            "labels":[],
+            "datasets":[
+                {
+                    "fillColor":"rgba(151,187,205,0.5)",
+                    "strokeColor":"rgba(151,187,205,1)",
+                    "pointColor":"rgba(151,187,205,1)",
+                    "pointStrokeColor":"#fff",
+                    "data":[]
+                }]
+            };
+    }; 
 });
