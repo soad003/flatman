@@ -9,7 +9,7 @@ class User < ActiveRecord::Base
     has_many    :receivedPayments, :class_name => 'Payment', :foreign_key => 'payee_id'
 
     def has_flat?()
-        !flat.nil?
+        !self.flat.nil?
     end
 
     def self.find_by_email(email)
