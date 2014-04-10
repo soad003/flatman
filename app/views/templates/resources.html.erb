@@ -1,6 +1,7 @@
 <% content_for :title, t('.page_title') %>
 <% content_for :page_header, t('.page_header') %>
 
+
 <div class="row modal-body">
    <div class="page-head">
       <h1 class="page-header">
@@ -83,7 +84,7 @@
                   <span class="glyphicon glyphicon-calendar"></span>
                 </span>
                   <span class="input-group-btn">
-                    <input ui-date="{ dateFormat: 'yy-mm-dd' }" style="width:100px" type="text" class="datepicker" datepicker-popup="{{format}}" ng-model="resource.date" is-open="opened" date-disabled="disabled(date, mode)" ng-required="true" close-text="Close" />
+                    <input ui-date="{ dateFormat: 'yy-mm-dd' }" style="width:100px" type="text" class="calendar" datepicker-popup="{{format}}" ng-model="resource.date" is-open="opened" date-disabled="disabled(date, mode)" ng-required="true" close-text="Close" />
                   </span>
 
                   <input type="text" class="form-control"
@@ -101,7 +102,6 @@
                   </span>
                </div>
             </form>
-
          </div>
 
       </div>
@@ -134,7 +134,7 @@
         <div ng-show="resource.enoughEntriesForChart">
           <canvas linechart options="resource.options" data="resource.chart" width="550" height="270"></canvas>
         </div>
-        <div ng-hide="resource.enoughEntriesForChart">
+        <div class="col-md-offset-1" ng-hide="resource.enoughEntriesForChart">
           <div > 
             <h4><%= t('.addMoreEntriesForChart') %></h4>
           </div>

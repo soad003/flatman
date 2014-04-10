@@ -1,6 +1,5 @@
 angular.module('flatman').controller("resourceCtrl",function($scope, resourceService, Util){
     $scope.intro = false;
-
     $scope.resources = resourceService.resource.getAll(function(){
         if ($scope.resources.length == 0){
             $scope.intro = true;

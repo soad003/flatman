@@ -4,7 +4,7 @@ class Ressource < ActiveRecord::Base
 		attr_accessor             :entryLength
 		attr_accessor             :chart
 		attr_accessor             :chartDateRange
-    validates                 :name,:startDate, :unit, :startValue,  presence: true
+    validates                 :name,:startDate, :unit, :pricePerUnit, :startValue,  presence: true
     validates_numericality_of :pricePerUnit, :greater_than => 0
     
     def self.get_months (date)
