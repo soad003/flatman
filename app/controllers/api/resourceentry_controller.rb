@@ -13,12 +13,12 @@ class Api::ResourceentryController < Api::RestController
         firstEntry = r.ressourceentries.where(isFirst:true).first
         if (firstEntry.date > entry.date)
             respond_with_errors([t('.entryDate_before_startDate')])
-        elsif r.ressourceentries.where('date BETWEEN ? AND ?', entry.date.beginning_of_day, entry.date.end_of_day).all.count != 0
+        elsif r.ressourceentries.where('date = ?', entry.date).all.count != 0
              respond_with_errors([t('.entryDate_exists')])
         else
 
-            r.ressourceentries << entry
-            r.save!
+            entry.ressource = r
+            entry.save!
             respond_with(entry, :location => nil)
         end
     end

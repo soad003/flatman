@@ -224,6 +224,8 @@ en:
     resources:
       page_header                        : "Resources"
       page_title                         : "Resource"
+      intro_header                       : "Start creating your first resource"
+      intro_text                         : "With this feature you can view your resource usage and costs. Maybe we will help you to save some costs and to protect your environment."
       chart                              : "Chart"
       data                               : "Overview"
       date                               : "Date"
@@ -231,6 +233,7 @@ en:
       usage                              : "Usage"
       costs                              : "Costs"
       resourceValue                      : "resource value"
+      addMoreEntriesForChart             : "To view the chart more entries are required"
     create_resource:
       page_title                         : "Resource"
       page_header                        : "Resource"

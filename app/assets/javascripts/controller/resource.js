@@ -1,6 +1,12 @@
 angular.module('flatman').controller("resourceCtrl",function($scope, resourceService, Util){
+    $scope.intro = false;
+
     $scope.resources = resourceService.resource.getAll(function(){
-        _.each($scope.resources, function(resource){                            
+        if ($scope.resources.length == 0){
+            $scope.intro = true;
+        }
+        _.each($scope.resources, function(resource){
+                                        resource.enoughEntriesForChart = (resource.entryLength > 2)                   
                                         $scope.init(resource);
                                         $scope.setEntries(resource);
                                         $scope.initChart(resource);
@@ -39,7 +45,7 @@ angular.module('flatman').controller("resourceCtrl",function($scope, resourceSer
                         "strokeColor":"rgba(151,187,205,1)",
                         "pointColor":"rgba(151,187,205,1)",
                         "pointStrokeColor":"#fff",
-                        "data":response.data
+                        "data":response.costs
                     }]
             };
 
@@ -66,6 +72,7 @@ angular.module('flatman').controller("resourceCtrl",function($scope, resourceSer
                  $scope.setEntries(resource);
                  resource.entryLength++;
                  $scope.getChartData(resource);
+                 $scope.setOverview(resource);
         });
     };
 
@@ -74,6 +81,7 @@ angular.module('flatman').controller("resourceCtrl",function($scope, resourceSer
             $scope.setEntries(resource);                 
             resource.entryLength--;
             $scope.getChartData(resource);
+            $scope.setOverview(resource);
         });
     };
 
