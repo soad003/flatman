@@ -1,3 +1,6 @@
+<!-- <div class="row">
+  <h1 class="page-header"><span class="fa fa-shopping-cart"></span> <%= t(".page_header") %></h1>
+</div> -->
 <div>
     <div class="row">
         <div class="col-md-2">&nbsp;</div>
@@ -22,9 +25,17 @@
                     <div class="form-group">
                         <strong>{{list.name}}</strong>
                         <div class="btn-group pull-right">
-                          <button class="btn btn-default btn-xs " type="button" ng-click="removeList(list)">
-                            <span class="glyphicon glyphicon-trash"></span>
+                          <button type="button" class="btn btn-default dropdown-toggle btn-xs" data-toggle="dropdown">
+                            <span class="glyphicon glyphicon-pencil"></span>
                           </button>
+                          <ul class="dropdown-menu">
+                            <li>
+                              <a href="" ng-click="removeList(list)"><span class="glyphicon glyphicon-trash"></span> <%= t(".delete_list") %></a>
+                            </li>
+                            <li>
+                              <a href=""><span class="fa fa-credit-card"></span> <%= t(".done") %></a>
+                            </li>
+                          </ul>
                         </div>
                     </div>
                     <ul class="list-unstyled">
@@ -50,7 +61,6 @@
                             <button class="btn btn-primary"
                                     type="submit"
                                     ng-disabled="!Itemform.$valid">
-
                               <span class="glyphicon glyphicon-plus"></span> <%= t(".add") %>
                             </button>
                           </span>
@@ -59,6 +69,12 @@
                 </div>
             </div>
         </div>
+
+        <div class="jumbotron text-center" ng-show="lists.length===0">
+          <i class="fa fa-shopping-cart fa-5x"></i>
+          <h2><%= t(".help_title") %></h2>
+          <%= t(".help_paragraph1") %><br>
+          <%= t(".help_paragraph2") %>
+        </div>
     </div>
 </div>
-

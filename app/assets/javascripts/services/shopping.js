@@ -20,6 +20,18 @@ angular.module('flatman').factory("shoppingService",function($resource) {
             },
             destroy: function(list_id,succH,errH){
                 listService.destroy({id: list_id},succH,errH);
+            },
+            get_item_count: function(lists){
+                return _(lists).reduce(function(memo, l){ return memo + _(l.items).filter(function(item){return !item.checked;}).length; }, 0);
+            },
+            get_summary_string: function(list){
+                return _.chain(list.items).filter(function(item){return !item.checked;})
+                                .take(3)
+                                .value()
+                                .reduce(function(mem,item){
+                                                            return mem + item.name + ", "
+                                                        },"")
+                                .slice(0,50);
             }
         },
         item: {

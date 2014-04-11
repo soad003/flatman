@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140330120115) do
+ActiveRecord::Schema.define(version: 20140405121834) do
 
   create_table "billcategories", force: true do |t|
     t.integer  "flat_id"
@@ -44,6 +44,13 @@ ActiveRecord::Schema.define(version: 20140330120115) do
     t.datetime "updated_at"
   end
 
+  create_table "invites", force: true do |t|
+    t.string   "email"
+    t.integer  "flat_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "messages", force: true do |t|
     t.integer  "sender_id"
     t.integer  "receiver_id"
@@ -65,7 +72,7 @@ ActiveRecord::Schema.define(version: 20140330120115) do
 
   create_table "ressourceentries", force: true do |t|
     t.integer  "ressource_id"
-    t.datetime "date"
+    t.date     "date"
     t.float    "value"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -79,7 +86,7 @@ ActiveRecord::Schema.define(version: 20140330120115) do
     t.float    "pricePerUnit"
     t.float    "monthlyCost"
     t.float    "annualCost"
-    t.float    "description"
+    t.string   "description"
     t.float    "startValue"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -90,6 +97,7 @@ ActiveRecord::Schema.define(version: 20140330120115) do
     t.string   "name"
     t.string   "tags"
     t.boolean  "available"
+    t.boolean  "hidden"
     t.string   "description"
     t.string   "sharingNote"
     t.string   "image_path"

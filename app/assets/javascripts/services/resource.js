@@ -1,20 +1,36 @@
 angular.module('flatman').service("resourceService",function($resource) {
   var resourceService = $resource('/api/resource/:id',{},
                         {
-                            'get': {method: "GET", isArray:true},
+                            'getAll': {method: "GET", isArray:true},
+                            'get': {method: "GET"},
                             'create': {method: "POST"},
                             'destroy': {method: "DELETE"},
-                            'update': {method: "PUT"}
+                            'update': {method: "PUT"},
+                        });
+
+   var chartService = $resource('/api/resource/:id/chart',{},
+                        {
+                            'get': {method: "GET"}
+                        });
+
+   var overviewService = $resource('/api/resource/:id/overview',{},
+                        {
+                            'get': {method: "GET"}
                         });
 
    var entryService = $resource('/api/resource/:r_id/resourceentry/:id',{},
                         {
+                            'get': {method: "GET", isArray:true},
                             'create': {method: "POST"},
-                            'destroy': {method: "DELETE"}                        });
+                            'destroy': {method: "DELETE"}                        
+                        });
     return {
         resource: {
-            get: function(succH, errH){
-                return resourceService.get(null,succH, errH);
+            getAll: function(succH, errH){
+                return resourceService.getAll(null,succH, errH);
+            },
+            get: function(resource_id, succH, errH){
+                return resourceService.get({id: resource_id},succH, errH);
             },
             create: function(resource,succH,errH) {
                 resourceService.create(null,resource,succH,errH);
@@ -27,11 +43,24 @@ angular.module('flatman').service("resourceService",function($resource) {
             }
         },
         entry: {
+            get: function(resource_id, page, succH, errH){
+                return entryService.get({r_id: resource_id, id: page},succH, errH);
+            },
             create: function(resource_id,entry,succH,errH){
                 entryService.create({r_id: resource_id},entry,succH,errH);
             },
             destroy: function(resource_id, entry_id, succH,errH){
                 entryService.destroy({r_id: resource_id,id: entry_id},succH,errH);
+            }
+        },
+        chart: {
+            get: function(resource_id, date_from, date_to, succH, errH){
+                return chartService.get({id: resource_id, from: date_from, to: date_to},succH, errH);
+            }
+        },
+        overview: {
+            get: function(resource_id, date_from, date_to, succH, errH){
+                return overviewService.get({id: resource_id, from: date_from, to: date_to},succH, errH);
             }
         }
 

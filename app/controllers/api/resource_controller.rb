@@ -2,21 +2,39 @@ class Api::ResourceController < Api::RestController
     around_filter :wrap_in_transaction, only: [:create,:destroy]
 
     def index
-        @r=Ressource.calc(current_user.flat.ressources);
+        @r=Ressource.set_attributes(current_user.flat.ressources)
         #logic model calc call
-
         #respond_with(current_user.flat.ressources)
     end
 
     def create
        flat=current_user.flat
        r=Ressource.new(r_params)
-       flat.ressources << r
-       flat.save!
+       r.flat = flat
+       r.save!
        re=Ressourceentry.new(ressource_id:r.id,date:r.startDate,value:r.startValue,isFirst:true)
        r.ressourceentries << re
        r.save!
        respond_with(nil, :location => nil);
+    end
+
+    def get_chart
+      resource = current_user.flat.ressources.where(id:params[:resource_id]).first
+      #define ranges for calc add one day because javascript starts with 0 by days
+      dateFrom = Date.parse(params[:from]) +1
+      dateTo = Date.parse(params[:to]) +1
+      statistic_data = Ressource.get_statistic_data(dateFrom, dateTo, resource)
+      @chart = Ressource.get_chart_data(statistic_data, dateFrom, dateTo)
+    end
+
+    def get_overview
+      resource = current_user.flat.ressources.where(id:params[:resource_id]).first
+      statistic_data = Ressource.get_statistic_data(nil,nil,resource)
+      @overview = Ressource.get_overview_data(statistic_data, resource)
+    end
+
+    def get_by_id
+        respond_with(current_user.flat.ressources.where(id:params[:resource_id]).first)
     end
 
     def update
