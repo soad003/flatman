@@ -66,7 +66,6 @@ gem 'underscore-rails'
 gem 'rufus-scheduler'
 
 gem 'angular-ui-bootstrap-rails'
-gem 'bootstrap-daterangepicker-rails'
 gem 'seed_dump'
 
 #gem "animate-rails"

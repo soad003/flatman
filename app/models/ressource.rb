@@ -53,14 +53,19 @@ class Ressource < ActiveRecord::Base
 
     def self.get_chart_data(statistic_data, from, to)
       returnData = OpenStruct.new({"labels" => [], "costs" => []})
-      if (hideEvery = ((to.to_date - from.to_date)/23).round) < 2 
+      if (hideEvery = ((to.to_date - from.to_date)/15).round) < 2 
         hideEvery = 1
       end
+       
       sum = 0
       for i in 0...statistic_data.labels.size
         if (statistic_data.labels[i] >= from && statistic_data.labels[i] <= to)
           sum += statistic_data.costs[i]
-          if (i+1) % hideEvery == 0
+          if statistic_data.labels[i] == from ##first entry always add
+            returnData.labels << statistic_data.labels[i]
+            returnData.costs   << (sum/hideEvery).round(2)
+            sum = 0
+          elsif (i+1) % hideEvery == 0
             returnData.labels << statistic_data.labels[i]
             returnData.costs   << (sum/hideEvery).round(2)
             sum = 0
@@ -92,7 +97,7 @@ class Ressource < ActiveRecord::Base
         else
           usage = (entry.value - prevEntry.value)/days
           costs =  ((entry.value - prevEntry.value)*resource.pricePerUnit)/days
-          (prevEntry.date.to_date .. entry.date.to_date.yesterday).each do |date|
+          (prevEntry.date.to_date.tomorrow .. entry.date.to_date).each do |date|
             values.labels << date
             values.costs << costs.round(2)
             values.usages << usage
@@ -196,7 +201,7 @@ class Ressource < ActiveRecord::Base
 	    		entry.usage = 0
 	   			entry.costs = 0
 	    	else
-	    		entry.usage = (entry.value - re[index+1].value)
+	    		entry.usage = (entry.value - re[index+1].value).round(2)
 	    		entry.costs = (entry.usage * resource.pricePerUnit).round(2)
 	    	end
         if index == 4

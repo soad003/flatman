@@ -1,4 +1,4 @@
-angular.module('flatman').controller("resourceCtrl",function($scope, resourceService, Util){
+angular.module('flatman').controller("resourceCtrl",function($scope, $filter, resourceService, Util){
     $scope.intro = false;
     $scope.resources = resourceService.resource.getAll(function(){
         if ($scope.resources.length == 0){
@@ -18,8 +18,8 @@ angular.module('flatman').controller("resourceCtrl",function($scope, resourceSer
         resource.date = new Date();
         resource.page = 1;
         $scope.showInfos(resource,true);
-        resource.chartDateRange.startDate = moment (resource.chartDateRange.startDate);
-        resource.chartDateRange.endDate = moment (resource.chartDateRange.endDate);
+        resource.chartDateRange.startDate = new Date(resource.chartDateRange.startDate);
+        resource.chartDateRange.endDate = new Date(resource.chartDateRange.endDate);
     }
 
     $scope.showInfos = function (resource, flag){
@@ -36,6 +36,10 @@ angular.module('flatman').controller("resourceCtrl",function($scope, resourceSer
     $scope.getChartData=function (resource){
         var response = resourceService.chart.get(resource.id,resource.chartDateRange.startDate, resource.chartDateRange.endDate, 
             function (response){ 
+                //convert labes date to local format
+                for (var i = 0; i < response.labels.length; i++){
+                    response.labels[i] = $filter('date')(new Date(response.labels[i]), "shortDate");
+                }
                 resource.chart = {
                     "labels":response.labels,
                     "datasets":[
@@ -67,11 +71,14 @@ angular.module('flatman').controller("resourceCtrl",function($scope, resourceSer
     }
 
      $scope.addEntry=function(resource){
+        //resource.entryvalue =  $filter('number')(resource.entryvalue, 2);
+        //alert(resource.entryvalue);
         resourceService.entry.create(resource.id,{date:resource.date,value:resource.entryvalue}, function(data){
                  $scope.setEntries(resource);
                  resource.entryLength++;
                  $scope.getChartData(resource);
                  $scope.setOverview(resource);
+                 resource.enoughEntriesForChart = (resource.entryLength > 2)  
         });
     };
 
@@ -81,6 +88,7 @@ angular.module('flatman').controller("resourceCtrl",function($scope, resourceSer
             resource.entryLength--;
             $scope.getChartData(resource);
             $scope.setOverview(resource);
+            resource.enoughEntriesForChart = (resource.entryLength > 2)  
         });
     };
 

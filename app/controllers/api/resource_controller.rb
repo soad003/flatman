@@ -21,8 +21,8 @@ class Api::ResourceController < Api::RestController
     def get_chart
       resource = current_user.flat.ressources.where(id:params[:resource_id]).first
       #define ranges for calc add one day because javascript starts with 0 by days
-      dateFrom = Date.parse(params[:from]) +1
-      dateTo = Date.parse(params[:to]) +1
+      dateFrom = Date.parse(params[:from])
+      dateTo = Date.parse(params[:to])
       statistic_data = Ressource.get_statistic_data(dateFrom, dateTo, resource)
       @chart = Ressource.get_chart_data(statistic_data, dateFrom, dateTo)
     end
