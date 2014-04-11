@@ -30,7 +30,7 @@ angular.module('flatman', ['ngRoute','ngResource','google-maps','angles','ui.boo
       }).
       when('/messages', {
         templateUrl: '/templates/messages',
-        controller: 'shoppingCtrl'
+        controller: 'messageCtrl'
       }).
       when('/message_window', {
         templateUrl: '/templates/message_window',

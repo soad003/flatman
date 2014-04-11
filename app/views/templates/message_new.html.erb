@@ -10,17 +10,17 @@
    	<div class="modal-body">
 		<div class="input-group">
            <span class="input-group-addon">@</span>
-           <input type="text" class="form-control" placeholder="Username">
+           <input type="text" class="form-control" ng-model="Username" maxlength="30" placeholder="<%= t('.create_Message_user_placeholder') %>" required>
         </div>
     </div>
     <div class="modal-footer">
       <form role="form" name="NewForm">
     	<div class="row">
         	<div class="col-lg-10 col-md-10 col-xs-8">
-            	<textarea class="form-control" rows="3"></textarea>
+            	<textarea class="form-control" rows="3"type="text" ng-model="newText" maxlength="30" placeholder="<%= t('.new_text_placeholder') %>" required></textarea>
           	</div>
           	<div class="col-lg-2 col-md-2 col-xs-4">
-            	<a href="#" style="text-decoration: none;"><button class="btn btn-primary btn-block" type="submit" ng-disabled="!is_dirty()"><%= t('.send') %></button></a>
+            	<a href="/#/messages" style="text-decoration: none;"><button class="btn btn-primary btn-block" type="submit" ng-click="createMessage()"><%= t('.send') %></button></a>
               <a href="/#/messages" style="text-decoration: none;"><button type="button" class="btn btn-default btn-block"><%= t('buttons.labels.decision.close') %></button></a>
           	</div>
       </div>

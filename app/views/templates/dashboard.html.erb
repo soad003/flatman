@@ -123,13 +123,14 @@
         <span class="glyphicon glyphicon-shopping-cart"></span> <%=t(".panel_shopping_header")%>
       </div>
       <div class="panel-body">
-        <ul class="list-group">
+        <ul class="list-group" ng-show="shoppinglists.length!==0">
           <li class="list-group-item" ng-repeat="list in shoppinglists">
             <span class="badge">{{list.items.length}}</span>
             <h4 class="list-group-item-heading">{{list.name}}</h4>
             <p class="list-group-item-text">{{ get_shoppinglist_summary(list) }}</p>
           </li>
         </ul>
+        <p ng-show="shoppinglists.length===0"><%=t(".no_shoppinglists")%></p>
         <div class="text-right">
           <a href="/#/shopping"><%=t(".view_details")%> <i class="fa fa-arrow-circle-right"></i></a>
         </div>

@@ -211,16 +211,20 @@ en:
       panel_finances_header              : "Finances"
       panel_share_header                 : "Shared Items"
       panel_resources_header             : "Ressource Usage"
+      no_shoppinglists                   : "Nothing to shop yet..."
 
     messages:
       page_header                        : "Messages"
       page_title                         : "Messages"
     message_window:
       page_header                        : "Messages"
-      send                               : "send"
+      send                               : "Send"
+      new_text_placeholder               : "Enter text"
     message_new:
       page_header                        : "New Message"
       send                               : "send"
+      create_Message_user_placeholder    : "Username"
+      new_text_placeholder               : "Enter text"
     resources:
       page_header                        : "Resources"
       page_title                         : "Resource"
@@ -243,7 +247,7 @@ en:
       unitName_placeholder               : "kw/h"
       description                        : "Description"
       description_placeholder            : "Nightenergy"
-      
+
       priceUnit                          : "Price/Unit"
       priceUnit_placeholder              : "0,13"
       monthlyCosts                       : "Monthly Costs"
@@ -287,6 +291,11 @@ en:
       add                                : "add"
       new_list_placeholder               : "groceries"
       new_item_placeholder               : "jellybeans"
+      help_title                         : "Your Flats shopping needs ..."
+      help_paragraph1                    : "Use the textbox above to add a list, after that you can add/delete items ... "
+      help_paragraph2                    : "If you are done with shopping just click ... to enter your bill and you are done!"
+      delete_list                        : "Delete List"
+      done                               : "Enter payment"
     create_flat:
       subtitle                           : "Welcome to"
       title                              : "Flatman"
