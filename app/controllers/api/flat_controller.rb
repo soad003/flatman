@@ -6,9 +6,6 @@ class Api::FlatController < Api::RestController
     end
 
     def create
-        puts "#3333333333333333333333333333333333333333333333333333"
-        puts current_user.to_json
-        puts current_user.has_flat?
         if !current_user.has_flat?
             flat=Flat.create_with_user!(current_user, flat_params)
             respond_with(flat, :location => api_flat_path(flat))
