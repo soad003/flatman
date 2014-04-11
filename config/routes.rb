@@ -38,6 +38,7 @@ scope "(:locale)", locale: /en|de/ do
       post '/', to: :update
    end
    resources :user, only: [:index]
+   resources :message, only: [:index, :create, :update, :destroy]
    resources :shoppinglist, only: [:index, :create, :destroy] do
       resources :shoppingitem, only: [:create, :update, :destroy]
    end

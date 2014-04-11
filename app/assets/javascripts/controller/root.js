@@ -11,7 +11,7 @@ angular.module('flatman').controller("rootCtrl",function($scope,$timeout,$locati
 
     (function tick() {
         $scope.server_status=statusService.get(function(){
-            $timeout(tick, 5000);
+            $timeout(tick, 50000);
         });
     })();
 
