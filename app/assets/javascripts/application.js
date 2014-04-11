@@ -20,6 +20,7 @@
 //= require_tree ./layout
 //= require angular-resource
 //= require angular-animate
+//= require numberinput.js
 //= require angular-ui-bootstrap-tpls
 //= require_tree ./config
 //= require_tree ./services

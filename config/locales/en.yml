@@ -237,7 +237,7 @@ en:
       usage                              : "Usage"
       costs                              : "Costs"
       resourceValue                      : "resource value"
-      addMoreEntriesForChart             : "To view the chart more entries are required"
+      addMoreEntriesForChart             : "More entries are required to view the chart"
     create_resource:
       page_title                         : "Resource"
       page_header                        : "Resource"

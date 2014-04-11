@@ -68,6 +68,10 @@ gem 'underscore-rails'
 gem 'rufus-scheduler'
 
 gem 'angular-ui-bootstrap-rails'
+gem 'seed_dump'
+
+#gem "animate-rails"
+
 #lightbox pictures
 #gem 'magnific-popup-rails'
 

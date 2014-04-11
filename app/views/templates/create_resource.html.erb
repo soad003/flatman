@@ -100,7 +100,7 @@
           <%= t('.startDate') %></label>
         
           <div class="input-group"> <!--class="form-control"  close-text="Close" is-open="opened" date-disabled="disabled(date, mode)" -->
-            <input type="text" class="form-control" datepicker-popup="{{format}}" ng-model="resourceTmp.startDate" is-open="opened" date-disabled="disabled(date, mode)" ng-required="true" close-text="Close" />          
+            <input type="text" class="form-control" show-button-bar="false" showWeeks="false" datepicker-popup="mediumDate" ng-model="resourceTmp.startDate" is-open="opened" date-disabled="disabled(date, mode)" ng-required="true" close-text="Close" />          
               <span class="input-group-addon">
                   <span class="glyphicon glyphicon-calendar"></span>
               </span>
