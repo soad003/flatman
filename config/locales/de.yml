@@ -205,12 +205,12 @@ en:
       items_borrowed                     : "items borrowed"
       view_share_details                 : "view items"
       view_resource_details              : "view resources"
-      view_resource_titel                : "last 30 days"
+      view_resource_titel                : "costs last 30 days"
       view_details                       : "View Details"
       panel_shopping_header              : "Shopping"
       panel_finances_header              : "Finances"
       panel_share_header                 : "Shared Items"
-      panel_resources_header             : "Ressource Usage (last 30 days)"
+      panel_resources_header             : "Ressource Usage"
       no_shoppinglists                   : "Nothing to shop yet..."
 
     messages:

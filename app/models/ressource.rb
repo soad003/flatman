@@ -80,6 +80,7 @@ class Ressource < ActiveRecord::Base
 
 
 
+
     def self.get_statistic_data (from,to, resource)   
       values = OpenStruct.new({"labels" => [], "costs" => [], "usages" => []})
       if from == nil || to == nil
@@ -107,6 +108,20 @@ class Ressource < ActiveRecord::Base
       values
     end
 
+    def self.get_dashboard_data (statistic_data, resource)
+      info = OpenStruct.new({name: "", unit: "", usage: "", cost:""})
+      sum = 0
+      if statistic_data.labels.size != 0
+          statistic_data.usages.each do |usage|
+            sum += usage
+          end
+      end
+      info.name = resource.name
+      info.unit = resource.unit
+      info.usage = sum.round(2)
+      info.cost = (info.usage * resource.pricePerUnit + resource.monthlyCost + (resource.annualCost/12)).round(2)
+      info
+    end
 
     def self.get_overview_data (statistic_data, resource)
   		returnData = OpenStruct.new({general: [], years: []})

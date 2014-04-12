@@ -1,4 +1,4 @@
-angular.module('number_localized', []).directive('numberinput', function () {
+angular.module('number_localized', ['ngLocale']).directive('numberinput', function ($filter) {
       return {
         restrict: 'A',
         require: 'ngModel',
@@ -6,16 +6,20 @@ angular.module('number_localized', []).directive('numberinput', function () {
 
           ngModelController.$parsers.push(function(data) {
               //convert data from view format to model format
-              return data.replace(',', "."); //converted
+              data = data.replace(',', '.');
+              if ((data.split(".").length - 1) > 1){
+                data = "";
+              }
+              return data;
           });
 
           ngModelController.$formatters.push(function(data) {
               //convert data from model format to view format
-              return data.replace('.', ","); //converted
-          });
-            
-          // http://docs.angularjs.org/api/ng.directive:ngModel.NgModelController
-            
+              if (locale != 'en'){
+                data = (data + "" ).replace('.',',');
+              }
+              return data;
+          })          
         }
       };
 });

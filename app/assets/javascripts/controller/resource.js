@@ -1,11 +1,11 @@
 angular.module('flatman').controller("resourceCtrl",function($scope, $filter, resourceService, Util){
     $scope.intro = false;
     $scope.resources = resourceService.resource.getAll(function(){
-        if ($scope.resources.length == 0){
+        if ($scope.resources.length === 0){
             $scope.intro = true;
         }
         _.each($scope.resources, function(resource){
-                                        resource.enoughEntriesForChart = (resource.entryLength > 2)                   
+                                        resource.enoughEntriesForChart = (resource.entryLength > 2);
                                         $scope.init(resource);
                                         $scope.setEntries(resource);
                                         $scope.initChart(resource);
@@ -14,13 +14,19 @@ angular.module('flatman').controller("resourceCtrl",function($scope, $filter, re
                                     });
     });
 
+    $scope.formatNumber = function (number){
+        if (locale != 'en')
+         number = (number+"").replace('.',',');
+        return number;
+    };
+
     $scope.init = function (resource) {
         resource.date = new Date();
         resource.page = 1;
         $scope.showInfos(resource,true);
         resource.chartDateRange.startDate = new Date(resource.chartDateRange.startDate);
         resource.chartDateRange.endDate = new Date(resource.chartDateRange.endDate);
-    }
+    };
 
     $scope.showInfos = function (resource, flag){
         resource.showChart=flag;
@@ -34,8 +40,8 @@ angular.module('flatman').controller("resourceCtrl",function($scope, $filter, re
     };
 
     $scope.getChartData=function (resource){
-        var response = resourceService.chart.get(resource.id,resource.chartDateRange.startDate, resource.chartDateRange.endDate, 
-            function (response){ 
+        var response = resourceService.chart.get(resource.id,resource.chartDateRange.startDate, resource.chartDateRange.endDate,
+            function (response){
                 //convert labes date to local format
                 for (var i = 0; i < response.labels.length; i++){
                     response.labels[i] = $filter('date')(new Date(response.labels[i]), "shortDate");
@@ -57,8 +63,8 @@ angular.module('flatman').controller("resourceCtrl",function($scope, $filter, re
     };
 
     $scope.setOverview =function (resource){
-        resourceService.overview.get(resource.id,resource.chartDateRange.startDate, resource.chartDateRange.endDate, 
-            function (response){ 
+        resourceService.overview.get(resource.id,resource.chartDateRange.startDate, resource.chartDateRange.endDate,
+            function (response){
                 resource.infos = response;
             });
     };
@@ -68,7 +74,7 @@ angular.module('flatman').controller("resourceCtrl",function($scope, $filter, re
     $scope.setEntries=function(resource){
         resource.entries = resourceService.entry.get(resource.id, resource.page);
         resource.entryvalue = "";
-    }
+    };
 
      $scope.addEntry=function(resource){
         //resource.entryvalue =  $filter('number')(resource.entryvalue, 2);
@@ -78,23 +84,22 @@ angular.module('flatman').controller("resourceCtrl",function($scope, $filter, re
                  resource.entryLength++;
                  $scope.getChartData(resource);
                  $scope.setOverview(resource);
-                 resource.enoughEntriesForChart = (resource.entryLength > 2)  
+                 resource.enoughEntriesForChart = (resource.entryLength > 2);
         });
     };
 
     $scope.removeEntry=function(resource, entry){
         resourceService.entry.destroy(resource.id, entry.id, function(){
-            $scope.setEntries(resource);                 
+            $scope.setEntries(resource);
             resource.entryLength--;
             $scope.getChartData(resource);
             $scope.setOverview(resource);
-            resource.enoughEntriesForChart = (resource.entryLength > 2)  
+            resource.enoughEntriesForChart = (resource.entryLength > 2);
         });
     };
 
     $scope.getRange=function (resource){
         var pages = $scope.getPages(resource);
-
         if (pages <= 5){
             return _.range(1, pages+1);
         }else{
@@ -104,7 +109,7 @@ angular.module('flatman').controller("resourceCtrl",function($scope, $filter, re
                 return _.range(pages-4, pages+1);
             }
             return _.range((resource.page-2), (resource.page+3));
-        } 
+        }
     };
 
     $scope.setEntriesForPage=function (i, resource){
@@ -114,7 +119,7 @@ angular.module('flatman').controller("resourceCtrl",function($scope, $filter, re
 
     $scope.getPages = function (resource){
         return Math.ceil(resource.entryLength/5);
-    }
+    };
 
     $scope.changePage=function(resource, value){
         var pages = $scope.getPages(resource);
@@ -145,7 +150,5 @@ angular.module('flatman').controller("resourceCtrl",function($scope, $filter, re
                     "data":[]
                 }]
             };
-    }; 
-    
-
+    };
 });

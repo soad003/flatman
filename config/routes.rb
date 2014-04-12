@@ -52,6 +52,8 @@ scope "(:locale)", locale: /en|de/ do
    get '/resource/:resource_id/overview' => 'resource#get_overview'
    get '/resource/:resource_id' => 'resource#get_by_id'
 
+   get '/dashboard/resource' => 'resource#dashboard'
+
    resources :share, only: [:index, :create]
    resources :shareditem, only: [:index, :create]
   end

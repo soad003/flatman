@@ -33,6 +33,17 @@ class Api::ResourceController < Api::RestController
       @overview = Ressource.get_overview_data(statistic_data, resource)
     end
 
+    def dashboard
+      resources = current_user.flat.ressources
+      returnList = []
+
+      resources.each do |resource|
+        statistic_data = Ressource.get_statistic_data(Date.today - 30, Date.today, resource)
+        returnList << Ressource.get_dashboard_data(statistic_data, resource)
+      end
+      @dashboardList=returnList
+    end
+
     def get_by_id
         respond_with(current_user.flat.ressources.where(id:params[:resource_id]).first)
     end

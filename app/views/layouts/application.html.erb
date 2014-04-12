@@ -147,9 +147,11 @@
     <%= javascript_include_tag "application" %>
     
     <%= yield :script %>
-
-    <%if (I18n.locale).to_s == "de"%>
+    <script>var locale = "en";</script>
+    <%if I18n.locale.to_s == "de"%>
         <script type="text/javascript" src="/assets/angular-locale_de-de.js"></script>
+         <script>var locale = "de";</script>
+
     <%end%>
 
 

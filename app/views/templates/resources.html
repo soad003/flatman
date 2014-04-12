@@ -58,8 +58,8 @@
                     <tbody>
                         <tr ng-repeat="entry in resource.entries" class="">
                             <td>{{entry.date| date : 'longDate'}}</td>
-                            <td>{{entry.value | number : number : 0}} {{resource.unit}}</td>
-                            <td>{{entry.usage | number : number : 0}} {{resource.unit}}</td>
+                            <td>{{formatNumber(entry.value)}} {{resource.unit}}</td>
+                            <td>{{formatNumber(entry.usage)}} {{resource.unit}}</td>
                             <td>
                                 {{entry.costs| currency : '€ '}}
                                 <button class="btn btn-default btn-xs pull-right" ng-hide="entry.isFirst == true" ng-click="removeEntry(resource, entry)">
@@ -83,7 +83,7 @@
                                ng-model="resource.entryvalue"
                                maxlength="30"
                                placeholder="<%= t('.resourceValue') %>
-                               " required>
+                               " required numberinput>
                         <span class="input-group-btn">
                             <button class="btn btn-primary"
                                     type="submit"
