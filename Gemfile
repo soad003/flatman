@@ -3,8 +3,9 @@ source 'https://rubygems.org'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.0.0'
 
-# Use sqlite3 as the database for Active Record
-gem 'sqlite3'
+gem 'rails_12factor', group: :production
+
+gem 'pg'
 
 # Use mysql as the database
 #gem "mysql2"
@@ -68,7 +69,7 @@ gem 'underscore-rails'
 gem 'rufus-scheduler'
 
 gem 'angular-ui-bootstrap-rails'
-gem 'seed_dump'
+# gem 'seed_dump'
 
 #gem "animate-rails"
 
@@ -79,10 +80,10 @@ gem 'seed_dump'
 # gem 'bcrypt-ruby', '~> 3.0.0'
 
 # Use unicorn as the app server
-# gem 'unicorn'
+gem 'unicorn'
 
 # Use Capistrano for deployment
-# gem 'capistrano', group: :development
+gem 'capistrano', group: :development
 
 # Use debugger
 # gem 'debugger', group: [:development, :test]
