@@ -7,6 +7,13 @@ gem 'rails_12factor', group: :production
 
 gem 'pg'
 
+gem 'thin'
+#gem 'sqlite3', :group => [:development, :test]
+#group :production do
+ # gem 'thin'
+  #gem 'pg'
+#end
+
 # Use mysql as the database
 #gem "mysql2"
 
@@ -84,6 +91,8 @@ gem 'unicorn'
 
 # Use Capistrano for deployment
 gem 'capistrano', group: :development
+
+gem 'netrc'
 
 # Use debugger
 # gem 'debugger', group: [:development, :test]
