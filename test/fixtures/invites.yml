@@ -1,9 +1,10 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
 
-one:
-  email: MyString
-  flat: 
+wg_michi_one:
+  email: niko1003@gmx.net
+  flat: wg_michi
 
-two:
-  email: MyString
-  flat: 
+
+wg_clemi_one:
+  email: michael.froewis@gmail.com
+  flat: wg_clemi
