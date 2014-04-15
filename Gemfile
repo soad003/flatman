@@ -4,11 +4,11 @@ ruby '2.0.0'
 gem 'rails', '4.0.0'
 
 gem 'rails_12factor', group: :production
-
+# postgresql
 gem 'pg', '0.16.0'
-
+# heroku open needs this gem 
 gem 'launchy'
-
+# zweispurige variante 
 #gem 'sqlite3', :group => [:development, :test]
 #group :production do
  # gem 'thin'
