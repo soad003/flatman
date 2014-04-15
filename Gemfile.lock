@@ -29,11 +29,10 @@ GEM
     angular-ui-bootstrap-rails (0.10.0)
     angularjs-rails (1.2.16)
     arel (4.0.2)
-    atomic (1.1.16)
     bootstrap-sass (3.1.1.0)
       sass (~> 3.2)
     builder (3.1.4)
-    capistrano (3.1.0)
+    capistrano (3.2.0)
       i18n
       rake (>= 10.0.0)
       sshkit (~> 1.3)
@@ -149,9 +148,9 @@ GEM
       actionpack (>= 3.0)
       activesupport (>= 3.0)
       sprockets (~> 2.8)
-    sshkit (1.3.0)
+    sshkit (1.4.0)
       net-scp (>= 1.1.2)
-      net-ssh
+      net-ssh (>= 2.8.0)
       term-ansicolor
     term-ansicolor (1.3.0)
       tins (~> 1.0)
