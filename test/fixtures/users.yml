@@ -19,7 +19,6 @@ niko:
   oauth_token: wuseldusel
 
 michi:
-  flat_id: wg_michi
   email: michi@test.com
   name: Michi Fröwis
   flat: wg_michi
@@ -35,4 +34,17 @@ clemi:
   uid: 1438808023
   oauth_token: wuseldusel
 
+michi_without_flat_and_without_invite:
+  email: michael.froewis@gmx.at
+  name: Michi Fröwis
+  provider: facebook
+  uid: 1438808024
+  oauth_token: wuseldusel
+
+michi_without_flat_and_with_invite:
+  email: michael.froewis@gmail.com
+  name: Michi Fröwis
+  provider: facebook
+  uid: 1438808025
+  oauth_token: wuseldusel
 
