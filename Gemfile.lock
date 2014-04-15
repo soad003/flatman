@@ -178,6 +178,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  activerecord
   angular-ui-bootstrap-rails
   angularjs-rails
   bootstrap-sass (~> 3.1.1)
