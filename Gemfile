@@ -5,9 +5,8 @@ gem 'rails', '4.0.0'
 
 gem 'rails_12factor', group: :production
 
-gem 'pg'
+gem 'pg', '0.16.0'
 
-gem 'thin'
 #gem 'sqlite3', :group => [:development, :test]
 #group :production do
  # gem 'thin'
