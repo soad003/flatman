@@ -29,7 +29,8 @@ class ShoppinglistitemTest < ActiveSupport::TestCase
     test "should not find item from other wg" do
      wg_michi_item = shoppinglistitems(:butter)
      user = users(:clemi)
-     list_item = Shoppinglistitem.find_with_user_constraint(wg_michi_item.id,wg_michi_item.shoppinglist.id, user)
-     assert list_item.nil?
+     assert_raises ActiveRecord::RecordNotFound do
+        Shoppinglistitem.find_with_user_constraint(wg_michi_item.id,wg_michi_item.shoppinglist.id, user)
+     end
     end
 end

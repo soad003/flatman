@@ -23,7 +23,7 @@ class Api::ShoppinglistController < Api::RestController
     private
         # Never trust parameters from the scary internet, only allow the white list through.
     def sl_params
-      params.require(:shoppinglist).permit(:name)
+      params.permit(:name)
     end
 
 end

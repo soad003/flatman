@@ -1,10 +1,10 @@
-class TemplatesControllerTest < ActionController::TestCase
+require 'test_helper'
 
-    test "should not get templates without login" do
-        get_template_actions.each do |action|
-            get action
-            assert_redirected_to signin_url
-        end
+class TemplatesControllerTest < ActionController::TestCase
+    include Login
+
+    test "should not get data without login" do
+      must_login('html')
     end
 
     test "should get templates when loggedin" do
@@ -22,10 +22,6 @@ class TemplatesControllerTest < ActionController::TestCase
         get :index
         assert_response :success
         assert_template layout: "layouts/application"
-    end
-
-    def get_template_actions
-        TemplatesController.action_methods & TemplatesController.instance_methods(false).map{|i| i.to_s}
     end
 
 end

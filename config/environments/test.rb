@@ -47,6 +47,10 @@ Flatman::Application.configure do
   # Print deprecation notices to the stderr.
   config.active_support.deprecation = :stderr
 
+  # important for testing do not touch !
+  # http://zergsoft.blogspot.co.at/2012/09/rails-functional-testing-session.html
+  config.action_controller.allow_forgery_protection = false
+
   config.action_mailer.delivery_method = :file
   config.action_mailer.smtp_settings = {
     openssl_verify_mode:  OpenSSL::SSL::VERIFY_NONE,

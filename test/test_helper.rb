@@ -11,5 +11,29 @@ class ActiveSupport::TestCase
   # -- they do not yet inherit this setting
   fixtures :all
 
-  # Add more helper methods to be used by all tests here...
+end
+
+class ActionController::TestCase
+
+      module Login
+        def must_login(format)
+            get_template_actions.each do |action|
+                get action, :format => format
+                assert_redirected_to signin_url
+            end
+        end
+
+        def get_template_actions
+            @controller.action_methods & @controller.class.instance_methods(false).map{|i| i.to_s}
+        end
+
+        def login_as_michi
+            session[:user_id]=users(:michi).id
+        end
+
+        def login_as_niko
+            session[:user_id]=users(:niko).id
+        end
+      end
+
 end

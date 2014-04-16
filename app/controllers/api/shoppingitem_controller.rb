@@ -16,13 +16,13 @@ class Api::ShoppingitemController < Api::RestController
     def update
         item = Shoppinglistitem.find_with_user_constraint(params[:id],params[:shoppinglist_id],current_user)
         item.update_attributes!(item_params)
-        respond_with(item, :location => nil)
+        respond_with(nil, :location => nil)
     end
 
     private
     # Never trust parameters from the scary internet, only allow the white list through.
     def item_params
-      params.require(:shoppingitem).permit(:name,:checked)
+      params.permit(:name,:checked,:shoppinglist_id,:id)
     end
 
 end

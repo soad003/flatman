@@ -44,8 +44,9 @@ class InviteTest < ActiveSupport::TestCase
     test "should not find list from other wg" do
      wg_michi_inv = invites(:wg_michi_one)
      user = users(:clemi)
-     inv=Invite.find_with_user_constraint(wg_michi_inv.id,user)
-     assert inv.nil?
+     assert_raises ActiveRecord::RecordNotFound do
+        Invite.find_with_user_constraint(wg_michi_inv.id,user)
+     end
     end
 
     test "should not be possible to make multiple invites for same email" do
@@ -54,8 +55,7 @@ class InviteTest < ActiveSupport::TestCase
      inv.email=wg_michi_inv.email
      inv.flat=flats(:wg_michi)
 
-     #ActiveRecord::RecordNotUnique
-     assert_raises ActiveRecord::StatementInvalid do
+     assert_raises(ActiveRecord::StatementInvalid,ActiveRecord::RecordNotUnique) do
        inv.save
      end
 

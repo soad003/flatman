@@ -1,3 +1,5 @@
+require 'test_helper'
+
 class ErrorsControllerTest < ActionController::TestCase
   test "should get not found" do
     get :not_found

@@ -8,6 +8,6 @@ class Invite < ActiveRecord::Base
     end
 
     def self.find_with_user_constraint(id, user)
-        where(id: id, flat_id: user.flat.id).first
+        find_by!(id: id, flat_id: user.flat.id)
     end
 end
