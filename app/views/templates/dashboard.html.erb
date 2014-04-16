@@ -221,7 +221,10 @@
         <span class="glyphicon glyphicon-globe"></span>  <%=t(".panel_resources_header")%>
       </div>
       <div class="panel-body">
-        <table class="table table-striped table-hover">
+        <div ng-show="dashboardResources.length === 0">
+          <%=t(".panel_no_resources")%>
+        </div>
+        <table ng-hide="dashboardResources.length === 0"class="table table-striped table-hover">
               <thead>
                 <tr>
                   <th><%=t(".name")%></th>
@@ -232,7 +235,7 @@
               <tbody>
                 <tr ng-repeat="info in dashboardResources">
                   <td>{{info.name}}</td>
-                  <td class="text-right">{{info.usage}} {{info.unit}}</td>
+                  <td class="text-right">{{info.usage | number : number}} {{info.unit}}</td>
                   <td class="text-right">{{info.cost| currency : '€ '}}</td>
                 </tr>
               </tbody>

@@ -15,9 +15,11 @@
     </div>
 </div>
 
-<div class="jumbotron" ng-show="intro">
-    <h3><%= t('.intro_header') %></h3>
-    <%= t('.intro_text') %>
+<div class="jumbotron text-center" ng-show="resources.length === 0">
+    <i class="fa fa-globe fa-5x"></i>
+    <h2><%= t(".help_title") %></h2>
+    <%= t(".help_paragraph1") %><br>
+    <%= t(".help_paragraph2") %>
 </div>
 
 <div ng-repeat="resource in resources" resources-repeat-directive>
