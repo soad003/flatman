@@ -8,7 +8,7 @@ class Api::FlatController < Api::RestController
     def create
         if !current_user.has_flat?
             flat=Flat.create_with_user!(current_user, flat_params)
-            respond_with(flat, :location => api_flat_path(flat))
+            respond_with(nil, :location => api_flat_path(flat))
         else
             respond_with_errors([t('.already_in_flat')])
         end
@@ -24,6 +24,6 @@ class Api::FlatController < Api::RestController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def flat_params
-        params.require(:flat).permit(:name, :street, :city, :zip)
+        params.permit(:name, :street, :city, :zip)
     end
 end

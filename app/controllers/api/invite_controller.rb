@@ -31,6 +31,6 @@ class Api::InviteController < Api::RestController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def invite_params
-       params.require(:invite).permit(:email)
+       params.permit(:email)
     end
 end

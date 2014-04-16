@@ -10,3 +10,16 @@
 #  email: <%= "user#{n}@example.com" %>
 #<% end %>
 
+milk:
+ name: milk
+ shoppinglist: groceries_wg_michi
+
+
+butter:
+ name: butter
+ shoppinglist: groceries_wg_michi
+
+
+butter_cle:
+ name: butter
+ shoppinglist: groceries_wg_cle

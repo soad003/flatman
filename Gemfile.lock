@@ -29,6 +29,8 @@ GEM
     angular-ui-bootstrap-rails (0.10.0)
     angularjs-rails (1.2.16)
     arel (4.0.2)
+    assert_json (0.2.0)
+      activesupport
     bootstrap-sass (3.1.1.0)
       sass (~> 3.2)
     builder (3.1.4)
@@ -180,6 +182,7 @@ PLATFORMS
 DEPENDENCIES
   angular-ui-bootstrap-rails
   angularjs-rails
+  assert_json
   bootstrap-sass (~> 3.1.1)
   capistrano
   chart-js-rails

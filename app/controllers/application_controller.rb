@@ -23,7 +23,7 @@ class ApplicationController < ActionController::Base
     end
 
     def logged_in
-        !current_user.nil?
+      !current_user.nil?
     end
 
     def is_user_ready_to_go
