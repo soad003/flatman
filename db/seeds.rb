@@ -9,8 +9,8 @@ Billcategory.create!([
   {flat_id: 1, name: "first"}
 ])
 User.create!([
-  {flat_id: 1, email: "clemens@mto.at", provider: "facebook", uid: "1489303205", name: "Clemens Brunner", oauth_token: nil, oauth_expires_at: "2014-06-04 08:57:11", image_path: "http://graph.facebook.com/1489303205/picture"},
-  {flat_id: 2, email: "cle1000.cb@gmail.com", provider: "google_oauth2", uid: "116226731945755969597", name: "Clemens Brunner", oauth_token: nil, oauth_expires_at: "2014-04-02 12:08:40", image_path: "https://lh3.googleusercontent.com/-XdUIqdMkCWA/AAAAAAAAAAI/AAAAAAAAAAA/4252rscbv5M/photo.jpg"}
+  {flat_id: 1, email: "clemens@mto.at", provider: "facebook", uid: "1489303205", name: "Clemens Brunner", oauth_token: "nil", oauth_expires_at: "2014-06-04 08:57:11", image_path: "http://graph.facebook.com/1489303205/picture"},
+  {flat_id: 2, email: "cle1000.cb@gmail.com", provider: "google_oauth2", uid: "116226731945755969597", name: "Clemens Brunner", oauth_token: "nil", oauth_expires_at: "2014-04-02 12:08:40", image_path: "https://lh3.googleusercontent.com/-XdUIqdMkCWA/AAAAAAAAAAI/AAAAAAAAAAA/4252rscbv5M/photo.jpg"}
 ])
 
 Flat.create!([

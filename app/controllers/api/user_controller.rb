@@ -1,7 +1,7 @@
 class Api::UserController < Api::RestController
 
     def index
-        respond_with(current_user)
+        @user=current_user
     end
 
 
