@@ -1,4 +1,5 @@
 class Api::RestController < ProtectedController
+    require 'active_record/all'
     protect_from_forgery with: :null_session
     respond_to :json
     rescue_from Exception, with: :general_error
