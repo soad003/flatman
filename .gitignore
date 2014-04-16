@@ -18,3 +18,4 @@ pickle-email-*.html
 .project
 /public/assets/*
 --config/initializers/secret_token.rb
+.env

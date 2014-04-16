@@ -1,0 +1,22 @@
+postgresql setup fedora
+
+sudo yum install postgresql-devel* postgresql-libs* postgresql-server* postgresql-contri*
+
+service postgresql initdb
+
+service postgresql start
+
+// auto start with OS
+chkconfig postgresql on
+
+sudo su postgres 
+
+createuser $USER -drs
+
+psql
+
+// to check if role exists
+\du 
+
+// somit sollte alles laufen. falls ich was vergessen habe. -> link
+https://wiki.postgresql.org/wiki/YUM_Installation
