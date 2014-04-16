@@ -2,8 +2,8 @@ class Api::RestController < ProtectedController
     protect_from_forgery with: :null_session
     respond_to :json
     rescue_from Exception, with: :general_error
-    #rescue_from ActiveRecord::RecordInvalid, with: :respond_with_record_invalid
-    #rescue_from ActiveRecord::RecordNotFound, with: :record_not_found
+    rescue_from ActiveRecord::RecordInvalid, with: :respond_with_record_invalid
+    rescue_from ActiveRecord::RecordNotFound, with: :record_not_found
 
 
     def respond_with_record_invalid(e)
