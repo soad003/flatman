@@ -95,5 +95,7 @@ gem 'capistrano', group: :development
 
 gem 'netrc'
 
+gem 'bootstrap-tagsinput-rails'
+gem 'magnific-popup-rails'
 # Use debugger
 # gem 'debugger', group: [:development, :test]

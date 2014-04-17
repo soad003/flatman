@@ -175,3 +175,20 @@ input.ng-error {
   /* The animation code itself */
   opacity: 1;
 }
+
+.thumb {
+  max-width: 180px;
+  max-height: 180px;
+  height: 180px;
+  width: 180px;
+}
+
+.bootstrap-tagsinput {
+  width: 100%;
+}
+.bootstrap-tagsinput input {
+    display: inline;
+}
+.bootstrap-tagsinput .label {
+  white-space: pre-wrap;
+}

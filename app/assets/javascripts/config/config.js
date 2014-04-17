@@ -20,9 +20,9 @@ angular.module('flatman', ['ngRoute','ngResource','google-maps','angles','ui.boo
         templateUrl: '/templates/share',
         controller: 'shareCtrl'
       }).
-      when('/shareditem', {
+      when('/shareditem/:itemid', {
         templateUrl: '/templates/shareditem',
-        controller: 'shareCtrl'
+        controller: 'sharedItemCtrl'
       }).
       when('/finances', {
         templateUrl: '/templates/finances',

@@ -40,6 +40,9 @@ en:
       create:
         entryDate_before_startDate        : "The date for your entry is before the start date"
         entryDate_exists                  : "There is already an entry for this date"
+    shareditem:
+      get:
+        no_item_found                     : "The requested Item is currently not available"
   # mail
   user_mailer:
     invite:

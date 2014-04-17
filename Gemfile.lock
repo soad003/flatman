@@ -33,6 +33,8 @@ GEM
       activesupport
     bootstrap-sass (3.1.1.0)
       sass (~> 3.2)
+    bootstrap-tagsinput-rails (0.3.2.0)
+      railties (>= 3.1)
     builder (3.1.4)
     capistrano (3.2.0)
       i18n
@@ -70,6 +72,7 @@ GEM
     launchy (2.4.2)
       addressable (~> 2.3)
     libv8 (3.16.14.3)
+    magnific-popup-rails (0.9.9)
     mail (2.5.4)
       mime-types (~> 1.16)
       treetop (~> 1.4.8)
@@ -184,6 +187,7 @@ DEPENDENCIES
   angularjs-rails
   assert_json
   bootstrap-sass (~> 3.1.1)
+  bootstrap-tagsinput-rails
   capistrano
   chart-js-rails
   coffee-rails (~> 4.0.0)
@@ -192,6 +196,7 @@ DEPENDENCIES
   jbuilder (~> 1.2)
   jquery-rails
   launchy
+  magnific-popup-rails
   netrc
   omniauth-facebook
   omniauth-google-oauth2
