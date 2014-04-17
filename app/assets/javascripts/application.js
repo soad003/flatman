@@ -20,9 +20,7 @@
 //= require_tree ./layout
 //= require angular-resource
 //= require angular-animate
-//= require moment
-//= require daterangepicker
-//= require ng-bs-daterangepicker.js
+//= require numberinput.js
 //= require angular-ui-bootstrap-tpls
 //= require_tree ./config
 //= require_tree ./services

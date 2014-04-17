@@ -40,6 +40,7 @@ scope "(:locale)", locale: /en|de/ do
       post '/', to: :update
    end
    resources :user, only: [:index]
+   resources :message, only: [:index, :create, :update, :destroy]
    resources :shoppinglist, only: [:index, :create, :destroy] do
       resources :shoppingitem, only: [:create, :update, :destroy]
    end
@@ -47,9 +48,11 @@ scope "(:locale)", locale: /en|de/ do
       resources :resourceentry, only: [:create, :destroy]
    end
    get '/resource/:resource_id/resourceentry/:page' => 'resourceentry#page'
-   get '/resource/:resource_id/chart' => 'resource#getChart'
-   get '/resource/:resource_id/overview' => 'resource#getOverview'
-   get '/resource/:resource_id' => 'resource#getById'
+   get '/resource/:resource_id/chart' => 'resource#get_chart'
+   get '/resource/:resource_id/overview' => 'resource#get_overview'
+   get '/resource/:resource_id' => 'resource#get_by_id'
+
+   get '/dashboard/resource' => 'resource#dashboard'
 
    resources :share, only: [:index, :create]
    resources :shareditem, only: [:index, :create]

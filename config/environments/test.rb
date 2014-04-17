@@ -47,18 +47,27 @@ Flatman::Application.configure do
   # Print deprecation notices to the stderr.
   config.active_support.deprecation = :stderr
 
-  #config.action_mailer.delivery_method = :smtp
-  #config.action_mailer.smtp_settings = {
-  #  openssl_verify_mode:  OpenSSL::SSL::VERIFY_NONE,
-  #  address:              'test.test.test',
-  #  port:                 25,
-  #  user_name:            'foo',
-  #  password:             'bar',
-  #  authentication:       'plain',
-  #  enable_starttls_auto: true  }
+  # important for testing do not touch !
+  # http://zergsoft.blogspot.co.at/2012/09/rails-functional-testing-session.html
+  config.action_controller.allow_forgery_protection = false
 
-  #config.action_mailer.default_url_options = { :host => 'localhost:3000' }
-  #config.action_mailer.default_options = {
-  #  :from => "foo@bar.com"
-  #}
+  config.action_mailer.delivery_method = :file
+  config.action_mailer.smtp_settings = {
+    openssl_verify_mode:  OpenSSL::SSL::VERIFY_NONE,
+    address:              'mail.gmx.net',
+    port:                 465,
+    user_name:            'info.flatman@gmx.at',
+    password:             ENV['SMTP_PASSWORD'],
+    authentication:       'plain',
+    enable_starttls_auto: true  }
+
+  config.action_mailer.raise_delivery_errors = true
+  config.action_mailer.default_url_options = { :host => 'localhost:3000' }
+  config.action_mailer.file_settings = {
+      location: 'log/mails'
+  }
+  config.action_mailer.default_options = {
+    :from => "info.flatman@gmx.at"
+  }
+
 end

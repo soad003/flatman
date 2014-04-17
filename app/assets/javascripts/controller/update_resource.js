@@ -13,8 +13,8 @@ angular.module('flatman').controller("update_resourceCtrl",function($scope, $rou
         }else{
             $scope.addResource();
         }
-    }
-    
+    };
+
     $scope.addResource=function(){
         resourceService.resource.create($scope.resourceTmp, function(data){location.href ="/#/resources";});
     };

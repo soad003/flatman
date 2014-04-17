@@ -7,9 +7,10 @@ class User < ActiveRecord::Base
     has_many    :receivedMessages, :class_name => 'Message', :foreign_key => 'receiver_id'
     has_many    :paidPayments, :class_name => 'Payment', :foreign_key => 'payer_id'
     has_many    :receivedPayments, :class_name => 'Payment', :foreign_key => 'payee_id'
+    validates   :provider, :uid, :name, :oauth_token, :email, presence: true
 
     def has_flat?()
-        !flat.nil?
+        !self.flat.nil?
     end
 
     def self.find_by_email(email)
@@ -21,7 +22,7 @@ class User < ActiveRecord::Base
             user.provider = auth.provider
             user.uid = auth.uid
             user.name = auth.info.name
-            user.oauth_token = auth.credentials.oauth_token
+            user.oauth_token = auth.credentials.token
             user.oauth_expires_at = Time.at(auth.credentials.expires_at)
             user.image_path = auth.info.image
             user.email = auth.info.email

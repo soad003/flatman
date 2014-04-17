@@ -1,6 +1,6 @@
 // Angular Config / Routes
 
-angular.module('flatman', ['ngRoute','ngResource','google-maps','angles','ngBootstrap','ui.bootstrap','ngAnimate']).config(function($httpProvider, $routeProvider){
+angular.module('flatman', ['ngRoute','ngResource','google-maps','angles','ui.bootstrap','ngAnimate','ngLocale', 'number_localized']).config(function($httpProvider, $routeProvider){
   $httpProvider.defaults.headers.common = {'X-CSRF-Token': $("meta[name='csrf-token']").attr("content"),
                                           'Content-Type': 'application/json'};
   $routeProvider.
@@ -30,7 +30,7 @@ angular.module('flatman', ['ngRoute','ngResource','google-maps','angles','ngBoot
       }).
       when('/messages', {
         templateUrl: '/templates/messages',
-        controller: 'shoppingCtrl'
+        controller: 'messageCtrl'
       }).
       when('/message_window', {
         templateUrl: '/templates/message_window',

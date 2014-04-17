@@ -1,16 +1,16 @@
 <% content_for :title, t('.page_title') %>
 
-<div class="row visible-lg visible-md">
+<div class="visible-lg visible-md">
   <div class="page-head">
       <h2 class="page-header"><span class="fa fa-envelope"></span> <%= t('.page_header') %> <a href="/#/message_new"><button class="btn btn-primary pull-right"><i class="fa fa-plus"></i> <%= t('.page_title') %></button></a></h2>
-
+     
   </div>
 </div>
 
-<div class="row visible-xs">
+<div class="visible-xs">
   <div class="page-head">
       <h2 class="page-header"><span class="fa fa-envelope"></span> <%= t('.page_header') %> <a href="/#/message_new"><button class="btn btn-primary btn-xs pull-right"><i class="fa fa-plus"></i> <%= t('.page_title') %></button></a></h2>
-
+     
   </div>
 </div>
 
@@ -18,33 +18,19 @@
 </br>
 </br>
   <a style="cursor:pointer; text-decoration: none;" href="/#/message_window">
-    <div class="row">
+    <div class="row" ng-repeat="message in messages">
       <div class="panel panel-success">
-        <div class="list-group-item"><span class="badge">14</span><strong>Nilpferd</strong></div>
+        <div class="list-group-item"><span class="badge">14</span><strong>{{message.receiver_name}}</strong></div>
           <div class="panel-footer">
             <div class="row">
-              <div class="col-xs-6 col-md-6">Hallo Pferd, wie gefällt es dir bei flatman</div>
+              <div class="col-xs-6 col-md-6">{{message.text}}</div>
                 <div class="col-xs-6 col-md-6">
-                  <span class="time"><p class="text-right" style="font-size:x-small"><i class="fa fa-clock-o"></i> today: 13:01 PM</p></span>
+                  <span class="time"><p class="text-right" style="font-size:x-small"><i class="fa fa-clock-o"></i> {{message.time}}</p></span>
                 </div>
               </div>
             </div>
       </div>
     </div>
   </a>
-  <a style="cursor:pointer; text-decoration: none;" href="/#/message_window">
-    <div class="row">
-      <div class="panel panel-success">
-        <div class="list-group-item"><span class="badge">14</span><strong>Bitch</strong></div>
-          <div class="panel-footer">
-            <div class="row">
-              <div class="col-xs-6 col-md-6">Hallo Pferd, wie gefällt es dir bei flatman</div>
-              <div class="col-xs-6 col-md-6">
-                <span class="time"><p class="text-right" style="font-size:x-small"><i class="fa fa-clock-o"></i> today: 13:01 PM</p></span>
-              </div>
-            </div>
-          </div>
-      </div>
-    </div>
-  </a>
+  
 </div>

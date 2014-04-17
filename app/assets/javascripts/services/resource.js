@@ -8,6 +8,11 @@ angular.module('flatman').service("resourceService",function($resource) {
                             'update': {method: "PUT"},
                         });
 
+   var dashboardService = $resource('/api/dashboard/resource',{},
+                        {
+                            'get': {method: "GET", isArray:true}
+                        });
+
    var chartService = $resource('/api/resource/:id/chart',{},
                         {
                             'get': {method: "GET"}
@@ -22,8 +27,8 @@ angular.module('flatman').service("resourceService",function($resource) {
                         {
                             'get': {method: "GET", isArray:true},
                             'create': {method: "POST"},
-                            'destroy': {method: "DELETE"}                        
-                        });
+                            'destroy': {method: "DELETE"}
+                       });
     return {
         resource: {
             getAll: function(succH, errH){
@@ -40,7 +45,16 @@ angular.module('flatman').service("resourceService",function($resource) {
             },
             update: function(resource,succH,errH){
                 resourceService.update({id: resource.id},resource,succH,errH);
+            },
+            getDashboard: function(succH, errH){
+                return dashboardService.get(null,succH, errH);
+            },
+            getSumCosts: function (list){
+                var sum = 0;
+                _(list).each(function (entry){ sum += entry.cost;});
+                return sum;
             }
+
         },
         entry: {
             get: function(resource_id, page, succH, errH){

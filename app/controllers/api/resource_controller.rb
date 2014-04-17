@@ -2,7 +2,7 @@ class Api::ResourceController < Api::RestController
     around_filter :wrap_in_transaction, only: [:create,:destroy]
 
     def index
-        @r=Ressource.setAttributes(current_user.flat.ressources)
+        @r=Ressource.set_attributes(current_user.flat.ressources)
         #logic model calc call
         #respond_with(current_user.flat.ressources)
     end
@@ -18,27 +18,33 @@ class Api::ResourceController < Api::RestController
        respond_with(nil, :location => nil);
     end
 
-    def getChart
+    def get_chart
       resource = current_user.flat.ressources.where(id:params[:resource_id]).first
-
-      #define ranges for calc
-      dateFrom = DateTime.parse(params[:from])
-      #dateFrom = DateTime.new(dateFrom.year, dateFrom.month, 1)
-      dateTo = DateTime.parse(params[:to])
-      #dateTo = DateTime.new(dateTo.year, dateTo.month, -1)
-      respond_with(Ressource.getChartData(dateFrom, dateTo, resource))
+      #define ranges for calc add one day because javascript starts with 0 by days
+      dateFrom = Date.parse(params[:from])
+      dateTo = Date.parse(params[:to])
+      statistic_data = Ressource.get_statistic_data(dateFrom, dateTo, resource)
+      @chart = Ressource.get_chart_data(statistic_data, dateFrom, dateTo)
     end
 
-    def getOverview
+    def get_overview
       resource = current_user.flat.ressources.where(id:params[:resource_id]).first
-
-      #define ranges for calc
-      dateFrom = DateTime.parse(params[:from])
-      dateTo = DateTime.parse(params[:to])
-      @overview = Ressource.getOverviewData(dateFrom, dateTo, resource)
+      statistic_data = Ressource.get_statistic_data(nil,nil,resource)
+      @overview = Ressource.get_overview_data(statistic_data, resource)
     end
 
-    def getById
+    def dashboard
+      resources = current_user.flat.ressources
+      returnList = []
+
+      resources.each do |resource|
+        statistic_data = Ressource.get_statistic_data(Date.today - 30, Date.today, resource)
+        returnList << Ressource.get_dashboard_data(statistic_data, resource)
+      end
+      @dashboardList=returnList
+    end
+
+    def get_by_id
         respond_with(current_user.flat.ressources.where(id:params[:resource_id]).first)
     end
 

@@ -7,6 +7,7 @@ class SessionController < ApplicationController
     def create
         user = User.from_omniauth(request.env["omniauth.auth"])
         session[:user_id] = user.id
+        user.save!
         if(user.flat.nil?)
             invite = Invite.find_by_email(user.email)
             if !invite.nil?
