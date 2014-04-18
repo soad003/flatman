@@ -49,6 +49,7 @@ GEM
       coffee-script-source
       execjs
     coffee-script-source (1.7.0)
+    commonjs (0.2.7)
     erubis (2.7.0)
     execjs (2.0.2)
     faraday (0.9.0)
@@ -71,6 +72,11 @@ GEM
     kgio (2.9.2)
     launchy (2.4.2)
       addressable (~> 2.3)
+    less (2.5.0)
+      commonjs (~> 0.2.7)
+    less-rails (2.5.0)
+      actionpack (>= 3.1)
+      less (~> 2.5.0)
     libv8 (3.16.14.3)
     magnific-popup-rails (0.9.9)
     mail (2.5.4)
@@ -196,6 +202,7 @@ DEPENDENCIES
   jbuilder (~> 1.2)
   jquery-rails
   launchy
+  less-rails
   magnific-popup-rails
   netrc
   omniauth-facebook
