@@ -1,4 +1,100 @@
 <div class="row">
-		<h1 class="page-header">item</h1>
+	
+	<div class="col-lg-12">
+		<h1 class="page-header"><span class="fa fa-share"> {{item.name}}<span></h1>
+	</div>
+	
+            
+	<div class="col-lg-3 ">
+	    <div class="thumbnail">
+	    	<a class="image-popup" href="http://artisticthings.com/wp-content/uploads/2010/04/apreis6-400x400.jpg" >
+	        		<img 
+	        			class="thumb media-object dp img-rounded image-popup" 
+	        			src="http://artisticthings.com/wp-content/uploads/2010/04/apreis6-400x400.jpg" 
+	        			/>
+	        		
+			</a>
+			<div class="caption">
+				<p>a pic says more than 1000 words</p>
+				<p>
+					<button class="btn btn-primary"><span class="glyphicon glyphicon-pencil"></span> edit</button>	
+					<button class="btn btn-primary"><span class="glyphicon glyphicon-remove"></span> remove</button>	
+				</p>	
+			</div>
+		    
+		</div>
+	</div>	
+	
+	
+	<div class="col-lg-9">
+		<form role="form" name="itemform" ng-submit="updateItem(item)">
+			<div class="panel panel-success">
+				 <div class="panel-heading">
+					    <h3 class="panel-title">current state: available</h3>
+				</div>
+				 <div class="panel-body">
+			    		<p>
+						<button class="btn btn-primary"><span class="glyphicon glyphicon-pencil"></span> hide</button>	
+						<button class="btn btn-primary"><span class="glyphicon glyphicon-pencil"></span> available for share</button>	
+						</p>
+					    
+				   <hr />         
+					
+				
+				
+				
+				<div class="panel-group">
+					<ul class="list-group" >
+					
+					<label for="description">description</label>
+					<textarea 
+							ng-model = "item.description"
+							ng-maxlength = "255"
+							class="form-control" 
+							rows="3"
+							id="description"
+							placeholder="say some words about your fantastic product">
+					</textarea>
+							
+					<br />
+					
+				<label for="sharingnote">sharing note</label>
+					<textarea 
+							ng-model = "item.sharingNote"
+							ng-maxlength = "255"
+							class="form-control" 
+							rows="2"
+							id="sharingnote"
+							placeholder="where is your item now, just visible for you"></textarea>
+							
+					<br />
+				<label for="tags">tags</label>
+				
+					<bootstrap-tagsinput
+					  ng-model="item.tags"
+					  placeholder="some tags"
+					</bootstrap-tagsinput>
+					
+							
+				</div>
+			
+			
+			
+				<p>
+			     <button class="btn btn-primary"
+                        type="submit"
+                         ng-disabled="!itemform.$valid">
+                         <span class="glyphicon glyphicon-floppy-disk"></span> update</button>
+                        
+                  
+                <a href="#/share"><button class="btn btn-primary">back</button></a>	
+               </p>
+                </div> </div>
+		</form>
+	</div>		
+		
+		
 		
 </div>
+
+    
