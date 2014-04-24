@@ -1,13 +1,16 @@
 angular.module('flatman').controller("shareCtrl", function($scope, shareService, Util){
     
-  	$scope.shareditems = shareService.get();
+  	$scope.shareditems = shareService.items.get();
+	
+
+	
 	
 	//$scope.items={ name: "", tags:"", description:"", sharingNote:"" };
   	
   	$scope.addItem = function() {
   		//console.log($scope);
   	 	
-  	 	shareService.create($scope.newItemName, function(data) {
+  	 	shareService.items.create($scope.newItemName, function(data) {
   	 		data.items = [];
   	 		$scope.shareditems.push(data);
   	 		$scope.newItemName = '';

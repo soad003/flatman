@@ -54,8 +54,11 @@ scope "(:locale)", locale: /en|de/ do
 
    get '/dashboard/resource' => 'resource#dashboard'
 
+   #sharing
+   get '/shareditem/:id' => 'shareditem#get'
+   post '/shareditem/:id' => 'shareditem#update'
    resources :share, only: [:index, :create]
-   resources :shareditem, only: [:index, :create]
+   resources :shareditem, only: [:index, :create, :update]
   end
 
   # Authentication

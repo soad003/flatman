@@ -12,7 +12,10 @@ class Api::MessageController < Api::RestController
 
   def create
       user=current_user
+      recName = mes_params[:receiver_id]
+      recvID = User.find_by_name(recName).id
       mes=Message.new(mes_params)
+      mes.receiver_id = recvID
       user.sentMessages << mes
       user.save!
       respond_with(mes, :location => nil);
