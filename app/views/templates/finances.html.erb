@@ -8,7 +8,7 @@
     <h1 class="page-header"><span class="fa fa-bitcoin"></span> <%= t('.page_header') %></h1>
   </section>
 
-<div class ="container" ng-show="lists.length===0">
+<div class ="container" ng-show="true">
  <div class="row">
   <div class="col-md-6">
 
@@ -239,12 +239,12 @@
     </div>
 
   <div class="panel-footer announcement-bottom">
-                    <form role="form" name="Itemform" ng-submit="addItem(list)">
+                    <form role="form" name="Itemform" ng-submit="">
                         <div class="input-group">
 
 
                           <input type="text" class="form-control"
-                                  ng-model="list.new_Text"
+                                  ng-model=""
                                   maxlength="30"
                                   placeholder="Name Value" required>
 
@@ -265,16 +265,18 @@
   </div>
 </div>
 </div>
+<!--
 <div>
-  <form action="/#/finances_new" ng-show="finances.length===1">
+  <form action="/#/finances_new" ng-show="false">
     <button class="btn btn-primary" type="submit" style="float: right;">
       <span class="glyphicon glyphicon-plus"></span><%= t(".add") %>
     </button>
   </form>
-  <div class="jumbotron text-center" ng-show="lists.length===1">
+  <div class="jumbotron text-center" ng-show="false">
           <i class="fa fa-bitcoin fa-5x"></i>
           <h2><%= t(".help_title") %></h2>
           <%= t(".help_paragraph1") %><br>
   </div>
 </div>
+-->
 </div>

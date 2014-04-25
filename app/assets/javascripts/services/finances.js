@@ -1,4 +1,4 @@
-angular.module('flatman').controller("financesService", function($resource){
+angular.module('flatman').factory("financesService", function($resource){
 	var financeService = $resource('/api/finances/:id',{},
                         {
                            // 'getAll': {method: "GET", isArray:true},
