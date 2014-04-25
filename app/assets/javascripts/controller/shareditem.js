@@ -1,4 +1,4 @@
-angular.module('flatman').controller("sharedItemCtrl", function($scope, $routeParams, shareService, Util){
+angular.module('flatman').controller("sharedItemCtrl", function($scope, $routeParams, shareService, uploadService, Util){
 	$('bootstrap-tagsinput').tagsinput({
 		confirmKeys: [13, 44]
 	});
@@ -12,6 +12,7 @@ angular.module('flatman').controller("sharedItemCtrl", function($scope, $routePa
   	
   	
   	$scope.item = shareService.item.get($routeParams.itemid);
+  	
 	
 	$scope.updateItem = function() {
 		shareService.item.update($scope.item, function() {
@@ -19,7 +20,17 @@ angular.module('flatman').controller("sharedItemCtrl", function($scope, $routePa
 		}, function() {
 			console.log("shitty");
 		});
-	}
-   
-
+	};
+	
+	/*$scope.uploadFile = uploadService.get();
+	
+	$scope.upload = function() {
+		console.log($scope.uploadFile);
+	};
+	
+	
+	$scope.onFileSelect = function($files) {
+		console.log($files);
+ 	 };
+*/
 });

@@ -3,8 +3,32 @@
 	<div class="col-lg-12">
 		<h1 class="page-header"><span class="fa fa-share"> {{item.name}}<span></h1>
 	</div>
+		
+		
 	
-            
+	
+	<!--
+		rotz.
+		huanzeig.
+	<form role="form" enctype="multipart/form-data"  name="uploadForm" ng-submit="upload()">
+		<div class="field">
+	    <label for="user_avatar">kretz.</label><br>
+	    <input id="user_avatar" ng-model = "uploadFile.file" type="file">
+	  </div>
+	 
+	  <div class="actions">
+	    <input name="commit" type="submit" value="Create User">
+	  </div>
+	</form>
+      -->
+      
+      <!--
+    <form role="form" enctype="multipart/form-data" name="uploadForm" ng-submit="upload()">
+    	
+    </form>
+     -->
+	
+	
 	<div class="col-lg-3 ">
 	    <div class="thumbnail">
 	    	<a class="image-popup" href="http://artisticthings.com/wp-content/uploads/2010/04/apreis6-400x400.jpg" >
@@ -15,11 +39,32 @@
 	        		
 			</a>
 			<div class="caption">
-				<p>a pic says more than 1000 words</p>
-				<p>
-					<button class="btn btn-primary"><span class="glyphicon glyphicon-pencil"></span> edit</button>	
-					<button class="btn btn-primary"><span class="glyphicon glyphicon-remove"></span> remove</button>	
-				</p>	
+				<form 	accept-charset="UTF-8" 
+			action="/api/upload" 
+			class="new_user" 
+			enctype="multipart/form-data" 
+			id="new_user" 
+			method="post">
+			
+		
+
+	  <div class="field">
+	  	
+	
+	  
+	    <input id="upload_file" name="upload[file]" type="file">
+	  
+	  
+	<!-- 	<input name="upload[item]" value="{{item}}" /> 
+		rotze. 
+		Can't verify CSRF token authenticity
+-->
+	 
+	  <div class="actions">
+	    <input name="commit" type="submit" value="upload direkt -.-">
+	  </div>
+	  </div>
+	</form>
 			</div>
 		    
 		</div>
@@ -30,6 +75,7 @@
 		<form role="form" name="itemform" ng-submit="updateItem(item)">
 			<div class="panel panel-success">
 				 <div class="panel-heading">
+				 	
 					    <h3 class="panel-title">current state: available</h3>
 				</div>
 				 <div class="panel-body">

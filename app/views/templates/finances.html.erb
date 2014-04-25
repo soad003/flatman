@@ -1,19 +1,20 @@
-<% content_for :robots, "NOINDEX, NOFOLLOW" %>
+<div>
+ <% content_for :robots, "NOINDEX, NOFOLLOW" %>
 
-<% content_for :title, t('.page_title') %>
+ <% content_for :title, t('.page_title') %>
 
 
   <section class="hidden-print">
     <h1 class="page-header"><span class="fa fa-bitcoin"></span> <%= t('.page_header') %></h1>
   </section>
 
-<div class ="container">
+<div class ="container" ng-show="true">
  <div class="row">
   <div class="col-md-6">
 
 
     <div class="btn-group">
-      <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+      <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
           Monat </i>
           <span class="caret"></span>
       </button>
@@ -110,7 +111,7 @@
 
   <div class="col-md-6">
      <div class="btn-group">
-     <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+     <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
          Edit
           <span class="caret"></span>
       </button>
@@ -238,12 +239,12 @@
     </div>
 
   <div class="panel-footer announcement-bottom">
-                    <form role="form" name="Itemform" ng-submit="addItem(list)">
+                    <form role="form" name="Itemform" ng-submit="">
                         <div class="input-group">
 
 
                           <input type="text" class="form-control"
-                                  ng-model="list.new_Text"
+                                  ng-model=""
                                   maxlength="30"
                                   placeholder="Name Value" required>
 
@@ -258,7 +259,24 @@
                     </form>
 
                 </div>
-              </div>
-</div>
-</div>
+   </div>
+  </div>
 
+  </div>
+</div>
+</div>
+<!--
+<div>
+  <form action="/#/finances_new" ng-show="false">
+    <button class="btn btn-primary" type="submit" style="float: right;">
+      <span class="glyphicon glyphicon-plus"></span><%= t(".add") %>
+    </button>
+  </form>
+  <div class="jumbotron text-center" ng-show="false">
+          <i class="fa fa-bitcoin fa-5x"></i>
+          <h2><%= t(".help_title") %></h2>
+          <%= t(".help_paragraph1") %><br>
+  </div>
+</div>
+-->
+</div>

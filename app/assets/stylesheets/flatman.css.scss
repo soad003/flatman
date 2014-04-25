@@ -192,3 +192,26 @@ input.ng-error {
 .bootstrap-tagsinput .label {
   white-space: pre-wrap;
 }
+.sharing-item {
+  margin: 10px 0 0;
+}
+.pointer {
+  cursor: pointer;
+}
+.si-avail-false .athome {
+  display: none;
+}
+.si-avail-true .athome {
+  display: inline-block;
+}
+.si-avail-false .away {
+  display: inline-block;
+}
+.si-avail-true .away {
+  display: none;
+}
+
+.si-avail- .away {
+  display: none;
+}
+

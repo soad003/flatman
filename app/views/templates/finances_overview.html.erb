@@ -7,6 +7,7 @@
   </section>
 
  <div class="panel-body">
+  <div ng-repeat="finance in finances">
  	<div style="margin:auto; width:450px; padding:40px border: 1px solid black;">
   		<table class="table table-striped">
   			<tr>
@@ -20,15 +21,15 @@
   				</th>
   			</tr>
   			<tr>
-  				<th>19.09.1999
+  				<th>{{finance.date}}
   				</th>
-  				<th>blabla
-  				</th>
-  				<th>
-  					Strom
+  				<th>{{finance.name}}
   				</th>
   				<th>
-  					50,00
+  					{{finance.category}}
+  				</th>
+  				<th>
+  					{{finance.value}}
   				</th>
   			</tr>
         <tr>

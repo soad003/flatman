@@ -34,7 +34,17 @@ angular.module('flatman').factory("shareService", function($resource) {
 		},
 		
 		//overview
-		items: {
+		/*warum is die reihenfolge von die services relevanta?!?!??!?*/
+		items: {	
+			remove:
+				function(item, succH, errH) {
+					shareService.destroy({id : item.id}, succH, errH);
+					
+				},
+			update:
+				function(item, succH, errH) {
+					sharedItemService.update({id:item.id}, item, succH, errH);
+				},
 			get: 
 				function(){ 
 					return shareService.get();
@@ -45,7 +55,9 @@ angular.module('flatman').factory("shareService", function($resource) {
 	        		console.log(name);
 	                shareService.create(null, {name: name}, succH, errH);
             	},
-			}
+			},
+		
+	
 		}
 		
 		
