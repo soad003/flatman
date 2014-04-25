@@ -1,5 +1,5 @@
 angular.module('flatman').controller("financesCtrl", function($scope, financesService, Util){
-	
+
 	$scope.intro = false;
 	$scope.finTmp={ name:"", value:"", date:"", user_id:"", cat:""};
 	//$scope.finTmp.user_id=current_user.id;
@@ -32,7 +32,7 @@ angular.module('flatman').controller("financesCtrl", function($scope, financesSe
 	};
 
 	$scope.updateEntry=function(){
-	//	financeService.finance.update(.id,function(){
+	//	financesService.finance.update(.id,function(){
 
 	//	})
 	};

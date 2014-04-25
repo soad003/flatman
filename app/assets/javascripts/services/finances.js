@@ -1,5 +1,5 @@
 angular.module('flatman').factory("financesService", function($resource){
-	var financeService = $resource('/api/finances/:id',{},
+	var financeService = $resource('/api/finance/:id',{},
                         {
                            // 'getAll': {method: "GET", isArray:true},
                             'create': {method: "POST"},
@@ -29,6 +29,6 @@ angular.module('flatman').factory("financesService", function($resource){
                 return _(finance).reduce(function(memo, l){return memo + _(l.fin).length;}, 0);
             },
         },
-    }
+    };
 
 });

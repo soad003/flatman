@@ -13,6 +13,9 @@
 
 ActiveRecord::Schema.define(version: 20140422125526) do
 
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
   create_table "billcategories", force: true do |t|
     t.integer  "flat_id"
     t.string   "name"
@@ -101,11 +104,16 @@ ActiveRecord::Schema.define(version: 20140422125526) do
     t.string   "name"
     t.string   "tags"
     t.boolean  "available",   default: false
-    t.boolean  "hidden"
     t.string   "description"
     t.string   "sharingNote"
     t.string   "image_path"
     t.integer  "flat_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "shopping_lists", force: true do |t|
+    t.string   "item_name"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
