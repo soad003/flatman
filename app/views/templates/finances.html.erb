@@ -1,13 +1,14 @@
-<% content_for :robots, "NOINDEX, NOFOLLOW" %>
+<div>
+ <% content_for :robots, "NOINDEX, NOFOLLOW" %>
 
-<% content_for :title, t('.page_title') %>
+ <% content_for :title, t('.page_title') %>
 
 
   <section class="hidden-print">
     <h1 class="page-header"><span class="fa fa-bitcoin"></span> <%= t('.page_header') %></h1>
   </section>
 
-<div class ="container">
+<div class ="container" ng-show="lists.length===0">
  <div class="row">
   <div class="col-md-6">
 
@@ -258,7 +259,22 @@
                     </form>
 
                 </div>
-              </div>
-</div>
-</div>
+   </div>
+  </div>
 
+  </div>
+</div>
+</div>
+<div>
+  <form action="/#/finances_new" ng-show="finances.length===1">
+    <button class="btn btn-primary" type="submit" style="float: right;">
+      <span class="glyphicon glyphicon-plus"></span><%= t(".add") %>
+    </button>
+  </form>
+  <div class="jumbotron text-center" ng-show="lists.length===1">
+          <i class="fa fa-bitcoin fa-5x"></i>
+          <h2><%= t(".help_title") %></h2>
+          <%= t(".help_paragraph1") %><br>
+  </div>
+</div>
+</div>

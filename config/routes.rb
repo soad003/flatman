@@ -41,6 +41,7 @@ scope "(:locale)", locale: /en|de/ do
    end
    resources :user, only: [:index]
    resources :message, only: [:index, :create, :update, :destroy]
+   resources :finance, only: [:index, :create, :update, :destroy]
    resources :shoppinglist, only: [:index, :create, :destroy] do
       resources :shoppingitem, only: [:create, :update, :destroy]
    end

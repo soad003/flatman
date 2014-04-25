@@ -26,7 +26,7 @@ angular.module('flatman', ['ngRoute','ngResource','google-maps','angles','ui.boo
       }).
       when('/finances', {
         templateUrl: '/templates/finances',
-        controller: 'shoppingCtrl'
+        controller: 'financesCtrl'
       }).
       when('/messages', {
         templateUrl: '/templates/messages',
@@ -62,11 +62,11 @@ angular.module('flatman', ['ngRoute','ngResource','google-maps','angles','ui.boo
       }).
       when('/finances_new', {
         templateUrl: '/templates/finances_new',
-        controller: 'shoppingCtrl'
+        controller: 'financesCtrl'
       }).
       when('/finances_overview', {
         templateUrl: '/templates/finances_overview',
-        controller: 'shoppingCtrl'
+        controller: 'financesCtrl'
       }).
       when('/search/:term', {
         templateUrl: '/templates/search',
