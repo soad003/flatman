@@ -1,26 +1,48 @@
-angular.module('flatman').controller("shareCtrl", function($scope, shareService, Util){
-    
-  	$scope.shareditems = shareService.items.get();
+angular.module('flatman').controller("shareCtrl", function($scope, shareService, Util, $location){
+  	//load fucking items from fucking server
+  	$scope.shareditems = shareService.items.get();  	
+	$('.panel-tooltip').tooltip({placement: "bottom"});
 	
-
-	
-	
-	//$scope.items={ name: "", tags:"", description:"", sharingNote:"" };
-  	
+  	//add a new fucking item. just title.
   	$scope.addItem = function() {
-  		//console.log($scope);
-  	 	
   	 	shareService.items.create($scope.newItemName, function(data) {
   	 		data.items = [];
   	 		$scope.shareditems.push(data);
   	 		$scope.newItemName = '';
+  	 		window.location = "#/shareditem/"+data.id;
   	 	}, function() {
-  	 		console.log("aiaiai");
+  	 		//errorhandling
   	 	});
-  	 
-    
-  	 }
-
-    
+  	     
+  	 };
+	
+	//remove that fucking item.
+	$scope.removeItem = function(item) {
+		if (confirm('really?')) {
+			  shareService.items.remove(item, function(data) {
+				$scope.shareditems = _($scope.shareditems).without(item);
+			}, function() {
+			});	
+		}		
+	};  
+	
+	
+	//hide that fucking item.
+	$scope.hideItem = function(item, hide) {
+		console.log(hide);
+		item.hidden = hide;
+		shareService.items.update(item, function(data) {
+			
+		}, function() {
+			
+		});
+	};
+	
+	$scope.borrowItem = function(item) {
+		item.available = !item.available;
+		shareService.items.update(item, function(data) {
+			
+		}, function() {});
+	}
 
 });

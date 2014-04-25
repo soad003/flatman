@@ -16,10 +16,16 @@ class Api::ShareController < Api::RestController
     respond_with(newitem, :location => nil)
   end
   
+  def destroy
+    item = Shareditem.find(si_params[:id])
+    item.destroy!
+    respond_with(nil)
+  end
+  
 
   private
   def si_params
-    params.permit(:name, :description, :tags, :sharingNote)
+    params.permit(:id, :name, :description, :tags, :sharingNote)
   end
 
 end
