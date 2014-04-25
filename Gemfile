@@ -13,7 +13,7 @@ gem 'launchy'
  # gem 'thin'
   #gem 'pg'
 #end
-
+gem 'activerecord'
 # Use mysql as the database
 #gem "mysql2"
 
@@ -95,5 +95,10 @@ gem 'capistrano', group: :development
 
 gem 'netrc'
 
+gem 'bootstrap-tagsinput-rails'
+gem 'magnific-popup-rails'
+gem 'less-rails'
+
+gem 'paperclip'
 # Use debugger
 # gem 'debugger', group: [:development, :test]

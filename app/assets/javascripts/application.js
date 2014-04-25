@@ -27,4 +27,6 @@
 //= require_tree ./controller
 //= require angles.js
 //= require angular-google-maps.min.js
-
+//= require bootstrap-tagsinput
+//= require bootstrap-tagsinput-angular
+//= require magnific-popup

@@ -17,6 +17,7 @@ scope "(:locale)", locale: /en|de/ do
     get '/resources', to: :resources, as: 'resources'
     get '/share', to: :share, as: 'share'
     get '/shareditem', to: :shareditem, as: 'shareditem'
+    get '/upload', to: :upload, as: 'upload'
     get '/shopping', to: :shopping, as: 'shopping'
     get '/user_settings', to: :user_settings, as: 'user_settings'
     get '/dashboard', to: :dashboard, as: 'dashboard_template'
@@ -55,8 +56,15 @@ scope "(:locale)", locale: /en|de/ do
 
    get '/dashboard/resource' => 'resource#dashboard'
 
-   resources :share, only: [:index, :create]
-   resources :shareditem, only: [:index, :create]
+   #sharing
+   get '/shareditem/:id' => 'shareditem#get'
+   post '/shareditem/:id' => 'shareditem#update'
+   resources :share, only: [:index, :create, :destroy]
+   resources :shareditem, only: [:index, :create, :update]
+   
+   post '/upload' => 'upload#create'
+   get '/upload' => 'upload#new'
+   
   end
 
   # Authentication

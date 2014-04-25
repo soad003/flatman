@@ -1,7 +1,12 @@
 angular.module('flatman').factory("userService",function($resource) {
-    return $resource('/api/user/',{},
+    var userService = $resource('/api/user/',{},
             {
                 'get': {method: "GET"}
             });
+
+    return {
+    	get: function(){return userService.get();},
+    	//find: function(name){return userService.get(name)}
+    }
 
 });

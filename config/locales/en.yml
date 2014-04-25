@@ -40,6 +40,9 @@ en:
       create:
         entryDate_before_startDate        : "The date for your entry is before the start date"
         entryDate_exists                  : "There is already an entry for this date"
+    shareditem:
+      get:
+        no_item_found                     : "The requested Item is currently not available"
   # mail
   user_mailer:
     invite:
@@ -325,16 +328,25 @@ en:
         connect_title                    : "Connect"
         connect_text                     : "Maecenas sed diam eget risus varius blandit sit amet non magna."
     share:
-      title                              : "sharing is caring"
+      title                              : "sharing"
       available_items                    : "available items"
+      available_info                     : "available items text available items text available items text available items text "
       filter                             : "filter"
-      item_borrow                        : "borrowed"
+      item_borrow                        : "currently borrowed"
       item_hide                          : "hide"
+      item_unhide                        : "unhide"
       item_edit                          : "edit"
       item_remove                        : "remove"
       item_new                           : "new item"
+      item_backhome                      : "back home"
       add                                : "add"
-
+      help_title                         : "sharing is caring"
+      help_paragraph1                    : "Share items which are used rarely (like soldering iron, impact drill etc.) with your neighbours. "
+      help_paragraph2                    : "Add a product, insert some additional information and let the love act."
+      first_item                         : "create your first item"
+      add_item_new                       : "add"
+      hidden_items                       : "hidden items"
+      hidden_info                        : "hidden items are just visible for you and cannot be found by anyone"
   session:
     index:
       page_title                         : "Please sign in"

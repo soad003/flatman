@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140415153825) do
+ActiveRecord::Schema.define(version: 20140422125526) do
 
   create_table "billcategories", force: true do |t|
     t.integer  "flat_id"
@@ -44,7 +44,7 @@ ActiveRecord::Schema.define(version: 20140415153825) do
     t.datetime "updated_at"
   end
 
-  add_index "flats", ["name"], name: "index_flats_on_name", unique: true, using: :btree
+  add_index "flats", ["name"], name: "index_flats_on_name", unique: true
 
   create_table "invites", force: true do |t|
     t.string   "email"
@@ -53,7 +53,7 @@ ActiveRecord::Schema.define(version: 20140415153825) do
     t.datetime "updated_at"
   end
 
-  add_index "invites", ["email"], name: "index_invites_on_email", unique: true, using: :btree
+  add_index "invites", ["email"], name: "index_invites_on_email", unique: true
 
   create_table "messages", force: true do |t|
     t.integer  "sender_id"
@@ -101,11 +101,16 @@ ActiveRecord::Schema.define(version: 20140415153825) do
     t.string   "name"
     t.string   "tags"
     t.boolean  "available"
-    t.boolean  "hidden"
     t.string   "description"
     t.string   "sharingNote"
     t.string   "image_path"
     t.integer  "flat_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "shopping_lists", force: true do |t|
+    t.string   "item_name"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
