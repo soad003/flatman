@@ -2,8 +2,8 @@ angular.module('flatman').controller("financesCtrl", function($scope, financesSe
 	
 	$scope.intro = false;
 	$scope.finTmp={ name:"", value:"", date:"", user_id:"", cat:""};
-	$scope.finTmp.user_id=current_user.id;
-	$scope.finances= financeService.finance.get();//{
+	//$scope.finTmp.user_id=current_user.id;
+	$scope.finances= financesService.finance.get();//{
 /*		if($scope.finances.length === 0){
 			$scope.intro = true;
 		}
@@ -19,14 +19,14 @@ angular.module('flatman').controller("financesCtrl", function($scope, financesSe
 */
 
 	$scope.addEntry=function(){
-		financeService.finance.create($scope.finTmp, function(data){
+		financesService.finance.create($scope.finTmp, function(data){
 			$scope.finances.push(data);
 			location.href="/#/finances";
 		});
 	};
 
 	$scope.removeEntry=function(finance, entry){
-		financeService.finance.destroy(entry.id, function(){
+		financesService.finance.destroy(entry.id, function(){
             finance.entries = _(finance.entries).without(entry);
         });
 	};
