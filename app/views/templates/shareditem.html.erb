@@ -5,32 +5,7 @@
 	</div>
 		
 		
-	<form 	accept-charset="UTF-8" 
-			action="/api/upload" 
-			class="new_user" 
-			enctype="multipart/form-data" 
-			id="new_user" 
-			method="post">
-			
-		
-
-	  <div class="field">
-	  	
 	
-	  
-	    <label for="upload_file">direkt rotze.</label><br>
-	    <input id="upload_file" name="upload[file]" type="file">
-	  
-	  
-	<!-- 	<input name="upload[item]" value="{{item}}" /> 
-		rotze. 
-		Can't verify CSRF token authenticity
--->
-	 
-	  <div class="actions">
-	    <input name="commit" type="submit" value="Create User">
-	  </div>
-	</form>-->
 	
 	<!--
 		rotz.
@@ -64,11 +39,32 @@
 	        		
 			</a>
 			<div class="caption">
-				<p>a pic says more than 1000 words</p>
-				<p>
-					<button class="btn btn-primary"><span class="glyphicon glyphicon-pencil"></span> edit</button>	
-					<button class="btn btn-primary"><span class="glyphicon glyphicon-remove"></span> remove</button>	
-				</p>	
+				<form 	accept-charset="UTF-8" 
+			action="/api/upload" 
+			class="new_user" 
+			enctype="multipart/form-data" 
+			id="new_user" 
+			method="post">
+			
+		
+
+	  <div class="field">
+	  	
+	
+	  
+	    <input id="upload_file" name="upload[file]" type="file">
+	  
+	  
+	<!-- 	<input name="upload[item]" value="{{item}}" /> 
+		rotze. 
+		Can't verify CSRF token authenticity
+-->
+	 
+	  <div class="actions">
+	    <input name="commit" type="submit" value="upload direkt -.-">
+	  </div>
+	  </div>
+	</form>
 			</div>
 		    
 		</div>

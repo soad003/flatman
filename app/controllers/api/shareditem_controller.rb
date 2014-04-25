@@ -8,7 +8,7 @@ class Api::ShareditemController < Api::RestController
       respond_with(item)
     else
        respond_with_errors([t('.no_item_found')])
-       #warum kimb do a sa gschissena drecks errormessage.?
+       #warum andre errormessage?
     end
   end
   
