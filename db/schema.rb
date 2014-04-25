@@ -101,6 +101,7 @@ ActiveRecord::Schema.define(version: 20140422125526) do
     t.string   "name"
     t.string   "tags"
     t.boolean  "available"
+    t.boolean  "hidden"
     t.string   "description"
     t.string   "sharingNote"
     t.string   "image_path"
@@ -108,12 +109,6 @@ ActiveRecord::Schema.define(version: 20140422125526) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.boolean  "hidden",      default: false
-  end
-
-  create_table "shopping_lists", force: true do |t|
-    t.string   "item_name"
-    t.datetime "created_at"
-    t.datetime "updated_at"
   end
 
   create_table "shoppinglistitems", force: true do |t|

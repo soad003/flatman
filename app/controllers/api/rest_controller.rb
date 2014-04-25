@@ -1,4 +1,5 @@
 class Api::RestController < ProtectedController
+    require 'active_record/validations.rb' # solve the problem with uninitialized constant ActiveRecord::RecordInvalid 
     protect_from_forgery with: :null_session
     respond_to :json
     rescue_from Exception, with: :general_error
