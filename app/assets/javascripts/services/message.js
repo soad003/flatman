@@ -9,8 +9,8 @@ angular.module('flatman').factory("messageService", function($resource) {
     return {
         message: {
             get: function(){ return messageSer.get();},
-            create: function(text,succH,errH) {
-                messageSer.create(text,succH,errH);
+            create: function(mes,succH,errH) {
+                messageSer.create(mes,succH,errH);
             },
 
         },
