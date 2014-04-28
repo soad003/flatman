@@ -219,11 +219,12 @@ en:
     messages:
       page_header                        : "Messages"
       page_title                         : "Messages"
-    message_window:
-      page_header                        : "Messages"
-      send                               : "Send"
       new_text_placeholder               : "Enter text"
-    message_new:
+      send                               : "Send"
+      intro_header                       : "Start creating your first chat"
+      intro_text1                        : "With this feature you can contact other Users to share some items or other things."
+      intro_text2                        : "Maybe you can find someone to borrowed an item you need."
+    create_message:
       page_header                        : "New Message"
       send                               : "send"
       create_Message_user_placeholder    : "Username"

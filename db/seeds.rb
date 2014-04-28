@@ -261,4 +261,6 @@ Message.create!([
   {sender_id: 2, receiver_id: 1, text: "hello2", header: "hi2", read: true},
   {sender_id: 3, receiver_id: 2, text: "hello3", header: "hi3", read: true},
   {sender_id: 1, receiver_id: 3, text: "hello4", header: "hi4", read: true},
+  {sender_id: 3, receiver_id: 1, text: "hello5", header: "hi5", read: true},
+  {sender_id: 1, receiver_id: 3, text: "hello6", header: "hi6", read: true},
 ])

@@ -3,9 +3,15 @@ class Api::MessageController < Api::RestController
   around_filter :wrap_in_transaction, only: [:create]
 
   def index
-    #@meslist=Message.find_messages(current_user, 1)
     @meslist=Message.find_chats(current_user)
-    respond_with(@meslist)
+  end
+
+  def get_messages
+    @meslist=Message.find_messages(params[:mes_id])
+  end
+
+  def find_partner
+    @partner=Message.find_partner(params[:mes_id], current_user)
   end
 
   def create

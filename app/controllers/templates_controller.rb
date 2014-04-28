@@ -25,10 +25,7 @@ class TemplatesController < ProtectedController
   def messages
   end
 
-  def message_window
-  end
-
-  def message_new
+  def create_message
   end
   
   def shopping

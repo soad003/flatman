@@ -1,36 +1,92 @@
 <% content_for :title, t('.page_title') %>
 
+<script type="text/javascript">
+    function scrolldown() {$("#scrollarea").animate({ scrollTop: $(document).height()*25 }, "fast");}
+  </script>
+
 <div class="visible-lg visible-md">
   <div class="page-head">
-      <h2 class="page-header"><span class="fa fa-envelope"></span> <%= t('.page_header') %> <a href="/#/message_new"><button class="btn btn-primary pull-right"><i class="fa fa-plus"></i> <%= t('.page_title') %></button></a></h2>
+      <h2 class="page-header" ng-show="chatView"><span class="fa fa-envelope"></span>
+          <%= t('.page_header') %> 
+        <a href="/#/create_message"><button class="btn btn-primary pull-right"><i class="fa fa-plus"></i> <%= t('.page_title') %></button></a></h2>
+      <h2 class="page-header" ng-show="chatView == false"><span class="fa fa-envelope"></span>
+          {{chatPartner.name}}
+        <a href="/#/create_message"><button class="btn btn-primary pull-right"><i class="fa fa-plus"></i> <%= t('.page_title') %></button></a></h2>
      
   </div>
 </div>
 
 <div class="visible-xs">
   <div class="page-head">
-      <h2 class="page-header"><span class="fa fa-envelope"></span> <%= t('.page_header') %> <a href="/#/message_new"><button class="btn btn-primary btn-xs pull-right"><i class="fa fa-plus"></i> <%= t('.page_title') %></button></a></h2>
+      <h2 class="page-header"><span class="fa fa-envelope"></span> <%= t('.page_header') %> <a href="/#/create_message"><button class="btn btn-primary btn-xs pull-right"><i class="fa fa-plus"></i> <%= t('.page_title') %></button></a></h2>
      
   </div>
 </div>
 
-<div class="container modal-body">
+<div class="container modal-body" ng-show="chatView">
 </br>
 </br>
-  <a style="cursor:pointer; text-decoration: none;" href="/#/message_window">
-    <div class="row" ng-repeat="message in messages">
+  <div class="row" ng-repeat="chat in chats">
+    <a style="cursor:pointer; text-decoration: none;" ng-click="getMessages(chat)" onclick="scrolldown()">
       <div class="panel panel-success">
-        <div class="list-group-item"><span class="badge">14</span><strong>{{message.receiver_name}}</strong></div>
+        <div class="list-group-item"><span class="badge">14</span><strong>{{chat.receiver_name}}</strong></div>
           <div class="panel-footer">
             <div class="row">
-              <div class="col-xs-6 col-md-6">{{message.text}}</div>
+              <div class="col-xs-6 col-md-6">{{chat.sender_name}}: {{chat.text}}</div>
                 <div class="col-xs-6 col-md-6">
-                  <span class="time"><p class="text-right" style="font-size:x-small"><i class="fa fa-clock-o"></i> {{message.time}}</p></span>
+                  <span class="time"><p class="text-right" style="font-size:x-small"><i class="fa fa-clock-o"></i> {{chat.time}}</p></span>
                 </div>
               </div>
             </div>
       </div>
-    </div>
-  </a>
+    </a>
+  </div>
   
 </div>
+<body>
+<br>
+<div ng-show="chatView == false">
+  <div class="modal-body" name="scrollarea" id="scrollarea" style="height: 270px; overflow-y: auto; overflow-x: hidden;">
+    <div ng-repeat="message in messages">
+        <div class="panel panel-success">
+            <div class="list-group-item" ng-model="Username"><strong>{{message.sender_name}}</strong></div>
+            <div class="panel-footer">
+                <div class="row">
+                  <div class="col-xs-6 col-md-6">{{message.text}}</div>
+                  <div class="col-xs-6 col-md-6">
+                      <span class="time pull-right" style="font-size:x-small"><i class="fa fa-clock-o"></i>{{message.time}}</span>
+                  </div>
+                </div>
+            </div>
+        </div>
+    </div>
+  </div>
+  <div class="modal-footer">
+    <form role="form" name="SendForm">
+      <div class="row">
+          <div class="col-lg-10 col-md-10 col-xs-8">
+              <textarea class="form-control" rows="3" ng-model="newMess.text" type="text" maxlength="30" placeholder="<%= t('.new_text_placeholder') %>" required></textarea>
+          </div>
+          <div class="col-lg-2 col-md-2 col-xs-4">
+              <a style="text-decoration: none;"><button class="btn btn-primary btn-block" onclick="scrolldown()" type="submit" ng-click="sendMessage()"><%= t('.send') %></button></a>
+              <a ng-click="toggleView()" style="text-decoration: none;"><button type="button" class="btn btn-default btn-block"><%= t('buttons.labels.decision.close') %></button></a>
+          </div>
+      </div>
+    </form>
+  </div>
+</div>
+</body>
+<div class="jumbotron text-center" ng-show="intro">
+    <i class="fa fa-envelope fa-5x"></i>
+    <h3><%= t('.intro_header') %></h3>
+    <%= t('.intro_text1') %> <br>
+    <%= t('.intro_text2') %>
+</div>
+
+<!-- todo
+- use suggestions in create_message (Typeahead Bootstrap)
+- fix reload after create_message
+- parse timestamp
+- count unread messages
+-->
+
