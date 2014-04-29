@@ -1,17 +1,22 @@
 class Api::FinanceController <Api::RestController
 	around_filter :wrap_in_transaction, only: [:create, :update]
 
-	def index
-		@f=Bill.all
-        respond_with(@f)
-        #@f=Bill.calc(current_user.user.bills)
+	  def index
+		  @f=Bill.all
+      #@f.each do |b|
+      #  b.name = Billcategory.find(b.billcategory_id)
+      #end
+
+      #respond_with(@f)
     end
 
     def create
-        u = current_user
+        #f=Billcategory.all
+        #f_params[:billcategory_id] = f.id
         b=Bill.new(f_params)
-        u.bills << b
-        u.save!
+        b.billcategory_id = "1";
+        b.save!
+        respond_with(b, :location => nil);
     end
 
     def update
@@ -19,15 +24,21 @@ class Api::FinanceController <Api::RestController
     end
 
     def destroy
-        #f = Bill.find_by(params[:id]));
-        f = Bill.find_financial_with_user_constraint(params[:id], current_user)
-        f.destroy!
-        respond_with(nil)
+       entry = Bill.find(f_params[:id])
+       entry.destroy!
+       respond_with(nil)
+
+       #Bill.destroy_with_user_constraint(params[:id], current_user)
+       #respond_with(nil)
     end
 
     private
     def f_params
-        params.permit(:value, :date, :user_id, :billcategory_id)
+        params.permit(:text, :value, :user_id, :date, :billcategory_id, :id)
     end
 
+    private
+    def b_params
+      params.permit(:id, :name)
+    end
 end

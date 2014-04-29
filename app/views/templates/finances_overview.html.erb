@@ -7,8 +7,8 @@
   </section>
 
  <div class="panel-body">
-  <div ng-repeat="finance in finances">
- 	<div style="margin:auto; width:450px; padding:40px border: 1px solid black;">
+ 
+ 	<div style="margin:auto; width:450px; padding:40px border: 1px solid black;" >
   		<table class="table table-striped">
   			<tr>
   				<th><label for="Date">Datum:</label>
@@ -19,91 +19,44 @@
   				</th>
   				<th><label for="Ausgaben">Ausgaben:</label>
   				</th>
+          <th>
+          </th>
   			</tr>
-  			<tr>
-  				<th>{{finance.date}}
+      
+  			<tr ng-repeat="finance in finances | orderBy: '-date' track by $index" class ="">
+  				<th>{{finance.date | date : 'mediumDate'}}
   				</th>
   				<th>{{finance.name}}
   				</th>
   				<th>
-  					{{finance.category}}
+  					{{finance.cat}}
   				</th>
   				<th>
   					{{finance.value}}
   				</th>
+          <th> 
+            <div class="btn-group pull-right">
+              <button type="button" class="btn btn-default dropdown-toggle btn-xs" data-toggle="dropdown">
+               <span class="glyphicon glyphicon-pencil"></span>
+              </button>
+              <ul class="dropdown-menu">
+                <li>
+                  <a href="" ng-click="removeEntry(finance)"><span class="glyphicon glyphicon-trash"></span> remove Entry</a>
+                </li>
+                <li>
+                  <a href="" ng-click="updateEntry(finance)"><span class="glyphicon glyphicon-pencil">edit</span>
+                  </a>
+                </li>
+              </ul>
+          </div>
+          </th>
   			</tr>
-        <tr>
-          <th>19.09.1999
-          </th>
-          <th>blabla
-          </th>
-          <th>
-            Strom
-          </th>
-          <th>
-            50,00
-          </th>
-        </tr>
-        <tr>
-          <th>19.09.1999
-          </th>
-          <th>blabla
-          </th>
-          <th>
-            Strom
-          </th>
-          <th>
-            50,00
-          </th>
-        </tr>
-        <tr>
-          <th>19.09.1999
-          </th>
-          <th>blabla
-          </th>
-          <th>
-            Strom
-          </th>
-          <th>
-            50,00
-          </th>
-        </tr>
-        <tr>
-          <th>19.09.1999
-          </th>
-          <th>blabla
-          </th>
-          <th>
-            Strom
-          </th>
-          <th>
-            50,00
-          </th>
-        </tr>
-        <tr>
-          <th>19.09.1999
-          </th>
-          <th>blabla
-          </th>
-          <th>
-            Strom
-          </th>
-          <th>
-            50,00
-          </th>
-        </tr>
-        <tr>
-          <th>19.09.1999
-          </th>
-          <th>blabla
-          </th>
-          <th>
-            Strom
-          </th>
-          <th>
-            50,00
-          </th>
-        </tr>
+      </div>
   		</table>
+      <div style='float:left'>
+              <form action="/#/finances">
+                <button type="submit" class="btn btn-primary">BACK</button>
+              </form>
+            </div>
   	</div>
   </div>

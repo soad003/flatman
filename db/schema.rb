@@ -11,10 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140422125526) do
-
-  # These are extensions that must be enabled in order to support this database
-  enable_extension "plpgsql"
+ActiveRecord::Schema.define(version: 20140426091603) do
 
   create_table "billcategories", force: true do |t|
     t.integer  "flat_id"
@@ -30,6 +27,7 @@ ActiveRecord::Schema.define(version: 20140422125526) do
     t.integer  "billcategory_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "text"
   end
 
   create_table "bills_users", force: true do |t|
