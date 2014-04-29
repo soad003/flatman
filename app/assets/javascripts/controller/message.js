@@ -1,10 +1,5 @@
 angular.module('flatman').controller("messageCtrl", function($scope, $route, messageService, Util){
-	$scope.intro = false
-    $scope.chats = messageService.message.get(function(){
-        if ($scope.resources.length === 0){
-            $scope.intro = true;
-        }
-    });
+    $scope.chats = messageService.message.get();
     $scope.messages = []
     $scope.chatView = true
     $scope.chatPartner = null
@@ -29,10 +24,10 @@ angular.module('flatman').controller("messageCtrl", function($scope, $route, mes
         $scope.newMess.receiver_id = $scope.chatPartner.name
         messageService.message.create($scope.newMess,function(data){
                 $scope.messages.push(data);
+                //alert(JSON.stringify(data));
                 $scope.newMess.text='';
                 
         });
-        $route.reload();                                            // todo fix actualization
     };
 	
 });

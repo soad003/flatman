@@ -24,8 +24,7 @@
 </div>
 
 <div class="container modal-body" ng-show="chatView">
-</br>
-</br>
+<div ng-show="chats.length > 0"></br></br></div>
   <div class="row" ng-repeat="chat in chats">
     <a style="cursor:pointer; text-decoration: none;" ng-click="getMessages(chat)" onclick="scrolldown()">
       <div class="panel panel-success">
@@ -54,7 +53,7 @@
                 <div class="row">
                   <div class="col-xs-6 col-md-6">{{message.text}}</div>
                   <div class="col-xs-6 col-md-6">
-                      <span class="time pull-right" style="font-size:x-small"><i class="fa fa-clock-o"></i>{{message.time}}</span>
+                      <span class="time pull-right" style="font-size:x-small"><i class="fa fa-clock-o"></i>{{message.created_at}}</span>
                   </div>
                 </div>
             </div>
@@ -68,7 +67,7 @@
               <textarea class="form-control" rows="3" ng-model="newMess.text" type="text" maxlength="30" placeholder="<%= t('.new_text_placeholder') %>" required></textarea>
           </div>
           <div class="col-lg-2 col-md-2 col-xs-4">
-              <a style="text-decoration: none;"><button class="btn btn-primary btn-block" onclick="scrolldown()" type="submit" ng-click="sendMessage()"><%= t('.send') %></button></a>
+              <a style="text-decoration: none;"><button class="btn btn-primary btn-block" onclick="scrolldown()" type="submit" ng-click="sendMessage()" onclick="scrolldown()"><%= t('.send') %></button></a>
               <a ng-click="toggleView()" style="text-decoration: none;"><button type="button" class="btn btn-default btn-block"><%= t('buttons.labels.decision.close') %></button></a>
           </div>
       </div>
@@ -76,7 +75,7 @@
   </div>
 </div>
 </body>
-<div class="jumbotron text-center" ng-show="intro">
+<div class="jumbotron text-center" ng-show="chats.length === 0">
     <i class="fa fa-envelope fa-5x"></i>
     <h3><%= t('.intro_header') %></h3>
     <%= t('.intro_text1') %> <br>
@@ -85,8 +84,10 @@
 
 <!-- todo
 - use suggestions in create_message (Typeahead Bootstrap)
-- fix reload after create_message
+- error with false user
 - parse timestamp
 - count unread messages
+- delete chats
+- detect same user 
 -->
 
