@@ -52,14 +52,6 @@ Flatman::Application.configure do
   config.action_controller.allow_forgery_protection = false
 
   config.action_mailer.delivery_method = :file
-  config.action_mailer.smtp_settings = {
-    openssl_verify_mode:  OpenSSL::SSL::VERIFY_NONE,
-    address:              'mail.gmx.net',
-    port:                 465,
-    user_name:            'info.flatman@gmx.at',
-    password:             ENV['SMTP_PASSWORD'],
-    authentication:       'plain',
-    enable_starttls_auto: true  }
 
   config.action_mailer.raise_delivery_errors = true
   config.action_mailer.default_url_options = { :host => 'localhost:3000' }

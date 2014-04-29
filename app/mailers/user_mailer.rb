@@ -1,5 +1,5 @@
 class UserMailer < ActionMailer::Base
-  #layout 'mail_layout'
+  layout 'mail_layout'
   before_filter :set_locale
 
     def invite(email,flat_name)
