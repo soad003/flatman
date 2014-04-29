@@ -209,6 +209,7 @@ en:
       view_share_details                 : "view items"
       view_resource_details              : "view resources"
       view_resource_titel                : "last 30 days"
+      panel_no_resources                 : "No resources are available"
       view_details                       : "View Details"
       panel_shopping_header              : "Shopping"
       panel_finances_header              : "Finances"
@@ -219,11 +220,12 @@ en:
     messages:
       page_header                        : "Messages"
       page_title                         : "Messages"
-    message_window:
-      page_header                        : "Messages"
-      send                               : "Send"
       new_text_placeholder               : "Enter text"
-    message_new:
+      send                               : "Send"
+      intro_header                       : "Start creating your first chat"
+      intro_text1                        : "With this feature you can contact other Users to share some items or other things."
+      intro_text2                        : "Maybe you can find someone to borrowed an item you need."
+    create_message:
       page_header                        : "New Message"
       send                               : "send"
       create_Message_user_placeholder    : "Username"
@@ -231,8 +233,9 @@ en:
     resources:
       page_header                        : "Resources"
       page_title                         : "Resource"
-      intro_header                       : "Start creating your first resource"
-      intro_text                         : "With this feature you can view your resource usage and costs. Maybe we will help you to save some costs and to protect your environment."
+      help_title                         : "Start creating your first resource ..."
+      help_paragraph1                    : "With this feature you can view your resource usage and costs. "
+      help_paragraph2                    : "Maybe we will help you to save some costs and to protect your environment."
       chart                              : "Chart"
       data                               : "Overview"
       date                               : "Date"
