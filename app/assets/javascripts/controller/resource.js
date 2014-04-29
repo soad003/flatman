@@ -1,8 +1,8 @@
 angular.module('flatman').controller("resourceCtrl",function($scope, $filter, resourceService, Util){
-    $scope.intro = false;
+    $scope.showIntro = false;
     $scope.resources = resourceService.resource.getAll(function(){
         if ($scope.resources.length === 0){
-            $scope.intro = true;
+            $scope.showIntro = true;
         }
         _.each($scope.resources, function(resource){
                                         resource.enoughEntriesForChart = (resource.entryLength > 2);
