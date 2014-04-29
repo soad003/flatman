@@ -25,8 +25,7 @@ scope "(:locale)", locale: /en|de/ do
     get '/search', to: :search, as: 'search'
     get '/finances_new', to: :finances_new, as: 'finances_new'
     get '/finances_overview', to: :finances_overview, as: 'finances_overview'
-    get '/message_window', to: :message_window, as: 'message_window'
-    get '/message_new', to: :message_new, as: 'message_new'
+    get '/create_message', to: :create_message, as: 'create_message'
   end
 
   #REST API
@@ -41,7 +40,7 @@ scope "(:locale)", locale: /en|de/ do
       post '/', to: :update
    end
    resources :user, only: [:index]
-   resources :message, only: [:index, :create, :update, :destroy]
+   
    resources :finance, only: [:index, :create, :update, :destroy]
    resources :shoppinglist, only: [:index, :create, :destroy] do
       resources :shoppingitem, only: [:create, :update, :destroy]
@@ -56,6 +55,10 @@ scope "(:locale)", locale: /en|de/ do
 
    get '/dashboard/resource' => 'resource#dashboard'
 
+   #messages
+   resources :message, only: [:index, :create, :update, :destroy]
+   get '/message/:mes_id/messages' => 'message#get_messages'
+   get '/message/:mes_id/partner/' => 'message#find_partner'
    #sharing
    get '/shareditem/:id' => 'shareditem#get'
    post '/shareditem/:id' => 'shareditem#update'

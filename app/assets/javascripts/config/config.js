@@ -32,12 +32,8 @@ angular.module('flatman', ['ngRoute','ngResource','google-maps','angles','ui.boo
         templateUrl: '/templates/messages',
         controller: 'messageCtrl'
       }).
-      when('/message_window', {
-        templateUrl: '/templates/message_window',
-        controller: 'messageCtrl'
-      }).
-      when('/message_new', {
-        templateUrl: '/templates/message_new',
+      when('/create_message', {
+        templateUrl: '/templates/create_message',
         controller: 'create_messageCtrl'
       }).
       when('/resources', {
