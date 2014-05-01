@@ -15,9 +15,7 @@ angular.module('flatman').controller("resourceCtrl",function($scope, $filter, re
     });
 
     $scope.formatNumber = function (number){
-        if (locale != 'en')
-         number = (number+"").replace('.',',');
-        return number;
+        return (locale != 'en')? number.toString().replace('.',','): number;
     };
 
     $scope.init = function (resource) {
