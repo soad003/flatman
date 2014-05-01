@@ -38,7 +38,7 @@
           <a class="navbar-brand" href="/#/dashboard"><%= image_tag("flatman_logo_30.png", width: 30) %> flatman</a>
         </div>
         <% if is_user_ready_to_go %>
-          <div class="navbar-collapse collapse">
+          <div class="navbar-collapse collapse no-transition">
             <ul class="nav navbar-nav">
               <li ng-class="{active:isActive('/dashboard')}">
                 <a href="/#/dashboard" ><span class="fa fa-dashboard"></span> <%=t(".navbar.dashboard")%></a>
