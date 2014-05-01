@@ -24,7 +24,7 @@ gem 'sass-rails', '~> 4.0.0'
 gem 'uglifier', '>= 1.3.0'
 
 # Use CoffeeScript for .js.coffee assets and views
-gem 'coffee-rails', '~> 4.0.0'
+#gem 'coffee-rails', '~> 4.0.0'
 
 # See https://github.com/sstephenson/execjs#readme for more supported runtimes
 gem 'therubyracer', platforms: :ruby
@@ -46,12 +46,7 @@ group :doc do
 end
 
 # Twitter Bootstrap
-#gem 'bootstrap-sass'
 gem 'bootstrap-sass', '~> 3.1.1'
-#gem 'bootstrap-sass', github: 'thomas-mcdonald/bootstrap-sass', branch: '3'
-
-## Use unicorn as the app server
-#gem 'unicorn'
 
 # http accept lang
 gem 'http_accept_language'
@@ -80,6 +75,12 @@ gem 'angular-ui-bootstrap-rails'
 gem 'assert_json'
 
 #gem "animate-rails"
+
+# mail exception notification
+gem 'exception_notification'
+
+#javascript linter (syntax checker)
+gem 'jshint_on_rails'
 
 #lightbox pictures
 #gem 'magnific-popup-rails'

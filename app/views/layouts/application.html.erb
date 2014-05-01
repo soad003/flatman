@@ -41,7 +41,7 @@
           <div class="navbar-collapse collapse">
             <ul class="nav navbar-nav">
               <li ng-class="{active:isActive('/dashboard')}">
-                <a href="/#/dashboard"><span class="fa fa-dashboard"></span> <%=t(".navbar.dashboard")%></a>
+                <a href="/#/dashboard" ><span class="fa fa-dashboard"></span> <%=t(".navbar.dashboard")%></a>
               </li>
               <li ng-class="{active:isActive('/shopping')}">
                 <a href="/#/shopping"><span class="glyphicon glyphicon-shopping-cart"></span>  <%=t(".navbar.shopping")%></a>
@@ -120,16 +120,16 @@
       <div class="container">
         <p class="text-muted">
           <div class="row">
-            <div class="col-md-4 col-xs-4">
+            <div class="col-md-4 col-xs-6">
               &copy; flatman <%= Time.now.year %>
             </div>
-            <div class="col-md-4 col-xs-4 text-center">
+            <div class="col-md-4 col-xs-6 text-center">
               <%= link_to_unless(I18n.locale == :en,
                       t('misc.titles.language.english'),{locale: :en},{:onclick => "this.href=this.href+'/'+window.location.hash" })%> |
               <%= link_to_unless(I18n.locale == :de,
                       t('misc.titles.language.german'),{locale: :de},{:onclick => "this.href=this.href+'/'+window.location.hash" })%>
             </div>
-            <div class="col-md-4 col-xs-4 text-right">
+            <div class="col-md-4 col-xs-4 text-right  hidden-xs">
               <%= link_to t('misc.titles.menus.terms_and_privacy.title'), terms_path %>
             </div>
           </div>
@@ -145,14 +145,13 @@
       src="https://maps.googleapis.com/maps/api/js?sensor=false">
     </script>
     <%= javascript_include_tag "application" %>
-    
-    <%= yield :script %>
-    <script>var locale = "en";</script>
-    <%if I18n.locale.to_s === "de"%>
-        <script type="text/javascript" src="/assets/angular-locale_de-de.js"></script>
-        <script>var locale = "de";</script>
-    <%end%>
 
+    <%= yield :script %>
+
+    <%if I18n.locale.to_s === "de"%>
+        <script type="text/javascript" src="/assets/vendor/angular-locale_de-de.js"></script>
+    <%end%>
+    <script>var locale = "<%=I18n.locale.to_s%>";</script>
 
   </body>
 </html>

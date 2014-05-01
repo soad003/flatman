@@ -11,11 +11,11 @@ angular.module('flatman').controller("flatSettingsCtrl",function($scope,flatServ
     };
 
     $scope.get_address_string=function(){
-        return $scope.flat.street + ", " + $scope.flat.zip + ", " + $scope.flat.city
+        return $scope.flat.street + ", " + $scope.flat.zip + ", " + $scope.flat.city;
     };
 
     $scope.set_location=function(){
-        var geocoder = new google.maps.Geocoder()
+        var geocoder = new google.maps.Geocoder();
         geocoder.geocode( { 'address': $scope.get_address_string()}, function(results, status) {
               if (status == google.maps.GeocoderStatus.OK) {
                     $scope.map.center.latitude= results[0].geometry.location.lat();

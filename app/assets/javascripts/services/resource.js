@@ -5,7 +5,7 @@ angular.module('flatman').service("resourceService",function($resource) {
                             'get': {method: "GET"},
                             'create': {method: "POST"},
                             'destroy': {method: "DELETE"},
-                            'update': {method: "PUT"},
+                            'update': {method: "PUT"}
                         });
 
    var dashboardService = $resource('/api/dashboard/resource',{},
