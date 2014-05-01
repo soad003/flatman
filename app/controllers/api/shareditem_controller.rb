@@ -1,6 +1,8 @@
 class Api::ShareditemController < Api::RestController
   
-  
+  def updload
+    
+  end
   
   def get
     item=Shareditem.find(s_params[:id])

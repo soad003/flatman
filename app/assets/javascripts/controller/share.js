@@ -1,7 +1,21 @@
 angular.module('flatman').controller("shareCtrl", function($scope, shareService, Util, $location){
-  	//load fucking items from fucking server
   	$scope.shareditems = shareService.items.get();  	
+	
+	//add tooltips (data in title="") to classes.
 	$('.panel-tooltip').tooltip({placement: "bottom"});
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	
   	//add a new fucking item. just title.
   	$scope.addItem = function() {

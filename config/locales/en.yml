@@ -350,6 +350,12 @@ en:
       add_item_new                       : "add"
       hidden_items                       : "hidden items"
       hidden_info                        : "hidden items are just visible for you and cannot be found by anyone"
+    shareditem:     
+      add_file                           : "add file"  
+      upload                             : "upload"
+      upload                             : "upload"
+      save                               : "save"
+    
   session:
     index:
       page_title                         : "Please sign in"

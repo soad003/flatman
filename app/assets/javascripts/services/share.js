@@ -6,7 +6,8 @@ angular.module('flatman').factory("shareService", function($resource) {
 	}, {
 		'get': {method: "GET"},
 		'update': {method: "POST"},
-		'destroy': {method: "DELETE"}
+		'destroy': {method: "DELETE"},
+		'upload': {method: "PUT"}
 	})
 	
 	var shareService = $resource('/api/share/:id', {
@@ -30,6 +31,12 @@ angular.module('flatman').factory("shareService", function($resource) {
 					sharedItemService.update({id:item.id}, item, succH, errH);
 					return "yeah yeah";
 		
+				},
+			upload: 
+				function(item, succH, errH) {
+					sharedItemService.upload({id : item.id}, item, succH, errH);
+					console.log(item);
+					return "sack";
 				}
 		},
 		

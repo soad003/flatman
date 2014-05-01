@@ -4,8 +4,17 @@
 		<h1 class="page-header"><span class="fa fa-share"> {{item.name}}<span></h1>
 	</div>
 		
+	<div class="col-lg-12">
 		
-	
+		<input type="file" id="fileUpload" upload-image />
+		<img ng-src="{{userImageLink}}" ng-click="openFileWindow()" ng-class="{ hidden: !userImageLink}" >
+		
+		<button ng-click="openFileWindow()"		
+				ng-class=" {hidden: userImageLink}"
+				class="btn btn-primary"><span class="glyphicon glyphicon-pencil"></span> add image</button>	
+							
+	</div>
+		
 	
 	<!--
 		rotz.
@@ -27,8 +36,7 @@
     	
     </form>
      -->
-	
-	
+
 	<div class="col-lg-3 ">
 	    <div class="thumbnail">
 	    	<a class="image-popup" href="http://artisticthings.com/wp-content/uploads/2010/04/apreis6-400x400.jpg" >
@@ -38,30 +46,32 @@
 	        			/>
 	        		
 			</a>
+			
+			
 			<div class="caption">
 				<form 	accept-charset="UTF-8" 
-			action="/api/upload" 
-			class="new_user" 
-			enctype="multipart/form-data" 
-			id="new_user" 
-			method="post">
+					action="/api/upload" 
+					class="new_user" 
+					
+					enctype="multipart/form-data" 
+					id="new_user" 
+					method="post">
 			
 		
 
 	  <div class="field">
 	  	
 	
-	  
-	    <input id="upload_file" name="upload[file]" type="file">
-	  
-	  
-	<!-- 	<input name="upload[item]" value="{{item}}" /> 
-		rotze. 
-		Can't verify CSRF token authenticity
--->
-	 
 	  <div class="actions">
-	    <input name="commit" type="submit" value="upload direkt -.-">
+	  		<input name="upload[itemid]" value="{{item.id}}"
+	  		<input id="upload_file" 
+	  			data-filename-placement="inside" name="upload[file]" type="file" value="<%= t(".add_file") %>">  
+	  		<button class="btn btn-primary uplaod_submit"  
+	  			
+	  			type="submit"><span class="glyphicon glyphicon-open"></span> <%= t(".upload_picture") %></button>	
+	  	
+			
+			
 	  </div>
 	  </div>
 	</form>
@@ -127,11 +137,13 @@
 			
 			
 				<p>
-			     <button class="btn btn-primary"
-                        type="submit"
-                         ng-disabled="!itemform.$valid">
-                         <span class="glyphicon glyphicon-floppy-disk"></span> update</button>
-                        
+				
+				<button class="btn btn-success"
+						ng-disabled="!itemform.$valid"
+						type="submit">
+          			<span class="glyphicon glyphicon-floppy-disk"></span> <%= t(".save") %>
+          		</button>
+          			        
                   
                 <a href="#/share"><button class="btn btn-primary">back</button></a>	
                </p>
