@@ -80,7 +80,7 @@ gem 'assert_json'
 gem 'exception_notification'
 
 #javascript linter (syntax checker)
-gem 'jslint_on_rails'
+gem 'jshint_on_rails'
 
 #lightbox pictures
 #gem 'magnific-popup-rails'
