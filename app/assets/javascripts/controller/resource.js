@@ -1,5 +1,5 @@
 angular.module('flatman').controller("resourceCtrl",function($scope, $filter, resourceService, Util){
-
+    //to get the env to reduce the loads of data
     $scope.findBootstrapEnvironment=function() {
         var envs = ['xs', 'sm', 'md', 'lg'];
 
