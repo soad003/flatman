@@ -33,8 +33,7 @@ class Api::ShareditemController < Api::RestController
           data.original_filename = params[:imagePath] # json parameter set in directive scope
           @up[:image] = data
           item.update!(@up)  
-       else
-         item.update(params[:description])
+      
     end
 
     

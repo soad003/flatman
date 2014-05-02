@@ -3,7 +3,7 @@ var baseUrl = 'http localhost:3000';
 angular.module('flatman').controller("sharedItemCtrl", function($scope, $routeParams, $location, shareService, Util) {
 	$scope.item = shareService.item.get($routeParams.itemid);
 
-	//register tagsinput
+	/*register tagsinput
 	('bootstrap-tagsinput').tagsinput({
 		confirmKeys : [13, 44]
 	});
@@ -11,7 +11,7 @@ angular.module('flatman').controller("sharedItemCtrl", function($scope, $routePa
 	//shadowbox for images
 	$('.image-popup').magnificPopup({
 		type : 'image'
-	});
+	})*/;
 
 	$('#itemavailable').bootstrapSwitch($scope.item.available);
 
