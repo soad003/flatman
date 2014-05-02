@@ -4,20 +4,7 @@ angular.module('flatman').controller("shareCtrl", function($scope, shareService,
 	//add tooltips (data in title="") to classes.
 	$('.panel-tooltip').tooltip({placement: "bottom"});
 	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-  	//add a new fucking item. just title.
+	  	//add a new fucking item. just title.
   	$scope.addItem = function() {
   	 	shareService.items.create($scope.newItemName, function(data) {
   	 		data.items = [];

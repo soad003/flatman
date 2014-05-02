@@ -7,9 +7,30 @@ angular.module('flatman')
 		//shadowbox for images
 		$('.image-popup').magnificPopup({type: 'image'});
 		
-	  	
+		
+		$scope.item = shareService.item.get($routeParams.itemid);
+		
+	//	$("#itemavailable").bootstrapSwitch();
+	/*$("#itemavailable").on("init", function(){
+			.setState($scope.item.available)
+		}*/
+		
+		console.log($scope.item);
+		console.log($scope.item.available);
+		
+		$('#itemavailable').bootstrapSwitch($scope.item.available);
+		
+		
+	  	$('#itemavailable').on('switchChange.bootstrapSwitch', function(event, state) {
+	  	  $scope.item.available = state;
+		  console.log(this); // DOM element
+		  console.log(event); // jQuery event
+		  console.log(state); // true | false
+		});
+		
+		
 	  	//fetch the data
-	  	$scope.item = shareService.item.get($routeParams.itemid);
+	  	
 	  	
 	
 		$scope.openFileWindow = function () {
@@ -20,6 +41,7 @@ angular.module('flatman')
 	  	
 		
 		$scope.updateItem = function() {
+			console.log($scope.item);
 			shareService.item.update($scope.item, function() {
 				console.log("successful");
 			}, function() {
@@ -31,7 +53,7 @@ angular.module('flatman')
 		$scope.uploadImage = function (path) {
 			  shareService.item.upload($scope.item, 
 			  	function(result){
-			  		$scope.userImageLink = baseUrl + result.image_url;
+			  		console.log("hey ho", result);
 			  	}, function (error) {
 			  		console.log("scheißn. ", JSON.stringify(error));
 			  });

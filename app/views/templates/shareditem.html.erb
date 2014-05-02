@@ -6,7 +6,7 @@
 		
 	<div class="col-lg-12">
 		
-		<input type="file" id="fileUpload" upload-image />
+		<input type="file" id="fileUpload" ng-show="false" upload-image />
 		<img ng-src="{{userImageLink}}" ng-click="openFileWindow()" ng-class="{ hidden: !userImageLink}" >
 		
 		<button ng-click="openFileWindow()"		
@@ -90,6 +90,7 @@
 				</div>
 				 <div class="panel-body">
 			    		<p>
+			    		<input type="checkbox" id='itemavailable' data-on-label="avail" data-off-label="shared">
 						<button class="btn btn-primary"><span class="glyphicon glyphicon-pencil"></span> hide</button>	
 						<button class="btn btn-primary"><span class="glyphicon glyphicon-pencil"></span> available for share</button>	
 						</p>
