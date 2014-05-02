@@ -31,4 +31,4 @@
 //= require bootstrap-tagsinput
 //= require bootstrap-tagsinput-angular
 //= require magnific-popup
-//= require bootstrap-switch
+//= require ./vendor/bootstrap-switch

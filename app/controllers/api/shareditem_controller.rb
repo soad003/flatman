@@ -32,10 +32,13 @@ class Api::ShareditemController < Api::RestController
           data.content_type = params[:imageContent] # json parameter set in directive scope
           data.original_filename = params[:imagePath] # json parameter set in directive scope
           @up[:image] = data
+          item.update!(@up)  
+       else
+         item.update(params[:description])
     end
 
     
-    item.update!(@up)  
+    
     respond_with(item)
   end
  # r = Ressource.find_resource_with_user_constraint(params[:id], current_user)

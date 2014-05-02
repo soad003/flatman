@@ -4,7 +4,7 @@ angular.module('flatman').factory("shareService", function($resource) {
 		
 	}, {
 		'get': {method: "GET"},
-		'update': {method: "POST"},
+		'update': {method: "PUT"},
 		'destroy': {method: "DELETE"},
 		'upload': {method: "PUT"}
 	})

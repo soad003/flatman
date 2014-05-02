@@ -1,6 +1,8 @@
 var baseUrl = 'http localhost:3000';
 angular.module('flatman')
-	.controller("sharedItemCtrl", function($scope, $routeParams, shareService, uploadService, Util){
+	.controller("sharedItemCtrl", function($scope, $routeParams, $location, shareService, Util){
+		$scope.item = shareService.item.get($routeParams.itemid);
+		
 	  	//register tagsinput
 		$('bootstrap-tagsinput').tagsinput({confirmKeys: [13, 44]});
 		
@@ -8,7 +10,8 @@ angular.module('flatman')
 		$('.image-popup').magnificPopup({type: 'image'});
 		
 		
-		$scope.item = shareService.item.get($routeParams.itemid);
+		
+		
 		
 		
 		$('#itemavailable').bootstrapSwitch($scope.item.available);
@@ -28,7 +31,17 @@ angular.module('flatman')
 	  		angular.element(document.querySelector('#fileUpload')).trigger('click');
 		};
 		
-		
+		$scope.removeItem = function() {
+			bootbox.confirm("Are you sure?", function(result) {
+				if (result) {
+				    shareService.items.remove($scope.item , function(data) {
+						$location.path("/share");
+					}, function() {
+					});	
+			    } 		
+			});
+			
+		};  
 	  	
 		
 		$scope.updateItem = function() {

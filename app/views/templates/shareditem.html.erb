@@ -41,9 +41,12 @@
 				</div>
 				 <div class="panel-body">
 			    		<p>
-			    		<input type="checkbox" ng-model = "item.available" id='itemavailable'>
-						<button class="btn btn-primary"><span class="glyphicon glyphicon-pencil"></span> hide</button>	
-						<button class="btn btn-primary"><span class="glyphicon glyphicon-pencil"></span> available for share</button>	
+			    		 <input type="checkbox"
+       						ng-model="item.available">
+   					    </p>
+						<p>
+			    		 Value1: <input type="checkbox" ng-model="item.hidden"> <br/>
+			    		 {{item.hidden}}
 						</p>
 					    
 				   <hr />         
@@ -97,7 +100,14 @@
           		</button>
           			        
                   
-                <a href="#/share"><button class="btn btn-primary">back</button></a>	
+              
+                <a ng-click="removeItem()"><button class="btn btn-danger">
+                	<span class="glyphicon glyphicon-remove"></span> <%= t(".remove") %></button>
+                </a>	
+                
+                  <a href="#/share"><button class="btn btn-primary">
+                	<span class="glyphicon glyphicon-arrow-left"></span> <%= t(".back") %></button>
+                </a>	
                </p>
                 </div> </div>
 		</form>
