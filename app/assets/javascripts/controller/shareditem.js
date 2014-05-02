@@ -11,7 +11,8 @@ angular.module('flatman').controller("sharedItemCtrl", function($scope, $routePa
 	//shadowbox for images
 	$('.image-popup').magnificPopup({
 		type : 'image'
-	})*/;
+	});
+	*/
 
 	$('#itemavailable').bootstrapSwitch($scope.item.available);
 
