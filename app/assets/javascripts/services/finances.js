@@ -4,7 +4,7 @@ angular.module('flatman').factory("financesService", function($resource){
                             'create': {method: "POST"},
 							'get': {method: "GET", isArray: true},
                             'destroy': {method:"DELETE"},
-							'update': {method:"POST"},
+							'update': {method:"POST"}
                         });
 
     var chartService = $resource('/api/finance/:id/chart',{},
@@ -13,7 +13,7 @@ angular.module('flatman').factory("financesService", function($resource){
 
                         });
 
-    
+
 	return {
         finance: {
             get: function(succH, errH){
@@ -32,7 +32,7 @@ angular.module('flatman').factory("financesService", function($resource){
             },
             getSum: function(finance){
                 return null;
-            },
+            }
         },
         chart:{
             get: function(finance_id, dateFrom, dateTo, succH, errH){

@@ -13,9 +13,6 @@ Flatman::Application.configure do
   config.consider_all_requests_local       = false
   config.action_controller.perform_caching = false
 
-  # Don't care if the mailer can't send.
-  config.action_mailer.raise_delivery_errors = false
-
   # Print deprecation notices to the Rails logger.
   config.active_support.deprecation = :log
 
@@ -27,26 +24,26 @@ Flatman::Application.configure do
   # number of complex assets.
   config.assets.debug = true
 
-  #config.action_mailer.delivery_method = :smtp
-  config.action_mailer.delivery_method = :file
+  config.action_mailer.delivery_method = :smtp
   config.action_mailer.smtp_settings = {
-    openssl_verify_mode:  OpenSSL::SSL::VERIFY_NONE,
     address:              'mail.gmx.net',
-    port:                 465,
-    user_name:            'info.flatman@gmx.at',
-    password:             ENV['SMTP_PASSWORD'],
+    port:                 587,
+    user_name:            'info.flatman@gmx.net',
+    password:             ENV['FLATMAN_SMTP_PASSWORD'],
     authentication:       'plain',
-    enable_starttls_auto: true  }
+    enable_starttls_auto: true
+  }
 
   config.action_mailer.raise_delivery_errors = true
-  config.action_mailer.default_url_options = { :host => 'localhost:3000' }
+  config.action_mailer.perform_deliveries = true
+  config.action_mailer.default_url_options = { :host => 'http://localhost:3000' }
+  config.action_mailer.asset_host = 'http://localhost:3000'
   config.action_mailer.file_settings = {
       location: 'log/mails'
   }
   config.action_mailer.default_options = {
-    :from => "info.flatman@gmx.at"
+    :from => 'info.flatman@gmx.net'
   }
   #Mail.register_interceptor(DevelopmentMailInterceptor) if Rails.env.development?
-  #
 
 end

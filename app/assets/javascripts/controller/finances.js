@@ -32,5 +32,5 @@ angular.module('flatman').controller("financesCtrl", function($scope, financesSe
 			sum = sum + $scope.finances[i].value
 		}
 		return sum;
-	}
+	};
 });

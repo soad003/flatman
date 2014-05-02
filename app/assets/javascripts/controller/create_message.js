@@ -11,7 +11,7 @@ angular.module('flatman').controller("create_messageCtrl", function($scope, mess
             $scope.newMess.text='';
         });
     };
-    
+
     $scope.fetchUsers=function(){
         $scope.users = messageService.user.getUsers();
     };

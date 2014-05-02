@@ -5,19 +5,14 @@ angular.module('flatman').service("messageService", function($resource) {
                             'create': {method: "POST"},
                             'destroy': {method: "DELETE"}
                         });
-    var messagesSer = $resource('/api/message/:id/messages/', {}, 
+    var messagesSer = $resource('/api/message/:id/messages/', {},
                         {
                             'get': {method: "GET", isArray:true}
                         });
 
     var partnerSer = $resource('/api/message/:id/partner/', {},
                         {
-                            'getPartner': {method: "GET"}
-                        });
-
-    var userSer = $resource('/api/message/users', {}, 
-                        {
-                            'getUsers': {method: "GET", isArray:true}
+                            'getPartner': {method: "GET"},
                         });
 
 
@@ -26,19 +21,20 @@ angular.module('flatman').service("messageService", function($resource) {
             get: function(){ return messageSer.get();},
             create: function(mes,succH,errH) {
                 messageSer.create(mes,succH,errH);
-            }
+            },
 
         },
         user: {
-            getUsers: function(){ return userSer.getUsers();}
+            getUsers: function(){ return messageSer.getUsers();},
         },
         messages: {
-            get: function(mesId){ return messagesSer.get({id:mesId});}
+            get: function(mesId){ return messagesSer.get({id:mesId});},
         },
         partner: {
             getPartner: function(mesId) {
                 return partnerSer.getPartner({id:mesId});
-            }
+            },
         }
     }
+    
 });
