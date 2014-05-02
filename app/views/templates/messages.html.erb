@@ -18,7 +18,12 @@
 
 <div class="visible-xs">
   <div class="page-head">
-      <h2 class="page-header"><span class="fa fa-envelope"></span> <%= t('.page_header') %> <a href="/#/create_message"><button class="btn btn-primary btn-xs pull-right"><i class="fa fa-plus"></i> <%= t('.page_title') %></button></a></h2>
+      <h2 class="page-header" ng-show="chatView"><span class="fa fa-envelope"></span>
+          <%= t('.page_header') %> 
+        <a href="/#/create_message"><button class="btn btn-primary btn-xs pull-right"><i class="fa fa-plus"></i> <%= t('.page_title') %></button></h2></a>
+      <h2 class="page-header" ng-show="chatView == false"><span class="fa fa-envelope"></span>
+          {{chatPartner.name}}
+        <a href="/#/create_message"><button class="btn btn-primary btn-xs pull-right"><i class="fa fa-plus"></i> <%= t('.page_title') %></button></a></h2>
      
   </div>
 </div>
