@@ -39,7 +39,7 @@
                     <button class="btn btn-default btn-xs" ng-click="setUpdateResource('update', resource)"> <i class="fa fa-edit"></i>
                     </button>
                 </a>
-                <button class="btn btn-default btn-xs"  ng-click="removeResource(resource)">
+                <button class="btn btn-default btn-xs"  ng-click="removeResource(resource, '<%= t('.questionDeleteResource') %>')">
                     <span class="glyphicon glyphicon-trash"></span>
                 </button>
             </h2>
@@ -116,7 +116,7 @@
                 <button class="btn btn-default btn-xs" ng-click="setUpdateResource('update', resource)"> <i class="fa fa-edit"></i>
                 </button>
             </a>
-            <button class="btn btn-default btn-xs"  ng-click="removeResource(resource)">
+            <button class="btn btn-default btn-xs"  ng-click="removeResource(resource, '<%= t('.questionDeleteResource') %>')">
                 <span class="glyphicon glyphicon-trash"></span>
             </button>
         </h2>
@@ -237,4 +237,3 @@
         <hr>
     </div>
 </div>
-

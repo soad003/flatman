@@ -53,9 +53,13 @@ angular.module('flatman').controller("resourceCtrl",function($scope, $filter, re
     };
 
 
-     $scope.removeResource=function(resource){
-        resourceService.resource.destroy(resource.id,function(){
-            $scope.resources = _($scope.resources).without(resource);
+     $scope.removeResource=function(resource, text){
+        bootbox.confirm(text, function(result) {
+            if (result){
+                resourceService.resource.destroy(resource.id,function(){
+                    $scope.resources = _($scope.resources).without(resource);
+                });
+            }
         });
     };
 
