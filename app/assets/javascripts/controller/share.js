@@ -17,20 +17,20 @@ angular.module('flatman').controller("shareCtrl", function($scope, shareService,
   	     
   	 };
 	
-	//remove that fucking item.
 	$scope.removeItem = function(item) {
-		if (confirm('really?')) {
-			  shareService.items.remove(item, function(data) {
-				$scope.shareditems = _($scope.shareditems).without(item);
-			}, function() {
-			});	
-		}		
+		bootbox.confirm("Are you sure?", function(result) {
+			if (result) {
+			    shareService.items.remove(item, function(data) {
+					$scope.shareditems = _($scope.shareditems).without(item);
+				}, function() {
+				});	
+		    } 		
+		});
+			
 	};  
 	
 	
-	//hide that fucking item.
 	$scope.hideItem = function(item, hide) {
-		console.log(hide);
 		item.hidden = hide;
 		shareService.items.update(item, function(data) {
 			
@@ -44,6 +44,6 @@ angular.module('flatman').controller("shareCtrl", function($scope, shareService,
 		shareService.items.update(item, function(data) {
 			
 		}, function() {});
-	}
+	};
 
 });

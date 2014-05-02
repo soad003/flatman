@@ -13,8 +13,8 @@
 		 	<input type="file" id="fileUpload" ng-show="false" upload-image />
 	      	<img class="image-popup img-rounded" ng-src="{{item.image}}"   >
 			
-	      	<h3>Thumbnail label</h3>
-	      	<p>Thumbnail caption...</p>
+	      	<h3>{{item.name}}</h3>
+	      	<p>an image says more than thousand words</p>
 	      	<p> 
 	  	      	<button class="btn btn-primary" ng-class=" {hidden: item.image}"   ng-click="openFileWindow()">
 	      			<span class="glyphicon glyphicon-camera"></span> <%= t(".upload_image") %>

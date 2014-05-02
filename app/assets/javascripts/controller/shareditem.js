@@ -28,15 +28,7 @@ angular.module('flatman')
 	  		angular.element(document.querySelector('#fileUpload')).trigger('click');
 		};
 		
-		$scope.removeImage = function() {
-			$scope.item.image = null;
-			shareService.item.upload($scope.item, 
-			  	function(result){
-					$scope.item = shareService.item.get($routeParams.itemid);
-			  		
-			  	}, function (error) {
-			});
-		};
+		
 	  	
 		
 		$scope.updateItem = function() {
@@ -51,11 +43,18 @@ angular.module('flatman')
 			  shareService.item.upload($scope.item, 
 			  	function(result){
 					$scope.item = shareService.item.get($routeParams.itemid);
-			  		
 			  	}, function (error) {
 			  });
 		};
-			
+		
+		$scope.removeImage = function() {
+			$scope.item.image = null;
+			shareService.item.upload($scope.item, 
+			  	function(result){
+					$scope.item = shareService.item.get($routeParams.itemid);
+			  	}, function (error) {
+			});
+		};	
 		   
 		
 	})

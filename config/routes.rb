@@ -57,8 +57,10 @@ scope "(:locale)", locale: /en|de/ do
 
    #messages
    resources :message, only: [:index, :create, :update, :destroy]
+   
    get '/message/:mes_id/messages' => 'message#get_messages'
    get '/message/:mes_id/partner' => 'message#find_partner'
+   get '/message/users' => 'message#get_users'
 
    #sharing
    get '/shareditem/:id' => 'shareditem#get'

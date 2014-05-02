@@ -244,6 +244,7 @@ en:
       costs                              : "Costs"
       resourceValue                      : "resource value"
       addMoreEntriesForChart             : "More entries are required to view the chart"
+      questionDeleteResource             : "Do you really want to delete the resource?"
     create_resource:
       page_title                         : "Resource"
       page_header                        : "Resource"

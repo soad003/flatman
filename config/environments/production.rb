@@ -77,20 +77,21 @@ Flatman::Application.configure do
   # Disable automatic flushing of the log to improve performance.
   # config.autoflush_log = false
 
-  #config.action_mailer.delivery_method = :smtp
-  #config.action_mailer.smtp_settings = {
-  #  openssl_verify_mode:  OpenSSL::SSL::VERIFY_NONE,
-  #  address:              'test.test.test',
-  #  port:                 25,
-  #  user_name:            'foo',
-  #  password:             'bar',
-  #  authentication:       'plain',
-  #  enable_starttls_auto: true  }
+  config.action_mailer.delivery_method = :smtp
+  config.action_mailer.smtp_settings = {
+    address:              'mail.gmx.net',
+    port:                 587,
+    user_name:            'info.flatman@gmx.net',
+    password:             ENV['FLATMAN_SMTP_PASSWORD'],
+    authentication:       'plain',
+    enable_starttls_auto: true
+  }
 
-  #config.action_mailer.default_url_options = { :host => 'localhost:3000' }
-  #config.action_mailer.default_options = {
-  #  :from => "foo@bar.com"
-  #}
+  config.action_mailer.raise_delivery_errors = false
+  config.action_mailer.perform_deliveries = true
+  config.action_mailer.default_url_options = { :host => 'http://flatman.herokuapp.com' }
+  config.action_mailer.asset_host = 'http://flatman.herokuapp.com'
+  config.action_mailer.default_options = {   :from => 'info.flatman@gmx.net'  }
 
   # Use default logging formatter so that PID and timestamp are not suppressed.
   config.log_formatter = ::Logger::Formatter.new

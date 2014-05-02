@@ -1,6 +1,5 @@
 angular.module('flatman').factory("shareService", function($resource) {
 	
-	
 	var sharedItemService = $resource('/api/shareditem/:id', {
 		
 	}, {
@@ -27,16 +26,12 @@ angular.module('flatman').factory("shareService", function($resource) {
 				},
 			update: 
 				function(item, succH, errH) {
-					console.log("schian is do");
-					sharedItemService.update({id:item.id}, item, succH, errH);
-					return "yeah yeah";
+					return sharedItemService.update({id:item.id}, item, succH, errH);
 		
 				},
 			upload: 
 				function(item, succH, errH) {
-					sharedItemService.upload({id : item.id}, item, succH, errH);
-					console.log(item);
-					return "sack";
+					return sharedItemService.upload({id : item.id}, item, succH, errH);
 				},
 			
 		},
@@ -51,6 +46,7 @@ angular.module('flatman').factory("shareService", function($resource) {
 				},
 			update:
 				function(item, succH, errH) {
+					console.log(item);
 					sharedItemService.update({id:item.id}, item, succH, errH);
 				},
 			get: 

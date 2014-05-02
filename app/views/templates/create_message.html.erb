@@ -2,23 +2,29 @@
 
 <% content_for :title, t('.page_title') %>
 
+<script type="text/ng-template" id="customTemplate.html">
+  <a>
+      <span bind-html-unsafe="match.model.name | typeaheadHighlight:query">Name:</span>
+      <span style="color:LightBlue"><strong>Flat: </strong></span><span bind-html-unsafe="match.model.flat_name | typeaheadHighlight:query">, Flat:</span>
+  </a>
+</script>
 
 <div class="row">
   <div class="page-head">
-      <h2 class="page-header"><span class="fa fa-envelope"></span> <%= t('.page_header') %> <a href="/#/messages"><button class="close" aria-hidden="true">&times;</button></a></h2>
+      <h2 class="page-header"><span class="fa fa-envelope"></span> <%= t('.page_header') %><a href="/#/messages"><button class="close" aria-hidden="true">&times;</button></a></h2>
   </div>
    	<div class="modal-body">
 		<div class="input-group">
            <span class="input-group-addon">@</span>
-           <input type="text" class="form-control" ng-model="newMess.receiver_id" maxlength="30" placeholder="<%= t('.create_Message_user_placeholder') %>" required>
+           <input type="text" ng-model="selectedUser" typeahead="user as user.name for user in users | filter:{name:$viewValue}" typeahead-template-url="customTemplate.html" class="form-control" placeholder="<%= t('.create_Message_user_placeholder') %>" required maxlength="30">
         </div>
     </div>
-    <div class="modal-footer">
+    <div class="modal-footer" ng-init="fetchUsers()">
       <form role="form" name="NewForm">
     	<div class="row">
         	<div class="col-lg-10 col-md-10 col-xs-8">
             	<textarea class="form-control" rows="3"type="text" ng-model="newMess.text" maxlength="30" placeholder="<%= t('.new_text_placeholder') %>" required></textarea>
-          	</div>
+         	</div>
           	<div class="col-lg-2 col-md-2 col-xs-4">
             	<a href="/#/messages" style="text-decoration: none;"><button class="btn btn-primary btn-block" type="submit" ng-click="createMessage()"><%= t('.send') %></button></a>
               <a href="/#/messages" style="text-decoration: none;"><button type="button" class="btn btn-default btn-block"><%= t('buttons.labels.decision.close') %></button></a>

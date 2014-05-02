@@ -1,4 +1,4 @@
 Rails.application.config.middleware.use OmniAuth::Builder do
-  provider :facebook, ENV["FACEBOOK_ID"], ENV["FACEBOOK_AUTH_PASSWORD"] 
-  provider :google_oauth2, ENV["GOOGLE_ID"] , ENV["GOOGLE_AUTH_PASSWORD"]
+  provider :facebook, ENV["FLATMAN_FACEBOOK_ID"], ENV["FLATMAN_FACEBOOK_AUTH_PASSWORD"] 
+  provider :google_oauth2, ENV["FLATMAN_GOOGLE_ID"] , ENV["FLATMAN_GOOGLE_AUTH_PASSWORD"]
 end
