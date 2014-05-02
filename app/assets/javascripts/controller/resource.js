@@ -1,4 +1,24 @@
 angular.module('flatman').controller("resourceCtrl",function($scope, $filter, resourceService, Util){
+
+    $scope.findBootstrapEnvironment=function() {
+        var envs = ['xs', 'sm', 'md', 'lg'];
+
+        $el = $('<div>');
+        $el.appendTo($('body'));
+
+        for (var i = envs.length - 1; i >= 0; i--) {
+            var env = envs[i];
+
+            $el.addClass('hidden-'+env);
+            if ($el.is(':hidden')) {
+                $el.remove();
+                return env;
+            }
+        }
+    };
+
+    $scope.environment = $scope.findBootstrapEnvironment();
+
     $scope.showIntro = false;
     $scope.resources = resourceService.resource.getAll(function(){
         if ($scope.resources.length === 0){
@@ -9,8 +29,6 @@ angular.module('flatman').controller("resourceCtrl",function($scope, $filter, re
                                         $scope.init(resource);
                                         $scope.setEntries(resource);
                                         $scope.initChart(resource);
-                                        $scope.getChartData(resource);
-                                        $scope.setOverview(resource);
                                     });
     });
 
@@ -27,6 +45,10 @@ angular.module('flatman').controller("resourceCtrl",function($scope, $filter, re
     };
 
     $scope.showInfos = function (resource, flag){
+        if ($scope.environment != 'xs'){
+            $scope.getChartData(resource);
+            $scope.setOverview(resource);
+        }
         resource.showChart=flag;
     };
 
@@ -149,4 +171,5 @@ angular.module('flatman').controller("resourceCtrl",function($scope, $filter, re
                 }]
             };
     };
+
 });
