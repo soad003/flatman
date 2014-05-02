@@ -355,6 +355,9 @@ en:
       upload                             : "upload"
       upload                             : "upload"
       save                               : "save"
+      remove_image                       : "remove image"
+      upload_image                       : "upload image"
+      change_image                       : "change"
     
   session:
     index:

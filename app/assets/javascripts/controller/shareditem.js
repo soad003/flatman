@@ -10,15 +10,6 @@ angular.module('flatman')
 		
 		$scope.item = shareService.item.get($routeParams.itemid);
 		
-	//	$("#itemavailable").bootstrapSwitch();
-	/*$("#itemavailable").on("init", function(){
-			.setState($scope.item.available)
-		}*/
-		
-		console.log($scope.item);
-		console.log($scope.item.name);
-		
-		
 		
 		$('#itemavailable').bootstrapSwitch($scope.item.available);
 		
@@ -30,24 +21,28 @@ angular.module('flatman')
 		  console.log(state); // true | false
 		});
 		
+		console.log($scope.item);
 		
 	  	//fetch the data
-	  	
-	  	
-	
 		$scope.openFileWindow = function () {
-	  		angular.element( document.querySelector( '#fileUpload' ) ).trigger('click');
-	  		console.log('triggering click');
+	  		angular.element(document.querySelector('#fileUpload')).trigger('click');
 		};
 		
+		$scope.removeImage = function() {
+			$scope.item.image = null;
+			shareService.item.upload($scope.item, 
+			  	function(result){
+					$scope.item = shareService.item.get($routeParams.itemid);
+			  		
+			  	}, function (error) {
+			});
+		};
 	  	
 		
 		$scope.updateItem = function() {
 			console.log($scope.item);
 			shareService.item.update($scope.item, function() {
-				console.log("successful");
 			}, function() {
-				console.log("shitty");
 			});
 		};
 		
@@ -55,11 +50,9 @@ angular.module('flatman')
 		$scope.uploadImage = function (path) {
 			  shareService.item.upload($scope.item, 
 			  	function(result){
+					$scope.item = shareService.item.get($routeParams.itemid);
 			  		
-			  		console.log("gut. ", result);
-			  		$scope.userImageLink = result.image_url;
 			  	}, function (error) {
-			  		console.log("scheißn. ", JSON.stringify(error));
 			  });
 		};
 			
@@ -89,10 +82,7 @@ angular.module('flatman')
 					    // converts file to binary string
 					    reader.readAsBinaryString(file);
 					  });
-				
-			
-			}
-			
+			}	
 		}
 		
 	});

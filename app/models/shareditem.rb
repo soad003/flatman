@@ -3,11 +3,11 @@ class Shareditem < ActiveRecord::Base
 	attr_accessor :imageContent, :imagePath, :imageData
 
 	### image validation functions
-  has_attached_file :image, styles: {thumb: "200x200"}
-  #validates :userIcon, :attachment_presence => true
-  validates_attachment :image, :content_type => { :content_type => ["image/jpg", "image/gif", "image/png"] }
-  validates_attachment_file_name :image, :matches => [/png\Z/, /jpe?g\Z/]
+  has_attached_file :image, styles: {thumb: "200x200"}, :default_url => "http://upload.wikimedia.org/wikipedia/commons/a/ac/No_image_available.svg"
+  validates_attachment :image, :content_type => { :content_type => ["image/jpg", "image/jpeg", "image/gif", "image/png"] }
+  validates_attachment_file_name :image, :matches => [/png\Z/, /jpe?g\Z/, /gif\Z/]
   
+  #to get the full image url
   def as_json(options={})
     { 
       id: self.id,

@@ -37,7 +37,8 @@ angular.module('flatman').factory("shareService", function($resource) {
 					sharedItemService.upload({id : item.id}, item, succH, errH);
 					console.log(item);
 					return "sack";
-				}
+				},
+			
 		},
 		
 		//overview
