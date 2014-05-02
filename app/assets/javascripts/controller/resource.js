@@ -1,23 +1,13 @@
 angular.module('flatman').controller("resourceCtrl",function($scope, $filter, resourceService, Util){
     //to get the env to reduce the loads of data
-    $scope.findBootstrapEnvironment=function() {
-        var envs = ['xs', 'sm', 'md', 'lg'];
-
-        $el = $('<div>');
-        $el.appendTo($('body'));
-
-        for (var i = envs.length - 1; i >= 0; i--) {
-            var env = envs[i];
-
-            $el.addClass('hidden-'+env);
-            if ($el.is(':hidden')) {
-                $el.remove();
-                return env;
-            }
+    $scope.isMobile=function() {
+        if ($(window).width()<=770){
+            return true;
         }
+        return false;
     };
 
-    $scope.environment = $scope.findBootstrapEnvironment();
+    $scope.isMobile = $scope.isMobile();
 
     $scope.showIntro = false;
     $scope.resources = resourceService.resource.getAll(function(){
@@ -45,7 +35,7 @@ angular.module('flatman').controller("resourceCtrl",function($scope, $filter, re
     };
 
     $scope.showInfos = function (resource, flag){
-        if ($scope.environment != 'xs'){
+        if (!$scope.isMobile){
             $scope.getChartData(resource);
             $scope.setOverview(resource);
         }
