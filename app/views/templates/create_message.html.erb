@@ -4,8 +4,7 @@
 
 <script type="text/ng-template" id="customTemplate.html">
   <a>
-      <%#/*Name: {{match.model.name}}, Flat: {{match.model.flat_name}}*/%>
-        <span bind-html-unsafe="match.model.name | typeaheadHighlight:query">Name:</span>
+      <span bind-html-unsafe="match.model.name | typeaheadHighlight:query">Name:</span>
       <span style="color:LightBlue"><strong>Flat: </strong></span><span bind-html-unsafe="match.model.flat_name | typeaheadHighlight:query">, Flat:</span>
   </a>
 </script>
