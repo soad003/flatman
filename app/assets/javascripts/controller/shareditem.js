@@ -16,7 +16,9 @@ angular.module('flatman')
 		}*/
 		
 		console.log($scope.item);
-		console.log($scope.item.available);
+		console.log($scope.item.name);
+		
+		
 		
 		$('#itemavailable').bootstrapSwitch($scope.item.available);
 		
@@ -53,7 +55,9 @@ angular.module('flatman')
 		$scope.uploadImage = function (path) {
 			  shareService.item.upload($scope.item, 
 			  	function(result){
-			  		console.log("hey ho", result);
+			  		
+			  		console.log("gut. ", result);
+			  		$scope.userImageLink = result.image_url;
 			  	}, function (error) {
 			  		console.log("scheißn. ", JSON.stringify(error));
 			  });
@@ -77,16 +81,11 @@ angular.module('flatman')
 				  	
 					// listens on change event
 					elem.on('change', function() {
-					    console.log('entered change function');
 					    var file = elem[0].files[0];
-					    
-					    // gathers file data (filename and type) to send in json
-					    console.log(scope.item);
-					    
 					    scope.item.imageContent = file.type;
 					    scope.item.imagePath = file.name;
-					    // updates scope; not sure if this is needed here, I can not remember with the testing I did...and I do not quite understand the apply method that well, as I have read limited documentation on it.
 					    scope.$apply();
+					    
 					    // converts file to binary string
 					    reader.readAsBinaryString(file);
 					  });

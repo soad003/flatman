@@ -4,80 +4,14 @@
 		<h1 class="page-header"><span class="fa fa-share"> {{item.name}}<span></h1>
 	</div>
 		
-	<div class="col-lg-12">
-		
-		<input type="file" id="fileUpload" ng-show="false" upload-image />
-		<img ng-src="{{userImageLink}}" ng-click="openFileWindow()" ng-class="{ hidden: !userImageLink}" >
-		
-		<button ng-click="openFileWindow()"		
-				ng-class=" {hidden: userImageLink}"
-				class="btn btn-primary"><span class="glyphicon glyphicon-pencil"></span> add image</button>	
-							
-	</div>
-		
+
 	
-	<!--
-		rotz.
-		huanzeig.
-	<form role="form" enctype="multipart/form-data"  name="uploadForm" ng-submit="upload()">
-		<div class="field">
-	    <label for="user_avatar">kretz.</label><br>
-	    <input id="user_avatar" ng-model = "uploadFile.file" type="file">
-	  </div>
-	 
-	  <div class="actions">
-	    <input name="commit" type="submit" value="Create User">
-	  </div>
-	</form>
-      -->
-      
-      <!--
-    <form role="form" enctype="multipart/form-data" name="uploadForm" ng-submit="upload()">
-    	
-    </form>
-     -->
+
 
 	<div class="col-lg-3 ">
-	    <div class="thumbnail">
-	    	<a class="image-popup" href="http://artisticthings.com/wp-content/uploads/2010/04/apreis6-400x400.jpg" >
-	        		<img 
-	        			class="thumb media-object dp img-rounded image-popup" 
-	        			src="http://artisticthings.com/wp-content/uploads/2010/04/apreis6-400x400.jpg" 
-	        			/>
-	        		
-			</a>
-			
-			
-			<div class="caption">
-				<form 	accept-charset="UTF-8" 
-					action="/api/upload" 
-					class="new_user" 
-					
-					enctype="multipart/form-data" 
-					id="new_user" 
-					method="post">
-			
-		
-
-	  <div class="field">
-	  	
-	
-	  <div class="actions">
-	  		<input name="upload[itemid]" value="{{item.id}}"
-	  		<input id="upload_file" 
-	  			data-filename-placement="inside" name="upload[file]" type="file" value="<%= t(".add_file") %>">  
-	  		<button class="btn btn-primary uplaod_submit"  
-	  			
-	  			type="submit"><span class="glyphicon glyphicon-open"></span> <%= t(".upload_picture") %></button>	
-	  	
-			
-			
-	  </div>
-	  </div>
-	</form>
-			</div>
-		    
-		</div>
+	    <input type="file" id="fileUpload" ng-show="false" upload-image />
+		<img class="image-popup img-thumbnail" src="{{item.image}}"   >
+		<button ng-click="openFileWindow()"><%= t(".upload_image") %></button>
 	</div>	
 	
 	
@@ -90,7 +24,7 @@
 				</div>
 				 <div class="panel-body">
 			    		<p>
-			    		<input type="checkbox" id='itemavailable' data-on-label="avail" data-off-label="shared">
+			    		<input type="checkbox" ng-model = "item.available" id='itemavailable'>
 						<button class="btn btn-primary"><span class="glyphicon glyphicon-pencil"></span> hide</button>	
 						<button class="btn btn-primary"><span class="glyphicon glyphicon-pencil"></span> available for share</button>	
 						</p>
