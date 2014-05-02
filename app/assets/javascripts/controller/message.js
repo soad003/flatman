@@ -27,8 +27,6 @@ angular.module('flatman').controller("messageCtrl", function($scope, $route, mes
                 $scope.messages.push(data);
                 //alert(JSON.stringify(data));
                 $scope.newMess.text='';
-                
         });
     };
-	
 });
