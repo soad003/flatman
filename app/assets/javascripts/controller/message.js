@@ -14,6 +14,7 @@ angular.module('flatman').controller("messageCtrl", function($scope, $route, mes
     };
 
     $scope.toggleView = function(){
+        $scope.chats = messageService.message.get();
     	if($scope.chatView == true)
     		$scope.chatView = false
     	else
@@ -21,7 +22,7 @@ angular.module('flatman').controller("messageCtrl", function($scope, $route, mes
     };
 
     $scope.sendMessage=function(){
-        $scope.newMess.receiver_id = $scope.chatPartner.name
+        $scope.newMess.receiver_id = $scope.chatPartner.id
         messageService.message.create($scope.newMess,function(data){
                 $scope.messages.push(data);
                 //alert(JSON.stringify(data));

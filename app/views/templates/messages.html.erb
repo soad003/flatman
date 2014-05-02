@@ -2,13 +2,13 @@
 
 <script type="text/javascript">
     function scrolldown() {$("#scrollarea").animate({ scrollTop: $(document).height()*25 }, "fast");}
-  </script>
+</script>
 
 <div class="visible-lg visible-md">
   <div class="page-head">
       <h2 class="page-header" ng-show="chatView"><span class="fa fa-envelope"></span>
           <%= t('.page_header') %> 
-        <a href="/#/create_message"><button class="btn btn-primary pull-right"><i class="fa fa-plus"></i> <%= t('.page_title') %></button></a></h2>
+        <a href="/#/create_message"><button class="btn btn-primary pull-right"><i class="fa fa-plus"></i> <%= t('.page_title') %></button></h2></a>
       <h2 class="page-header" ng-show="chatView == false"><span class="fa fa-envelope"></span>
           {{chatPartner.name}}
         <a href="/#/create_message"><button class="btn btn-primary pull-right"><i class="fa fa-plus"></i> <%= t('.page_title') %></button></a></h2>
@@ -40,7 +40,6 @@
       </div>
     </a>
   </div>
-  
 </div>
 <body>
 <br>
@@ -89,5 +88,7 @@
 - count unread messages
 - delete chats
 - detect same user 
+
+- user with different emails and same name
 -->
 

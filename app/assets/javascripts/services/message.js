@@ -1,8 +1,7 @@
-angular.module('flatman').factory("messageService", function($resource) {
+angular.module('flatman').service("messageService", function($resource) {
     var messageSer = $resource('/api/message/:id',{},
                         {
                             'get': {method: "GET", isArray:true},
-                            'getUsers': {method: "GET", isArray:true},
                             'create': {method: "POST"},
                             'destroy': {method: "DELETE"}
                         });
@@ -16,6 +15,11 @@ angular.module('flatman').factory("messageService", function($resource) {
                             'getPartner': {method: "GET"},
                         });
 
+    var userSer = $resource('/api/message/users', {}, 
+                        {
+                            'getUsers': {method: "GET", isArray:true},
+                        });
+
 
     return {
         message: {
@@ -26,7 +30,7 @@ angular.module('flatman').factory("messageService", function($resource) {
 
         },
         user: {
-            getUsers: function(){ return messageSer.getUsers();},
+            getUsers: function(){ return userSer.getUsers();},
         },
         messages: {
             get: function(mesId){ return messagesSer.get({id:mesId});},
