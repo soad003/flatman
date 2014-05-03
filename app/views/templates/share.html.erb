@@ -1,9 +1,10 @@
 	<div class="row">
-		<h1 class="page-header"><span class="fa fa-share"></span> <%= t(".title") %></h1>
+		<div class="col-lg-12">
+			<h1 class="page-header"><span class="fa fa-share"></span> <%= t(".title") %></h1>
+		</div>
 	</div>
-	
-	
-	<div class="col-md-6" ng-show="shareditems.length!==0">
+	<div class="row">
+	<div class="col-lg-6" ng-show="shareditems.length!==0">
 			<div class="panel panel-success">
 			  <div class="panel-heading panel-tooltip pointer" title="<%= t(".available_info") %>">
 			  	<span class="glyphicon glyphicon-eye-open"></span> <%= t(".available_items") %></div>
@@ -40,7 +41,7 @@
 						        			</a>	
 							        	</li>	
 										<li>
-							        		<a class="pointer" ng-click="hideItem(item, true)">
+							        		<a class="pointer" ng-click="hideItem(item)">
 							        			<span class="glyphicon glyphicon-eye-open"></span> <%= t(".item_hide") %>
 							        		</a>
 							        	</li>
@@ -82,10 +83,9 @@
 		</div>
 
 
-	</div>
 	
 	<!--hidden items-->
-		<div class="col-md-6" ng-show="shareditems.length!==0">
+		<div class="col-lg-6" ng-show="shareditems.length!==0">
 			<div class="panel panel-success">
 			  <div class="panel-heading panel-tooltip pointer" title="<%= t(".hidden_info") %>">
 			  	<span class="glyphicon glyphicon-eye-close"></span> <%= t(".hidden_items") %></div>
@@ -121,7 +121,7 @@
 						        			</a>	
 							        	</li>	
 										<li>
-							        		<a class="pointer" ng-click="hideItem(item, false)">
+							        		<a class="pointer" ng-click="hideItem(item)">
 							        			<span class="glyphicon glyphicon-eye-open"></span> <%= t(".item_unhide") %>
 							        		</a>
 							        	</li>
@@ -174,5 +174,6 @@
 	      </div>
           <div class="col-md-3"></div>
         </div>
-	 
+	 </div>
+	</div>
 

@@ -16,6 +16,7 @@ class Shareditem < ActiveRecord::Base
       name: self.name, 
       hidden: self.hidden,
       available: self.available,
+      sharingNote: self.sharingNote,
       image: self.image.url
     }
   end

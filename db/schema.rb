@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140501150024) do
+ActiveRecord::Schema.define(version: 20140503092901) do
 
   create_table "billcategories", force: true do |t|
     t.integer  "flat_id"
@@ -101,8 +101,8 @@ ActiveRecord::Schema.define(version: 20140501150024) do
   create_table "shareditems", force: true do |t|
     t.string   "name"
     t.string   "tags"
-    t.boolean  "available",          default: false
-    t.boolean  "hidden"
+    t.boolean  "available",          default: true
+    t.boolean  "hidden",             default: false
     t.string   "description"
     t.string   "sharingNote"
     t.integer  "flat_id"
