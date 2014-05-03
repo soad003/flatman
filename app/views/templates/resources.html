@@ -4,7 +4,7 @@
 
 <div class="row modal-body">
     <div class="page-head">
-        <h3 class="page-header hidden-sm hidden-lg">
+        <h3 class="page-header hidden-md hidden-sm hidden-lg">
             <i class="glyphicon glyphicon-globe"></i>
             <%= t('.page_header') %>
             <a href="/#/create_resource">
@@ -39,7 +39,7 @@
                     <button class="btn btn-default btn-xs" ng-click="setUpdateResource('update', resource)"> <i class="fa fa-edit"></i>
                     </button>
                 </a>
-                <button class="btn btn-default btn-xs"  ng-click="removeResource(resource)">
+                <button class="btn btn-default btn-xs"  ng-click="removeResource(resource, '<%= t('.questionDeleteResource') %>')">
                     <span class="glyphicon glyphicon-trash"></span>
                 </button>
             </h2>
@@ -109,14 +109,14 @@
     </div>
 
     <!-- for phone -->
-    <div class="col-xs-12 hidden-sm hidden-lg">
+    <div class="col-xs-12 hidden-sm hidden-md hidden-lg">
         <h2 title="{{resource.description}}" class="pull-left">
             {{resource.name}}
             <a href="/#/update_resource/{{resource.id}}">
                 <button class="btn btn-default btn-xs" ng-click="setUpdateResource('update', resource)"> <i class="fa fa-edit"></i>
                 </button>
             </a>
-            <button class="btn btn-default btn-xs"  ng-click="removeResource(resource)">
+            <button class="btn btn-default btn-xs"  ng-click="removeResource(resource, '<%= t('.questionDeleteResource') %>')">
                 <span class="glyphicon glyphicon-trash"></span>
             </button>
         </h2>
@@ -127,7 +127,7 @@
             <li><a href="" ng-click="changePage(resource, 1)">&raquo;</a></li>
         </ul>
     </div>
-    <div class="col-xs-12 hidden-sm hidden-lg">
+    <div class="col-xs-12 hidden-sm hidden-md hidden-lg">
         <div class="adv-table editable-table">
             <table class="table table-striped table-hover table-borderless table-scrollable" id="editable-sample">
                 <thead>
@@ -143,7 +143,7 @@
                 <tbody>
                     <tr ng-repeat="entry in resource.entries" class="">
                         <td>{{entry.date| date : 'shortDate'}}</td>
-                        <td>{{formatNumber(entry.value)}} {{resource.unit}}</td>
+                        <td>{{formatNumber(entry.value)}}</td>
                         <td>
                             {{entry.costs| currency : '€ '}}
                             <button class="btn btn-default btn-xs pull-right" ng-hide="entry.isFirst == true" ng-click="removeEntry(resource, entry)">
@@ -237,4 +237,3 @@
         <hr>
     </div>
 </div>
-

@@ -78,6 +78,10 @@ class Ressource < ActiveRecord::Base
       returnData
     end
 
+    def self.get_oldest_entryDate(resource)
+        (resource.ressourceentries.sort!{|a,b| a.date <=> b.date}).last.date
+    end
+
 
 
 
@@ -108,12 +112,14 @@ class Ressource < ActiveRecord::Base
       values
     end
 
-    def self.get_dashboard_data (statistic_data, resource)
+    def self.get_dashboard_data (statistic_data, resource, from, to)
       info = OpenStruct.new({name: "", unit: "", usage: "", cost:""})
       sum = 0
       if statistic_data.labels.size != 0
-          statistic_data.usages.each do |usage|
-            sum += usage
+          for i in 0 ... (statistic_data.labels.size-1)
+            if (statistic_data.labels[i] >= from && statistic_data.labels[i] <= to)
+              sum += statistic_data.usages[i]
+            end
           end
       end
       info.name = resource.name

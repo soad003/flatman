@@ -253,6 +253,7 @@ en:
       costs                              : "Costs"
       resourceValue                      : "resource value"
       addMoreEntriesForChart             : "More entries are required to view the chart"
+      questionDeleteResource             : "Do you really want to delete the resource?"
     create_resource:
       page_title                         : "Resource"
       page_header                        : "Resource"
@@ -359,6 +360,17 @@ en:
       add_item_new                       : "add"
       hidden_items                       : "hidden items"
       hidden_info                        : "hidden items are just visible for you and cannot be found by anyone"
+    shareditem:     
+      add_file                           : "add file"  
+      upload                             : "upload"
+      upload                             : "upload"
+      save                               : "save"
+      back                               : "back"
+      remove                             : "remove item"
+      remove_image                       : "remove image"
+      upload_image                       : "upload image"
+      change_image                       : "change"
+    
   session:
     index:
       page_title                         : "Please sign in"

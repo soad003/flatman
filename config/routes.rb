@@ -66,7 +66,7 @@ scope "(:locale)", locale: /en|de/ do
    get '/shareditem/:id' => 'shareditem#get'
    post '/shareditem/:id' => 'shareditem#update'
    resources :share, only: [:index, :create, :destroy]
-   resources :shareditem, only: [:index, :create, :update]
+   resources :shareditem, only: [:index, :create, :update, :upload]
    
    post '/upload' => 'upload#create'
    get '/upload' => 'upload#new'

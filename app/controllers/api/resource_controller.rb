@@ -38,8 +38,10 @@ class Api::ResourceController < Api::RestController
       returnList = []
 
       resources.each do |resource|
-        statistic_data = Ressource.get_statistic_data(Date.today - 30, Date.today, resource)
-        returnList << Ressource.get_dashboard_data(statistic_data, resource)
+        oldestEntry = Ressource.get_oldest_entryDate(resource)
+        puts "--> " + oldestEntry.to_s
+        statistic_data = Ressource.get_statistic_data(oldestEntry - 30, oldestEntry, resource)
+        returnList << Ressource.get_dashboard_data(statistic_data, resource, oldestEntry - 30, oldestEntry)
       end
       @dashboardList=returnList
     end

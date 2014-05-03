@@ -31,6 +31,7 @@ GEM
     arel (4.0.2)
     assert_json (0.2.0)
       activesupport
+    bootbox-rails (0.3.0)
     bootstrap-sass (3.1.1.0)
       sass (~> 3.2)
     bootstrap-tagsinput-rails (0.3.2.0)
@@ -206,6 +207,7 @@ DEPENDENCIES
   angular-ui-bootstrap-rails
   angularjs-rails
   assert_json
+  bootbox-rails
   bootstrap-sass (~> 3.1.1)
   bootstrap-tagsinput-rails
   capistrano
