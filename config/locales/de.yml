@@ -79,6 +79,12 @@ en:
               blank                       : "Please provide a name for the unit of the resource!"
             startValue:
               blank                       : "Please enter a start value!"
+        message:
+          attributes:
+            receiver_id:
+              blank                       : "Please enter the username of the receiver"
+            text:
+              blank                       : "Please enter a message to send"
     ressource:
       info_all                        : "Total"
       info_currentMonth               : "this month"

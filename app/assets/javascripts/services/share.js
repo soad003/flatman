@@ -60,9 +60,10 @@ angular.module('flatman').factory("shareService", function($resource) {
 			},
 			update : function(item, succH, errH) {
 				console.log(item);
-				sharedItemService.update({
+				return sharedItemService.update({
 					id : item.id
 				}, item, succH, errH);
+
 			},
 			get : function() {
 				return shareService.get();

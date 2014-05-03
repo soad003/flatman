@@ -31,4 +31,8 @@ angular.module('flatman').controller("messageCtrl", function($scope, $route, mes
         });
     };
 
+    $scope.removeChat=function(chat){
+        $scope.chats = messageService.message.destroy(chat.id);
+    };
+
 });
