@@ -68,7 +68,7 @@ gem 'angularjs-rails'
 gem 'underscore-rails'
 
 # scheduler
-gem 'rufus-scheduler'
+#gem 'rufus-scheduler'
 
 gem 'angular-ui-bootstrap-rails'
 # gem 'seed_dump'

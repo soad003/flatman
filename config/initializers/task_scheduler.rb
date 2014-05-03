@@ -1,3 +1,4 @@
+=begin
 scheduler = Rufus::Scheduler.new
 
 # every day 6am
@@ -13,3 +14,4 @@ scheduler.cron("0 06 * * *") do
     end
 
 end
+=end
