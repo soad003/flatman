@@ -16,14 +16,27 @@ class Api::MessageController < Api::RestController
 
   def create
     user=current_user
-    @mes=Message.new(mes_params)
-    user.sentMessages << @mes
-    user.save!
-    @mes
+    recId = mes_params[:receiver_id]
+    if (recId == "")
+      respond_with_errors([t('.no_user_found')])
+    else
+      @mes=Message.new(mes_params)
+      user.sentMessages << @mes
+      user.save!
+      @mes
+    end
   end
 
   def get_users
     @users = User.all
+  end
+
+  def destroy
+    recId = Message.find(params[:id]).receiver_id
+    senId = Message.find(params[:id]).sender_id
+    m = Message.where(receiver_id: recId, sender_id: senId)
+    m.destroy_all
+    @mesd = Message.find_chats(current_user)
   end
 
   private

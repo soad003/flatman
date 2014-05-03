@@ -1,6 +1,7 @@
 class Message < ActiveRecord::Base
-	belongs_to	:sender, :class_name => 'User'
-	belongs_to 	:receiver, :class_name => 'User'
+	belongs_to     	:sender, :class_name => 'User'
+	belongs_to  	:receiver, :class_name => 'User'
+    validates       :receiver_id, :text, presence: true
 
 	def self.find_messages(mesId)
         user = Message.find(mesId).sender_id
