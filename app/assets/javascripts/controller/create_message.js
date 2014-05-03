@@ -5,13 +5,13 @@ angular.module('flatman').controller("create_messageCtrl", function($scope, mess
     $scope.newMess = {sender_id: "", receiver_id: "", text: "", header: "", read: true};
 
     $scope.createMessage=function(){
-        if ($scope.selectedUser == undefined){
+        if ($scope.selectedUser === undefined){
             messageService.message.create($scope.newMess, function(data){
                 $scope.newMess.text='';
             });
             $scope.selectedUser=''
         }
-        else if ($scope.selectedUser.id == undefined) {
+        else if ($scope.selectedUser.id === undefined) {
             messageService.message.create($scope.newMess, function(data){
                 $scope.newMess.text='';
             });
