@@ -8,6 +8,13 @@ class Api::MessageController < Api::RestController
 
   def get_messages
     @meslist=Message.find_messages(params[:mes_id])
+    @meslist.each do |m|
+      if !m.read
+        m.read = true
+        m.save!
+      end
+    end
+    @meslist
   end
 
   def find_partner
@@ -21,6 +28,7 @@ class Api::MessageController < Api::RestController
       respond_with_errors([t('.no_user_found')])
     else
       @mes=Message.new(mes_params)
+      @mes.header = "0"
       user.sentMessages << @mes
       user.save!
       @mes
@@ -37,6 +45,22 @@ class Api::MessageController < Api::RestController
     m = Message.where(receiver_id: recId, sender_id: senId)
     m.destroy_all
     @mesd = Message.find_chats(current_user)
+  end
+
+  def count_messages
+    @counterList = Message.find_messages(params[:mes_id])
+    count = "0"
+    @counterList.each do |c| 
+      if c.read == false
+        if c.sender_id != current_user.id
+          count = (count.to_i + 1).to_s
+        end
+      end
+    end
+    m = Message.find(params[:mes_id])
+    m.header = count
+    m.save
+    @counter = m
   end
 
   private

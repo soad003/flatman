@@ -6,8 +6,8 @@ class Message < ActiveRecord::Base
 	def self.find_messages(mesId)
         user = Message.find(mesId).sender_id
         user2 = Message.find(mesId).receiver_id
-		mesL = Message.where(['sender_id = ? AND receiver_id = ?', user, user2])
-        mesL2 = Message.where(['receiver_id = ? AND sender_id = ?', user, user2])
+		mesL = Message.where(sender_id: user, receiver_id: user2)
+        mesL2 = Message.where(receiver_id: user, sender_id: user2)
         messList = mesL+mesL2
         messList.sort! { |a,b| a.created_at <=> b.created_at }
     end
@@ -26,6 +26,7 @@ class Message < ActiveRecord::Base
     def self.find_chats(user)
     	# all messages with me as sender
         mesL = Message.where(sender_id: user.id)
+        # all messages with me as receiver
        	mesL2 = Message.where(receiver_id: user.id)
         messList = mesL.clone+mesL2.clone
         # sort by newest

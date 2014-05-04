@@ -2,7 +2,7 @@ angular.module('flatman').controller("create_messageCtrl", function($scope, mess
     $scope.messages = messageService.message.get();
     $scope.users = [];
     $scope.selectedUser = undefined;
-    $scope.newMess = {sender_id: "", receiver_id: "", text: "", header: "", read: true};
+    $scope.newMess = {sender_id: "", receiver_id: "", text: "", header: "", read: false};
 
     $scope.createMessage=function(){
         if ($scope.selectedUser === undefined){

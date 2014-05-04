@@ -31,28 +31,33 @@
 <div class="container modal-body" ng-show="chatView">
 <div ng-show="chats.length > 0"></br></br></div>
   <div class="row" ng-repeat="chat in chats">
-    <a style="cursor:pointer; text-decoration: none;" ng-click="getMessages(chat)" onclick="scrolldown()">
+  <div ng-init="countUnread(chat)">
+    <a style="cursor:pointer; text-decoration: none;" ng-click="getMessages(chat)" ng-click="toggleView()" onclick="scrolldown()">
       <div class="panel panel-success">
         <div class="list-group-item">
           <div class="btn-group pull-right">
-            <button type="button" class="btn btn-default btn-xs" ng-click="removeChat(chat)">
+    </a>
+            <button type="button" class="btn btn-default btn-xs" ng-click="removeChat(chat, '<%= t('.questionDeleteChat') %>')">
               <span class="glyphicon glyphicon-trash"></span>
             </button>
+    <a style="cursor:pointer; text-decoration: none;" ng-click="getMessages(chat)" ng-click="toggleView()" onclick="scrolldown()">
             <button type="button" style="background-color:transparent" class="btn btn-default btn-xs">
-              <span class="badge">14</span>
+              <span class="badge">{{unreadCounter.header}}</span>
             </button>
           </div>
-          <strong>{{chat.receiver_name}}</strong></div>
-          <div class="panel-footer">
-            <div class="row">
-              <div class="col-xs-6 col-md-6">{{chat.sender_name}}: {{chat.text}}</div>
-                <div class="col-xs-6 col-md-6">
-                  <span class="time"><p class="text-right" style="font-size:x-small"><i class="fa fa-clock-o"></i> {{chat.time}}</p></span>
-                </div>
+          <strong>{{chat.receiver_name}}</strong>
+        </div>
+        <div class="panel-footer">
+          <div class="row">
+            <div class="col-xs-6 col-md-6">{{chat.sender_name}}: {{chat.text}}</div>
+              <div class="col-xs-6 col-md-6">
+                <span class="time"><p class="text-right" style="font-size:x-small"><i class="fa fa-clock-o"></i> {{chat.time}}</p></span>
               </div>
-            </div>
+          </div>
+        </div>
       </div>
     </a>
+    </div>
   </div>
 </div>
 <body>
@@ -96,12 +101,10 @@
 </div>
 
 <!-- todo
-- error with false user
+- track by index für counter
+- create chat already exists
 - parse timestamp
 - count unread messages
-- delete chats
-- detect same user 
-- autofocus
 - flatid null bei suggestions nicht anzeigen
 - optimieren
 -->

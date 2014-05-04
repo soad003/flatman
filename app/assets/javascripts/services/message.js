@@ -3,7 +3,8 @@ angular.module('flatman').service("messageService", function($resource) {
                         {
                             'get': {method: "GET", isArray:true},
                             'create': {method: "POST"},
-                            'destroy': {method: "DELETE", isArray:true}
+                            'destroy': {method: "DELETE", isArray:true},
+                            'count': {method: "GET", isArray:true}
                         });
     var messagesSer = $resource('/api/message/:id/messages/', {},
                         {
@@ -20,6 +21,11 @@ angular.module('flatman').service("messageService", function($resource) {
                             'getUsers': {method: "GET", isArray:true}
                         });
 
+    var countSer = $resource('/api/message/:id/counter/', {},
+                        {
+                            'count': {method: "GET"}
+                        });
+
 
     return {
         message: {
@@ -29,8 +35,10 @@ angular.module('flatman').service("messageService", function($resource) {
             },
             destroy: function(chat_id, succH, errH) {
                 return messageSer.destroy({id: chat_id}, succH, errH);
+            },  
+            count: function(chat_id) {
+                return countSer.count({id: chat_id});
             }
-
         },
         user: {
             getUsers: function(){ return userSer.getUsers();}

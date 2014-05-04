@@ -16,7 +16,7 @@
    	<div class="modal-body" autofocus>
 		<div class="input-group" autofocus>
            <span class="input-group-addon">@</span>
-           <input autofocus type="text" ng-model="selectedUser" typeahead="user as user.name for user in users | filter:{name:$viewValue}" typeahead-template-url="customTemplate.html" class="form-control" placeholder="<%= t('.create_Message_user_placeholder') %>" maxlength="30">
+           <input autofocus type="text" ng-model="selectedUser" typeahead="user as user.name for user in users | filter:{name:$viewValue}" typeahead-template-url="customTemplate.html" class="form-control" placeholder="<%= t('.create_Message_user_placeholder') %>">
         </div>
     </div>
     <div class="modal-footer" ng-init="fetchUsers()">
