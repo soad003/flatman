@@ -1,19 +1,19 @@
 /*global btoa:false */
-var baseUrl = 'http localhost:3000';
+
 angular.module('flatman').controller("sharedItemCtrl", function($scope, $routeParams, $location, shareService, Util) {
 	$scope.item = shareService.item.get($routeParams.itemid);
 
-	/*register tagsinput
-	('bootstrap-tagsinput').tagsinput({
-		confirmKeys : [13, 44]
-	});
-
+	//register tagsinput
+//	$('#tags').tagsinput();
+	
+/*
 	//shadowbox for images
 	$('.image-popup').magnificPopup({
 		type : 'image'
 	});
 	*/
 
+	
 	$('#itemavailable').bootstrapSwitch($scope.item.available);
 
 	$('#itemavailable').on('switchChange.bootstrapSwitch', function(event, state) {
@@ -25,9 +25,7 @@ angular.module('flatman').controller("sharedItemCtrl", function($scope, $routePa
 		console.log(state);
 		// true | false
 	});
-
-	console.log($scope.item);
-
+	
 	//fetch the data
 	$scope.openFileWindow = function() {
 		angular.element(document.querySelector('#fileUpload')).trigger('click');
@@ -46,7 +44,7 @@ angular.module('flatman').controller("sharedItemCtrl", function($scope, $routePa
 	};
 
 	$scope.updateItem = function() {
-		console.log($scope.item);
+		console.log($('#tags').val());
 		shareService.item.update($scope.item, function() {
 		}, function() {
 		});
@@ -60,13 +58,15 @@ angular.module('flatman').controller("sharedItemCtrl", function($scope, $routePa
 	};
 
 	$scope.removeImage = function() {
-		$scope.item.image = null;
+		$scope.item.imagePath = null;
 		shareService.item.upload($scope.item, function(result) {
 			$scope.item = shareService.item.get($routeParams.itemid);
 		}, function(error) {
 		});
 	};
-
+	
+	
+	
 })
 //html: upload-image
 .directive('uploadImage', function() {
@@ -92,6 +92,6 @@ angular.module('flatman').controller("sharedItemCtrl", function($scope, $routePa
 				reader.readAsBinaryString(file);
 			});
 		}
-	}
+	};
 
 });

@@ -18,37 +18,48 @@ class Api::ShareditemController < Api::RestController
     respond_with(item)
   end
   
+  
   def update
     item = Shareditem.find(item_params[:id])
+
+    if !params[:imagePath]
+      @up[:image] = nil
+      item.update!(@up)
+    end
+
     
+     #if image, manually set in directive
      if params[:imageData]
-          logger.debug "he du pferd"
           decoded_data = Base64.decode64(params[:imageData])
           
           data = StringIO.new(decoded_data)
           data.class_eval do
             attr_accessor :content_type, :original_filename
           end
-          data.content_type = params[:imageContent] # json parameter set in directive scope
-          data.original_filename = params[:imagePath] # json parameter set in directive scope
+          data.content_type = params[:imageContent] 
+          data.original_filename = params[:imagePath]
           @up[:image] = data
           item.update!(@up)  
-      
+      else 
+         item.update!(params_no_image)  
     end
+    
 
     
     
     respond_with(item)
   end
- # r = Ressource.find_resource_with_user_constraint(params[:id], current_user)
-   
+ 
 
   private
+  #requrie funzt nit, weil /id.
   def item_params
-    #requrie funzt nit, weil /id.
-    @up = params.permit(:id, :image, :imageContent, :imagePath, :imageData, :description, :sharingNote, :tags, :name, :available)
+    @up = params.permit(:id, :image, :imageContent, :imagePath, :imageData, :description, :hidden, :sharingNote, :tags, :name, :available)
   end
   
+  def params_no_image
+    params.permit(:id, :description, :sharingNote, :imagePath, :tags, :name, :available, :hidden)
+  end
 end
 
 

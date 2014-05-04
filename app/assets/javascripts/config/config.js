@@ -1,6 +1,8 @@
 // Angular Config / Routes
 
-angular.module('flatman', ['ngRoute','ngResource','google-maps','angles','ui.bootstrap','ngLocale', 'number_localized']).config(function($httpProvider, $routeProvider){
+angular.module('flatman', ['ngRoute','ngResource','google-maps','angles','ui.bootstrap','ngLocale', 'number_localized'])
+        .config(function($httpProvider, $routeProvider){
+
   $httpProvider.defaults.headers.common = {'X-CSRF-Token': $("meta[name='csrf-token']").attr("content"),
                                           'Content-Type': 'application/json'};
   $routeProvider.
@@ -86,17 +88,15 @@ angular.module('flatman', ['ngRoute','ngResource','google-maps','angles','ui.boo
 
       $httpProvider.interceptors.push(function($q,$rootScope) {
           return {
-              request: function(config){ $rootScope.is_loading=true; return config; },
-              response: function(response) { $rootScope.is_loading=false;  return response; },
-              responseError: function(rejection) {
-                                                  $rootScope.is_loading=false;
-                                                  return $q.reject(rejection);
-                                                 }
+              request: function(config){ $rootScope.pending_requests++; return config; },
+              response: function(response) { $rootScope.pending_requests--;  return response; },
+              responseError: function(rejection) { $rootScope.pending_requests--; return $q.reject(rejection); }
           };
       });
 
 
 }).run(function($rootScope,Util){
+  $rootScope.pending_requests=0;
   $rootScope.$on('$routeChangeStart',function(){
     Util.clear_server_errors();     //clear errors on view change
     $('.modal.in').modal('hide');   //dirty nasty ugly hack!!! DON'T DO THIS AT HOME

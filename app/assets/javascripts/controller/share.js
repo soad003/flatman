@@ -31,8 +31,8 @@ angular.module('flatman').controller("shareCtrl", function($scope, shareService,
 
 	};
 
-	$scope.hideItem = function(item, hide) {
-		item.hidden = hide;
+	$scope.hideItem = function(item) {
+		item.hidden = !item.hidden;
 		shareService.items.update(item, function(data) {
 
 		}, function() {

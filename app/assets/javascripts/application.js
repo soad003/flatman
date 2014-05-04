@@ -21,6 +21,8 @@
 //= require angular-resource
 //= require angular-animate
 //= require angular-ui-bootstrap-tpls
+//= require bootstrap-tagsinput
+//= require bootstrap-tagsinput-angular
 //= require_tree ./config
 //= require_tree ./services
 //= require_tree ./controller
@@ -28,7 +30,7 @@
 //= require ./vendor/angles.js
 //= require bootbox.js
 //= require ./vendor/angular-google-maps.min.js
-//= require bootstrap-tagsinput
-//= require bootstrap-tagsinput-angular
 //= require magnific-popup
 //= require ./vendor/bootstrap-switch
+
+
