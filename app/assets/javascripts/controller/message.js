@@ -69,8 +69,8 @@ angular.module('flatman').controller("messageCtrl", function($scope, $route, mes
         }
 
         //12:13:57,495Z $scope.time
-        timeArray = $scope.time.split(":");         // split hh:mm:ss
-        dateArray = $scope.date.split("-");         // split yyyy:mm:dd
+        var timeArray = $scope.time.split(":");         // split hh:mm:ss
+        var dateArray = $scope.date.split("-");         // split yyyy:mm:dd
         if (parseInt(timeArray[0],10) === 22 && $scope.summertime){
             timeArray[0] = "00";
             dateArray[2] = (parseInt(dateArray[2],10) + 1).toString();
