@@ -1,8 +1,9 @@
 angular.module('flatman').controller("rootCtrl",function($scope,$rootScope,$timeout,$location,Util,statusService){
     $scope.Util=Util;
     $scope.error_type="danger";
+    $scope.pending_status_requests=0;
 
-    $scope.isLoading = function(){ return $rootScope.pending_requests>0; };
+    $scope.isLoading = function(){ return ($rootScope.pending_requests - $scope.pending_status_requests)>0; };
 
     $scope.isActive = function(route) {
         return route === $location.path();
@@ -17,8 +18,10 @@ angular.module('flatman').controller("rootCtrl",function($scope,$rootScope,$time
     };
 
     (function tick() {
+        $scope.pending_status_requests++;
         $scope.server_status=statusService.get(function(){
-            $timeout(tick, 50000);
+            $timeout(tick, 5000);
+            $scope.pending_status_requests--;
         });
     })();
 
