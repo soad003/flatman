@@ -1,6 +1,8 @@
-angular.module('flatman').controller("rootCtrl",function($scope,$timeout,$location,Util,statusService){
+angular.module('flatman').controller("rootCtrl",function($scope,$rootScope,$timeout,$location,Util,statusService){
     $scope.Util=Util;
     $scope.error_type="danger";
+
+    $scope.isLoading = function(){ return $rootScope.pending_requests>0; };
 
     $scope.isActive = function(route) {
         return route === $location.path();
