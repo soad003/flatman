@@ -59,7 +59,6 @@ class Api::MessageController < Api::RestController
     end
     m = Message.find(params[:mes_id])
     m.header = count
-    m.save
     @counter = m
   end
 
