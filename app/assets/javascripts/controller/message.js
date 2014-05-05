@@ -67,7 +67,7 @@ angular.module('flatman').controller("messageCtrl", function($scope, $route, mes
         var todayDate = todayYear + "-" + todayMonth + "-" + todayDay;
         if (todayDay == "01")
             if (todayMonth == "01"){
-                todayYear = (parseInt(todayYear) - 1).toString();
+                todayYear = (parseInt(todayYear, 10) - 1).toString();
                 todayDay = "31";
             }
             else 
@@ -75,14 +75,14 @@ angular.module('flatman').controller("messageCtrl", function($scope, $route, mes
                     case "05":
                     case "07":
                     case "10":
-                    case "12": todayMonth = (parseInt(todayMonth) - 1).toString();
+                    case "12": todayMonth = (parseInt(todayMonth, 10) - 1).toString();
                         todayDay = "30";
                         break;
                     //  das durch 4, aber nicht auch durch 100 ohne Rest teilbar ist, mit der Ausnahme, dass ein durch 400 ohne Rest teilbares Jahr wiederum ein Schaltjahr ist
-                    case "03":  if ((parseInt(todayYear)%4 == 0 && parseInt(todayYear)%100 != 0) || parseInt(todayYear)%400 == 0)
+                    case "03":  if ((parseInt(todayYear, 10)%4 === 0 && parseInt(todayYear, 10)%100 !== 0) || parseInt(todayYear, 10)%400 === 0)
                                     {todayDay = "29";}
                                 else {todayDay = "28";}
-                        todayMonth = (parseInt(todayMonth) - 1).toString();
+                        todayMonth = (parseInt(todayMonth, 10) - 1).toString();
                         if (todayMonth.length < 2)
                             todayMonth = "0" + todayMonth;
                         break;
@@ -91,7 +91,7 @@ angular.module('flatman').controller("messageCtrl", function($scope, $route, mes
                     case "06":
                     case "08":
                     case "09":
-                    case "11": todayMonth = (parseInt(todayMonth) -1).toString();
+                    case "11": todayMonth = (parseInt(todayMonth, 10) -1).toString();
                                 if (todayMonth.length < 2)
                                     todayMonth = "0" + todayMonth;
                                 todayDate = "31";
@@ -99,7 +99,7 @@ angular.module('flatman').controller("messageCtrl", function($scope, $route, mes
 
             }
         else {
-            todayDay = (parseInt(todayDay) -1).toString();
+            todayDay = (parseInt(todayDay, 10) -1).toString();
             if (todayDay.length < 2)
                 todayDay = "0" + todayDay;
         }
