@@ -4,6 +4,7 @@ angular.module('flatman').controller("messageCtrl", function($scope, $route, mes
     $scope.chatView = true;
     $scope.chatPartner = null;
     $scope.unreadCounter = [];
+    $scope.summertime = true;
 
 
     $scope.newMess = {sender_id: "", receiver_id: "", text: "", header: "", read: false};
@@ -55,8 +56,43 @@ angular.module('flatman').controller("messageCtrl", function($scope, $route, mes
     $scope.parseTime = function(time, modus){
         $scope.dateTime = time.split("T");
         $scope.date = $scope.dateTime[0];
-        //2014-05-05
+        //2014-05-05 $scope.date
         $scope.time = $scope.dateTime[1].split(".");
+        $scope.time = $scope.time[0]
+
+
+        //letzter So im März um 2:00 +1h
+        //letzter So im Oktober um 3:00 -1h
+        var timediff = 1;
+        if ($scope.summertime === true){
+            timediff = 2;
+        }
+
+        //12:13:57,495Z $scope.time
+        timeArray = $scope.time.split(":");         // split hh:mm:ss
+        dateArray = $scope.date.split("-");         // split yyyy:mm:dd
+        if (parseInt(timeArray[0],10) === 22 && $scope.summertime){
+            timeArray[0] = "00";
+            dateArray[2] = (parseInt(dateArray[2],10) + 1).toString();
+        }
+        else if (parseInt(timeArray[0],10) === 23){
+            timeArray[0] = "01";
+            dateArray[2] = (parseInt(dateArray[2],10) + 1).toString();
+        }
+        else{
+            timeArray[0] = (parseInt(timeArray[0],10) + timediff).toString();
+            if (timeArray[0].length < 2){
+                timeArray[0] = "0" + timeArray[0];
+            }
+        }
+
+        // rebuild time and date
+        $scope.time = "";
+        $scope.date = "";
+        $scope.time = timeArray[0] + ":" + timeArray[1] + ":" + timeArray[2];
+        $scope.date = dateArray[0] + "-" + dateArray[1] + "-" + dateArray[2];
+        
+
         var todayDay = new Date().getDate().toString();
         var todayMonth = (new Date().getMonth() + 1).toString();
         if (todayMonth.length < 2)
@@ -105,15 +141,15 @@ angular.module('flatman').controller("messageCtrl", function($scope, $route, mes
         }
         var yesterday = todayYear + "-" + todayMonth + "-" + todayDay;
         if (todayDate == $scope.date)
-            return "today" +" "+ $scope.time[0];
+            return "today" +" "+ $scope.time;
         else if (yesterday == $scope.date && modus == "0")  // chat view
             return "yesterday";
         else if (yesterday == $scope.date && modus == "1")  // messages view
-            return "yesterday" +" "+ $scope.time[0];
+            return "yesterday" +" "+ $scope.time;
         else if (modus == "0")
             return $scope.date;
         else if (modus == "1")
-            return $scope.date +" "+ $scope.time[0];
+            return $scope.date +" "+ $scope.time;
 
         // Mon May 05 2014 09:29:33 GMT+0200 (CEST)
 
