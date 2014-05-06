@@ -14,9 +14,9 @@ angular.module('flatman').controller("sharedItemCtrl", function($scope, $routePa
 	*/
 
 	
-	$('#itemavailable').bootstrapSwitch($scope.item.available);
+	$('#lului').bootstrapSwitch($scope.item);
 
-	$('#itemavailable').on('switchChange.bootstrapSwitch', function(event, state) {
+	$('#lului').on('switchChange.bootstrapSwitch', function(event, state) {
 		$scope.item.available = state;
 		console.log(this);
 		// DOM element
@@ -31,21 +31,22 @@ angular.module('flatman').controller("sharedItemCtrl", function($scope, $routePa
 		angular.element(document.querySelector('#fileUpload')).trigger('click');
 	};
 
-	$scope.removeItem = function() {
-		bootbox.confirm("Are you sure?", function(result) {
+	$scope.removeItem = function(asktext) {
+		bootbox.confirm(asktext, function(result) {
 			if (result) {
-				shareService.items.remove($scope.item, function(data) {
+				shareService.item.remove($scope.item, function(data) {
 					$location.path("/share");
 				}, function() {
 				});
-			}
+			} else
+				return;
 		});
 
 	};
 
 	$scope.updateItem = function() {
-		console.log($('#tags').val());
 		shareService.item.update($scope.item, function() {
+			$location.path("/share");
 		}, function() {
 		});
 	};

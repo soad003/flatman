@@ -66,10 +66,10 @@
       <div class="panel-heading">
         <div class="row">
           <div class="col-xs-6">
-            <i class="fa fa-wrench fa-5x"></i>
+            <i class="fa fa-share-square-o fa-5x"></i>
           </div>
           <div class="col-xs-6 text-right">
-            <p class="announcement-heading">{{get_items_borrowed()}}</p>
+            <p class="announcement-heading">{{count_sharedItems(false)}}</p>
             <p class="announcement-text"><%=t(".items_borrowed")%></p>
           </div>
         </div>
@@ -116,6 +116,8 @@
     </div>
   </div>
 </div>
+
+
 <div class="row">
   <div class="col-md-6">
     <div class="panel panel-default">
@@ -178,43 +180,36 @@
     </div>
   </div>
 </div>
-<div class="row">
+
+
   <div class="col-md-6">
     <div class="panel panel-default">
-      <div class="panel-heading">
-        <span class="glyphicon glyphicon-share"></span>  <%=t(".panel_share_header")%>
+      <div class="panel-heading panel-tooltip panel-link" title='<%=t(".share_helptext")%>'>
+        <a href="/#/share"><span class="glyphicon glyphicon-share"></span> <%=t(".panel_share_header")%></a>
       </div>
       <div class="panel-body">
-          <div class="row">
-            <div class="col-md-6">
-              <div class="panel panel-success">
-                  <div class="panel-heading">Verfügbar</div>
-                  <div class="panel-body">
-                    <ul>
-                      <li>Bohrmaschine</li>
-                      <li>Hammer</li>
-                      <li>Lötkolben</li>
-                    </ul>
-                  </div>
-              </div>
-            </div>
-            <div class="col-md-6">
-              <div class="panel panel-warning">
-                  <div class="panel-heading">Verliehen</div>
-                  <div class="panel-body">
-                    <ul>
-                      <li>Fahrrad -> (<a href="#">niki des Pferd</a>)</li>
-                    </ul>
-                  </div>
-              </div>
-            </div>
-          </div>
-          <div class="text-right">
-            <a href="/#/share"><%=t(".view_details")%> <i class="fa fa-arrow-circle-right"></i></a>
-          </div>
+        <ul class="list-group">
+	         <li class="list-group-item">
+    	         <span ng-show="count_sharedItems(true)>0" class="badge">{{count_sharedItems(true)}}</span>
+	         	 <h4 class="list-group-item-heading"><%=t(".share_available")%></h4>
+	         	 <p ng-show="count_sharedItems(true)==0"><%=t(".no_shareditems")%></p>
+	         	 <p class="list-group-item-text">{{ get_sharedItems(true) }}</p>
+	         </li> 
+	         <li class="list-group-item">
+	             <span class="badge">{{count_sharedItems(false)}}</span>
+	         	 <h4 class="list-group-item-heading"><%=t(".share_borrowed")%></h4>
+	         	 <p class="list-group-item-text">{{ get_sharedItems(false) }}</p>
+	         </li>
+        </ul> 
+         <div class="text-right">
+          <a href="/#/share"><%=t(".view_details")%> <i class="fa fa-arrow-circle-right"></i></a>
+        </div>
+         
+      </div>
       </div>
     </div>
-  </div>
+
+
   <div class="col-md-6">
     <div class="panel panel-default">
       <div class="panel-heading">
@@ -237,7 +232,7 @@
                   <td>{{info.name}}</td>
                   <td class="text-right">{{info.usage | number : number}} {{info.unit}}</td>
                   <td class="text-right">{{info.cost| currency : '€ '}}</td>
-                </tr>
+                </tr>items
               </tbody>
               <tfoot>
                   <tr>
@@ -253,4 +248,3 @@
       </div>
     </div>
   </div>
-</div>

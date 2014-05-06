@@ -225,6 +225,10 @@ en:
       panel_share_header                 : "Shared Items"
       panel_resources_header             : "Ressource Usage (last 30 days)"
       no_shoppinglists                   : "Nothing to shop yet..."
+      no_shareditems                     : "No items available"
+      share_available                    : "items offered to share"
+      share_borrowed                     : "currently borrowed items"
+      share_helptext                     : "share ressources, feel better and make the world a better place"
 
     messages:
       page_header                        : "Messages"
@@ -362,9 +366,8 @@ en:
       add_item_new                       : "add"
       hidden_items                       : "hidden items"
       hidden_info                        : "hidden items are just visible for you and cannot be found by anyone"
-    shareditem:
-      add_file                           : "add file"
-      upload                             : "upload"
+      confirm_delete                     : "do you really want to delete this item?"
+    shareditem:     
       upload                             : "upload"
       save                               : "save"
       back                               : "back"
@@ -372,6 +375,17 @@ en:
       remove_image                       : "remove image"
       upload_image                       : "upload image"
       change_image                       : "change"
+      available                          : "available"
+      hidden                             : "hidden"
+      currentState                       : "current state of the item"
+      descritpion                        : "descritpion"
+      description_placeholder            : "describe your item"
+      sharingNote                        : "sharing note"
+      sharingNote_placeholder            : "notice who has taken your item"
+      tags                               : "tags"
+      tags_placeholder                   : "tag, tog, tig"
+      confirm_delete                     : "do you really want to delete this item?"
+    
 
   session:
     index:

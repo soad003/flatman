@@ -1,12 +1,10 @@
 angular.module('flatman').controller("shareCtrl", function($scope, shareService, Util, $location) {
 	$scope.shareditems = shareService.items.get();
 
-	//add tooltips (data in title="") to classes.
-	$('.panel-tooltip').tooltip({
+	$('.panel-tooltip, .tooltip').tooltip({
 		placement : "bottom"
 	});
 
-	//add a new fucking item. just title.
 	$scope.addItem = function() {
 		shareService.items.create($scope.newItemName, function(data) {
 			data.items = [];
@@ -19,8 +17,8 @@ angular.module('flatman').controller("shareCtrl", function($scope, shareService,
 
 	};
 
-	$scope.removeItem = function(item) {
-		bootbox.confirm("Are you sure?", function(result) {
+	$scope.removeItem = function(asktext, item) {
+		bootbox.confirm(asktext, function(result) {
 			if (result) {
 				shareService.items.remove(item, function(data) {
 					$scope.shareditems = _($scope.shareditems).without(item);
