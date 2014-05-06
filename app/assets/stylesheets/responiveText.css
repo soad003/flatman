@@ -1,6 +1,10 @@
 @media screen and (max-width: 568px) {
     h1 {
-    	font-size:170%;
+    	font-size:180%;
+    }
+
+    h3 {
+    	font-size:130%;
     }
 
     .modal-body {
@@ -13,11 +17,6 @@
 
     .form-control {
     	font-size: 80%;
-    	margin: 100px, 100px, 100px, 100px;
-    }
-
-    .btn-group.btn-block {
-    	margin-top: 10px;
     }
 
 }
