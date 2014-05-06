@@ -42,8 +42,10 @@
             <i class="fa fa-bitcoin fa-5x"></i>
           </div>
           <div class="col-xs-6 text-right">
-            <p class="announcement-heading">{{get_you_owe()}}</p>
-            <p class="announcement-text"><%=t(".you_owe")%></p>
+            <div ng-controller="financesCtrl">
+              <p class="announcement-heading">{{debts()}}</p>
+             <p class="announcement-text"><%=t(".you_owe")%></p>
+            </div>
           </div>
         </div>
       </div>
@@ -143,7 +145,8 @@
         <span class="glyphicon glyphicon-euro"></span>  <%=t(".panel_finances_header")%>
       </div>
       <div class="panel-body">
-          <table class="table table-striped table-hover">
+        <div ng-controller="financesCtrl">
+          <table class="table table-striped table-hover" ng-show"allDebts.length!== 0">
               <thead>
                 <tr>
                   <th>#</th>
@@ -152,28 +155,25 @@
                 </tr>
               </thead>
               <tbody>
-                <tr>
-                  <td>1</td>
-                  <td>Mark</td>
-                  <td class="text-right">-100.00</td>
-                </tr>
-                <tr>
-                  <td>2</td>
-                  <td>Jacob</td>
-                  <td class="text-right">+100.00</td>
+                <tr ng-repeat="debt in allDebts track by $index">
+                  <td>{{$index + 1}}</td>
+                  <td>{{debt.payee_name}}</td>
+                  <td class="text-right">{{debt.debt}}</td>
                 </tr>
               </tbody>
               <tfoot>
                   <tr>
                     <td>&nbsp;</td>
                     <td>&nbsp;</td>
-                    <td class="text-right">0.00</td>
+                    <td class="text-right">{{debts()}}</td>
                   </tr>
               </tfoot>
+              <p ng-show="allDebts.length===0"><%=t(".no_debts")%></p>
             </table>
             <div class="text-right">
               <a href="/#/finances"><%=t(".view_details")%> <i class="fa fa-arrow-circle-right"></i></a>
             </div>
+          </div>
       </div>
     </div>
   </div>

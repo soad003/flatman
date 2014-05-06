@@ -27,7 +27,7 @@
   						</tr>
   						<tr>
   							<th>
-  								<label for="InputAusgaben">Betrag:</label>
+  								<label for="InputAusgaben">Value:</label>
   							</th>
   						</tr>
   						<tr>
@@ -37,7 +37,7 @@
   						</tr>
   						<tr>
   							<th>
-  								<label for"InputDate">Datum:</label>
+  								<label for"InputDate">Date:</label>
   							</th>
   						</tr>
                <tr>
@@ -47,50 +47,51 @@
               </tr>
               <tr>
                 <th>
-  								<label for="InputCategorie">Kategorie:</label>
+  								<label for="InputCategorie">Category:</label>
   						  </th>
               </tr>
               <tr>
   						  <th>
-  								<input type="text" class="form-control" id="InputCategorie" ng-model="category.cat" placeholder="Let it BLANK!">
+  								<input type="text" class="form-control" id="InputCategorie" ng-model="finTmp.cat_name" placeholder="Let it BLANK!">
   							</th>
+  						</tr>
+           
+            
+              <tr>
+                <th>
+                  <label for="Payer">Who paid?:</label>
+                </th>
+              <tr>
+                <th>
+                <!-- <div class="btn-group">
+                   <button type="button" class="btn btn-primary btn-xs dropdown-toggle" data-toggle="dropdown">
+                    FlatMates </i>
+                    <span class="caret"></span>
+                  </button>
+                   <!--<ul class="dropdown-menu" role="menu" ng-repeat="mates in getFlatMates">-->
+                    <select ng-model="finTmp.payee" ng-options="mates.name for mates in getFlatMates"></select>
+                     <!-- <li><a href="" ng-model="debtTmp.payee" ng-click="test()">{{mates.name}}</a></li>  </ul>-->
+                   </th>
+               </tr>   
+              </div>
+
+               </th>
+              </tr>             
+  						<tr>
+  							<th>
+  								<label for="who"><%= t('.bill_affects') %></label>
+              
+  							</th>
+  						</tr>
+              <div class="btn-group" data-toggle="buttons">
+  						<tr ng-repeat="mates in getFlatMates">
+  							<th>              
+                  <label class="btn btn-primary btn-sm">
+                    <input type="checkbox" checked="no">{{mates.name}}
+                  </label>
+               </th>
   						</tr>
 
-             
-              <!--
-  						<tr>
-  							<th>
-  								<label for="who">betrifft:</label>
-  							</th>
-  						</tr>
-  						<tr>
-  							<th>
-                  <div class="checkbox">
-                   <input type="checkbox">Chk Bw1
-                 </div>
-  							</th>
-              </tr>
-              <tr>
-  							<th>
-                  <div class="checkbox">
-  								<input type="checkbox">Chk BW2</div>
-  							</th>
-  						</tr>
-  						<tr>
-  							<th>
-                  <div class="checkbox">
-  								<input type="checkbox">Chk BW3
-                </div>
-  							</th>
-              </tr>
-              <tr>
-  							<th>
-                  <div class="checkbox">
-  								<input type="checkbox">Chk BW4
-                </div>
-  							</th>
-  						</tr>
-  						-->
             </table>
   		
           <div class="panel-footer">  

@@ -216,7 +216,7 @@ en:
       panel_share_header                 : "Shared Items"
       panel_resources_header             : "Ressource Usage (last 30 days)"
       no_shoppinglists                   : "Nothing to shop yet..."
-
+      no_debts                           : "No debts yet..."
     messages:
       page_header                        : "Messages"
       page_title                         : "Messages"
@@ -286,6 +286,7 @@ en:
       page_header                        : "Financal status"
     finances_new:
       page_header                        : "New Entry"
+      bill_affects                       : "Bill affects:"
     finances_overview:
       page_header                        : "Overview"
     user_settings:
