@@ -26,19 +26,35 @@
 
   <body ng-controller="rootCtrl" ng-cloak>
 
+    <!-- loading overlay for small devices -->
+    <div ng-show="isLoading()">
+      <div class="visible-xs loading-overlay">
+        <span class="fa fa-refresh fa-5x loading-overlay-centered"></span>
+      </div>
+    </div>
+
     <div class="navbar navbar-default navbar-fixed-top navbar-inverse" role="navigation">
       <div class="container-fluid">
         <div class="navbar-header">
+          <% if is_user_ready_to_go %>
           <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
             <span class="sr-only">Toggle navigation</span>
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" href="/#/dashboard"><%= image_tag("flatman_logo.png", width: 30) %> flatman</a>
+          <%end%>
+          <a class="navbar-brand" href="/#/dashboard"><%= image_tag("flatman_logo_30.png", width: 30) %> flatman</a>
         </div>
+        <% if not is_user_ready_to_go and logged_in %>
+          <ul class="nav navbar-nav pull-right">
+              <li>
+                <a href="/signout"><span class="glyphicon glyphicon-off"></span> <%=t("misc.titles.logout")%></a>
+              </li>
+          </ul>
+        <% end %>
         <% if is_user_ready_to_go %>
-          <div class="navbar-collapse collapse">
+          <div class="navbar-collapse collapse no-transition">
             <ul class="nav navbar-nav">
               <li ng-class="{active:isActive('/dashboard')}">
                 <a href="/#/dashboard" ><span class="fa fa-dashboard"></span> <%=t(".navbar.dashboard")%></a>
@@ -73,8 +89,8 @@
                   <li><a href="/signout"><span class="glyphicon glyphicon-off"></span> <%=t("misc.titles.logout")%></a></li>
                 </ul>
               </li>
-              <li class="flatman-navbar-item" ng-show="is_loading">
-                <a><span class="fa fa-refresh" ></span> <%=t("misc.titles.in_progress")%></a>
+              <li class="flatman-navbar-item" ng-show="isLoading()">
+                <a><span class="fa fa-refresh hidden-xs" ></span> <%=t("misc.titles.in_progress")%></a>
               </li>
             </ul>
 
@@ -129,7 +145,7 @@
               <%= link_to_unless(I18n.locale == :de,
                       t('misc.titles.language.german'),{locale: :de},{:onclick => "this.href=this.href+'/'+window.location.hash" })%>
             </div>
-            <div class="col-md-4 col-xs-4 text-right  hidden-xs">
+            <div class="col-md-4 col-xs-4 text-right hidden-xs">
               <%= link_to t('misc.titles.menus.terms_and_privacy.title'), terms_path %>
             </div>
           </div>

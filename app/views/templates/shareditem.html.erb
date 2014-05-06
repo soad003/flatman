@@ -4,85 +4,41 @@
 		<h1 class="page-header"><span class="fa fa-share"> {{item.name}}<span></h1>
 	</div>
 		
-		
-	
-	
-	<!--
-		rotz.
-		huanzeig.
-	<form role="form" enctype="multipart/form-data"  name="uploadForm" ng-submit="upload()">
-		<div class="field">
-	    <label for="user_avatar">kretz.</label><br>
-	    <input id="user_avatar" ng-model = "uploadFile.file" type="file">
-	  </div>
-	 
-	  <div class="actions">
-	    <input name="commit" type="submit" value="Create User">
-	  </div>
-	</form>
-      -->
-      
-      <!--
-    <form role="form" enctype="multipart/form-data" name="uploadForm" ng-submit="upload()">
-    	
-    </form>
-     -->
-	
 	
 	<div class="col-lg-3 ">
-	    <div class="thumbnail">
-	    	<a class="image-popup" href="http://artisticthings.com/wp-content/uploads/2010/04/apreis6-400x400.jpg" >
-	        		<img 
-	        			class="thumb media-object dp img-rounded image-popup" 
-	        			src="http://artisticthings.com/wp-content/uploads/2010/04/apreis6-400x400.jpg" 
-	        			/>
-	        		
-			</a>
-			<div class="caption">
-				<form 	accept-charset="UTF-8" 
-			action="/api/upload" 
-			class="new_user" 
-			enctype="multipart/form-data" 
-			id="new_user" 
-			method="post">
+		 <div class="thumbnail">
+		 	<input type="file" id="fileUpload" ng-show="false" upload-image />
+	      	<img class="image-popup img-rounded" ng-src="{{item.image}}"   >
 			
-		
-
-	  <div class="field">
-	  	
-	
-	  
-	    <input id="upload_file" name="upload[file]" type="file">
-	  
-	  
-	<!-- 	<input name="upload[item]" value="{{item}}" /> 
-		rotze. 
-		Can't verify CSRF token authenticity
--->
-	 
-	  <div class="actions">
-	    <input name="commit" type="submit" value="upload direkt -.-">
-	  </div>
-	  </div>
-	</form>
-			</div>
-		    
-		</div>
+	      	<h3>{{item.name}}</h3>
+	      	<p><%= t(".image_static_text") %></p>
+	      	<p> 
+	  	      	<button class="btn btn-primary" ng-class=" {hidden: item.image}"   ng-click="openFileWindow()">
+	      			<span class="glyphicon glyphicon-camera"></span> <%= t(".upload_image") %>
+	      		</button>
+	      		<button class="btn btn-primary" ng-class=" {hidden: !item.image}"  ng-click="openFileWindow()">
+	      			<span class="glyphicon glyphicon-camera"></span> <%= t(".change_image") %>
+	      		</button>		
+	      		<button class="btn btn-error" ng-class=" {hidden: !item.image}" ng-click="removeImage()">
+	      			<span class="glyphicon glyphicon-remove"></span> <%= t(".remove_image") %>
+	      		</button>	
+	    	</p>
+	     </div>
+    
+	    
 	</div>	
 	
 	
 	<div class="col-lg-9">
-		<form role="form" name="itemform" ng-submit="updateItem(item)">
+		<form role="form" name="itemform" ng-controller="sharedItemCtrl" ng-submit="updateItem()">
 			<div class="panel panel-success">
 				 <div class="panel-heading">
-				 	
 					    <h3 class="panel-title">current state: available</h3>
-				</div>
+				 </div>
+				 
 				 <div class="panel-body">
-			    		<p>
-						<button class="btn btn-primary"><span class="glyphicon glyphicon-pencil"></span> hide</button>	
-						<button class="btn btn-primary"><span class="glyphicon glyphicon-pencil"></span> available for share</button>	
-						</p>
+				 	<p>verdammtes glump.</p>
+				 	
 					    
 				   <hr />         
 					
@@ -116,10 +72,13 @@
 					<br />
 				<label for="tags">tags</label>
 				
-					<bootstrap-tagsinput
-					  ng-model="item.tags"
-					  placeholder="some tags"
-					</bootstrap-tagsinput>
+				<input 	type="text" 
+						id="tags"
+						placeholder="some tags" 
+						ng-model="item.tags" 
+						data-role="tagsinput" />
+				
+			
 					
 							
 				</div>
@@ -127,13 +86,22 @@
 			
 			
 				<p>
-			     <button class="btn btn-primary"
-                        type="submit"
-                         ng-disabled="!itemform.$valid">
-                         <span class="glyphicon glyphicon-floppy-disk"></span> update</button>
-                        
+				
+				<button class="btn btn-success"
+						ng-disabled="!itemform.$valid"
+						type="submit">
+          			<span class="glyphicon glyphicon-floppy-disk"></span> <%= t(".save") %>
+          		</button>
+          			        
                   
-                <a href="#/share"><button class="btn btn-primary">back</button></a>	
+              
+                <a ng-click="removeItem()"><button class="btn btn-danger">
+                	<span class="glyphicon glyphicon-remove"></span> <%= t(".remove") %></button>
+                </a>	
+                
+                  <a href="#/share"><button class="btn btn-primary">
+                	<span class="glyphicon glyphicon-arrow-left"></span> <%= t(".back") %></button>
+                </a>	
                </p>
                 </div> </div>
 		</form>

@@ -57,14 +57,17 @@ scope "(:locale)", locale: /en|de/ do
 
    #messages
    resources :message, only: [:index, :create, :update, :destroy]
+   
    get '/message/:mes_id/messages' => 'message#get_messages'
    get '/message/:mes_id/partner' => 'message#find_partner'
+   get '/message/users' => 'message#get_users'
+   get '/message/:mes_id/counter' => 'message#count_messages'
 
    #sharing
    get '/shareditem/:id' => 'shareditem#get'
    post '/shareditem/:id' => 'shareditem#update'
    resources :share, only: [:index, :create, :destroy]
-   resources :shareditem, only: [:index, :create, :update]
+   resources :shareditem, only: [:index, :create, :update, :upload]
    
    #finances
    resources :finance, only: [:index, :create, :update, :destroy]

@@ -2,13 +2,13 @@
 
 <script type="text/javascript">
     function scrolldown() {$("#scrollarea").animate({ scrollTop: $(document).height()*25 }, "fast");}
-  </script>
+</script>
 
 <div class="visible-lg visible-md">
   <div class="page-head">
       <h2 class="page-header" ng-show="chatView"><span class="fa fa-envelope"></span>
           <%= t('.page_header') %> 
-        <a href="/#/create_message"><button class="btn btn-primary pull-right"><i class="fa fa-plus"></i> <%= t('.page_title') %></button></a></h2>
+        <a href="/#/create_message"><button class="btn btn-primary pull-right"><i class="fa fa-plus"></i> <%= t('.page_title') %></button></h2></a>
       <h2 class="page-header" ng-show="chatView == false"><span class="fa fa-envelope"></span>
           {{chatPartner.name}}
         <a href="/#/create_message"><button class="btn btn-primary pull-right"><i class="fa fa-plus"></i> <%= t('.page_title') %></button></a></h2>
@@ -18,29 +18,47 @@
 
 <div class="visible-xs">
   <div class="page-head">
-      <h2 class="page-header"><span class="fa fa-envelope"></span> <%= t('.page_header') %> <a href="/#/create_message"><button class="btn btn-primary btn-xs pull-right"><i class="fa fa-plus"></i> <%= t('.page_title') %></button></a></h2>
+      <h2 class="page-header" ng-show="chatView"><span class="fa fa-envelope"></span>
+          <%= t('.page_header') %> 
+        <a href="/#/create_message"><button class="btn btn-primary btn-xs pull-right"><i class="fa fa-plus"></i> <%= t('.page_title') %></button></h2></a>
+      <h2 class="page-header" ng-show="chatView == false"><span class="fa fa-envelope"></span>
+          {{chatPartner.name}}
+        <a href="/#/create_message"><button class="btn btn-primary btn-xs pull-right"><i class="fa fa-plus"></i> <%= t('.page_title') %></button></a></h2>
      
   </div>
 </div>
 
 <div class="container modal-body" ng-show="chatView">
 <div ng-show="chats.length > 0"></br></br></div>
-  <div class="row" ng-repeat="chat in chats">
-    <a style="cursor:pointer; text-decoration: none;" ng-click="getMessages(chat)" onclick="scrolldown()">
+  <div class="row" ng-repeat="chat in chats track by $index">
+  <div ng-init="countUnread(chat, $index)">
+    <a style="cursor:pointer; text-decoration: none;" ng-click="getMessages(chat)" ng-click="toggleView()" onclick="scrolldown()">
       <div class="panel panel-success">
-        <div class="list-group-item"><span class="badge">14</span><strong>{{chat.receiver_name}}</strong></div>
-          <div class="panel-footer">
-            <div class="row">
-              <div class="col-xs-6 col-md-6">{{chat.sender_name}}: {{chat.text}}</div>
-                <div class="col-xs-6 col-md-6">
-                  <span class="time"><p class="text-right" style="font-size:x-small"><i class="fa fa-clock-o"></i> {{chat.time}}</p></span>
-                </div>
+        <div class="list-group-item">
+          <div class="btn-group pull-right">
+    </a>
+            <button type="button" class="btn btn-default btn-xs" ng-click="removeChat(chat, '<%= t('.questionDeleteChat') %>')">
+              <span class="glyphicon glyphicon-trash"></span>
+            </button>
+    <a style="cursor:pointer; text-decoration: none;" ng-click="getMessages(chat)" ng-click="toggleView()" onclick="scrolldown()">
+            <button type="button" style="background-color:transparent" class="btn btn-default btn-xs">
+              <span class="badge" style="background-color:CornflowerBlue">{{getUnreadCounter($index)}}</span>
+            </button>
+          </div>
+          <strong>{{chat.receiver_name}}</strong>
+        </div>
+        <div class="panel-footer">
+          <div class="row">
+            <div class="col-xs-6 col-md-6">{{chat.sender_name}}: {{chat.text}}</div>
+              <div class="col-xs-6 col-md-6">
+                <span class="time"><p class="text-right" style="font-size:x-small"><i class="fa fa-clock-o"></i> {{parseTime(chat.time, "0")}}</p></span>
               </div>
-            </div>
+          </div>
+        </div>
       </div>
     </a>
+    </div>
   </div>
-  
 </div>
 <body>
 <br>
@@ -53,7 +71,7 @@
                 <div class="row">
                   <div class="col-xs-6 col-md-6">{{message.text}}</div>
                   <div class="col-xs-6 col-md-6">
-                      <span class="time pull-right" style="font-size:x-small"><i class="fa fa-clock-o"></i>{{message.created_at}}</span>
+                      <span class="time pull-right" style="font-size:x-small"><i class="fa fa-clock-o"></i> {{parseTime(message.created_at, "1")}}</span>
                   </div>
                 </div>
             </div>
@@ -64,10 +82,10 @@
     <form role="form" name="SendForm">
       <div class="row">
           <div class="col-lg-10 col-md-10 col-xs-8">
-              <textarea class="form-control" rows="3" ng-model="newMess.text" type="text" maxlength="30" placeholder="<%= t('.new_text_placeholder') %>" required></textarea>
+              <textarea class="form-control" rows="3" ng-model="newMess.text" type="text" placeholder="<%= t('.new_text_placeholder') %>" required maxlength="255"></textarea>
           </div>
           <div class="col-lg-2 col-md-2 col-xs-4">
-              <a style="text-decoration: none;"><button class="btn btn-primary btn-block" onclick="scrolldown()" type="submit" ng-click="sendMessage()" onclick="scrolldown()"><%= t('.send') %></button></a>
+              <a style="text-decoration: none;"><button class="btn btn-primary btn-block" onclick="scrolldown()" type="submit" ng-click="sendMessage()" ng-disabled="!SendForm.$valid" onclick="scrolldown()"><%= t('.send') %></button></a>
               <a ng-click="toggleView()" style="text-decoration: none;"><button type="button" class="btn btn-default btn-block"><%= t('buttons.labels.decision.close') %></button></a>
           </div>
       </div>
@@ -75,7 +93,7 @@
   </div>
 </div>
 </body>
-<div class="jumbotron text-center" ng-show="chats.length === 0">
+<div class="jumbotron text-center" ng-show="chats.length === 0 && !isLoading()">
     <i class="fa fa-envelope fa-5x"></i>
     <h3><%= t('.intro_header') %></h3>
     <%= t('.intro_text1') %> <br>
@@ -83,11 +101,7 @@
 </div>
 
 <!-- todo
-- use suggestions in create_message (Typeahead Bootstrap)
-- error with false user
-- parse timestamp
-- count unread messages
-- delete chats
-- detect same user 
+- summertime
+- optimieren
 -->
 

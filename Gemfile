@@ -68,7 +68,7 @@ gem 'angularjs-rails'
 gem 'underscore-rails'
 
 # scheduler
-gem 'rufus-scheduler'
+#gem 'rufus-scheduler'
 
 gem 'angular-ui-bootstrap-rails'
 # gem 'seed_dump'
@@ -99,6 +99,7 @@ gem 'netrc'
 gem 'bootstrap-tagsinput-rails'
 gem 'magnific-popup-rails'
 gem 'less-rails'
+gem 'bootbox-rails'
 
 gem 'paperclip'
 # Use debugger

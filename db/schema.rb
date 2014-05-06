@@ -11,7 +11,10 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140426091603) do
+ActiveRecord::Schema.define(version: 20140503092901) do
+
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
 
   create_table "billcategories", force: true do |t|
     t.integer  "flat_id"
@@ -101,14 +104,17 @@ ActiveRecord::Schema.define(version: 20140426091603) do
   create_table "shareditems", force: true do |t|
     t.string   "name"
     t.string   "tags"
-    t.boolean  "available",   default: false
-    t.boolean  "hidden"
+    t.boolean  "available",          default: true
+    t.boolean  "hidden",             default: false
     t.string   "description"
     t.string   "sharingNote"
-    t.string   "image_path"
     t.integer  "flat_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "image_file_name"
+    t.string   "image_content_type"
+    t.integer  "image_file_size"
+    t.datetime "image_updated_at"
   end
 
   create_table "shoppinglistitems", force: true do |t|

@@ -43,6 +43,9 @@ en:
     shareditem:
       get:
         no_item_found                     : "The requested Item is currently not available"
+    message:
+      create:
+        no_user_found                     : "No user found"
   # mail
   user_mailer:
     invite:
@@ -82,6 +85,12 @@ en:
               blank                       : "Please provide a name for the unit of the resource!"
             startValue:
               blank                       : "Please enter a start value!"
+        message:
+          attributes:
+            receiver_id:
+              blank                       : "Please enter the username of the receiver"
+            text:
+              blank                       : "Please enter a message to send"
     ressource:
       info_all                        : "Total"
       info_currentMonth               : "this month"
@@ -225,6 +234,7 @@ en:
       intro_header                       : "Start creating your first chat"
       intro_text1                        : "With this feature you can contact other Users to share some items or other things."
       intro_text2                        : "Maybe you can find someone to borrowed an item you need."
+      questionDeleteChat                 : "Do you really want to delete this chat?"
     create_message:
       page_header                        : "New Message"
       send                               : "send"
@@ -244,6 +254,7 @@ en:
       costs                              : "Costs"
       resourceValue                      : "resource value"
       addMoreEntriesForChart             : "More entries are required to view the chart"
+      questionDeleteResource             : "Do you really want to delete the resource?"
     create_resource:
       page_title                         : "Resource"
       page_header                        : "Resource"
@@ -351,6 +362,17 @@ en:
       add_item_new                       : "add"
       hidden_items                       : "hidden items"
       hidden_info                        : "hidden items are just visible for you and cannot be found by anyone"
+    shareditem:     
+      add_file                           : "add file"  
+      upload                             : "upload"
+      upload                             : "upload"
+      save                               : "save"
+      back                               : "back"
+      remove                             : "remove item"
+      remove_image                       : "remove image"
+      upload_image                       : "upload image"
+      change_image                       : "change"
+    
   session:
     index:
       page_title                         : "Please sign in"

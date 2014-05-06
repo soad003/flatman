@@ -1,4 +1,14 @@
 angular.module('flatman').controller("resourceCtrl",function($scope, $filter, resourceService, Util){
+    //to get the env to reduce the loads of data
+    $scope.isMobile=function() {
+        if ($(window).width()<=770){
+            return true;
+        }
+        return false;
+    };
+
+    $scope.isMobile = $scope.isMobile();
+
     $scope.showIntro = false;
     $scope.resources = resourceService.resource.getAll(function(){
         if ($scope.resources.length === 0){
@@ -9,8 +19,6 @@ angular.module('flatman').controller("resourceCtrl",function($scope, $filter, re
                                         $scope.init(resource);
                                         $scope.setEntries(resource);
                                         $scope.initChart(resource);
-                                        $scope.getChartData(resource);
-                                        $scope.setOverview(resource);
                                     });
     });
 
@@ -27,13 +35,21 @@ angular.module('flatman').controller("resourceCtrl",function($scope, $filter, re
     };
 
     $scope.showInfos = function (resource, flag){
+        if (!$scope.isMobile){
+            $scope.getChartData(resource);
+            $scope.setOverview(resource);
+        }
         resource.showChart=flag;
     };
 
 
-     $scope.removeResource=function(resource){
-        resourceService.resource.destroy(resource.id,function(){
-            $scope.resources = _($scope.resources).without(resource);
+     $scope.removeResource=function(resource, text){
+        bootbox.confirm(text, function(result) {
+            if (result){
+                resourceService.resource.destroy(resource.id,function(){
+                    $scope.resources = _($scope.resources).without(resource);
+                });
+            }
         });
     };
 
@@ -149,4 +165,5 @@ angular.module('flatman').controller("resourceCtrl",function($scope, $filter, re
                 }]
             };
     };
+
 });
