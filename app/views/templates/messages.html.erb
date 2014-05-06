@@ -4,30 +4,28 @@
     function scrolldown() {$("#scrollarea").animate({ scrollTop: $(document).height()*25 }, "fast");}
 </script>
 
-<div class="visible-lg visible-md">
   <div class="page-head">
-      <h2 class="page-header" ng-show="chatView"><span class="fa fa-envelope"></span>
+      <h1 class="page-header" ng-show="chatView"><span class="fa fa-envelope"></span>
           <%= t('.page_header') %> 
-        <a href="/#/create_message"><button class="btn btn-primary pull-right"><i class="fa fa-plus"></i> <%= t('.page_title') %></button></h2></a>
-      <h2 class="page-header" ng-show="chatView == false"><span class="fa fa-envelope"></span>
+        <a href="/#/create_message"><button class="btn btn-primary pull-right"><i class="fa fa-plus"></i><span class="hidden-xs"><%= t('.page_title') %></span></button></h1></a>
+      <h1 class="page-header" ng-show="chatView == false"><span class="fa fa-envelope"></span>
           {{chatPartner.name}}
-        <a href="/#/create_message"><button class="btn btn-primary pull-right"><i class="fa fa-plus"></i> <%= t('.page_title') %></button></a></h2>
+        <a href="/#/create_message"><button class="btn btn-primary pull-right"><i class="fa fa-plus"></i><span class="hidden-xs"><%= t('.page_title') %></span></button></a></h1>
      
   </div>
-</div>
-
+<!--
 <div class="visible-xs">
   <div class="page-head">
-      <h2 class="page-header" ng-show="chatView"><span class="fa fa-envelope"></span>
+      <h1 class="page-header" ng-show="chatView"><span class="fa fa-envelope"></span>
           <%= t('.page_header') %> 
-        <a href="/#/create_message"><button class="btn btn-primary btn-xs pull-right"><i class="fa fa-plus"></i> <%= t('.page_title') %></button></h2></a>
-      <h2 class="page-header" ng-show="chatView == false"><span class="fa fa-envelope"></span>
+        <a href="/#/create_message"><button class="btn btn-primary pull-right"><i class="fa fa-plus"></i></button></h1></a>
+      <h1 class="page-header" ng-show="chatView == false"><span class="fa fa-envelope"></span>
           {{chatPartner.name}}
-        <a href="/#/create_message"><button class="btn btn-primary btn-xs pull-right"><i class="fa fa-plus"></i> <%= t('.page_title') %></button></a></h2>
+        <a href="/#/create_message"><button class="btn btn-primary pull-right"><i class="fa fa-plus"></i></button></a></h1>
      
   </div>
 </div>
-
+--> 
 <div class="container modal-body" ng-show="chatView">
 <div ng-show="chats.length > 0"></br></br></div>
   <div class="row" ng-repeat="chat in chats track by $index">
@@ -101,8 +99,12 @@
 </div>
 
 <!-- todo
-- create chat already exists
-- flatid null bei suggestions nicht anzeigen
+- summertime
 - optimieren
+- send close button handy auseinander
+- status unread
+- text der angezeigt wird begrenzen
+- handy view > und haken
+- autoscroll am handy
 -->
 
