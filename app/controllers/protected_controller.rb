@@ -1,5 +1,4 @@
 class ProtectedController < ApplicationController
-
     before_action :check_if_loggedin
 
     def check_if_loggedin
