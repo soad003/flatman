@@ -32,5 +32,6 @@
 //= require ./vendor/angular-google-maps.min.js
 //= require magnific-popup
 //= require ./vendor/bootstrap-switch
+//= require ./vendor/scrollDown.js
 
 

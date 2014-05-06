@@ -63,35 +63,6 @@ angular.module('flatman').controller("messageCtrl", function($scope, $route, mes
 
         //letzter So im März um 2:00 +1h
         //letzter So im Oktober um 3:00 -1h
-        var timediff = 1;
-        if ($scope.summertime === true){
-            timediff = 2;
-        }
-
-        //12:13:57,495Z $scope.time
-        var timeArray = $scope.time.split(":");         // split hh:mm:ss
-        var dateArray = $scope.date.split("-");         // split yyyy:mm:dd
-        if (parseInt(timeArray[0],10) === 22 && $scope.summertime){
-            timeArray[0] = "00";
-            dateArray[2] = (parseInt(dateArray[2],10) + 1).toString();
-        }
-        else if (parseInt(timeArray[0],10) === 23){
-            timeArray[0] = "01";
-            dateArray[2] = (parseInt(dateArray[2],10) + 1).toString();
-        }
-        else{
-            timeArray[0] = (parseInt(timeArray[0],10) + timediff).toString();
-            if (timeArray[0].length < 2){
-                timeArray[0] = "0" + timeArray[0];
-            }
-        }
-
-        // rebuild time and date
-        $scope.time = "";
-        $scope.date = "";
-        $scope.time = timeArray[0] + ":" + timeArray[1] + ":" + timeArray[2];
-        $scope.date = dateArray[0] + "-" + dateArray[1] + "-" + dateArray[2];
-        
 
         var todayDay = new Date().getDate().toString();
         var todayMonth = (new Date().getMonth() + 1).toString();
