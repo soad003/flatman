@@ -1,5 +1,6 @@
 class TemplatesController < ProtectedController
  layout false, except: [:index]
+ before_action :check_if_flat, except: [:index,:create_flat]
 
   def index
   end
@@ -41,6 +42,11 @@ class TemplatesController < ProtectedController
   end
 
   def search
+  end
+
+  def check_if_flat
+    #special case user not in flat see config.js
+    render json: nil, status: 409 unless current_user.has_flat?
   end
 
 end
