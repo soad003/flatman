@@ -29,6 +29,21 @@ class Api::MessageController < Api::RestController
     else
       @mes=Message.new(mes_params)
       @mes.header = "0"
+      beginDate2014 = Time.new(2014,3,30,2,0)
+      endDate2014 = Time.new(2014,10,26,3,0)
+      nowTime = Time.at(Time.now.to_i + 3600)
+      if nowTime.between?(beginDate2014, endDate2014)
+        @mes.created_at = Time.at(nowTime.to_i + 3600)
+      else 
+        @mes.created_at = nowTime
+      end
+      beginDate2015 = Time.new(2015,3,29,2,0)
+      endDate2015 = Time.new(2015,10,25,3,0)
+      if nowTime.between?(beginDate2015, endDate2015)
+        @mes.created_at = Time.at(nowTime.to_i + 3600)
+      else 
+        @mes.created_at = nowTime
+      end
       user.sentMessages << @mes
       user.save!
       @mes
