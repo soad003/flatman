@@ -20,7 +20,7 @@ $('#scrollarea').scroll(function(){
 <div class="page-head">
       <h1 class="page-header" ng-show="chatView"><span class="fa fa-envelope"></span>
           <%= t('.page_header') %> 
-        <a href="/#/create_message"><button class="btn btn-primary pull-right"><i class="fa fa-plus"></i> <span class="hidden-xs"><%= t('.page_title') %></span></button></h1></a>
+        <a href="/#/create_message"><button class="btn btn-primary pull-right"><i class="fa fa-plus"></i> <span class="hidden-xs"><%= t('.page_title') %></span></button></a></h1>
       <h3 class="page-header" ng-show="chatView == false"><span class="fa fa-envelope"></span>
           {{chatPartner.name}}
         <a href="/#/create_message"><button class="btn btn-primary pull-right"><i class="fa fa-plus"></i> <span class="hidden-xs"><%= t('.page_title') %></span></button></a></h3>
@@ -80,7 +80,7 @@ $('#scrollarea').scroll(function(){
     <form role="form" name="SendForm">
         <span class="row">
           <span class="col-lg-10 col-md-10">
-              <textarea autofocus style="width: 100%" class="form-control" rows="3" ng-model="newMess.text" type="text" placeholder="<%= t('.new_text_placeholder') %>" required maxlength="255"></textarea>
+              <textarea class="form-control" rows="3" ng-model="newMess.text" type="text" placeholder="<%= t('.new_text_placeholder') %>" required maxlength="255"></textarea>
           </span>
           <span class="col-lg-2 col-md-2">
               <a style="text-decoration: none;"><button class="btn btn-primary btn-block" onclick="start()" type="submit" ng-click="sendMessage()" ng-disabled="!SendForm.$valid" onclick="scrolldown()"><%= t('.send') %></button></a>
