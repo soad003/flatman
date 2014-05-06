@@ -303,6 +303,7 @@ en:
       page_header                        : "Your Profile"
       name                               : "name"
       email                              : "email"
+      provider                           : "via"
     shopping:
       page_header                        : "shopping"
       add                                : "add"
