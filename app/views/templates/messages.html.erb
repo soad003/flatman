@@ -9,7 +9,7 @@ function start(){
 
     function myStopFunction() {
     clearInterval(myVar);
-}
+};
 
 $('#scrollarea').scroll(function(){
     myStopFunction();
@@ -26,19 +26,7 @@ $('#scrollarea').scroll(function(){
         <a href="/#/create_message"><button class="btn btn-primary pull-right"><i class="fa fa-plus"></i> <span class="hidden-xs"><%= t('.page_title') %></span></button></a></h1>
      
 </div>
-<!--
-<div class="visible-xs">
-  <div class="page-head">
-      <h1 class="page-header" ng-show="chatView"><span class="fa fa-envelope"></span>
-          <%= t('.page_header') %> 
-        <a href="/#/create_message"><button class="btn btn-primary pull-right"><i class="fa fa-plus"></i></button></h1></a>
-      <h1 class="page-header" ng-show="chatView == false"><span class="fa fa-envelope"></span>
-          {{chatPartner.name}}
-        <a href="/#/create_message"><button class="btn btn-primary pull-right"><i class="fa fa-plus"></i></button></a></h1>
-     
-  </div>
-</div>
---> 
+
 <div class="container modal-body" ng-show="chatView">
 <div ng-show="chats.length > 0"></br></br></div>
   <div class="row" ng-repeat="chat in chats track by $index">
@@ -77,13 +65,12 @@ $('#scrollarea').scroll(function(){
   <div class="modal-body" name="scrollarea" id="scrollarea" style="height: 270px; overflow-y: auto; overflow-x: hidden;">
     <div ng-repeat="message in messages">
         <div class="panel panel-success">
-            <div class="list-group-item" ng-model="Username"><strong>{{message.sender_name}}</strong></div>
+            <div class="list-group-item" ng-model="Username"><strong>{{message.sender_name}}</strong>
+              <span class="time pull-right" style="font-size:x-small"><i class="fa fa-clock-o"></i> {{parseTime(message.created_at, "1")}}</span>
+            </div>
             <div class="panel-footer">
                 <div class="row">
-                  <div class="col-xs-6 col-md-6">{{message.text}}</div>
-                  <div class="col-xs-6 col-md-6">
-                      <span class="time pull-right" style="font-size:x-small"><i class="fa fa-clock-o"></i> {{parseTime(message.created_at, "1")}}</span>
-                  </div>
+                  <div class="col-xs-12 col-md-12">{{message.text}}</div>
                 </div>
             </div>
         </div>
@@ -91,17 +78,16 @@ $('#scrollarea').scroll(function(){
   </div>
   <div class="modal-footer">
     <form role="form" name="SendForm">
-      <div class="row">
-          <div class="col-lg-10 col-md-10 col-xs-8">
-              <textarea autofocus class="form-control" rows="3" ng-model="newMess.text" type="text" placeholder="<%= t('.new_text_placeholder') %>" required maxlength="255"></textarea>
-          </div>
-          <div class="col-lg-2 col-md-2 col-xs-4">
+        <span class="row">
+          <span class="col-lg-10 col-md-10">
+              <textarea autofocus style="width: 100%" class="form-control" rows="3" ng-model="newMess.text" type="text" placeholder="<%= t('.new_text_placeholder') %>" required maxlength="255"></textarea>
+          </span>
+          <span class="col-lg-2 col-md-2">
               <a style="text-decoration: none;"><button class="btn btn-primary btn-block" onclick="start()" type="submit" ng-click="sendMessage()" ng-disabled="!SendForm.$valid" onclick="scrolldown()"><%= t('.send') %></button></a>
-              <a ng-click="toggleView()" style="text-decoration: none;"><button type="button" class="btn btn-default btn-block"><%= t('buttons.labels.decision.close') %></button></a>
-          </div>
-      </div>
+              <a ng-click="toggleView()" style="text-decoration: none;"><button style="margin-top: 6px" type="button" class="btn btn-default btn-block"><%= t('buttons.labels.decision.close') %></button></a>
+          </span>
+        </span>
     </form>
-  </div>
 </div>
 </body>
 <div class="jumbotron text-center" ng-show="chats.length === 0 && !isLoading()">
@@ -112,9 +98,7 @@ $('#scrollarea').scroll(function(){
 </div>
 
 <!-- todo
-- summertime
 - optimieren
-- send close button handy auseinander
 - status unread
 - text der angezeigt wird begrenzen
 - handy view > und haken

@@ -7,4 +7,17 @@
     	font-size:80%;
     }
 
+    .btn-block {
+    	font-size: 80%;
+    }
+
+    .form-control {
+    	font-size: 80%;
+    	margin: 100px, 100px, 100px, 100px;
+    }
+
+    .btn-group.btn-block {
+    	margin-top: 10px;
+    }
+
 }
