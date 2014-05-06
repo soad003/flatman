@@ -18,7 +18,7 @@ class TemplatesController < ProtectedController
 
   def finances_overview
   end
-  
+
   def resources
   end
 
@@ -27,7 +27,7 @@ class TemplatesController < ProtectedController
 
   def create_message
   end
-  
+
   def shopping
   end
 
