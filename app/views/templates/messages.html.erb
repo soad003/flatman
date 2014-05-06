@@ -30,29 +30,34 @@
 
 <div class="container modal-body" ng-show="chatView">
 <div ng-show="chats.length > 0"></br></br></div>
-  <div class="row" ng-repeat="chat in chats">
-    <a style="cursor:pointer; text-decoration: none;" ng-click="getMessages(chat)" onclick="scrolldown()">
+  <div class="row" ng-repeat="chat in chats track by $index">
+  <div ng-init="countUnread(chat, $index)">
+    <a style="cursor:pointer; text-decoration: none;" ng-click="getMessages(chat)" ng-click="toggleView()" onclick="scrolldown()">
       <div class="panel panel-success">
         <div class="list-group-item">
           <div class="btn-group pull-right">
-            <button type="button" class="btn btn-default btn-xs" ng-click="removeChat(chat)">
+    </a>
+            <button type="button" class="btn btn-default btn-xs" ng-click="removeChat(chat, '<%= t('.questionDeleteChat') %>')">
               <span class="glyphicon glyphicon-trash"></span>
             </button>
+    <a style="cursor:pointer; text-decoration: none;" ng-click="getMessages(chat)" ng-click="toggleView()" onclick="scrolldown()">
             <button type="button" style="background-color:transparent" class="btn btn-default btn-xs">
-              <span class="badge">14</span>
+              <span class="badge" style="background-color:CornflowerBlue">{{getUnreadCounter($index)}}</span>
             </button>
           </div>
-          <strong>{{chat.receiver_name}}</strong></div>
-          <div class="panel-footer">
-            <div class="row">
-              <div class="col-xs-6 col-md-6">{{chat.sender_name}}: {{chat.text}}</div>
-                <div class="col-xs-6 col-md-6">
-                  <span class="time"><p class="text-right" style="font-size:x-small"><i class="fa fa-clock-o"></i> {{chat.time}}</p></span>
-                </div>
+          <strong>{{chat.receiver_name}}</strong>
+        </div>
+        <div class="panel-footer">
+          <div class="row">
+            <div class="col-xs-6 col-md-6">{{chat.sender_name}}: {{chat.text}}</div>
+              <div class="col-xs-6 col-md-6">
+                <span class="time"><p class="text-right" style="font-size:x-small"><i class="fa fa-clock-o"></i> {{parseTime(chat.time, "0")}}</p></span>
               </div>
-            </div>
+          </div>
+        </div>
       </div>
     </a>
+    </div>
   </div>
 </div>
 <body>
@@ -66,7 +71,7 @@
                 <div class="row">
                   <div class="col-xs-6 col-md-6">{{message.text}}</div>
                   <div class="col-xs-6 col-md-6">
-                      <span class="time pull-right" style="font-size:x-small"><i class="fa fa-clock-o"></i>{{message.created_at}}</span>
+                      <span class="time pull-right" style="font-size:x-small"><i class="fa fa-clock-o"></i> {{parseTime(message.created_at, "1")}}</span>
                   </div>
                 </div>
             </div>
@@ -77,7 +82,7 @@
     <form role="form" name="SendForm">
       <div class="row">
           <div class="col-lg-10 col-md-10 col-xs-8">
-              <textarea class="form-control" rows="3" ng-model="newMess.text" type="text" maxlength="30" placeholder="<%= t('.new_text_placeholder') %>" required></textarea>
+              <textarea class="form-control" rows="3" ng-model="newMess.text" type="text" placeholder="<%= t('.new_text_placeholder') %>" required maxlength="255"></textarea>
           </div>
           <div class="col-lg-2 col-md-2 col-xs-4">
               <a style="text-decoration: none;"><button class="btn btn-primary btn-block" onclick="scrolldown()" type="submit" ng-click="sendMessage()" ng-disabled="!SendForm.$valid" onclick="scrolldown()"><%= t('.send') %></button></a>
@@ -88,7 +93,7 @@
   </div>
 </div>
 </body>
-<div class="jumbotron text-center" ng-show="chats.length === 0">
+<div class="jumbotron text-center" ng-show="chats.length === 0 && !isLoading()">
     <i class="fa fa-envelope fa-5x"></i>
     <h3><%= t('.intro_header') %></h3>
     <%= t('.intro_text1') %> <br>
@@ -96,13 +101,7 @@
 </div>
 
 <!-- todo
-- error with false user
-- parse timestamp
-- count unread messages
-- delete chats
-- detect same user 
-- autofocus
-- flatid null bei suggestions nicht anzeigen
+- summertime
 - optimieren
 -->
 

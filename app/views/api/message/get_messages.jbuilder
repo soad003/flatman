@@ -6,4 +6,6 @@ json.array!(@meslist) do |json, message|
   json.created_at message.created_at
   json.sender_name User.find(message.sender_id).name
   json.receiver_name User.find(message.receiver_id).name
+  json.read message.read
+  json.header message.header
 end

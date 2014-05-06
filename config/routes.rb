@@ -61,6 +61,7 @@ scope "(:locale)", locale: /en|de/ do
    get '/message/:mes_id/messages' => 'message#get_messages'
    get '/message/:mes_id/partner' => 'message#find_partner'
    get '/message/users' => 'message#get_users'
+   get '/message/:mes_id/counter' => 'message#count_messages'
 
    #sharing
    get '/shareditem/:id' => 'shareditem#get'
