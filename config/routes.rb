@@ -71,7 +71,7 @@ scope "(:locale)", locale: /en|de/ do
    
    #finances
    resources :finance, only: [:index, :create, :update, :destroy]
-   get '/finance/:id/category' => 'finance#get_all'
+   get '/finance/category' => 'finance#get_all'
    get '/finance/chart' => 'finance#get_chart'
    get '/finance/debts' => 'finance#get_debts'
    get '/finance/mates' =>  'finance#get_mates'

@@ -7,10 +7,9 @@ angular.module('flatman').factory("financesService", function($resource){
 							'update': {method:"POST"}
                         });
     //no service neede, merge witch financeService!
-    var ctgService = $resource('api/finance/:id/',{},
+    var ctgService = $resource('api/finance/category',{},
                         {
                             'get_all': {method: "GET", isArray:true},
-                            'get_ctg': {method: "GET"}
                         });
 
     var chartService    = $resource('/api/finance/chart',{},
@@ -61,9 +60,6 @@ angular.module('flatman').factory("financesService", function($resource){
         category:{
             get_all: function(){           
                 return ctgService.get_all();
-            },
-            get_ctg: function(){
-                //dont needed
             }
         },
         debts:{

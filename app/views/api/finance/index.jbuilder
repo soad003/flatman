@@ -6,5 +6,4 @@ json.array!(@f) do |json, finance|
   json.date finance.date
   json.id finance.id
   json.cat_name Billcategory.find(finance.billcategory_id).name
-  json.list @name
 end

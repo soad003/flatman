@@ -4,7 +4,6 @@ class Api::FinanceController <Api::RestController
 	  def index
 		    @f=Bill.all
         #@b=Bill.group(:billcategory_id).sum(:value)
-        @name=Bill.includes(:billcategory).group("billcategories.name").sum(:value)
         #ctg=Billcategory.all
         #@cgy=Billcategory.merge_value(@f, ctg)
     end
@@ -40,8 +39,19 @@ class Api::FinanceController <Api::RestController
 
     #change get_category =>service, ctrl
     def get_all
-        @c = Billcategory.all
-        respond_with(@c);
+        @catName=Billcategory.all
+        billName = []
+        bil=Bill.all
+        bil.each do |b|
+          billName << Billcategory.find(b.billcategory_id).name
+        end
+
+        @catName.each do |c|
+          if !billName.include?(c.name)
+            @catName.delete(c)
+          end
+        end
+        @name=Bill.includes(:billcategory).group("billcategories.name").sum(:value)
     end
 
     def get_ctg

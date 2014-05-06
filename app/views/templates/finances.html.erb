@@ -115,9 +115,9 @@
   <div class="panel-body">
    <div style="margin:auto; width:auto; padding:auto border: 1px solid black;">
     <table class="table table-striped">
-    <tr ng-repeat="category in AllCategories | limitTo: '5' track by $index">
+    <tr ng-repeat="category in AllCategories | limitTo: '5'">
       <th>{{category.cat_name}}</th>
-      <th>{{category.value}}</th>
+      <th>{{category.listValue}}</th>
     </tr>
  
 <!--  
