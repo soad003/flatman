@@ -1,20 +1,16 @@
 <% content_for :title, t('.page_title') %>
 
 <script type="text/javascript">
-function start(){
-    var myVar = window.setInterval(function() {
-        var elem = document.getElementById('scrollarea');
-        elem.scrollTop = elem.scrollHeight;
-    }, 1000);
-
-    function myStopFunction() {
-    clearInterval(myVar);
-};
-
-$('#scrollarea').scroll(function(){
-    myStopFunction();
-  });
-};
+  $(function() {
+    $('textarea#inputtext').on('keyup', function(e) {
+        if (e.which == 13 && ! e.shiftKey) {
+            sendMessage();
+        }
+    });
+    function sendMessage(){
+      $('button#send').click();
+    };
+});
 </script>
 
 <div class="page-head">
@@ -77,13 +73,13 @@ $('#scrollarea').scroll(function(){
     </div>
   </div>
   <div class="modal-footer">
-    <form role="form" name="SendForm">
+    <form role="form" name="SendForm" ng-submit="sendMessage()">
         <span class="row">
           <span class="col-lg-10 col-md-10">
-              <textarea class="form-control" rows="3" ng-model="newMess.text" type="text" placeholder="<%= t('.new_text_placeholder') %>" required maxlength="255"></textarea>
+              <textarea autofocus name="inputtext" id="inputtext" class="form-control" rows="3" ng-model="newMess.text" type="text" placeholder="<%= t('.new_text_placeholder') %>" required maxlength="255"></textarea>
           </span>
           <span class="col-lg-2 col-md-2">
-              <a style="text-decoration: none;"><button class="btn btn-primary btn-block" onclick="start()" type="submit" ng-click="sendMessage()" ng-disabled="!SendForm.$valid" onclick="scrolldown()"><%= t('.send') %></button></a>
+              <a style="text-decoration: none;"><button id="send" name="send" class="btn btn-primary btn-block" onclick="start()" type="submit" ng-click="sendMessage()" ng-disabled="!SendForm.$valid" onclick="scrolldown()"><%= t('.send') %></button></a>
               <a ng-click="toggleView()" style="text-decoration: none;"><button style="margin-top: 6px" type="button" class="btn btn-default btn-block"><%= t('buttons.labels.decision.close') %></button></a>
           </span>
         </span>
