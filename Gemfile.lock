@@ -64,6 +64,7 @@ GEM
       multipart-post (>= 1.2, < 3)
     font-awesome-rails (4.0.3.1)
       railties (>= 3.2, < 5.0)
+    hammerjs-rails (0.2.0)
     hashie (2.1.1)
     hike (1.2.3)
     http_accept_language (2.0.1)
@@ -213,6 +214,7 @@ DEPENDENCIES
   debugger
   exception_notification
   font-awesome-rails
+  hammerjs-rails
   http_accept_language
   jbuilder (~> 1.2)
   jquery-rails

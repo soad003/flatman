@@ -100,6 +100,7 @@ gem 'bootstrap-tagsinput-rails'
 gem 'magnific-popup-rails'
 gem 'less-rails'
 gem 'bootbox-rails'
+gem 'hammerjs-rails'
 
 gem 'paperclip'
 # Use debugger

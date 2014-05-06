@@ -103,7 +103,7 @@
       </div>
     </div>
 
-    <div class="container">
+    <div id="container" class="container">
       <section>
         <% flash.each do |key,message| %>
           <div class="alert alert-<%= key.to_s %> alert-dismissable">
@@ -161,6 +161,14 @@
         <script type="text/javascript" src="/assets/vendor/angular-locale_de-de.js"></script>
     <%end%>
     <script>var locale = "<%=I18n.locale.to_s%>";</script>
+
+    <script>
+      var element = document.getElementById('container');
+      var hammertime = Hammer(element, {drag_block_horizontal: true}).on("swipe", function(event) {
+        alert('swipe!');
+      });
+    
+    </script>
 
   </body>
 </html>
