@@ -1,18 +1,5 @@
 <% content_for :title, t('.page_title') %>
 
-<script type="text/javascript">
-  $(function() {
-    $('textarea#inputtext').on('keyup', function(e) {
-        if (e.which == 13 && ! e.shiftKey) {
-            sendMessage();
-        }
-    });
-    function sendMessage(){
-      $('button#send').click();
-    };
-});
-</script>
-
 <div class="page-head">
       <h1 class="page-header" ng-show="chatView"><span class="fa fa-envelope"></span>
           <%= t('.page_header') %> 
@@ -74,15 +61,15 @@
   </div>
   <div class="modal-footer">
     <form role="form" name="SendForm" ng-submit="sendMessage()">
-        <span class="row">
-          <span class="col-lg-10 col-md-10">
+        <div class="row">
+          <div class="col-lg-10 col-md-10">
               <textarea autofocus name="inputtext" id="inputtext" class="form-control" rows="3" ng-model="newMess.text" type="text" placeholder="<%= t('.new_text_placeholder') %>" required maxlength="255"></textarea>
-          </span>
-          <span class="col-lg-2 col-md-2">
-              <a style="text-decoration: none;"><button id="send" name="send" class="btn btn-primary btn-block" onclick="start()" type="submit" ng-click="sendMessage()" ng-disabled="!SendForm.$valid" onclick="scrolldown()"><%= t('.send') %></button></a>
+          </div>
+          <div class="col-lg-2 col-md-2 ng-hidden-xs">
+              <a style="text-decoration: none;"><button style="margin-top: 6px" id="send" name="send" class="btn btn-primary btn-block" onclick="start()" type="submit" ng-click="sendMessage()" ng-disabled="!SendForm.$valid" onclick="scrolldown()"><%= t('.send') %></button></a>
               <a ng-click="toggleView()" style="text-decoration: none;"><button style="margin-top: 6px" type="button" class="btn btn-default btn-block"><%= t('buttons.labels.decision.close') %></button></a>
-          </span>
-        </span>
+          </div>
+        </div>
     </form>
 </div>
 </body>
@@ -92,6 +79,19 @@
     <%= t('.intro_text1') %> <br>
     <%= t('.intro_text2') %>
 </div>
+
+<script type="text/javascript">
+  $(function() {
+    $('textarea#inputtext').on('keyup', function(e) {
+        if (e.which == 13 && ! e.shiftKey) {
+            sendMessage();
+        }
+    });
+    function sendMessage(){
+      $('button#send').click();
+    };
+});
+</script>
 
 <!-- todo
 - optimieren

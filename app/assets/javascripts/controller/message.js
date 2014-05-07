@@ -44,7 +44,7 @@ angular.module('flatman').controller("messageCtrl", function($scope, $route, mes
     };
 
     $scope.countUnread=function(chat, index){
-        $scope.unreadCounter[index] = messageService.message.count(chat.id);
+        $scope.unreadCounter[index] = messageService.message.count(chat.id, index);
         //alert(JSON.stringify($scope.unreadCounter.header));
         return $scope.unreadCounter.header;
     };

@@ -1,7 +1,5 @@
 function scrolldown() {$("#scrollarea").animate({ scrollTop: 1000000 }, "fast");}
 
-function test() {}
-
 function start(){
 	scrolldown();
     var myVar = window.setInterval(function() {
