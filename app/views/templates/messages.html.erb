@@ -65,7 +65,7 @@
           <div class="col-lg-10 col-md-10">
               <textarea autofocus name="inputtext" id="inputtext" class="form-control" rows="3" ng-model="newMess.text" type="text" placeholder="<%= t('.new_text_placeholder') %>" required maxlength="255"></textarea>
           </div>
-          <div class="col-lg-2 col-md-2 ng-hidden-xs">
+          <div class="col-lg-2 col-md-2">
               <a style="text-decoration: none;"><button style="margin-top: 6px" id="send" name="send" class="btn btn-primary btn-block" onclick="start()" type="submit" ng-click="sendMessage()" ng-disabled="!SendForm.$valid" onclick="scrolldown()"><%= t('.send') %></button></a>
               <a ng-click="toggleView()" style="text-decoration: none;"><button style="margin-top: 6px" type="button" class="btn btn-default btn-block"><%= t('buttons.labels.decision.close') %></button></a>
           </div>

@@ -19,4 +19,12 @@
     	font-size: 80%;
     }
 
+    input[type="text"]{
+        font-size: 100%;
+    }
+
+    .dropdown-menu {
+        font-size: 100%;
+    }
+        
 }
