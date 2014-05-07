@@ -65,7 +65,7 @@ class Api::MessageController < Api::RestController
   def count_messages
     @counterList = Message.find_messages(params[:mes_id])
     @counter = Message.countUnread(@counterList, current_user)
-    respond_with({header: @counter})
+    respond_with({counter: @counter})
   end
 
   private
