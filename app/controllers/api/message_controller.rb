@@ -9,7 +9,7 @@ class Api::MessageController < Api::RestController
   def get_messages
     @meslist=Message.find_messages(params[:mes_id])
     @meslist.each do |m|
-      if !m.read
+      if !m.read && m.receiver_id == current_user.id
         m.read = true
         m.save!
       end
