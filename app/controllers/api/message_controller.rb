@@ -59,6 +59,8 @@ class Api::MessageController < Api::RestController
     senId = Message.find(params[:id]).sender_id
     m = Message.where(receiver_id: recId, sender_id: senId)
     m.destroy_all
+    m2 = Message.where(sender_id: recId, receiver_id: senId)
+    m2.destroy_all
     @mesd = Message.find_chats(current_user)
   end
 
