@@ -1,6 +1,7 @@
 <% content_for :title, t('.page_title') %>
 
-<div class="page-head">
+<div class="row modal-body">
+  <div class="page-head">
       <h1 class="page-header" ng-show="chatView"><span class="fa fa-envelope"></span>
           <%= t('.page_header') %> 
         <a href="/#/create_message"><button class="btn btn-primary pull-right"><i class="fa fa-plus"></i> <span class="hidden-xs"><%= t('.page_title') %></span></button></a></h1>
@@ -8,6 +9,7 @@
           {{chatPartner.name}}
         <a href="/#/create_message"><button class="btn btn-primary pull-right"><i class="fa fa-plus"></i> <span class="hidden-xs"><%= t('.page_title') %></span></button></a></h3>
      
+  </div>
 </div>
 
 <div class="container modal-body" ng-show="chatView">
