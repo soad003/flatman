@@ -28,7 +28,6 @@ class Api::MessageController < Api::RestController
       respond_with_errors([t('.no_user_found')])
     else
       @mes=Message.new(mes_params)
-      @mes.header = "0"
       beginDate2014 = Time.new(2014,3,30,2,0)
       endDate2014 = Time.new(2014,10,26,3,0)
       beginDate2015 = Time.new(2015,3,29,2,0)

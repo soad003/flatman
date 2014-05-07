@@ -4,7 +4,6 @@ angular.module('flatman').controller("messageCtrl", function($scope, $route, mes
     $scope.chatView = true;
     $scope.chatPartner = null;
     $scope.unreadCounter = [];
-    $scope.summertime = true;
 
 
     $scope.newMess = {sender_id: "", receiver_id: "", text: "", header: "", read: false};
@@ -36,9 +35,10 @@ angular.module('flatman').controller("messageCtrl", function($scope, $route, mes
     $scope.removeChat=function(chat, question){
         bootbox.confirm(question, function(result) {
             if (result){
-                messageService.message.destroy(chat.id, function(){
+                $scope.chats = messageService.message.destroy(chat.id, function(){
                     $scope.chats = _($scope.chats).without(chat);
                 });
+                $scope.messages = [];
             }
         });
     };
