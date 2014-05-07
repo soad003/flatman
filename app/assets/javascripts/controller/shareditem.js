@@ -1,10 +1,10 @@
 /*global btoa:false */
 
-angular.module('flatman').controller("sharedItemCtrl", function($scope, $routeParams, $location, shareService, Util) {
+angular.module('flatman').controller("sharedItemCtrl", function($scope, $routeParams, $location, shareService, Util, tagService) {
 	$scope.item = shareService.item.get($routeParams.itemid);
 
 	//register tagsinput
-//	$('#tags').tagsinput();
+	
 	
 /*
 	//shadowbox for images
@@ -13,6 +13,13 @@ angular.module('flatman').controller("sharedItemCtrl", function($scope, $routePa
 	});
 	*/
 
+	//not working?
+	//$('#tags').tagsinput();
+	
+	//dummy, get all tags which starts which a
+	$scope.tags = tagService.get("a");
+	console.log($scope.tags);
+	//...aand working.
 	
 	$('#lului').bootstrapSwitch($scope.item);
 
