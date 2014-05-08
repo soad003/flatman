@@ -58,4 +58,16 @@ class Message < ActiveRecord::Base
         returnList
     end
 
+    def self.countUnread(counterList, current_user)
+        count = "0"
+        counterList.each do |c| 
+            if c.read == false
+                if c.sender_id != current_user.id
+                    count = (count.to_i + 1).to_s
+                end
+            end
+        end
+        count
+    end
+
 end
