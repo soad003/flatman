@@ -6,19 +6,54 @@ angular.module('flatman').controller("sharedItemCtrl", function($scope, $routePa
 	//register tagsinput
 	
 	
-/*
-	//shadowbox for images
+
+	/*shadowbox for images
 	$('.image-popup').magnificPopup({
 		type : 'image'
 	});
-	*/
+//	*/
 
 	//not working?
 	//$('#tags').tagsinput();
 	
+	$('#tags').tagsinput({
+	    typeahead: {
+	        source: function (query, process) {
+	            cities = [];
+	            map = {};
+	
+	            var data = [{
+	                "value": 1,
+	                    "text": "Amsterdam"
+	            }, {
+	                "value": 4,
+	                    "text": "Washington"
+	            }, {
+	                "value": 7,
+	                    "text": "Sydney"
+	            }, {
+	                "value": 10,
+	                    "text": "Beijing"
+	            }, {
+	                "value": 13,
+	                    "text": "Cairo"
+	            }];
+	
+	            $.each(data, function (i, city) {
+	                map[city.text] = city;
+	                cities.push(city.text);
+	            });
+	
+	            return (cities);
+	        }
+	    }
+	});
+	
+	
+	$scope.queryTags = tagService.get("a");
+	
 	//dummy, get all tags which starts which a
-	$scope.tags = tagService.get("a");
-	console.log($scope.tags);
+	//console.log($scope.tags);
 	//...aand working.
 	
 	$('#lului').bootstrapSwitch($scope.item);
