@@ -2,13 +2,13 @@ angular.module('flatman').controller("messageCtrl", function($scope, $route, mes
     $scope.chats = messageService.message.get();
     $scope.messages = [];
     $scope.chatView = true;
-    $scope.chatPartner = null;
+    $scope.chatPartner = null
     $scope.unreadCounter = [];
 
 
     $scope.newMess = {sender_id: "", receiver_id: "", text: "", header: "", read: false};
 
-    $scope.getMessages = function (chat){
+    $scope.getMessages = function (chat, index){
         $scope.chatView = false;
         $scope.messages = messageService.messages.get(chat.id);
         $scope.chatPartner = messageService.partner.getPartner(chat.id);
@@ -35,12 +35,13 @@ angular.module('flatman').controller("messageCtrl", function($scope, $route, mes
     $scope.removeChat=function(chat, question){
         bootbox.confirm(question, function(result) {
             if (result){
-                $scope.chats = messageService.message.destroy(chat.id, function(){
-                    $scope.chats = _($scope.chats).without(chat);
-                });
+                $scope.chats = messageService.message.destroy(chat.id);
                 $scope.messages = [];
+                $scope.chats = [];
             }
+            $scope.toggleView();
         });
+
     };
 
     $scope.countUnread=function(chat, index){
@@ -49,6 +50,10 @@ angular.module('flatman').controller("messageCtrl", function($scope, $route, mes
 
     $scope.getUnreadCounter=function(index){
         return $scope.unreadCounter[index].counter;
+    };
+
+    $scope.checkLastSender = function(sender, partner){
+        return sender == partner;
     };
 
     $scope.parseTime = function(time, modus){

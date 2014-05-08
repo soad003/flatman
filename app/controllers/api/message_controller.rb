@@ -45,13 +45,7 @@ class Api::MessageController < Api::RestController
   end
 
   def get_users
-    @users = User.all
-    @users.each do |user|
-      if user.flat_id == nil
-        @users.delete(user)
-      end
-    end
-    @users
+    @users = User.where.not(id: current_user.id, flat_id: nil)
   end
 
   def destroy

@@ -8,44 +8,45 @@
       <h3 class="page-header" ng-show="chatView == false"><span class="fa fa-envelope"></span>
           {{chatPartner.name}}
         <a href="/#/create_message"><button class="btn btn-primary pull-right"><i class="fa fa-plus"></i> <span class="hidden-xs"><%= t('.page_title') %></span></button></a></h3>
-     
   </div>
 </div>
 
 <div class="container modal-body" ng-show="chatView">
-<div ng-show="chats.length > 0"></br></br></div>
   <div class="row" ng-repeat="chat in chats track by $index">
-  <div ng-init="countUnread(chat, $index)">
-    <a style="cursor:pointer; text-decoration: none;" ng-click="getMessages(chat)" ng-click="toggleView()" onclick="start()">
-      <div class="panel panel-success">
-        <div class="list-group-item">
-          <div class="btn-group pull-right">
-    </a>
-            <button type="button" class="btn btn-default btn-xs" ng-click="removeChat(chat, '<%= t('.questionDeleteChat') %>')">
-              <span class="glyphicon glyphicon-trash"></span>
-            </button>
-    <a style="cursor:pointer; text-decoration: none;" ng-click="getMessages(chat)" ng-click="toggleView()" onclick="start()">
-            <button type="button" style="background-color:transparent" class="btn btn-default btn-xs">
-              <span class="badge" style="background-color:CornflowerBlue">{{getUnreadCounter($index)}}</span>
-            </button>
+    <div ng-init="countUnread(chat, $index)">
+      <a style="cursor:pointer; text-decoration: none;" ng-click="getMessages(chat, index)" ng-click="toggleView()" onclick="start()">
+        <div class="panel panel-success">
+          <div class="list-group-item">
+            <div class="btn-group pull-right">
+              <button type="button" class="btn btn-default btn-xs" ng-click="removeChat(chat, '<%= t('.questionDeleteChat') %>')">
+                <span class="glyphicon glyphicon-trash"></span>
+              </button>
+              <button type="button" style="background-color:transparent" class="btn btn-default btn-xs">
+                <span class="badge" style="background-color:CornflowerBlue">{{getUnreadCounter($index)}}</span>
+              </button>
+            </div>
+            <strong>{{chat.partner}}</strong>
           </div>
-          <strong>{{chat.receiver_name}}</strong>
-        </div>
-        <div class="panel-footer">
-          <div class="row">
-            <div class="col-xs-6 col-md-6">{{chat.sender_name}}: {{chat.text}}</div>
+          <div class="panel-footer">
+            <div class="row">
+              <div class="col-xs-6 col-md-6">
+                <span ng-show="!checkLastSender(chat.partner_id, chat.sender_id)">
+                  <i class="fa fa-check-circle"></i>
+                </span>
+                <span ng-show="checkLastSender(chat.partner_id, chat.sender_id)"><i class="fa fa-angle-double-right"></i> {{chat.sender_name}}:
+                </span> {{chat.text}}
+              </div>
               <div class="col-xs-6 col-md-6">
                 <span class="time"><p class="text-right" style="font-size:x-small"><i class="fa fa-clock-o"></i> {{parseTime(chat.time, "0")}}</p></span>
               </div>
+            </div>
           </div>
         </div>
-      </div>
-    </a>
+      </a>
     </div>
   </div>
 </div>
 <body>
-<br>
 <div ng-show="chatView == false">
   <div class="modal-body" name="scrollarea" id="scrollarea" style="height: 270px; overflow-y: auto; overflow-x: hidden;">
     <div ng-repeat="message in messages">
@@ -64,15 +65,25 @@
   <div class="modal-footer">
     <form role="form" name="SendForm" ng-submit="sendMessage()">
         <div class="row">
-          <div class="col-lg-10 col-md-10">
+          <div class="col-lg-10 col-md-10 col-sm-10">
               <textarea autofocus name="inputtext" id="inputtext" class="form-control" rows="3" ng-model="newMess.text" type="text" placeholder="<%= t('.new_text_placeholder') %>" required maxlength="255"></textarea>
           </div>
-          <div class="col-lg-2 col-md-2">
-              <a style="text-decoration: none;"><button style="margin-top: 6px" id="send" name="send" class="btn btn-primary btn-block" onclick="start()" type="submit" ng-click="sendMessage()" ng-disabled="!SendForm.$valid" onclick="scrolldown()"><%= t('.send') %></button></a>
+          <div class="col-lg-2 col-md-2 col-sm-2">
+              <a style="text-decoration: none;">
+                <span class="hidden-lg hidden-md hidden-sm">
+                  <button style="margin-top: 6px" id="send" name="send" class="btn btn-primary btn-block" onclick="start()" type="submit" ng-click="sendMessage()" ng-disabled="!SendForm.$valid"><%= t('.send') %>
+                  </button>
+                </span>
+                <span class="hidden-xs">
+                  <button id="send2" name="send" class="btn btn-primary btn-block" onclick="start()" type="submit" ng-click="sendMessage()" ng-disabled="!SendForm.$valid"><%= t('.send') %>
+                  </button>
+                </span>
+              </a>
               <a ng-click="toggleView()" style="text-decoration: none;"><button style="margin-top: 6px" type="button" class="btn btn-default btn-block"><%= t('buttons.labels.decision.close') %></button></a>
           </div>
         </div>
     </form>
+  </div>
 </div>
 </body>
 <div class="jumbotron text-center" ng-show="chats.length === 0 && !isLoading()">
@@ -81,7 +92,6 @@
     <%= t('.intro_text1') %> <br>
     <%= t('.intro_text2') %>
 </div>
-
 <script type="text/javascript">
   $(function() {
     $('textarea#inputtext').on('keyup', function(e) {
@@ -97,12 +107,6 @@
 
 <!-- todo
 - optimieren
-- status unread
 - text der angezeigt wird begrenzen
-- handy view > und haken
-- autoscroll am handy
-- plus button am handy
-- jumbotron
-- remove current_user typeahead
 -->
 
