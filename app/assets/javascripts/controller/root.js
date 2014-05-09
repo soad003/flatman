@@ -2,6 +2,7 @@ angular.module('flatman').controller("rootCtrl",function($scope,$rootScope,$time
     $scope.Util=Util;
     $scope.error_type="danger";
     $scope.pending_status_requests=0;
+    $scope.message_status_changed=true;
 
     $scope.isLoading = function(){ return ($rootScope.pending_requests - $scope.pending_status_requests)>0; };
 
@@ -34,7 +35,7 @@ angular.module('flatman').controller("rootCtrl",function($scope,$rootScope,$time
 
     $scope.emitEvents=function(old_status,new_status) {
         if(old_status.unread_messages!==new_status.unread_messages) {
-            $scope.$broadcast('message_count_changed', null);
+            $scope.message_status_changed = true;
         }
     };
 

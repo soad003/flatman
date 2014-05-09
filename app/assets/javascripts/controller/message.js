@@ -7,20 +7,18 @@ angular.module('flatman').controller("messageCtrl", function($scope, $route, $ti
     $scope.mesStatus = null;
 
     (function check() {
-        $scope.pending_status_requests++;
-        statusService.get(function(data){
-            if($scope.server_status){
+        if($scope.message_status_changed){
                 $scope.chats = messageService.message.get();
-                $scope.mesStatus = $scope.newMessStatus.unread_messages;
-            }
-
-            $scope.server_status=data;
-
-            $timeout(check, 5000);
-            $scope.pending_status_requests--;
-        },
-        function(){ $scope.pending_status_requests--; });
+        }
+        $scope.message_status_changed = false;
+        $timeout(check, 2000);
     })();
+
+    $scope.checkChangeChats=function(old_status,new_status) {
+        if(old_status.unread_messages!==new_status.unread_messages) {
+            
+        }
+    };
 
     $scope.newMess = {sender_id: "", receiver_id: "", text: "", header: "", read: false};
 
