@@ -20,7 +20,6 @@ angular.module('flatman').controller("rootCtrl",function($scope,$rootScope,$time
     (function tick() {
         $scope.pending_status_requests++;
         statusService.get(function(data){
-
             if($scope.server_status){
                 $scope.emitEvents($scope.server_status,data);
             }
