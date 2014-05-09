@@ -295,6 +295,7 @@ en:
     finances:
       page_title                         : "Finances"
       page_header                        : "Financal status"
+      add_fin                            : " Entry"
     finances_new:
       page_header                        : "New Entry"
       bill_affects                       : "Bill affects:"

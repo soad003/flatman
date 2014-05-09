@@ -10,101 +10,67 @@
   	<div class="row">
   		<div class ="col-md-6 col-md-offset-2">
 
-  			<!--CREATE TABLE TO GET NEW FINANCE DATA-->
+  			<!--CREATE TABLE TO GET NEW FINANCE DATA
+      <table class="table table-striped">
+              <tr>
+                <th>-->
   			<div class="panel panel-defaul">
   			
   				<div class="panel-body">
-  					<table class="table table-striped">
-  						<tr>
-  							<th>
-  								<label for="InputName">Name:</label>
-  							</th>
-  						</tr>
-  						<tr>
-  							<th>
-  								<input type="text" class="form-control" ng-model="finTmp.text" id="InputName" placeholder="Einkauf Nudeln">
-  							</th>
-  						</tr>
-  						<tr>
-  							<th>
+  					
+               <div class="form-group">
+  								<label for="InputName">Name</label>
+                  <input type="text" class="form-control" ng-model="finTmp.text" id="InputName" placeholder="Einkauf Nudeln">
+                </div>
+  						<div class="form-group">
   								<label for="InputAusgaben">Value:</label>
-  							</th>
-  						</tr>
-  						<tr>
-  							<th>
-  								<input type="text" class="form-control" ng-model="finTmp.value" id="InputAusgaben" placeholder="144,40">
-  							</th>
-  						</tr>
-  						<tr>
-  							<th>
+  							<input type="text" class="form-control" ng-model="finTmp.value" id="InputAusgaben" placeholder="144,40">
+  						</div>
+  						<div class="form-group">
   								<label for"InputDate">Date:</label>
-  							</th>
-  						</tr>
-               <tr>
-                <th>
                   <input type="text" class="form-control" ng-model="finTmp.date"id="Inputdate" placeholder="01.06.2014">
-                </th>
-              </tr>
-              <tr>
-                <th>
+               </div>
+              <div class="form-group">
   								<label for="InputCategorie">Category:</label>
-  						  </th>
-              </tr>
-              <tr>
-  						  <th>
   								<input type="text" class="form-control" id="InputCategorie" ng-model="finTmp.cat_name" placeholder="Let it BLANK!">
-  							</th>
-  						</tr>
-           
-            
-              <tr>
-                <th>
+  						</div>
+            <div class="form-group">
                   <label for="Payer">Who paid?:</label>
-                </th>
-              <tr>
-                <th>
                 <!-- <div class="btn-group">
                    <button type="button" class="btn btn-primary btn-xs dropdown-toggle" data-toggle="dropdown">
                     FlatMates </i>
                     <span class="caret"></span>
                   </button>
                    <!--<ul class="dropdown-menu" role="menu" ng-repeat="mates in getFlatMates">-->
-                    <select ng-model="finTmp.payee" ng-options="mates.name for mates in getFlatMates"></select>
+                    <select ng-model="finTmp.payer" ng-options="mates.name for mates in getFlatMates"></select>
                      <!-- <li><a href="" ng-model="debtTmp.payee" ng-click="test()">{{mates.name}}</a></li>  </ul>-->
-                   </th>
-               </tr>   
+                   
               </div>
 
-               </th>
-              </tr>             
-  						<tr>
-  							<th>
+               <div class="form-group">
   								<label for="who"><%= t('.bill_affects') %></label>
+                  <p></p>              
+  						    <a ng-repeat="mates in getFlatMates">            
+                  <div class="btn-group" data-toggle="buttons">
+                   <label class="btn btn-primary">
+                    <input type="checkbox" ng-model="finTmp.payee + ($index+1)">{{mates.name}}
+                  </label><br></br>
+                 <a/>
+  		           </div>
+                </div>
               
-  							</th>
-  						</tr>
-              <div class="btn-group" data-toggle="buttons">
-  						<tr ng-repeat="mates in getFlatMates">
-  							<th>              
-                  <label class="btn btn-primary btn-sm">
-                    <input type="checkbox" checked="no">{{mates.name}}
-                  </label>
-               </th>
-  						</tr>
 
-            </table>
-  		
           <div class="panel-footer">  
             <div style='float:right'>
-              <form action="/#/finances_overview">
+              <a href="/#/finances_overview">
                 <button type="submit" class="btn btn-primary" ng-click="addEntry()">SUBMIT</button>
-              </form>
+              </a>
             </div>
-      
+        
             <div style='float:left'>
-              <form action="/#/finances">
-                <button type="submit" class="btn btn-primary">BACK</button>
-              </form>
+              <a href="/#/finances">
+                <button type="submit" class="btn btn-primary" ng-click="test()">BACK</button>
+              </a>
             </div>
           </div>
         </div>

@@ -1,15 +1,23 @@
 angular.module('flatman').controller("financesCtrl", function($scope, financesService, Util){
 
-	$scope.finTmp={ text:"", value:"", date:"", user_id:"", cat_name:"", payee:""};
-	//expand payee_name if there are more than one...
+	$scope.finTmp={ text:"", value:"", date:"", user_id:"", cat_name:"", payer:"", payee1:"", payee2:"", payee3:"", payee4:"",payee5:""};
+	
 	$scope.debtTmp={payer_name:"", payee_name:"", debt:""};
 	$scope.finances= financesService.finance.get();
 	$scope.AllCategories = financesService.category.get_all();
 	$scope.getFlatMates = financesService.mates.get();
 	$scope.allDebts = financesService.debts.get();
-	$scope.initChart = financesService.chart.get();
-	//$scope.months = 
+	$scope.initChart = financesService.chart.get(); 
 	$scope.select = {month: ""};
+	var dataChart = financesService.category.get_all();
+	var colors = ["green", "black", "blue", "yellow", "red", "magenta", "purple"];
+
+	$scope.dataChart = function (){
+ 		for(var i = 0; i < $scope.AllCategories; i++){
+			dataChart.cat_name[i] = $scope.AllCategories.cat_name[i];
+			dataChart.listValue[i] = $scope.AllCategories.listValue[i];
+		}
+	};
 
 	$scope.intro = function(){
 		var bool = true;
@@ -46,9 +54,24 @@ angular.module('flatman').controller("financesCtrl", function($scope, financesSe
 		});
 	};
 
-	$scope.initChart=function(){
+	$scope.chart = [
+		{
+			value: dataChart.listValue,
+			color: colors
+		}
+	];
 
-	};
+		
+	/*	for(var i = 0; i < $scope.AllCategories.length; i++){
+			chartData.push({value: $scope.AllCategories[i].value, color: colors[i]});
+		}
+		var chart = {
+			"value":chartData.listValue,
+			"color":colors
+		};
+		//new Chart().Doughnut(chartData,null);
+		return chart;
+	};*/
 
 	//continue
 	$scope.getMonthEntries=function(nr){

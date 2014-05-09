@@ -284,6 +284,7 @@ en:
       page_header                        : "Finance status"
       help_title                         : "Enter your expenses here ..."
       help_paragraph1                    : "Click the add button to set new expenses"
+      add_fin                            : " Entry"
     finances_new:
       page_header                        : "New Entry"
       bill_affects                       : "Von Rechnung betroffen:"
