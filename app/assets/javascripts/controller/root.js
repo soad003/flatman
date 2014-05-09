@@ -20,7 +20,6 @@ angular.module('flatman').controller("rootCtrl",function($scope,$rootScope,$time
     (function tick() {
         $scope.pending_status_requests++;
         statusService.get(function(data){
-
             if($scope.server_status){
                 $scope.emitEvents($scope.server_status,data);
             }
@@ -34,7 +33,9 @@ angular.module('flatman').controller("rootCtrl",function($scope,$rootScope,$time
     })();
 
     $scope.emitEvents=function(old_status,new_status) {
-        if(old_status.unread_messages!==new_status.unread_messages) $scope.$broadcast('message_count_changed', null);
+        if(old_status.unread_messages!==new_status.unread_messages) {
+            $scope.$broadcast('message_count_changed', null);
+        }
     };
 
 });

@@ -1,10 +1,26 @@
-angular.module('flatman').controller("messageCtrl", function($scope, $route, messageService, Util){
+angular.module('flatman').controller("messageCtrl", function($scope, $route, $timeout, messageService, statusService, Util){
     $scope.chats = messageService.message.get();
     $scope.messages = [];
     $scope.chatView = true;
-    $scope.chatPartner = null
+    $scope.chatPartner = null;
     $scope.unreadCounter = [];
+    $scope.mesStatus = null;
 
+    (function check() {
+        $scope.pending_status_requests++;
+        statusService.get(function(data){
+            if($scope.server_status){
+                $scope.chats = messageService.message.get();
+                $scope.mesStatus = $scope.newMessStatus.unread_messages;
+            }
+
+            $scope.server_status=data;
+
+            $timeout(check, 5000);
+            $scope.pending_status_requests--;
+        },
+        function(){ $scope.pending_status_requests--; });
+    })();
 
     $scope.newMess = {sender_id: "", receiver_id: "", text: "", header: "", read: false};
 
@@ -32,14 +48,15 @@ angular.module('flatman').controller("messageCtrl", function($scope, $route, mes
         });
     };
 
+
     $scope.removeChat=function(chat, question){
         bootbox.confirm(question, function(result) {
             if (result){
-                $scope.chats = messageService.message.destroy(chat.id);
+                messageService.message.destroy(chat.id);
+                $scope.chats = _($scope.chats).without(chat);
                 $scope.messages = [];
-                $scope.chats = [];
             }
-            $scope.toggleView();
+            $scope.chatView = true;
         });
 
     };
@@ -126,8 +143,11 @@ angular.module('flatman').controller("messageCtrl", function($scope, $route, mes
             return $scope.date +" "+ $scope.time;
 
         // Mon May 05 2014 09:29:33 GMT+0200 (CEST)
-
-        
     };
+
+    /*$scope.$on('message_count_changed', function(event, message){
+        $scope.chats = messageService.message.get();
+        alert("get broadcast");
+    });*/
 
 });
