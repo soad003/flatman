@@ -2,7 +2,7 @@ angular.module('flatman').controller("messageCtrl", function($scope, $route, $ti
     $scope.chats = messageService.message.get();
     $scope.messages = [];
     $scope.chatView = true;
-    $scope.chatPartner = null
+    $scope.chatPartner = null;
     $scope.unreadCounter = [];
     $scope.mesStatus = 0;
 
