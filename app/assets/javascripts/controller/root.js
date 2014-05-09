@@ -2,7 +2,7 @@ angular.module('flatman').controller("rootCtrl",function($scope,$rootScope,$time
     $scope.Util=Util;
     $scope.error_type="danger";
     $scope.pending_status_requests=0;
-    $scope.message_status_changed=true;
+    $scope.message_status_changed=false;
 
     $scope.isLoading = function(){ return ($rootScope.pending_requests - $scope.pending_status_requests)>0; };
 

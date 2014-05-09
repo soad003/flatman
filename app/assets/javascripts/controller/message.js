@@ -8,17 +8,12 @@ angular.module('flatman').controller("messageCtrl", function($scope, $route, $ti
 
     (function check() {
         if($scope.message_status_changed){
-                $scope.chats = messageService.message.get();
+            $scope.chats = messageService.message.get();
         }
         $scope.message_status_changed = false;
         $timeout(check, 2000);
     })();
 
-    $scope.checkChangeChats=function(old_status,new_status) {
-        if(old_status.unread_messages!==new_status.unread_messages) {
-            
-        }
-    };
 
     $scope.newMess = {sender_id: "", receiver_id: "", text: "", header: "", read: false};
 
