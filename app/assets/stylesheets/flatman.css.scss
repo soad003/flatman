@@ -1,5 +1,6 @@
+@import "bootstrap/variables";
 /* fix navbar collapse 1200px */
-@media (max-width: 1200px) {
+@media (max-width: $screen-lg) {
     .navbar-header {
         float: none;
     }

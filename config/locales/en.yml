@@ -309,7 +309,7 @@ en:
       email                              : "email"
       provider                           : "via"
     shopping:
-      page_header                        : "shopping"
+      page_header                        : "Shopping"
       add                                : "add"
       new_list_placeholder               : "groceries"
       new_item_placeholder               : "jellybeans"
@@ -367,7 +367,7 @@ en:
       hidden_items                       : "hidden items"
       hidden_info                        : "hidden items are just visible for you and cannot be found by anyone"
       confirm_delete                     : "do you really want to delete this item?"
-    shareditem:     
+    shareditem:
       upload                             : "upload"
       save                               : "save"
       back                               : "back"
@@ -385,7 +385,7 @@ en:
       tags                               : "tags"
       tags_placeholder                   : "tag, tog, tig"
       confirm_delete                     : "do you really want to delete this item?"
-    
+
 
   session:
     index:
