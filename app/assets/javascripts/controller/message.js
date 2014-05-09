@@ -13,7 +13,6 @@ angular.module('flatman').controller("messageCtrl", function($scope, $route, $ti
         if ($scope.newMessStatus.unread_messages !== $scope.mesStatus){
             $scope.chats = messageService.message.get();
             $scope.mesStatus = $scope.newMessStatus.unread_messages;
-            alert(($scope.newMessStatus.unread_messages));
         }
         $timeout(check, 5000);
         });
