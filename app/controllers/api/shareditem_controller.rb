@@ -4,10 +4,16 @@ class Api::ShareditemController < Api::RestController
   def get
     item=Shareditem.find(item_params[:id])
     if item 
+      item.tags = item.tags
+      a = item.tags.split(",")
+      b = a.collect{|x| x.gsub(/\s+/, "")}
+      c = b.map.with_index { |v, i| {:value => i, :text => v} }
+      d = c.to_json
+      item.tags = d
+     
       respond_with(item)
     else
        respond_with_errors([t('.no_item_found')])
-       #warum andre errormessage?
     end
   end
   
@@ -18,7 +24,9 @@ class Api::ShareditemController < Api::RestController
     respond_with(item)
   end
   
-  
+  def to_json(*a)
+      {"text" => @items}.to_json(*a)
+  end 
   def update
     item = Shareditem.find(item_params[:id])
 
