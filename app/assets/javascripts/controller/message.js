@@ -6,14 +6,9 @@ angular.module('flatman').controller("messageCtrl", function($scope, $route, $ti
     $scope.unreadCounter = [];
     $scope.mesStatus = null;
 
-    (function check() {
-        if($scope.message_status_changed){
-            $scope.chats = messageService.message.get();
-        }
-        $scope.message_status_changed = false;
-        $timeout(check, 2000);
-    })();
-
+    $scope.$on('message_count_changed', function(mass){
+        $scope.chats = messageService.message.get();
+    });
 
     $scope.newMess = {sender_id: "", receiver_id: "", text: "", header: "", read: false};
 

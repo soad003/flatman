@@ -2,7 +2,7 @@ angular.module('flatman').controller("rootCtrl",function($scope,$rootScope,$time
     $scope.Util=Util;
     $scope.error_type="danger";
     $scope.pending_status_requests=0;
-    $scope.message_status_changed=false;
+    $scope.message_status_changed=0;
 
     $scope.isLoading = function(){ return ($rootScope.pending_requests - $scope.pending_status_requests)>0; };
 
@@ -24,9 +24,10 @@ angular.module('flatman').controller("rootCtrl",function($scope,$rootScope,$time
             if($scope.server_status){
                 $scope.emitEvents($scope.server_status,data);
             }
-
-            $scope.server_status=data;
-
+            if (data.unread_messages != 0)
+                $scope.server_status=data;
+            else 
+                $scope.server_status=null;
             $timeout(tick, 5000);
             $scope.pending_status_requests--;
         },
@@ -34,8 +35,13 @@ angular.module('flatman').controller("rootCtrl",function($scope,$rootScope,$time
     })();
 
     $scope.emitEvents=function(old_status,new_status) {
-        if(old_status.unread_messages!==new_status.unread_messages) {
-            $scope.message_status_changed = true;
+        var unread = 0;
+        if (old_status.unread_messages != null){
+            var unread = old_status.unread_messages;
+        }
+        if(unread!==new_status.unread_messages) {
+            $scope.message_status_changed = 1;
+            $scope.$broadcast('message_count_changed', null);
         }
     };
 

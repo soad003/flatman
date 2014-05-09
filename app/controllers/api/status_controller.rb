@@ -8,11 +8,7 @@ class Api::StatusController < Api::RestController
         	messList = Message.find_messages(chat.id)
         	@@counter = @@counter + (Message.countUnread(messList, current_user)).to_i
         end
-        if @@counter == 0
-            respond_with({unread_messages: nil})
-        else
         respond_with({unread_messages:@@counter})
-        end
     end
 
 end
