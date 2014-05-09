@@ -34,7 +34,10 @@ angular.module('flatman').controller("rootCtrl",function($scope,$rootScope,$time
     })();
 
     $scope.emitEvents=function(old_status,new_status) {
-        if(old_status.unread_messages!==new_status.unread_messages) $scope.$broadcast('message_count_changed', null);
+        if(old_status.unread_messages!==new_status.unread_messages) {
+            $scope.$broadcast('message_count_changed', null);
+            alert("send broadcast");
+        }
     };
 
 });

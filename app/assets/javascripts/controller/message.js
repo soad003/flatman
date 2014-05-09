@@ -1,10 +1,24 @@
-angular.module('flatman').controller("messageCtrl", function($scope, $route, messageService, Util){
+angular.module('flatman').controller("messageCtrl", function($scope, $route, $timeout, messageService, statusService, Util){
     $scope.chats = messageService.message.get();
     $scope.messages = [];
     $scope.chatView = true;
     $scope.chatPartner = null
     $scope.unreadCounter = [];
+    $scope.mesStatus = 0;
 
+    (function check(){
+        statusService.get(function(data){
+            
+            $scope.newMessStatus = data;
+        if ($scope.newMessStatus.unread_messages !== $scope.mesStatus){
+            $scope.chats = messageService.message.get();
+            $scope.mesStatus = $scope.newMessStatus.unread_messages;
+            alert(($scope.newMessStatus.unread_messages));
+        }
+        $timeout(check, 5000);
+        });
+        
+    })();
 
     $scope.newMess = {sender_id: "", receiver_id: "", text: "", header: "", read: false};
 
@@ -32,12 +46,12 @@ angular.module('flatman').controller("messageCtrl", function($scope, $route, mes
         });
     };
 
+
     $scope.removeChat=function(chat, question){
         bootbox.confirm(question, function(result) {
             if (result){
                 $scope.chats = messageService.message.destroy(chat.id);
                 $scope.messages = [];
-                $scope.chats = [];
             }
             $scope.toggleView();
         });
@@ -126,8 +140,11 @@ angular.module('flatman').controller("messageCtrl", function($scope, $route, mes
             return $scope.date +" "+ $scope.time;
 
         // Mon May 05 2014 09:29:33 GMT+0200 (CEST)
-
-        
     };
+
+    /*$scope.$on('message_count_changed', function(event, message){
+        $scope.chats = messageService.message.get();
+        alert("get broadcast");
+    });*/
 
 });
