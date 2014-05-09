@@ -77,15 +77,26 @@
 							
 					<br />
 				<label for="tags"><%= t(".tags") %></label>
-				
-				 <input type="text" />
-				
-					
 			
-					
-							
-				</div>
 			
+			<!--item.tags is in der richtigen struktur, und wird erkannt.-->	
+			{{item.tags}}
+			<bootstrap-tagsinput
+				  ng-model="item.tags"
+				  itemvalue="value"
+				  tagclass="badge badge-success"
+				  itemtext="text">
+			</bootstrap-tagsinput>
+	
+			
+			{{copied}}
+			<bootstrap-tagsinput
+				  ng-model="copied"
+				  itemvalue="value"
+				  tagclass="badge badge-success"
+				  itemtext="text">
+			</bootstrap-tagsinput>
+
 			
 			
 				<p>
