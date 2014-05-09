@@ -3,36 +3,26 @@
 angular.module('flatman').controller("sharedItemCtrl", function($scope, $routeParams, $location, shareService, Util, tagService) {
 	$scope.item = shareService.item.get($routeParams.itemid);
 
-	//register tagsinput
-	
-	
-/*
-	//shadowbox for images
-	$('.image-popup').magnificPopup({
-		type : 'image'
-	});
-	*/
 
-	//not working?
-	//$('#tags').tagsinput();
+	//warum kennt er das hier nicht?
+	//weil tags nicht bekannt, wird es im shareditem_controller aufbereitet.
+	console.log($scope.item.tags);
 	
-	//dummy, get all tags which starts which a
-	$scope.tags = tagService.get("a");
-	console.log($scope.tags);
-	//...aand working.
-	
-	$('#lului').bootstrapSwitch($scope.item);
+	console.log($scope.item);
 
-	$('#lului').on('switchChange.bootstrapSwitch', function(event, state) {
-		$scope.item.available = state;
-		console.log(this);
-		// DOM element
-		console.log(event);
-		// jQuery event
-		console.log(state);
-		// true | false
-	});
+    //aus der konsole den wert für scope.item.tags kopiert.
+    $scope.copied = [{"value":0,"text":"adfasdf"}];
+    
+		
 	
+	/*fehler: undefinied is not a function? 
+	  kennt er $scope.item.tags nicht? warum?
+	  oder mag er nicht, weil es ein anderes format ist?
+	 * */
+	
+
+
+
 	//fetch the data
 	$scope.openFileWindow = function() {
 		angular.element(document.querySelector('#fileUpload')).trigger('click');
