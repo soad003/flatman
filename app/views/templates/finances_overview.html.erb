@@ -2,9 +2,16 @@
 
 <% content_for :title, t('.page_title') %>
 
-  <section class="hidden-print">
-    <h1 class="page-header"><%= t('.page_header') %> </h1>
-  </section>
+  <div class = "page-head">
+    <h1 class="page-header"><span class="fa fa-bitcoin"></span> <%= t('.page_header') %>
+     <a href="/#/finances">
+                <button type="submit" class="btn btn-primary pull-right"><i class="fa fa-undo"></i> 
+                  <span class="hidden-xs">Back</span></button>
+              </a>
+            </div>
+    </div>
+    </h1>
+  </div>
 
  <div class="panel-body">
   <div class="btn-group">
@@ -38,6 +45,7 @@
       });
       </script> -->
    </div>
+
  	<div style="margin:auto; width:450px; padding:40px border: 1px solid black;" >
   		<table class="table table-striped">
   			<tr>
@@ -83,10 +91,5 @@
   			</tr>
       </div>
   		</table>
-      <div style='float:left'>
-              <form action="/#/finances">
-                <button type="submit" class="btn btn-primary">BACK</button>
-              </form>
-            </div>
-  	</div>
+     
   </div>

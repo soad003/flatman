@@ -1,7 +1,6 @@
 angular.module('flatman').controller("financesCtrl", function($scope, financesService, Util){
 
-	$scope.finTmp={ text:"", value:"", date:"", user_id:"", cat_name:"", payer:"", payee1:"", payee2:"", payee3:"", payee4:"",payee5:""};
-	
+	$scope.finTmp={ text:"", value:"", date:"", user_id:"", cat_name:"", payer:"", payee1: "false", payee2:"false", payee3:"false", payee4:"false",payee5:"false"};	
 	$scope.debtTmp={payer_name:"", payee_name:"", debt:""};
 	$scope.finances= financesService.finance.get();
 	$scope.AllCategories = financesService.category.get_all();
@@ -12,10 +11,21 @@ angular.module('flatman').controller("financesCtrl", function($scope, financesSe
 	var dataChart = financesService.category.get_all();
 	var colors = ["green", "black", "blue", "yellow", "red", "magenta", "purple"];
 
+
+	$scope.chart = [
+		{
+			value: [],
+			color: []
+		}
+	];
+
 	$scope.dataChart = function (){
- 		for(var i = 0; i < $scope.AllCategories; i++){
-			dataChart.cat_name[i] = $scope.AllCategories.cat_name[i];
-			dataChart.listValue[i] = $scope.AllCategories.listValue[i];
+		//5 displayed categories
+		for(var i = 0; i < 0; i++){
+			//alert("test");
+			$scope.chart[i].value = dataChart[i].listValue;
+			//alert(dataChart[i].listValue);		
+			$scope.chart[i].color = colors[i];
 		}
 	};
 
@@ -30,6 +40,7 @@ angular.module('flatman').controller("financesCtrl", function($scope, financesSe
 	};
 
 	$scope.addEntry=function(){
+		//$scope.finTmp.payee1 = 
 		financesService.finance.create($scope.finTmp, function(data){
 			$scope.finances.push(data);
 		});
@@ -43,40 +54,20 @@ angular.module('flatman').controller("financesCtrl", function($scope, financesSe
 	};
 
 	$scope.updateEntry=function(finance){
-	//	financesService.finance.update(.id,function(){
+	//	financesService.finance.update(finance.id,function(){
 
 	//	})
 	};
-
-	$scope.addDebt=function(){
-		debtService.debts.create_debt($scope.debtTmp, function(data){
-			$scope.allDebts.push(data);
-		});
+	$scope.payDebt = function(debt){
+		financesService.debts.pay_debt(debt.id, function(){
+			$scope.allDebts = _($scope.allDebts).without(debt);
+		})
 	};
-
-	$scope.chart = [
-		{
-			value: dataChart.listValue,
-			color: colors
-		}
-	];
-
-		
-	/*	for(var i = 0; i < $scope.AllCategories.length; i++){
-			chartData.push({value: $scope.AllCategories[i].value, color: colors[i]});
-		}
-		var chart = {
-			"value":chartData.listValue,
-			"color":colors
-		};
-		//new Chart().Doughnut(chartData,null);
-		return chart;
-	};*/
 
 	//continue
 	$scope.getMonthEntries=function(nr){
 		$scope.select.month = nr;
-		alert($scope.select.month);
+		//alert($scope.select.month);
 		financesService.month.get($scope.select);
 	};
 

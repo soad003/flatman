@@ -1,7 +1,3 @@
-<!-- <div class="row">
-  <h1 class="page-header"><span class="fa fa-shopping-cart"></span> <%= t(".page_header") %></h1>
-</div> -->
-
 <style type="text/css">
   input[type=checkbox] { display:none; } /* to hide the checkbox itself */
   input[type=checkbox] + label:before {
@@ -14,82 +10,84 @@
 
   input[type=checkbox]:checked + label:before { content: "\f046"; } /* checked icon */
   input[type=checkbox]:checked + label:before { letter-spacing: 5px; }
+
 </style>
 
-<div>
-    <div class="row">
-        <div class="col-md-2">&nbsp;</div>
-        <div class="form-group col-md-8">
-          <form role="form" ng-submit="addList()" name="listForm">
-              <div class="input-group">
-                  <input type="text" class="form-control" ng-model="ListName" maxlength="30" placeholder="<%= t('.new_list_placeholder') %>" required>
-                  <span class="input-group-btn">
-                    <button class="btn btn-primary" type="submit" type="submit" ng-disabled="!listForm.$valid">
-                      <span class="glyphicon glyphicon-plus"></span> <%= t(".add") %>
-                    </button>
-                  </span>
-               </div>
-           </form>
-        </div>
-        <div class="col-md-2">&nbsp;</div>
-    </div>
-    <div class="row">
-        <div class="col-md-4" ng-repeat="list in lists track by $index">
-            <div class="panel panel-{{getColor($index)}}">
-                <div class="panel-heading">
-                    <div class="form-group">
-                        <strong>{{list.name}}</strong>
-                        <div class="btn-group pull-right">
-                          <button type="button" class="btn btn-default dropdown-toggle btn-xs" data-toggle="dropdown">
-                            <span class="glyphicon glyphicon-pencil"></span>
-                          </button>
-                          <ul class="dropdown-menu">
-                            <li>
-                              <a href="" ng-click="removeList(list)"><span class="glyphicon glyphicon-trash"></span> <%= t(".delete_list") %></a>
-                            </li>
-                            <li>
-                              <a href=""><span class="fa fa-credit-card"></span> <%= t(".done") %></a>
-                            </li>
-                          </ul>
-                        </div>
-                    </div>
-                    <ul class="list-unstyled">
-                        <li ng-repeat="item in list.items">
-                          <input id="{{''+$parent.$index+$index}}" type="checkbox" ng-model="item.checked" ng-change="changeChecked(list,item)">
-                          <label for="{{''+$parent.$index+$index}}" class="done-{{item.checked}}">
-                            {{item.name}}
-                          </label>
-                          <a href="" class="pull-right" ng-click="removeItem(list,item)">
-                            <span class="glyphicon glyphicon-remove"></span>
-                          </a>
-                        </li>
-                    </ul>
-                </div>
-                <div class="panel-footer announcement-bottom">
-                    <form role="form" name="Itemform" ng-submit="addItem(list)">
-                        <div class="input-group">
-                          <input type="text" class="form-control"
-                                  ng-model="list.new_Text"
-                                  maxlength="30"
-                                  placeholder="<%= t(".new_item_placeholder") %>" required>
-                          <span class="input-group-btn">
-                            <button class="btn btn-primary"
-                                    type="submit"
-                                    ng-disabled="!Itemform.$valid">
-                              <span class="glyphicon glyphicon-plus"></span> <%= t(".add") %>
-                            </button>
-                          </span>
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </div>
-
-        <div class="jumbotron text-center" ng-show="lists.length===0 && !isLoading()">
-          <i class="fa fa-shopping-cart fa-5x"></i>
-          <h2><%= t(".help_title") %></h2>
-          <%= t(".help_paragraph1") %><br>
-          <%= t(".help_paragraph2") %>
-        </div>
+<div class="row">
+  <div class="col-lg-9 col-md-9 col-sm-8">
+    <h1 class="page-header"><span class="fa fa-shopping-cart"></span> <%= t(".page_header") %></h1>
+  </div>
+  <div class="col-sm-4 col-md-3 col-lg-3">
+      <form role="form" ng-submit="addList()" name="listForm" class="form-inline page-header-right">
+          <div class="input-group">
+              <input type="text" class="form-control" ng-model="ListName" maxlength="30" placeholder="<%= t('.new_list_placeholder') %>" required>
+              <span class="input-group-btn">
+                <button class="btn btn-primary" type="submit" type="submit" ng-disabled="!listForm.$valid">
+                  <span class="glyphicon glyphicon-plus"></span> <span class="hidden-xs"><%= t(".add") %></span>
+                </button>
+              </span>
+           </div>
+       </form>
     </div>
 </div>
+
+<div class="row">
+    <div class="col-md-4 col-sm-6" ng-repeat="list in lists track by $index">
+        <div class="panel panel-{{getColor($index)}}">
+            <div class="panel-heading">
+                <div class="form-group">
+                    <strong>{{list.name}}</strong>
+                    <div class="btn-group pull-right">
+                      <button type="button" class="btn btn-default dropdown-toggle btn-xs" data-toggle="dropdown">
+                        <span class="glyphicon glyphicon-pencil"></span>
+                      </button>
+                      <ul class="dropdown-menu">
+                        <li>
+                          <a href="" ng-click="removeList(list)"><span class="glyphicon glyphicon-trash"></span> <%= t(".delete_list") %></a>
+                        </li>
+                        <li>
+                          <a href=""><span class="fa fa-credit-card"></span> <%= t(".done") %></a>
+                        </li>
+                      </ul>
+                    </div>
+                </div>
+                <ul class="list-unstyled">
+                    <li ng-repeat="item in list.items">
+                      <input id="{{''+$parent.$index+$index}}" type="checkbox" ng-model="item.checked" ng-change="changeChecked(list,item)">
+                      <label for="{{''+$parent.$index+$index}}" class="done-{{item.checked}}">
+                        {{item.name}}
+                      </label>
+                      <a href="" class="pull-right" ng-click="removeItem(list,item)">
+                        <span class="glyphicon glyphicon-remove"></span>
+                      </a>
+                    </li>
+                </ul>
+            </div>
+            <div class="panel-footer announcement-bottom">
+                <form role="form" name="Itemform" ng-submit="addItem(list)">
+                    <div class="input-group">
+                      <input type="text" class="form-control"
+                              ng-model="list.new_Text"
+                              maxlength="30"
+                              placeholder="<%= t(".new_item_placeholder") %>" required>
+                      <span class="input-group-btn">
+                        <button class="btn btn-primary"
+                                type="submit"
+                                ng-disabled="!Itemform.$valid">
+                          <span class="glyphicon glyphicon-plus"></span> <span class="hidden-xs"><%= t(".add") %></span>
+                        </button>
+                      </span>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <div class="jumbotron text-center" ng-show="lists.length===0 && !isLoading()">
+      <i class="fa fa-shopping-cart fa-5x"></i>
+      <h2><%= t(".help_title") %></h2>
+      <%= t(".help_paragraph1") %><br>
+      <%= t(".help_paragraph2") %>
+    </div>
+</div>
+

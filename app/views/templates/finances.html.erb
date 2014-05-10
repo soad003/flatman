@@ -9,8 +9,8 @@
      <a href="/#/finances_new">
                             <button class="btn btn-primary pull-right"
                                     type="submit">
-                              <span class="glyphicon glyphicon-plus"> </span><%= t(".add_fin") %>
-                            </button></a>
+                              <span class="glyphicon glyphicon-plus"> </span><span class="hidden-xs"><%= t(".add_fin") %></span>
+                            </button></a><span class="hidden-xs">
                     </h1>
   </div>
 
@@ -37,7 +37,7 @@
     
 
     <div class="panel panel-default hidden-xs" ng-show="enoughEntries()">
-      <div class="panel-heading">
+      <div class="panel-heading" ng-init="dataChart()">
         <center>Total: {{total()}} <i class="fa fa-eur"></i></center>   
       </div>
 
@@ -191,7 +191,7 @@
                     </button>
                      <ul class="dropdown-menu">
                       <li>
-                        <a href="" ng-click="removeEntry(finance)"><span class="fa fa-credit-card"></span> pay debt</a>
+                        <a href="" ng-click="payDebt(debts)"><span class="fa fa-credit-card"></span> pay debt</a>
                      </li>
                </ul>
                </div>

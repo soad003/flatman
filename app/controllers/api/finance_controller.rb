@@ -20,11 +20,49 @@ class Api::FinanceController <Api::RestController
         else
           @bill.billcategory_id = id
         end
-        #ct.destroy! and get id of billcat
-        #else  
         @bill.user_id = current_user.id
         @bill.save!
-        #new payment, def create_debt not needed
+        #payment
+        #check who is envolved in paying
+        mates = []
+        cost = params_all[:value]
+        flat = current_user.flat
+        flat_id = flat.id
+        members = User.all
+        members.each do |m|
+            if m.id == flat_id
+                mates << m.id
+            end
+        end
+        payee_id = [];
+        if params_all[:payee1] == true
+          payee_id << mates[0];
+        end
+        if params_all[:payee2] == true
+          payee_id << mates[1];
+        end
+        if params_all[:payee3] == true
+          payee_id << mates[2];
+        end
+        if params_all[:payee4] == true
+          payee_id << mates[3];
+        end
+        if params_all[:payee5] == true
+          payee_id << mates[4];
+        end
+
+        if payee_id.length != 0
+          cost = params_all[:value]/payee_id.length
+        end
+
+        payee_id.each do |p|
+          @payment = Payment.new()
+          @payment.payer_id = params_all[:payer]
+          @payment.date = params_all[:date]
+          @payment.payee_id = p.id
+          @payment.value = cost
+          @payment.save!
+        end
     end
 
     def update
@@ -110,6 +148,6 @@ class Api::FinanceController <Api::RestController
 
     private
     def params_all
-        params.permit(:text, :value,:user_id, :date, :cat_name, :payee)
+        params.permit(:text, :value,:user_id, :date, :cat_name, :payer, :payee1, :payee2, :payee3, :payee4, :payee5)
     end
 end

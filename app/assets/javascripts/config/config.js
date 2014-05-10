@@ -1,6 +1,6 @@
 // Angular Config / Routes
 
-angular.module('flatman', ['ngRoute','ngResource','google-maps','angles','ui.bootstrap','ngLocale', 'number_localized'])
+angular.module('flatman', ['ngRoute','ngResource','google-maps','angles','ui.bootstrap','ngLocale', 'bootstrap-tagsinput', 'number_localized'])
         .config(function($httpProvider, $routeProvider){
 
   $httpProvider.defaults.headers.common = {'X-CSRF-Token': $("meta[name='csrf-token']").attr("content"),
@@ -74,23 +74,28 @@ angular.module('flatman', ['ngRoute','ngResource','google-maps','angles','ui.boo
         redirectTo: '/dashboard'
       });
 
-      $httpProvider.interceptors.push(function ($q,Util) {
-        return {
-            'response': function (response) {
-              return response;
-            },
-            'responseError': function (rejection) {
-               Util.set_server_errors(rejection.data.errors);
-               return $q.reject(rejection);
-            }
-        };
-      });
-
-      $httpProvider.interceptors.push(function($q,$rootScope) {
+      $httpProvider.interceptors.push(function($q,$rootScope,Util) {
           return {
-              request: function(config){ $rootScope.pending_requests++; return config; },
-              response: function(response) { $rootScope.pending_requests--;  return response; },
-              responseError: function(rejection) { $rootScope.pending_requests--; return $q.reject(rejection); }
+              request: function(config){
+                        $rootScope.pending_requests++;
+                        return config;
+                      },
+              response: function(response) {
+                        $rootScope.pending_requests--;
+                        return response;
+                      },
+              responseError: function(rejection) {
+                        $rootScope.pending_requests--;
+
+                        if(rejection.status === 409) {
+                          /* special case no flat redirection of templates see
+                          templates_controller.rb*/
+                          Util.redirect_to.create_flat();
+                        }else {
+                          Util.set_server_errors(rejection.data.errors);
+                        }
+                        return $q.reject(rejection);
+                      }
           };
       });
 

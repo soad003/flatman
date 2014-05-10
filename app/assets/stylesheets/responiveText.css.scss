@@ -1,0 +1,31 @@
+@import "bootstrap/variables";
+@media screen and (max-width: $screen-sm) {
+    h1 {
+    	font-size:180%;
+    }
+
+    h3 {
+    	font-size:130%;
+    }
+
+    .modal-body {
+    	font-size:80%;
+    }
+
+    .btn-block {
+    	font-size: 80%;
+    }
+
+    .form-control {
+    	font-size: 80%;
+    }
+
+    input[type="text"]{
+        font-size: 100%;
+    }
+
+    .dropdown-menu {
+        font-size: 100%;
+    }
+
+}

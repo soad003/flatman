@@ -32,57 +32,71 @@
 	<div class="col-lg-9">
 		<form role="form" name="itemform" ng-controller="sharedItemCtrl" ng-submit="updateItem()">
 			<div class="panel panel-success">
-				 <div class="panel-heading">
-					    <h3 class="panel-title">current state: available</h3>
-				 </div>
 				 
-				 <div class="panel-body">
-				 	<p>verdammtes glump.</p>
-				 	
-					    
-				   <hr />         
-					
+				 
+				 <div class="panel-body shareditem">
+					 <h4><%= t(".currentState") %></h4>
 				
+				 	 <input id="item-available" type="checkbox" ng-model="item.available">
+                     <label for="item-available">
+                        <%= t(".available") %>
+                     </label>
+				 	<br />
+				 	<input id="item-hidden" type="checkbox" ng-model="item.hidden">
+                     <label for="item-hidden">
+                        <%= t(".hidden") %>
+                     </label>
+				  <hr />         
+					
 				
 				
 				<div class="panel-group">
 					<ul class="list-group" >
 					
-					<label for="description">description</label>
+					<label for="description"><%= t(".description") %></label>
 					<textarea 
 							ng-model = "item.description"
 							ng-maxlength = "255"
 							class="form-control" 
 							rows="3"
 							id="description"
-							placeholder="say some words about your fantastic product">
+							placeholder='<%= t(".description_placeholder") %>'>
 					</textarea>
 							
 					<br />
 					
-				<label for="sharingnote">sharing note</label>
+				<label for="sharingnote"><%= t(".sharingNote") %></label>
 					<textarea 
 							ng-model = "item.sharingNote"
 							ng-maxlength = "255"
 							class="form-control" 
 							rows="2"
 							id="sharingnote"
-							placeholder="where is your item now, just visible for you"></textarea>
+							placeholder='<%= t(".description_placeholder") %>'>
+						</textarea>
 							
 					<br />
-				<label for="tags">tags</label>
-				
-				<input 	type="text" 
-						id="tags"
-						placeholder="some tags" 
-						ng-model="item.tags" 
-						data-role="tagsinput" />
-				
+				<label for="tags"><%= t(".tags") %></label>
 			
-					
-							
-				</div>
 			
+			<!--item.tags is in der richtigen struktur, und wird erkannt.-->	
+			{{item.tags}}
+			<bootstrap-tagsinput
+				  ng-model="item.tags"
+				  itemvalue="value"
+				  tagclass="badge badge-success"
+				  itemtext="text">
+			</bootstrap-tagsinput>
+	
+			
+			{{copied}}
+			<bootstrap-tagsinput
+				  ng-model="copied"
+				  itemvalue="value"
+				  tagclass="badge badge-success"
+				  itemtext="text">
+			</bootstrap-tagsinput>
+
 			
 			
 				<p>
@@ -94,10 +108,10 @@
           		</button>
           			        
                   
-              
-                <a ng-click="removeItem()"><button class="btn btn-danger">
-                	<span class="glyphicon glyphicon-remove"></span> <%= t(".remove") %></button>
-                </a>	
+               <button class="btn btn-danger" ng-click="removeItem('<%= t(".confirm_delete") %>')">
+            		<span class="glyphicon glyphicon-remove"></span> <%= t(".remove") %>
+               </button>
+            	
                 
                   <a href="#/share"><button class="btn btn-primary">
                 	<span class="glyphicon glyphicon-arrow-left"></span> <%= t(".back") %></button>

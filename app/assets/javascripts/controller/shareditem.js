@@ -1,51 +1,49 @@
 /*global btoa:false */
 
-angular.module('flatman').controller("sharedItemCtrl", function($scope, $routeParams, $location, shareService, Util) {
+angular.module('flatman').controller("sharedItemCtrl", function($scope, $routeParams, $location, shareService, Util, tagService) {
 	$scope.item = shareService.item.get($routeParams.itemid);
 
-	//register tagsinput
-//	$('#tags').tagsinput();
-	
-/*
-	//shadowbox for images
-	$('.image-popup').magnificPopup({
-		type : 'image'
-	});
-	*/
 
+	//warum kennt er das hier nicht?
+	//weil tags nicht bekannt, wird es im shareditem_controller aufbereitet.
+	console.log($scope.item.tags);
 	
-	$('#itemavailable').bootstrapSwitch($scope.item.available);
+	console.log($scope.item);
 
-	$('#itemavailable').on('switchChange.bootstrapSwitch', function(event, state) {
-		$scope.item.available = state;
-		console.log(this);
-		// DOM element
-		console.log(event);
-		// jQuery event
-		console.log(state);
-		// true | false
-	});
+    //aus der konsole den wert für scope.item.tags kopiert.
+    $scope.copied = [{"value":0,"text":"adfasdf"}];
+    
+		
 	
+	/*fehler: undefinied is not a function? 
+	  kennt er $scope.item.tags nicht? warum?
+	  oder mag er nicht, weil es ein anderes format ist?
+	 * */
+	
+
+
+
 	//fetch the data
 	$scope.openFileWindow = function() {
 		angular.element(document.querySelector('#fileUpload')).trigger('click');
 	};
 
-	$scope.removeItem = function() {
-		bootbox.confirm("Are you sure?", function(result) {
+	$scope.removeItem = function(asktext) {
+		bootbox.confirm(asktext, function(result) {
 			if (result) {
-				shareService.items.remove($scope.item, function(data) {
+				shareService.item.remove($scope.item, function(data) {
 					$location.path("/share");
 				}, function() {
 				});
-			}
+			} else
+				return;
 		});
 
 	};
 
 	$scope.updateItem = function() {
-		console.log($('#tags').val());
 		shareService.item.update($scope.item, function() {
+			$location.path("/share");
 		}, function() {
 		});
 	};

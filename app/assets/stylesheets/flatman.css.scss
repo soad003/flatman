@@ -1,5 +1,6 @@
+@import "bootstrap/variables";
 /* fix navbar collapse 1200px */
-@media (max-width: 1200px) {
+@media (max-width: $screen-lg) {
     .navbar-header {
         float: none;
     }
@@ -229,3 +230,8 @@ input.ng-error {
   left: 45%;
 }
 
+.page-header-right { padding-bottom: 14px; margin: 40px 0 20px; }
+
+@media (max-width: $screen-xs) {
+  .page-header-right {  }
+}

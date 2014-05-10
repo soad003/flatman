@@ -9,7 +9,7 @@ angular.module('flatman').factory("financesService", function($resource){
     //no service neede, merge witch financeService!
     var ctgService = $resource('api/finance/category',{},
                         {
-                            'get_all': {method: "GET", isArray:true},
+                            'get_all': {method: "GET", isArray:true}
                         });
 
     var chartService    = $resource('/api/finance/chart',{},
@@ -22,7 +22,7 @@ angular.module('flatman').factory("financesService", function($resource){
                         {
                             'get': {method: "GET", isArray:true},
                             'create_debt': {method:"POST"},
-                            'pay_debt': {method:"DELETE"}
+                            'destroy': {method:"DELETE"}
                         });
     var mateService     = $resource('api/finance/mates', {},
                         {
@@ -69,8 +69,8 @@ angular.module('flatman').factory("financesService", function($resource){
             create_debt: function(){
                 
             },
-            pay_debt: function(){
-
+            pay_debt: function(debt, succH, errH){
+                debtService.destroy({id: debt}, succH, errH);
             }
         },
         mates:{

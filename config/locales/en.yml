@@ -180,7 +180,7 @@ en:
         resources                         : "Resource"
         dashboard                         : "Dashboard"
         shopping                          : "Shopping"
-        search_placeholder                : "Search items/user"
+        search_placeholder                : "Search items"
 
     mail_layout:
       complimentary_close                 : "Greetings, your Flatman Team"
@@ -225,7 +225,11 @@ en:
       panel_share_header                 : "Shared Items"
       panel_resources_header             : "Ressource Usage (last 30 days)"
       no_shoppinglists                   : "Nothing to shop yet..."
-      no_debts                           : "No debts yet..."
+      no_shareditems                     : "No items available"
+      share_available                    : "items offered to share"
+      share_borrowed                     : "currently borrowed items"
+      share_helptext                     : "share ressources, feel better and make the world a better place"
+
     messages:
       page_header                        : "Messages"
       page_title                         : "Messages"
@@ -307,7 +311,7 @@ en:
       email                              : "email"
       provider                           : "via"
     shopping:
-      page_header                        : "shopping"
+      page_header                        : "Shopping"
       add                                : "add"
       new_list_placeholder               : "groceries"
       new_item_placeholder               : "jellybeans"
@@ -364,6 +368,7 @@ en:
       add_item_new                       : "add"
       hidden_items                       : "hidden items"
       hidden_info                        : "hidden items are just visible for you and cannot be found by anyone"
+      confirm_delete                     : "do you really want to delete this item?"
     shareditem:
       add_file                           : "add file"
       upload                             : "upload"
@@ -374,6 +379,17 @@ en:
       remove_image                       : "remove image"
       upload_image                       : "upload image"
       change_image                       : "change"
+      available                          : "available"
+      hidden                             : "hidden"
+      currentState                       : "current state of the item"
+      descritpion                        : "descritpion"
+      description_placeholder            : "describe your item"
+      sharingNote                        : "sharing note"
+      sharingNote_placeholder            : "notice who has taken your item"
+      tags                               : "tags"
+      tags_placeholder                   : "tag, tog, tig"
+      confirm_delete                     : "do you really want to delete this item?"
+
 
   session:
     index:

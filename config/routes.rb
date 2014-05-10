@@ -41,7 +41,7 @@ scope "(:locale)", locale: /en|de/ do
    end
    resources :user, only: [:index]
    
-   
+   resources :finance, only: [:index, :create, :update, :destroy]
    resources :shoppinglist, only: [:index, :create, :destroy] do
       resources :shoppingitem, only: [:create, :update, :destroy]
    end
@@ -68,6 +68,8 @@ scope "(:locale)", locale: /en|de/ do
    post '/shareditem/:id' => 'shareditem#update'
    resources :share, only: [:index, :create, :destroy]
    resources :shareditem, only: [:index, :create, :update, :upload]
+   get '/tag/:term' => 'tag#find'
+ 
    
    #finances
    resources :finance, only: [:index, :create, :update, :destroy]
