@@ -256,7 +256,7 @@ en:
       value                              : "Value"
       usage                              : "Usage"
       costs                              : "Costs"
-      resourceValue                      : "resource value"
+      resourceValue                      : "1724"
       addMoreEntriesForChart             : "More entries are required to view the chart"
       questionDeleteResource             : "Do you really want to delete the resource?"
     create_resource:
