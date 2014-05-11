@@ -5,5 +5,5 @@ json.array!(@f) do |json, finance|
   json.user_id finance.user
   json.date finance.date
   json.id finance.id
-  #json.cat_name finance.billcategory.name
+  json.cat_name Billcategory.find(finance.billcategory_id).name
 end

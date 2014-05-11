@@ -6,13 +6,32 @@ angular.module('flatman').factory("financesService", function($resource){
                             'destroy': {method:"DELETE"},
 							'update': {method:"POST"}
                         });
-
-    var chartService = $resource('/api/finance/:id/chart',{},
+    //no service neede, merge witch financeService!
+    var ctgService = $resource('api/finance/category',{},
                         {
-                            'get': {method: "GET"}
+                            'get_all': {method: "GET", isArray:true}
+                        });
+
+    var chartService    = $resource('/api/finance/chart',{},
+                        {
+                            'get': {method: "GET", isArray:true}
 
                         });
 
+    var debtService     = $resource('api/finance/debts',{},
+                        {
+                            'get': {method: "GET", isArray:true},
+                            'create_debt': {method:"POST"},
+                            'destroy': {method:"DELETE"}
+                        });
+    var mateService     = $resource('api/finance/mates', {},
+                        {
+                            'get': {method: "GET", isArray:true}
+                        });
+    var monthService    = $resource('api/finance/month', {},
+                        {
+                            'get': {method: "GET"}
+                        });
 
 	return {
         finance: {
@@ -20,23 +39,48 @@ angular.module('flatman').factory("financesService", function($resource){
                 return financeService.get();
             },
             create: function(finance,succH,errH) {
-                console.log("hello");
                 financeService.create(finance,succH,errH);
             },
             destroy: function(finance_id,succH,errH){
-                console.log("test");
                 financeService.destroy({id: finance_id},succH,errH);
             },
             update: function(finance,succH,errH){
                 financeService.update({id: finance.id},finance,succH,errH);
             },
-            getSum: function(finance){
+            get_sum: function(finance){
                 return null;
             }
         },
         chart:{
-            get: function(finance_id, dateFrom, dateTo, succH, errH){
-                return chartService.get({id: finance_id, from: dateFrom, to: dateTo}, succH, errH);
+            get: function(succH, errH){
+                //with date!!
+                return chartService.get(succH, errH);
+            }
+        },
+        category:{
+            get_all: function(){           
+                return ctgService.get_all();
+            }
+        },
+        debts:{
+            get: function(){
+                return debtService.get();
+            },
+            create_debt: function(){
+                
+            },
+            pay_debt: function(debt, succH, errH){
+                debtService.destroy({id: debt}, succH, errH);
+            }
+        },
+        mates:{
+            get: function(){
+                return mateService.get();
+            }
+        },
+        month:{
+            get: function(month){
+                return monthService.get(month);
             }
         }
     };

@@ -2,12 +2,50 @@
 
 <% content_for :title, t('.page_title') %>
 
-  <section class="hidden-print">
-    <h1 class="page-header"><%= t('.page_header') %></h1>
-  </section>
+  <div class = "page-head">
+    <h1 class="page-header"><span class="fa fa-bitcoin"></span> <%= t('.page_header') %>
+     <a href="/#/finances">
+                <button type="submit" class="btn btn-primary pull-right"><i class="fa fa-undo"></i> 
+                  <span class="hidden-xs">Back</span></button>
+              </a>
+            </div>
+    </div>
+    </h1>
+  </div>
 
  <div class="panel-body">
- 
+  <div class="btn-group">
+      <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
+          Month</i>
+          <span class="caret"></span>
+      </button>
+      
+      <ul class="dropdown-menu" role="menu">
+          <li><a ng-click="getMonthEntries(1)">Jänner</a></li>
+          <li><a ng-click="getMonthEntries(2)">Februar</a></li>
+          <li><a ng-click="getMonthEntries(3)" class="list-group-item active">März</a></li>
+          <li><a ng-click="getMonthEntries(4)">April</a></li>
+          <li><a ng-click="getMonthEntries(5)">Mai</a></li>
+          <li><a ng-click="getMonthEntries(6)">Juni</a></li>
+          <li><a ng-click="getMonthEntries(7)">Juli</a></li>
+          <li><a ng-click="getMonthEntries(8)">August</a><li>
+          <li><a ng-click="getMonthEntries(9)">September</a><li>
+          <li><a ng-click="getMonthEntries(10)">Oktober</a><li>
+          <li><a ng-click="getMonthEntries(11)">November</a><li>
+          <li><a ng-click="getMonthEntries(12)">Dezember</a><li>
+      </ul> 
+      <!--
+      <script>
+      $('.dropdown-menu li a').click(function(e) {
+        var $this = $(this);
+          if (!$this.hasClass('active')) {
+           $this.addClass('active');
+          }
+         e.preventDefault();
+      });
+      </script> -->
+   </div>
+
  	<div style="margin:auto; width:450px; padding:40px border: 1px solid black;" >
   		<table class="table table-striped">
   			<tr>
@@ -29,7 +67,7 @@
   				<th>{{finance.name}}
   				</th>
   				<th>
-  					{{finance.cat}}
+  					{{finance.cat_name}}
   				</th>
   				<th>
   					{{finance.value}}
@@ -53,10 +91,5 @@
   			</tr>
       </div>
   		</table>
-      <div style='float:left'>
-              <form action="/#/finances">
-                <button type="submit" class="btn btn-primary">BACK</button>
-              </form>
-            </div>
-  	</div>
+     
   </div>
