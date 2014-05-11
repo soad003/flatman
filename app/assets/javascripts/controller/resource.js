@@ -1,10 +1,9 @@
 angular.module('flatman').controller("resourceCtrl",function($scope, $filter, resourceService, Util){
     //to get the env to reduce the loads of data
     $scope.isMobile=function() {
-        if ($(window).width()<=770){
-            return true;
-        }
-        return false;
+          return false;
+        //return $(window).width()<=770;
+        
     };
 
     $scope.isMobile = $scope.isMobile();
