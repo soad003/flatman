@@ -1,5 +1,6 @@
+@import "bootstrap/variables";
 /* fix navbar collapse 1200px */
-@media (max-width: 1200px) {
+@media (max-width: $screen-lg) {
     .navbar-header {
         float: none;
     }
@@ -113,18 +114,6 @@ form.button_to div, form.button_to div input, form.button_to button {
 .announcement-text {
   margin: 0;
 }
-
-input[type=checkbox] { display:none; } /* to hide the checkbox itself */
-input[type=checkbox] + label:before {
-  font-family: FontAwesome;
-  display: inline-block;
-}
-
-input[type=checkbox] + label:before { content: "\f096"; } /* unchecked icon */
-input[type=checkbox] + label:before { letter-spacing: 10px; } /* space between checkbox and label */
-
-input[type=checkbox]:checked + label:before { content: "\f046"; } /* checked icon */
-input[type=checkbox]:checked + label:before { letter-spacing: 5px; }
 
 // input.ng-dirty {
 //     border-color: #8a6d3b;
@@ -241,3 +230,8 @@ input.ng-error {
   left: 45%;
 }
 
+.page-header-right { padding-bottom: 14px; margin: 40px 0 20px; }
+
+@media (max-width: $screen-xs) {
+  .page-header-right {  }
+}

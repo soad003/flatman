@@ -1,8 +1,9 @@
 angular.module('flatman').controller("rootCtrl",function($scope,$rootScope,$timeout,$location,Util,statusService){
     $scope.Util=Util;
     $scope.error_type="danger";
+    $scope.pending_status_requests=0;
 
-    $scope.isLoading = function(){ return $rootScope.pending_requests>0; };
+    $scope.isLoading = function(){ return ($rootScope.pending_requests - $scope.pending_status_requests)>0; };
 
     $scope.isActive = function(route) {
         return route === $location.path();
@@ -17,9 +18,29 @@ angular.module('flatman').controller("rootCtrl",function($scope,$rootScope,$time
     };
 
     (function tick() {
-        $scope.server_status=statusService.get(function(){
-            $timeout(tick, 50000);
-        });
+        $scope.pending_status_requests++;
+        statusService.get(function(data){
+            if($scope.server_status){
+                $scope.emitEvents($scope.server_status,data);
+            }
+            if (data.unread_messages !== 0)
+                $scope.server_status=data;
+            else 
+                $scope.server_status=null;
+            $timeout(tick, 5000);
+            $scope.pending_status_requests--;
+        },
+        function(){ $scope.pending_status_requests--; });
     })();
+
+    $scope.emitEvents=function(old_status,new_status) {
+        var unread = 0;
+        if (old_status.unread_messages !== null){
+            unread = old_status.unread_messages;
+        }
+        if(unread!==new_status.unread_messages) {
+            $scope.$broadcast('message_count_changed', null);
+        }
+    };
 
 });

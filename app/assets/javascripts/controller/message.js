@@ -1,15 +1,18 @@
-angular.module('flatman').controller("messageCtrl", function($scope, $route, messageService, Util){
+angular.module('flatman').controller("messageCtrl", function($scope, $route, $timeout, messageService, statusService, Util){
     $scope.chats = messageService.message.get();
     $scope.messages = [];
     $scope.chatView = true;
     $scope.chatPartner = null;
     $scope.unreadCounter = [];
-    $scope.summertime = true;
+    $scope.mesStatus = null;
 
+    $scope.$on('message_count_changed', function(mass){
+        $scope.chats = messageService.message.get();
+    });
 
     $scope.newMess = {sender_id: "", receiver_id: "", text: "", header: "", read: false};
 
-    $scope.getMessages = function (chat){
+    $scope.getMessages = function (chat, index){
         $scope.chatView = false;
         $scope.messages = messageService.messages.get(chat.id);
         $scope.chatPartner = messageService.partner.getPartner(chat.id);
@@ -33,24 +36,29 @@ angular.module('flatman').controller("messageCtrl", function($scope, $route, mes
         });
     };
 
+
     $scope.removeChat=function(chat, question){
         bootbox.confirm(question, function(result) {
             if (result){
-                messageService.message.destroy(chat.id, function(){
-                    $scope.chats = _($scope.chats).without(chat);
-                });
+                messageService.message.destroy(chat.id);
+                $scope.chats = _($scope.chats).without(chat);
+                $scope.messages = [];
             }
+            $scope.chatView = true;
         });
+
     };
 
     $scope.countUnread=function(chat, index){
-        $scope.unreadCounter[index] = messageService.message.count(chat.id);
-        //alert(JSON.stringify($scope.unreadCounter.header));
-        return $scope.unreadCounter.header;
+        $scope.unreadCounter[index] = messageService.message.count(chat.id, index);
     };
 
     $scope.getUnreadCounter=function(index){
-        return $scope.unreadCounter[index].header;
+        return $scope.unreadCounter[index].counter;
+    };
+
+    $scope.checkLastSender = function(sender, partner){
+        return sender == partner;
     };
 
     $scope.parseTime = function(time, modus){
@@ -63,35 +71,6 @@ angular.module('flatman').controller("messageCtrl", function($scope, $route, mes
 
         //letzter So im März um 2:00 +1h
         //letzter So im Oktober um 3:00 -1h
-        var timediff = 1;
-        if ($scope.summertime === true){
-            timediff = 2;
-        }
-
-        //12:13:57,495Z $scope.time
-        var timeArray = $scope.time.split(":");         // split hh:mm:ss
-        var dateArray = $scope.date.split("-");         // split yyyy:mm:dd
-        if (parseInt(timeArray[0],10) === 22 && $scope.summertime){
-            timeArray[0] = "00";
-            dateArray[2] = (parseInt(dateArray[2],10) + 1).toString();
-        }
-        else if (parseInt(timeArray[0],10) === 23){
-            timeArray[0] = "01";
-            dateArray[2] = (parseInt(dateArray[2],10) + 1).toString();
-        }
-        else{
-            timeArray[0] = (parseInt(timeArray[0],10) + timediff).toString();
-            if (timeArray[0].length < 2){
-                timeArray[0] = "0" + timeArray[0];
-            }
-        }
-
-        // rebuild time and date
-        $scope.time = "";
-        $scope.date = "";
-        $scope.time = timeArray[0] + ":" + timeArray[1] + ":" + timeArray[2];
-        $scope.date = dateArray[0] + "-" + dateArray[1] + "-" + dateArray[2];
-        
 
         var todayDay = new Date().getDate().toString();
         var todayMonth = (new Date().getMonth() + 1).toString();
@@ -152,8 +131,11 @@ angular.module('flatman').controller("messageCtrl", function($scope, $route, mes
             return $scope.date +" "+ $scope.time;
 
         // Mon May 05 2014 09:29:33 GMT+0200 (CEST)
-
-        
     };
+
+    /*$scope.$on('message_count_changed', function(event, message){
+        $scope.chats = messageService.message.get();
+        alert("get broadcast");
+    });*/
 
 });

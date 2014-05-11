@@ -180,7 +180,7 @@ en:
         resources                         : "Resource"
         dashboard                         : "Dashboard"
         shopping                          : "Shopping"
-        search_placeholder                : "Search items/user"
+        search_placeholder                : "Search items"
 
     mail_layout:
       complimentary_close                 : "Greetings, your Flatman Team"
@@ -225,12 +225,16 @@ en:
       panel_share_header                 : "Shared Items"
       panel_resources_header             : "Ressource Usage (last 30 days)"
       no_shoppinglists                   : "Nothing to shop yet..."
+      no_shareditems                     : "No items available"
+      share_available                    : "items offered to share"
+      share_borrowed                     : "currently borrowed items"
+      share_helptext                     : "share ressources, feel better and make the world a better place"
 
     messages:
       page_header                        : "Messages"
       page_title                         : "Messages"
       new_text_placeholder               : "Enter text"
-      send                               : "Send"
+      send                               : "send"
       intro_header                       : "Start creating your first chat"
       intro_text1                        : "With this feature you can contact other Users to share some items or other things."
       intro_text2                        : "Maybe you can find someone to borrowed an item you need."
@@ -303,8 +307,9 @@ en:
       page_header                        : "Your Profile"
       name                               : "name"
       email                              : "email"
+      provider                           : "via"
     shopping:
-      page_header                        : "shopping"
+      page_header                        : "Shopping"
       add                                : "add"
       new_list_placeholder               : "groceries"
       new_item_placeholder               : "jellybeans"
@@ -361,9 +366,8 @@ en:
       add_item_new                       : "add"
       hidden_items                       : "hidden items"
       hidden_info                        : "hidden items are just visible for you and cannot be found by anyone"
-    shareditem:     
-      add_file                           : "add file"  
-      upload                             : "upload"
+      confirm_delete                     : "do you really want to delete this item?"
+    shareditem:
       upload                             : "upload"
       save                               : "save"
       back                               : "back"
@@ -371,7 +375,18 @@ en:
       remove_image                       : "remove image"
       upload_image                       : "upload image"
       change_image                       : "change"
-    
+      available                          : "available"
+      hidden                             : "hidden"
+      currentState                       : "current state of the item"
+      descritpion                        : "descritpion"
+      description_placeholder            : "describe your item"
+      sharingNote                        : "sharing note"
+      sharingNote_placeholder            : "notice who has taken your item"
+      tags                               : "tags"
+      tags_placeholder                   : "tag, tog, tig"
+      confirm_delete                     : "do you really want to delete this item?"
+
+
   session:
     index:
       page_title                         : "Please sign in"
