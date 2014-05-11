@@ -29,7 +29,6 @@
 //= require_tree ./directives
 //= require ./vendor/angles.js
 //= require bootbox.js
-//= require hammer
 //= require ./vendor/angular-google-maps.min.js
 //= require magnific-popup
 //= require ./vendor/bootstrap-switch
