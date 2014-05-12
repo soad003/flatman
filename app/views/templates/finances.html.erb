@@ -17,10 +17,7 @@
 
 <div>
   <form action="/#/finances_new" ng-show="!intro()">
-    <button class="btn btn-primary" type="submit" style="float: right;">
-      <span class="glyphicon glyphicon-plus"></span><%= t(".add") %>
-    </button>
-  
+     
   <div class="jumbotron text-center">
           <i class="fa fa-bitcoin fa-5x"></i>
           <h2><%= t(".help_title") %></h2>
@@ -43,7 +40,7 @@
 
 
      <center>
-      <canvas donutchart options="options" data="chart" width="500" height="300"></canvas>
+      <canvas donutchart options="" data="chart" width="500" height="300"></canvas>
      
       
       <!--CREATE DONUGHT-CHART
@@ -145,7 +142,7 @@
                   <a href="" ng-click="removeEntry(finance)"><span class="glyphicon glyphicon-trash"></span> remove Entry</a>
                 </li>
                 <li>
-                  <a href="" ng-click="updateEntry(finance)"><span class="glyphicon glyphicon-pencil">edit</span>
+                  <a href="/#/finances_new" ng-click="updateEntry(finance)"><span class="glyphicon glyphicon-pencil">edit</span>
                   </a>
                 </li>
               </ul>
