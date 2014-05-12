@@ -1,16 +1,15 @@
 angular.module('flatman').controller("financesCtrl", function($scope, financesService, Util){
 
-	$scope.finTmp={ text:"", value:"", date:"", user_id:"", cat_name:"", payer:"", payee1: "false", payee2:"false", payee3:"false", payee4:"false",payee5:"false"};	
+	$scope.finTmp={ text:"", value:"", date:"", user_id:"", cat_name:"", payer:"", payee1: "", payee2:"false", payee3:"false", payee4:"false",payee5:"false"};	
 	$scope.debtTmp={payer_name:"", payee_name:"", debt:""};
 	$scope.finances= financesService.finance.get();
 	$scope.AllCategories = financesService.category.get_all();
 	$scope.getFlatMates = financesService.mates.get();
 	$scope.allDebts = financesService.debts.get();
 	$scope.initChart = financesService.chart.get(); 
-	$scope.select = {month: ""};
+	//$scope.select = {month: ""};
 	var dataChart = financesService.category.get_all();
 	var colors = ["green", "black", "blue", "yellow", "red", "magenta", "purple"];
-
 
 	$scope.chart = [
 		{
@@ -19,14 +18,15 @@ angular.module('flatman').controller("financesCtrl", function($scope, financesSe
 		}
 	];
 
+	//dataChart not defined?!?
 	$scope.dataChart = function (){
 		//5 displayed categories
-		for(var i = 0; i < 0; i++){
+		//for(var i = 0; i < 5; i++){
 			//alert("test");
-			$scope.chart[i].value = dataChart[i].listValue;
+			//$scope.chart[i].value = dataChart.listValue;
 			//alert(dataChart[i].listValue);		
-			$scope.chart[i].color = colors[i];
-		}
+			//$scope.chart[i].color = colors[i];
+		//}
 	};
 
 	$scope.intro = function(){
@@ -40,7 +40,6 @@ angular.module('flatman').controller("financesCtrl", function($scope, financesSe
 	};
 
 	$scope.addEntry=function(){
-		//$scope.finTmp.payee1 = 
 		financesService.finance.create($scope.finTmp, function(data){
 			$scope.finances.push(data);
 		});
@@ -53,22 +52,64 @@ angular.module('flatman').controller("financesCtrl", function($scope, financesSe
         });
 	};
 
+	//not finished
 	$scope.updateEntry=function(finance){
-	//	financesService.finance.update(finance.id,function(){
+		$scope.finTmp.text = finance.name;
+		//financesService.finance.update(finance.id,function(){
 
 	//	})
 	};
+
 	$scope.payDebt = function(debt){
 		financesService.debts.pay_debt(debt.id, function(){
 			$scope.allDebts = _($scope.allDebts).without(debt);
 		})
 	};
 
-	//continue
+	//not finished
 	$scope.getMonthEntries=function(nr){
-		$scope.select.month = nr;
+		//date = new Date(2014, 1, 1);
+		/*
+		switch(nr){
+			case "1":
+			financesService.month.get(2014.01.01, 2014.01.31);
+			break;
+			case "2":
+			financesService.month.get(2014.02.01, 2014.02.29);
+			break;
+			case "3":
+			financesService.month.get(2014.03.01, 2014.03.31);
+			break;
+			case "4":
+			financesService.month.get(2014.04.01, 2014.04.30);
+			break;
+			case "5":
+			financesService.month.get(2014.05.01, 2014.05.31);
+			break;
+			case "6":
+			financesService.month.get(2014.06.01, 2014.06.30);
+			break;
+			case "7":
+			financesService.month.get(2014.07.01, 2014.07.31);
+			break;
+			case "8":
+			financesService.month.get(2014.08.01, 2014.08.31);
+			break;
+			case "9":
+			financesService.month.get(2014.09.01, 2014.09.30);
+			break;
+			case "10":
+			financesService.month.get(2014.10.01, 2014.10.31);
+			break;
+			case "11":
+			financesService.month.get(2014.11.01, 2014.11.30);
+			break;
+			case "12":
+			financesService.month.get(2014.12.01, 2014.12.31);
+			break;
+		}
 		//alert($scope.select.month);
-		financesService.month.get($scope.select);
+		financesService.month.get($scope.select);*/
 	};
 
 	$scope.total = function(){

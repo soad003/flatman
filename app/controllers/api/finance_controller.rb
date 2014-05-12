@@ -127,6 +127,7 @@ class Api::FinanceController <Api::RestController
 
     end
 
+    #change: now userid compared to flatid
     def get_mates
         returnList = []
         flat = current_user.flat
