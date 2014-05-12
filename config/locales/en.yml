@@ -299,8 +299,10 @@ en:
     finances:
       page_title                         : "Finances"
       page_header                        : "Financal status"
+      add_fin                            : " Entry"
     finances_new:
       page_header                        : "New Entry"
+      bill_affects                       : "Bill affects:"
     finances_overview:
       page_header                        : "Overview"
     user_settings:
@@ -368,6 +370,8 @@ en:
       hidden_info                        : "hidden items are just visible for you and cannot be found by anyone"
       confirm_delete                     : "do you really want to delete this item?"
     shareditem:
+      add_file                           : "add file"
+      upload                             : "upload"
       upload                             : "upload"
       save                               : "save"
       back                               : "back"

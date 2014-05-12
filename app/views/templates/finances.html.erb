@@ -4,51 +4,55 @@
  <% content_for :title, t('.page_title') %>
 
 
-  <section class="hidden-print">
-    <h1 class="page-header"><span class="fa fa-bitcoin"></span> <%= t('.page_header') %></h1>
-  </section>
+  <div class = "page-head">
+    <h1 class="page-header"><span class="fa fa-bitcoin"></span> <%= t('.page_header') %>
+     <a href="/#/finances_new">
+                            <button class="btn btn-primary pull-right"
+                                    type="submit">
+                              <span class="glyphicon glyphicon-plus"> </span><span class="hidden-xs"><%= t(".add_fin") %></span>
+                            </button></a><span class="hidden-xs">
+                    </h1>
+  </div>
 
-<div class ="container" ng-show="finances.length >= 1">
+
+<div>
+  <form action="/#/finances_new" ng-show="!intro()">
+     
+  <div class="jumbotron text-center">
+          <i class="fa fa-bitcoin fa-5x"></i>
+          <h2><%= t(".help_title") %></h2>
+          <%= t(".help_paragraph1") %><br>
+  </div>
+  </form>
+</div>
+
+
+
+<div class ="container" ng-show="intro()">
  <div class="row">
   <div class="col-md-6">
+    
 
-
-    <div class="btn-group">
-      <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
-          Monat </i>
-          <span class="caret"></span>
-      </button>
-      <ul class="dropdown-menu" role="menu">
-          <li><a href="#">Jänner</a></li>
-          <li><a href="#">Februar</a></li>
-          <li><a href="#" class="list-group-item active">März</a></li>
-          <li><a href="#">April</a></li>
-          <li><a href="#">Mai</a></li>
-          <li><a href="#">Juni</a></li>
-          <li><a href="#">Juli</a></li>
-          <li><a href="#">August</a><li>
-          <li><a href="#">September</a><li>
-          <li><a href="#">Oktober</a><li>
-          <li><a href="#">November</a><li>
-          <li><a href="#">Dezember</a><li>
-      </ul>
-    </div>
-
-    <div class="panel panel-default">
-      <div class="panel-heading">
-       <div ng-controller="financesCtrl">
-        <center>Gesamt: {{total()}} <i class="fa fa-eur"></i></center>
-        </div>
+    <div class="panel panel-default hidden-xs" ng-show="enoughEntries()">
+      <div class="panel-heading" ng-init="dataChart()">
+        <center>Total: {{total()}} <i class="fa fa-eur"></i></center>   
       </div>
 
+
      <center>
-      <!--CREATE DONUGHT-CHART-->
-      <script type="text/javascript">
+      <canvas donutchart options="" data="chart" width="500" height="300"></canvas>
+     
+      
+      <!--CREATE DONUGHT-CHART
+<ui-chart="chartData" chart-options="chartOptions"></ui-chart>
+
+  <script type="text/javascript">
+      var colors = ["green", "black", "blue", "yellow", "red", "magenta", "purple"];
 
       var data =[
        {
-         value: 30,
-         color:"#F7464A"
+         value: 5,
+         color: colors[5]
        },
        {
          value:100,
@@ -74,58 +78,35 @@
      </script>
 
     <canvas id="myChart" width="400" height="400"></canvas>
+
+  -->
+      
+      
+
    </center>
   </div>
 
+  <div class="panel panel-default">
+  <div class="panel-heading">
+    <center>Categories</center>
+  </div>
   <div class="panel-body">
    <div style="margin:auto; width:auto; padding:auto border: 1px solid black;">
     <table class="table table-striped">
-    <tr>
-      <th><font color="#F7464A"><i class="fa fa-cutlery"></i> Lebensmittel</font></th>
-      <th><font color="#AF0ADC"><i class="fa fa-shopping-cart"></i> Einkäufe</font></th>
-      <th><font color="#11C2F2"><i class="fa fa-truck"></i> Verkehrsmittel</font></th>
+    <tr ng-repeat="category in AllCategories | limitTo: '5'">
+      <th>{{category.cat_name}}</th>
+      <th>{{category.listValue}}</th>
     </tr>
-    <tr>
-      <th>300
-      </th>
-      <th>120
-      </th>
-      <th>50
-      </th>
-    </tr>
-    <tr>
-      <th><font color="#949FB1"><i class="fa fa-bolt"></i> Resourcen</font></th>
-    <th><font color="#4D5360"><i class="fa fa-plus"></i> Sonstiges</font></th>
-     <th>
-     </th>
-    </tr>
-    <tr>
-     <th>50
-     </th>
-    <th>20
-     </th>
-     <th>
-    </th>
    </table>
   </div>
  </div>
 </div>
+</div>
 
   <div class="col-md-6">
-     <div class="btn-group">
-     <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" style="visibility: hidden;">
-         Edit
-          <span class="caret"></span>
-      </button>
-      <ul class="dropdown-menu" role="menu">
-          <li><a href="#">Delete</a></li>
-          <li><a href="#">Edit</a></li>
-        </ul>
-      </div>
     <div class="panel panel-default">
       <div class="panel-heading">
-       <center> Ausgabenübersicht</center>
-
+       <center> Spendings</center>
      </div>
      <div class="panel-body">
       <div style="margin:auto; width:auto; padding:auto border: 1px solid black;">
@@ -135,7 +116,7 @@
           </th>
           <th>Name
           </th>
-          <th>Kategorie
+          <th>Categorie
           </th>
           <th>Value
           </th>
@@ -147,7 +128,7 @@
           </th>
           <th>{{finance.name}}
           </th>
-          <th>{{finance.cat}}
+          <th>{{finance.cat_name}}
           </th>
           <th>{{finance.value}}
           </th>
@@ -161,7 +142,7 @@
                   <a href="" ng-click="removeEntry(finance)"><span class="glyphicon glyphicon-trash"></span> remove Entry</a>
                 </li>
                 <li>
-                  <a href="" ng-click="updateEntry(finance)"><span class="glyphicon glyphicon-pencil">edit</span>
+                  <a href="/#/finances_new" ng-click="updateEntry(finance)"><span class="glyphicon glyphicon-pencil">edit</span>
                   </a>
                 </li>
               </ul>
@@ -173,12 +154,7 @@
 
 
                 <div class="panel-footer announcement-bottom">
-                  <form action="/#/finances_new">
-                            <button class="btn btn-primary"
-                                    type="submit">
-                              <span class="glyphicon glyphicon-plus"></span><%= t(".add") %>
-                            </button>
-                    </form>
+                  
                     <div class="text-right">
               <a href="/#/finances_overview">Show All <i class="fa fa-arrow-circle-right"></i></a>
             </div>
@@ -188,59 +164,48 @@
   </div>
   <div class="panel panel-default">
       <div class="panel-heading">
-       <center> Schulden/Guthaben</center>
+       <center> Debts/Balance</center>
      </div>
       <div class="panel-body">
           <table class="table table-striped table-hover">
               <thead>
                 <tr>
                   <th>#</th>
-                  <th>Bewohner</th>
+                  <th>Inhabitant</th>
                   <th class="text-right">Saldo</th>
+                  <th>&nbsp;</th>
                 </tr>
               </thead>
               <tbody>
-                <tr>
-                  <td>1</td>
-                  <td>Michi</td>
-                  <td class="text-right">-100.00</td>
-                </tr>
-                <tr>
-                  <td>2</td>
-                  <td>Clemens</td>
-                  <td class="text-right">+100.00</td>
-                </tr>
+                <tr ng-repeat="debts in allDebts track by $index">
+                  <td>{{$index + 1}}</td>
+                  <td>{{debts.payee_name}}</td>
+                  <td class="text-right">{{debts.debt}}</td>
+                  <td>
+                    <div class="btn-group pull-right">
+                     <button type="button" class="btn btn-default dropdown-toggle btn-xs" data-toggle="dropdown">
+                       <span class="glyphicon glyphicon-pencil"></span>
+                    </button>
+                     <ul class="dropdown-menu">
+                      <li>
+                        <a href="" ng-click="payDebt(debts)"><span class="fa fa-credit-card"></span> pay debt</a>
+                     </li>
+               </ul>
+               </div>
+               </td>
+              </tr>
               </tbody>
               <tfoot>
                   <tr>
                     <td>&nbsp;</td>
                     <td>&nbsp;</td>
-                    <td class="text-right">0.00</td>
+                    <td class="text-right">{{debts()}}</td>
+                    <td>&nbsp;</td>
                   </tr>
               </tfoot>
             </table>
     </div>
 
-  <div class="panel-footer announcement-bottom">
-                    <form role="form" name="Itemform" ng-submit="">
-                        <div class="input-group">
-
-
-                          <input type="text" class="form-control"
-                                  maxlength="30"
-                                  placeholder="Name Value" required>
-
-                          <span class="input-group-btn">
-                            <button class="btn btn-primary"
-                                    type="submit">
-
-                              <span class="glyphicon glyphicon-plus"></span> <%= t(".add") %>
-                            </button>
-                         </span>
-                        </div>
-                    </form>
-
-                </div>
    </div>
   </div>
 
@@ -248,18 +213,6 @@
 </div>
 </div>
 
-<div>
-  <form action="/#/finances_new" ng-show="finances.length === 0">
-    <button class="btn btn-primary" type="submit" style="float: right;">
-      <span class="glyphicon glyphicon-plus"></span><%= t(".add") %>
-    </button>
-  
-  <div class="jumbotron text-center">
-          <i class="fa fa-bitcoin fa-5x"></i>
-          <h2><%= t(".help_title") %></h2>
-          <%= t(".help_paragraph1") %><br>
-  </div>
-  </form>
-</div>
+
 
 </div>
