@@ -6,7 +6,6 @@ angular.module('flatman').factory("financesService", function($resource){
                             'destroy': {method:"DELETE"},
 							'update': {method:"POST"}
                         });
-    //no service neede, merge witch financeService!
     var ctgService = $resource('api/finance/category',{},
                         {
                             'get_all': {method: "GET", isArray:true}
@@ -53,7 +52,6 @@ angular.module('flatman').factory("financesService", function($resource){
         },
         chart:{
             get: function(succH, errH){
-                //with date!!
                 return chartService.get(succH, errH);
             }
         },
@@ -79,8 +77,8 @@ angular.module('flatman').factory("financesService", function($resource){
             }
         },
         month:{
-            get: function(month){
-                return monthService.get(month);
+            get: function(month_from, month_to, succH, errH){
+                return monthService.get(month_from, month_to, succH, errH);
             }
         }
     };
