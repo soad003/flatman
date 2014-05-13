@@ -21,6 +21,7 @@ angular.module('flatman').controller("resourceCtrl",function($scope, $filter, re
                                     });
     });
 
+
     $scope.formatNumber = function (number){
         return (locale != 'en')? number.toString().replace('.',','): number;
     };
@@ -152,7 +153,7 @@ angular.module('flatman').controller("resourceCtrl",function($scope, $filter, re
     };
 
     $scope.initChart=function(resource){
-        resource.chart = {
+       /* resource.chart = {
             "labels":[],
             "datasets":[
                 {
@@ -162,7 +163,7 @@ angular.module('flatman').controller("resourceCtrl",function($scope, $filter, re
                     "pointStrokeColor":"#fff",
                     "data":[]
                 }]
-            };
+            };*/
     };
 
 });
