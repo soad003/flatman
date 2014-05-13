@@ -1,8 +1,12 @@
 angular.module('flatman').controller("messageCtrl", function($scope, $route, $timeout, messageService, statusService, Util){
+    $scope.flatchat = messageService.message.getFlatChat();
     $scope.chats = messageService.message.get();
+    $scope.flatchatActive = false;
+    $scope.flatchatMessages = [];
     $scope.messages = [];
     $scope.chatView = true;
     $scope.chatPartner = null;
+    $scope.currentUserId = messageService.user.getUserId();
     $scope.unreadCounter = [];
     $scope.mesStatus = null;
 
@@ -18,21 +22,52 @@ angular.module('flatman').controller("messageCtrl", function($scope, $route, $ti
         $scope.chatPartner = messageService.partner.getPartner(chat.id);
     };
 
+    $scope.getFlatChatMessages = function (){
+        $scope.chatView = false;
+        $scope.flatchatActive = true;
+        $scope.flatchatMessages = messageService.messages.getFlatChatMessages($scope.flatchat.id);
+    };
+
     $scope.toggleView = function(){
 	$scope.chats = messageService.message.get();
         if($scope.chatView === true)
             $scope.chatView = false;
-        else
+        else {
             $scope.chatView = true;
+            $scope.flatchatActive = false;
+        }
+    };
+
+    $scope.setChatView = function(){
+        $scope.chatView = true;
+        $scope.flatchatActive = false;
+        //console.log("chat view");
     };
 
     $scope.sendMessage=function(){
-        $scope.newMess.receiver_id = $scope.chatPartner.id
-        messageService.message.create($scope.newMess,function(data){
+        if ($scope.flatchatActive == true){
+            $scope.sendFlatChatMessage();
+            $scope.flatchatMessages = messageService.messages.getFlatChatMessages($scope.flatchat.id);
+        }
+        else {
+            $scope.newMess.receiver_id = $scope.chatPartner.id
+            messageService.message.create($scope.newMess,function(data){
                 $scope.messages.push(data);
                 //alert(JSON.stringify(data));
                 $scope.newMess.text='';
+            });
+        }
+    };
 
+    $scope.sendFlatChatMessage=function(){
+        // to say controller that this is a flatchat message
+        $scope.newMess.header = "flatchat";
+        // set some value. later current_user.id will be set
+        $scope.newMess.receiver_id = 13;
+        $scope.newMess.sender_id = 13;
+        messageService.message.create($scope.newMess, function(data){
+            $scope.flatchatMessages.push(data);
+            $scope.newMess.text='';
         });
     };
 
@@ -49,12 +84,31 @@ angular.module('flatman').controller("messageCtrl", function($scope, $route, $ti
 
     };
 
+    $scope.removeFlatChat=function(question){
+        bootbox.confirm(question, function(result) {
+            if (result){
+                $scope.flatchat = null;
+                $scope.messages = [];
+            }
+            $scope.chatView = true;
+            $scope.flatchatActive = false;
+        });
+    };
+
     $scope.countUnread=function(chat, index){
         $scope.unreadCounter[index] = messageService.message.count(chat.id, index);
     };
 
+    $scope.countUnreadFlatChat=function(){
+
+    };
+
     $scope.getUnreadCounter=function(index){
         return $scope.unreadCounter[index].counter;
+    };
+
+    $scope.getFlatUnreadCounter=function(){
+        return 0;
     };
 
     $scope.checkLastSender = function(sender, partner){
@@ -62,7 +116,7 @@ angular.module('flatman').controller("messageCtrl", function($scope, $route, $ti
     };
 
     $scope.currentUserIsSender = function(mes){
-        var ret = (mes.sender_id !== $scope.chatPartner.id);
+        var ret = (mes.sender_id == $scope.currentUserId.id);
         return ret;
     };
     // check if message.read is just now set to true. if this is the case the message should be shown as unread for few seconds
@@ -95,6 +149,7 @@ angular.module('flatman').controller("messageCtrl", function($scope, $route, $ti
     };
 
     $scope.parseTime = function(time, modus){
+        if (time != undefined){
         $scope.dateTime = time.split("T");
         $scope.date = $scope.dateTime[0];
         //2014-05-05 $scope.date
@@ -162,7 +217,7 @@ angular.module('flatman').controller("messageCtrl", function($scope, $route, $ti
             return $scope.date;
         else if (modus == "1")
             return $scope.date +" "+ $scope.time;
-
+        }
         // Mon May 05 2014 09:29:33 GMT+0200 (CEST)
     };
 

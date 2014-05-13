@@ -3,23 +3,38 @@ angular.module('flatman').service("messageService", function($resource) {
                         {
                             'get': {method: "GET", isArray:true},
                             'create': {method: "POST"},
-                            'destroy': {method: "DELETE", isArray:true},
-                            'count': {method: "GET", isArray:true}
+                            'destroy': {method: "DELETE", isArray:true}                            
                         });
     var messagesSer = $resource('/api/message/:id/messages/', {},
                         {
-                            'get': {method: "GET", isArray:true}
+                            'get': {method: "GET", isArray:true},
+                            
                         });
+
+    var flatChatSer = $resource('/api/message/flatChat', {},
+                        {
+                            'getFlatChat': {method: "GET"}
+                        });
+
+    var flatMessSer = $resource('/api/message/flatChatMessages', {},
+                        {
+                            'getFlatChatMessages': {method: "GET", isArray:true}
+                        })
 
     var partnerSer = $resource('/api/message/:id/partner/', {},
                         {
                             'getPartner': {method: "GET"}
                         });
 
-    var userSer = $resource('/api/message/users/', {},
+    var usersSer = $resource('/api/message/users/', {},
                         {
                             'getUsers': {method: "GET", isArray:true}
                         });
+    var userSer = $resource('/api/message/user/', {},
+                        {
+                            'getUserId': {method: "GET"}
+                        });
+
 
     var countSer = $resource('/api/message/:id/counter/', {},
                         {
@@ -38,13 +53,20 @@ angular.module('flatman').service("messageService", function($resource) {
             },  
             count: function(chat_id, index) {
                 return countSer.count({id: chat_id});
+            },
+            getFlatChat: function(){
+                return flatChatSer.getFlatChat();
             }
         },
         user: {
-            getUsers: function(){ return userSer.getUsers();}
+            getUsers: function(){ return usersSer.getUsers();},
+            getUserId: function(){ return userSer.getUserId();}
         },
         messages: {
-            get: function(mesId){ return messagesSer.get({id:mesId});}
+            get: function(mesId){ return messagesSer.get({id:mesId});},
+            getFlatChatMessages: function(mesId){
+                return flatMessSer.getFlatChatMessages();
+            }
         },
         partner: {
             getPartner: function(mesId) {

@@ -4,14 +4,53 @@
   <div class="page-head">
       <h1 class="page-header" ng-show="chatView"><span class="fa fa-envelope"></span>
           <%= t('.page_header') %> 
-        <a href="/#/create_message"><button class="btn btn-primary pull-right"><i class="fa fa-plus"></i> <span class="hidden-xs"><%= t('.page_title') %></span></button></a></h1>
+        <a href="/#/create_message"><button class="btn btn-primary pull-right"><i class="fa fa-plus"></i> <span class="hidden-xs"><%= t('.page_title') %></span></button></a>
+        <button class="btn btn-primary" ng-click="sendFlatChatMessge()">create flatchat</button>
+      </h1>
       <h3 class="page-header" ng-show="chatView == false"><span class="fa fa-envelope"></span>
+          <span ng-show="!flatchatActive">
           {{chatPartner.name}}
+          </span>
+          <span ng-show="flatchatActive">
+          {{flatchat.flat_name}}
         <a href="/#/create_message"><button class="btn btn-primary pull-right"><i class="fa fa-plus"></i> <span class="hidden-xs"><%= t('.page_title') %></span></button></a></h3>
   </div>
 </div>
 
 <div class="container modal-body" ng-show="chatView">
+<!-- start flatChat -->
+  <div class="row">
+  <div ng-init="countUnreadFlatChat()">
+      <a style="cursor:pointer; text-decoration: none;" ng-click="getFlatChatMessages()" ng-click="toggleView()" onclick="start()">
+        <div class="panel panel-success">
+          <div class="list-group-item list-group-item-danger">
+            <div class="btn-group pull-right">
+              <button type="button" class="btn btn-default btn-xs" ng-click="removeFlatChat('<%= t('.questionDeleteChat') %>')">
+                <span class="glyphicon glyphicon-trash"></span>
+              </button>
+              <button type="button" style="background-color:transparent" class="btn btn-default btn-xs">
+                <span class="badge" style="background-color:CornflowerBlue">{{getFlatUnreadCounter()}}</span>
+              </button>
+            </div>
+            <strong><i class="fa fa-home"></i> {{flatchat.flat_name}}</strong>
+          </div>
+          <div class="panel-footer">
+            <div class="row">
+              <div class="col-xs-6 col-md-6">
+                <span><i class="fa fa-angle-double-right"></i> {{flatchat.sender_name}}:
+                </span> {{flatchat.text}}
+              </div>
+              <div class="col-xs-6 col-md-6">
+                <span class="time"><p class="text-right" style="font-size:x-small"><i class="fa fa-clock-o"></i>
+                {{parseTime(flatchat.time, "0")}}</p></span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </a>
+  </div>
+  </div>
+<!-- end flatChat -->
   <div class="row" ng-repeat="chat in chats track by $index">
     <div ng-init="countUnread(chat, $index)">
       <a style="cursor:pointer; text-decoration: none;" ng-click="getMessages(chat, index)" ng-click="toggleView()" onclick="start()">
@@ -78,7 +117,29 @@
 <body>
 <div ng-show="chatView == false">
   <div class="modal-body" name="scrollarea" id="scrollarea" style="height: 270px; overflow-y: auto; overflow-x: hidden;">
-    <div ng-repeat="message in messages">
+    <div ng-repeat="message in messages" ng-show="!flatchatActive">
+        <div class="panel panel-success" ng-show="!currentlyRead(message) || currentUserIsSender(message)">
+            <div class="list-group-item" ng-model="Username"><strong>{{message.sender_name}}</strong>
+              <span class="time pull-right" style="font-size:x-small"><i class="fa fa-clock-o"></i> {{parseTime(message.created_at, "1")}}</span>
+            </div>
+            <div class="panel-footer">
+                <div class="row">
+                  <div class="col-xs-12 col-md-12">{{message.text}}</div>
+                </div>
+            </div>
+        </div>
+        <div class="panel panel-success" ng-show="!currentUserIsSender(message) && currentlyRead(message)">
+            <div class="list-group-item list-group-item-success" ng-model="Username"><strong>{{message.sender_name}}</strong>
+              <span class="time pull-right" style="font-size:x-small"><i class="fa fa-clock-o"></i> {{parseTime(message.created_at, "1")}}</span>
+            </div>
+            <div class="panel-footer">
+                <div class="row">
+                  <div class="col-xs-12 col-md-12">{{message.text}}</div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div ng-show="flatchatActive" ng-repeat="message in flatchatMessages">
         <div class="panel panel-success" ng-show="!currentlyRead(message) || currentUserIsSender(message)">
             <div class="list-group-item" ng-model="Username"><strong>{{message.sender_name}}</strong>
               <span class="time pull-right" style="font-size:x-small"><i class="fa fa-clock-o"></i> {{parseTime(message.created_at, "1")}}</span>
@@ -148,7 +209,8 @@
 <!-- todo
 - optimieren
 - text der angezeigt wird begrenzen
-- ungelesen andere farbe
-- 0 messages nichts anzeigen  
+- messages nav bar back
+- model body height
+- delete for both users?
 -->
 

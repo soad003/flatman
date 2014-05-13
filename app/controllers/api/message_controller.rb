@@ -17,8 +17,31 @@ class Api::MessageController < Api::RestController
     @meslist
   end
 
+  def getFlatChat
+    header = "flatchat" + current_user.flat_id.to_s
+    @flatChat=Message.where(header: header)
+    @flatChat.sort! { |a,b| a.created_at <=> b.created_at }
+    @lastFlatChat = @flatChat.last
+  end
+
+  def getFlatChatMessages
+    header = "flatchat" + current_user.flat_id.to_s
+    @flatMes = Message.where(header: header)
+    @flatMes.each do |m|
+      if !m.read && m.sender_id != current_user.id
+        m.read = true
+        m.save!
+      end
+    end
+    @flatMes.sort! { |a,b| a.created_at <=> b.created_at }
+  end
+
   def find_partner
     @partner=Message.find_partner(params[:mes_id], current_user)
+  end
+
+  def getUserId
+    respond_with({id: current_user.id})
   end
 
   def create
@@ -28,6 +51,12 @@ class Api::MessageController < Api::RestController
       respond_with_errors([t('.no_user_found')])
     else
       @mes=Message.new(mes_params)
+      if mes_params[:header] == "flatchat"
+        header = "flatchat" + current_user.flat_id.to_s
+        @mes.header = header
+        @mes.receiver_id = current_user.id
+        @mes.sender_id = current_user.id
+      end
       beginDate2014 = Time.new(2014,3,30,2,0)
       endDate2014 = Time.new(2014,10,26,3,0)
       beginDate2015 = Time.new(2015,3,29,2,0)
