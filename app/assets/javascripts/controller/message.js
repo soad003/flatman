@@ -61,6 +61,39 @@ angular.module('flatman').controller("messageCtrl", function($scope, $route, $ti
         return sender == partner;
     };
 
+    $scope.currentUserIsSender = function(mes){
+        var ret = (mes.sender_id !== $scope.chatPartner.id);
+        return ret;
+    };
+    // check if message.read is just now set to true. if this is the case the message should be shown as unread for few seconds
+    $scope.currentlyRead = function(mes){
+        var date = new Date();
+        var min = date.getMinutes();
+        var sec = date.getSeconds();
+        // message will be marked as unread 10 - 19 sec
+        if (sec >= 0 && sec <= 10){
+            sec = 50;
+            if (min === 0){
+                min = 0;
+            }
+            else {
+                min = min - 1;
+            }
+        }
+        else {
+            sec = sec - 10;
+        }
+        date.setMilliseconds(0);
+        date.setSeconds(sec);
+        date.setMinutes(min);
+        //console.log(date.toISOString() + "---" + mes.updated_at);
+        // console.log(date.toISOString() < mes.updated_at);
+        // 2014-05-12T12:25:38.612Z---------2014-05-12T12:07:07.780Z
+        //Mon May 12 2014 14:13:36 GMT+0200 (CEST)
+        //Mon, 12 May 2014 12:07:07 UTC +00:00
+        return (date.toISOString() < mes.updated_at);
+    };
+
     $scope.parseTime = function(time, modus){
         $scope.dateTime = time.split("T");
         $scope.date = $scope.dateTime[0];

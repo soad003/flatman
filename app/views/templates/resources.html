@@ -83,14 +83,18 @@
                                 <span class="input-group-addon">
                                     <span class="glyphicon glyphicon-calendar"></span>
                                 </span>
-                                <span class="input-group-btn">
-                                    <input class="btn btn-default" style="width:81px" type="text" show-button-bar="false" showWeeks="false" datepicker-popup="shortDate" show-weeks="false" ng-model="resource.date" is-open="opened" ng-required="true" />
+                                <input class="btn btn-default form-control visible-xs" show-button-bar="false" showWeeks="false" datepicker-popup="shortDate" show-weeks="false" ng-model="resource.date" ng-required="true" />
+                                <span class="input-group-btn" style="width:0px;"></span>
+                                
+                                <span class="input-group-btn hidden-xs" style="width:90px;">
+                                    <input type="date" placeholder="DD/MM/YYYY" class="btn btn-default form-control" show-button-bar="false" showWeeks="false" datepicker-popup="shortDate" show-weeks="false" ng-model="resource.date" ng-required="true" />
                                 </span>
+
                                 <input type="text" class="form-control"
                                        ng-model="resource.entryvalue"
                                        maxlength="30"
                                        placeholder="<%= t('.resourceValue') %>
-                                       " required numberinput>
+                                       " required numberinput/>
                                 <span class="input-group-btn">
                                     <button class="btn btn-primary"
                                             type="submit"
