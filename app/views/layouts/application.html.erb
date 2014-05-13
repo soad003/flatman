@@ -100,7 +100,9 @@
                 <div class="input-group">
                   <input type="text" class="form-control" ng-model="search_term" placeholder="<%=t(".navbar.search_placeholder")%>">
                   <span class="input-group-btn">
-                    <button class="btn btn-success" type="submit"><span class="glyphicon glyphicon-search"></span></button>
+                    <button class="btn btn-success" type="submit" data-toggle="collapse" data-target=".navbar-collapse">
+                      <span class="glyphicon glyphicon-search"></span>
+                    </button>
                   </span>
                 </div>
               </form>

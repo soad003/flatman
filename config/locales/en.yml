@@ -180,7 +180,7 @@ en:
         resources                         : "Resource"
         dashboard                         : "Dashboard"
         shopping                          : "Shopping"
-        search_placeholder                : "Search items"
+        search_placeholder                : "search items"
 
     mail_layout:
       complimentary_close                 : "Greetings, your Flatman Team"
