@@ -57,8 +57,13 @@
 
 /* http://stackoverflow.com/questions/13432311/ng-cloak-and-ng-show-flashes-the-hidden-element-on-screen */
 [ng\:cloak], [ng-cloak], .ng-cloak {
-  display: none !important;
+  display: none;
 }
+
+[ng-cloak].splash {
+  display: block !important;
+}
+.splash {display: none;}
 
 /* cursor for readonly field*/
 input[readonly=readonly]{
@@ -233,5 +238,5 @@ input.ng-error {
 .page-header-right { padding-bottom: 14px; margin: 40px 0 20px; }
 
 @media (max-width: $screen-xs) {
-  .page-header-right {  }
+  .page-header-right { padding-bottom: 0px; margin: 0; }
 }
