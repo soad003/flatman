@@ -10,7 +10,9 @@ angular.module('flatman').controller("rootCtrl",function($scope,$rootScope,$time
     };
 
     $scope.search=function(){
-        Util.redirect_to.search($scope.search_term);
+        var tmp=$scope.search_term;
+        $scope.search_term='';
+        Util.redirect_to.search(tmp);
     };
 
     $scope.delete_error=function(index){
@@ -25,7 +27,7 @@ angular.module('flatman').controller("rootCtrl",function($scope,$rootScope,$time
             }
             if (data.unread_messages !== 0)
                 $scope.server_status=data;
-            else 
+            else
                 $scope.server_status=null;
             $timeout(tick, 5000);
             $scope.pending_status_requests--;
