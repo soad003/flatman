@@ -259,6 +259,7 @@ en:
       resourceValue                      : "1724"
       addMoreEntriesForChart             : "More entries are required to view the chart"
       questionDeleteResource             : "Do you really want to delete the resource?"
+      add                                : "add"
     create_resource:
       page_title                         : "Resource"
       page_header                        : "Resource"
