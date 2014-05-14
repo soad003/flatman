@@ -24,7 +24,14 @@
     <![endif]-->
   </head>
 
-  <body ng-controller="rootCtrl" ng-cloak>
+  <body ng-controller="rootCtrl">
+
+    <!-- loading overlay before ng-cloak -->
+    <div class="splash" ng-cloak>
+      <div class="loading-overlay">
+        <span class="fa fa-refresh fa-5x loading-overlay-centered"></span>
+      </div>
+    </div>
 
     <!-- loading overlay for small devices -->
     <div ng-show="isLoading()">
@@ -33,7 +40,7 @@
       </div>
     </div>
 
-    <div class="navbar navbar-default navbar-fixed-top navbar-inverse" role="navigation">
+    <div class="navbar navbar-default navbar-fixed-top navbar-inverse" role="navigation" ng-cloak>
       <div class="container-fluid">
         <div class="navbar-header">
           <% if is_user_ready_to_go %>
@@ -112,7 +119,7 @@
       </div>
     </div>
 
-    <div id="container" class="container">
+    <div id="container" class="container" ng-cloak>
       <section>
         <% flash.each do |key,message| %>
           <div class="alert alert-<%= key.to_s %> alert-dismissable">
@@ -134,7 +141,7 @@
       <%= yield %>
     </div>
 
-    <div id="footer">
+    <div id="footer" ng-cloak>
       <div class="container">
         <p class="text-muted">
           <div class="row">
