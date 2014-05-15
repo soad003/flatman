@@ -88,7 +88,7 @@
                                     <input type="text" onfocus="blur();" class="btn btn-default form-control" show-button-bar="false" showWeeks="false" datepicker-popup="shortDate" show-weeks="false" ng-model="resource.date" ng-required="true" />
                                 </span>
 
-                                <input type="text" class="form-control"
+                                <input type="text" class="form-control" pattern="^[0-9\,.]*$"
                                        ng-model="resource.entryvalue"
                                        maxlength="30"
                                        placeholder="<%= t('.resourceValue') %>
