@@ -49,7 +49,5 @@ Flatman::Application.configure do
     :from => 'info.flatman@gmx.net'
   }
   #Mail.register_interceptor(DevelopmentMailInterceptor) if Rails.env.development?
-  #
-  config.force_ssl = true
 
 end
