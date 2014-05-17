@@ -12,7 +12,12 @@
 //
 //= require jquery
 //= require jquery_ujs
-//= require bootstrap
+//= require bootstrap/modal
+//= require bootstrap/transition
+//= require bootstrap/dropdown
+//= require bootstrap/tooltip
+//= require bootstrap/alert
+//= require bootstrap/collapse
 //= require Chart
 //= require angular
 //= require underscore
