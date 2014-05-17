@@ -167,3 +167,17 @@ angular.module('flatman').controller("resourceCtrl",function($scope, $filter, re
     };
 
 });
+
+/*$(window).resize(respondCanvas);
+    function respondCanvas() {
+       var width = jQuery("#statistic").width();
+       var height = jQuery("#statistic").height();
+       jQuery("#chart").attr('width', width);
+       jQuery("#chart").attr('height', height);
+       resources[0].chart = resources[0].chart;
+       //alert(width + " - " + height);
+        //Call a function to redraw other content (texts, images etc)
+        myNewChart = new Chart(ct).Bar(data, options);
+    }
+//Initial call 
+respondCanvas();*/
