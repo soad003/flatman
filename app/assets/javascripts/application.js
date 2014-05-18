@@ -33,11 +33,8 @@
 //= require ./vendor/angles.js
 //= require bootbox.js
 //= require ./vendor/angular-google-maps.min.js
-//= require ./vendor/angular-locale_de-de.js
 //= require magnific-popup
 //= require ./vendor/bootstrap-switch
 //= require ./vendor/scrollDown.js
 //= require bootstrap-tagsinput
 //= require bootstrap-tagsinput-angular
-
-
