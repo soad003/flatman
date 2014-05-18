@@ -15,8 +15,37 @@
   <div class="row" ng-repeat="chat in chats track by $index">
     <div ng-init="countUnread(chat, $index)">
       <a style="cursor:pointer; text-decoration: none;" ng-click="getMessages(chat, index)" ng-click="toggleView()" onclick="start()">
-        <div class="panel panel-success">
+        <div class="panel panel-success" ng-show="getUnreadCounter($index) < 1">
           <div class="list-group-item">
+            <div class="btn-group pull-right">
+              <button type="button" class="btn btn-default btn-xs" ng-click="removeChat(chat, '<%= t('.questionDeleteChat') %>')">
+                <span class="glyphicon glyphicon-trash"></span>
+              </button>
+              <button type="button" style="background-color:transparent" class="btn btn-default btn-xs">
+                <span class="badge" style="background-color:CornflowerBlue">{{getUnreadCounter($index)}}</span>
+              </button>
+            </div>
+            <strong>{{chat.partner}}</strong>
+          </div>
+          <div class="panel-footer">
+            <div class="row">
+              <div class="col-xs-6 col-md-6">
+                <span ng-show="!checkLastSender(chat.partner_id, chat.sender_id)">
+                  <i class="fa fa-check-circle"></i>
+                </span>
+                <span ng-show="checkLastSender(chat.partner_id, chat.sender_id)"><i class="fa fa-angle-double-right"></i> {{chat.sender_name}}:
+                </span> {{chat.text}}
+              </div>
+              <div class="col-xs-6 col-md-6">
+                <span class="time"><p class="text-right" style="font-size:x-small"><i class="fa fa-clock-o"></i> {{parseTime(chat.time, "0")}}</p></span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </a>
+      <a style="cursor:pointer; text-decoration: none;" ng-click="getMessages(chat, index)" ng-click="toggleView()" onclick="start()">
+        <div class="panel panel-success" ng-show="getUnreadCounter($index) > 0">
+          <div class="list-group-item list-group-item-success">
             <div class="btn-group pull-right">
               <button type="button" class="btn btn-default btn-xs" ng-click="removeChat(chat, '<%= t('.questionDeleteChat') %>')">
                 <span class="glyphicon glyphicon-trash"></span>
@@ -50,8 +79,18 @@
 <div ng-show="chatView == false">
   <div class="modal-body" name="scrollarea" id="scrollarea" style="height: 270px; overflow-y: auto; overflow-x: hidden;">
     <div ng-repeat="message in messages">
-        <div class="panel panel-success">
+        <div class="panel panel-success" ng-show="!currentlyRead(message) || currentUserIsSender(message)">
             <div class="list-group-item" ng-model="Username"><strong>{{message.sender_name}}</strong>
+              <span class="time pull-right" style="font-size:x-small"><i class="fa fa-clock-o"></i> {{parseTime(message.created_at, "1")}}</span>
+            </div>
+            <div class="panel-footer">
+                <div class="row">
+                  <div class="col-xs-12 col-md-12">{{message.text}}</div>
+                </div>
+            </div>
+        </div>
+        <div class="panel panel-success" ng-show="!currentUserIsSender(message) && currentlyRead(message)">
+            <div class="list-group-item list-group-item-success" ng-model="Username"><strong>{{message.sender_name}}</strong>
               <span class="time pull-right" style="font-size:x-small"><i class="fa fa-clock-o"></i> {{parseTime(message.created_at, "1")}}</span>
             </div>
             <div class="panel-footer">

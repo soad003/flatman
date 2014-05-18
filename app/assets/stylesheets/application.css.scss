@@ -9,10 +9,45 @@
  * compiled file, but it's generally better to create a new file per style scope.
  *
  *= require_self
- *= require_tree .
- *= require bootstrap-tagsinput 
+ *= require bootstrap-tagsinput
  *= require magnific-popup
  */
+
+/* $brand-primary:         #008cba;
+$brand-success:         #43ac6a;
+$brand-info:            #5bc0de;
+$brand-warning:         #E99002;
+$brand-danger:          #F04124; */
+// $brand-primary:         #DF691A;
+// $brand-success:         #5cb85c;
+// $brand-info:            #5bc0de;
+// $brand-warning:         #f0ad4e;
+// $brand-danger:          #d9534f;
+
+/* $brand-primary:         #2C3E50;
+$brand-success:         #18BC9C;
+$brand-info:            #3498DB;
+$brand-warning:         #F39C12;
+$brand-danger:          #E74C3C; */
+
+// $brand-primary:         #375a7f;
+// $brand-success:         #00bc8c;
+// $brand-info:            #3498DB;
+// $brand-warning:         #F39C12;
+// $brand-danger:          #E74C3C;
+
+// $brand-primary: #667C8C;
+// $brand-success: #05B06E;
+// $brand-info:    #08090B;
+// $brand-warning: #FFE249;
+// $brand-danger:  #EC161D;
+
+/* $state-primary-bg: $brand-primary;
+$state-success-bg: $brand-success;
+$state-info-bg:    $brand-info;
+$state-warning-bg: $brand-warning;
+$state-danger-bg:  $brand-danger; */
+
 
 @import "bootstrap";
 @import "flatman";
@@ -21,6 +56,8 @@
 @import "bootstrap-social";
 @import "bootstrap-switch";
 @import "ng-tags-input";
-
+@import "navbar";
+@import "animation";
+@import "loading-indicator";
 
 

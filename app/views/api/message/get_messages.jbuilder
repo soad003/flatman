@@ -8,4 +8,5 @@ json.array!(@meslist) do |json, message|
   json.receiver_name User.find(message.receiver_id).name
   json.read message.read
   json.header message.header
+  json.updated_at message.updated_at
 end

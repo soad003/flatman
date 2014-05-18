@@ -98,40 +98,6 @@ en:
 
 
   buttons:
-    titles:
-      decision:
-        cancel                            : ""
-        close                             : "Voting won't be possible afterwards"
-        create                            : ""
-        edit                              : ""
-        delete                            : ""
-        save                              : ""
-      option:
-        add                               : ""
-        delete                            : ""
-      vote:
-        save                              : "Vote and help to make a descision!"
-    labels:
-      decision:
-        cancel                            : "cancel"
-        close                             : "close"
-        create:
-          enabled                         : "create Quision"
-          disabled                        : "work in progress..."
-        edit                              : "settings"
-        delete:
-          enabled                         : "delete"
-          disabled                        : "work in progress..."
-        save:
-          enabled                         : "save"
-          disabled                        : "work in progress..."
-      option:
-        add                               : "add option"
-        delete                            : "delete option"
-      vote:
-        save:
-          enabled                         : "vote!"
-          disabled                        : "work in progress..."
     confirmations:
       delete                              : "Are you sure?"
 
@@ -180,7 +146,7 @@ en:
         resources                         : "Resource"
         dashboard                         : "Dashboard"
         shopping                          : "Shopping"
-        search_placeholder                : "Search items"
+        search_placeholder                : "search items"
 
     mail_layout:
       complimentary_close                 : "Greetings, your Flatman Team"
@@ -224,7 +190,7 @@ en:
       panel_finances_header              : "Finances"
       panel_share_header                 : "Shared Items"
       panel_resources_header             : "Ressource Usage (last 30 days)"
-      no_shoppinglists                   : "Nothing to shop yet..."
+      no_shoppinglists                   : "Nothing to buy yet..."
       no_shareditems                     : "No items available"
       share_available                    : "items offered to share"
       share_borrowed                     : "currently borrowed items"
@@ -259,6 +225,7 @@ en:
       resourceValue                      : "1724"
       addMoreEntriesForChart             : "More entries are required to view the chart"
       questionDeleteResource             : "Do you really want to delete the resource?"
+      add                                : "add"
     create_resource:
       page_title                         : "Resource"
       page_header                        : "Resource"
@@ -296,6 +263,7 @@ en:
       members                            : "flat members"
       invites                            : "invite flat member"
       email                              : "email"
+      save_btn                           : "save"
     finances:
       page_title                         : "Finances"
       page_header                        : "Financal status"

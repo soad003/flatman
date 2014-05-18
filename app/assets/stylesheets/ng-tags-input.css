@@ -1,3 +1,13 @@
+.bootstrap-tagsinput {
+  width: 100%;
+}
+.bootstrap-tagsinput input {
+    display: inline;
+}
+.bootstrap-tagsinput .label {
+  white-space: pre-wrap;
+}
+
 tags-input *, *:before, *:after {
   -moz-box-sizing: border-box;
   -webkit-box-sizing: border-box;
