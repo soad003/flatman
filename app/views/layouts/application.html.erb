@@ -173,7 +173,7 @@
 
     <%= yield :script %>
     <%if I18n.locale.to_s === "de"%>
-        <%= javascript_include_tag "angular-locale_de-de" %>
+        <%= javascript_include_tag "vendor/angular-locale_de-de" %>
     <%end%>
     <script>var locale = "<%=I18n.locale.to_s%>";</script>
 
