@@ -94,4 +94,6 @@ Flatman::Application.configure do
   config.log_formatter = ::Logger::Formatter.new
 
   config.force_ssl = true
+  config.assets.precompile += %w( vendor/angular-locale_de-de.js )
+
 end

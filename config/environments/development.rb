@@ -48,6 +48,7 @@ Flatman::Application.configure do
   config.action_mailer.default_options = {
     :from => 'info.flatman@gmx.net'
   }
+  config.assets.precompile += %w( vendor/angular-locale_de-de.js )
   #Mail.register_interceptor(DevelopmentMailInterceptor) if Rails.env.development?
 
 end
