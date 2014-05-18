@@ -1,6 +1,6 @@
 class Shoppinglist < ActiveRecord::Base
 	belongs_to 	:flat
-	has_many	:shoppinglistitems
+	has_many	:shoppinglistitems, :order => 'created_at ASC'
     validates   :name,:flat, presence: true
 
     def self.find_list_with_user_constraint(id, user)
