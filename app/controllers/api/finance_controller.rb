@@ -1,6 +1,7 @@
 class Api::FinanceController <Api::RestController
 	around_filter :wrap_in_transaction, only: [:create, :update]
 
+        #change to where user_id
 	  def index
 		    @f=Bill.all
         #@b=Bill.group(:billcategory_id).sum(:value)
@@ -75,7 +76,7 @@ class Api::FinanceController <Api::RestController
        respond_with(nil)
     end
 
-    #change get_category =>service, ctrl
+    #change all to user_id
     def get_all
         @catName=Billcategory.all
         billName = []
@@ -96,6 +97,7 @@ class Api::FinanceController <Api::RestController
 
     end
 
+    #user_id
     def get_chart
         @chart = Bill.all
     end
@@ -105,6 +107,7 @@ class Api::FinanceController <Api::RestController
       @pmnt = Payment.get_users_payments(@cu)
     end
 
+    #user_id
     def create_debt
       cu = current_user
       @bl = Bill.all
@@ -128,6 +131,7 @@ class Api::FinanceController <Api::RestController
     end
 
     #change: now userid compared to flatid
+    #oauth_token filtern
     def get_mates
         returnList = []
         flat = current_user.flat
