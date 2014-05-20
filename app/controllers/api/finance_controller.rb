@@ -1,8 +1,9 @@
 class Api::FinanceController <Api::RestController
 	around_filter :wrap_in_transaction, only: [:create, :update]
 
+        #change to where user_id
 	  def index
-		    @f=Bill.all
+		    @f=Bill.where(:user_id => current_user.id)
         #@b=Bill.group(:billcategory_id).sum(:value)
         #ctg=Billcategory.all
         #@cgy=Billcategory.merge_value(@f, ctg)
@@ -12,7 +13,8 @@ class Api::FinanceController <Api::RestController
         ct=Billcategory.new()
         @bill=Bill.new(f_params)
         ct.name = params_all[:cat_name]
-        @allCat = Billcategory.all
+        cu = current_user.flat
+        @allCat = Billcategory.all            #change all
         id = Billcategory.check_unique(@allCat, ct)
         if id == 0
           ct.save!
@@ -26,40 +28,44 @@ class Api::FinanceController <Api::RestController
         #check who is envolved in paying
         mates = []
         cost = params_all[:value]
+        pyer = params_all[:payer]
+        Rails.logger.info(pyer)
         flat = current_user.flat
         flat_id = flat.id
         members = User.all
         members.each do |m|
-            if m.id == flat_id
+            if m.flat_id == flat_id
                 mates << m.id
             end
         end
         payee_id = [];
-        if params_all[:payee1] == true
+        if params_all[:payees_1] == true
           payee_id << mates[0];
+          Rails.logger.info("MATEEEEE1")
         end
-        if params_all[:payee2] == true
+        if params_all[:payees_2] == true
           payee_id << mates[1];
         end
-        if params_all[:payee3] == true
+        if params_all[:payees_3] == true
           payee_id << mates[2];
         end
-        if params_all[:payee4] == true
+        if params_all[:payees_4] == true
           payee_id << mates[3];
         end
-        if params_all[:payee5] == true
+        if params_all[:payees_5] == true
           payee_id << mates[4];
         end
 
         if payee_id.length != 0
-          cost = params_all[:value]/payee_id.length
+          cost = (params_all[:value].to_f / payee_id.length)
         end
 
         payee_id.each do |p|
           @payment = Payment.new()
-          @payment.payer_id = params_all[:payer]
+          @payment.payer_id = 1       #change to id payer
           @payment.date = params_all[:date]
-          @payment.payee_id = p.id
+          @payment.payee_id = p
+          Rails.logger.info("geeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeht")
           @payment.value = cost
           @payment.save!
         end
@@ -75,11 +81,11 @@ class Api::FinanceController <Api::RestController
        respond_with(nil)
     end
 
-    #change get_category =>service, ctrl
+    #change all to user_id
     def get_all
-        @catName=Billcategory.all
+        @catName=Billcategory.all         #change all
         billName = []
-        bil=Bill.all
+        bil=Bill.where(:user_id => current_user.id)                      #change all
         bil.each do |b|
           billName << Billcategory.find(b.billcategory_id).name
         end
@@ -96,8 +102,9 @@ class Api::FinanceController <Api::RestController
 
     end
 
+    #user_id
     def get_chart
-        @chart = Bill.all
+        @chart = Bill.where(:user_id => current_user.id)
     end
 
     def get_debts
@@ -105,6 +112,7 @@ class Api::FinanceController <Api::RestController
       @pmnt = Payment.get_users_payments(@cu)
     end
 
+    #not needed
     def create_debt
       cu = current_user
       @bl = Bill.all
@@ -127,14 +135,14 @@ class Api::FinanceController <Api::RestController
 
     end
 
-    #change: now userid compared to flatid
+    #oauth_token filtern
     def get_mates
         returnList = []
         flat = current_user.flat
         flat_id = flat.id
         members = User.all
         members.each do |m|
-            if m.id == flat_id
+            if m.flat_id == flat_id
                 returnList << m
             end
         end
@@ -149,6 +157,6 @@ class Api::FinanceController <Api::RestController
 
     private
     def params_all
-        params.permit(:text, :value,:user_id, :date, :cat_name, :payer, :payee1, :payee2, :payee3, :payee4, :payee5)
+        params.permit(:text, :value,:user_id, :date, :cat_name, :payer, :payees_1, :payees_2, :payees_3, :payees_4, :payees_5)
     end
 end

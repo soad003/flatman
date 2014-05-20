@@ -1,42 +1,31 @@
 angular.module('flatman').controller("financesCtrl", function($scope, financesService, Util){
-
-	$scope.finTmp={ text:"", value:"", date:"", user_id:"", cat_name:"", payer:"", payee1: "", payee2:"false", payee3:"false", payee4:"false",payee5:"false"};	
+	$scope.chartData = [];
+	$scope.finTmp={ text:"", value:"", date:"", user_id:"", cat_name:"", payer:""};	
 	$scope.debtTmp={payer_name:"", payee_name:"", debt:""};
 	$scope.finances= financesService.finance.get();
-	$scope.AllCategories = financesService.category.get_all();
+	$scope.colors = ["green", "black", "blue", "yellow", "red", "magenta", "purple", "grey"];
+
+	//condition for max colors
+	$scope.AllCategories = financesService.category.get_all(function(data){
+		var tmp = [];
+		for(var i = 0; i < data.length; i++){
+			
+			var entry = {color: $scope.colors[i], value: data[i].listValue};
+			tmp.push(entry);
+		}
+		$scope.chartData = tmp;
+				
+	});
+
 	$scope.getFlatMates = financesService.mates.get();
+
 	$scope.allDebts = financesService.debts.get();
+	//$scope.balance = financesService.debts.get_balance();
 	$scope.initChart = financesService.chart.get(); 
 	//$scope.select = {month: ""};
-	var dataChart = financesService.category.get_all();
-	var colors = ["green", "black", "blue", "yellow", "red", "magenta", "purple"];
-
-	$scope.chart = [
-		{
-			value: [],
-			color: []
-		}
-	];
-
-	//dataChart not defined?!?
-	$scope.dataChart = function (){
-		//5 displayed categories
-		//for(var i = 0; i < 5; i++){
-			//alert("test");
-			//$scope.chart[i].value = dataChart.listValue;
-			//alert(dataChart[i].listValue);		
-			//$scope.chart[i].color = colors[i];
-		//}
-	};
 
 	$scope.intro = function(){
-		var bool = true;
-		if ($scope.finances.length === 0){
-			bool = false;
-			return bool;
-		}
-		else
-			return bool;
+		return ($scope.finances.length !== 0);
 	};
 
 	$scope.addEntry=function(){

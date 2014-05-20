@@ -35,12 +35,12 @@
 
     <div class="panel panel-default hidden-xs" ng-show="enoughEntries()">
       <div class="panel-heading" ng-init="dataChart()">
-        <center>Total: {{total()}} <i class="fa fa-eur"></i></center>   
+        <center><%= t(".total") %>{{total()}} <i class="fa fa-eur"></i></center>   
       </div>
 
 
      <center>
-      <canvas donutchart options="" data="chart" width="500" height="300"></canvas>
+      <canvas donutchart options="" data="chartData" width="500" height="300"></canvas>
      
       
       <!--CREATE DONUGHT-CHART
@@ -88,7 +88,7 @@
 
   <div class="panel panel-default">
   <div class="panel-heading">
-    <center>Categories</center>
+    <center><%= t(".categories") %></center>
   </div>
   <div class="panel-body">
    <div style="margin:auto; width:auto; padding:auto border: 1px solid black;">
@@ -106,19 +106,19 @@
   <div class="col-md-6">
     <div class="panel panel-default">
       <div class="panel-heading">
-       <center> Spendings</center>
+       <center><%= t(".spendings") %></center>
      </div>
      <div class="panel-body">
       <div style="margin:auto; width:auto; padding:auto border: 1px solid black;">
       <table class="table table-striped">
         <tr>
-          <th>Date
+          <th><%= t(".date") %>
           </th>
           <th>Name
           </th>
-          <th>Categorie
+          <th><%= t(".cat")%>
           </th>
-          <th>Value
+          <th><%= t(".value")%>
           </th>
           <th>
           </th>
@@ -164,14 +164,14 @@
   </div>
   <div class="panel panel-default">
       <div class="panel-heading">
-       <center> Debts/Balance</center>
+       <center><%= t(".debts") %></center>
      </div>
       <div class="panel-body">
           <table class="table table-striped table-hover">
               <thead>
                 <tr>
                   <th>#</th>
-                  <th>Inhabitant</th>
+                  <th><%= t(".inhabit") %></th>
                   <th class="text-right">Saldo</th>
                   <th>&nbsp;</th>
                 </tr>

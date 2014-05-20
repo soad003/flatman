@@ -9,7 +9,7 @@ angular.module('flatman').controller("dashboardCtrl",
 		placement : "bottom"
 	});
 
-        /*$scope.get_you_owe=function(){ return this.get("finances").debts();
+        /*$scope.get_you_owe=function(){ return financesService.debts.get_sum();
         };*/
 
 	//sharing
