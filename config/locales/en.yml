@@ -279,8 +279,19 @@ en:
       value                              : "Value"
       inhabit                            : "Inhabitant"
     finances_new:
-      page_header                        : "New Entry"
-      bill_affects                       : "Bill affects:"
+      page_header                        : "New Bill"
+      name                               : "name"
+      name_placeholder                   : "groceries"
+      value                              : "price"
+      value_placeholder                  : "42.00"
+      date                               : "date"
+      date_placeholder                   : "dd/mm/YYYY"
+      cat                                : "categorie"
+      cat_placeholder                    : "whatever"
+      payer                              : "who paid?"
+      bill_affects                       : "bill affects"
+      back                               : "back"
+      save                               : "save"
     finances_overview:
       page_header                        : "Overview"
     user_settings:
