@@ -51,8 +51,11 @@ angular.module('flatman').service("messageService", function($resource) {
             destroy: function(chat_id, succH, errH) {
                 return messageSer.destroy({id: chat_id}, succH, errH);
             },  
-            count: function(chat_id, index) {
+            count: function(chat_id) {
                 return countSer.count({id: chat_id});
+            },
+            countFlat: function(){
+                return countSer.count();
             },
             getFlatChat: function(){
                 return flatChatSer.getFlatChat();

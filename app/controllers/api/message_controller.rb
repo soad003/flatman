@@ -19,17 +19,21 @@ class Api::MessageController < Api::RestController
 
   def getFlatChat
     header = "flatchat" + current_user.flat_id.to_s
-    @flatChat=Message.where(header: header)
+    @flatChat=Message.where("header = ?", header)
     @flatChat.sort! { |a,b| a.created_at <=> b.created_at }
     @lastFlatChat = @flatChat.last
+    if @lastFlatChat == nil
+      @lastFlatChat = Message.new({sender_id: current_user.id, receiver_id: current_user.id, text: "start chating with your flat members", header: "0"})
+    end
+    @lastFlatChat
   end
 
   def getFlatChatMessages
     header = "flatchat" + current_user.flat_id.to_s
-    @flatMes = Message.where(header: header)
+    @flatMes = Message.where("header = ?", header)
     @flatMes.each do |m|
-      if !m.read && m.sender_id != current_user.id
-        m.read = true
+      if !m.readers.include?(current_user.id) 
+        m.readers = m.readers + [current_user.id]
         m.save!
       end
     end
@@ -67,6 +71,7 @@ class Api::MessageController < Api::RestController
       else 
         @mes.created_at = nowTime
       end
+      @mes.readers = [current_user.id]
       user.sentMessages << @mes
       user.save!
       @mes
@@ -88,14 +93,22 @@ class Api::MessageController < Api::RestController
   end
 
   def count_messages
-    @counterList = Message.find_messages(params[:mes_id])
-    @counter = Message.countUnread(@counterList, current_user)
-    respond_with({counter: @counter})
+    header = "flatchat" + current_user.flat_id.to_s
+    if params[:mes_id] == nil
+    #if Message.find(params[:mes_id]).header == header
+      @counterList = Message.where("header = ?", header)
+      @counter = Message.countFlatChatUnread(@counterList, current_user)
+      respond_with({counter: @counter})
+    else
+      @counterList = Message.find_messages(params[:mes_id])
+      @counter = Message.countUnread(@counterList, current_user)
+      respond_with({counter: @counter})
+    end
   end
 
   private
   def mes_params
-    params.permit(:sender_id, :receiver_id, :text, :header, :read)
+    params.permit(:sender_id, :receiver_id, :text, :header, :read, :readers)
   end
 
 end

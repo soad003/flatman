@@ -71,4 +71,14 @@ class Message < ActiveRecord::Base
         count
     end
 
+    def self.countFlatChatUnread(counterList, current_user)
+        count = "0"
+        counterList.each do |c|
+            if !c.readers.include?(current_user.id)
+                count = (count.to_i + 1).to_s
+            end
+        end
+        count
+    end
+
 end

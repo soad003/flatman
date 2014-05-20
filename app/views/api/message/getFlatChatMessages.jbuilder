@@ -9,4 +9,5 @@ json.array!(@flatMes) do |json, message|
   json.read message.read
   json.header message.header
   json.updated_at message.updated_at
+  json.readers message.readers
 end
