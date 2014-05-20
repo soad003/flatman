@@ -11,6 +11,7 @@ class Payment < ActiveRecord::Base
 				returnList << p
 			end
 			if p.payee_id == user.id
+				p.value = -p.value
 				returnList << p
 			end
 		end

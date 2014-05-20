@@ -56,8 +56,8 @@ angular.module('flatman').factory("financesService", function($resource){
             }
         },
         category:{
-            get_all: function(){           
-                return ctgService.get_all();
+            get_all: function(succH, errH){           
+                return ctgService.get_all(null, succH, errH);
             }
         },
         debts:{
