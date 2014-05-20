@@ -191,11 +191,17 @@
 
         <!-- Tables are the most common way to format your email consistently. Set your table widths inside cells and in most cases reset cellpadding, cellspacing, and border to zero. Use nested tables as a way to space effectively in your message. -->
         <table cellpadding="0" cellspacing="0" border="0" align="center">
-            <tr style="background-color:black;">
+            <tr>
                 <td width="500" valign="top"><%= image_tag("flatman_logo.png", width: 60) %></td>
             </tr>
             <tr>
-                <td width="500" valign="top"><%=yield%></td>
+                <td width="500" valign="top">
+                    <%=yield%>
+                    <p><%= t('.complimentary_close') %></p>
+                </td>
+            </tr>
+            <tr>
+                <td width="500" valign="top">&copy; Flatman 2014</td>
             </tr>
         </table>
 

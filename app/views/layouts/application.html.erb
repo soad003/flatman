@@ -24,7 +24,14 @@
     <![endif]-->
   </head>
 
-  <body ng-controller="rootCtrl" ng-cloak>
+  <body ng-controller="rootCtrl">
+
+    <!-- loading overlay before ng-cloak -->
+    <div class="splash" ng-cloak>
+      <div class="loading-overlay">
+        <span class="fa fa-refresh fa-5x loading-overlay-centered"></span>
+      </div>
+    </div>
 
     <!-- loading overlay for small devices -->
     <div ng-show="isLoading()">
@@ -33,7 +40,7 @@
       </div>
     </div>
 
-    <div class="navbar navbar-default navbar-fixed-top navbar-inverse" role="navigation">
+    <div class="navbar navbar-default navbar-fixed-top navbar-inverse" role="navigation" ng-cloak>
       <div class="container-fluid">
         <div class="navbar-header">
           <% if is_user_ready_to_go %>
@@ -94,13 +101,15 @@
               </li>
             </ul>
 
-            <div class="col-lg-2 navbar-right">
+            <div class="col-lg-2 pull-right">
               <!-- nasty navbar Hack  http://stackoverflow.com/questions/18619740/how-to-add-a-search-box-with-icon-to-the-navbar-in-bootstrap-3/18620303#18620303 -->
-              <form class="navbar-form navbar-right" role="search" ng-submit="search()">
+              <form class="navbar-form " role="search" ng-submit="search()">
                 <div class="input-group">
                   <input type="text" class="form-control" ng-model="search_term" placeholder="<%=t(".navbar.search_placeholder")%>">
                   <span class="input-group-btn">
-                    <button class="btn btn-success" type="submit"><span class="glyphicon glyphicon-search"></span></button>
+                    <button class="btn btn-success" type="submit" data-toggle="collapse" data-target=".navbar-collapse">
+                      <span class="glyphicon glyphicon-search"></span>
+                    </button>
                   </span>
                 </div>
               </form>
@@ -110,7 +119,7 @@
       </div>
     </div>
 
-    <div id="container" class="container">
+    <div id="container" class="container" ng-cloak>
       <section>
         <% flash.each do |key,message| %>
           <div class="alert alert-<%= key.to_s %> alert-dismissable">
@@ -132,7 +141,7 @@
       <%= yield %>
     </div>
 
-    <div id="footer">
+    <div id="footer" ng-cloak>
       <div class="container">
         <p class="text-muted">
           <div class="row">
@@ -163,9 +172,8 @@
     <%= javascript_include_tag "application" %>
 
     <%= yield :script %>
-
     <%if I18n.locale.to_s === "de"%>
-        <script type="text/javascript" src="/assets/vendor/angular-locale_de-de.js"></script>
+        <%= javascript_include_tag "vendor/angular-locale_de-de" %>
     <%end%>
     <script>var locale = "<%=I18n.locale.to_s%>";</script>
 

@@ -14,14 +14,14 @@ angular.module('flatman').controller("messageCtrl", function($scope, $route, $ti
 
     $scope.$on('message_count_changed', function(event, mass){
         $scope.currentFlatChatMessages = mass.flat_messages;    // last new message flat
-        $scope.currentChats = mass.chats;           // last message of each chat
+        $scope.currentChats = mass.chats;                       // last message of each chat
         console.log(JSON.stringify($scope.currentChats));
         $scope.chats = messageService.message.get();
         $scope.flatchat = messageService.message.getFlatChat();
         $scope.countUnreadFlatChat();
         
         if ($scope.flatchatActive === true){
-            if ($scope.currentFlatChatMessages != undefined){
+            if ($scope.currentFlatChatMessages !== undefined){
                 if ($scope.currentFlatChatMessages.readers.indexOf($scope.currentUserId.id) == -1){
                     $scope.flatchatMessages = messageService.messages.getFlatChatMessages($scope.flatchat.id);
                     start(500);
@@ -29,19 +29,19 @@ angular.module('flatman').controller("messageCtrl", function($scope, $route, $ti
             }
         }
        
-        if ($scope.activeChat != null){
+        if ($scope.activeChat !== null){
             for (var i = 0; i < $scope.currentChats.length; i++) {
                 if (($scope.currentChats[i].sender_id == $scope.activeChat.sender_id && $scope.currentChats[i].receiver_id == $scope.activeChat.receiver_id) ||
                     ($scope.currentChats[i].receiver_id == $scope.activeChat.sender_id && $scope.currentChats[i].sender_id == $scope.activeChat.receiver_id))
-                    if ($scope.currentChats[i].read == false){
+                    if ($scope.currentChats[i].read === false){
                         $scope.messages = messageService.messages.get($scope.activeChat.id);
                         start(500);
                     }
-            };
+            }
         }
     });
 
-    $scope.newMess = {sender_id: "", receiver_id: "", text: "", header: "", read: false, readers: Array.new};
+    $scope.newMess = {sender_id: "", receiver_id: "", text: "", header: "", read: false, readers: []};
 
     $scope.getMessages = function (chat, index){
         $scope.chatView = false;
@@ -71,7 +71,7 @@ angular.module('flatman').controller("messageCtrl", function($scope, $route, $ti
     };
 
     $scope.sendMessage=function(){
-        if ($scope.flatchatActive == true){
+        if ($scope.flatchatActive === true){
             $scope.sendFlatChatMessage();
         }
         else {
@@ -136,7 +136,7 @@ angular.module('flatman').controller("messageCtrl", function($scope, $route, $ti
 
     $scope.getFlatUnreadCounter=function(){
         //console.log($scope.flatchat);
-        if ($scope.flatchat.id != undefined && $scope.flatchatUnreadCounter != null){
+        if ($scope.flatchat.id !== undefined && $scope.flatchatUnreadCounter !== null){
             return $scope.flatchatUnreadCounter.counter;
         }
         else return 0;
@@ -180,7 +180,7 @@ angular.module('flatman').controller("messageCtrl", function($scope, $route, $ti
     };
 
     $scope.parseTime = function(time, modus){
-        if (time != undefined){
+        if (time !== undefined){
         $scope.dateTime = time.split("T");
         $scope.date = $scope.dateTime[0];
         //2014-05-05 $scope.date
@@ -251,10 +251,5 @@ angular.module('flatman').controller("messageCtrl", function($scope, $route, $ti
         }
         // Mon May 05 2014 09:29:33 GMT+0200 (CEST)
     };
-
-    /*$scope.$on('message_count_changed', function(event, message){
-        $scope.chats = messageService.message.get();
-        alert("get broadcast");
-    });*/
 
 });

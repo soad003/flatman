@@ -10,7 +10,9 @@ angular.module('flatman').controller("rootCtrl",function($scope,$rootScope,$time
     };
 
     $scope.search=function(){
-        Util.redirect_to.search($scope.search_term);
+        var tmp=$scope.search_term;
+        $scope.search_term='';
+        Util.redirect_to.search(tmp);
     };
 
     $scope.delete_error=function(index){
@@ -42,7 +44,6 @@ angular.module('flatman').controller("rootCtrl",function($scope,$rootScope,$time
         }
         if(unread!==new_status.unread_messages) {
             $scope.$broadcast('message_count_changed', new_status);
-            //console.log(new_status.flat_messages);
         }
     };
 

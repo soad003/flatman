@@ -7,7 +7,7 @@ angular.module('flatman').service("messageService", function($resource) {
                         });
     var messagesSer = $resource('/api/message/:id/messages/', {},
                         {
-                            'get': {method: "GET", isArray:true},
+                            'get': {method: "GET", isArray:true}
                             
                         });
 

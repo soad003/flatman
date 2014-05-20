@@ -1,0 +1,22 @@
+/* Loading overlay for small devices */
+.loading-overlay {
+  position:fixed;
+  left:0;
+  top:0;
+  width:100%;
+  height:100%;
+  z-index:10000;
+  background:rgba(255,255,255,0.4);
+}
+.loading-overlay-centered {
+  position: absolute;
+  display: block;
+  top: 45%;
+  left: 45%;
+}
+
+
+[ng-cloak].splash {
+  display: block !important;
+}
+.splash {display: none;}

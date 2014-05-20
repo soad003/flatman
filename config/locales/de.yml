@@ -19,37 +19,43 @@
 # To learn more, please read the Rails Internationalization guide
 # available at http://guides.rubyonrails.org/i18n.html.
 
-en:
+de:
   errors:
     not_found:
       messages:
-        not_found                         : "Hmmm... You requested something that is either lost or never has been there..."
+        not_found                         : "Hmmm... leider nicht vorhanden..."
     server_error:
       messages:
-        server_error                      : "Ouuu no... Something went wrong, please try again later!"
+        server_error                      : "Ohhh nein... Da ist was schief gelaufen, bitte versuchs später nochmal!"
 
   api:
     flat:
       create:
-        already_in_flat                   : "Your user already belongs to a flat"
+        already_in_flat                   : "Dein User ist schon in einer WG"
     invite:
       create:
-        already_in_flat                   : "The user(email) already belongs to an other flat"
-        already_member_flat               : "User is already member of this flat"
+        already_in_flat                   : "Dein User ist schon in einer anderen WG eingetragen"
+        already_member_flat               : "Der User ist schon in der WG"
     resourceentry:
       create:
-        entryDate_before_startDate        : "The date for your entry is before the start date"
-        entryDate_exists                  : "There is already an entry for this date"
+        entryDate_before_startDate        : "Das Datum ist vor den Startdatum"
+        entryDate_exists                  : "Es gibt schon einen eintrag mit diesem Datum"
+    shareditem:
+      get:
+        no_item_found                     : "Diese Item ist momentan nicht verfügbar!"
+    message:
+      create:
+        no_user_found                     : "Kein User gefunden"
   # mail
   user_mailer:
     invite:
-      subject                             : "You have been invited to flatman"
-      heading                             : "You have been invited to the flat"
-      text                                : "To join click"
+      subject                             : "Du wurdest bei flatman eingeladen"
+      heading                             : "Jemand hat dich zu einer WG hinzugefügt"
+      text                                : "Um beizutreten klicke"
     added_to_flat:
-      subject                             : "You have been added to a flat"
-      heading                             : "You have been added to the flat"
-      text                                : "You have been added to the flat"
+      subject                             : "Du wurdest zu einer WG hinzugefügt"
+      heading                             : "Du wurdest zu einer WG hinzugefügt"
+      text                                : "Du wurdest zu einer WG hinzugefügt"
 
   activerecord:
     errors:
@@ -57,142 +63,108 @@ en:
         flat:
           attributes:
             name:
-              blank                       : "Please provide a name for your flat!"
+              blank                       : "Bitte gib einen Namen für deine WG an!"
             city:
-              blank                       : "Please enter your city!"
+              blank                       : "Bitte gib deine Stadt an!"
             zip:
-              blank                       : "Please enter your zip code!"
+              blank                       : "Bitte gib eine Postleitzahl an!"
             street:
-              blank                       : "Please enter your flat's street!"
+              blank                       : "Bitte gib Straße deiner WG an!"
         invite:
           attributes:
             email:
-              invalid                     : "Your email doesn't look right!"
-              blank                       : "Email must be provided!"
+              invalid                     : "Die Mailadresse sieht nicht richtig aus!"
+              blank                       : "Wir benötigen eine Mailadresse!"
         ressource:
           attributes:
             name:
-              blank                       : "Please provide a name for your resource!"
+              blank                       : "Bitte gib einen Namen für die Ressource an!"
             startDate:
-              blank                       : "Please enter a start date!"
+              blank                       : "Bitte gib ein Startdatum an!"
             unit:
-              blank                       : "Please provide a name for the unit of the resource!"
+              blank                       : "Bitte gib eine maßeinheit für die Ressource an!"
             startValue:
-              blank                       : "Please enter a start value!"
+              blank                       : "Bitte gib einen Startwert an!"
         message:
           attributes:
             receiver_id:
-              blank                       : "Please enter the username of the receiver"
+              blank                       : "Bitte gib den Empfängernamen an!"
             text:
-              blank                       : "Please enter a message to send"
+              blank                       : "Bitte gib eine Nachricht an!"
     ressource:
-      info_all                        : "Total"
-      info_currentMonth               : "this month"
-      info_lastthreemonths            : "last 3 months"
+      info_all                        : "Gesamt"
+      info_currentMonth               : "diesen Monat"
+      info_lastthreemonths            : "letzten 3 Monate"
 
 
   buttons:
-    titles:
-      decision:
-        cancel                            : ""
-        close                             : "Voting won't be possible afterwards"
-        create                            : ""
-        edit                              : ""
-        delete                            : ""
-        save                              : ""
-      option:
-        add                               : ""
-        delete                            : ""
-      vote:
-        save                              : "Vote and help to make a descision!"
-    labels:
-      decision:
-        cancel                            : "cancel"
-        close                             : "close"
-        create:
-          enabled                         : "create Quision"
-          disabled                        : "work in progress..."
-        edit                              : "settings"
-        delete:
-          enabled                         : "delete"
-          disabled                        : "work in progress..."
-        save:
-          enabled                         : "save"
-          disabled                        : "work in progress..."
-      option:
-        add                               : "add option"
-        delete                            : "delete option"
-      vote:
-        save:
-          enabled                         : "vote!"
-          disabled                        : "work in progress..."
     confirmations:
-      delete                              : "Are you sure?"
+      delete                              : "Bist du dir sicher?"
 
   #misc
   misc:
     titles:
-      yes_text                            : "yes"
-      no_text                             : "no"
+      yes_text                            : "ja"
+      no_text                             : "nein"
       optional                            : "(optional)"
-      here                                : "here"
-      print                               : "print"
+      here                                : "hier"
+      print                               : "drucken"
       logout                              : "logout"
       login                               : "login"
-      logged_out                          : "Successfully logged out!"
-      logged_in                           : "Successfully logged in!"
+      logged_out                          : "Du bist ausgelogged!"
+      logged_in                           : "Du bist eingelogged!"
       in_progress                         : ""
       menus:
         about:
-          title                           : "About us"
+          title                           : "Über uns"
           description                     : ""
         home:
           title                           : "Home"
           description                     : ""
         contact:
-          title                           : "Contact"
+          title                           : "Kontact"
           description                     : ""
         terms_and_privacy:
-          title                           : "Terms & Privacy"
+          title                           : "Datenschutz"
           description                     : ""
       language:
-        english                           : "English"
-        german                            : "German"
+        english                           : "Englisch"
+        german                            : "Deutsch"
     forms:
-      errors_in_form                      : "There are errors in your input!"
+      errors_in_form                      : "Es sind noch fehler in der Eingabe!"
 
    # views
   layouts:
     application:
       default_description                 : "nananananananana flatman"
       navbar:
-        messages                          : "Messages"
-        share                             : "Share"
-        finances                          : "Finances"
-        flat_settings                     : "Flat Settings"
-        user_settings                     : "User Profile"
-        resources                         : "Resource"
+        messages                          : "Nachrichten"
+        share                             : "Teilen"
+        finances                          : "Finanzen"
+        flat_settings                     : "WG Einstellungen"
+        user_settings                     : "User Profil"
+        resources                         : "Ressourcen"
         dashboard                         : "Dashboard"
-        shopping                          : "Shopping"
-        search_placeholder                : "Search items/user"
+        shopping                          : "Einkaufen"
+        search_placeholder                : "suche Items"
 
     mail_layout:
-      complimentary_close                 : "Greetings, your Flatman Team"
+      complimentary_close                 : "Grüße, dein Flatman Team"
 
   static:
     about:
-      page_header                         : "About us"
-      page_title                          : "About us"
+      page_header                         : "Über uns"
+      page_title                          : "Über uns"
       page_content:
         paragraph_1                       : "Bla bla bla"
-        paragraph_2                       : "We hope you find it as usefull as we do."
-        greetings                         : "Greetings,"
+        paragraph_2                       : "Wir hoffen ihr findet Flatman so nützlich wie wir."
+        greetings                         : "Grüße,"
     contact:
-      page_header                         : "contact us"
-      page_title                          : "contact us!"
+      page_header                         : "kontaktiert uns"
+      page_title                          : "kontaktiert uns!"
     terms_and_privacy:
-      page_header                         : "Terms & Privacy"
-      page_title                          : "Terms and Privacy"
+      page_header                         : "Datenschutz"
+      page_title                          : "Datenschutz"
       page_content:
         title_privacy                     : "Privacy"
         content_privacy                   : "Use of our website is usually possible without providing personal information. As far as on our sides personal data (such as name, address or e-mail address), this is as far as possible on a voluntary basis. These data are not without your express consent. We point out that data transmission over the Internet (eg when communicating by e-mail) may have security gaps. A complete protection of data against access by third parties is not possible. The use of the framework of the imprint obligation published contact data by third parties for sending unsolicited advertisements and information materials is hereby expressly excluded. The operators of the pages expressly legal steps in case of unsolicited promotional information, such as spam e-mails."
@@ -204,151 +176,195 @@ en:
       page_title                         : "Dashboard"
     dashboard:
       page_header                        : "Dashboard"
-      items_to_buy                       : "items to buy"
-      view_shopping_details              : "view lists"
-      you_owe                            : "you owe ..."
-      view_finance_details               : "show clearing"
-      items_borrowed                     : "items borrowed"
-      view_share_details                 : "view items"
-      view_resource_details              : "view resources"
-      view_resource_titel                : "costs last 30 days"
-      view_details                       : "View Details"
-      panel_shopping_header              : "Shopping"
-      panel_finances_header              : "Finances"
-      panel_share_header                 : "Shared Items"
-      panel_resources_header             : "Ressource Usage"
-      no_shoppinglists                   : "Nothing to shop yet..."
-      no_debts                           : "No debts yet..."
-    messages:
-      page_header                        : "Messages"
-      page_title                         : "Messages"
-      new_text_placeholder               : "Enter text"
-      send                               : "Send"
-    create_message:
-      page_header                        : "New Message"
-      send                               : "send"
-      create_Message_user_placeholder    : "Username"
-      new_text_placeholder               : "Enter text"
-    resources:
-      page_header                        : "Resources"
-      page_title                         : "Resource"
-      intro_header                       : "Start creating your first resource"
-      intro_text                         : "With this feature you can view your resource usage and costs. Maybe we will help you to save some costs and to protect your environment."
-      chart                              : "Chart"
-      data                               : "Overview"
-      date                               : "Date"
-      value                              : "Value"
-      usage                              : "Usage"
-      costs                              : "Costs"
-      resourceValue                      : "resource value"
-      addMoreEntriesForChart             : "More entries are required to view the chart"
-    create_resource:
-      page_title                         : "Resource"
-      page_header                        : "Resource"
-      name                               : "Name"
-      name_placeholder                   : "electricity"
-      unitName                           : "Unit Name"
-      unitName_placeholder               : "kw/h"
-      description                        : "Description"
-      description_placeholder            : "Nightenergy"
+      items_to_buy                       : "zu kaufen"
+      view_shopping_details              : "zu den listen"
+      you_owe                            : "du schuldest ..."
+      view_finance_details               : "zeige Abrechnungen"
+      items_borrowed                     : "verliehene items"
+      view_share_details                 : "zeige items"
+      view_resource_details              : "zeige Ressourcenverbrauch"
+      view_resource_titel                : "letzen 30 Tage"
+      panel_no_resources                 : "keine Ressourcen verfügbar"
+      view_details                       : "zeige Details"
+      panel_shopping_header              : "Einkaufen"
+      panel_finances_header              : "Finanzen"
+      panel_share_header                 : "Geteilte Items"
+      panel_resources_header             : "Ressourcen Verbrauch (letzten 30 Tage)"
+      no_shoppinglists                   : "noch nichts auf der Liste..."
+      no_shareditems                     : "keine items verfügbar"
+      share_available                    : "angebotene items"
+      share_borrowed                     : "verliehene items"
+      share_helptext                     : "teile und mache die Welt zu einem besseren Ort"
 
-      priceUnit                          : "Price/Unit"
-      priceUnit_placeholder              : "0,13"
-      monthlyCosts                       : "Monthly Costs"
-      monthlyCosts_placeholder           : "6,30"
-      annualCosts                        : "Annual Costs"
-      annualCosts_placeholder            : "12,30"
-      startValue                         : "Start Value"
-      startValue_placeholder             : "82767"
-      startDate                          : "Start Date"
-    search:
-      page_header                        : "Searching for"
-      no_items_found                     : "no items found for your query..."
-      borrow_heading                     : "borrow..."
-      send_request                       : "send borrow request"
-    flat_settings:
-      page_header                        : "Your Flat"
-      city                               : "city"
-      city_placeholder                   : "Innsbruck"
-      zip                                : "postal code"
-      zip_placeholder                    : "6020"
-      name                               : "name"
-      name_placeholder                   : "WG-2000"
-      street                             : "street"
-      street_placeholder                 : "Doestreet 10"
-      members                            : "flat members"
-      invites                            : "invite flat member"
-      email                              : "email"
-    finances:
-      page_title                         : "Finances"
-      page_header                        : "Finance status"
-      help_title                         : "Enter your expenses here ..."
-      help_paragraph1                    : "Click the add button to set new expenses"
-      add_fin                            : " Entry"
-    finances_new:
-      page_header                        : "New Entry"
-      bill_affects                       : "Von Rechnung betroffen:"
-    finances_overview:
-      page_header                        : "Overview"
-    user_settings:
-      page_header                        : "Your Profile"
-      name                               : "name"
-      email                              : "email"
-    shopping:
-      page_header                        : "shopping"
+    messages:
+      page_header                        : "Nachrichten"
+      page_title                         : "Nachrichten"
+      new_text_placeholder               : "text eingeben"
+      send                               : "senden"
+      intro_header                       : "erstelle deine ersten Nachrichten"
+      intro_text1                        : "Kontaktiere andere User um zb. dinge zu borgen"
+      intro_text2                        : "..."
+      questionDeleteChat                 : "Möchtest du diesen Nachrichtenverlauf wirklich löschen?"
+    create_message:
+      page_header                        : "neue Nachricht"
+      send                               : "senden"
+      create_Message_user_placeholder    : "Username"
+      new_text_placeholder               : "text eingeben"
+    resources:
+      page_header                        : "Ressourcen"
+      page_title                         : "Ressource"
+      help_title                         : "Erstelle deine erste Ressource ..."
+      help_paragraph1                    : "Du kannst deinen Ressourcenverbrauch überwachen"
+      help_paragraph2                    : "Das hilft dir dabei Kosten zu sparen und unsere Umwelt zu schützen"
+      chart                              : "Chart"
+      data                               : "Übersicht"
+      date                               : "Datum"
+      value                              : "Wert"
+      usage                              : "Verbrauch"
+      costs                              : "Kosten"
+      resourceValue                      : "1724"
+      addMoreEntriesForChart             : "Es werden mehr einträge benötigt um den Chart anzuzeigen."
+      questionDeleteResource             : "Bist du dir sicher, dass du die Ressource löschen willst?"
       add                                : "add"
-      new_list_placeholder               : "groceries"
-      new_item_placeholder               : "jellybeans"
-      help_title                         : "Your Flats shopping needs ..."
-      help_paragraph1                    : "Use the textbox above to add a list, after that you can add/delete items ... "
-      help_paragraph2                    : "If you are done with shopping just click ... to enter your bill and you are done!"
-      delete_list                        : "Delete List"
-      done                               : "Enter payment"
+    create_resource:
+      page_title                         : "Ressource"
+      page_header                        : "Ressource"
+      name                               : "Name"
+      name_placeholder                   : "Elektrizität"
+      unitName                           : "Einheit"
+      unitName_placeholder               : "kw/h"
+      description                        : "Beschreibung"
+      description_placeholder            : "Nachtstrom"
+
+      priceUnit                          : "Kosten/Einheit"
+      priceUnit_placeholder              : "0,13"
+      monthlyCosts                       : "monatliche Kosten"
+      monthlyCosts_placeholder           : "6,30"
+      annualCosts                        : "jährliche Kosten"
+      annualCosts_placeholder            : "12,30"
+      startValue                         : "start Wert"
+      startValue_placeholder             : "82767"
+      startDate                          : "start Datum"
+    search:
+      page_header                        : "Suche nach"
+      no_items_found                     : "keine items gefunden..."
+      borrow_heading                     : "ausleihen..."
+      send_request                       : "anfragen"
+    flat_settings:
+      page_header                        : "Deine WG"
+      city                               : "Stadt"
+      city_placeholder                   : "Innsbruck"
+      zip                                : "Postleitzahl"
+      zip_placeholder                    : "6020"
+      name                               : "Name"
+      name_placeholder                   : "WG-2000"
+      street                             : "Straße"
+      street_placeholder                 : "Doestreet 10"
+      members                            : "WG Bewohner"
+      invites                            : "Einladungen"
+      email                              : "Email"
+      save_btn                           : "speichern"
+    finances:
+      page_title                         : "Finanyen"
+      page_header                        : "Finanzstatus"
+      add_fin                            : "Eintrag"
+    finances_new:
+      page_header                        : "neuer Eintrag"
+      bill_affects                       : "Rechnung betrifft:"
+    finances_overview:
+      page_header                        : "Übersicht"
+    user_settings:
+      page_header                        : "Dein Profil"
+      name                               : "Name"
+      email                              : "Mail"
+      provider                           : "Via"
+    shopping:
+      page_header                        : "Einkaufen"
+      add                                : "hinzufügen"
+      new_list_placeholder               : "Lebensmittel"
+      new_item_placeholder               : "Bier"
+      help_title                         : "Alles was deine WG gerade so kaufen sollte ..."
+      help_paragraph1                    : "Benutze das Textfeld oben rechts um neue listen zu erstellen... "
+      help_paragraph2                    : "Wenn ein enkauf abgeschlossen ist einfach auf zahlung klicken und erledigt."
+      delete_list                        : "Löschen"
+      done                               : "Zahlung eingeben"
     create_flat:
-      subtitle                           : "Welcome to"
+      subtitle                           : "Willkommen bei"
       title                              : "Flatman"
-      description1                       : "You are currently not member of a flat!"
-      description2                       : "You can either create one or"
-      description3                       : "just wait until you get assigned to one by your roommates"
-      name_label                         : "name"
+      description1                       : "Du bist momentan noch keiner WG zugeordnet!"
+      description2                       : "Du kannst entweder eine erstellen oder"
+      description3                       : "warten bis du von deinen Mitbewohnern hinzufügt wirst."
+      name_label                         : "Name"
       name_placeholder                   : "Wayne Manor"
-      street_label                       : "street"
+      street_label                       : "Straße"
       street_placeholder                 : "1007 Mountain Drive"
-      zip_label                          : "postal code"
+      zip_label                          : "Postleitzahl"
       zip_placeholder                    : "12345"
-      city_label                         : "city"
+      city_label                         : "Stadt"
       city_placeholder                   : "Gotham"
-      create_flat                        : "create a flat!"
+      create_flat                        : "WG erstellen!"
       marketing:
-        shopping_title                   : "Shopping"
+        shopping_title                   : "Einkaufen"
         shopping_text                    : "Maecenas sed diam eget risus varius blandit sit amet non magna."
-        finances_title                   : "Bills"
+        finances_title                   : "Rechnungen"
         finances_text                    : "Morbi leo risus, porta ac consectetur ac, vestibulum at eros. Cras mattis consectetur purus sit amet fermentum."
-        resources_title                  : "Resource usage"
+        resources_title                  : "Ressourcenverbrauch"
         resources_text                   : "Maecenas sed diam eget risus varius blandit sit amet non magna."
-        share_title                      : "Sharing"
+        share_title                      : "Teilen"
         share_text                       : "Donec id elit non mi porta gravida at eget metus. Maecenas faucibus mollis interdum."
-        info_title                       : "Stay up to date"
+        info_title                       : "Bleib auf dem laufenden"
         info_text                        : "Morbi leo risus, porta ac consectetur ac, vestibulum at eros. Cras mattis consectetur purus sit amet fermentum."
-        connect_title                    : "Connect"
+        connect_title                    : "Bleib verbunden"
         connect_text                     : "Maecenas sed diam eget risus varius blandit sit amet non magna."
     share:
-      title                              : "sharing is caring"
-      available_items                    : "available items"
+      title                              : "Teilen"
+      available_items                    : "verfügbare items"
+      available_info                     : "available items text available items text available items text available items text "
       filter                             : "filter"
-      item_borrow                        : "borrowed"
-      item_hide                          : "hide"
-      item_edit                          : "edit"
-      item_remove                        : "remove"
-      item_new                           : "new item"
-      add                                : "add"
+      item_borrow                        : "aktuell verliehen"
+      item_hide                          : "verbergen"
+      item_unhide                        : "wieder verfügbar"
+      item_edit                          : "ändern"
+      item_remove                        : "löschen"
+      item_new                           : "neues item"
+      item_backhome                      : "zurück"
+      add                                : "hinzufügen"
+      help_title                         : "teilen ist rücksichtsvoll"
+      help_paragraph1                    : "Teile dinge die du nicht immer brauchst (Bohrmaschine usw.) mit anderen"
+      help_paragraph2                    : "Füge items hinzu und mache andere und dich glücklich damit."
+      first_item                         : "erstelle dein erstes item"
+      add_item_new                       : "hinzufügen"
+      hidden_items                       : "verborgene items"
+      hidden_info                        : "verborgene items sind nur für dich sichtbar."
+      confirm_delete                     : "Bist du dir sicher das du das Itme löschen willst?"
+    shareditem:
+      add_file                           : "füge bild hinzu"
+      upload                             : "upload"
+      upload                             : "upload"
+      save                               : "speichern"
+      back                               : "zurück"
+      remove                             : "lösche Item"
+      remove_image                       : "lösche Bild"
+      upload_image                       : "lade Bild hinauf"
+      change_image                       : "ändern"
+      available                          : "verfügbar"
+      hidden                             : "verborgen"
+      currentState                       : "Status des Items"
+      descritpion                        : "Beschreibung"
+      description_placeholder            : "Beschreibe das Item"
+      sharingNote                        : "Notiz für das Teilen"
+      sharingNote_placeholder            : "Notiere wem du was ausgeliehen hast"
+      tags                               : "tags"
+      tags_placeholder                   : "tag, tog, tig"
+      confirm_delete                     : "Bist du dir sicher das du das Item löschen willst?"
+
 
   session:
     index:
-      page_title                         : "Please sign in"
+      page_title                         : "Bitte einloggen"
       login                              : "Login"
       or                                 : "or"
       signup                             : "Sign up"
       sign_in_Facebook                   : "Facebook"
       sign_in_Google                     : "Google"
-      forgot_pw                          : "forgot password?"
+      forgot_pw                          : "passwort vergessen?"
