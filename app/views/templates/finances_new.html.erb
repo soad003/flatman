@@ -48,15 +48,13 @@
               </div>
 
                <div class="form-group">
-  								<label for="who"><%= t('.bill_affects') %></label>
-                  <p></p>              
-  						    <a ng-repeat="mates in getFlatMates">            
-                  <div class="btn-group" data-toggle="buttons">
-                   <label class="btn btn-primary">
-                    <input type="checkbox" ng-model="finTmp.payees[payee($index+1)]">{{mates.name}}
-                  </label><br></br> 
+  								<label for="who"><%= t('.bill_affects') %></label>              
+                  <table>             
+  						    <tr ng-repeat="mates in getFlatMates">                   
+                    <th><input type="checkbox" id="{{$index}}" ng-model="finTmp['payees_'+ ($index+1)]">{{mates.name}}</th></tr>
+                  <br></br> 
                  <a/>
-  		           </div>
+  		           </div></table>
                 </div>
               
 
@@ -69,7 +67,7 @@
         
             <div style='float:left'>
               <a href="/#/finances">
-                <button type="submit" class="btn btn-primary" ng-click="test()"><i class="fa fa-undo"></i> 
+                <button type="submit" class="btn btn-primary"><i class="fa fa-undo"></i> 
                   <span class="hidden-xs"> Back</span></button>
               </a>
             </div>
