@@ -8,6 +8,10 @@ class Api::FinanceController <Api::RestController
         #@cgy=Billcategory.merge_value(@f, ctg)
     end
 
+    def get_finance_tables
+      @userTables = Finance.getUserTables(current_user)
+    end
+
     def create
         ct=Billcategory.new()
         @bill=Bill.new(f_params)
