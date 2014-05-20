@@ -25,9 +25,10 @@ class Message < ActiveRecord::Base
 
     def self.find_chats(user)
     	# all messages with me as sender
-        mesL = Message.where(sender_id: user.id)
+        header = "flatchat" + user.flat_id.to_s
+        mesL = Message.where("sender_id = ? AND header != ?", user.id, header)
         # all messages with me as receiver
-       	mesL2 = Message.where(receiver_id: user.id)
+       	mesL2 = Message.where("receiver_id = ? AND header != ?", user.id, header)
         messList = mesL.clone+mesL2.clone
         # sort by newest
         messList.sort! { |a,b| b.created_at <=> a.created_at }
@@ -65,6 +66,16 @@ class Message < ActiveRecord::Base
                 if c.sender_id != current_user.id
                     count = (count.to_i + 1).to_s
                 end
+            end
+        end
+        count
+    end
+
+    def self.countFlatChatUnread(counterList, current_user)
+        count = "0"
+        counterList.each do |c|
+            if !c.readers.include?(current_user.id)
+                count = (count.to_i + 1).to_s
             end
         end
         count

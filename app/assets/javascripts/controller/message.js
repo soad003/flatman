@@ -1,38 +1,100 @@
 angular.module('flatman').controller("messageCtrl", function($scope, $route, $timeout, messageService, statusService, Util){
+    $scope.flatchat = messageService.message.getFlatChat();
     $scope.chats = messageService.message.get();
+    $scope.flatchatActive = false;
+    $scope.flatchatMessages = [];
     $scope.messages = [];
     $scope.chatView = true;
     $scope.chatPartner = null;
+    $scope.currentUserId = messageService.user.getUserId();
     $scope.unreadCounter = [];
+    $scope.flatchatUnreadCounter = null;
     $scope.mesStatus = null;
+    $scope.activeChat = null;
 
-    $scope.$on('message_count_changed', function(mass){
+    $scope.$on('message_count_changed', function(event, mass){
+        $scope.currentFlatChatMessages = mass.flat_messages;    // last new message flat
+        $scope.currentChats = mass.chats;                       // last message of each chat
+        console.log(JSON.stringify($scope.currentChats));
         $scope.chats = messageService.message.get();
+        $scope.flatchat = messageService.message.getFlatChat();
+        $scope.countUnreadFlatChat();
+        
+        if ($scope.flatchatActive === true){
+            if ($scope.currentFlatChatMessages !== undefined){
+                if ($scope.currentFlatChatMessages.readers.indexOf($scope.currentUserId.id) == -1){
+                    $scope.flatchatMessages = messageService.messages.getFlatChatMessages($scope.flatchat.id);
+                    start(500);
+                }
+            }
+        }
+       
+        if ($scope.activeChat !== null){
+            for (var i = 0; i < $scope.currentChats.length; i++) {
+                if (($scope.currentChats[i].sender_id == $scope.activeChat.sender_id && $scope.currentChats[i].receiver_id == $scope.activeChat.receiver_id) ||
+                    ($scope.currentChats[i].receiver_id == $scope.activeChat.sender_id && $scope.currentChats[i].sender_id == $scope.activeChat.receiver_id))
+                    if ($scope.currentChats[i].read === false){
+                        $scope.messages = messageService.messages.get($scope.activeChat.id);
+                        start(500);
+                    }
+            }
+        }
     });
 
-    $scope.newMess = {sender_id: "", receiver_id: "", text: "", header: "", read: false};
+    $scope.newMess = {sender_id: "", receiver_id: "", text: "", header: "", read: false, readers: []};
 
     $scope.getMessages = function (chat, index){
         $scope.chatView = false;
         $scope.messages = messageService.messages.get(chat.id);
         $scope.chatPartner = messageService.partner.getPartner(chat.id);
+        $scope.activeChat = chat;
     };
 
-    $scope.toggleView = function(){
+    $scope.getFlatChatMessages = function (){
+        $scope.chatView = false;
+        $scope.flatchatActive = true;
+        $scope.flatchatMessages = messageService.messages.getFlatChatMessages($scope.flatchat.id);
+    };
+
+    $scope.setChatView = function(){
 	$scope.chats = messageService.message.get();
-        if($scope.chatView === true)
-            $scope.chatView = false;
-        else
-            $scope.chatView = true;
+    $scope.flatchat = messageService.message.getFlatChat();
+    $scope.flatchatUnreadCounter = messageService.message.count($scope.flatchat.id);
+    $scope.chatView = true;
+    $scope.flatchatActive = false;
+    $scope.activeChat = null;
+    };
+
+    $scope.setMessView = function(){
+        $scope.chatView = false;
+        $scope.flatchatActive = false;
     };
 
     $scope.sendMessage=function(){
-        $scope.newMess.receiver_id = $scope.chatPartner.id
-        messageService.message.create($scope.newMess,function(data){
+        if ($scope.flatchatActive === true){
+            $scope.sendFlatChatMessage();
+        }
+        else {
+            $scope.newMess.receiver_id = $scope.chatPartner.id
+            $scope.newMess.header = "";
+            messageService.message.create($scope.newMess,function(data){
                 $scope.messages.push(data);
                 //alert(JSON.stringify(data));
                 $scope.newMess.text='';
+            });
+        }
+    };
 
+    $scope.sendFlatChatMessage=function(){
+        // to say controller that this is a flatchat message
+        $scope.newMess.header = "flatchat";
+        // set some value. later current_user.id will be set
+        $scope.newMess.receiver_id = 13;
+        $scope.newMess.sender_id = 13;
+        $scope.newMess.readers = [3];
+        messageService.message.create($scope.newMess, function(data){
+            $scope.flatchatMessages.push(data);
+            $scope.newMess.text='';
         });
     };
 
@@ -49,20 +111,43 @@ angular.module('flatman').controller("messageCtrl", function($scope, $route, $ti
 
     };
 
+    $scope.removeFlatChat=function(question){
+        bootbox.confirm(question, function(result) {
+            if (result){
+                $scope.flatchat = null;
+                $scope.messages = [];
+            }
+            $scope.chatView = true;
+            $scope.flatchatActive = false;
+        });
+    };
+
     $scope.countUnread=function(chat, index){
-        $scope.unreadCounter[index] = messageService.message.count(chat.id, index);
+        $scope.unreadCounter[index] = messageService.message.count(chat.id);
+    };
+
+    $scope.countUnreadFlatChat=function(){
+        $scope.flatchatUnreadCounter = messageService.message.countFlat();
     };
 
     $scope.getUnreadCounter=function(index){
         return $scope.unreadCounter[index].counter;
     };
 
-    $scope.checkLastSender = function(sender, partner){
-        return sender == partner;
+    $scope.getFlatUnreadCounter=function(){
+        //console.log($scope.flatchat);
+        if ($scope.flatchat.id !== undefined && $scope.flatchatUnreadCounter !== null){
+            return $scope.flatchatUnreadCounter.counter;
+        }
+        else return 0;
+    };
+
+    $scope.checkLastSender = function(sender){
+        return sender == $scope.currentUserId.id;
     };
 
     $scope.currentUserIsSender = function(mes){
-        var ret = (mes.sender_id !== $scope.chatPartner.id);
+        var ret = (mes.sender_id == $scope.currentUserId.id);
         return ret;
     };
     // check if message.read is just now set to true. if this is the case the message should be shown as unread for few seconds
@@ -95,6 +180,7 @@ angular.module('flatman').controller("messageCtrl", function($scope, $route, $ti
     };
 
     $scope.parseTime = function(time, modus){
+        if (time !== undefined){
         $scope.dateTime = time.split("T");
         $scope.date = $scope.dateTime[0];
         //2014-05-05 $scope.date
@@ -162,13 +248,8 @@ angular.module('flatman').controller("messageCtrl", function($scope, $route, $ti
             return $scope.date;
         else if (modus == "1")
             return $scope.date +" "+ $scope.time;
-
+        }
         // Mon May 05 2014 09:29:33 GMT+0200 (CEST)
     };
-
-    /*$scope.$on('message_count_changed', function(event, message){
-        $scope.chats = messageService.message.get();
-        alert("get broadcast");
-    });*/
 
 });

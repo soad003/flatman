@@ -17,8 +17,35 @@ class Api::MessageController < Api::RestController
     @meslist
   end
 
+  def getFlatChat
+    header = "flatchat" + current_user.flat_id.to_s
+    @flatChat=Message.where("header = ?", header)
+    @flatChat.sort! { |a,b| a.created_at <=> b.created_at }
+    @lastFlatChat = @flatChat.last
+    if @lastFlatChat == nil
+      @lastFlatChat = Message.new({sender_id: current_user.id, receiver_id: current_user.id, text: "start chating with your flat members", header: "0"})
+    end
+    @lastFlatChat
+  end
+
+  def getFlatChatMessages
+    header = "flatchat" + current_user.flat_id.to_s
+    @flatMes = Message.where("header = ?", header)
+    @flatMes.each do |m|
+      if !m.readers.include?(current_user.id) 
+        m.readers = m.readers + [current_user.id]
+        m.save!
+      end
+    end
+    @flatMes.sort! { |a,b| a.created_at <=> b.created_at }
+  end
+
   def find_partner
     @partner=Message.find_partner(params[:mes_id], current_user)
+  end
+
+  def getUserId
+    respond_with({id: current_user.id})
   end
 
   def create
@@ -28,6 +55,12 @@ class Api::MessageController < Api::RestController
       respond_with_errors([t('.no_user_found')])
     else
       @mes=Message.new(mes_params)
+      if mes_params[:header] == "flatchat"
+        header = "flatchat" + current_user.flat_id.to_s
+        @mes.header = header
+        @mes.receiver_id = current_user.id
+        @mes.sender_id = current_user.id
+      end
       beginDate2014 = Time.new(2014,3,30,2,0)
       endDate2014 = Time.new(2014,10,26,3,0)
       beginDate2015 = Time.new(2015,3,29,2,0)
@@ -38,6 +71,7 @@ class Api::MessageController < Api::RestController
       else 
         @mes.created_at = nowTime
       end
+      @mes.readers = [current_user.id]
       user.sentMessages << @mes
       user.save!
       @mes
@@ -59,14 +93,22 @@ class Api::MessageController < Api::RestController
   end
 
   def count_messages
-    @counterList = Message.find_messages(params[:mes_id])
-    @counter = Message.countUnread(@counterList, current_user)
-    respond_with({counter: @counter})
+    header = "flatchat" + current_user.flat_id.to_s
+    if params[:mes_id] == nil
+    #if Message.find(params[:mes_id]).header == header
+      @counterList = Message.where("header = ?", header)
+      @counter = Message.countFlatChatUnread(@counterList, current_user)
+      respond_with({counter: @counter})
+    else
+      @counterList = Message.find_messages(params[:mes_id])
+      @counter = Message.countUnread(@counterList, current_user)
+      respond_with({counter: @counter})
+    end
   end
 
   private
   def mes_params
-    params.permit(:sender_id, :receiver_id, :text, :header, :read)
+    params.permit(:sender_id, :receiver_id, :text, :header, :read, :readers)
   end
 
 end
