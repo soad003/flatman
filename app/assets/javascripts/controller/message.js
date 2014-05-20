@@ -179,20 +179,19 @@ angular.module('flatman').controller("messageCtrl", function($scope, $route, $ti
     };
 
     $scope.parseText = function(text, flatchat, index){
-        console.log(JSON.stringify(text));
+        var data = "";
+        var result = "";
         if (text === undefined || text === null)
             return null;
         if (text.indexOf("<br>") == -1){
             if (flatchat) {
-                var data = text;
-                var result = data.replace(/\n/g, "<br>");
-                console.log(result);
+                data = text;
+                result = data.replace(/\n/g, "<br>");
                 $scope.flatchat.text = result; 
             }
             else {
-                var data = text;
-                var result = data.replace(/\n/g, "<br>");
-                console.log(result);
+                data = text;
+                result = data.replace(/\n/g, "<br>");
                 $scope.chatTexts[index] = result;
             }
         }
@@ -209,10 +208,10 @@ angular.module('flatman').controller("messageCtrl", function($scope, $route, $ti
     };
 
     $scope.parseTime = function(time, modus){
-        if (time == null){
+        if (time === null){
             return null;
         }
-        if (time == undefined){
+        if (time === undefined){
             return null;
         }
 

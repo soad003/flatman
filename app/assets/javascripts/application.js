@@ -38,4 +38,3 @@
 //= require ./vendor/scrollDown.js
 //= require bootstrap-tagsinput
 //= require bootstrap-tagsinput-angular
-//= require ./vendor/angular-sanitize.js
