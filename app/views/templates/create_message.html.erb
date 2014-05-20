@@ -11,7 +11,8 @@
 
 <div class="row">
   <div class="page-head">
-      <h2 class="page-header"><span class="fa fa-envelope"></span> <%= t('.page_header') %><a href="/#/messages"><button class="close" aria-hidden="true">&times;</button></a></h2>
+      <h2 class="page-header"><span class="fa fa-envelope"></span> <%= t('.page_header') %><a href="/#/messages"><button class="close" aria-hidden="true">&times;</button></a>
+      </h2>
   </div>
    	<div class="modal-body">
 		<div class="input-group">
@@ -25,9 +26,18 @@
         	<div class="col-lg-10 col-md-10">
             	<textarea name="inputtext" id="inputtext" class="form-control" rows="3" type="text" ng-model="newMess.text" maxlength="255" placeholder="<%= t('.new_text_placeholder') %>" required></textarea>
          	</div>
-          <div class="col-lg-2 col-md-2">
-           	<a style="text-decoration: none;"><button style="margin-top: 6px" id="send2" name="send2"class="btn btn-primary btn-block" type="submit" ng-disabled="!NewForm.$valid" ng-click="createMessage()"><%= t('.send') %></button></a>
-            <a href="/#/messages" style="text-decoration: none;"><button style="margin-top: 6px" type="button" class="btn btn-default btn-block"><%= t('buttons.labels.decision.close') %></button></a>
+          <div class="col-lg-2 col-md-2 col-sm-2">
+              <a style="text-decoration: none;">
+                <span class="hidden-lg hidden-md hidden-sm">
+                  <button style="margin-top: 6px" id="send" name="send" class="btn btn-primary btn-block" type="submit" ng-click="createMessage()" ng-disabled="!NewForm.$valid"><%= t('.send') %>
+                  </button>
+                </span>
+                <span class="hidden-xs">
+                  <button id="send2" name="send" class="btn btn-primary btn-block" type="submit" ng-click="createMessage()" ng-disabled="!NewForm.$valid"><%= t('.send') %>
+                  </button>
+                </span>
+              </a>
+              <a href="/#/messages" style="text-decoration: none;"><button style="margin-top: 6px" type="button" class="btn btn-default btn-block"><%= t('buttons.labels.decision.close') %></button></a>
           </div>
       </div>
       </form>
