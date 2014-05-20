@@ -1,27 +1,27 @@
 angular.module('flatman').controller("financesCtrl", function($scope, financesService, Util){
 	$scope.chartData = [];
-	$scope.finTmp={ text:"", value:"", date:"", user_id:"", cat_name:"", payer:""};	
+	$scope.finTmp={ text:"", value:"", date:new Date(), user_id:"", cat_name:"", payer:""};
 	$scope.debtTmp={payer_name:"", payee_name:"", debt:""};
 	$scope.finances= financesService.finance.get();
-	$scope.colors = ["green", "black", "blue", "yellow", "red", "magenta", "purple", "grey"];
+	$scope.colors = ["#428bca", "#5cb85c", "#5bc0de", "#f0ad4e", "#d9534f", "black", "grey"];
 
 	//condition for max colors
 	$scope.AllCategories = financesService.category.get_all(function(data){
 		var tmp = [];
 		for(var i = 0; i < data.length; i++){
-			
+
 			var entry = {color: $scope.colors[i], value: data[i].listValue};
 			tmp.push(entry);
 		}
 		$scope.chartData = tmp;
-				
+
 	});
 
 	$scope.getFlatMates = financesService.mates.get();
 
 	$scope.allDebts = financesService.debts.get();
 	//$scope.balance = financesService.debts.get_balance();
-	$scope.initChart = financesService.chart.get(); 
+	$scope.initChart = financesService.chart.get();
 	//$scope.select = {month: ""};
 
 	$scope.intro = function(){
@@ -31,6 +31,9 @@ angular.module('flatman').controller("financesCtrl", function($scope, financesSe
 	$scope.addEntry=function(){
 		financesService.finance.create($scope.finTmp, function(data){
 			$scope.finances.push(data);
+			Util.redirect_to.finances();
+		},function(){
+
 		});
 
 	};

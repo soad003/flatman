@@ -17,7 +17,7 @@
 
 <div>
   <form action="/#/finances_new" ng-show="!intro()">
-     
+
   <div class="jumbotron text-center">
           <i class="fa fa-bitcoin fa-5x"></i>
           <h2><%= t(".help_title") %></h2>
@@ -31,18 +31,18 @@
 <div class ="container" ng-show="intro()">
  <div class="row">
   <div class="col-md-6">
-    
+
 
     <div class="panel panel-default hidden-xs" ng-show="enoughEntries()">
       <div class="panel-heading" ng-init="dataChart()">
-        <center><%= t(".total") %>{{total()}} <i class="fa fa-eur"></i></center>   
+        <center><%= t(".total") %>{{total()}} <i class="fa fa-eur"></i></center>
       </div>
 
 
      <center>
       <canvas donutchart options="" data="chartData" width="500" height="300"></canvas>
-     
-      
+
+
       <!--CREATE DONUGHT-CHART
 <ui-chart="chartData" chart-options="chartOptions"></ui-chart>
 
@@ -80,8 +80,8 @@
     <canvas id="myChart" width="400" height="400"></canvas>
 
   -->
-      
-      
+
+
 
    </center>
   </div>
@@ -94,8 +94,8 @@
    <div style="margin:auto; width:auto; padding:auto border: 1px solid black;">
     <table class="table table-striped">
     <tr ng-repeat="category in AllCategories | limitTo: '5'">
-      <th>{{category.cat_name}}</th>
-      <th>{{category.listValue}}</th>
+      <td>{{category.cat_name}}</td>
+      <td>{{category.listValue}}</td>
     </tr>
    </table>
   </div>
@@ -124,15 +124,15 @@
           </th>
         </tr>
         <tr ng-repeat="finance in finances | orderBy: 'date' | limitTo: '5' track by $index">
-          <th>{{finance.date | date: 'mediumDate'}}
+          <td>{{finance.date | date: 'mediumDate'}}
+          </td>
+          <td>{{finance.name}}
+          </td>
+          <td>{{finance.cat_name}}
           </th>
-          <th>{{finance.name}}
-          </th>
-          <th>{{finance.cat_name}}
-          </th>
-          <th>{{finance.value}}
-          </th>
-          <th>
+          <td>{{finance.value}}
+          </td>
+          <td>
             <div class="btn-group pull-right">
               <button type="button" class="btn btn-default dropdown-toggle btn-xs" data-toggle="dropdown">
                <span class="glyphicon glyphicon-pencil"></span>
@@ -147,14 +147,14 @@
                 </li>
               </ul>
           </div>
-        </th>
+        </td>
         </tr>
       </table>
 
 
 
                 <div class="panel-footer announcement-bottom">
-                  
+
                     <div class="text-right">
               <a href="/#/finances_overview">Show All <i class="fa fa-arrow-circle-right"></i></a>
             </div>

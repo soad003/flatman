@@ -280,7 +280,18 @@ de:
       inhabit                            : "Bewohner"
     finances_new:
       page_header                        : "neuer Eintrag"
-      bill_affects                       : "Rechnung betrifft:"
+      name                               : "Name"
+      name_placeholder                   : "Lebensmittel"
+      value                              : "Preis"
+      value_placeholder                  : "42,00"
+      date                               : "Date"
+      date_placeholder                   : "dd.mm.YYYY"
+      cat                                : "Kategorie"
+      cat_placeholder                    : "whatever"
+      payer                              : "wer ist betroffen?"
+      bill_affects                       : "betrifft"
+      back                               : "zurück"
+      save                               : "speichern"
     finances_overview:
       page_header                        : "Übersicht"
     user_settings:
