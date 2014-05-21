@@ -76,12 +76,17 @@ scope "(:locale)", locale: /en|de/ do
 
 
    #finances
-   resources :finance, only: [:index, :create, :update, :destroy]
+   resources :finance, only: [:index]
+   resources :bill, only: [:create, :update,:show, :destroy]
    get '/finance/category' => 'finance#get_all'
    get '/finance/chart' => 'finance#get_chart'
    get '/finance/debts' => 'finance#get_debts'
    get '/finance/mates' =>  'finance#get_mates'
    get '/finance/month' => 'finance#get_month'
+   get '/finance/financeTables' => 'finance#get_finance_tables'
+
+   post "/payment" => 'payment#create'
+   delete "/payment" => 'payment#delete'
 
    post '/upload' => 'upload#create'
    get '/upload' => 'upload#new'

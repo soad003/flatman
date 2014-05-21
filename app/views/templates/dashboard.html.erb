@@ -228,14 +228,14 @@
             <tr ng-repeat="info in dashboardResources">
               <td>{{info.name}}</td>
               <td class="text-right">{{info.usage | number : number}} {{info.unit}}</td>
-              <td class="text-right">{{info.cost| currency : '€ '}}</td>
+              <td class="text-right">{{info.cost| customCurrency : '€ '}}</td>
             </tr>
           </tbody>
           <tfoot>
               <tr>
                 <td>&nbsp;</td>
                 <td>&nbsp;</td>
-                <td class="text-right">{{get_resource_usage()| currency : '€ '}}</td>
+                <td class="text-right">{{get_resource_usage()| customCurrency : '€ '}}</td>
               </tr>
           </tfoot>
         </table>

@@ -278,6 +278,8 @@ en:
       cat                                : "Category"
       value                              : "Value"
       inhabit                            : "Inhabitant"
+      what                               : "Typ"
+      payment_placeholder                : "Payments of User"
     finance_entry:
       page_header_new                    : "New Bill"
       page_header_edit                   : "Bill"
@@ -308,8 +310,8 @@ en:
       help_title                         : "Your Flats shopping needs ..."
       help_paragraph1                    : "Use the textbox above to add a list, after that you can add/delete items ... "
       help_paragraph2                    : "If you are done with shopping just click ... to enter your bill and you are done!"
-      delete_list                        : "Delete List"
-      done                               : "Enter payment"
+      delete_list                        : "delete list"
+      done                               : "enter payment"
     create_flat:
       subtitle                           : "Welcome to"
       title                              : "Flatman"

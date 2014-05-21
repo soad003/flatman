@@ -1,8 +1,8 @@
 angular.module('flatman').controller("financesCtrl", function($scope, financesService, Util){
 	$scope.chartData = [];
-	$scope.finTmp={ text:"", value:"", date:new Date(), user_id:"", cat_name:"", payer:""};
-	$scope.debtTmp={payer_name:"", payee_name:"", debt:""};
-	$scope.finances= financesService.finance.get();
+	// $scope.finTmp={ text:"", value:"", date:new Date(), user_id:"", cat_name:"", payer:""};
+	// $scope.debtTmp={payer_name:"", payee_name:"", debt:""};
+	$scope.finances= financesService.finance.get_all();
 	$scope.colors = ["#428bca", "#5cb85c", "#5bc0de", "#f0ad4e", "#d9534f", "black", "grey"];
 
 	//condition for max colors
@@ -104,10 +104,20 @@ angular.module('flatman').controller("financesCtrl", function($scope, financesSe
 	};
 
 	$scope.enoughEntries = function(){
-		var bool = false;
-		if ($scope.AllCategories.length > 2){
-			bool = true;
-		}
-		return bool;
+		return $scope.AllCategories.length > 2;
+	};
+
+	$scope.setFinanceTables = function (){
+		$scope.financeTables = financesService.finance.get_tables(function (data){
+			_.each($scope.financeTables, function(table){
+                                       table.date = new Date();
+            });
+		}, function(){});
+	};
+	$scope.setFinanceTables();
+
+	$scope.addPayment = function (finance_member){
+		financesService.payment.create(finance_member.id, finance_member.date, finance_member.entryvalue ,function(data){},function(data){});
+		$scope.setFinanceTables();
 	};
 });
