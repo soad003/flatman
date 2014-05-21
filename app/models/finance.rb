@@ -1,4 +1,4 @@
-class Finance < ActiveRecord::Base
+class Finance
 	def self.getUserTables (user)
 		returnValue = []
 		user.flat.users.each do |member|
