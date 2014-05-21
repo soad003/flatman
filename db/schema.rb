@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140517110858) do
+ActiveRecord::Schema.define(version: 20140521054240) do
 
   create_table "billcategories", force: true do |t|
     t.integer  "flat_id"
@@ -33,6 +33,11 @@ ActiveRecord::Schema.define(version: 20140517110858) do
   create_table "bills_users", force: true do |t|
     t.integer "user_id"
     t.integer "bill_id"
+  end
+
+  create_table "finances", force: true do |t|
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "flats", force: true do |t|

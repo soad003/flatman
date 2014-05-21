@@ -46,9 +46,7 @@ class FinanceTest < ActiveSupport::TestCase
 	end
 
 
-	test "finance list" do
-		setupTest
-     
+	test "finance list" do     
     end
 
 end

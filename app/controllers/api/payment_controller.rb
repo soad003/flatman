@@ -3,7 +3,6 @@ class Api::PaymentController < Api::RestController
     def create
         payment = Payment.new(entry_params)
         payment.payee_id = current_user.id
-        puts "#{payment.id}"
         payment.save!
         respond_with(nil, :location => nil)
     end
