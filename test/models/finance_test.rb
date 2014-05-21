@@ -1,17 +1,5 @@
 require 'test_helper'
 
-
-
-
-
-
-
-
-
-
-
-
-
 class FinanceTest < ActiveSupport::TestCase
 	def self.setupTest ()
 		user1 = User.new(name: "user1", provider:"provider", uid:"uid", oauth_token:"oauthtoken", email:"email")

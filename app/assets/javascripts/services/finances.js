@@ -32,6 +32,16 @@ angular.module('flatman').factory("financesService", function($resource){
                             'get': {method: "GET"}
                         });
 
+    var financeTables = $resource('/api/finance/financeTables',{},
+                        {
+                            'get': {method: "GET", isArray:true}
+                        });
+    var paymentService = $resource('/api/payment/:id',{},
+                        {
+                            'create': {method: "POST"},
+                            'destroy': {method: "DELETE"}
+                       });
+
 	return {
         finance: {
             get: function(succH, errH){
@@ -48,6 +58,9 @@ angular.module('flatman').factory("financesService", function($resource){
             },
             get_sum: function(finance){
                 return null;
+            },
+            get_tables: function (succH, errH){
+                return financeTables.get(succH, errH);
             }
         },
         chart:{
@@ -56,7 +69,7 @@ angular.module('flatman').factory("financesService", function($resource){
             }
         },
         category:{
-            get_all: function(succH, errH){           
+            get_all: function(succH, errH){        
                 return ctgService.get_all(null, succH, errH);
             }
         },
@@ -79,6 +92,14 @@ angular.module('flatman').factory("financesService", function($resource){
         month:{
             get: function(month_from, month_to, succH, errH){
                 return monthService.get(month_from, month_to, succH, errH);
+            }
+        },
+        payment: {
+            create: function(payer_id, date, value ,succH,errH) {
+                paymentService.create(null,{payer_id: payer_id, date: date, value: value}, succH,errH);
+            },
+            destroy: function(payment_id, succH,errH){
+                paymentService.destroy({id: payment_id},succH,errH);
             }
         }
     };

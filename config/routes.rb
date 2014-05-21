@@ -84,6 +84,10 @@ scope "(:locale)", locale: /en|de/ do
    get '/finance/month' => 'finance#get_month'
    get '/finance/financeTables' => 'finance#get_finance_tables' 
    
+   post "/payment" => 'payment#create'
+   delete "/payment" => 'payment#delete'
+
+
    post '/upload' => 'upload#create'
    get '/upload' => 'upload#new'
    

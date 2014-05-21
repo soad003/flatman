@@ -1,218 +1,259 @@
 <div>
- <% content_for :robots, "NOINDEX, NOFOLLOW" %>
+    <% content_for :robots, "NOINDEX, NOFOLLOW" %>
 
- <% content_for :title, t('.page_title') %>
-
-
-  <div class = "page-head">
-    <h1 class="page-header"><span class="fa fa-bitcoin"></span> <%= t('.page_header') %>
-     <a href="/#/finances_new">
-                            <button class="btn btn-primary pull-right"
-                                    type="submit">
-                              <span class="glyphicon glyphicon-plus"> </span><span class="hidden-xs"><%= t(".add_fin") %></span>
-                            </button></a><span class="hidden-xs">
-                    </h1>
-  </div>
+    <% content_for :title, t('.page_title') %>
 
 
-<div>
-  <form action="/#/finances_new" ng-show="!intro()">
-
-  <div class="jumbotron text-center">
-          <i class="fa fa-bitcoin fa-5x"></i>
-          <h2><%= t(".help_title") %></h2>
-          <%= t(".help_paragraph1") %><br>
-  </div>
-  </form>
-</div>
-
+    <div class = "page-head">
+        <h1 class="page-header"><span class="fa fa-bitcoin"></span> <%= t('.page_header') %>
+            <a href="/#/finances_new">
+                <button class="btn btn-primary pull-right"
+                        type="submit">
+                    <span class="glyphicon glyphicon-plus"> </span><span class="hidden-xs"><%= t(".add_fin") %></span>
+                </button></a><span class="hidden-xs">
+        </h1>
+    </div>
 
 
-<div class ="container" ng-show="intro()">
- <div class="row">
-  <div class="col-md-6">
+    <div>
+        <form action="/#/finances_new" ng-show="!intro()">
 
-
-    <div class="panel panel-default hidden-xs" ng-show="enoughEntries()">
-      <div class="panel-heading" ng-init="dataChart()">
-        <center><%= t(".total") %>{{total()}} <i class="fa fa-eur"></i></center>
-      </div>
-
-
-     <center>
-      <canvas donutchart options="" data="chartData" width="500" height="300"></canvas>
-
-
-      <!--CREATE DONUGHT-CHART
-<ui-chart="chartData" chart-options="chartOptions"></ui-chart>
-
-  <script type="text/javascript">
-      var colors = ["green", "black", "blue", "yellow", "red", "magenta", "purple"];
-
-      var data =[
-       {
-         value: 5,
-         color: colors[5]
-       },
-       {
-         value:100,
-         color:"#AF0ADC"
-       },
-       {
-         value:43,
-         color:"#11C2F2"
-       },
-       {
-         value: 30,
-         color:"#949FB1"
-       },
-       {
-         value: 10,
-         color:"#4D5360"
-       }
-
-     ];
-     var ctx = document.getElementById("myChart").getContext("2d");
-
-     new Chart(ctx).Doughnut(data,null);
-     </script>
-
-    <canvas id="myChart" width="400" height="400"></canvas>
-
-  -->
-
-
-
-   </center>
-  </div>
-
-  <div class="panel panel-default">
-  <div class="panel-heading">
-    <center><%= t(".categories") %></center>
-  </div>
-  <div class="panel-body">
-   <div style="margin:auto; width:auto; padding:auto border: 1px solid black;">
-    <table class="table table-striped">
-    <tr ng-repeat="category in AllCategories | limitTo: '5'">
-      <td>{{category.cat_name}}</td>
-      <td>{{category.listValue}}</td>
-    </tr>
-   </table>
-  </div>
- </div>
-</div>
-</div>
-
-  <div class="col-md-6">
-    <div class="panel panel-default">
-      <div class="panel-heading">
-       <center><%= t(".spendings") %></center>
-     </div>
-     <div class="panel-body">
-      <div style="margin:auto; width:auto; padding:auto border: 1px solid black;">
-      <table class="table table-striped">
-        <tr>
-          <th><%= t(".date") %>
-          </th>
-          <th>Name
-          </th>
-          <th><%= t(".cat")%>
-          </th>
-          <th><%= t(".value")%>
-          </th>
-          <th>
-          </th>
-        </tr>
-        <tr ng-repeat="finance in finances | orderBy: 'date' | limitTo: '5' track by $index">
-          <td>{{finance.date | date: 'mediumDate'}}
-          </td>
-          <td>{{finance.name}}
-          </td>
-          <td>{{finance.cat_name}}
-          </th>
-          <td>{{finance.value}}
-          </td>
-          <td>
-            <div class="btn-group pull-right">
-              <button type="button" class="btn btn-default dropdown-toggle btn-xs" data-toggle="dropdown">
-               <span class="glyphicon glyphicon-pencil"></span>
-              </button>
-              <ul class="dropdown-menu">
-                <li>
-                  <a href="" ng-click="removeEntry(finance)"><span class="glyphicon glyphicon-trash"></span> remove Entry</a>
-                </li>
-                <li>
-                  <a href="/#/finances_new" ng-click="updateEntry(finance)"><span class="glyphicon glyphicon-pencil">edit</span>
-                  </a>
-                </li>
-              </ul>
-          </div>
-        </td>
-        </tr>
-      </table>
-
-
-
-                <div class="panel-footer announcement-bottom">
-
-                    <div class="text-right">
-              <a href="/#/finances_overview">Show All <i class="fa fa-arrow-circle-right"></i></a>
+            <div class="jumbotron text-center">
+                <i class="fa fa-bitcoin fa-5x"></i>
+                <h2><%= t(".help_title") %></h2>
+                <%= t(".help_paragraph1") %><br>
             </div>
-          </div>
-      </div>
-    </div>
-  </div>
-  <div class="panel panel-default">
-      <div class="panel-heading">
-       <center><%= t(".debts") %></center>
-     </div>
-      <div class="panel-body">
-          <table class="table table-striped table-hover">
-              <thead>
-                <tr>
-                  <th>#</th>
-                  <th><%= t(".inhabit") %></th>
-                  <th class="text-right">Saldo</th>
-                  <th>&nbsp;</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr ng-repeat="debts in allDebts track by $index">
-                  <td>{{$index + 1}}</td>
-                  <td>{{debts.payee_name}}</td>
-                  <td class="text-right">{{debts.debt}}</td>
-                  <td>
-                    <div class="btn-group pull-right">
-                     <button type="button" class="btn btn-default dropdown-toggle btn-xs" data-toggle="dropdown">
-                       <span class="glyphicon glyphicon-pencil"></span>
-                    </button>
-                     <ul class="dropdown-menu">
-                      <li>
-                        <a href="" ng-click="payDebt(debts)"><span class="fa fa-credit-card"></span> pay debt</a>
-                     </li>
-               </ul>
-               </div>
-               </td>
-              </tr>
-              </tbody>
-              <tfoot>
-                  <tr>
-                    <td>&nbsp;</td>
-                    <td>&nbsp;</td>
-                    <td class="text-right">{{debts()}}</td>
-                    <td>&nbsp;</td>
-                  </tr>
-              </tfoot>
-            </table>
+        </form>
     </div>
 
-   </div>
-  </div>
-
-  </div>
-</div>
-</div>
 
 
+    <div class ="container" ng-show="intro()">
+        <div class="row">
+            <div class="col-md-6">
+
+
+                <div class="panel panel-default hidden-xs" ng-show="enoughEntries()">
+                    <div class="panel-heading" ng-init="dataChart()">
+                        <center><%= t(".total") %>{{total()}} <i class="fa fa-eur"></i></center>
+                    </div>
+
+
+                    <center>
+                        <canvas donutchart options="" data="chartData" width="500" height="300"></canvas>
+
+
+                        <!--CREATE DONUGHT-CHART
+                  <ui-chart="chartData" chart-options="chartOptions"></ui-chart>
+                  
+                    <script type="text/javascript">
+                        var colors = ["green", "black", "blue", "yellow", "red", "magenta", "purple"];
+                  
+                        var data =[
+                         {
+                           value: 5,
+                           color: colors[5]
+                         },
+                         {
+                           value:100,
+                           color:"#AF0ADC"
+                         },
+                         {
+                           value:43,
+                           color:"#11C2F2"
+                         },
+                         {
+                           value: 30,
+                           color:"#949FB1"
+                         },
+                         {
+                           value: 10,
+                           color:"#4D5360"
+                         }
+                  
+                       ];
+                       var ctx = document.getElementById("myChart").getContext("2d");
+                  
+                       new Chart(ctx).Doughnut(data,null);
+                       </script>
+                  
+                      <canvas id="myChart" width="400" height="400"></canvas>
+                  
+                        -->
+
+
+
+                    </center>
+                </div>
+
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <center><%= t(".categories") %></center>
+                    </div>
+                    <div class="panel-body">
+                        <div style="margin:auto; width:auto; padding:auto border: 1px solid black;">
+                            <table class="table table-striped">
+                                <tr ng-repeat="category in AllCategories| limitTo: '5'">
+                                    <td>{{category.cat_name}}</td>
+                                    <td>{{category.listValue}}</td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-6">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <center><%= t(".spendings") %></center>
+                    </div>
+                    <div class="panel-body">
+                        <div style="margin:auto; width:auto; padding:auto border: 1px solid black;">
+                            <table class="table table-striped">
+                                <tr>
+                                    <th><%= t(".date") %>
+                                    </th>
+                                    <th>Name
+                                    </th>
+                                    <th><%= t(".cat")%>
+                                    </th>
+                                    <th><%= t(".value")%>
+                                    </th>
+                                    <th>
+                                    </th>
+                                </tr>
+                                <tr ng-repeat="finance in finances| orderBy: 'date' | limitTo: '5' track by $index">
+                                    <td>{{finance.date| date: 'mediumDate'}}
+                                    </td>
+                                    <td>{{finance.name}}
+                                    </td>
+                                    <td>{{finance.cat_name}}
+                                    <td>{{finance.value}}
+                                    </td>
+                                    <td>
+                                        <div class="btn-group pull-right">
+                                            <button type="button" class="btn btn-default dropdown-toggle btn-xs" data-toggle="dropdown">
+                                                <span class="glyphicon glyphicon-pencil"></span>
+                                            </button>
+                                            <ul class="dropdown-menu">
+                                                <li>
+                                                    <a href="" ng-click="removeEntry(finance)"><span class="glyphicon glyphicon-trash"></span> remove Entry</a>
+                                                </li>
+                                                <li>
+                                                    <a href="/#/finances_new" ng-click="updateEntry(finance)"><span class="glyphicon glyphicon-pencil">edit</span>
+                                                    </a>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </table>
+
+
+
+                            <div class="panel-footer announcement-bottom">
+
+                                <div class="text-right">
+                                    <a href="/#/finances_overview">Show All <i class="fa fa-arrow-circle-right"></i></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="panel-group" id="accordion">
+                            <div ng-repeat="finance_member in financeTables track by $index" class="panel panel-default">
+                                <div class="panel-heading"  data-toggle="collapse" data-parent="#accordion" data-target="#collapse{{$index}}">
+                                    <div class="row panel-title" style="cursor: pointer">
+                                        <div class="col-xs-2 col-sm-1">
+                                            <img style="height:35px; width:35px" ng-src="{{finance_member.img_path}}" alt="{{finance_member.name}}">
+                                        </div>
+
+                                        <div class="col-xs-10 col-sm-11">
+                                            <span class="pull-left">
+                                            {{finance_member.name}}
+                                          </span>
+                                          <span class="pull-right">
+                                            {{finance_member.value| customCurrency : '€ '}}
+                                          </span>
+                                        </div>
+                                      </div>
+                                </div>
+                                <div id="collapse{{$index}}" class="panel-collapse collapse">
+                                    <div class="panel-body row">
+                                        <!--div class="row">
+                                          <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                                              <ul class="pagination pagination-sm pull-right" ng-show="getPages(resource) != 1">
+                                                  <li ><a ng-click="changePage(resource, - 1)" href="">&laquo;</a></li>
+                                                  <li ng-class="{active: i == resource.page}" class="hidden-xs hidden-sm"ng-repeat="i in getRange(resource)"><a ng-click="setEntriesForPage(i, resource)" href="">{{i}}</a></li>
+                                                  <li class="active hidden-md hidden-lg"><a href="">{{resource.page}}</a></li>
+                                                  <li><a href="" ng-click="changePage(resource, 1)">&raquo;</a></li>
+                                              </ul>
+                                          </div-->
+
+                                        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                                            <div class="adv-table editable-table">
+                                                <table class="table table-striped table-hover table-borderless table-scrollable" id="editable-sample">
+                                                    <thead>
+                                                        <tr>
+                                                            <th>
+                                                                <%= t('.date') %></th>
+                                                            <th>
+                                                                <%= t('.what') %></th>
+                                                            <th class="text-right">
+                                                                <%= t('.value') %></th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        <tr ng-repeat="entry in finance_member.entries">
+                                                            <td class="hidden-xs">{{entry.date| date : 'longDate'}}</td>
+                                                            <td class="visible-xs">{{entry.date| date : 'shortDate'}}</td>
+                                                            <td>{{entry.what}}</td>
+                                                            <td class="text-right"> {{entry.value| customCurrency : '€ '}} </td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                            <div class="panel-footer announcement-bottom">
+                                                <form role="form" name="Itemform" ng-submit="addPayment(finance_member)">
+                                                    <div class="input-group">
+                                                        <span class="hidden-xs input-group-addon">
+                                                            <span class="glyphicon glyphicon-calendar"></span>
+                                                        </span>
+
+                                                        <span class="input-group-btn hidden-xs" style="width:90px;">
+                                                            <input type="text" onfocus="blur();" class="btn btn-default form-control" show-button-bar="false" showWeeks="false" datepicker-append-to-body="true" datepicker-popup="shortDate" show-weeks="false" ng-model="finance_member.date" ng-required="true" />
+                                                        </span>
+                                                        <input type="text" class="form-control" pattern="^[0-9\,.]*$"
+                                                               ng-model="finance_member.entryvalue"
+                                                               maxlength="30"
+                                                               placeholder="<%= t('.payment_placeholder') %>
+                                                               " required numberinput/>
+                                                        <span class="input-group-btn">
+                                                            <button class="btn btn-primary"
+                                                                    type="submit"
+                                                                    ng-disabled="!Itemform.$valid">
+                                                                <span class="glyphicon glyphicon-plus"></span>
+                                                                <span class="hidden-xs"><%= t(".add") %></span>
+                                                            </button>
+                                                        </span>
+                                                    </div>
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
 
 </div>

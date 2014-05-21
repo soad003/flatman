@@ -3,7 +3,7 @@ class Finance < ActiveRecord::Base
 		returnValue = []
 		user.flat.users.each do |member|
 			if (member.id != user.id)
-				member_info = OpenStruct.new({"name" => member.name, "value" => 0, "entries" => []})
+				member_info = OpenStruct.new({"name" => member.name, "id" => member.id, "img_path" => member.image_path, "value" => 0, "entries" => []})
 
 				paymentsUserToMember = Payment.where(payer_id: user.id, payee_id: member.id)
 				member_info.entries = member_info.entries + getEntrysOfPayments(paymentsUserToMember, 1)

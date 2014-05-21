@@ -122,10 +122,20 @@ angular.module('flatman').controller("financesCtrl", function($scope, financesSe
 	};
 
 	$scope.enoughEntries = function(){
-		var bool = false;
-		if ($scope.AllCategories.length > 2){
-			bool = true;
-		}
-		return bool;
+		return $scope.AllCategories.length > 2;
+	};
+
+	$scope.setFinanceTables = function (){
+		$scope.financeTables = financesService.finance.get_tables(function (data){
+			_.each($scope.financeTables, function(table){
+                                       table.date = new Date();
+            });
+		}, function(){});
+	};
+	$scope.setFinanceTables();
+
+	$scope.addPayment = function (finance_member){
+		financesService.payment.create(finance_member.id, finance_member.date, finance_member.entryvalue ,function(data){},function(data){});
+		$scope.setFinanceTables();
 	};
 });

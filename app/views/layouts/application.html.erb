@@ -170,7 +170,6 @@
       src="https://maps.googleapis.com/maps/api/js?sensor=false">
     </script>
     <%= javascript_include_tag "application" %>
-
     <%= yield :script %>
     <%if I18n.locale.to_s === "de"%>
         <%= javascript_include_tag "vendor/angular-locale_de-de" %>

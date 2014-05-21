@@ -278,6 +278,8 @@ en:
       cat                                : "Category"
       value                              : "Value"
       inhabit                            : "Inhabitant"
+      what                               : "Typ"
+      payment_placeholder                : "Payments of User"
     finances_new:
       page_header                        : "New Bill"
       name                               : "name"
