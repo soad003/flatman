@@ -38,4 +38,9 @@ angular.module('flatman').controller("shoppingCtrl",function($scope,shoppingServ
         var colors=['success','info','warning','danger'];
         return colors[index%4];
     };
+
+    $scope.done_shopping=function(list){
+       Util.redirect_to.finances_done_shopping(list.name);
+    };
+
 });

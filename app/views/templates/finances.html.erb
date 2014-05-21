@@ -142,7 +142,8 @@
                   <a href="" ng-click="removeEntry(finance)"><span class="glyphicon glyphicon-trash"></span> remove Entry</a>
                 </li>
                 <li>
-                  <a href="/#/finances_new" ng-click="updateEntry(finance)"><span class="glyphicon glyphicon-pencil">edit</span>
+                  <a href="/#/finances_edit/{{finance.id}}">
+                    <span class="glyphicon glyphicon-pencil">edit</span>
                   </a>
                 </li>
               </ul>

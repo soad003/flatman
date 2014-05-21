@@ -278,8 +278,9 @@ de:
       cat                                : "Kategorie"
       value                              : "Wert"
       inhabit                            : "Bewohner"
-    finances_new:
-      page_header                        : "neuer Eintrag"
+    finance_entry:
+      page_header_new                    : "neue Rechnung"
+      page_header_edit                   : "Rechnung"
       name                               : "Name"
       name_placeholder                   : "Lebensmittel"
       value                              : "Preis"
@@ -288,7 +289,7 @@ de:
       date_placeholder                   : "dd.mm.YYYY"
       cat                                : "Kategorie"
       cat_placeholder                    : "whatever"
-      payer                              : "wer ist betroffen?"
+      payer                              : "wer hat gezahlt?"
       bill_affects                       : "betrifft"
       back                               : "zurück"
       save                               : "speichern"

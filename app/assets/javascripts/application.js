@@ -18,6 +18,7 @@
 //= require bootstrap/tooltip
 //= require bootstrap/alert
 //= require bootstrap/collapse
+//= require bootstrap/button
 //= require Chart
 //= require angular
 //= require underscore

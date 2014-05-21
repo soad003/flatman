@@ -59,8 +59,16 @@ angular.module('flatman', ['ngRoute','ngResource','google-maps','angles','ui.boo
         controller: 'flatSettingsCtrl'
       }).
       when('/finances_new', {
-        templateUrl: '/templates/finances_new',
-        controller: 'financesCtrl'
+        templateUrl: '/templates/finance_entry',
+        controller: 'financeEntryCtrl'
+      }).
+      when('/finances_edit/:id', {
+        templateUrl: '/templates/finance_entry',
+        controller: 'financeEntryCtrl'
+      }).
+      when('/finances_done_shopping/:list', {
+        templateUrl: '/templates/finance_entry',
+        controller: 'financeEntryCtrl'
       }).
       when('/finances_overview', {
         templateUrl: '/templates/finances_overview',

@@ -278,8 +278,9 @@ en:
       cat                                : "Category"
       value                              : "Value"
       inhabit                            : "Inhabitant"
-    finances_new:
-      page_header                        : "New Bill"
+    finance_entry:
+      page_header_new                    : "New Bill"
+      page_header_edit                   : "Bill"
       name                               : "name"
       name_placeholder                   : "groceries"
       value                              : "price"

@@ -46,7 +46,9 @@
                           <a href="" ng-click="removeList(list)"><span class="glyphicon glyphicon-trash"></span> <%= t(".delete_list") %></a>
                         </li>
                         <li>
-                          <a href=""><span class="fa fa-credit-card"></span> <%= t(".done") %></a>
+                          <a  href="" ng-click="done_shopping(list)">
+                            <span class="fa fa-credit-card"></span> <%= t(".done") %>
+                          </a>
                         </li>
                       </ul>
                     </div>

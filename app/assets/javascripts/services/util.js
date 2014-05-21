@@ -15,7 +15,8 @@ angular.module('flatman').factory("Util",function($rootScope,$location) {
             resources: function(){$location.path("resources");},
             user_settings: function(){$location.path("user_settings");},
             flat_settings: function(){$location.path("flat_settings");},
-            search: function(term){$location.path("search/"+escape(term));}
+            search: function(term){$location.path("search/"+escape(term));},
+            finances_done_shopping: function(name){$location.path("finances_done_shopping/"+escape(name));}
         }
     };
 

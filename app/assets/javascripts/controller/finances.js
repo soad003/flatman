@@ -28,28 +28,10 @@ angular.module('flatman').controller("financesCtrl", function($scope, financesSe
 		return ($scope.finances.length !== 0);
 	};
 
-	$scope.addEntry=function(){
-		financesService.finance.create($scope.finTmp, function(data){
-			$scope.finances.push(data);
-			Util.redirect_to.finances();
-		},function(){
-
-		});
-
-	};
-
 	$scope.removeEntry=function(finance){
 		financesService.finance.destroy(finance.id, function(){
             $scope.finances = _($scope.finances).without(finance);
         });
-	};
-
-	//not finished
-	$scope.updateEntry=function(finance){
-		$scope.finTmp.text = finance.name;
-		//financesService.finance.update(finance.id,function(){
-
-	//	})
 	};
 
 	$scope.payDebt = function(debt){
