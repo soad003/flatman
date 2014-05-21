@@ -38,11 +38,10 @@
             <div class="row">
               <div class="col-xs-6 col-md-6">
                 <span ng-show="true"><i class="fa fa-angle-double-right"></i> {{flatchat.sender_name}}:
-                </span> {{flatchat.text}}
+                </span> <span ng-bind-html="flatchat.text | to_trusted">{{parseText(flatchat.text, true, 0)}} </span>
               </div>
               <div class="col-xs-6 col-md-6">
-                <span class="time"><p class="text-right" style="font-size:x-small"><i class="fa fa-clock-o"></i>
-                {{parseTime(flatchat.time, "0")}}</p></span>
+                <span class="time"><p class="text-right" style="font-size:x-small" ng-show="flatchat.time != null"><i class="fa fa-clock-o"></i>{{parseTime(flatchat.time, "0")}}</p></span>
               </div>
             </div>
           </div>
@@ -70,10 +69,10 @@
                   <span ng-show="!checkLastSender(flatchat.sender_id)"><i class="fa fa-angle-double-right"></i> 
                     {{flatchat.sender_name}}:
                   </span>
-                </span> {{flatchat.text}}
+                </span> <span ng-bind-html="flatchat.text | to_trusted">{{parseText(flatchat.text, true, 0)}}</span>
               </div>
               <div class="col-xs-6 col-md-6">
-                <span class="time"><p class="text-right" style="font-size:x-small"><i class="fa fa-clock-o"></i>
+                <span class="time"><p class="text-right" style="font-size:x-small" ng-show="flatchat.time != null"><i class="fa fa-clock-o"></i>
                 {{parseTime(flatchat.time, "0")}}</p></span>
               </div>
             </div>
@@ -98,7 +97,7 @@
                 <span class="badge" style="background-color:CornflowerBlue">{{getUnreadCounter($index)}}</span>
               </button>
             </div>
-            <strong>{{chat.partner}}</strong>
+            <strong><span class="glyphicon glyphicon-user"></span> {{chat.partner}}</strong>
           </div>
           <div class="panel-footer">
             <div class="row">
@@ -107,7 +106,7 @@
                   <i class="fa fa-check-circle"></i>
                 </span>
                 <span ng-show="!checkLastSender(chat.sender_id)"><i class="fa fa-angle-double-right"></i> {{chat.sender_name}}:
-                </span> {{chat.text}}
+                </span> <span ng-bind-html="chatTexts[$index] | to_trusted">{{parseText(chat.text, false, $index)}}</span>
               </div>
               <div class="col-xs-6 col-md-6">
                 <span class="time"><p class="text-right" style="font-size:x-small"><i class="fa fa-clock-o"></i> {{parseTime(chat.time, "0")}}</p></span>
@@ -137,7 +136,7 @@
                   <i class="fa fa-check-circle"></i>
                 </span>
                 <span ng-show="!checkLastSender(chat.sender_id)"><i class="fa fa-angle-double-right"></i> {{chat.sender_name}}:
-                </span> {{chat.text}}
+                </span> <span ng-bind-html="chatTexts[$index] | to_trusted">{{parseText(chat.text, false, $index)}}</span>
               </div>
               <div class="col-xs-6 col-md-6">
                 <span class="time"><p class="text-right" style="font-size:x-small"><i class="fa fa-clock-o"></i> {{parseTime(chat.time, "0")}}</p></span>
@@ -152,7 +151,7 @@
 <body>
 <div ng-show="chatView == false">
   <div class="modal-body" name="scrollarea" id="scrollarea" style="height: 270px; overflow-y: auto; overflow-x: hidden;">
-    <div ng-repeat="message in messages" ng-show="!flatchatActive">
+    <div ng-repeat="message in messages track by $index" ng-show="!flatchatActive">
         <div ng-show="!currentlyRead(message) || currentUserIsSender(message)">
           <a class="list-group-item" style="margin-top: 6px">
             <div class="list-group-item-heading" ng-model="Username"><strong>{{message.sender_name}}</strong>
@@ -160,7 +159,7 @@
             </div>
             <div class="list-group-item-text">
                 <div class="row">
-                  <div class="col-xs-12 col-md-12">{{message.text}}</div>
+                  <div class="col-xs-12 col-md-12"><span ng-bind-html="chatTexts[$index] | to_trusted">{{parseText(message.text, false, $index)}}</span></div>
                 </div>
             </div>
           </a>
@@ -172,7 +171,7 @@
             </div>
             <div class="list-group-item-text">
                 <div class="row">
-                  <div class="col-xs-12 col-md-12">{{message.text}}</div>
+                  <div class="col-xs-12 col-md-12"><span ng-bind-html="chatTexts[$index] | to_trusted">{{parseText(message.text, false, $index)}}</span></div>
                 </div>
             </div>
           </a>
@@ -186,7 +185,7 @@
             </div>
             <div class="list-group-item-text">
                 <div class="row">
-                  <div class="col-xs-12 col-md-12">{{message.text}}</div>
+                  <div class="col-xs-12 col-md-12"><span ng-bind-html="chatTexts[$index] | to_trusted">{{parseText(message.text, false, $index)}}</span></div>
                 </div>
             </div>
           </a>
@@ -198,7 +197,7 @@
             </div>
             <div class="list-group-item-text">
                 <div class="row">
-                  <div class="col-xs-12 col-md-12">{{message.text}}</div>
+                  <div class="col-xs-12 col-md-12"><span ng-bind-html="chatTexts[$index] | to_trusted">{{parseText(message.text, false, $index)}}</span></div>
                 </div>
             </div>
           </a>
@@ -235,6 +234,8 @@
     <%= t('.intro_text1') %> <br>
     <%= t('.intro_text2') %>
 </div>
+
+<!--
 <script type="text/javascript">
   $(function() {
     $('textarea#inputtext').on('keyup', function(e) {
@@ -248,12 +249,12 @@
     };
 });
 </script>
+-->
 
 <!-- todo
-- mehrere empfänger
-- fixing first message broadcast 
-- shift enter
-- invalid nachfragen
+- icons
+- gleichzeitiges senden
+- mehrere empfänger 
 - optimieren
 - text der angezeigt wird begrenzen
 - messages nav bar back
