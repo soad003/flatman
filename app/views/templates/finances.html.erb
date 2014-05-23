@@ -12,10 +12,8 @@
         </h1>
     </div>
 
-
     <div>
         <form action="/#/finances_new" ng-show="!intro()">
-
             <div class="jumbotron text-center">
                 <i class="fa fa-bitcoin fa-5x"></i>
                 <h2><%= t(".help_title") %></h2>
@@ -24,34 +22,21 @@
         </form>
     </div>
 
-
-
     <div class ="container" ng-show="intro()">
         <div class="row">
             <div class="col-md-6">
-
                 <div class="panel panel-default hidden-xs" ng-show="enoughEntries()">
-                    <div class="panel-heading" ng-init="dataChart()">
-                        <center><%= t(".total") %>{{total() | customCurrency : '€ '}}</center>
-                    </div>
-
-                    <center>
-                        <canvas donutchart options="" data="chartData" width="500" height="300"></canvas>
-                    </center>
-                </div>
-
-                <div class="panel panel-default">
-                    <div class="panel-heading">
-                        <center><%= t(".categories") %></center>
+                    <div class="panel-heading text-center" ng-init="dataChart()">
+                        <%= t(".total") %>{{total() | customCurrency : '€ '}}
                     </div>
                     <div class="panel-body">
-                        <div style="margin:auto; width:auto; padding:auto border: 1px solid black;">
-                            <table class="table table-striped">
-                                <tr ng-repeat="category in AllCategories| limitTo: '5'">
-                                    <td>{{category.cat_name}}</td>
-                                    <td>{{category.listValue | customCurrency : '€ '}}</td>
-                                </tr>
-                            </table>
+                        <canvas donutchart options="" data="chartData" width="500" height="300"></canvas>
+                    </div>
+                    <div class="panel-footer">
+                        <div class="row">
+                            <div class="col-md-3" ng-repeat="cat in chartData" title="{{cat.value | customCurrency : '€ '}}">
+                                <i class="fa fa-circle" style="color: {{cat.color}}" ></i> {{cat.cat_name}}
+                            </div>
                         </div>
                     </div>
                 </div>
