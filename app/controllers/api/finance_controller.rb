@@ -17,11 +17,12 @@ class Api::FinanceController <Api::RestController
           billName << Billcategory.find(b.billcategory_id).name
         end
 
-        @catName.each do |c|
-          if !billName.include?(c.name)
-            @catName.delete(c)
-          end
-        end
+        # wieso werden hier categorien gelöscht
+        # @catName.each do |c|
+        #   if !billName.include?(c.name)
+        #     @catName.delete(c)
+        #   end
+        # end
         @name=Bill.includes(:billcategory).group("billcategories.name").sum(:value)
     end
 
