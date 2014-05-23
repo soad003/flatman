@@ -91,6 +91,24 @@ de:
               blank                       : "Bitte gib den Empfängernamen an!"
             text:
               blank                       : "Bitte gib eine Nachricht an!"
+        bill:
+          attributes:
+            date:
+              blank                       : "Datum ist ein Pflichtfeld."
+            value:
+              blank                       : "Bitte Preis eingeben."
+              not_a_number                : "Preis muss numerisch sein."
+            text:
+              blank                       : "Bitte gib einen Namen an."
+            user:
+              blank                       : "Wer hat die Rechnung gezahlt?"
+            users:
+              blank                       : "Auf wen wird die rechnung aufgeteilt?"
+              too_short                   : "Auf wen wird die rechnung aufgeteilt?"
+        billcategory:
+          attributes:
+            name:
+              blank                       : "Bitte Kategorie angeben."
     ressource:
       info_all                        : "Gesamt"
       info_currentMonth               : "diesen Monat"
