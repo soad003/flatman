@@ -320,6 +320,14 @@ en:
       save                               : "save"
     finances_overview:
       page_header                        : "Overview"
+      edit                               : "edit"
+      delete                             : "delete"
+      back                               : "back"
+      date                               : "date"
+      name                               : "name"
+      category                           : "category"
+      value                              : "expense"
+      month                              : "month"
     user_settings:
       page_header                        : "Your Profile"
       name                               : "name"

@@ -1,4 +1,4 @@
-angular.module('flatman').controller("financesCtrl", function($scope, financesService, Util){
+angular.module('flatman').controller("financesCtrl", function($scope, financesService,flatService, Util){
 	$scope.chartData = [];
 	// $scope.finTmp={ text:"", value:"", date:new Date(), user_id:"", cat_name:"", payer:""};
 	// $scope.debtTmp={payer_name:"", payee_name:"", debt:""};
@@ -12,7 +12,7 @@ angular.module('flatman').controller("financesCtrl", function($scope, financesSe
 																 cat_name: item.cat_name }; });
 	});
 
-	$scope.getFlatMates = financesService.mates.get();
+	$scope.getFlatMates = flatService.mates.get();
 
 	$scope.allDebts = financesService.debts.get();
 	//$scope.balance = financesService.debts.get_balance();

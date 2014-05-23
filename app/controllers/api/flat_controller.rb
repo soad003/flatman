@@ -20,6 +20,10 @@ class Api::FlatController < Api::RestController
         respond_with(flat, :location => api_flat_path(flat))
     end
 
+    def flat_mates
+        @mates=current_user.flat.users
+    end
+
     private
 
     # Never trust parameters from the scary internet, only allow the white list through.

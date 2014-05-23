@@ -27,10 +27,7 @@ angular.module('flatman').factory("financesService", function($resource){
                             'create_debt': {method:"POST"},
                             'destroy': {method:"DELETE"}
                         });
-    var mateService     = $resource('api/finance/mates', {},
-                        {
-                            'get': {method: "GET", isArray:true}
-                        });
+
     var monthService    = $resource('api/finance/month', {},
                         {
                             'get': {method: "GET"}
@@ -49,13 +46,13 @@ angular.module('flatman').factory("financesService", function($resource){
 	return {
         finance: {
             get_all: function(succH, errH){
-                return financeService.get();
+                return financeService.get(null,succH, errH);
             },
             get_sum: function(finance){
                 return null;
             },
             get_tables: function (succH, errH){
-                return financeTables.get(succH, errH);
+                return financeTables.get(null,succH, errH);
             }
         },
         bill: {
@@ -74,7 +71,7 @@ angular.module('flatman').factory("financesService", function($resource){
         },
         chart:{
             get: function(succH, errH){
-                return chartService.get(succH, errH);
+                return chartService.get(null,succH, errH);
             }
         },
         category:{
@@ -83,19 +80,14 @@ angular.module('flatman').factory("financesService", function($resource){
             }
         },
         debts:{
-            get: function(){
-                return debtService.get();
+            get: function(succH, errH){
+                return debtService.get(null,succH, errH);
             },
             create_debt: function(){
 
             },
             pay_debt: function(debt, succH, errH){
                 debtService.destroy({id: debt}, succH, errH);
-            }
-        },
-        mates:{
-            get: function(){
-                return mateService.get();
             }
         },
         month:{

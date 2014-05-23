@@ -35,9 +35,9 @@ class Api::FinanceController <Api::RestController
     end
 
     #user_id
-    def get_chart
-        @chart = Bill.where(:user_id => current_user.id)
-    end
+    #def get_chart
+    #    @chart = Bill.where(:user_id => current_user.id)
+    #end
 
     def get_debts
       @cu = current_user
@@ -65,20 +65,5 @@ class Api::FinanceController <Api::RestController
 
     def pay_debt
 
-    end
-
-    #oauth_token filtern
-    def get_mates
-        returnList = []
-        flat = current_user.flat
-        flat_id = flat.id
-        members = User.all
-        members.each do |m|
-            if m.flat_id == flat_id
-                returnList << m
-            end
-        end
-        @mem = returnList
-        respond_with(@mem);
     end
 end

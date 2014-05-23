@@ -72,7 +72,7 @@ angular.module('flatman', ['ngRoute','ngResource','google-maps','angles','ui.boo
       }).
       when('/finances_overview', {
         templateUrl: '/templates/finances_overview',
-        controller: 'financesCtrl'
+        controller: 'financesOverviewCtrl'
       }).
       when('/search/:term', {
         templateUrl: '/templates/search',

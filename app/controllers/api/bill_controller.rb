@@ -1,5 +1,5 @@
 class Api::BillController <Api::RestController
-    around_filter :wrap_in_transaction, only: [:create, :update]
+    around_filter :wrap_in_transaction, only: [:create, :update, :destroy]
     def show
         @bill=Bill.find(params[:id])
     end

@@ -34,18 +34,22 @@ scope "(:locale)", locale: /en|de/ do
    resources :invite, only: [:create,:destroy]
    get '/search/:term' => 'search#search'
 
+   #Flat
    namespace :flat do
       get '/', to: :index
       put '/', to: :create
       post '/', to: :update
+      get '/mates', to: :flat_mates
    end
+
+   #user
    resources :user, only: [:index]
 
-   resources :finance, only: [:index, :create, :update, :destroy]
+
    resources :shoppinglist, only: [:index, :create, :destroy] do
       resources :shoppingitem, only: [:create, :update, :destroy]
    end
-	resources :resource, only: [:index, :create, :update, :destroy] do
+	 resources :resource, only: [:index, :create, :update, :destroy] do
       resources :resourceentry, only: [:create, :destroy]
    end
    get '/resource/:resource_id/resourceentry/:page' => 'resourceentry#page'
@@ -79,9 +83,8 @@ scope "(:locale)", locale: /en|de/ do
    resources :finance, only: [:index]
    resources :bill, only: [:create, :update,:show, :destroy]
    get '/finance/category' => 'finance#get_all'
-   get '/finance/chart' => 'finance#get_chart'
+   #get '/finance/chart' => 'finance#get_chart'
    get '/finance/debts' => 'finance#get_debts'
-   get '/finance/mates' =>  'finance#get_mates'
    get '/finance/month' => 'finance#get_month'
    get '/finance/financeTables' => 'finance#get_finance_tables'
 

@@ -319,6 +319,14 @@ de:
       save                               : "speichern"
     finances_overview:
       page_header                        : "Übersicht"
+      edit                               : "bearbeiten"
+      delete                             : "löschen"
+      back                               : "zurück"
+      date                               : "Datum"
+      name                               : "Name"
+      category                           : "Kategorie"
+      value                              : "Ausgaben"
+      month                              : "Monat"
     user_settings:
       page_header                        : "Dein Profil"
       name                               : "Name"
@@ -353,7 +361,7 @@ de:
         shopping_title                   : "Einkaufen"
         shopping_text                    : "Maecenas sed diam eget risus varius blandit sit amet non magna."
         finances_title                   : "Rechnungen"
-        finances_text                    : "Morbi leo risus, porta ac consectetur ac, vestibulum at eros. Cras mattis consectetur purus sit amet fermentum."
+        finafinnces_text                    : "Morbi leo risus, porta ac consectetur ac, vestibulum at eros. Cras mattis consectetur purus sit amet fermentum."
         resources_title                  : "Ressourcenverbrauch"
         resources_text                   : "Maecenas sed diam eget risus varius blandit sit amet non magna."
         share_title                      : "Teilen"
