@@ -48,7 +48,7 @@
             <%= t('.cat') %></label>
           <div class="input-group">
             <input id="value" ng-model="finTmp.cat_name"
-                    typeahead="category as category.cat_name for category in categories | filter:$viewValue | limitTo:8"
+                    typeahead="category for category in categories | filter:$viewValue | limitTo:8"
                     placeholder="<%= t('.cat_placeholder') %>" type="text"/>
             <span class="input-group-addon">
               <span class="glyphicon glyphicon-wrench"></span>
