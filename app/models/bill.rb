@@ -9,7 +9,9 @@ class Bill < ActiveRecord::Base
   	validates_associated :billcategory, :message => nil
 
 	def self.destroy_with_user_constraint(id,user)
-		Bill.joins(:user).select('bills.*').where('bills.id=? and users.flat_id=?',id,user.flat_id).first.destroy!
+		b=Bill.joins(:user).select('bills.*').where('bills.id=? and users.flat_id=?',id,user.flat_id).first
+		b.billcategory.destroy! if b.billcategory.bills.count == 1
+		b.destroy!
 	end
 
 	def self.new_with_params(p, cat, flat)
