@@ -1,14 +1,13 @@
 <div>
     <% content_for :title, t('.page_title') %>
 
-
     <div class = "page-head">
         <h1 class="page-header"><span class="fa fa-bitcoin"></span> <%= t('.page_header') %>
             <a href="/#/finances_new">
-                <button class="btn btn-primary pull-right"
-                        type="submit">
+                <button class="btn btn-primary pull-right" type="submit">
                     <span class="glyphicon glyphicon-plus"> </span><span class="hidden-xs"><%= t(".add_fin") %></span>
-                </button></a><span class="hidden-xs">
+                </button>
+            </a>
         </h1>
     </div>
 
@@ -48,45 +47,46 @@
                         <center><%= t(".spendings") %></center>
                     </div>
                     <div class="panel-body">
-                        <div style="margin:auto; width:auto; padding:auto border: 1px solid black;">
-                            <table class="table table-striped">
-                                <tr>
-                                    <th><%= t(".date") %></th>
-                                    <th>Name</th>
-                                    <th><%= t(".cat")%></th>
-                                    <th><%= t(".value")%></th>
-                                    <th>&nbsp;</th>
-                                </tr>
-                                <tr ng-repeat="finance in finances| orderBy: 'date' | limitTo: '5' track by $index">
-                                    <td>{{finance.date| date: 'mediumDate'}}</td>
-                                    <td>{{finance.name}}</td>
-                                    <td>{{finance.cat_name}}</td>
-                                    <td> {{finance.value| customCurrency : '€ '}}</td>
-                                    <td>
-                                        <div class="btn-group pull-right">
-                                            <button type="button" class="btn btn-default dropdown-toggle btn-xs" data-toggle="dropdown">
-                                                <span class="glyphicon glyphicon-pencil"></span>
-                                            </button>
-                                            <ul class="dropdown-menu">
-                                                <li>
-                                                    <a href="" ng-click="removeEntry(finance)"><span class="glyphicon glyphicon-trash"></span> remove</a>
-                                                </li>
-                                                <li>
-                                                    <a href="/#/finances_edit/{{finance.id}}"><span class="glyphicon glyphicon-pencil">edit</span>
-                                                    </a>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                    </td>
-                                </tr>
-                            </table>
-
-                            <div class="panel-footer announcement-bottom">
-
-                                <div class="text-right">
-                                    <a href="/#/finances_overview">Show All <i class="fa fa-arrow-circle-right"></i></a>
-                                </div>
-                            </div>
+                        <table class="table table-striped">
+                            <tr>
+                                <th><%= t(".date") %></th>
+                                <th><%= t(".name") %></th>
+                                <th class="hidden-xs"><%= t(".cat")%></th>
+                                <th class="text-right"><%= t(".value")%></th>
+                                <th>&nbsp;</th>
+                            </tr>
+                            <tr ng-repeat="finance in finances| orderBy: 'date' | limitTo: '5' track by $index">
+                                <td>{{finance.date| date: 'mediumDate'}}</td>
+                                <td>{{finance.name}}</td>
+                                <td class="hidden-xs">{{finance.cat_name}}</td>
+                                <td class="text-right">{{finance.value| customCurrency : '€ '}}</td>
+                                <td>
+                                    <div class="btn-group pull-right">
+                                        <button type="button" class="btn btn-default dropdown-toggle btn-xs" data-toggle="dropdown">
+                                            <span class="glyphicon glyphicon-pencil"></span>
+                                        </button>
+                                        <ul class="dropdown-menu">
+                                            <li>
+                                                <a href="" ng-click="removeEntry(finance)">
+                                                    <span class="glyphicon glyphicon-trash"></span> <%= t(".delete") %>
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a href="/#/finances_edit/{{finance.id}}">
+                                                    <span class="glyphicon glyphicon-pencil"></span> <%= t(".edit") %>
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                    <div class="panel-footer announcement-bottom">
+                        <div class="text-right">
+                            <a href="/#/finances_overview">
+                                <%= t(".show_all") %> <i class="fa fa-arrow-circle-right"></i>
+                            </a>
                         </div>
                     </div>
                 </div>
