@@ -15,8 +15,9 @@ class Billcategory < ActiveRecord::Base
   end
 
   def self.new_or_existing(cat_name,flat)
+    cat_name = "-" if cat_name.blank?
     cat = where(['name = ? and flat_id = ?', cat_name, flat.id]).first
-    if cat.nil? then Billcategory.new({name:if cat_name.blank? then "-" else cat_name end,flat_id: flat.id}) else cat end
+    if cat.nil? then Billcategory.new({name: cat_name ,flat_id: flat.id}) else cat end
   end
 
 end

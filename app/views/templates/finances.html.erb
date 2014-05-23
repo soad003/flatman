@@ -33,8 +33,8 @@
                     </div>
                     <div class="panel-footer">
                         <div class="row">
-                            <div class="col-md-3" ng-repeat="cat in chartData" title="{{cat.value | customCurrency : '€ '}}">
-                                <i class="fa fa-circle" style="color: {{cat.color}}" ></i> {{cat.cat_name}}
+                            <div class="col-md-4 col-sm-4" ng-repeat="cat in chartData" title="{{cat.value | customCurrency : '€ '}}">
+                                <i class="fa fa-circle" style="color: {{cat.color}}" ></i> {{cat.cat_name}}</br>({{cat.value | customCurrency : '€ '}})
                             </div>
                         </div>
                     </div>
