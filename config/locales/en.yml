@@ -286,7 +286,7 @@ en:
     finances:
       page_title                         : "Finances"
       page_header                        : "Finances"
-      add_fin                            : " Entry"
+      add_fin                            : "Bill"
       help_title                         : "Create a new expense"
       help_paragraph1                    : "Here you can enter expenses and check your balance"
       total                              : "Total: "

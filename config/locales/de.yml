@@ -285,7 +285,7 @@ de:
     finances:
       page_title                         : "Finanzen"
       page_header                        : "Finanzstatus"
-      add_fin                            : " Eintrag"
+      add_fin                            : "Rechnung"
       help_title                         : "Erstelle eine neue Ausgabe"
       help_paragraph1                    : "Hier behältst du den Überblick über deine Ausgaben und Schulden"
       total                              : "Gesamt: "
