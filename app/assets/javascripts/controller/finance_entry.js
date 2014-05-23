@@ -5,14 +5,15 @@ angular.module('flatman').controller("financeEntryCtrl", function($scope,$routeP
         $scope.finTmp=financesService.bill.get($scope.id);
         $scope.edit=true;
     }else{
-       $scope.finTmp={   text:$routeParams.list, value:"",
+       $scope.finTmp={   text:$routeParams.list,
+                         value:"",
                          date:new Date(),
                          user_id:"",
-                         cat_name:$routeParams.list, payer:""};
+                         cat_name:$routeParams.list,
+                         user_ids:[]};
     }
 
     $scope.mates = financesService.mates.get();
-
 
     $scope.process_entry=function(){
         if($scope.edit){

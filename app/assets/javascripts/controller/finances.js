@@ -29,7 +29,7 @@ angular.module('flatman').controller("financesCtrl", function($scope, financesSe
 	};
 
 	$scope.removeEntry=function(finance){
-		financesService.finance.destroy(finance.id, function(){
+		financesService.bill.destroy(finance.id, function(){
             $scope.finances = _($scope.finances).without(finance);
         });
 	};

@@ -91,6 +91,25 @@ en:
               blank                       : "Please enter the username of the receiver"
             text:
               blank                       : "Please enter a message to send"
+        bill:
+          attributes:
+            date:
+              blank                       : "Date must be provided."
+            value:
+              blank                       : "Price can't be blank."
+              not_a_number                : "Price must be a number."
+            text:
+              blank                       : "Please provide a name."
+            user:
+              blank                       : "Please choose who paid the bill."
+            users:
+              blank                       : "Please choose who have to pay this bill."
+              too_short                   : "Please choose who have to pay this bill."
+        billcategory:
+          attributes:
+            name:
+              blank                       : "Category name can't be blank."
+
     ressource:
       info_all                        : "Total"
       info_currentMonth               : "this month"

@@ -1,17 +1,29 @@
 class Bill < ActiveRecord::Base
 	has_and_belongs_to_many :users
 	belongs_to 				:billcategory
-	belongs_to 				:user 
-	
-  	validates :date, presence: true
-  	validates :value, presence: true
+	belongs_to 				:user
+
+  	validates :date,:text,:user, presence: true
+  	validates :value, numericality: true, presence: true
+  	validates :users, length: { minimum: 1 }
+  	validates_associated :billcategory, :message => nil
 
 	def self.destroy_with_user_constraint(id,user)
-		#entry = Bill.where(id: id, flat_id: user.flat.id)
-		#entry.destroy!
+		Bill.joins(:user).select('bills.*').where('bills.id=? and users.flat_id=?',id,user.flat_id).first.destroy!
 	end
-	
-	
+
+	def self.new_with_params(p, cat, flat)
+		Bill.new().tap { |b|
+			b.text = p[:text]
+			b.date = Date.parse(p[:date])
+			b.value = p[:value]
+			b.user_id = p[:user_id]
+			b.billcategory = cat
+			b.users = p[:user_ids].map {|id| User.find_with_flat_constraint(id,flat)}
+		}
+	end
+
+
 	def self.get_payees(bills, user)
 		returnList = []
 		bills.each do |b|

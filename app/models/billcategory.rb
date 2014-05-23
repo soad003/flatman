@@ -1,10 +1,7 @@
 class Billcategory < ActiveRecord::Base
 	belongs_to	:flat
 	has_many		:bills
-  #accepts_nested_attributes_for :billcategory
-
-
-
+  validates   :name, presence: true
 
 	def self.check_unique(billcat, category)
      id = 0;
@@ -17,13 +14,9 @@ class Billcategory < ActiveRecord::Base
       id
   end
 
- # def self.merge_value(bills, category)
-  #  returnList = []
-   # category.each do |c|
-    #  bills.each do |b|
-     #   if c.id == b.category_id
-
-
-  #end
+  def self.new_or_existing(cat_name,flat)
+    cat = where(['name = ? and flat_id = ?', cat_name, flat.id]).first
+    if cat.nil? then Billcategory.new({name:if cat_name.blank? then "-" else cat_name end,flat_id: flat.id}) else cat end
+  end
 
 end
