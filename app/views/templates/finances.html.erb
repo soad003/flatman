@@ -30,55 +30,13 @@
         <div class="row">
             <div class="col-md-6">
 
-
                 <div class="panel panel-default hidden-xs" ng-show="enoughEntries()">
                     <div class="panel-heading" ng-init="dataChart()">
-                        <center><%= t(".total") %>{{total()}} <i class="fa fa-eur"></i></center>
+                        <center><%= t(".total") %>{{total() | customCurrency : '€ '}}</center>
                     </div>
-
 
                     <center>
                         <canvas donutchart options="" data="chartData" width="500" height="300"></canvas>
-
-
-                        <!--CREATE DONUGHT-CHART
-                  <ui-chart="chartData" chart-options="chartOptions"></ui-chart>
-
-                    <script type="text/javascript">
-                        var colors = ["green", "black", "blue", "yellow", "red", "magenta", "purple"];
-
-                        var data =[
-                         {
-                           value: 5,
-                           color: colors[5]
-                         },
-                         {
-                           value:100,
-                           color:"#AF0ADC"
-                         },
-                         {
-                           value:43,
-                           color:"#11C2F2"
-                         },
-                         {
-                           value: 30,
-                           color:"#949FB1"
-                         },
-                         {
-                           value: 10,
-                           color:"#4D5360"
-                         }
-
-                       ];
-                       var ctx = document.getElementById("myChart").getContext("2d");
-
-                       new Chart(ctx).Doughnut(data,null);
-                       </script>
-
-                      <canvas id="myChart" width="400" height="400"></canvas>
-
-                        -->
-
                     </center>
                 </div>
 
@@ -91,7 +49,7 @@
                             <table class="table table-striped">
                                 <tr ng-repeat="category in AllCategories| limitTo: '5'">
                                     <td>{{category.cat_name}}</td>
-                                    <td>{{category.listValue}}</td>
+                                    <td>{{category.listValue | customCurrency : '€ '}}</td>
                                 </tr>
                             </table>
                         </div>
@@ -108,25 +66,17 @@
                         <div style="margin:auto; width:auto; padding:auto border: 1px solid black;">
                             <table class="table table-striped">
                                 <tr>
-                                    <th><%= t(".date") %>
-                                    </th>
-                                    <th>Name
-                                    </th>
-                                    <th><%= t(".cat")%>
-                                    </th>
-                                    <th><%= t(".value")%>
-                                    </th>
-                                    <th>
-                                    </th>
+                                    <th><%= t(".date") %></th>
+                                    <th>Name</th>
+                                    <th><%= t(".cat")%></th>
+                                    <th><%= t(".value")%></th>
+                                    <th>&nbsp;</th>
                                 </tr>
                                 <tr ng-repeat="finance in finances| orderBy: 'date' | limitTo: '5' track by $index">
-                                    <td>{{finance.date| date: 'mediumDate'}}
-                                    </td>
-                                    <td>{{finance.name}}
-                                    </td>
-                                    <td>{{finance.cat_name}}
-                                    <td>{{finance.value}}
-                                    </td>
+                                    <td>{{finance.date| date: 'mediumDate'}}</td>
+                                    <td>{{finance.name}}</td>
+                                    <td>{{finance.cat_name}}</td>
+                                    <td> {{finance.value| customCurrency : '€ '}}</td>
                                     <td>
                                         <div class="btn-group pull-right">
                                             <button type="button" class="btn btn-default dropdown-toggle btn-xs" data-toggle="dropdown">
