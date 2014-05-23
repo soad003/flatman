@@ -48,6 +48,7 @@ scope "(:locale)", locale: /en|de/ do
 
    resources :shoppinglist, only: [:index, :create, :destroy] do
       resources :shoppingitem, only: [:create, :update, :destroy]
+      delete '/delete_checked', to: :delete_checked
    end
 	 resources :resource, only: [:index, :create, :update, :destroy] do
       resources :resourceentry, only: [:create, :destroy]

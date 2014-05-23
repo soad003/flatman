@@ -343,6 +343,7 @@ en:
       help_paragraph2                    : "If you are done with shopping just click ... to enter your bill and you are done!"
       delete_list                        : "delete list"
       done                               : "enter payment"
+      delete_checked                     : "delete checked items"
     create_flat:
       subtitle                           : "Welcome to"
       title                              : "Flatman"

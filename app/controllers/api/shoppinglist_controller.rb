@@ -1,5 +1,5 @@
 class Api::ShoppinglistController < Api::RestController
-    around_filter :wrap_in_transaction, only: [:create,:destroy]
+    around_filter :wrap_in_transaction, only: [:create,:destroy, :delete_checked]
 
     def index
         @sl=current_user.flat.shoppinglists
@@ -16,6 +16,12 @@ class Api::ShoppinglistController < Api::RestController
     def destroy
         sl = Shoppinglist.find_list_with_user_constraint(params[:id], current_user)
         sl.destroy!
+        respond_with(nil)
+    end
+
+    def delete_checked
+        sl = Shoppinglist.find_list_with_user_constraint(params[:shoppinglist_id], current_user)
+        sl.shoppinglistitems.select {|x| x.checked}.each {|x| x.destroy!}
         respond_with(nil)
     end
 

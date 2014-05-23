@@ -340,8 +340,9 @@ de:
       help_title                         : "Alles was deine WG gerade so kaufen sollte ..."
       help_paragraph1                    : "Benutze das Textfeld oben rechts um neue listen zu erstellen... "
       help_paragraph2                    : "Wenn ein enkauf abgeschlossen ist einfach auf zahlung klicken und erledigt."
-      delete_list                        : "Löschen"
+      delete_list                        : "löschen"
       done                               : "Zahlung eingeben"
+      delete_checked                     : "lösche erledigte items"
     create_flat:
       subtitle                           : "Willkommen bei"
       title                              : "Flatman"

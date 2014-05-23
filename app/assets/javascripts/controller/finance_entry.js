@@ -1,6 +1,10 @@
 angular.module('flatman').controller("financeEntryCtrl", function($scope,$routeParams, financesService, flatService, Util){
     $scope.id = $routeParams.id;
 
+    financesService.category.get_all(function(data){
+         $scope.categories = _.uniq(_(data).pluck('cat_name'));
+    });
+
     if($scope.id){
         $scope.finTmp=financesService.bill.get($scope.id);
         $scope.mates = flatService.mates.get();
