@@ -6,7 +6,7 @@ angular.module('flatman').controller("flatSettingsCtrl",function($scope,flatServ
 
     $scope.update_flat=function(){
         $scope.set_location();
-        flatService.update({},$scope.flat);
+        flatService.flat.update({},$scope.flat);
         if(!Util.has_server_errors()) { $scope.content_form.$setPristine(); }
     };
 
@@ -54,7 +54,7 @@ angular.module('flatman').controller("flatSettingsCtrl",function($scope,flatServ
     };
 
 
-    $scope.flat=flatService.get(function(){
+    $scope.flat=flatService.flat.get(function(){
         $scope.set_location();
     });
 

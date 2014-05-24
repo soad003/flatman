@@ -21,6 +21,7 @@ angular.module('flatman').controller("resourceCtrl",function($scope, $filter, re
                                     });
     });
 
+
     $scope.formatNumber = function (number){
         return (locale != 'en')? number.toString().replace('.',','): number;
     };
@@ -152,7 +153,7 @@ angular.module('flatman').controller("resourceCtrl",function($scope, $filter, re
     };
 
     $scope.initChart=function(resource){
-        resource.chart = {
+       /* resource.chart = {
             "labels":[],
             "datasets":[
                 {
@@ -162,7 +163,21 @@ angular.module('flatman').controller("resourceCtrl",function($scope, $filter, re
                     "pointStrokeColor":"#fff",
                     "data":[]
                 }]
-            };
+            };*/
     };
 
 });
+
+/*$(window).resize(respondCanvas);
+    function respondCanvas() {
+       var width = jQuery("#statistic").width();
+       var height = jQuery("#statistic").height();
+       jQuery("#chart").attr('width', width);
+       jQuery("#chart").attr('height', height);
+       resources[0].chart = resources[0].chart;
+       //alert(width + " - " + height);
+        //Call a function to redraw other content (texts, images etc)
+        myNewChart = new Chart(ct).Bar(data, options);
+    }
+//Initial call 
+respondCanvas();*/

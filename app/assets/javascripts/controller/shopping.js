@@ -38,4 +38,15 @@ angular.module('flatman').controller("shoppingCtrl",function($scope,shoppingServ
         var colors=['success','info','warning','danger'];
         return colors[index%4];
     };
+
+    $scope.doneShopping=function(list){
+       Util.redirect_to.finances_done_shopping(list.name);
+    };
+
+    $scope.deleteChecked=function(list){
+        shoppingService.list.destroy_checked(list.id, function(data){
+                list.items= _(list.items).reject(function(i){ return i.checked});
+        });
+    };
+
 });

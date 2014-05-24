@@ -14,7 +14,7 @@ class TemplatesController < ProtectedController
   def finances
   end
 
-  def finances_new
+  def finance_entry
   end
 
   def finances_overview

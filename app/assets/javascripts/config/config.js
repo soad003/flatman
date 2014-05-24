@@ -1,6 +1,6 @@
 // Angular Config / Routes
 
-angular.module('flatman', ['ngRoute','ngResource','google-maps','angles','ui.bootstrap','ngLocale', 'ngTagsInput', 'number_localized'])
+angular.module('flatman', ['ngRoute','ngResource','google-maps','angles','ui.bootstrap','ngLocale', 'ngTagsInput', 'number_localized','checklist-model'])
         .config(function($httpProvider, $routeProvider){
 
   $httpProvider.defaults.headers.common = {'X-CSRF-Token': $("meta[name='csrf-token']").attr("content"),
@@ -59,12 +59,20 @@ angular.module('flatman', ['ngRoute','ngResource','google-maps','angles','ui.boo
         controller: 'flatSettingsCtrl'
       }).
       when('/finances_new', {
-        templateUrl: '/templates/finances_new',
-        controller: 'financesCtrl'
+        templateUrl: '/templates/finance_entry',
+        controller: 'financeEntryCtrl'
+      }).
+      when('/finances_edit/:id', {
+        templateUrl: '/templates/finance_entry',
+        controller: 'financeEntryCtrl'
+      }).
+      when('/finances_done_shopping/:list', {
+        templateUrl: '/templates/finance_entry',
+        controller: 'financeEntryCtrl'
       }).
       when('/finances_overview', {
         templateUrl: '/templates/finances_overview',
-        controller: 'financesCtrl'
+        controller: 'financesOverviewCtrl'
       }).
       when('/search/:term', {
         templateUrl: '/templates/search',

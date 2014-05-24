@@ -36,7 +36,11 @@ Flatman::Application.configure do
 
   config.action_mailer.raise_delivery_errors = true
   config.action_mailer.perform_deliveries = true
-  config.action_mailer.default_url_options = { :host => 'http://localhost:3000' }
+  config.action_mailer.default_url_options = {
+    :host => 'localhost',
+    :port => 3000,
+    :protocol => 'http'
+  }
   config.action_mailer.asset_host = 'http://localhost:3000'
   config.action_mailer.file_settings = {
       location: 'log/mails'
@@ -44,6 +48,7 @@ Flatman::Application.configure do
   config.action_mailer.default_options = {
     :from => 'info.flatman@gmx.net'
   }
+  config.assets.precompile += %w( vendor/angular-locale_de-de.js )
   #Mail.register_interceptor(DevelopmentMailInterceptor) if Rails.env.development?
 
 end

@@ -67,8 +67,8 @@
                                     <td class="visible-xs">{{entry.date| date : 'shortDate'}}</td>
                                     <td>{{formatNumber(entry.value)}} <span class="hidden-xs">{{resource.unit}}</span></td>
                                     <td class="hidden-xs"> {{formatNumber(entry.usage)}} {{resource.unit}} </td>
-                                    <td>
-                                        {{entry.costs| currency : '€ '}}
+                                    <td class="text-right">
+                                        {{entry.costs| customCurrency : '€ '}}
                                         <button class="btn btn-default btn-xs pull-right" ng-hide="entry.isFirst == true" ng-click="removeEntry(resource, entry)">
                                             <span class="glyphicon glyphicon-trash"></span>
                                         </button>
@@ -80,17 +80,15 @@
                     <div class="panel-footer announcement-bottom">
                         <form role="form" name="Itemform" ng-submit="addEntry(resource)">
                             <div class="input-group">
-                                <span class="input-group-addon">
+                                <span class="hidden-xs input-group-addon">
                                     <span class="glyphicon glyphicon-calendar"></span>
                                 </span>
-                                <input class="btn btn-default form-control visible-xs" type="text" show-button-bar="false" showWeeks="false" datepicker-popup="shortDate" show-weeks="false" ng-model="resource.date" ng-required="true" />
-                                <span class="input-group-btn" style="width:0px;"></span>
-                                
+                              
                                 <span class="input-group-btn hidden-xs" style="width:90px;">
-                                    <input class="btn btn-default form-control" type="text" show-button-bar="false" showWeeks="false" datepicker-popup="shortDate" show-weeks="false" ng-model="resource.date" ng-required="true" />
+                                    <input type="text" onfocus="blur();" class="btn btn-default form-control" show-button-bar="false" showWeeks="false" datepicker-popup="shortDate" show-weeks="false" ng-model="resource.date" ng-required="true" />
                                 </span>
 
-                                <input type="text" class="form-control"
+                                <input type="text" class="form-control" pattern="^[0-9\,.]*$"
                                        ng-model="resource.entryvalue"
                                        maxlength="30"
                                        placeholder="<%= t('.resourceValue') %>
@@ -119,15 +117,15 @@
                     </div>
 
                     <div class="btn-group pull-right">
-                        <input style="width:90px" class="btn btn-default" type="text" show-button-bar="false" ng-change="getChartData(resource)" show-weeks="false" datepicker-popup="shortDate" ng-model="resource.chartDateRange.startDate" date-disabled="disabled(date, mode)" ng-required="true"/>
-                        <input class="btn btn-default" type="text" style="width:90px" show-button-bar="false" ng-change="getChartData(resource)" datepicker-popup="shortDate" show-weeks="false" ng-model="resource.chartDateRange.endDate" date-disabled="disabled(date, mode)" ng-required="true" close-text="Close" />
+                        <input style="width:90px" class="btn btn-default" type="text" onfocus="blur();" show-button-bar="false" ng-change="getChartData(resource)" show-weeks="false" datepicker-popup="shortDate" ng-model="resource.chartDateRange.startDate" date-disabled="disabled(date, mode)" ng-required="true"/>
+                        <input class="btn btn-default" type="text" style="width:90px" onfocus="blur();" show-button-bar="false" ng-change="getChartData(resource)" datepicker-popup="shortDate" show-weeks="false" ng-model="resource.chartDateRange.endDate" date-disabled="disabled(date, mode)" ng-required="true" close-text="Close" />
                         <button ng-disabled="true" class="btn btn-default"><i class="glyphicon glyphicon-calendar"></i></button>
                     </div>
                 </div>
                 <div class="panel-body">
                     <div ng-show="resource.showChart">
                         <div ng-show="resource.enoughEntriesForChart">
-                            <canvas linechart options="resource.options" data="resource.chart" width="500" height="270"></canvas>
+                            <canvas linechart options="resource.options" data="resource.chart" width="523" height="260"></canvas>
                         </div>
                         <div class="col-md-offset-1" ng-hide="resource.enoughEntriesForChart">
                             <div > 

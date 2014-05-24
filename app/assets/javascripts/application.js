@@ -12,7 +12,13 @@
 //
 //= require jquery
 //= require jquery_ujs
-//= require bootstrap
+//= require bootstrap/modal
+//= require bootstrap/transition
+//= require bootstrap/dropdown
+//= require bootstrap/tooltip
+//= require bootstrap/alert
+//= require bootstrap/collapse
+//= require bootstrap/button
 //= require Chart
 //= require angular
 //= require underscore
@@ -25,6 +31,7 @@
 //= require_tree ./services
 //= require_tree ./controller
 //= require_tree ./directives
+//= require_tree ./filter
 //= require ./vendor/angles.js
 //= require bootbox.js
 //= require ./vendor/angular-google-maps.min.js
@@ -32,4 +39,3 @@
 //= require ./vendor/bootstrap-switch
 //= require ./vendor/scrollDown.js
 //= require ./vendor/ng-tags-input.js
-

@@ -23,10 +23,7 @@ Flatman::Application.configure do
   config.serve_static_assets = false
 
   # Compress JavaScripts and CSS.
-  #config.assets.js_compressor = Uglifier.new(:mangle => false)
-  #config.assets.enabled = false
-  #config.assets.debug = true
-  # config.assets.css_compressor = :sass
+  config.assets.js_compressor = Uglifier.new(:mangle => false)
 
   # Do not fallback to assets pipeline if a precompiled asset is missed.
   config.assets.compile = false
@@ -95,4 +92,8 @@ Flatman::Application.configure do
 
   # Use default logging formatter so that PID and timestamp are not suppressed.
   config.log_formatter = ::Logger::Formatter.new
+
+  config.force_ssl = true
+  config.assets.precompile += %w( vendor/angular-locale_de-de.js )
+
 end

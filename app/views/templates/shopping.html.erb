@@ -43,10 +43,15 @@
                       </button>
                       <ul class="dropdown-menu">
                         <li>
-                          <a href="" ng-click="removeList(list)"><span class="glyphicon glyphicon-trash"></span> <%= t(".delete_list") %></a>
+                          <a  href="" ng-click="doneShopping(list)">
+                            <span class="fa fa-credit-card"></span> <%= t(".done") %>
+                          </a>
                         </li>
                         <li>
-                          <a href=""><span class="fa fa-credit-card"></span> <%= t(".done") %></a>
+                          <a href="" ng-click="deleteChecked(list)"><i class="fa fa-eraser"></i> <%= t(".delete_checked") %></a>
+                        </li>
+                        <li>
+                          <a href="" ng-click="removeList(list)"><span class="glyphicon glyphicon-trash"></span> <%= t(".delete_list") %></a>
                         </li>
                       </ul>
                     </div>

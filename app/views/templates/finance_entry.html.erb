@@ -1,0 +1,89 @@
+  <div class="hidden-print">
+    <h1 ng-hide="edit" class="page-header"><%= t('.page_header_new') %></h1>
+    <h1 ng-show="edit" class="page-header"><%= t('.page_header_edit') %></h1>
+  </div>
+
+  <div class="row">
+    <div class="col-md-offset-3 col-md-6">
+      <form ng-submit="process_entry()">
+
+       <div class="form-group">
+          <label for="name">
+            <%= t('.name') %></label>
+          <div class="input-group">
+            <input autofocus="autofocus" id="name" ng-model="finTmp.text" placeholder="<%= t('.name_placeholder') %>" type="text"/>
+            <span class="input-group-addon">
+              <span class="glyphicon glyphicon-pencil"></span>
+            </span>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="value">
+            <%= t('.value') %></label>
+          <div class="input-group">
+            <input id="value" ng-model="finTmp.value" numberinput placeholder="<%= t('.value_placeholder') %>" type="text"/>
+            <span class="input-group-addon">
+              <span class="glyphicon glyphicon-euro"></span>
+            </span>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="date">
+            <%= t('.date') %></label>
+          <div class="input-group">
+            <input id="value" onfocus="blur();"
+              show-button-bar="false" showWeeks="false" datepicker-popup="shortDate"
+              is-open="opened" date-disabled="disabled(date, mode)" ng-required="true" close-text="close"
+              ng-model="finTmp.date" placeholder="<%= t('.date_placeholder') %>" type="text"/>
+            <span class="input-group-addon">
+              <span class="glyphicon glyphicon-calendar"></span>
+            </span>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="cat">
+            <%= t('.cat') %></label>
+          <div class="input-group">
+            <input id="value" ng-model="finTmp.cat_name"
+                    typeahead="category for category in categories | filter:$viewValue | limitTo:8"
+                    placeholder="<%= t('.cat_placeholder') %>" type="text"/>
+            <span class="input-group-addon">
+              <span class="glyphicon glyphicon-wrench"></span>
+            </span>
+          </div>
+        </div>
+
+        <div class="form-group">
+            <label for="Payer"><%= t('.payer') %></label>
+            <select class="form-control" ng-model="finTmp.user_id" ng-options="mate.id as mate.name for mate in mates"></select>
+        </div>
+
+        <div class="form-group">
+            <label for="who"><%= t('.bill_affects') %></label>
+              <div ng-repeat="mate in mates" class="checkbox">
+                <label>
+                  <input type="checkbox" checklist-model="finTmp.user_ids" checklist-value="mate.id"> {{mate.name}}
+                </label>
+              </div>
+        </div>
+
+        <div class="row">
+          <div class="col-md-3 col-xs-4">
+            <a href="/#/finances" class = "btn btn-sm btn-default">
+              <i class="fa fa-arrow-circle-o-left"></i> <%= t('.back') %>
+            </a>
+          </div>
+          <div class="col-md-3 col-md-offset-6 col-xs-4 col-xs-offset-4">
+            <button type="submit" class = "btn btn-sm btn-success pull-right">
+              <span class="glyphicon glyphicon-ok"></span> <%= t('.save') %>
+            </button>
+          </div>
+        </div>
+
+      </form>
+    </div>
+  </div>
+  <hr/>

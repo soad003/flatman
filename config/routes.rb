@@ -23,7 +23,7 @@ scope "(:locale)", locale: /en|de/ do
     get '/dashboard', to: :dashboard, as: 'dashboard_template'
     get '/create_flat', to: :create_flat
     get '/search', to: :search, as: 'search'
-    get '/finances_new', to: :finances_new, as: 'finances_new'
+    get '/finance_entry', to: :finance_entry, as: 'finance_entry'
     get '/finances_overview', to: :finances_overview, as: 'finances_overview'
     get '/create_message', to: :create_message, as: 'create_message'
   end
@@ -34,18 +34,23 @@ scope "(:locale)", locale: /en|de/ do
    resources :invite, only: [:create,:destroy]
    get '/search/:term' => 'search#search'
 
+   #Flat
    namespace :flat do
       get '/', to: :index
       put '/', to: :create
       post '/', to: :update
+      get '/mates', to: :flat_mates
    end
+
+   #user
    resources :user, only: [:index]
-   
-   resources :finance, only: [:index, :create, :update, :destroy]
+
+
    resources :shoppinglist, only: [:index, :create, :destroy] do
       resources :shoppingitem, only: [:create, :update, :destroy]
+      delete '/delete_checked', to: :delete_checked
    end
-	resources :resource, only: [:index, :create, :update, :destroy] do
+	 resources :resource, only: [:index, :create, :update, :destroy] do
       resources :resourceentry, only: [:create, :destroy]
    end
    get '/resource/:resource_id/resourceentry/:page' => 'resourceentry#page'
@@ -57,11 +62,15 @@ scope "(:locale)", locale: /en|de/ do
 
    #messages
    resources :message, only: [:index, :create, :update, :destroy]
-   
+
    get '/message/:mes_id/messages' => 'message#get_messages'
    get '/message/:mes_id/partner' => 'message#find_partner'
    get '/message/users' => 'message#get_users'
    get '/message/:mes_id/counter' => 'message#count_messages'
+   get '/message/counter' => 'message#count_messages'
+   get '/message/flatChat' => 'message#getFlatChat'
+   get '/message/flatChatMessages' => 'message#getFlatChatMessages'
+   get '/message/user' => 'message#getUserId'
 
    #sharing
    get '/shareditem/:id' => 'shareditem#get'
@@ -69,18 +78,19 @@ scope "(:locale)", locale: /en|de/ do
    resources :share, only: [:index, :create, :destroy]
    resources :shareditem, only: [:index, :create, :update, :upload]
    get '/tag/:term' => 'tag#find'
- 
-   
-   #finances
-   resources :finance, only: [:index, :create, :update, :destroy]
+
+
+    #finances
+   resources :finance, only: [:index]
+   resources :bill, only: [:create, :update,:show, :destroy]
    get '/finance/category' => 'finance#get_all'
-   get '/finance/chart' => 'finance#get_chart'
+   #get '/finance/chart' => 'finance#get_chart'
    get '/finance/debts' => 'finance#get_debts'
-   get '/finance/mates' =>  'finance#get_mates'
    get '/finance/month' => 'finance#get_month'
-   
-  
-   
+   get '/finance/financeTables' => 'finance#get_finance_tables'
+
+   post "/payment" => 'payment#create'
+   delete "/payment" => 'payment#delete'
   end
 
   # Authentication
