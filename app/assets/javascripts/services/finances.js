@@ -49,7 +49,11 @@ angular.module('flatman').factory("financesService", function($resource){
                 return financeService.get(null,succH, errH);
             },
             get_sum: function(finance){
-                return null;
+                var sum = 0;
+                _(finance).each (function (entry){
+                    sum += entry.value;
+                })
+                return sum;
             },
             get_tables: function (succH, errH){
                 return financeTables.get(null,succH, errH);
