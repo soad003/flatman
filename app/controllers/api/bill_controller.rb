@@ -1,5 +1,14 @@
 class Api::BillController <Api::RestController
     around_filter :wrap_in_transaction, only: [:create, :update, :destroy]
+
+    def index
+        bills_of_all_users=current_user.flat.users.collect(&:bills).flatten.sort {|x,y| -(x.date <=> y.date)}
+        from = Integer(params[:from] || 0)
+        to = Integer(params[:to] || bills_of_all_users.length) -from
+
+        @bills=bills_of_all_users.drop(from).take(to)
+    end
+
     def show
         @bill=Bill.find(params[:id])
     end

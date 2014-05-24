@@ -289,7 +289,7 @@ de:
       help_title                         : "Erstelle eine neue Ausgabe"
       help_paragraph1                    : "Hier behältst du den Überblick über deine Ausgaben und Schulden"
       total                              : "Gesamt: "
-      spendings                          : "Ausgaben"
+      spendings                          : "letzten 5 Ausgaben"
       categories                         : "Kategorien"
       debts                              : "Guthaben/Schulden"
       date                               : "Datum"

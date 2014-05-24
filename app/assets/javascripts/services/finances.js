@@ -1,36 +1,15 @@
 angular.module('flatman').factory("financesService", function($resource){
-	var financeService = $resource('/api/finance/:id',{},
-                        {
-							'get': {method: "GET", isArray: true}
-                        });
     var billService = $resource('/api/bill/:id',{},
                         {
                             'create': {method: "POST"},
                             'get': {method: "GET"},
+                            'get_range': {method: "GET", isArray:true},
                             'destroy': {method:"DELETE"},
                             'update': {method:"PUT"}
                         });
     var ctgService = $resource('api/finance/category',{},
                         {
                             'get_all': {method: "GET", isArray:true}
-                        });
-
-    var chartService    = $resource('/api/finance/chart',{},
-                        {
-                            'get': {method: "GET", isArray:true}
-
-                        });
-
-    var debtService     = $resource('api/finance/debts',{},
-                        {
-                            'get': {method: "GET", isArray:true},
-                            'create_debt': {method:"POST"},
-                            'destroy': {method:"DELETE"}
-                        });
-
-    var monthService    = $resource('api/finance/month', {},
-                        {
-                            'get': {method: "GET"}
                         });
 
     var financeTables = $resource('/api/finance/financeTables',{},
@@ -45,9 +24,6 @@ angular.module('flatman').factory("financesService", function($resource){
 
 	return {
         finance: {
-            get_all: function(succH, errH){
-                return financeService.get(null,succH, errH);
-            },
             get_sum: function(finance){
                 var sum = 0;
                 _(finance).each (function (entry){
@@ -63,6 +39,9 @@ angular.module('flatman').factory("financesService", function($resource){
             get: function(id, succH, errH){
                 return billService.get({id: id},succH,errH);
             },
+            get_range: function(from,to, succH, errH){
+                return billService.get_range({from: from, to: to},succH,errH);
+            },
             create: function(finance,succH,errH) {
                 billService.create(finance,succH,errH);
             },
@@ -73,30 +52,9 @@ angular.module('flatman').factory("financesService", function($resource){
                 billService.update({id: finance.id},finance,succH,errH);
             }
         },
-        chart:{
-            get: function(succH, errH){
-                return chartService.get(null,succH, errH);
-            }
-        },
         category:{
             get_all: function(succH, errH){
                 return ctgService.get_all(null, succH, errH);
-            }
-        },
-        debts:{
-            get: function(succH, errH){
-                return debtService.get(null,succH, errH);
-            },
-            create_debt: function(){
-
-            },
-            pay_debt: function(debt, succH, errH){
-                debtService.destroy({id: debt}, succH, errH);
-            }
-        },
-        month:{
-            get: function(month_from, month_to, succH, errH){
-                return monthService.get(month_from, month_to, succH, errH);
             }
         },
         payment: {

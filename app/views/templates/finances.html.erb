@@ -55,7 +55,7 @@
                                 <th class="text-right"><%= t(".value")%></th>
                                 <th>&nbsp;</th>
                             </tr>
-                            <tr ng-repeat="finance in finances| orderBy: 'date' | limitTo: '5' track by $index">
+                            <tr ng-repeat="finance in finances track by $index">
                                 <td>{{finance.date| date: 'shortDate'}}</td>
                                 <td>{{finance.name}}</td>
                                 <td class="hidden-xs">{{finance.cat_name}}</td>

@@ -25,40 +25,57 @@
 
 <div class="row">
 	<table class="table table-striped">
-		<tr>
-			<th><%= t(".date") %></th>
-			<th><%= t(".name") %></th>
-			<th><%= t(".category") %></th>
-			<th class="text-right"><%= t(".value") %></th>
-      <th>&nbsp;</th>
-		</tr>
-
-		<tr ng-repeat="finance in finances | orderBy: 'date' track by $index" class ="">
-			<td>{{finance.date | date : 'mediumDate'}}</td>
-			<td>{{finance.name}}</th>
-			<td>{{finance.cat_name}}</td>
-			<td class="text-right">{{finance.value | customCurrency : '€ '}}</td>
-      <td>
-        <div class="btn-group pull-right">
-          <button type="button" class="btn btn-default dropdown-toggle btn-xs" data-toggle="dropdown">
-           <span class="glyphicon glyphicon-pencil"></span>
-          </button>
-          <ul class="dropdown-menu">
-            <li>
-                <a href="/#/finances_edit/{{finance.id}}">
-                    <span class="glyphicon glyphicon-pencil"></span> <%= t(".edit") %>
-                </a>
-            </li>
-            <li>
-                <a href="" ng-click="removeEntry(finance)">
-                    <span class="glyphicon glyphicon-trash"></span> <%= t(".delete") %>
-                </a>
-            </li>
-          </ul>
-        </div>
-      </td>
-		</tr>
+		<thead>
+      <tr>
+  			<th><%= t(".date") %></th>
+  			<th><%= t(".name") %></th>
+  			<th><%= t(".category") %></th>
+  			<th class="text-right"><%= t(".value") %></th>
+        <th>&nbsp;</th>
+      </tr>
+		</thead>
+    <tbody>
+      <tr ng-repeat="finance in finances track by $index" class ="">
+        <td>{{finance.date | date : 'mediumDate'}}</td>
+        <td>{{finance.name}}</th>
+        <td>{{finance.cat_name}}</td>
+        <td class="text-right">{{finance.value | customCurrency : '€ '}}</td>
+        <td>
+          <div class="btn-group pull-right">
+            <button type="button" class="btn btn-default dropdown-toggle btn-xs" data-toggle="dropdown">
+             <span class="glyphicon glyphicon-pencil"></span>
+            </button>
+            <ul class="dropdown-menu">
+              <li>
+                  <a href="/#/finances_edit/{{finance.id}}">
+                      <span class="glyphicon glyphicon-pencil"></span> <%= t(".edit") %>
+                  </a>
+              </li>
+              <li>
+                  <a href="" ng-click="removeEntry(finance)">
+                      <span class="glyphicon glyphicon-trash"></span> <%= t(".delete") %>
+                  </a>
+              </li>
+            </ul>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+    <tfoot>
+      <tr>
+        <td colspan="5">
+            <ul class="pagination pagination-sm pull-right">
+                <li><a  href="">&laquo;</a></li>
+                <li><a href="">1</a></li>
+                <li><a href="">2</a></li>
+                <li><a href="">3</a></li>
+                <li><a href="">&raquo;</a></li>
+            </ul>
+        </td>
+      </tr>
+    </tfoot>
 	</table>
+
 </div>
 
 <div class="row">

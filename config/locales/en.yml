@@ -290,7 +290,7 @@ en:
       help_title                         : "Create a new expense"
       help_paragraph1                    : "Here you can enter expenses and check your balance"
       total                              : "Total: "
-      spendings                          : "Spendings"
+      spendings                          : "last 5 bills"
       categories                         : "Categories"
       debts                              : "Debts/Balance"
       date                               : "date"
