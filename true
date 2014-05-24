@@ -1,2 +1,0 @@
-      invoke  active_record
-      create    db/migrate/20140517105401_add_readers_to_messages.rb
