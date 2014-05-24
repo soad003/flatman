@@ -14,6 +14,10 @@ class Bill < ActiveRecord::Base
 		b.destroy!
 	end
 
+	def self.find_bill_with_user_constraint(id)
+		Bill.where(:id => id).first
+	end
+	
 	def self.new_with_params(p, cat, flat)
 		Bill.new().tap { |b|
 			b.text = p[:text]

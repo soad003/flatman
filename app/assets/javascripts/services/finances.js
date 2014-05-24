@@ -8,7 +8,7 @@ angular.module('flatman').factory("financesService", function($resource){
                             'create': {method: "POST"},
                             'get': {method: "GET"},
                             'destroy': {method:"DELETE"},
-                            'update': {method:"POST"}
+                            'update': {method:"PUT"}
                         });
     var ctgService = $resource('api/finance/category',{},
                         {

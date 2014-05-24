@@ -12,7 +12,10 @@ class Api::BillController <Api::RestController
     end
 
     def update
-
+        f = Bill.find_bill_with_user_constraint(params[:id])
+        f.update_attributes!(bill_params)
+        f.save!
+        respond_with(nil)
     end
 
     def destroy
@@ -24,5 +27,11 @@ class Api::BillController <Api::RestController
     def create_params
       params[:user_ids] ||= []
       params.permit(:text, :value,:user_id, :date, :cat_name, user_ids: [])
+    end
+
+    private
+    def bill_params
+      params[:user_ids] ||= []
+      params.permit(:text, :value,:user_id, :date, user_ids: [])
     end
 end

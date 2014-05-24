@@ -9,8 +9,8 @@ angular.module('flatman').controller("dashboardCtrl",
 		placement : "bottom"
 	});
 
-        /*$scope.get_you_owe=function(){ return financesService.debts.get_sum();
-        };*/
+    $scope.get_you_owe=function(){ return -300;
+        };
 
 	//sharing
 	$scope.shareditems = shareService.items.get();

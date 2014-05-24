@@ -24,6 +24,7 @@ angular.module('flatman').controller("financeEntryCtrl", function($scope,$routeP
     }
 
      $scope.process_entry=function(){
+        alert("info");
         if($scope.edit){
             financesService.bill.update($scope.finTmp, function(data){
                 Util.redirect_to.finances();

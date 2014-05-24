@@ -10,7 +10,7 @@ class Api::FinanceController <Api::RestController
 
     #change all to user_id
     def get_all
-        @catName=Billcategory.all         #change all
+        @catName=Billcategory.where(:flat_id => current_user.flat_id)         #change all
         billName = []
         bil=Bill.where(:user_id => current_user.id)                      #change all
         bil.each do |b|
