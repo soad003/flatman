@@ -80,7 +80,7 @@ scope "(:locale)", locale: /en|de/ do
    get '/tag/:term' => 'tag#find'
 
 
-   #finances
+    #finances
    resources :finance, only: [:index]
    resources :bill, only: [:create, :update,:show, :destroy]
    get '/finance/category' => 'finance#get_all'
@@ -91,10 +91,6 @@ scope "(:locale)", locale: /en|de/ do
 
    post "/payment" => 'payment#create'
    delete "/payment" => 'payment#delete'
-
-   post '/upload' => 'upload#create'
-   get '/upload' => 'upload#new'
-
   end
 
   # Authentication

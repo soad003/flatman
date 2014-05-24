@@ -38,5 +38,4 @@
 //= require magnific-popup
 //= require ./vendor/bootstrap-switch
 //= require ./vendor/scrollDown.js
-//= require bootstrap-tagsinput
-//= require bootstrap-tagsinput-angular
+//= require ./vendor/ng-tags-input.js

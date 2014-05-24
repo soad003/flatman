@@ -1,30 +1,9 @@
 /*global btoa:false */
 
 angular.module('flatman').controller("sharedItemCtrl", function($scope, $routeParams, $location, shareService, Util, tagService) {
-	$scope.item = shareService.item.get($routeParams.itemid);
-
-
-	//warum kennt er das hier nicht?
-	//weil tags nicht bekannt, wird es im shareditem_controller aufbereitet.
-	console.log($scope.item.tags);
-	
-	console.log($scope.item);
-
-    //aus der konsole den wert für scope.item.tags kopiert.
-    $scope.copied = [{"value":0,"text":"adfasdf"}];
-    
+	$scope.item = shareService.item.get($routeParams.itemid, function(){
 		
-	
-	/*fehler: undefinied is not a function? 
-	  kennt er $scope.item.tags nicht? warum?
-	  oder mag er nicht, weil es ein anderes format ist?
-	 * */
-	
-
-
-
-	//fetch the data
-	$scope.openFileWindow = function() {
+		$scope.openFileWindow = function() {
 		angular.element(document.querySelector('#fileUpload')).trigger('click');
 	};
 
@@ -62,6 +41,19 @@ angular.module('flatman').controller("sharedItemCtrl", function($scope, $routePa
 		}, function(error) {
 		});
 	};
+		
+	    
+	   
+	});
+	
+
+	
+	
+	
+	
+	
+	//fetch the data
+	
 	
 	
 	

@@ -3,19 +3,19 @@ class Api::ShareditemController < Api::RestController
   
   def get
     item=Shareditem.find(item_params[:id])
-    if item 
-      item.tags = item.tags
+    
+    if item.tags
+      item = Shareditem.find(item_params[:id])
       a = item.tags.split(",")
       b = a.collect{|x| x.gsub(/\s+/, "")}
-      c = b.map.with_index { |v, i| {:value => i, :text => v} }
-      d = c.to_json
-      item.tags = d
-     
-      respond_with(item)
-    else
-       respond_with_errors([t('.no_item_found')])
+      c = b.map { |v| {:text => v} }
+      item.tags = c
     end
+    
+    respond_with(item)
   end
+  
+  
   
   def removeImage
     item=Shareditem.find(item_params[:id])
@@ -27,9 +27,10 @@ class Api::ShareditemController < Api::RestController
   def to_json(*a)
       {"text" => @items}.to_json(*a)
   end 
+  
   def update
     item = Shareditem.find(item_params[:id])
-
+    
     if !params[:imagePath]
       @up[:image] = nil
       item.update!(@up)
@@ -50,6 +51,16 @@ class Api::ShareditemController < Api::RestController
           item.update!(@up)  
       else 
          item.update!(params_no_image)  
+      
+      #convert json object to string
+      if !params[:tags].instance_of?(String) && params[:tags]
+        taggis = ""
+        params[:tags].each do |tag|
+         taggis = taggis + tag[:text] + ", "
+        end
+        item.tags = taggis[0..-3]
+        item.save
+      end
     end
     
 
