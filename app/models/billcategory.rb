@@ -1,7 +1,7 @@
 class Billcategory < ActiveRecord::Base
 	belongs_to	:flat
 	has_many		:bills
-  validates   :name, presence: true
+  validates   :name, :flat_id, presence: true
 
 	def self.check_unique(billcat, category)
      id = 0;
