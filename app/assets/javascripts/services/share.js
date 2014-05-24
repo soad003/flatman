@@ -12,6 +12,7 @@ angular.module('flatman').factory("shareService", function($resource) {
 		'upload' : {
 			method : "PUT"
 		}
+		
 	});
 
 	var shareService = $resource('/api/share/:id', {
@@ -53,6 +54,7 @@ angular.module('flatman').factory("shareService", function($resource) {
 					id : item.id
 				}, item, succH, errH);
 			}
+			
 		},
 
 		//overview
