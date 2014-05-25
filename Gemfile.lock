@@ -34,8 +34,6 @@ GEM
     bootbox-rails (0.3.0)
     bootstrap-sass (3.1.1.0)
       sass (~> 3.2)
-    bootstrap-tagsinput-rails (0.3.2.0)
-      railties (>= 3.1)
     builder (3.1.4)
     capistrano (3.2.0)
       i18n
@@ -57,6 +55,7 @@ GEM
       multipart-post (>= 1.2, < 3)
     font-awesome-rails (4.0.3.1)
       railties (>= 3.2, < 5.0)
+    geocoder (1.2.1)
     hashie (2.1.1)
     hike (1.2.3)
     http_accept_language (2.0.1)
@@ -200,11 +199,11 @@ DEPENDENCIES
   assert_json
   bootbox-rails
   bootstrap-sass (~> 3.1.1)
-  bootstrap-tagsinput-rails
   capistrano
   chart-js-rails
   exception_notification
   font-awesome-rails
+  geocoder
   http_accept_language
   jbuilder (~> 1.2)
   jquery-rails

@@ -269,6 +269,7 @@ en:
       no_items_found                     : "no items found for your query..."
       borrow_heading                     : "borrow..."
       send_request                       : "send borrow request"
+      km_away                            : "km away"
     flat_settings:
       page_header                        : "Your Flat"
       city                               : "city"
