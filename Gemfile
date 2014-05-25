@@ -96,10 +96,13 @@ gem 'capistrano', group: :development
 
 gem 'netrc'
 
-gem 'bootstrap-tagsinput-rails'
+
 gem 'magnific-popup-rails'
 gem 'less-rails'
 gem 'bootbox-rails'
 gem 'paperclip'
+
+#file storage in amazon cloud
+gem 'aws-sdk'
 # Use debugger
 # gem 'debugger', group: [:development, :test]

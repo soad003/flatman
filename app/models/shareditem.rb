@@ -24,6 +24,8 @@ class Shareditem < ActiveRecord::Base
     }
   end
 
+
+
   def self.which_contain(query)
       query="%#{query}%"
       where("(name like ? or tags like ?)", query, query)

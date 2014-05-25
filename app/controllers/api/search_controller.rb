@@ -1,7 +1,8 @@
 class Api::SearchController < Api::RestController
   def search
-    items=Shareditem.which_contain(s_params[:term])
-
+    
+    ownflat = current_user.flat
+    items = Shareditem.which_contain(s_params[:term]).where(ownflat[:city])
     respond_with({items:items})
   end
 
