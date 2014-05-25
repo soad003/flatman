@@ -103,6 +103,8 @@ gem 'bootbox-rails'
 gem 'paperclip'
 
 #file storage in amazon cloud
-gem 'aws-sdk'
+#gem 'aws-sdk'
+
+gem 'geocoder'
 # Use debugger
 # gem 'debugger', group: [:development, :test]

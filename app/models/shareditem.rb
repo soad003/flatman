@@ -28,7 +28,15 @@ class Shareditem < ActiveRecord::Base
 
   def self.which_contain(query)
       query="%#{query}%"
-      where("(name like ? or tags like ?)", query, query)
+      where("(shareditems.name like ? or shareditems.tags like ?) and shareditems.hidden = false", query, query)
   end
-
+  
+  def self.from_city(zip, city) 
+    Shareditem.joins(:flat).where('flats.city like ? or zip = ?', city, zip)
+  end
+  
+  def self.get_flat
+    return flat
+  end
+  
 end
