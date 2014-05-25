@@ -98,7 +98,7 @@
                     <div class="panel-body">
                         <div class="row">
                             <div class="col-md-12">
-                                <div class="panel-group" id="accordion">
+                                <div class="panel-group row" id="accordion">
                                     <div ng-repeat="finance_member in financeTables track by $index" class="panel panel-default">
                                         <div class="panel-heading"  data-toggle="collapse" data-parent="#accordion" data-target="#collapse{{$index}}">
                                             <div class="row panel-title" style="cursor: pointer">
@@ -129,7 +129,7 @@
                                         <div id="collapse{{$index}}" class="panel-collapse collapse">
                                             <div class="panel-body row">
                                                 <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-                                                    <div class="adv-table editable-table">
+                                                    <div class="row adv-table editable-table">
                                                         <div ng-show="{{finance_member.entries.length == 0}}"> 
                                                             <%= t('.no_entries') %>
                                                         </div>
