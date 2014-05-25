@@ -99,7 +99,7 @@ angular.module('flatman').controller("financesCtrl", function($scope, financesSe
 
     $scope.setEntries=function(member){
         financesService.finance.get_table(member.id, member.page, function (data){
-        	member.entries = data.entries;}, function () {});
+        member.entries = data.entries;}, function () {});
     };
 
     $scope.changePage=function(member, value){
