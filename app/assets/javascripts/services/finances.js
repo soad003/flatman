@@ -12,11 +12,15 @@ angular.module('flatman').factory("financesService", function($resource){
                             'get_all': {method: "GET", isArray:true}
                         });
 
-    var financeTables = $resource('/api/finance/financeTables',{},
+    var financeTables = $resource('/api/finance/financeTables/:id/:page',{},
                         {
                             'get': {method: "GET", isArray:true}
                         });
-    var paymentService = $resource('/api/payment/:id',{},
+    var financeTable = $resource('/api/finance/financeTables/:id/:page',{},
+                        {
+                            'get': {method: "GET"}
+                        });
+    var paymentService = $resource('/api/payment/:id/:member_id',{},
                         {
                             'create': {method: "POST"},
                             'destroy': {method: "DELETE"}
@@ -33,6 +37,9 @@ angular.module('flatman').factory("financesService", function($resource){
             },
             get_tables: function (succH, errH){
                 return financeTables.get(null,succH, errH);
+            },
+            get_table: function (member_id, page, succH, errH){
+                return financeTable.get({id: member_id, page: page},succH, errH);
             }
         },
         bill: {
@@ -61,8 +68,8 @@ angular.module('flatman').factory("financesService", function($resource){
             create: function(payer_id, date, value ,succH,errH) {
                 paymentService.create(null,{payer_id: payer_id, date: date, value: value}, succH,errH);
             },
-            destroy: function(payment_id, succH,errH){
-                paymentService.destroy({id: payment_id},succH,errH);
+            destroy: function(payment_id, member_id, page, succH,errH){
+                paymentService.destroy({id: payment_id, member_id: member_id, page: page},succH,errH);
             }
         }
     };

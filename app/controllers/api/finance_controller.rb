@@ -6,6 +6,10 @@ class Api::FinanceController <Api::RestController
     end
 
     def get_finance_tables
-      @userTables = Finance.getUserTables(current_user)
+      @userTables = Finance.get_user_tables(current_user)
+    end
+
+    def get_finance_table
+    	@userTable = Finance.get_user_table(current_user, User.find(params[:member_id]), params[:page] )
     end
 end

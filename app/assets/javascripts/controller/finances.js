@@ -42,16 +42,80 @@ angular.module('flatman').controller("financesCtrl", function($scope, financesSe
 	};
 
 	$scope.setFinanceTables = function (){
+		var i = 0;
 		$scope.financeTables = financesService.finance.get_tables(function (data){
 			_.each($scope.financeTables, function(table){
                                        table.date = new Date();
+                                       table.index = i;
+                                       i++;
+                                       table.page = 1;
             });
 		}, function(){});
 	};
 	$scope.setFinanceTables();
 
-	$scope.addPayment = function (finance_member){
-		financesService.payment.create(finance_member.id, finance_member.date, finance_member.entryvalue ,function(data){},function(data){});
-		$scope.setFinanceTables();
+	
+
+	$scope.getAbsolutValue = function (value){
+		if (value < 0){
+			return value *-1;
+		}
+		return value;
 	};
+
+	$scope.removePayment = function (payment, member){
+		if (member.entryLength == 6){
+			member.page = 1;
+		}
+		financesService.payment.destroy(payment.id, member.id, member.page, function (data){
+			$scope.financeTables[member.index].value = data.value;
+			$scope.financeTables[member.index].entries = data.entries;
+			$scope.financeTables[member.index].entryLength = data.entryLength;
+		});
+	};
+
+	$scope.getRange=function (member){
+        var pages = $scope.getPages(member);
+        if (pages <= 5){
+            return _.range(1, pages+1);
+        }else{
+            if (member.page <= 3){
+                return _.range(1, 6);
+            } else if (member.page >= (pages-2)){
+                return _.range(pages-4, pages+1);
+            }
+            return _.range((member.page-2), (member.page+3));
+        }
+    };
+
+    $scope.setEntriesForPage=function (i, member){
+        member.page = i;
+        $scope.setEntries(member);
+    };
+
+    $scope.getPages = function (member){
+        return Math.ceil(member.entryLength/5);
+    };
+
+    $scope.setEntries=function(member){
+        financesService.finance.get_table(member.id, member.page, function (data){
+        	member.entries = data.entries;}, function () {});
+    };
+
+    $scope.changePage=function(member, value){
+        var pages = $scope.getPages(member);
+        var changeflag = true;
+        member.page += value;
+        if (member.page > pages){
+            member.page = pages;
+            changeflag =false;
+        }
+        if(member.page < 1){
+            member.page = 1;
+            changeflag = false;
+        }
+        if (changeflag){
+            $scope.setEntries(member);
+        }
+    };
 });
