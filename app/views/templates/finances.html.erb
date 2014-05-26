@@ -120,7 +120,7 @@
                                                         <span ng-class="{'text-success':finance_member.value >
                                                             0, 'text-danger': finance_member.value
                                                             < 0}">
-                                                                {{getAbsolutValue(finance_member.value)| customCurrency : '€ '}}
+                                                                {{math.abs(finance_member.value) | customCurrency : '€ '}}
                                                         </span>
                                                     </span>
 

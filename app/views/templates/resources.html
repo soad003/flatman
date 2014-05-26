@@ -67,8 +67,8 @@
                                     <td class="visible-xs">{{entry.date| date : 'shortDate'}}</td>
                                     <td>{{formatNumber(entry.value)}} <span class="hidden-xs">{{resource.unit}}</span></td>
                                     <td class="hidden-xs"> {{formatNumber(entry.usage)}} {{resource.unit}} </td>
-                                    <td class="text-right">
-                                        {{entry.costs| customCurrency : '€ '}}
+                                    <td>
+                                        {{entry.costs| currency : '€ '}}
                                         <button class="btn btn-default btn-xs pull-right" ng-hide="entry.isFirst == true" ng-click="removeEntry(resource, entry)">
                                             <span class="glyphicon glyphicon-trash"></span>
                                         </button>

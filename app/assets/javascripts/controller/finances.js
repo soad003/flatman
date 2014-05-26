@@ -31,6 +31,8 @@ angular.module('flatman').controller("financesCtrl", function($scope, financesSe
 		}, function(){});
 	};
 
+
+	$scope.math = Math;
 	$scope.getAbsolutValue = function (value){
 		if (value < 0){
 			return value *-1;

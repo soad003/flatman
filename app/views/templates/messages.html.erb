@@ -25,9 +25,6 @@
         <div class="panel panel-primary" ng-show="getFlatUnreadCounter() > 0">
           <div class="panel-heading">
             <div class="btn-group pull-right">
-              <button type="button" class="btn btn-default btn-xs" ng-click="removeFlatChat('<%= t('.questionDeleteChat') %>')">
-                <span class="glyphicon glyphicon-trash"></span>
-              </button>
               <button type="button" class="btn btn-default btn-xs">
                 <span class="badge" style="background-color:CornflowerBlue">{{getFlatUnreadCounter()}}</span>
               </button>
@@ -50,9 +47,6 @@
         <div class="panel panel-primary" ng-show="getFlatUnreadCounter() < 1">
           <div class="list-group-item">
             <div class="btn-group pull-right">
-              <button type="button" class="btn btn-default btn-xs" ng-click="removeFlatChat('<%= t('.questionDeleteChat') %>')">
-                <span class="glyphicon glyphicon-trash"></span>
-              </button>
               <button type="button" class="btn btn-default btn-xs">
                 <span class="badge" style="background-color:CornflowerBlue">{{getFlatUnreadCounter()}}</span>
               </button>
