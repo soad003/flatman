@@ -74,7 +74,7 @@ angular.module('flatman').factory("financesService", function($resource){
                                     .value();
             },
             get_category_names: function(categories){
-                return _.uniq(_(data).pluck('cat_name'));
+                return _.uniq(_(categories).pluck('cat_name'));
             }
         },
         payment: {
