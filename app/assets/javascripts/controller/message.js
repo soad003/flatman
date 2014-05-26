@@ -42,7 +42,7 @@ angular.module('flatman').controller("messageCtrl", function($scope, $route, $ti
         }
     });
 
-    $scope.newMess = {sender_id: "", receiver_id: "", text: "", header: "", read: false, readers: []};
+    $scope.newMess = {sender_id: "", receiver_id: "", text: "", header: "", read: false, readers: [], deleted: [] };
 
     $scope.getMessages = function (chat, index){
         $scope.chatView = false;

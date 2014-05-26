@@ -3,13 +3,19 @@ class Message < ActiveRecord::Base
 	belongs_to  	:receiver, :class_name => 'User'
     validates       :receiver_id, :text, presence: true
 
-	def self.find_messages(mesId)
+	def self.find_messages(mesId, current_user)
         user = Message.find(mesId).sender_id
         user2 = Message.find(mesId).receiver_id
-		mesL = Message.where(sender_id: user, receiver_id: user2)
-        mesL2 = Message.where(receiver_id: user, sender_id: user2)
+        mesL = Message.where("sender_id = ? AND receiver_id = ?", user, user2)
+        mesL2 = Message.where("sender_id = ? AND receiver_id = ?", user2, user)
         messList = mesL+mesL2
-        messList.sort! { |a,b| a.created_at <=> b.created_at }
+        retList = Array.new
+        messList.each do |mes|
+            if !mes.deleted.include?(current_user.id)
+                retList << mes
+            end
+        end
+        retList.sort! { |a,b| a.created_at <=> b.created_at }
     end
 
     def self.find_partner(mesId, current_user)
@@ -30,12 +36,19 @@ class Message < ActiveRecord::Base
         # all messages with me as receiver
        	mesL2 = Message.where("receiver_id = ? AND header != ?", user.id, header)
         messList = mesL.clone+mesL2.clone
+        helpList = Array.new
+        
+        messList.each do |mes| 
+            if !mes.deleted.include?(user.id)
+                helpList << mes
+            end
+        end
         # sort by newest
-        messList.sort! { |a,b| b.created_at <=> a.created_at }
+        helpList.sort! { |a,b| b.created_at <=> a.created_at }
         # create array with sender, receiver pair
         returnList = Array.new
         pairs = Array.new
-        messList.each do |mes|
+        helpList.each do |mes|
             if !(pairs.include?([mes.receiver_id, mes.sender_id]))
                     newpair = Array.new
                     newpair[0] = mes.sender_id
@@ -48,7 +61,7 @@ class Message < ActiveRecord::Base
             end
         end
         # remove old messages
-        messList.each do |mes|
+        helpList.each do |mes|
             if pairs.include?([mes.receiver_id, mes.sender_id])
                     returnList << mes
                     pairs.delete([mes.receiver_id, mes.sender_id])

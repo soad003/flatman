@@ -11,7 +11,10 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140517110858) do
+ActiveRecord::Schema.define(version: 20140526051516) do
+
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
 
   create_table "billcategories", force: true do |t|
     t.integer  "flat_id"
@@ -65,6 +68,7 @@ ActiveRecord::Schema.define(version: 20140517110858) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "readers",     default: [], array: true
+    t.integer  "deleted",     default: [], array: true
   end
 
   create_table "payments", force: true do |t|
@@ -129,16 +133,6 @@ ActiveRecord::Schema.define(version: 20140517110858) do
     t.integer  "flat_id"
     t.datetime "created_at"
     t.datetime "updated_at"
-  end
-
-  create_table "uploads", force: true do |t|
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.integer  "shareditem_id"
-    t.string   "file_file_name"
-    t.string   "file_content_type"
-    t.integer  "file_file_size"
-    t.datetime "file_updated_at"
   end
 
   create_table "users", force: true do |t|

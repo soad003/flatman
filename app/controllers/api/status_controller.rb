@@ -7,7 +7,7 @@ class Api::StatusController < Api::RestController
         messList = []
         lastMessOfeachChat = []
         chatList.each do |chat|
-        	messList = Message.find_messages(chat.id)
+        	messList = Message.find_messages(chat.id, current_user)
             messList.sort! { |a,b| a.created_at <=> b.created_at }
             if !messList.last.read
                 lastMessOfeachChat << messList.last
