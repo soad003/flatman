@@ -1,6 +1,6 @@
 // Angular Config / Routes
 
-angular.module('flatman', ['ngRoute','ngResource','google-maps','angles','ui.bootstrap','ngLocale', 'bootstrap-tagsinput', 'number_localized'])
+angular.module('flatman', ['ngRoute','ngResource','google-maps','angles','ui.bootstrap','ngLocale', 'ngTagsInput', 'number_localized','checklist-model'])
         .config(function($httpProvider, $routeProvider){
 
   $httpProvider.defaults.headers.common = {'X-CSRF-Token': $("meta[name='csrf-token']").attr("content"),
@@ -72,7 +72,11 @@ angular.module('flatman', ['ngRoute','ngResource','google-maps','angles','ui.boo
       }).
       when('/finances_overview', {
         templateUrl: '/templates/finances_overview',
-        controller: 'financesCtrl'
+        controller: 'financesOverviewCtrl'
+      }).
+      when('/create_payment', {
+        templateUrl:'/templates/create_payment',
+        controller: 'createPaymentCtrl'
       }).
       when('/search/:term', {
         templateUrl: '/templates/search',

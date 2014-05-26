@@ -91,6 +91,25 @@ en:
               blank                       : "Please enter the username of the receiver"
             text:
               blank                       : "Please enter a message to send"
+        bill:
+          attributes:
+            date:
+              blank                       : "Date must be provided."
+            value:
+              blank                       : "Price can't be blank."
+              not_a_number                : "Price must be a number."
+            text:
+              blank                       : "Please provide a name."
+            user:
+              blank                       : "Please choose who paid the bill."
+            users:
+              blank                       : "Please choose who have to pay this bill."
+              too_short                   : "Please choose who have to pay this bill."
+        billcategory:
+          attributes:
+            name:
+              blank                       : "Category name can't be blank."
+
     ressource:
       info_all                        : "Total"
       info_currentMonth               : "this month"
@@ -250,6 +269,7 @@ en:
       no_items_found                     : "no items found for your query..."
       borrow_heading                     : "borrow..."
       send_request                       : "send borrow request"
+      km_away                            : "km away"
     flat_settings:
       page_header                        : "Your Flat"
       city                               : "city"
@@ -266,20 +286,30 @@ en:
       save_btn                           : "save"
     finances:
       page_title                         : "Finances"
-      page_header                        : "Financal status"
-      add_fin                            : " Entry"
+      page_header                        : "Finances"
+      add_fin                            : "Bill"
       help_title                         : "Create a new expense"
       help_paragraph1                    : "Here you can enter expenses and check your balance"
       total                              : "Total: "
-      spendings                          : "Spendings"
+      spendings                          : "last 5 bills"
       categories                         : "Categories"
       debts                              : "Debts/Balance"
-      date                               : "Date"
-      cat                                : "Category"
-      value                              : "Value"
+      date                               : "date"
+      cat                                : "category"
+      value                              : "price"
       inhabit                            : "Inhabitant"
-      what                               : "Typ"
-      payment_placeholder                : "Payments of User"
+      what                               : "what"
+      payment_placeholder                : "payments of user"
+      edit                               : "edit"
+      delete                             : "delete"
+      name                               : "name"
+      show_all                           : "show all"
+      gets                               : "gets"
+      owes_you                           : "owes you"
+      no_entries                         : "There are no bills or payments available"
+      add_payment                        : "add payment"
+      received_money_enter_payment       : "You received money?"
+      overview_flat_members              : "Overview Finances"
     finance_entry:
       page_header_new                    : "New Bill"
       page_header_edit                   : "Bill"
@@ -295,8 +325,25 @@ en:
       bill_affects                       : "bill affects"
       back                               : "back"
       save                               : "save"
+    create_payment: 
+      page_header                        : "Enter a payment"
+      back                               : "back"
+      save                               : "save"
+      value                              : "value"
+      value_placeholder                  : "42.00"
+      date                               : "date"
+      payer                              : "who paid you?"
+
     finances_overview:
       page_header                        : "Overview"
+      edit                               : "edit"
+      delete                             : "delete"
+      back                               : "back"
+      date                               : "date"
+      name                               : "name"
+      category                           : "category"
+      value                              : "expense"
+      month                              : "month"
     user_settings:
       page_header                        : "Your Profile"
       name                               : "name"
@@ -312,6 +359,7 @@ en:
       help_paragraph2                    : "If you are done with shopping just click ... to enter your bill and you are done!"
       delete_list                        : "delete list"
       done                               : "enter payment"
+      delete_checked                     : "delete checked items"
     create_flat:
       subtitle                           : "Welcome to"
       title                              : "Flatman"

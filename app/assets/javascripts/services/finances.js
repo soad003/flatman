@@ -1,46 +1,26 @@
 angular.module('flatman').factory("financesService", function($resource){
-	var financeService = $resource('/api/finance/:id',{},
-                        {
-							'get': {method: "GET", isArray: true}
-                        });
     var billService = $resource('/api/bill/:id',{},
                         {
                             'create': {method: "POST"},
                             'get': {method: "GET"},
+                            'get_range': {method: "GET", isArray:true},
                             'destroy': {method:"DELETE"},
-                            'update': {method:"POST"}
+                            'update': {method:"PUT"}
                         });
     var ctgService = $resource('api/finance/category',{},
                         {
                             'get_all': {method: "GET", isArray:true}
                         });
 
-    var chartService    = $resource('/api/finance/chart',{},
-                        {
-                            'get': {method: "GET", isArray:true}
-
-                        });
-
-    var debtService     = $resource('api/finance/debts',{},
-                        {
-                            'get': {method: "GET", isArray:true},
-                            'create_debt': {method:"POST"},
-                            'destroy': {method:"DELETE"}
-                        });
-    var mateService     = $resource('api/finance/mates', {},
+    var financeTables = $resource('/api/finance/financeTables/:id/:page',{},
                         {
                             'get': {method: "GET", isArray:true}
                         });
-    var monthService    = $resource('api/finance/month', {},
+    var financeTable = $resource('/api/finance/financeTables/:id/:page',{},
                         {
                             'get': {method: "GET"}
                         });
-
-    var financeTables = $resource('/api/finance/financeTables',{},
-                        {
-                            'get': {method: "GET", isArray:true}
-                        });
-    var paymentService = $resource('/api/payment/:id',{},
+    var paymentService = $resource('/api/payment/:id/:member_id',{},
                         {
                             'create': {method: "POST"},
                             'destroy': {method: "DELETE"}
@@ -48,19 +28,26 @@ angular.module('flatman').factory("financesService", function($resource){
 
 	return {
         finance: {
-            get_all: function(succH, errH){
-                return financeService.get();
-            },
             get_sum: function(finance){
-                return null;
+                var sum = 0;
+                _(finance).each (function (entry){
+                    sum += entry.value;
+                })
+                return Math.round(sum);
             },
             get_tables: function (succH, errH){
-                return financeTables.get(succH, errH);
+                return financeTables.get(null,succH, errH);
+            },
+            get_table: function (member_id, page, succH, errH){
+                return financeTable.get({id: member_id, page: page},succH, errH);
             }
         },
         bill: {
             get: function(id, succH, errH){
                 return billService.get({id: id},succH,errH);
+            },
+            get_range: function(from,to, succH, errH){
+                return billService.get_range({from: from, to: to},succH,errH);
             },
             create: function(finance,succH,errH) {
                 billService.create(finance,succH,errH);
@@ -72,43 +59,17 @@ angular.module('flatman').factory("financesService", function($resource){
                 billService.update({id: finance.id},finance,succH,errH);
             }
         },
-        chart:{
-            get: function(succH, errH){
-                return chartService.get(succH, errH);
-            }
-        },
         category:{
             get_all: function(succH, errH){
                 return ctgService.get_all(null, succH, errH);
-            }
-        },
-        debts:{
-            get: function(){
-                return debtService.get();
-            },
-            create_debt: function(){
-
-            },
-            pay_debt: function(debt, succH, errH){
-                debtService.destroy({id: debt}, succH, errH);
-            }
-        },
-        mates:{
-            get: function(){
-                return mateService.get();
-            }
-        },
-        month:{
-            get: function(month_from, month_to, succH, errH){
-                return monthService.get(month_from, month_to, succH, errH);
             }
         },
         payment: {
             create: function(payer_id, date, value ,succH,errH) {
                 paymentService.create(null,{payer_id: payer_id, date: date, value: value}, succH,errH);
             },
-            destroy: function(payment_id, succH,errH){
-                paymentService.destroy({id: payment_id},succH,errH);
+            destroy: function(payment_id, member_id, page, succH,errH){
+                paymentService.destroy({id: payment_id, member_id: member_id, page: page},succH,errH);
             }
         }
     };

@@ -91,6 +91,24 @@ de:
               blank                       : "Bitte gib den Empfängernamen an!"
             text:
               blank                       : "Bitte gib eine Nachricht an!"
+        bill:
+          attributes:
+            date:
+              blank                       : "Datum ist ein Pflichtfeld."
+            value:
+              blank                       : "Bitte Preis eingeben."
+              not_a_number                : "Preis muss numerisch sein."
+            text:
+              blank                       : "Bitte gib einen Namen an."
+            user:
+              blank                       : "Wer hat die Rechnung gezahlt?"
+            users:
+              blank                       : "Auf wen wird die rechnung aufgeteilt?"
+              too_short                   : "Auf wen wird die rechnung aufgeteilt?"
+        billcategory:
+          attributes:
+            name:
+              blank                       : "Bitte Kategorie angeben."
     ressource:
       info_all                        : "Gesamt"
       info_currentMonth               : "diesen Monat"
@@ -250,6 +268,7 @@ de:
       no_items_found                     : "keine items gefunden..."
       borrow_heading                     : "ausleihen..."
       send_request                       : "anfragen"
+      km_away                            : "km entfernt"
     flat_settings:
       page_header                        : "Deine WG"
       city                               : "Stadt"
@@ -267,17 +286,23 @@ de:
     finances:
       page_title                         : "Finanzen"
       page_header                        : "Finanzstatus"
-      add_fin                            : " Eintrag"
+      add_fin                            : "Rechnung"
       help_title                         : "Erstelle eine neue Ausgabe"
       help_paragraph1                    : "Hier behältst du den Überblick über deine Ausgaben und Schulden"
       total                              : "Gesamt: "
-      spendings                          : "Ausgaben"
+      spendings                          : "letzten 5 Ausgaben"
       categories                         : "Kategorien"
       debts                              : "Guthaben/Schulden"
       date                               : "Datum"
       cat                                : "Kategorie"
-      value                              : "Wert"
+      value                              : "Preis"
       inhabit                            : "Bewohner"
+      what                               : "Typ"
+      payment_placeholder                : "zahlung des Users"
+      edit                               : "bearbeiten"
+      delete                             : "löschen"
+      name                               : "Name"
+      show_all                           : "alle anzeigen"
     finance_entry:
       page_header_new                    : "neue Rechnung"
       page_header_edit                   : "Rechnung"
@@ -295,6 +320,14 @@ de:
       save                               : "speichern"
     finances_overview:
       page_header                        : "Übersicht"
+      edit                               : "bearbeiten"
+      delete                             : "löschen"
+      back                               : "zurück"
+      date                               : "Datum"
+      name                               : "Name"
+      category                           : "Kategorie"
+      value                              : "Ausgaben"
+      month                              : "Monat"
     user_settings:
       page_header                        : "Dein Profil"
       name                               : "Name"
@@ -308,8 +341,9 @@ de:
       help_title                         : "Alles was deine WG gerade so kaufen sollte ..."
       help_paragraph1                    : "Benutze das Textfeld oben rechts um neue listen zu erstellen... "
       help_paragraph2                    : "Wenn ein enkauf abgeschlossen ist einfach auf zahlung klicken und erledigt."
-      delete_list                        : "Löschen"
+      delete_list                        : "löschen"
       done                               : "Zahlung eingeben"
+      delete_checked                     : "lösche erledigte items"
     create_flat:
       subtitle                           : "Willkommen bei"
       title                              : "Flatman"
@@ -329,7 +363,7 @@ de:
         shopping_title                   : "Einkaufen"
         shopping_text                    : "Maecenas sed diam eget risus varius blandit sit amet non magna."
         finances_title                   : "Rechnungen"
-        finances_text                    : "Morbi leo risus, porta ac consectetur ac, vestibulum at eros. Cras mattis consectetur purus sit amet fermentum."
+        finafinnces_text                    : "Morbi leo risus, porta ac consectetur ac, vestibulum at eros. Cras mattis consectetur purus sit amet fermentum."
         resources_title                  : "Ressourcenverbrauch"
         resources_text                   : "Maecenas sed diam eget risus varius blandit sit amet non magna."
         share_title                      : "Teilen"

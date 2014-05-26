@@ -1,16 +1,15 @@
 angular.module('flatman').controller("dashboardCtrl",
-    function($scope,shoppingService,resourceService,shareService,Util){
+    function($scope,shoppingService,resourceService,shareService,financesService,Util){
 
 	$scope.shoppinglists = shoppingService.list.get();
 	$scope.dashboardResources = resourceService.resource.getDashboard();
-
+	$scope.dashboardFinances = financesService.finance.get_tables();
 	//$scope.financeEntries= financesService.finance.get();
 	$('.panel-tooltip, .tooltip').tooltip({
 		placement : "bottom"
 	});
 
-        /*$scope.get_you_owe=function(){ return financesService.debts.get_sum();
-        };*/
+    $scope.get_you_owe=function(){return financesService.finance.get_sum($scope.dashboardFinances);};
 
 	//sharing
 	$scope.shareditems = shareService.items.get();

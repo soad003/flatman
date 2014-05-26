@@ -26,6 +26,7 @@ scope "(:locale)", locale: /en|de/ do
     get '/finance_entry', to: :finance_entry, as: 'finance_entry'
     get '/finances_overview', to: :finances_overview, as: 'finances_overview'
     get '/create_message', to: :create_message, as: 'create_message'
+    get '/create_payment', to: :create_payment, as: 'create_payment'
   end
 
   #REST API
@@ -34,18 +35,23 @@ scope "(:locale)", locale: /en|de/ do
    resources :invite, only: [:create,:destroy]
    get '/search/:term' => 'search#search'
 
+   #Flat
    namespace :flat do
       get '/', to: :index
       put '/', to: :create
       post '/', to: :update
+      get '/mates', to: :flat_mates
    end
+
+   #user
    resources :user, only: [:index]
 
-   resources :finance, only: [:index, :create, :update, :destroy]
+
    resources :shoppinglist, only: [:index, :create, :destroy] do
       resources :shoppingitem, only: [:create, :update, :destroy]
+      delete '/delete_checked', to: :delete_checked
    end
-	resources :resource, only: [:index, :create, :update, :destroy] do
+	 resources :resource, only: [:index, :create, :update, :destroy] do
       resources :resourceentry, only: [:create, :destroy]
    end
    get '/resource/:resource_id/resourceentry/:page' => 'resourceentry#page'
@@ -75,22 +81,15 @@ scope "(:locale)", locale: /en|de/ do
    get '/tag/:term' => 'tag#find'
 
 
-   #finances
-   resources :finance, only: [:index]
-   resources :bill, only: [:create, :update,:show, :destroy]
-   get '/finance/category' => 'finance#get_all'
-   get '/finance/chart' => 'finance#get_chart'
-   get '/finance/debts' => 'finance#get_debts'
-   get '/finance/mates' =>  'finance#get_mates'
-   get '/finance/month' => 'finance#get_month'
+    #finances
+   resources :bill, only: [:create, :update,:show, :destroy, :index]
+
+   get '/finance/category' => 'finance#get_by_category'
    get '/finance/financeTables' => 'finance#get_finance_tables'
+   get '/finance/financeTables/:member_id/:page' => 'finance#get_finance_table'
 
    post "/payment" => 'payment#create'
-   delete "/payment" => 'payment#delete'
-
-   post '/upload' => 'upload#create'
-   get '/upload' => 'upload#new'
-
+   delete "/payment/:id/:member_id" => 'payment#destroy'
   end
 
   # Authentication

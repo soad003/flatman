@@ -8,7 +8,11 @@ class Api::PaymentController < Api::RestController
     end
 
     def destroy
-       
+        payment = Payment.find(delete_params[:id])
+        if payment.payee_id == current_user.id || payment.payer_id == current_user.id
+            payment.destroy!
+            @response = Finance.get_user_table(current_user, User.find(delete_params[:member_id]), delete_params[:page])
+        end
     end
 
     private
@@ -18,7 +22,7 @@ class Api::PaymentController < Api::RestController
     end
 
     def delete_params
-          params.permit(:id)
+          params.permit(:id, :member_id, :page)
     end
 
 end

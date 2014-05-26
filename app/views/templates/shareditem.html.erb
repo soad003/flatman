@@ -30,7 +30,7 @@
 	
 	
 	<div class="col-lg-9">
-		<form role="form" name="itemform" ng-controller="sharedItemCtrl" ng-submit="updateItem()">
+		<form role="form" id="itemform" name="itemform" ng-controller="sharedItemCtrl" ng-submit="updateItem()">
 			<div class="panel panel-success">
 				 
 				 
@@ -79,25 +79,16 @@
 				<label for="tags"><%= t(".tags") %></label>
 			
 			
-			<!--item.tags is in der richtigen struktur, und wird erkannt.-->	
-			{{item.tags}}
-			<bootstrap-tagsinput
-				  ng-model="item.tags"
-				  itemvalue="value"
-				  tagclass="badge badge-success"
-				  itemtext="text">
-			</bootstrap-tagsinput>
 	
 			
-			{{copied}}
-			<bootstrap-tagsinput
-				  ng-model="copied"
-				  itemvalue="value"
-				  tagclass="badge badge-success"
-				  itemtext="text">
-			</bootstrap-tagsinput>
-
 			
+		 <tags-input 
+			    	class="bootstrap"
+			    	placeholder="tags"
+			   		ng-model="item.tags"
+			   		replace-spaces-with-dashes="false">
+		</tags-input>
+				
 			
 				<p>
 				
@@ -120,6 +111,8 @@
                 </div> </div>
 		</form>
 	</div>		
+	
+	
 		
 		
 		

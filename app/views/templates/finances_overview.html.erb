@@ -1,25 +1,11 @@
-<% content_for :robots, "NOINDEX, NOFOLLOW" %>
-
 <% content_for :title, t('.page_title') %>
 
-  <div class = "page-head">
-    <h1 class="page-header"><span class="fa fa-bitcoin"></span> <%= t('.page_header') %>
-     <a href="/#/finances">
-                <button type="submit" class="btn btn-primary pull-right"><i class="fa fa-undo"></i> 
-                  <span class="hidden-xs">Back</span></button>
-              </a>
-            </div>
-    </div>
-    </h1>
-  </div>
-
- <div class="panel-body">
-  <div class="btn-group">
+<h1 class="page-header"><span class="fa fa-bitcoin"></span> <%= t('.page_header') %>
+  <div class="btn-group pull-right">
       <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
-          Month</i>
-          <span class="caret"></span>
+          <%= t(".month") %> <span class="caret"></span>
       </button>
-      
+
       <ul class="dropdown-menu" role="menu">
           <li><a ng-click="getMonthEntries(1)">Jänner</a></li>
           <li><a ng-click="getMonthEntries(2)">Februar</a></li>
@@ -33,63 +19,70 @@
           <li><a ng-click="getMonthEntries(10)">Oktober</a><li>
           <li><a ng-click="getMonthEntries(11)">November</a><li>
           <li><a ng-click="getMonthEntries(12)">Dezember</a><li>
-      </ul> 
-      <!--
-      <script>
-      $('.dropdown-menu li a').click(function(e) {
-        var $this = $(this);
-          if (!$this.hasClass('active')) {
-           $this.addClass('active');
-          }
-         e.preventDefault();
-      });
-      </script> -->
-   </div>
-
- 	<div style="margin:auto; width:450px; padding:40px border: 1px solid black;" >
-  		<table class="table table-striped">
-  			<tr>
-  				<th><label for="Date">Datum:</label>
-  				</th>
-  				<th><label for="Name">Name:</label>
-  				</th>
-  				<th><label for="Cat">Kategorie:</label>
-  				</th>
-  				<th><label for="Ausgaben">Ausgaben:</label>
-  				</th>
-          <th>
-          </th>
-  			</tr>
-      
-  			<tr ng-repeat="finance in finances | orderBy: '-date' track by $index" class ="">
-  				<th>{{finance.date | date : 'mediumDate'}}
-  				</th>
-  				<th>{{finance.name}}
-  				</th>
-  				<th>
-  					{{finance.cat_name}}
-  				</th>
-  				<th>
-  					{{finance.value}}
-  				</th>
-          <th> 
-            <div class="btn-group pull-right">
-              <button type="button" class="btn btn-default dropdown-toggle btn-xs" data-toggle="dropdown">
-               <span class="glyphicon glyphicon-pencil"></span>
-              </button>
-              <ul class="dropdown-menu">
-                <li>
-                  <a href="" ng-click="removeEntry(finance)"><span class="glyphicon glyphicon-trash"></span> remove Entry</a>
-                </li>
-                <li>
-                  <a href="" ng-click="updateEntry(finance)"><span class="glyphicon glyphicon-pencil">edit</span>
-                  </a>
-                </li>
-              </ul>
-          </div>
-          </th>
-  			</tr>
-      </div>
-  		</table>
-     
+      </ul>
   </div>
+</h1>
+
+<div class="row">
+	<table class="table table-striped">
+		<thead>
+      <tr>
+  			<th><%= t(".date") %></th>
+  			<th><%= t(".name") %></th>
+  			<th><%= t(".category") %></th>
+  			<th class="text-right"><%= t(".value") %></th>
+        <th>&nbsp;</th>
+      </tr>
+		</thead>
+    <tbody>
+      <tr ng-repeat="finance in finances track by $index" class ="">
+        <td>{{finance.date | date : 'mediumDate'}}</td>
+        <td>{{finance.name}}</th>
+        <td>{{finance.cat_name}}</td>
+        <td class="text-right">{{finance.value | customCurrency : '€ '}}</td>
+        <td>
+          <div class="btn-group pull-right">
+            <button type="button" class="btn btn-default dropdown-toggle btn-xs" data-toggle="dropdown">
+             <span class="glyphicon glyphicon-pencil"></span>
+            </button>
+            <ul class="dropdown-menu">
+              <li>
+                  <a href="/#/finances_edit/{{finance.id}}">
+                      <span class="glyphicon glyphicon-pencil"></span> <%= t(".edit") %>
+                  </a>
+              </li>
+              <li>
+                  <a href="" ng-click="removeEntry(finance)">
+                      <span class="glyphicon glyphicon-trash"></span> <%= t(".delete") %>
+                  </a>
+              </li>
+            </ul>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+    <tfoot>
+      <tr>
+        <td colspan="5">
+            <ul class="pagination pagination-sm pull-right">
+                <li><a  href="">&laquo;</a></li>
+                <li><a href="">1</a></li>
+                <li><a href="">2</a></li>
+                <li><a href="">3</a></li>
+                <li><a href="">&raquo;</a></li>
+            </ul>
+        </td>
+      </tr>
+    </tfoot>
+	</table>
+
+</div>
+
+<div class="row">
+  <div class="col-md-3 col-xs-4">
+    <a href="/#/finances" class = "btn btn-sm btn-default">
+      <i class="fa fa-arrow-circle-o-left"></i> <%= t('.back') %>
+    </a>
+  </div>
+</div>
+

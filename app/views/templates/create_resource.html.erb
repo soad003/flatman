@@ -5,7 +5,7 @@
   <h1 class="page-header">
     <i class="glyphicon glyphicon-globe"></i>
 
-    <%= t('.page_header') %><a href="/#/resources"><button class="close" aria-hidden="true">&times;</button></a></h1>
+    <%= t('.page_header') %></h1>
 </div>
 
 <div class="row">
@@ -108,17 +108,18 @@
       </div>
 
 
-
       <div class="row">
-
-        <div class="col-md-2 col-md-offset-10">
-
-          <button class = "btn btn-sm btn-success btn-block">
-            <span class="glyphicon glyphicon-ok"></span>
-            <%= t('save') %></button>
+          <div class="col-md-3 col-xs-4">
+            <a href="/#/resources" class = "btn btn-sm btn-default">
+              <i class="fa fa-arrow-circle-o-left"></i> <%= t('.back') %>
+            </a>
+          </div>
+          <div class="col-md-3 col-md-offset-6 col-xs-4 col-xs-offset-4">
+            <button type="submit" class = "btn btn-sm btn-success pull-right">
+              <span class="glyphicon glyphicon-ok"></span> <%= t('.save') %>
+            </button>
+          </div>
         </div>
-      </div>
-
     </form>
 
   </div>

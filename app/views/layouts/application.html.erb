@@ -130,7 +130,7 @@
 
         <div class="flyover flyover-top"
               ng-class="{in:Util.has_server_errors}">
-          <alert ng-repeat="error in server_errors" type="error_type" close="delete_error($index)">
+          <alert ng-repeat="error in server_errors track by $index" type="error_type" close="delete_error($index)">
             <i class="fa fa-exclamation-triangle fa-lg"></i> {{error}}
           </alert>
         </div>

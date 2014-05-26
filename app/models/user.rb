@@ -1,12 +1,12 @@
 class User < ActiveRecord::Base
-    has_and_belongs_to_many :bills
+    has_and_belongs_to_many :bills, -> { order 'date desc' }
     belongs_to  :flat
-    has_many    :paidBills, :class_name => 'Bill', :foreign_key => 'user_id'
-    has_many    :shoppinglistitems
+    has_many    :paidBills, :class_name => 'Bill', :foreign_key => 'user_id'                #????? (Michi)
+    has_many    :shoppinglistitems, -> { order 'created_at asc' }                           #????? (Michi)
     has_many    :sentMessages, :class_name => 'Message', :foreign_key => 'sender_id'
     has_many    :receivedMessages, :class_name => 'Message', :foreign_key => 'receiver_id'
-    has_many    :paidPayments, :class_name => 'Payment', :foreign_key => 'payer_id'
-    has_many    :receivedPayments, :class_name => 'Payment', :foreign_key => 'payee_id'
+    has_many    :paidPayments, :class_name => 'Payment', :foreign_key => 'payer_id'         #????? (Michi)
+    has_many    :receivedPayments, :class_name => 'Payment', :foreign_key => 'payee_id'     #????? (Michi)
     validates   :provider, :uid, :name, :oauth_token, :email, presence: true
 
     def has_flat?()
@@ -15,6 +15,10 @@ class User < ActiveRecord::Base
 
     def self.find_by_email(email)
         find_by email: email
+    end
+
+    def self.find_with_flat_constraint(id, flat)
+        find_by(id: id, flat_id: flat.id)
     end
 
     def self.from_omniauth(auth)
@@ -30,6 +34,4 @@ class User < ActiveRecord::Base
         end
 
     end
-
-
 end
