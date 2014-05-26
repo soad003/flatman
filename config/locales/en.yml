@@ -290,7 +290,7 @@ en:
       add_fin                            : "Bill"
       help_title                         : "Create a new expense"
       help_paragraph1                    : "Here you can enter expenses and check your balance"
-      total                              : "Total: "
+      biggest_by_cat                     : "largest 6 expense categories"
       spendings                          : "last 5 bills"
       categories                         : "Categories"
       debts                              : "Debts/Balance"
@@ -325,7 +325,7 @@ en:
       bill_affects                       : "bill affects"
       back                               : "back"
       save                               : "save"
-    create_payment: 
+    create_payment:
       page_header                        : "Enter a payment"
       back                               : "back"
       save                               : "save"
@@ -333,7 +333,6 @@ en:
       value_placeholder                  : "42.00"
       date                               : "date"
       payer                              : "who paid you?"
-
     finances_overview:
       page_header                        : "Overview"
       edit                               : "edit"

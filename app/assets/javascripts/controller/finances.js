@@ -1,13 +1,10 @@
 angular.module('flatman').controller("financesCtrl", function($scope, financesService,flatService, Util){
 	$scope.chartData = [];
 	$scope.finances= financesService.bill.get_range(0,5);
-	$scope.colors = ["#428bca", "#5cb85c","#5bc0de", "#f0ad4e", "#d9534f", "black", "grey"];
 
 	//load categories and chart data
 	$scope.AllCategories = financesService.category.get_all(function(data){
-		$scope.chartData = _(data).map(function(item,i){ return {color: $scope.colors[i % ($scope.colors.length)],
-																 value: item.listValue,
-																 cat_name: item.cat_name }; });
+		$scope.chartData = financesService.category.get_chart_view(data);
 	});
 
 	$scope.getFlatMates = flatService.mates.get();
@@ -54,7 +51,7 @@ angular.module('flatman').controller("financesCtrl", function($scope, financesSe
 	};
 	$scope.setFinanceTables();
 
-	
+
 
 	$scope.getAbsolutValue = function (value){
 		if (value < 0){
