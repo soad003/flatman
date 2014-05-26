@@ -214,6 +214,8 @@ en:
       share_available                    : "items offered to share"
       share_borrowed                     : "currently borrowed items"
       share_helptext                     : "share ressources, feel better and make the world a better place"
+      status                             : "status"
+      mate                               : "mate"
 
     messages:
       page_header                        : "Messages"
