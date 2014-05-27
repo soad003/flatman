@@ -110,6 +110,10 @@ en:
           attributes:
             name:
               blank                       : "Category name can't be blank."
+        shoppinglist:
+          attributes:
+            shoppinglistitems:
+              invalid                     : "This item looks invalid!"
 
     ressource:
       info_all                        : "Total"

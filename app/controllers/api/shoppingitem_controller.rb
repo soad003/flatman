@@ -3,6 +3,8 @@ class Api::ShoppingitemController < Api::RestController
     def create
         item=Shoppinglistitem.new(item_params)
         item.user=current_user
+        puts item_params
+        puts item.to_json
         sl = Shoppinglist.find_list_with_user_constraint(params[:shoppinglist_id], current_user)
         sl.shoppinglistitems << item
         sl.save!

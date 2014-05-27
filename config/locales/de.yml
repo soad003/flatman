@@ -110,6 +110,10 @@ de:
           attributes:
             name:
               blank                       : "Bitte Kategorie angeben."
+        shoppinglist:
+          attributes:
+            shoppinglistitems:
+              invalid                     : "Das item sieht falsch aus!"
     ressource:
       info_all                        : "Gesamt"
       info_currentMonth               : "diesen Monat"

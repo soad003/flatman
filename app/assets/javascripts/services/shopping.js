@@ -20,7 +20,7 @@ angular.module('flatman').factory("shoppingService",function($resource) {
         list: {
             get: function(succH,errH){ return listService.get(succH,errH);},
             create: function(name,succH,errH) {
-                listService.create(null,{name: name,checked:false},succH,errH);
+                listService.create(null,{name: name},succH,errH);
             },
             destroy: function(list_id,succH,errH){
                 listService.destroy({id: list_id},succH,errH);
@@ -43,7 +43,7 @@ angular.module('flatman').factory("shoppingService",function($resource) {
         },
         item: {
             create: function(list_id,text,succH,errH){
-                itemService.create({l_id: list_id},{name:text},succH,errH);
+                itemService.create({l_id: list_id},{name:text, checked: false},succH,errH);
             },
             update: function(item,list_id,succH,errH){
                 itemService.update({l_id: list_id,id: item.id},item,succH,errH);
