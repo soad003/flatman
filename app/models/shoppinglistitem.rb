@@ -13,6 +13,4 @@ class Shoppinglistitem < ActiveRecord::Base
             sl.shoppinglistitems.select{ |i| i.id == id.to_i }.first unless sl.nil?
         end
 
-Select * from users join (SELECT distinct flat_id FROM shoppinglists join shoppinglistitems on shoppinglists.id=shoppinglistitems.shoppinglist_id where shoppinglistitems.id=212) as test
-on users.flat_id = test.flat_id fetch first 1 row only
 end

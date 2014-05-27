@@ -1,6 +1,6 @@
 class Shoppinglist < ActiveRecord::Base
 	belongs_to 	:flat
-	has_many	:shoppinglistitems, -> { order 'created_at asc' }
+	has_many	:shoppinglistitems, -> { order 'created_at asc' }, :dependent => :destroy_all
     validates   :name,:flat, presence: true
 
     def self.find_list_with_user_constraint(id, user)
