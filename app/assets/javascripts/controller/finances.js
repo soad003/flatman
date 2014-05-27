@@ -53,13 +53,7 @@ angular.module('flatman').controller("financesCtrl", function($scope, financesSe
 
 
 	$scope.math = Math;
-	$scope.getAbsolutValue = function (value){
-		if (value < 0){
-			return value *-1;
-		}
-		return value;
-	};
-
+	
 	$scope.removePayment = function (payment, member){
 		if (member.entryLength == 6){
 			member.page = 1;
@@ -96,7 +90,8 @@ angular.module('flatman').controller("financesCtrl", function($scope, financesSe
 
     $scope.setEntries=function(member){
         financesService.finance.get_table(member.id, member.page, function (data){
-        member.entries = data.entries;}, function () {});
+        member.entries = data.entries;
+    	member.value = data.value;    	}, function () {});
     };
 
     $scope.changePage=function(member, value){
