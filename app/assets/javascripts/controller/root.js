@@ -51,7 +51,7 @@ angular.module('flatman').controller("rootCtrl",function($scope,$rootScope,$time
                     $scope.$broadcast('message_count_changed', new_status);
                     break;
                 }
-            };
+            }
         }
     };
 
