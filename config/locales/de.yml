@@ -98,6 +98,7 @@ de:
             value:
               blank                       : "Bitte Preis eingeben."
               not_a_number                : "Preis muss numerisch sein."
+              greater_than                : "Preis muss größer als null sein."
             text:
               blank                       : "Bitte gib einen Namen an."
             user:
@@ -109,6 +110,10 @@ de:
           attributes:
             name:
               blank                       : "Bitte Kategorie angeben."
+        shoppinglist:
+          attributes:
+            shoppinglistitems:
+              invalid                     : "Das item sieht falsch aus!"
     ressource:
       info_all                        : "Gesamt"
       info_currentMonth               : "diesen Monat"
@@ -194,7 +199,7 @@ de:
       page_title                         : "Dashboard"
     dashboard:
       page_header                        : "Dashboard"
-      items_to_buy                       : "zu kaufen"
+      items_to_buy                       : "dinge zu kaufen"
       view_shopping_details              : "zu den listen"
       you_owe                            : "du schuldest ..."
       view_finance_details               : "zeige Abrechnungen"

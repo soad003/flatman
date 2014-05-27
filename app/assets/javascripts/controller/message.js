@@ -58,6 +58,10 @@ angular.module('flatman').controller("messageCtrl", function($scope, $route, $ti
 
     $scope.newMess = {sender_id: "", receiver_id: "", text: "", header: "", read: false, readers: [], deleted: [] };
 
+    $scope.getDocHeight = function () {
+        return $(window).height();
+    };
+
     $scope.getMessages = function (chat, index){
         $scope.chatView = false;
         $scope.messages = messageService.messages.get(chat.id);
@@ -127,17 +131,6 @@ angular.module('flatman').controller("messageCtrl", function($scope, $route, $ti
 
     };
 
-    $scope.removeFlatChat=function(question){
-        bootbox.confirm(question, function(result) {
-            if (result){
-                $scope.flatchat = null;
-                $scope.messages = [];
-            }
-            $scope.chatView = true;
-            $scope.flatchatActive = false;
-        });
-    };
-
     $scope.countUnread=function(chat, index){
         $scope.unreadCounter[index] = messageService.message.count(chat.id);
     };
@@ -151,7 +144,6 @@ angular.module('flatman').controller("messageCtrl", function($scope, $route, $ti
     };
 
     $scope.getFlatUnreadCounter=function(){
-        //console.log($scope.flatchat);
         if ($scope.flatchat.id !== undefined && $scope.flatchatUnreadCounter !== null){
             return $scope.flatchatUnreadCounter.counter;
         }

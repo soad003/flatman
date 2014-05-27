@@ -1,7 +1,8 @@
 class Shoppinglistitem < ActiveRecord::Base
 		belongs_to	:user
 		belongs_to 	:shoppinglist
-        validates   :name, :shoppinglist, presence: true
+        validates   :name, :shoppinglist, :user,  presence: true
+        validates   :checked, :inclusion => { :in => [true, false] }
 
         def self.destroy_with_user_constraint(id, sl_id, user)
             item = Shoppinglistitem.find_with_user_constraint(id, sl_id ,user)

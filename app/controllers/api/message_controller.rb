@@ -49,7 +49,6 @@ class Api::MessageController < Api::RestController
   end
 
   def create
-    user=current_user
     recId = mes_params[:receiver_id]
     if (recId == "")
       respond_with_errors([t('.no_user_found')])
@@ -73,8 +72,8 @@ class Api::MessageController < Api::RestController
       end
       @mes.readers = [current_user.id]
       @mes.deleted = []
-      user.sentMessages << @mes
-      user.save!
+      current_user.sentMessages << @mes
+      current_user.save!
       @mes
     end
   end

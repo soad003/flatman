@@ -1,6 +1,4 @@
 angular.module('flatman').controller("shoppingCtrl",function($scope,shoppingService,Util){
-    $scope.lists = shoppingService.list.get();
-
     $scope.removeItem=function(list,item){
         shoppingService.item.destroy(item.id,list.id,function(){
                 list.items = _(list.items).without(item);
@@ -48,5 +46,7 @@ angular.module('flatman').controller("shoppingCtrl",function($scope,shoppingServ
                 list.items= _(list.items).reject(function(i){ return i.checked});
         });
     };
+
+    $scope.lists = shoppingService.list.get();
 
 });

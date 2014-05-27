@@ -98,6 +98,7 @@ en:
             value:
               blank                       : "Price can't be blank."
               not_a_number                : "Price must be a number."
+              greater_than                : "Must be greater than zero."
             text:
               blank                       : "Please provide a name."
             user:
@@ -109,6 +110,10 @@ en:
           attributes:
             name:
               blank                       : "Category name can't be blank."
+        shoppinglist:
+          attributes:
+            shoppinglistitems:
+              invalid                     : "This item looks invalid!"
 
     ressource:
       info_all                        : "Total"

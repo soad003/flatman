@@ -122,7 +122,7 @@
     <div id="container" class="container" ng-cloak>
       <section>
         <% flash.each do |key,message| %>
-          <div class="alert alert-<%= key.to_s %> alert-dismissable">
+          <div class="alert alert-<%= key.to_s %> alert-dismissable auto-fadeout">
             <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
             <%=message%>
           </div>
@@ -154,7 +154,7 @@
               <%= link_to_unless(I18n.locale == :de,
                       t('misc.titles.language.german'),{locale: :de},{:onclick => "this.href=this.href+'/'+window.location.hash" })%>
             </div>
-            <div class="col-md-4 col-xs-4 text-right hidden-xs">
+            <div class="col-md-4 col-xs-4 text-right hidden-xs hidden-sm">
               <%= link_to t('misc.titles.menus.terms_and_privacy.title'), terms_path %>
             </div>
           </div>
