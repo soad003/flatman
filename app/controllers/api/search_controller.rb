@@ -10,6 +10,8 @@ class Api::SearchController < Api::RestController
 
   private
   
+  
+  #ins model!
   def calc_distance(item)
     ownflat = current_user.flat
     point1 = ownflat[:zip] + " " + ownflat[:city] + ", " + ownflat[:street]

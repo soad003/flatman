@@ -4,7 +4,7 @@ class Bill < ActiveRecord::Base
 	belongs_to 				:user
 
   	validates :date,:text,:user, presence: true
-  	validates :value, numericality: true, presence: true
+  	validates :value, numericality: {greater_than: 0}, presence: true
   	validates :users, length: { minimum: 1 }
   	validates_associated :billcategory, :message => nil
 
@@ -17,7 +17,7 @@ class Bill < ActiveRecord::Base
 	def self.find_bill_with_user_constraint(id)
 		Bill.where(:id => id).first
 	end
-	
+
 	def self.new_with_params(p, cat, flat)
 		Bill.new().tap { |b|
 			b.text = p[:text]

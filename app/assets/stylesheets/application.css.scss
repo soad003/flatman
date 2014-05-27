@@ -9,7 +9,6 @@
  * compiled file, but it's generally better to create a new file per style scope.
  *
  *= require_self
- *= require magnific-popup
  */
 
 //$brand-primary:         #008cba;
@@ -53,10 +52,10 @@ $brand-danger:          #E74C3C; */
 @import "sticky-footer-navbar";
 @import "font-awesome";
 @import "bootstrap-social";
-@import "bootstrap-switch";
 @import "ng-tags-input";
 @import "navbar";
 @import "animation";
 @import "loading-indicator";
+@import "magnific-popup";
 
 
