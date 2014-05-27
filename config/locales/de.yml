@@ -85,12 +85,6 @@ de:
               blank                       : "Bitte gib eine maßeinheit für die Ressource an!"
             startValue:
               blank                       : "Bitte gib einen Startwert an!"
-        message:
-          attributes:
-            receiver_id:
-              blank                       : "Bitte gib den Empfängernamen an!"
-            text:
-              blank                       : "Bitte gib eine Nachricht an!"
         bill:
           attributes:
             date:
@@ -219,17 +213,16 @@ de:
     messages:
       page_header                        : "Nachrichten"
       page_title                         : "Nachrichten"
-      new_text_placeholder               : "text eingeben"
-      send                               : "senden"
-      intro_header                       : "erstelle deine ersten Nachrichten"
-      intro_text1                        : "Kontaktiere andere User um zb. dinge zu borgen"
-      intro_text2                        : "..."
+      new_text_placeholder               : "Text eingeben"
+      send                               : "Senden"
+      back                               : "Zurück"
       questionDeleteChat                 : "Möchtest du diesen Nachrichtenverlauf wirklich löschen?"
     create_message:
-      page_header                        : "neue Nachricht"
-      send                               : "senden"
+      page_header                        : "Neue Nachricht"
+      send                               : "Senden"
+      back                               : "Zurück"
       create_Message_user_placeholder    : "Username"
-      new_text_placeholder               : "text eingeben"
+      new_text_placeholder               : "Text eingeben"
     resources:
       page_header                        : "Ressourcen"
       page_title                         : "Ressource"

@@ -65,12 +65,10 @@ angular.module('flatman').controller("messageCtrl", function($scope, $route, $ti
     };
 
     $scope.setChatView = function(){
-    	/*$scope.chats = messageService.message.get();
-        $scope.flatchat = messageService.message.getFlatChat();
-        $scope.flatchatUnreadCounter = messageService.message.count($scope.flatchat.id);*/
         $scope.chatView = true;
         $scope.flatchatActive = false;
         $scope.activeChat = null;
+        $scope.flatchat = messageService.message.getFlatChat();
     };
 
     $scope.setMessView = function(){
@@ -89,6 +87,7 @@ angular.module('flatman').controller("messageCtrl", function($scope, $route, $ti
                 $scope.messages.push(data);
                 $scope.newMess.text='';
             });
+            $scope.chats = messageService.message.get();
         }
     };
 
@@ -163,35 +162,6 @@ angular.module('flatman').controller("messageCtrl", function($scope, $route, $ti
         date.setSeconds(sec);
         date.setMinutes(min);
         return (date.toISOString() < mes.updated_at);
-    };
-
-    $scope.parseText = function(text, flatchat, index){
-        var data = "";
-        var result = "";
-        if (text === undefined || text === null)
-            return null;
-        if (text.indexOf("<br>") == -1){
-            if (flatchat) {
-                data = text;
-                result = data.replace(/\n/g, "<br>");
-                $scope.flatchat.text = result; 
-            }
-            else {
-                data = text;
-                result = data.replace(/\n/g, "<br>");
-                $scope.chatTexts[index] = result;
-            }
-        }
-        else {
-            if (flatchat){
-                $scope.flatchat.text = text; 
-            }
-            else{
-                $scope.chatTexts[index] = text;
-            }
-            
-        }
-
     };
 
     $scope.parseNewline = function(text, flatchat, index){
