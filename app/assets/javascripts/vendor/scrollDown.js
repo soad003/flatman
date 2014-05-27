@@ -1,6 +1,10 @@
-function scrolldown() {$("#scrollarea").animate({ scrollTop: 100000 }, "fast");}
+function scrolldown() {
+	$("#scrollarea").animate({ scrollTop: 100000 }, "fast");
+};
 
 function start(time){
+	var scroll = document.getElementById('scrollarea');
+	scroll.style.height = ($(window).height()-270).toString() + "px";
 	// don't work on mobile phone
 	scrolldown();
     var myVar = window.setTimeout(function() {
