@@ -71,7 +71,7 @@ angular.module('flatman').controller("financesCtrl", function($scope, financesSe
     $scope.setEntries=function(member){
         financesService.finance.get_table(member.id, member.page, function (data){
         member.entries = data.entries;
-    	member.value = data.value;    	}, function () {});
+        member.value = data.value;    }, function () {});
     };
 
     $scope.changePage=function(member, value){
