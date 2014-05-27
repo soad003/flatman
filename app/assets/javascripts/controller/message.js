@@ -132,7 +132,6 @@ angular.module('flatman').controller("messageCtrl", function($scope, $route, $ti
     };
 
     $scope.countUnread=function(chat, index){
-        console.log($scope.getDocHeight());
         $scope.unreadCounter[index] = messageService.message.count(chat.id);
     };
 
@@ -145,7 +144,6 @@ angular.module('flatman').controller("messageCtrl", function($scope, $route, $ti
     };
 
     $scope.getFlatUnreadCounter=function(){
-        //console.log($scope.flatchat);
         if ($scope.flatchat.id !== undefined && $scope.flatchatUnreadCounter !== null){
             return $scope.flatchatUnreadCounter.counter;
         }

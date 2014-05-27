@@ -72,7 +72,7 @@ class Api::MessageController < Api::RestController
       end
       @mes.readers = [current_user.id]
       @mes.deleted = []
-      currnet_user.sentMessages << @mes
+      current_user.sentMessages << @mes
       current_user.save!
       @mes
     end
