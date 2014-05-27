@@ -12,14 +12,20 @@
 
 milk:
  name: milk
+ checked: false
+ user: michi
  shoppinglist: groceries_wg_michi
 
 
 butter:
  name: butter
+ checked: false
+ user: michi
  shoppinglist: groceries_wg_michi
 
 
 butter_cle:
  name: butter
+ checked: false
+ user: clemi
  shoppinglist: groceries_wg_cle

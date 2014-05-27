@@ -9,7 +9,8 @@ class ShoppinglistitemTest < ActiveSupport::TestCase
     end
 
     test "should save shoppinglist_item with name and list" do
-     list_item = Shoppinglistitem.new({name: 'bla'})
+     list_item = Shoppinglistitem.new({name: 'bla',checked: false})
+     list_item.user = users(:michi)
      list_item.shoppinglist=shoppinglists(:groceries_wg_michi)
      assert list_item.save
     end
