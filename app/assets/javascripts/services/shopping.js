@@ -18,7 +18,7 @@ angular.module('flatman').factory("shoppingService",function($resource) {
                         });
     return {
         list: {
-            get: function(){ return listService.get();},
+            get: function(succH,errH){ return listService.get(succH,errH);},
             create: function(name,succH,errH) {
                 listService.create(null,{name: name},succH,errH);
             },

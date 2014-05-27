@@ -195,7 +195,7 @@ de:
       page_title                         : "Dashboard"
     dashboard:
       page_header                        : "Dashboard"
-      items_to_buy                       : "zu kaufen"
+      items_to_buy                       : "dinge zu kaufen"
       view_shopping_details              : "zu den listen"
       you_owe                            : "du schuldest ..."
       view_finance_details               : "zeige Abrechnungen"
