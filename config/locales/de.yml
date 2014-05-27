@@ -98,6 +98,7 @@ de:
             value:
               blank                       : "Bitte Preis eingeben."
               not_a_number                : "Preis muss numerisch sein."
+              greater_than                : "Preis muss größer als null sein."
             text:
               blank                       : "Bitte gib einen Namen an."
             user:
