@@ -1,14 +1,4 @@
 angular.module('flatman').controller("financesCtrl", function($scope, financesService,flatService, Util){
-	$scope.chartData = [];
-	$scope.finances= financesService.bill.get_range(0,5);
-
-	//load categories and chart data
-	$scope.AllCategories = financesService.category.get_all(function(data){
-		$scope.chartData = financesService.category.get_chart_view(data);
-	});
-
-	$scope.getFlatMates = flatService.mates.get();
-
 	$scope.intro = function(){
 		return ($scope.finances.length !== 0);
 	};
@@ -23,15 +13,6 @@ angular.module('flatman').controller("financesCtrl", function($scope, financesSe
 		financesService.debts.pay_debt(debt.id, function(){
 			$scope.allDebts = _($scope.allDebts).without(debt);
 		})
-	};
-
-	$scope.total = function(){
-
-		var sum = 0;
-		for(var i = 0; i < $scope.finances.length; i++){
-			sum = sum + $scope.finances[i].value;
-		}
-		return sum;
 	};
 
 	$scope.enoughEntries = function(){
@@ -49,7 +30,6 @@ angular.module('flatman').controller("financesCtrl", function($scope, financesSe
             });
 		}, function(){});
 	};
-	$scope.setFinanceTables();
 
 
 	$scope.math = Math;
@@ -110,4 +90,15 @@ angular.module('flatman').controller("financesCtrl", function($scope, financesSe
             $scope.setEntries(member);
         }
     };
+
+    $scope.chartData = [];
+    $scope.finances= financesService.bill.get_range(0,5);
+    $scope.setFinanceTables();
+
+    //load categories and chart data
+    $scope.AllCategories = financesService.category.get_all(function(data){
+        $scope.chartData = financesService.category.get_chart_view(data);
+    });
+
+    $scope.getFlatMates = flatService.mates.get();
 });

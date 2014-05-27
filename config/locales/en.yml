@@ -222,6 +222,7 @@ en:
       page_title                         : "Messages"
       new_text_placeholder               : "Enter text"
       send                               : "send"
+      back                               : "back"
       intro_header                       : "Start creating your first chat"
       intro_text1                        : "With this feature you can contact other Users to share some items or other things."
       intro_text2                        : "Maybe you can find someone to borrowed an item you need."
@@ -229,6 +230,7 @@ en:
     create_message:
       page_header                        : "New Message"
       send                               : "send"
+      back                               : "back"
       create_Message_user_placeholder    : "Username"
       new_text_placeholder               : "Enter text"
     resources:

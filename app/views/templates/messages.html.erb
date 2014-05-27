@@ -38,7 +38,7 @@
                 </span> <span ng-bind-html="flatchat.text | to_trusted">{{parseText(flatchat.text, true, 0)}} </span>
               </div>
               <div class="col-xs-6 col-md-6">
-                <span class="time"><p class="text-right" style="font-size:x-small" ng-show="flatchat.time != null"><i class="fa fa-clock-o"></i>{{parseTime(flatchat.time, "0")}}</p></span>
+                <span class="time"><p class="text-right" style="font-size:x-small" ng-show="flatchat.time != null"><i class="fa fa-clock-o"></i> {{parseTime(flatchat.time, "0")}}</p></span>
               </div>
             </div>
           </div>
@@ -207,28 +207,29 @@
           <div class="col-lg-2 col-md-2 col-sm-2">
               <a style="text-decoration: none;">
                 <span class="hidden-lg hidden-md hidden-sm">
-                  <button style="margin-top: 6px" id="send" name="send" class="btn btn-primary btn-block" onclick="start(100)" type="submit" ng-click="sendMessage()" ng-disabled="!SendForm.$valid"><%= t('.send') %>
+                  <button style="margin-top: 6px" id="send" name="send" class="btn btn-success btn-block" onclick="start(100)" type="submit" ng-click="sendMessage()" ng-disabled="!SendForm.$valid"><span class="glyphicon glyphicon-ok"></span> <%= t('.send') %>
                   </button>
                 </span>
                 <span class="hidden-xs">
-                  <button id="send2" name="send" class="btn btn-primary btn-block" onclick="start(100)" type="submit" ng-click="sendMessage()" ng-disabled="!SendForm.$valid"><%= t('.send') %>
+                  <button id="send2" name="send" class="btn btn-success btn-block" onclick="start(100)" type="submit" ng-click="sendMessage()" ng-disabled="!SendForm.$valid"><span class="glyphicon glyphicon-ok"></span> <%= t('.send') %>
                   </button>
                 </span>
               </a>
-              <a ng-click="setChatView()" style="text-decoration: none;"><button style="margin-top: 6px" type="button" class="btn btn-default btn-block"><%= t('buttons.labels.decision.close') %></button></a>
+              <a ng-click="setChatView()" style="text-decoration: none;"><button style="margin-top: 6px" type="button" class = "btn btn-default btn-block"><i class="glyphicon glyphicon-arrow-left"></i> <%= t('.back') %></button></a>
           </div>
         </div>
     </form>
   </div>
 </div>
 </body>
+<!--
 <div class="jumbotron text-center" ng-show="chats.length === 0 && !isLoading()">
     <i class="fa fa-envelope fa-5x"></i>
     <h3><%= t('.intro_header') %></h3>
     <%= t('.intro_text1') %> <br>
     <%= t('.intro_text2') %>
 </div>
-
+-->
 <!--
 <script type="text/javascript">
   $(function() {
@@ -246,13 +247,10 @@
 -->
 
 <!-- todo
-- icons
-- gleichzeitiges senden
 - mehrere empfänger 
 - optimieren
 - text der angezeigt wird begrenzen
-- messages nav bar back
+- messages nav bar back (split in chatview and messageview)
 - model body height
-- delete for both users?
 -->
 
