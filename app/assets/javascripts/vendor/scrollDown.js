@@ -1,4 +1,4 @@
-function scrolldown() {$("#scrollarea").animate({ scrollTop: 0 }, "fast");}
+function scrolldown() {$("#scrollarea").animate({ scrollTop: 100000 }, "fast");}
 
 function start(time){
 	// don't work on mobile phone

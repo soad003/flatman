@@ -29,15 +29,15 @@
           <div class="col-lg-2 col-md-2 col-sm-2">
               <a style="text-decoration: none;">
                 <span class="hidden-lg hidden-md hidden-sm">
-                  <button style="margin-top: 6px" id="send" name="send" class="btn btn-primary btn-block" type="submit" ng-click="createMessage()" ng-disabled="!NewForm.$valid"><%= t('.send') %>
+                  <button style="margin-top: 6px" id="send" name="send" class="btn btn-success btn-block" type="submit" ng-click="createMessage()" ng-disabled="!NewForm.$valid"><%= t('.send') %>
                   </button>
                 </span>
                 <span class="hidden-xs">
-                  <button id="send2" name="send" class="btn btn-primary btn-block" type="submit" ng-click="createMessage()" ng-disabled="!NewForm.$valid"><%= t('.send') %>
+                  <button id="send2" name="send" class="btn btn-success btn-block" type="submit" ng-click="createMessage()" ng-disabled="!NewForm.$valid"><span class="glyphicon glyphicon-ok"></span> <%= t('.send') %>
                   </button>
                 </span>
               </a>
-              <a href="/#/messages" style="text-decoration: none;"><button style="margin-top: 6px" type="button" class="btn btn-default btn-block"><%= t('buttons.labels.decision.close') %></button></a>
+              <a href="/#/messages" style="text-decoration: none;"><button style="margin-top: 6px" type="button" class="btn btn-default btn-block"><i class="glyphicon glyphicon-arrow-left"></i> <%= t('.back') %></button></a>
           </div>
       </div>
       </form>
