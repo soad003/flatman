@@ -245,7 +245,7 @@ de:
       resourceValue                      : "1724"
       addMoreEntriesForChart             : "Es werden mehr einträge benötigt um den Chart anzuzeigen."
       questionDeleteResource             : "Bist du dir sicher, dass du die Ressource löschen willst?"
-      add                                : "add"
+      add                                : "hinzufügen"
     create_resource:
       page_title                         : "Ressource"
       page_header                        : "Ressource"
@@ -265,6 +265,8 @@ de:
       startValue                         : "start Wert"
       startValue_placeholder             : "82767"
       startDate                          : "start Datum"
+      back                               : "zurück"
+      save                               : "speichern"
     search:
       page_header                        : "Suche nach"
       no_items_found                     : "keine items gefunden..."
