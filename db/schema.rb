@@ -35,11 +35,6 @@ ActiveRecord::Schema.define(version: 20140526051516) do
     t.integer "bill_id"
   end
 
-  create_table "finances", force: true do |t|
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
   create_table "flats", force: true do |t|
     t.string   "name"
     t.string   "street"
@@ -135,6 +130,16 @@ ActiveRecord::Schema.define(version: 20140526051516) do
     t.integer  "flat_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+  end
+
+  create_table "uploads", force: true do |t|
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "shareditem_id"
+    t.string   "file_file_name"
+    t.string   "file_content_type"
+    t.integer  "file_file_size"
+    t.datetime "file_updated_at"
   end
 
   create_table "users", force: true do |t|
