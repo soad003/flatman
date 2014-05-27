@@ -2,7 +2,7 @@ angular.module('flatman').controller("financeEntryCtrl", function($scope,$routeP
     $scope.id = $routeParams.id;
 
     financesService.category.get_all(function(data){
-         $scope.categories = _.uniq(_(data).pluck('cat_name'));
+         $scope.categories = financesService.category.get_category_names(data);
     });
 
     if($scope.id){

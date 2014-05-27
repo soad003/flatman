@@ -149,22 +149,22 @@
               <thead>
                 <tr>
                   <th>#</th>
-                  <th>Bewohner</th>
-                  <th class="text-right">Saldo</th>
+                  <th><%=t(".mate")%></th>
+                  <th class="text-right"><%=t(".status")%></th>
                 </tr>
               </thead>
               <tbody>
-                <tr ng-repeat="debt in allDebts track by $index">
+                <tr ng-repeat="financeTable in dashboardFinances">
                   <td>{{$index + 1}}</td>
-                  <td>{{debt.payee_name}}</td>
-                  <td class="text-right">{{debt.debt}}</td>
+                  <td>{{financeTable.name}}</td>
+                  <td class="text-right">{{financeTable.value| customCurrency : '€ '}}</td>
                 </tr>
               </tbody>
               <tfoot>
                   <tr>
                     <td>&nbsp;</td>
                     <td>&nbsp;</td>
-                    <td class="text-right">{{debts()}}</td>
+                    <td class="text-right">{{get_you_owe()| customCurrency : '€ '}}</td>
                   </tr>
               </tfoot>
               <p ng-show="allDebts.length===0"><%=t(".no_debts")%></p>

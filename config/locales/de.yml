@@ -213,6 +213,8 @@ de:
       share_available                    : "angebotene items"
       share_borrowed                     : "verliehene items"
       share_helptext                     : "teile und mache die Welt zu einem besseren Ort"
+      status                             : "Status"
+      mate                               : "Bewohner"
 
     messages:
       page_header                        : "Nachrichten"
