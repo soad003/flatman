@@ -26,6 +26,7 @@ scope "(:locale)", locale: /en|de/ do
     get '/finance_entry', to: :finance_entry, as: 'finance_entry'
     get '/finances_overview', to: :finances_overview, as: 'finances_overview'
     get '/create_message', to: :create_message, as: 'create_message'
+    get '/create_payment', to: :create_payment, as: 'create_payment'
   end
 
   #REST API
@@ -85,9 +86,10 @@ scope "(:locale)", locale: /en|de/ do
 
    get '/finance/category' => 'finance#get_by_category'
    get '/finance/financeTables' => 'finance#get_finance_tables'
+   get '/finance/financeTables/:member_id/:page' => 'finance#get_finance_table'
 
    post "/payment" => 'payment#create'
-   delete "/payment" => 'payment#delete'
+   delete "/payment/:id/:member_id" => 'payment#destroy'
   end
 
   # Authentication

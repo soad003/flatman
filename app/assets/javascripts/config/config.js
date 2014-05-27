@@ -74,6 +74,10 @@ angular.module('flatman', ['ngRoute','ngResource','google-maps','angles','ui.boo
         templateUrl: '/templates/finances_overview',
         controller: 'financesOverviewCtrl'
       }).
+      when('/create_payment', {
+        templateUrl:'/templates/create_payment',
+        controller: 'createPaymentCtrl'
+      }).
       when('/search/:term', {
         templateUrl: '/templates/search',
         controller: 'searchCtrl'

@@ -98,6 +98,7 @@ de:
             value:
               blank                       : "Bitte Preis eingeben."
               not_a_number                : "Preis muss numerisch sein."
+              greater_than                : "Preis muss größer als null sein."
             text:
               blank                       : "Bitte gib einen Namen an."
             user:
@@ -109,6 +110,10 @@ de:
           attributes:
             name:
               blank                       : "Bitte Kategorie angeben."
+        shoppinglist:
+          attributes:
+            shoppinglistitems:
+              invalid                     : "Das item sieht falsch aus!"
     ressource:
       info_all                        : "Gesamt"
       info_currentMonth               : "diesen Monat"
@@ -194,7 +199,7 @@ de:
       page_title                         : "Dashboard"
     dashboard:
       page_header                        : "Dashboard"
-      items_to_buy                       : "zu kaufen"
+      items_to_buy                       : "dinge zu kaufen"
       view_shopping_details              : "zu den listen"
       you_owe                            : "du schuldest ..."
       view_finance_details               : "zeige Abrechnungen"
@@ -213,6 +218,8 @@ de:
       share_available                    : "angebotene items"
       share_borrowed                     : "verliehene items"
       share_helptext                     : "teile und mache die Welt zu einem besseren Ort"
+      status                             : "Status"
+      mate                               : "Bewohner"
 
     messages:
       page_header                        : "Nachrichten"
@@ -287,9 +294,11 @@ de:
       page_title                         : "Finanzen"
       page_header                        : "Finanzstatus"
       add_fin                            : "Rechnung"
+      newBill                            : "Neue Rechnung"
+      newPaym                            : "Neue Zahlung"
       help_title                         : "Erstelle eine neue Ausgabe"
       help_paragraph1                    : "Hier behältst du den Überblick über deine Ausgaben und Schulden"
-      total                              : "Gesamt: "
+      biggest_by_cat                     : "6 größte Kategorien"
       spendings                          : "letzten 5 Ausgaben"
       categories                         : "Kategorien"
       debts                              : "Guthaben/Schulden"
@@ -303,6 +312,12 @@ de:
       delete                             : "löschen"
       name                               : "Name"
       show_all                           : "alle anzeigen"
+      gets                               : "bekommt"
+      owes_you                           : "schuldet dir"
+      no_entries                         : "Es gibt noch keine Rechnung oder Zahlungen"
+      add_payment                        : "Zahlung eintragen"
+      received_money_enter_payment       : "Jemand hat seine Schulden bezahlt?"
+      overview_flat_members              : "Übersicht"
     finance_entry:
       page_header_new                    : "neue Rechnung"
       page_header_edit                   : "Rechnung"
@@ -318,6 +333,14 @@ de:
       bill_affects                       : "betrifft"
       back                               : "zurück"
       save                               : "speichern"
+    create_payment:
+      page_header                        : "Zahlung eingeben"
+      back                               : "zurück"
+      save                               : "speichern"
+      value                              : "Pries"
+      value_placeholder                  : "42,00"
+      date                               : "Datum"
+      payer                              : "Wer hat seine Schulden beglichen?"
     finances_overview:
       page_header                        : "Übersicht"
       edit                               : "bearbeiten"

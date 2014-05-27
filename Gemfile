@@ -3,19 +3,15 @@ source 'https://rubygems.org'
 gem 'rails', '4.0.0'
 
 gem 'rails_12factor', group: :production
+
 # postgresql
 gem 'pg', '0.16.0'
+
 # heroku open needs this gem
 gem 'launchy'
-# zweispurige variante
-#gem 'sqlite3', :group => [:development, :test]
-#group :production do
- # gem 'thin'
-  #gem 'pg'
-#end
+
+# ORMapper
 gem 'activerecord'
-# Use mysql as the database
-#gem "mysql2"
 
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 4.0.0'
@@ -23,19 +19,15 @@ gem 'sass-rails', '~> 4.0.0'
 # Use Uglifier as compressor for JavaScript assets
 gem 'uglifier', '>= 1.3.0'
 
-# Use CoffeeScript for .js.coffee assets and views
-#gem 'coffee-rails', '~> 4.0.0'
-
 # See https://github.com/sstephenson/execjs#readme for more supported runtimes
+# for minification and so on
 gem 'therubyracer', platforms: :ruby
 
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
+
 # developer console rails
 gem 'rb-readline'
-
-# Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks
-#gem 'turbolinks'
 
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'jbuilder', '~> 1.2'
@@ -48,35 +40,37 @@ end
 # Twitter Bootstrap
 gem 'bootstrap-sass', '~> 3.1.1'
 
-# http accept lang
+# http accept lang, read lang from client to set proper default language
 gem 'http_accept_language'
 
 # chart js
 gem 'chart-js-rails'
 
+#super cool icons
 gem "font-awesome-rails"
 
-#authz
+#authorisation fb and google
 gem 'omniauth-facebook'
 gem "omniauth-google-oauth2"
-#gem omniauth-identity'
 
 #angular js
 gem 'angularjs-rails'
 
-#Underscore js
+#Underscore js, cool collection api's for js
 gem 'underscore-rails'
 
 # scheduler
 #gem 'rufus-scheduler'
 
+# Angular bindings bootstrap, typeahead
 gem 'angular-ui-bootstrap-rails'
-# gem 'seed_dump'
+
+# cool way to test json api's format
 gem 'assert_json'
 
 #gem "animate-rails"
 
-# mail exception notification
+# mail exception notification, if something goes wrong, not yet configured
 gem 'exception_notification'
 
 #javascript linter (syntax checker)
@@ -85,8 +79,6 @@ gem 'jshint_on_rails'
 #lightbox pictures
 gem 'magnific-popup-rails'
 
-# Use ActiveModel has_secure_password
-# gem 'bcrypt-ruby', '~> 3.0.0'
 
 # Use unicorn as the app server
 gem 'unicorn'

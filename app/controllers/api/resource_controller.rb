@@ -2,7 +2,6 @@ class Api::ResourceController < Api::RestController
     around_filter :wrap_in_transaction, only: [:create,:destroy]
 
     def index
-        list = Finance.getUserTables(current_user)
         @r=Ressource.set_attributes(current_user.flat.ressources)
         #logic model calc call
         #respond_with(current_user.flat.ressources)

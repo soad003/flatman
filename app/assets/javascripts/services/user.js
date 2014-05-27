@@ -5,7 +5,7 @@ angular.module('flatman').factory("userService",function($resource) {
             });
 
     return {
-        get: function(){return userService.get();}
+        get: function(succH,errH){return userService.get(succH,errH);}
     }
 
 });

@@ -29,14 +29,14 @@
     <!-- loading overlay before ng-cloak -->
     <div class="splash" ng-cloak>
       <div class="loading-overlay">
-        <span class="fa fa-refresh fa-5x loading-overlay-centered"></span>
+        <span class="fa fa-refresh fa-spin fa-5x loading-overlay-centered"></span>
       </div>
     </div>
 
     <!-- loading overlay for small devices -->
     <div ng-show="isLoading()">
       <div class="visible-xs loading-overlay">
-        <span class="fa fa-refresh fa-5x loading-overlay-centered"></span>
+        <span class="fa fa-refresh fa-5x fa-spin loading-overlay-centered"></span>
       </div>
     </div>
 
@@ -122,7 +122,7 @@
     <div id="container" class="container" ng-cloak>
       <section>
         <% flash.each do |key,message| %>
-          <div class="alert alert-<%= key.to_s %> alert-dismissable">
+          <div class="alert alert-<%= key.to_s %> alert-dismissable auto-fadeout">
             <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
             <%=message%>
           </div>
@@ -154,7 +154,7 @@
               <%= link_to_unless(I18n.locale == :de,
                       t('misc.titles.language.german'),{locale: :de},{:onclick => "this.href=this.href+'/'+window.location.hash" })%>
             </div>
-            <div class="col-md-4 col-xs-4 text-right hidden-xs">
+            <div class="col-md-4 col-xs-4 text-right hidden-xs hidden-sm">
               <%= link_to t('misc.titles.menus.terms_and_privacy.title'), terms_path %>
             </div>
           </div>

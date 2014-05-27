@@ -1,9 +1,23 @@
-function scrolldown() {$("#scrollarea").animate({ scrollTop: 0 }, "fast");}
+function scrolldown() {
+	$("#scrollarea").animate({ scrollTop: 100000 }, "fast");
+};
 
 function start(time){
-	//scrolldown();
+	var scroll = document.getElementById('scrollarea');
+	scroll.style.height = ($(window).height()-270).toString() + "px";
+	// don't work on mobile phone
+	scrolldown();
     var myVar = window.setTimeout(function() {
         var elem = document.getElementById('scrollarea');
         elem.scrollTop = elem.scrollHeight;
     }, time);
+    // slow connections needs a longer timeout
+    start2(2000);
+};
+
+function start2(time){
+	var myVar2 = window.setTimeout(function() {
+		var elem2 = document.getElementById('scrollarea');
+		elem2.scrollTop = elem2.scrollHeight;
+	}, time);
 };

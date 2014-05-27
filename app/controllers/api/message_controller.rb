@@ -7,7 +7,7 @@ class Api::MessageController < Api::RestController
   end
 
   def get_messages
-    @meslist=Message.find_messages(params[:mes_id])
+    @meslist=Message.find_messages(params[:mes_id], current_user)
     @meslist.each do |m|
       if !m.read && m.receiver_id == current_user.id
         m.read = true
@@ -49,7 +49,6 @@ class Api::MessageController < Api::RestController
   end
 
   def create
-    user=current_user
     recId = mes_params[:receiver_id]
     if (recId == "")
       respond_with_errors([t('.no_user_found')])
@@ -72,8 +71,9 @@ class Api::MessageController < Api::RestController
         @mes.created_at = nowTime
       end
       @mes.readers = [current_user.id]
-      user.sentMessages << @mes
-      user.save!
+      @mes.deleted = []
+      current_user.sentMessages << @mes
+      current_user.save!
       @mes
     end
   end
@@ -85,10 +85,19 @@ class Api::MessageController < Api::RestController
   def destroy
     recId = Message.find(params[:id]).receiver_id
     senId = Message.find(params[:id]).sender_id
-    m = Message.where(receiver_id: recId, sender_id: senId)
-    m.destroy_all
+    m1 = Message.where(receiver_id: recId, sender_id: senId)
     m2 = Message.where(sender_id: recId, receiver_id: senId)
-    m2.destroy_all
+    m = m1.clone + m2.clone
+    m.each do |mess| 
+      if !mess.deleted.include?(current_user.id)
+        mess.deleted = mess.deleted + [current_user.id]
+        mess.save!
+      end
+
+      if mess.deleted.size > 1
+        mess.destroy
+      end
+    end
     @mesd = Message.find_chats(current_user)
   end
 
@@ -100,7 +109,7 @@ class Api::MessageController < Api::RestController
       @counter = Message.countFlatChatUnread(@counterList, current_user)
       respond_with({counter: @counter})
     else
-      @counterList = Message.find_messages(params[:mes_id])
+      @counterList = Message.find_messages(params[:mes_id], current_user)
       @counter = Message.countUnread(@counterList, current_user)
       respond_with({counter: @counter})
     end
@@ -108,7 +117,7 @@ class Api::MessageController < Api::RestController
 
   private
   def mes_params
-    params.permit(:sender_id, :receiver_id, :text, :header, :read, :readers)
+    params.permit(:sender_id, :receiver_id, :text, :header, :read, :readers, :deleted)
   end
 
 end

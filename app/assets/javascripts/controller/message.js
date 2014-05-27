@@ -14,16 +14,29 @@ angular.module('flatman').controller("messageCtrl", function($scope, $route, $ti
     $scope.chatTexts = [];
 
     $scope.$on('message_count_changed', function(event, mass){
-        $scope.currentFlatChatMessages = mass.flat_messages;    // last new message flat
-        $scope.currentChats = mass.chats;                       // last message of each chat
+        
         //console.log(JSON.stringify($scope.currentChats));
-        $scope.chats = messageService.message.get();
-        $scope.flatchat = messageService.message.getFlatChat();
+        if ($scope.chatView === true){
+            $scope.chats = messageService.message.get();
+            $scope.flatchat = messageService.message.getFlatChat();
+        }
+        
+        $scope.currentFlatChatMessages = mass.flat_messages[mass.flat_messages.length-1];    // flat_messages fetch last
+        $scope.currentChats = mass.chats;                       // last message of each chat
+
         $scope.countUnreadFlatChat();
         
         if ($scope.flatchatActive === true){
             if ($scope.currentFlatChatMessages !== undefined){
                 if ($scope.currentFlatChatMessages.readers.indexOf($scope.currentUserId.id) == -1){
+                    $scope.flatchatMessages = messageService.messages.getFlatChatMessages($scope.flatchat.id);
+                    start(500);
+                }   // two people write at the same time
+                else if (mass.flat_messages.length > 1 && mass.flat_messages[mass.flat_messages.length-2].readers.indexOf($scope.currentUserId.id) == -1){
+                    $scope.flatchatMessages = messageService.messages.getFlatChatMessages($scope.flatchat.id);
+                    start(500);
+                }   // three people write at the same time
+                else if (mass.flat_messages.length > 2 && mass.flat_messages[mass.flat_messages.length-3].readers.indexOf($scope.currentUserId.id) == -1){
                     $scope.flatchatMessages = messageService.messages.getFlatChatMessages($scope.flatchat.id);
                     start(500);
                 }
@@ -33,16 +46,21 @@ angular.module('flatman').controller("messageCtrl", function($scope, $route, $ti
         if ($scope.activeChat !== null){
             for (var i = 0; i < $scope.currentChats.length; i++) {
                 if (($scope.currentChats[i].sender_id == $scope.activeChat.sender_id && $scope.currentChats[i].receiver_id == $scope.activeChat.receiver_id) ||
-                    ($scope.currentChats[i].receiver_id == $scope.activeChat.sender_id && $scope.currentChats[i].sender_id == $scope.activeChat.receiver_id))
-                    if ($scope.currentChats[i].read === false){
+                    ($scope.currentChats[i].receiver_id == $scope.activeChat.sender_id && $scope.currentChats[i].sender_id == $scope.activeChat.receiver_id)){
+                    if ($scope.currentChats[i].sender_id != $scope.currentUserId.id){
                         $scope.messages = messageService.messages.get($scope.activeChat.id);
                         start(500);
                     }
+                }
             }
         }
     });
 
-    $scope.newMess = {sender_id: "", receiver_id: "", text: "", header: "", read: false, readers: []};
+    $scope.newMess = {sender_id: "", receiver_id: "", text: "", header: "", read: false, readers: [], deleted: [] };
+
+    $scope.getDocHeight = function () {
+        return $(window).height();
+    };
 
     $scope.getMessages = function (chat, index){
         $scope.chatView = false;
@@ -113,17 +131,6 @@ angular.module('flatman').controller("messageCtrl", function($scope, $route, $ti
 
     };
 
-    $scope.removeFlatChat=function(question){
-        bootbox.confirm(question, function(result) {
-            if (result){
-                $scope.flatchat = null;
-                $scope.messages = [];
-            }
-            $scope.chatView = true;
-            $scope.flatchatActive = false;
-        });
-    };
-
     $scope.countUnread=function(chat, index){
         $scope.unreadCounter[index] = messageService.message.count(chat.id);
     };
@@ -137,7 +144,6 @@ angular.module('flatman').controller("messageCtrl", function($scope, $route, $ti
     };
 
     $scope.getFlatUnreadCounter=function(){
-        //console.log($scope.flatchat);
         if ($scope.flatchat.id !== undefined && $scope.flatchatUnreadCounter !== null){
             return $scope.flatchatUnreadCounter.counter;
         }

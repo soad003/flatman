@@ -98,6 +98,7 @@ en:
             value:
               blank                       : "Price can't be blank."
               not_a_number                : "Price must be a number."
+              greater_than                : "Must be greater than zero."
             text:
               blank                       : "Please provide a name."
             user:
@@ -109,6 +110,10 @@ en:
           attributes:
             name:
               blank                       : "Category name can't be blank."
+        shoppinglist:
+          attributes:
+            shoppinglistitems:
+              invalid                     : "This item looks invalid!"
 
     ressource:
       info_all                        : "Total"
@@ -214,12 +219,15 @@ en:
       share_available                    : "items offered to share"
       share_borrowed                     : "currently borrowed items"
       share_helptext                     : "share ressources, feel better and make the world a better place"
+      status                             : "status"
+      mate                               : "mate"
 
     messages:
       page_header                        : "Messages"
       page_title                         : "Messages"
       new_text_placeholder               : "Enter text"
       send                               : "send"
+      back                               : "back"
       intro_header                       : "Start creating your first chat"
       intro_text1                        : "With this feature you can contact other Users to share some items or other things."
       intro_text2                        : "Maybe you can find someone to borrowed an item you need."
@@ -227,6 +235,7 @@ en:
     create_message:
       page_header                        : "New Message"
       send                               : "send"
+      back                               : "back"
       create_Message_user_placeholder    : "Username"
       new_text_placeholder               : "Enter text"
     resources:
@@ -288,9 +297,11 @@ en:
       page_title                         : "Finances"
       page_header                        : "Finances"
       add_fin                            : "Bill"
+      newBill                            : "New Bill"
+      newPaym                            : "New Payment"
       help_title                         : "Create a new expense"
       help_paragraph1                    : "Here you can enter expenses and check your balance"
-      total                              : "Total: "
+      biggest_by_cat                     : "largest 6 expense categories"
       spendings                          : "last 5 bills"
       categories                         : "Categories"
       debts                              : "Debts/Balance"
@@ -298,12 +309,18 @@ en:
       cat                                : "category"
       value                              : "price"
       inhabit                            : "Inhabitant"
-      what                               : "Typ"
+      what                               : "what"
       payment_placeholder                : "payments of user"
       edit                               : "edit"
       delete                             : "delete"
       name                               : "name"
       show_all                           : "show all"
+      gets                               : "gets"
+      owes_you                           : "owes you"
+      no_entries                         : "There are no bills or payments available"
+      add_payment                        : "add payment"
+      received_money_enter_payment       : "You received money?"
+      overview_flat_members              : "Overview Finances"
     finance_entry:
       page_header_new                    : "New Bill"
       page_header_edit                   : "Bill"
@@ -319,6 +336,14 @@ en:
       bill_affects                       : "bill affects"
       back                               : "back"
       save                               : "save"
+    create_payment:
+      page_header                        : "Enter a payment"
+      back                               : "back"
+      save                               : "save"
+      value                              : "value"
+      value_placeholder                  : "42.00"
+      date                               : "date"
+      payer                              : "who paid you?"
     finances_overview:
       page_header                        : "Overview"
       edit                               : "edit"
