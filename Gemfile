@@ -83,7 +83,7 @@ gem 'exception_notification'
 gem 'jshint_on_rails'
 
 #lightbox pictures
-#gem 'magnific-popup-rails'
+gem 'magnific-popup-rails'
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
@@ -97,14 +97,17 @@ gem 'capistrano', group: :development
 gem 'netrc'
 
 
-gem 'magnific-popup-rails'
-gem 'less-rails'
+#alert box
 gem 'bootbox-rails'
+
+#image handling
 gem 'paperclip'
 
-#file storage in amazon cloud
-#gem 'aws-sdk'
+#file storage in amazon cloud?? needed, 
+gem 'aws-sdk'
 
+
+#calculate distance
 gem 'geocoder'
 # Use debugger
 # gem 'debugger', group: [:development, :test]

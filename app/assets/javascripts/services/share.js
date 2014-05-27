@@ -16,7 +16,6 @@ angular.module('flatman').factory("shareService", function($resource) {
 	});
 
 	var shareService = $resource('/api/share/:id', {
-	//:id
 	}, {
 		'get' : {
 			method : "GET",
@@ -56,12 +55,9 @@ angular.module('flatman').factory("shareService", function($resource) {
 			}
 			
 		},
-
-		//overview
 		items : {
 
 			update : function(item, succH, errH) {
-				console.log(item);
 				return sharedItemService.update({
 					id : item.id
 				}, item, succH, errH);
@@ -78,7 +74,6 @@ angular.module('flatman').factory("shareService", function($resource) {
 			},
 
 			create : function(name, succH, errH) {
-				console.log(name);
 				shareService.create(null, {
 					name : name
 				}, succH, errH);

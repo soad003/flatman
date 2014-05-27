@@ -35,7 +35,6 @@
 //= require ./vendor/angles.js
 //= require bootbox.js
 //= require ./vendor/angular-google-maps.min.js
-//= require magnific-popup
-//= require ./vendor/bootstrap-switch
 //= require ./vendor/scrollDown.js
 //= require ./vendor/ng-tags-input.js
+//= require ./vendor/jquery.magnific-popup.js
