@@ -13,6 +13,9 @@
 
 ActiveRecord::Schema.define(version: 20140526051516) do
 
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
   create_table "billcategories", force: true do |t|
     t.integer  "flat_id"
     t.string   "name"
@@ -33,11 +36,6 @@ ActiveRecord::Schema.define(version: 20140526051516) do
   create_table "bills_users", force: true do |t|
     t.integer "user_id"
     t.integer "bill_id"
-  end
-
-  create_table "finances", force: true do |t|
-    t.datetime "created_at"
-    t.datetime "updated_at"
   end
 
   create_table "flats", force: true do |t|
