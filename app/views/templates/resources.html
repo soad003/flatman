@@ -54,10 +54,10 @@
                         </ul>
                     </h2>
 
-                    <pagination on-select-page="setPage(resource, page)" total-items="resource.entryLength" page="resource.page" items-per-page="resource.entriesPerPage" max-size="5" class="hidden-xs pagination-sm pull-right" boundary-links="true" ng-hide="resource.entriesPerPage >= resource.entryLength" rotate="true" previous-text="&lsaquo;" next-text="&rsaquo;" first-text="&laquo;" last-text="&raquo;">
+                    <pagination on-select-page="setPage(resource, page)" total-items="resource.entryLength" page="resource.page" items-per-page="entriesPerPage" max-size="5" class="hidden-xs pagination-sm pull-right" boundary-links="true" ng-hide="entriesPerPage >= resource.entryLength" rotate="true" previous-text="&lsaquo;" next-text="&rsaquo;" first-text="&laquo;" last-text="&raquo;">
                     </pagination>
 
-                    <pagination on-select-page="setPage(resource, page)" total-items="resource.entryLength" page="resource.page" items-per-page="resource.entriesPerPage" max-size="2" ng-hide="resource.entriesPerPage >= resource.entryLength" class="visible-xs pagination-sm pull-right" boundary-links="true" rotate="true" previous-text="&lsaquo;" next-text="&rsaquo;" first-text="&laquo;" last-text="&raquo;">
+                    <pagination on-select-page="setPage(resource, page)" total-items="resource.entryLength" page="resource.page" items-per-page="entriesPerPage" max-size="2" ng-hide="entriesPerPage >= resource.entryLength" class="visible-xs pagination-sm pull-right" boundary-links="true" rotate="true" previous-text="&lsaquo;" next-text="&rsaquo;" first-text="&laquo;" last-text="&raquo;">
                     </pagination>
                 </div>
             </div>
