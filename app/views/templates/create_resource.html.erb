@@ -99,7 +99,7 @@
         <label for="resource_startDate">
           <%= t('.startDate') %></label>
 
-          <div class="input-group"> <!--class="form-control"  close-text="Close" is-open="opened" date-disabled="disabled(date, mode)" -->
+          <div class="input-group">
             <input type="text" onfocus="blur();" class="form-control" show-button-bar="false" showWeeks="false" datepicker-popup="mediumDate" ng-model="resourceTmp.startDate" is-open="opened" date-disabled="disabled(date, mode)" ng-required="true" close-text="Close" />
               <span class="input-group-addon">
                   <span class="glyphicon glyphicon-calendar"></span>
@@ -111,7 +111,7 @@
       <div class="row form-group">
           <div class="col-md-3 col-xs-4">
             <a href="/#/resources" class = "btn btn-sm btn-default">
-              <i class="glyphicon glyphicon-arrow-left"></i></i> <%= t('.back') %>
+              <i class="glyphicon glyphicon-arrow-left"></i> <%= t('.back') %>
             </a>
           </div>
           <div class="col-md-3 col-md-offset-6 col-xs-4 col-xs-offset-4">

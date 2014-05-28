@@ -85,6 +85,20 @@ en:
               blank                       : "Please provide a name for the unit of the resource!"
             startValue:
               blank                       : "Please enter a start value!"
+        ressourceentry:
+          attributes:
+            value:
+              blank                       : "Entry can't be blank."
+              not_a_number                : "Entry must be a number."
+              greater_than                : "Must be greater than zero."
+        payment:
+          attributes:
+            value:
+              blank                       : "Price can't be blank."
+              not_a_number                : "Price must be a number."
+              greater_than                : "Must be greater than zero."
+            payer_id:
+              blank                       : "Please add a payer"
         message:
           attributes:
             receiver_id:
@@ -252,8 +266,11 @@ en:
       costs                              : "costs"
       resourceValue                      : "1724"
       addMoreEntriesForChart             : "More entries are required to view the chart"
+      addMoreEntriesForOverview          : "Add at least two entries for the overview"
       questionDeleteResource             : "Do you really want to delete the resource?"
       add                                : "add"
+      edit                               : "edit"
+      delete                             : "delete"
     create_resource:
       page_title                         : "Resource"
       page_header                        : "Resource"

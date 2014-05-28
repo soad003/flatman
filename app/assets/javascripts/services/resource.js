@@ -57,8 +57,8 @@ angular.module('flatman').service("resourceService",function($resource) {
 
         },
         entry: {
-            get: function(resource_id, page, succH, errH){
-                return entryService.get({r_id: resource_id, id: page},succH, errH);
+            get_range: function(resource_id, from, to, succH, errH){
+                return entryService.get({r_id: resource_id, from: from, to: to},succH, errH);
             },
             create: function(resource_id,entry,succH,errH){
                 entryService.create({r_id: resource_id},entry,succH,errH);

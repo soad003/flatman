@@ -1,44 +1,32 @@
-angular.module('flatman').controller("resourceCtrl",function($scope, $filter, resourceService, Util){
-    //to get the env to reduce the loads of data
-    $scope.isMobile=function() {
-          return false;
-        //return $(window).width()<=770;
-        
-    };
-
-    $scope.isMobile = $scope.isMobile();
-
+angular.module('flatman').controller("resourceCtrl",function($scope, $filter, resourceService, Util){    
     $scope.showIntro = false;
     $scope.resources = resourceService.resource.getAll(function(){
         if ($scope.resources.length === 0){
             $scope.showIntro = true;
         }
         _.each($scope.resources, function(resource){
-                                        resource.enoughEntriesForChart = (resource.entryLength > 2);
                                         $scope.init(resource);
                                         $scope.setEntries(resource);
-                                        $scope.initChart(resource);
                                     });
     });
 
 
     $scope.formatNumber = function (number){
-        return (locale != 'en')? number.toString().replace('.',','): number;
+        return (locale != 'en') ? number.toString().replace('.',','): number;
     };
 
     $scope.init = function (resource) {
         resource.date = new Date();
         resource.page = 1;
+        resource.entriesPerPage = 5;
         $scope.showInfos(resource,true);
         resource.chartDateRange.startDate = new Date(resource.chartDateRange.startDate);
         resource.chartDateRange.endDate = new Date(resource.chartDateRange.endDate);
     };
 
     $scope.showInfos = function (resource, flag){
-        if (!$scope.isMobile){
-            $scope.getChartData(resource);
-            $scope.setOverview(resource);
-        }
+        $scope.getChartData(resource);
+        $scope.setOverview(resource);
         resource.showChart=flag;
     };
 
@@ -71,8 +59,6 @@ angular.module('flatman').controller("resourceCtrl",function($scope, $filter, re
                         "data":response.costs
                     }]
             };
-
-
             });
     };
 
@@ -83,22 +69,24 @@ angular.module('flatman').controller("resourceCtrl",function($scope, $filter, re
             });
     };
 
+    $scope.setPage=function(resource, page){
+        resource.page = page;
+        $scope.setEntries(resource);
+    };
 
 
     $scope.setEntries=function(resource){
-        resource.entries = resourceService.entry.get(resource.id, resource.page);
+        resource.entries = resourceService.entry.get_range(resource.id, (resource.page-1)*resource.entriesPerPage, resource.page*resource.entriesPerPage);
         resource.entryvalue = "";
+
     };
 
      $scope.addEntry=function(resource){
-        //resource.entryvalue =  $filter('number')(resource.entryvalue, 2);
-        //alert(resource.entryvalue);
         resourceService.entry.create(resource.id,{date:resource.date,value:resource.entryvalue}, function(data){
                  $scope.setEntries(resource);
                  resource.entryLength++;
                  $scope.getChartData(resource);
                  $scope.setOverview(resource);
-                 resource.enoughEntriesForChart = (resource.entryLength > 2);
         });
     };
 
@@ -108,76 +96,9 @@ angular.module('flatman').controller("resourceCtrl",function($scope, $filter, re
             resource.entryLength--;
             $scope.getChartData(resource);
             $scope.setOverview(resource);
-            resource.enoughEntriesForChart = (resource.entryLength > 2);
         });
     };
-
-    $scope.getRange=function (resource){
-        var pages = $scope.getPages(resource);
-        if (pages <= 5){
-            return _.range(1, pages+1);
-        }else{
-            if (resource.page <= 3){
-                return _.range(1, 6);
-            } else if (resource.page >= (pages-2)){
-                return _.range(pages-4, pages+1);
-            }
-            return _.range((resource.page-2), (resource.page+3));
-        }
-    };
-
-    $scope.setEntriesForPage=function (i, resource){
-        resource.page = i;
-        $scope.setEntries(resource);
-    };
-
-    $scope.getPages = function (resource){
-        return Math.ceil(resource.entryLength/5);
-    };
-
-    $scope.changePage=function(resource, value){
-        var pages = $scope.getPages(resource);
-        var changeflag = true;
-        resource.page += value;
-        if (resource.page > pages){
-            resource.page = pages;
-            changeflag =false;
-        }
-        if(resource.page < 1){
-            resource.page = 1;
-            changeflag = false;
-        }
-        if (changeflag){
-            $scope.setEntries(resource);
-        }
-    };
-
-    $scope.initChart=function(resource){
-       /* resource.chart = {
-            "labels":[],
-            "datasets":[
-                {
-                    "fillColor":"rgba(151,187,205,0.5)",
-                    "strokeColor":"rgba(151,187,205,1)",
-                    "pointColor":"rgba(151,187,205,1)",
-                    "pointStrokeColor":"#fff",
-                    "data":[]
-                }]
-            };*/
-    };
-
+    $scope.maxSize = 5;
+    $scope.bigTotalItems = 175;
+    $scope.bigCurrentPage = 1;
 });
-
-/*$(window).resize(respondCanvas);
-    function respondCanvas() {
-       var width = jQuery("#statistic").width();
-       var height = jQuery("#statistic").height();
-       jQuery("#chart").attr('width', width);
-       jQuery("#chart").attr('height', height);
-       resources[0].chart = resources[0].chart;
-       //alert(width + " - " + height);
-        //Call a function to redraw other content (texts, images etc)
-        myNewChart = new Chart(ct).Bar(data, options);
-    }
-//Initial call 
-respondCanvas();*/
