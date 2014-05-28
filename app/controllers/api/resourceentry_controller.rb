@@ -3,8 +3,11 @@ class Api::ResourceentryController < Api::RestController
      def page
         #@r=Ressource.calc(current_user.flat.ressources);
         #logic model calc call
-        r = Ressource.find_resource_with_user_constraint(params[:resource_id], current_user)
-        @re = Ressource.calc(r, params[:page])
+        resource = Ressource.find_resource_with_user_constraint(params[:resource_id], current_user)
+        resourceentries = Ressource.calc(resource)
+        from = Integer(params[:from] || 0)
+        to = Integer(params[:to] || bills_of_all_users.length) -from
+        @re=resourceentries.drop(from).take(to)
     end
 
     def create

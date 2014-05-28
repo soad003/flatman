@@ -54,7 +54,7 @@ scope "(:locale)", locale: /en|de/ do
 	 resources :resource, only: [:index, :create, :update, :destroy] do
       resources :resourceentry, only: [:create, :destroy]
    end
-   get '/resource/:resource_id/resourceentry/:page' => 'resourceentry#page'
+   get '/resource/:resource_id/resourceentry/' => 'resourceentry#page'
    get '/resource/:resource_id/chart' => 'resource#get_chart'
    get '/resource/:resource_id/overview' => 'resource#get_overview'
    get '/resource/:resource_id' => 'resource#get_by_id'

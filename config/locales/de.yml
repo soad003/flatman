@@ -85,6 +85,26 @@ de:
               blank                       : "Bitte gib eine maßeinheit für die Ressource an!"
             startValue:
               blank                       : "Bitte gib einen Startwert an!"
+        ressourceentry:
+          attributes:
+            value:
+              blank                       : "Bitte Wert eingeben."
+              not_a_number                : "Wert muss numerisch sein."
+              greater_than                : "Wert muss größer als null sein."
+        payment:
+          attributes:
+            value:
+              blank                       : "Bitte Preis eingeben."
+              not_a_number                : "Preis muss numerisch sein."
+              greater_than                : "Preis muss größer als null sein."
+            payer_id:
+              blank                       : "Please add a payer"
+        message:
+          attributes:
+            receiver_id:
+              blank                       : "Bitte gib den Empfängernamen an!"
+            text:
+              blank                       : "Bitte gib eine Nachricht an!"
         bill:
           attributes:
             date:
@@ -241,9 +261,13 @@ de:
       usage                              : "Verbrauch"
       costs                              : "Kosten"
       resourceValue                      : "1724"
-      addMoreEntriesForChart             : "Es werden mehr einträge benötigt um den Chart anzuzeigen."
+      addMoreEntriesForChart             : "Es werden mehr Einträge benötigt um den Chart anzuzeigen."
+      addMoreEntriesForOverview          : "Es werden mindestens zwei Einträge für den Überblick benötigt."
+      edit                               : "bearbeiten"
+      delete                             : "löschen"
+
       questionDeleteResource             : "Bist du dir sicher, dass du die Ressource löschen willst?"
-      add                                : "add"
+      add                                : "hinzufügen"
     create_resource:
       page_title                         : "Ressource"
       page_header                        : "Ressource"
@@ -263,6 +287,8 @@ de:
       startValue                         : "start Wert"
       startValue_placeholder             : "82767"
       startDate                          : "start Datum"
+      back                               : "zurück"
+      save                               : "speichern"
     search:
       page_header                        : "Suche nach"
       no_items_found                     : "keine items gefunden..."
