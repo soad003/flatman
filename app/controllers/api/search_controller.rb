@@ -1,26 +1,15 @@
 class Api::SearchController < Api::RestController
+  
   def search
-    
-    ownflat = current_user.flat
-    items = Shareditem.which_contain(s_params[:term]).from_city(ownflat[:zip], ownflat[:city])
-    c = items.map { |v| {:data => v, :distance => calc_distance(v)} }
-    
+    items = Shareditem.which_contain(s_params[:term]).from_city(current_user.flat[:zip], current_user.flat[:city])
+    c = items.map { |v| {:data => v, :distance => calc_distance(v).round(2)} }
     respond_with({items:c})
   end
 
   private
   
-  
-  #ins model!
   def calc_distance(item)
-    ownflat = current_user.flat
-    point1 = ownflat[:zip] + " " + ownflat[:city] + ", " + ownflat[:street]
-    
-    
-    point2 = item.flat[:zip] + " " + item.flat[:city] + ", " + item.flat[:street]
-    
-    distance = Geocoder::Calculations.distance_between(point1, point2)
-    return distance
+    return current_user.flat.get_distance_to(item.flat)
   end
 
   def s_params
