@@ -7,10 +7,10 @@
     <div class="panel panel-info">
       <div class="panel-heading">
         <div class="row">
-          <div class="col-xs-6">
+          <div class="col-xs-4">
             <i class="fa fa-shopping-cart fa-5x"></i>
           </div>
-          <div class="col-xs-6 text-right">
+          <div class="col-xs-8 text-right">
             <p class="announcement-heading">{{get_items_to_buy()}}</p>
             <p class="announcement-text"><%=t(".items_to_buy")%></p>
           </div>
@@ -34,10 +34,10 @@
     <div class="panel panel-warning">
       <div class="panel-heading">
         <div class="row">
-          <div class="col-xs-6">
+          <div class="col-xs-4">
             <i class="fa fa-bitcoin fa-5x"></i>
           </div>
-          <div class="col-xs-6 text-right">
+          <div class="col-xs-8 text-right">
               <p class="announcement-heading">{{get_you_owe()}}</p>
              <p class="announcement-text"><%=t(".you_owe")%></p>
           </div>
@@ -61,10 +61,10 @@
     <div class="panel panel-danger">
       <div class="panel-heading">
         <div class="row">
-          <div class="col-xs-6">
+          <div class="col-xs-4">
             <i class="fa fa-share-square-o fa-5x"></i>
           </div>
-          <div class="col-xs-6 text-right">
+          <div class="col-xs-8 text-right">
             <p class="announcement-heading">{{count_sharedItems(false)}}</p>
             <p class="announcement-text"><%=t(".items_borrowed")%></p>
           </div>
@@ -88,10 +88,10 @@
     <div class="panel panel-success">
       <div class="panel-heading">
         <div class="row">
-          <div class="col-xs-6">
+          <div class="col-xs-4">
             <i class="fa fa-globe fa-5x"></i>
           </div>
-          <div class="col-xs-6 text-right">
+          <div class="col-xs-8 text-right">
             <p class="announcement-heading">{{get_resource_usage() | number: 0}}</p>
             <p class="announcement-text"><%=t(".view_resource_titel")%></p>
           </div>

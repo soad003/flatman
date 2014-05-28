@@ -3,7 +3,7 @@ angular.module('flatman').factory("searchService",function($resource) {
             {
                 'get': {method: "GET"}
             });
-
+	
     return {
         search: function(searchterm,succ,err) { return res.get({term:searchterm},{},succ,err); }
     }

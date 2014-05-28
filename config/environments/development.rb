@@ -51,5 +51,5 @@ Flatman::Application.configure do
   config.assets.precompile += %w( vendor/angular-locale_de-de.js )
   #Mail.register_interceptor(DevelopmentMailInterceptor) if Rails.env.development?
 
-  PAPERCLIP_STORAGE_OPTIONS = {}
+  
 end
