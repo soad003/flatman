@@ -3,10 +3,18 @@ angular.module('flatman').controller("searchCtrl",function($scope,$routeParams,s
 
     searchService.search($scope.term, function(data){
         $scope.searchdata=data;
-        $('.image-link').magnificPopup({type:'image'});
     });
 	
-	
+	$scope.showImage = function(source) {
+		console.log(source);
+		 $(".show-image").magnificPopup({
+		    items: {
+		      src: source
+		    },
+		    type: 'image' // this is default type
+		});
 	 
+	};
+  
 
 });
