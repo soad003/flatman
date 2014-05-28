@@ -101,7 +101,7 @@
                                                                     <td>
                                                                         <button class="btn btn-default btn-xs pull-right"
                                                                                 ng-hide="entry.id == -1"
-                                                                                ng-click="removePayment(entry, finance_member)">
+                                                                                ng-click="removePayment(entry,  finance_member, $parent.$index)">
                                                                             <span class="glyphicon glyphicon-trash"></span>
                                                                         </button>
                                                                     </td>
@@ -111,22 +111,8 @@
                                                     </div>
                                                 </div>
                                                 <div class="col-sm-12">
-                                                    <ul class="pagination pagination-sm pull-right" ng-show="getPages(finance_member) != 1">
-                                                        <li>
-                                                            <a ng-click="changePage(finance_member, - 1)" href="">&laquo;</a>
-                                                        </li>
-                                                        <li ng-class="{active: i == finance_member.page}"
-                                                            class="hidden-xs hidden-sm"
-                                                            ng-repeat="i in getRange(finance_member)">
-                                                            <a ng-click="setEntriesForPage(i, finance_member)" href="">{{i}}</a>
-                                                        </li>
-                                                        <li class="active hidden-md hidden-lg">
-                                                            <a href="">{{finance_member.page}}</a>
-                                                        </li>
-                                                        <li>
-                                                            <a href="" ng-click="changePage(finance_member, 1)">&raquo;</a>
-                                                        </li>
-                                                    </ul>
+                                                    <pagination on-select-page="setPage(finance_member, page, $index)" total-items="finance_member.entryLength" page="finance_member.page" items-per-page="entriesPerPage" max-size="5" class="hidden-xs pagination-sm pull-right" boundary-links="true" ng-hide="entriesPerPage >= finance_member.entryLength" rotate="true" previous-text="&lsaquo;" next-text="&rsaquo;" first-text="&laquo;" last-text="&raquo;">
+                                                    </pagination>
                                                 </div>
                                             </div>
                                         </div>
@@ -151,7 +137,7 @@
                     <div class="panel-heading text-center">
                        <i class="fa fa-credit-card"></i> <%= t(".spendings") %>
                     </div>
-                    <div class="panel-body">
+                    <div class="row panel-body">
                         <table class="table table-striped">
                             <tr>
                                 <th><%= t(".date") %></th>

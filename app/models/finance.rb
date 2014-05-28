@@ -3,14 +3,16 @@ class Finance
 		returnValue = []
 		user.flat.users.each do |member|
 			if (member.id != user.id)
-				returnValue << get_user_table(user, member, 1)
+				userTable = get_user_table(user, member)
+				userTable.entries = userTable.entries.drop(0).take(5)
+				returnValue << userTable
 			end
 		end
 		returnValue
     end
 
-    def self.get_user_table (user, member, page)
-		member_info = OpenStruct.new({"name" => member.name, "entryLength"=>"", "id" => member.id, "img_path" => member.image_path, "value" => 0, "entries" => []})
+    def self.get_user_table (user, member)
+		member_info = OpenStruct.new({"name" => member.name, "page"=>1, "entryLength"=>"", "id" => member.id, "img_path" => member.image_path, "value" => 0, "entries" => []})
 
 		paymentsUserToMember = Payment.where(payer_id: user.id, payee_id: member.id)
 		member_info.entries = member_info.entries + getEntrysOfPayments(paymentsUserToMember, 1)
@@ -26,7 +28,6 @@ class Finance
 			member_info.value += entry.value
 		end
 		member_info.entryLength = member_info.entries.length
-		member_info.entries = member_info.entries.slice((page.to_i-1)*5, page.to_i*5)
 		member_info
     end
 

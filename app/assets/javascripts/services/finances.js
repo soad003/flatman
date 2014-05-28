@@ -12,11 +12,11 @@ angular.module('flatman').factory("financesService", function($resource){
                             'get_all': {method: "GET", isArray:true}
                         });
 
-    var financeTables = $resource('/api/finance/financeTables/:id/:page',{},
+    var financeTables = $resource('/api/finance/financeTables/',{},
                         {
                             'get': {method: "GET", isArray:true}
                         });
-    var financeTable = $resource('/api/finance/financeTables/:id/:page',{},
+    var financeTable = $resource('/api/finance/financeTables/:id/',{},
                         {
                             'get': {method: "GET"}
                         });
@@ -38,8 +38,8 @@ angular.module('flatman').factory("financesService", function($resource){
             get_tables: function (succH, errH){
                 return financeTables.get(null,succH, errH);
             },
-            get_table: function (member_id, page, succH, errH){
-                return financeTable.get({id: member_id, page: page},succH, errH);
+            get_table: function (member_id, from, to, succH, errH){
+                return financeTable.get({id: member_id, from: from, to: to},succH, errH);
             }
         },
         bill: {

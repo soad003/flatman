@@ -86,7 +86,7 @@ scope "(:locale)", locale: /en|de/ do
 
    get '/finance/category' => 'finance#get_by_category'
    get '/finance/financeTables' => 'finance#get_finance_tables'
-   get '/finance/financeTables/:member_id/:page' => 'finance#get_finance_table'
+   get '/finance/financeTables/:member_id/' => 'finance#get_finance_table'
 
    post "/payment" => 'payment#create'
    delete "/payment/:id/:member_id" => 'payment#destroy'
