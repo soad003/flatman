@@ -85,6 +85,26 @@ en:
               blank                       : "Please provide a name for the unit of the resource!"
             startValue:
               blank                       : "Please enter a start value!"
+        ressourceentry:
+          attributes:
+            value:
+              blank                       : "Entry can't be blank."
+              not_a_number                : "Entry must be a number."
+              greater_than                : "Must be greater than zero."
+        payment:
+          attributes:
+            value:
+              blank                       : "Price can't be blank."
+              not_a_number                : "Price must be a number."
+              greater_than                : "Must be greater than zero."
+            payer_id:
+              blank                       : "Please add a payer"
+        message:
+          attributes:
+            receiver_id:
+              blank                       : "Please enter the username of the receiver"
+            text:
+              blank                       : "Please enter a message to send"
         bill:
           attributes:
             date:
@@ -238,35 +258,40 @@ en:
       help_title                         : "Start creating your first resource ..."
       help_paragraph1                    : "With this feature you can view your resource usage and costs. "
       help_paragraph2                    : "Maybe we will help you to save some costs and to protect your environment."
-      chart                              : "Chart"
-      data                               : "Overview"
-      date                               : "Date"
-      value                              : "Value"
-      usage                              : "Usage"
-      costs                              : "Costs"
+      chart                              : "chart"
+      data                               : "overview"
+      date                               : "date"
+      value                              : "value"
+      usage                              : "usage"
+      costs                              : "costs"
       resourceValue                      : "1724"
       addMoreEntriesForChart             : "More entries are required to view the chart"
+      addMoreEntriesForOverview          : "Add at least two entries for the overview"
       questionDeleteResource             : "Do you really want to delete the resource?"
       add                                : "add"
+      edit                               : "edit"
+      delete                             : "delete"
     create_resource:
       page_title                         : "Resource"
       page_header                        : "Resource"
-      name                               : "Name"
+      name                               : "name"
       name_placeholder                   : "electricity"
-      unitName                           : "Unit Name"
+      unitName                           : "unit name"
       unitName_placeholder               : "kw/h"
-      description                        : "Description"
+      description                        : "description"
       description_placeholder            : "Nightenergy"
+      back                               : "back"
+      save                               : "save"
 
-      priceUnit                          : "Price/Unit"
+      priceUnit                          : "price/unit"
       priceUnit_placeholder              : "0,13"
-      monthlyCosts                       : "Monthly Costs"
+      monthlyCosts                       : "monthly Costs"
       monthlyCosts_placeholder           : "6,30"
-      annualCosts                        : "Annual Costs"
+      annualCosts                        : "annual Costs"
       annualCosts_placeholder            : "12,30"
-      startValue                         : "Start Value"
+      startValue                         : "start Value"
       startValue_placeholder             : "82767"
-      startDate                          : "Start Date"
+      startDate                          : "start Date"
     search:
       page_header                        : "Searching for"
       no_items_found                     : "no items found for your query..."

@@ -11,7 +11,7 @@ class Api::PaymentController < Api::RestController
         payment = Payment.find(delete_params[:id])
         if payment.payee_id == current_user.id || payment.payer_id == current_user.id
             payment.destroy!
-            @response = Finance.get_user_table(current_user, User.find(delete_params[:member_id]), delete_params[:page])
+            respond_with(nil, :location => nil)
         end
     end
 

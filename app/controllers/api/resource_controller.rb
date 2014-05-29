@@ -39,7 +39,6 @@ class Api::ResourceController < Api::RestController
 
       resources.each do |resource|
         oldestEntry = Ressource.get_oldest_entryDate(resource)
-        puts "--> " + oldestEntry.to_s
         statistic_data = Ressource.get_statistic_data(oldestEntry - 30, oldestEntry, resource)
         returnList << Ressource.get_dashboard_data(statistic_data, resource, oldestEntry - 30, oldestEntry)
       end
@@ -62,6 +61,7 @@ class Api::ResourceController < Api::RestController
 
     def destroy
         r = Ressource.find_resource_with_user_constraint(params[:id], current_user)
+        Ressourceentry.delete_all(["ressource_id = ?", r.id])
         r.destroy!  
         respond_with(nil)
     end

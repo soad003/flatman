@@ -10,6 +10,10 @@ class Api::FinanceController <Api::RestController
     end
 
     def get_finance_table
-    	@userTable = Finance.get_user_table(current_user, User.find(params[:member_id]), params[:page] )
+    	userTable = Finance.get_user_table(current_user, User.find(params[:member_id]))
+        from = Integer(params[:from] || 0)
+        to = Integer(params[:to] || userTable.length) -from
+        userTable.entries=userTable.entries.drop(from).take(to)
+        @userTable = userTable
     end
 end

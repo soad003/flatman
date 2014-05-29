@@ -1,8 +1,7 @@
 <h1><%= t('.page_header') %> "{{term}}"</h1>
 
-<h3><%=t(".available_items")%></h3>
 	<div ng-show="searchdata.items.length > 0">
-		
+		<h3><%=t(".found_items")%></h3>
     	
     <accordion close-others="true">	
     	<accordion-group is-open="status.open" data-ng-repeat="item in searchdata.items">
@@ -14,13 +13,19 @@
     		
     		
     		<div class="col-lg-3">
-    			<a href="{{item.data.image}}" class="image-link"	>
-	      			<img class="img-rounded" width="80" ng-src="{{item.data.thumb}}"   >
-	      		</a>
+	      			<img ng-click="showImage(item.data.image)" class="img-rounded show-image pointer" width="80" ng-src="{{item.data.thumb}}"   >
 			</div>
 			<div class="col-lg-9 ">
-	      			 <h4 class="media-heading">Media heading</h4>
-	      			 <p>{{item.data.description}}</p>
+					 <p><%=t(".flatname")%>: {{item.flatname}} | <%=t(".status")%>: <span ng-show="item.data.available"><%=t(".currently_available")%></span><span ng-show="!item.data.available"><%=t(".currently_borrowed")%></span></p>
+					 
+	      			 <h4 class="media-heading" ng-show="item.data.description"><%=t(".description")%></h4>
+	      			 <p ng-show="item.data.description">{{item.data.description}}</p>
+	      			 <h4 ng-show="!item.data.description"><%=t(".no_description_available")%></h4>
+	      			 
+	      			
+	      			
+	      			 <h5 ng-show="item.data.tags" class="media-heading"><%=t(".tags")%></h5>
+	      			 <p ng-show="item.data.tags">{{item.data.tags}}</p>
 			</div>
 	     
       </accordion-group>
