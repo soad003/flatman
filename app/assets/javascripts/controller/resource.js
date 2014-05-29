@@ -110,5 +110,5 @@ angular.module('flatman').controller("resourceCtrl", function($scope, $filter, r
         });
     });
     $scope.showIntro = false;
-    $scope.entriesPerPage = 5;
+    $scope.entriesPerPage = 1;
 });
