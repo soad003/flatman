@@ -4,20 +4,24 @@ function scrolldown() {
 
 function start(time){
 	var scroll = document.getElementById('scrollarea');
-	scroll.style.height = ($(window).height()-270).toString() + "px";
-	var checkHeight = scroll.style.height.split("p")[0];
+	if (scroll != null){
+		scroll.style.height = ($(window).height()-270).toString() + "px";
+		var checkHeight = scroll.style.height.split("p")[0];
 
-	/*if (parseInt(checkHeight) < 250){ // testen ob minimum sinnvoll?
+		/*if (parseInt(checkHeight) < 250){ // testen ob minimum sinnvoll?
 		scroll.style.height = "250px";
-	}*/
+		}*/
+	}
 	// don't work on mobile phone
-	scrolldown();
-    var myVar = window.setTimeout(function() {
-        var elem = document.getElementById('scrollarea');
-        elem.scrollTop = elem.scrollHeight;
-    }, time);
-    // slow connections needs a longer timeout
-    start2(2000);
+	if (document.getElementById('scrollarea') != null){
+		scrolldown();
+		var myVar = window.setTimeout(function() {
+		    var elem = document.getElementById('scrollarea');
+		    elem.scrollTop = elem.scrollHeight;
+		}, time);
+		// slow connections needs a longer timeout
+		start2(2000);
+	}
 };
 
 function start2(time){

@@ -13,6 +13,7 @@ scope "(:locale)", locale: /en|de/ do
     get '/finances', to: :finances, as: 'finances'
     get '/flat_settings', to: :flat_settings, as: 'flat_settings'
     get '/create_resource', to: :create_resource, as: 'create_resource'
+    get '/chats', to: :chats, as: 'chats'
     get '/messages', to: :messages, as: 'messages'
     get '/resources', to: :resources, as: 'resources'
     get '/share', to: :share, as: 'share'
@@ -64,13 +65,12 @@ scope "(:locale)", locale: /en|de/ do
    #messages
    resources :message, only: [:index, :create, :update, :destroy]
 
-   get '/message/:mes_id/messages' => 'message#get_messages'
+   get '/message/messages/:id' => 'message#get_messages'
    get '/message/:mes_id/partner' => 'message#find_partner'
    get '/message/users' => 'message#get_users'
    get '/message/:mes_id/counter' => 'message#count_messages'
    get '/message/counter' => 'message#count_messages'
    get '/message/flatChat' => 'message#getFlatChat'
-   get '/message/flatChatMessages' => 'message#getFlatChatMessages'
    get '/message/user' => 'message#getUserId'
 
    #sharing

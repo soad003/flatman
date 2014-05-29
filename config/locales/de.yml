@@ -215,7 +215,7 @@ de:
       status                             : "Status"
       mate                               : "Bewohner"
 
-    messages:
+    chats:
       page_header                        : "Nachrichten"
       page_title                         : "Nachrichten"
       new_text_placeholder               : "Text eingeben"

@@ -5,7 +5,7 @@ angular.module('flatman').service("messageService", function($resource) {
                             'create': {method: "POST"},
                             'destroy': {method: "DELETE", isArray:true}                            
                         });
-    var messagesSer = $resource('/api/message/:id/messages/', {},
+    var messagesSer = $resource('/api/message/messages/:id', {},
                         {
                             'get': {method: "GET", isArray:true}
                             
@@ -15,11 +15,6 @@ angular.module('flatman').service("messageService", function($resource) {
                         {
                             'getFlatChat': {method: "GET"}
                         });
-
-    var flatMessSer = $resource('/api/message/flatChatMessages', {},
-                        {
-                            'getFlatChatMessages': {method: "GET", isArray:true}
-                        })
 
     var partnerSer = $resource('/api/message/:id/partner/', {},
                         {
@@ -66,10 +61,7 @@ angular.module('flatman').service("messageService", function($resource) {
             getUserId: function(){ return userSer.getUserId();}
         },
         messages: {
-            get: function(mesId){ return messagesSer.get({id:mesId});},
-            getFlatChatMessages: function(mesId){
-                return flatMessSer.getFlatChatMessages();
-            }
+            get: function(mesId){ return messagesSer.get({id: mesId});}
         },
         partner: {
             getPartner: function(mesId) {

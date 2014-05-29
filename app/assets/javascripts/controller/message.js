@@ -1,18 +1,22 @@
-angular.module('flatman').controller("messageCtrl", function($scope, $route, $timeout, $sce, messageService, statusService, Util){
-    $scope.flatchat = messageService.message.getFlatChat();
-    $scope.chats = messageService.message.get();
+angular.module('flatman').controller("messageCtrl", function($scope, $route, $q, $timeout, $sce, messageService, statusService, Util){
+    $scope.activeChat = {sender_id: "", receiver_id: "", id: "" };
+    $scope.loc = window.location.href.toString().split("/")
+    $scope.activeChat.id = $scope.loc[$scope.loc.length -1];
+    if ($scope.activeChat.id == "chats"){
+        $scope.flatchat = messageService.message.getFlatChat();
+        $scope.chats = messageService.message.get();
+    }
     $scope.flatchatActive = false;
-    $scope.flatchatMessages = [];
-    $scope.messages = [];
-    $scope.chatView = true;
     $scope.chatPartner = null;
     $scope.currentUserId = messageService.user.getUserId();
     $scope.unreadCounter = [];
     $scope.flatchatUnreadCounter = null;
-    $scope.mesStatus = null;
-    $scope.activeChat = null;
     $scope.chatTexts = [];
-    $scope.flatTexts = [];    
+    $scope.flatTexts = [];
+    $scope.messages = [];
+    $scope.setAllRead = false;
+    
+
 
     $scope.$on('message_count_changed', function(event, mass){
         $scope.chats = messageService.message.get();
@@ -23,24 +27,28 @@ angular.module('flatman').controller("messageCtrl", function($scope, $route, $ti
         if ($scope.flatchatActive === true){
             if ($scope.currentFlatChatMessages !== undefined){
                 if ($scope.currentFlatChatMessages.readers.indexOf($scope.currentUserId.id) == -1){
-                    $scope.flatchatMessages = messageService.messages.getFlatChatMessages($scope.flatchat.id);
+                    $scope.setAllRead = false;
+                    $scope.messages = messageService.messages.get($scope.activeChat.id);
                     start(500);
                 }   // two people write at the same time
                 else if (mass.flat_messages.length > 1 && mass.flat_messages[mass.flat_messages.length-2].readers.indexOf($scope.currentUserId.id) == -1){
-                    $scope.flatchatMessages = messageService.messages.getFlatChatMessages($scope.flatchat.id);
+                    $scope.setAllRead = false;
+                    $scope.messages = messageService.messages.get($scope.activeChat.id);
                     start(500);
                 }   // three people write at the same time
                 else if (mass.flat_messages.length > 2 && mass.flat_messages[mass.flat_messages.length-3].readers.indexOf($scope.currentUserId.id) == -1){
-                    $scope.flatchatMessages = messageService.messages.getFlatChatMessages($scope.flatchat.id);
+                    $scope.setAllRead = false;
+                    $scope.messages = messageService.messages.get($scope.activeChat.id);
                     start(500);
                 }
             }
         }
-        if ($scope.activeChat !== null){
+        if (!isNaN($scope.activeChat.id)){
             for (var i = 0; i < $scope.currentChats.length; i++) {
                 if (($scope.currentChats[i].sender_id == $scope.activeChat.sender_id && $scope.currentChats[i].receiver_id == $scope.activeChat.receiver_id) ||
                     ($scope.currentChats[i].receiver_id == $scope.activeChat.sender_id && $scope.currentChats[i].sender_id == $scope.activeChat.receiver_id)){
                     if ($scope.currentChats[i].sender_id != $scope.currentUserId.id){
+                        $scope.setAllRead = false;
                         $scope.messages = messageService.messages.get($scope.activeChat.id);
                         start(500);
                     }
@@ -51,57 +59,52 @@ angular.module('flatman').controller("messageCtrl", function($scope, $route, $ti
 
     $scope.newMess = {sender_id: "", receiver_id: "", text: "", header: "", read: false, readers: [], deleted: [] };
 
-    $scope.getMessages = function (chat, index){
-        $scope.chatView = false;
-        $scope.messages = messageService.messages.get(chat.id);
-        $scope.chatPartner = messageService.partner.getPartner(chat.id);
-        $scope.activeChat = chat;
+
+    $scope.getMessages = function (){
+        $scope.setAllRead = false;
+        $scope.messages = messageService.messages.get($scope.activeChat.id);
+        start(1000);
+        $q.all([$scope.messages.$promise
+        ]).then(function() { 
+            if (!isNaN($scope.activeChat.id)){
+                $scope.flatchatActive = $scope.checkFlatChatActive($scope.messages);
+                $scope.chatPartner = messageService.partner.getPartner($scope.activeChat.id);
+            }
+        // http://stackoverflow.com/questions/19944897/angularjs-run-code-after-multiple-resources-load
+        });
     };
 
-    $scope.getFlatChatMessages = function (){
-        $scope.chatView = false;
-        $scope.flatchatActive = true;
-        $scope.flatchatMessages = messageService.messages.getFlatChatMessages($scope.flatchat.id);
-    };
-
-    $scope.setChatView = function(){
-        $scope.chatView = true;
-        $scope.flatchatActive = false;
-        $scope.activeChat = null;
-        $scope.flatchat = messageService.message.getFlatChat();
-    };
-
-    $scope.setMessView = function(){
-        $scope.chatView = false;
-        $scope.flatchatActive = false;
+    $scope.checkFlatChatActive = function(mes){
+        if (mes.length === 0){
+            return true;    // 0 messages ist nur möglich bei flatchat (am Anfang)
+        }
+        if (mes[0].header.indexOf("flatchat") === -1){
+            $scope.activeChat.sender_id = mes[0].sender_id;
+            $scope.activeChat.receiver_id = mes[0].receiver_id;
+            return false;
+        }
+        else
+            return true;
     };
 
     $scope.sendMessage=function(){
-        if ($scope.flatchatActive === true){
-            $scope.sendFlatChatMessage();
+        if ($scope.flatchatActive){
+            // to say controller that this is a flatchat message
+            $scope.newMess.header = "flatchat";
+            // set some value. later current_user.id will be set
+            $scope.newMess.receiver_id = 13;
+            $scope.newMess.sender_id = 13;
+            $scope.newMess.readers = [3];
         }
         else {
             $scope.newMess.receiver_id = $scope.chatPartner.id
             $scope.newMess.header = "";
-            messageService.message.create($scope.newMess,function(data){
-                $scope.messages.push(data);
-                $scope.newMess.text='';
-            });
-            $scope.chats = messageService.message.get();
         }
-    };
-
-    $scope.sendFlatChatMessage=function(){
-        // to say controller that this is a flatchat message
-        $scope.newMess.header = "flatchat";
-        // set some value. later current_user.id will be set
-        $scope.newMess.receiver_id = 13;
-        $scope.newMess.sender_id = 13;
-        $scope.newMess.readers = [3];
-        messageService.message.create($scope.newMess, function(data){
-            $scope.flatchatMessages.push(data);
+        messageService.message.create($scope.newMess,function(data){
+            $scope.messages.push(data);
             $scope.newMess.text='';
         });
+        $scope.setAllRead = true;
     };
 
     $scope.removeChat=function(chat, question){
@@ -110,8 +113,9 @@ angular.module('flatman').controller("messageCtrl", function($scope, $route, $ti
                 messageService.message.destroy(chat.id);
                 $scope.chats = _($scope.chats).without(chat);
                 $scope.messages = [];
+
             }
-            $scope.chatView = true;
+            location.href="/#/chats";
         });
 
     };
@@ -144,7 +148,10 @@ angular.module('flatman').controller("messageCtrl", function($scope, $route, $ti
     };
 
     // check if message.read is just now set to true. if this is the case the message should be shown as unread for few seconds
-    $scope.currentlyRead = function(mes){
+    $scope.currentlyRead = function(mes, allRead){
+        if (allRead){
+            return false;
+        }
         var date = new Date();
         var min = date.getMinutes();
         var sec = date.getSeconds();

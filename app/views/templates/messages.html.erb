@@ -1,349 +1,124 @@
 <% content_for :title, t('.page_title') %>
 
-<div class="row modal-body">
+<div class="row" style="margin-left: 20px; margin-right: 5px">
   <div class="page-head">
-      <h1 class="page-header" ng-show="chatView">
+      <h2 class="page-header">
         <span class="fa fa-envelope"></span>
-          <%= t('.page_header') %> 
-        <a href="/#/create_message">
-          <button class="btn btn-primary pull-right">
-            <i class="fa fa-plus"></i> 
-            <span class="hidden-xs"><%= t('.page_title') %></span>
-          </button>
+        {{chatPartner.name}}
+        <a href="/#/chats">
+          <button class="close" aria-hidden="true">&times;</button>
         </a>
-      </h1>
-      <h1 class="page-header" ng-show="chatView == false">
-        <span class="fa fa-envelope"></span>
-        <span ng-show="!flatchatActive">
-          {{chatPartner.name}}
-        </span>
-        <span ng-show="flatchatActive">
-        {{flatchat.flat_name}}
-        <a href="/#/create_message">
-          <button class="btn btn-primary pull-right">
-            <i class="fa fa-plus"></i> 
-              <span class="hidden-xs"><%= t('.page_title') %></span>
-          </button>
-        </a>
-      </h1>
-  </div>
-</div>
-
-<div class="container modal-body" ng-show="chatView">
-<!-- start flatChat -->
-  <div class="row">
-    <div ng-init="countUnreadFlatChat()">
-      <a  style="cursor:pointer; text-decoration: none;" 
-          ng-click="getFlatChatMessages()" 
-          ng-click="setMessView()" 
-          onclick="start(500)">
-      <!-- flatchat unread -->
-        <div class="panel panel-primary" ng-show="getFlatUnreadCounter() > 0">
-          <div class="panel-heading">
-            <div class="btn-group pull-right">
-              <button type="button" class="btn btn-default btn-xs">
-                <span class="badge" style="background-color:CornflowerBlue">{{getFlatUnreadCounter()}}</span>
-              </button>
-            </div>
-            <strong><i class="fa fa-home"></i> {{flatchat.flat_name}}</strong>
-          </div>
-          <div class="panel-footer">
-            <div class="row">
-              <div class="col-xs-6 col-md-6">
-                <span ng-show="true"><i class="fa fa-angle-double-right"></i> {{flatchat.sender_name}}: </span> 
-                {{parseNewline(flatchat.text, true, 0)}}
-                <span ng-repeat="msgText in flatTexts track by $index"> {{msgText}} <br></span>
-              </div>
-              <div class="col-xs-6 col-md-6">
-                <span class="time">
-                  <p class="text-right" style="font-size:x-small" ng-show="flatchat.time != null">
-                    <i class="fa fa-clock-o"></i> {{parseTime(flatchat.time, "0")}}
-                  </p>
-                </span>
-              </div>
-            </div>
-          </div>
-        </div>
-        <!-- flatchat read -->
-        <div class="panel panel-primary" ng-show="getFlatUnreadCounter() < 1">
-          <div class="list-group-item">
-            <div class="btn-group pull-right">
-              <button type="button" class="btn btn-default btn-xs">
-                <span class="badge" style="background-color:CornflowerBlue">{{getFlatUnreadCounter()}}</span>
-              </button>
-            </div>
-            <strong><i class="fa fa-home"></i> {{flatchat.flat_name}}</strong>
-          </div>
-          <div class="panel-footer">
-            <div class="row">
-              <div class="col-xs-6 col-md-6">
-                <span ng-show="flatchat.header != '0'">
-                  <span ng-show="checkLastSender(flatchat.sender_id)">
-                    <i class="fa fa-check-circle"></i>
-                  </span>
-                  <span ng-show="!checkLastSender(flatchat.sender_id)">
-                    <i class="fa fa-angle-double-right"></i> 
-                    {{flatchat.sender_name}}:
-                  </span>
-                </span> 
-                {{parseNewline(flatchat.text, true, 0)}}
-                <span ng-repeat="msgText in flatTexts track by $index"> {{msgText}} <br></span>
-              </div>
-              <div class="col-xs-6 col-md-6">
-                <span class="time">
-                  <p class="text-right" style="font-size:x-small" ng-show="flatchat.time != null">
-                    <i class="fa fa-clock-o"></i>
-                    {{parseTime(flatchat.time, "0")}}
-                  </p>
-                </span>
-              </div>
-            </div>
-          </div>
-        </div>
-      </a>
-    </div>
-  </div>
-<!-- end flatChat -->
-<!-- start chats -->
-  <div class="row" ng-repeat="chat in chats track by $index">
-    <div ng-init="countUnread(chat, $index)">
-      <a  style="cursor:pointer; text-decoration: none;" 
-          ng-click="getMessages(chat, index)" 
-          ng-click="setMessView()" 
-          onclick="start(500)">
-      <!-- chat read -->
-        <div class="panel panel-primary" ng-show="getUnreadCounter($index) < 1">
-          <div class="list-group-item">
-            <div class="btn-group pull-right">
-              <button type="button" 
-                      class="btn btn-default btn-xs" 
-                      ng-click="removeChat(chat, '<%= t('.questionDeleteChat') %>')">
-                <span class="glyphicon glyphicon-trash"></span>
-              </button>
-              <button type="button" class="btn btn-default btn-xs">
-                <span class="badge" style="background-color:CornflowerBlue">{{getUnreadCounter($index)}}</span>
-              </button>
-            </div>
-            <strong><span class="glyphicon glyphicon-user"></span> {{chat.partner}}</strong>
-          </div>
-          <div class="panel-footer">
-            <div class="row">
-              <div class="col-xs-6 col-md-6">
-                <span ng-show="checkLastSender(chat.sender_id)">
-                  <i class="fa fa-check-circle"></i>
-                </span>
-                <span ng-show="!checkLastSender(chat.sender_id)">
-                  <i class="fa fa-angle-double-right"></i> 
-                  {{chat.sender_name}}:
-                </span> 
-                {{parseNewline(chat.text, false, $index)}}
-                <span ng-repeat="msgText in chatTexts[$index] track by $index"> {{msgText}} <br></span>
-              </div>
-              <div class="col-xs-6 col-md-6">
-                <span class="time">
-                  <p class="text-right" style="font-size:x-small">
-                    <i class="fa fa-clock-o"></i> {{parseTime(chat.time, "0")}}
-                  </p>
-                </span>
-              </div>
-            </div>
-          </div>
-        </div>
-      </a>
-      <!-- chat unread -->
-      <a  style="cursor:pointer; text-decoration: none;" 
-          ng-click="getMessages(chat, index)" 
-          ng-click="setMessView()" 
-          onclick="start(500)">
-        <div class="panel panel-primary" ng-show="getUnreadCounter($index) > 0">
-          <div class="panel-heading">
-            <div class="btn-group pull-right">
-              <button type="button" 
-                      class="btn btn-default btn-xs" 
-                      ng-click="removeChat(chat, '<%= t('.questionDeleteChat') %>')">
-                <span class="glyphicon glyphicon-trash"></span>
-              </button>
-              <button type="button" class="btn btn-default btn-xs">
-                <span class="badge" style="background-color:CornflowerBlue">{{getUnreadCounter($index)}}</span>
-              </button>
-            </div>
-            <strong>{{chat.partner}}</strong>
-          </div>
-          <div class="panel-footer">
-            <div class="row">
-              <div class="col-xs-6 col-md-6">
-                <span ng-show="checkLastSender(chat.sender_id)">
-                  <i class="fa fa-check-circle"></i>
-                </span>
-                <span ng-show="!checkLastSender(chat.sender_id)">
-                  <i class="fa fa-angle-double-right"></i> 
-                  {{chat.sender_name}}:
-                </span> 
-                {{parseNewline(chat.text, false, $index)}}
-                <span ng-repeat="msgText in chatTexts[$index] track by $index"> {{msgText}} <br></span>
-              </div>
-              <div class="col-xs-6 col-md-6">
-                <span class="time">
-                  <p class="text-right" style="font-size:x-small">
-                    <i class="fa fa-clock-o"></i> 
-                    {{parseTime(chat.time, "0")}}
-                  </p>
-                </span>
-              </div>
-            </div>
-          </div>
-        </div>
-      </a>
-    </div>
+      </h2>
   </div>
 </div>
 <body>
-  <div ng-show="chatView == false">
-    <div  class="modal-body" 
-          name="scrollarea" 
-          id="scrollarea" 
-          style="overflow-y: auto; overflow-x: hidden;">
-      <div ng-repeat="message in messages track by $index" ng-show="!flatchatActive">
-        <div ng-show="!currentlyRead(message) || currentUserIsSender(message)">
-          <a class="list-group-item" style="margin-top: 6px">
-            <div class="list-group-item-heading" ng-model="Username">
-              <strong>{{message.sender_name}}</strong>
-              <span class="time pull-right" style="font-size:x-small">
-                <i class="fa fa-clock-o"></i> 
-                {{parseTime(message.created_at, "1")}}
-              </span>
-            </div>
-            <div class="list-group-item-text">
-              <div class="row">
-                <div class="col-xs-12 col-md-12">
-                  {{parseNewline(message.text, false, $index)}}
-                  <span ng-repeat="msgText in chatTexts[$index] track by $index"> {{msgText}} <br></span>
-                </div>
+  <div ng-init="getMessages()"></div>
+  <div  class="modal-body" 
+        name="scrollarea" 
+        id="scrollarea"
+        style="overflow-y: auto; overflow-x: hidden;">
+    <div ng-repeat="message in messages">
+      <div ng-show="!currentlyRead(message, setAllRead)">
+        <a class="list-group-item" style="margin-top: 6px">
+          <div class="list-group-item-heading" ng-model="Username">
+            <strong>{{message.sender_name}}</strong>
+            <span class="time pull-right" style="font-size:x-small">
+              <i class="fa fa-clock-o"></i> 
+              {{parseTime(message.created_at, "1")}}
+            </span>
+          </div>
+          <div class="list-group-item-text">
+            <div class="row">
+              <div class="col-xs-12 col-md-12">
+                {{parseNewline(message.text, false, $index)}}
+                <span ng-repeat="msgText in chatTexts[$index] track by $index"> {{msgText}} <br></span>
               </div>
-            </div>
-          </a>
-        </div>
-        <div ng-show="!currentUserIsSender(message) && currentlyRead(message)">
-          <a class="list-group-item active" style="margin-top: 6px">
-            <div class="list-group-item-heading" ng-model="Username">
-              <strong>{{message.sender_name}}</strong>
-              <span class="time pull-right" style="font-size:x-small">
-                <i class="fa fa-clock-o"></i> 
-                {{parseTime(message.created_at, "1")}}
-              </span>
-            </div>
-            <div class="list-group-item-text">
-                <div class="row">
-                  <div class="col-xs-12 col-md-12">
-                    {{parseNewline(message.text, false, $index)}}
-                    <span ng-repeat="msgText in chatTexts[$index] track by $index"> {{msgText}} <br></span>
-                  </div>
-                </div>
-            </div>
-          </a>
-        </div>
-      </div>
-      <div ng-show="flatchatActive" ng-repeat="message in flatchatMessages">
-        <div ng-show="!currentlyRead(message) || currentUserIsSender(message)">
-          <a class="list-group-item" style="margin-top: 6px">
-            <div class="list-group-item-heading" ng-model="Username">
-              <strong>{{message.sender_name}}</strong>
-              <span class="time pull-right" style="font-size:x-small">
-                <i class="fa fa-clock-o"></i> 
-                {{parseTime(message.created_at, "1")}}
-              </span>
-            </div>
-            <div class="list-group-item-text">
-              <div class="row">
-                <div class="col-xs-12 col-md-12">
-                  {{parseNewline(message.text, false, $index)}}
-                  <span ng-repeat="msgText in chatTexts[$index] track by $index"> {{msgText}} <br></span>
-                </div>
-              </div>
-            </div>
-          </a>
-        </div>
-        <div ng-show="!currentUserIsSender(message) && currentlyRead(message)">
-          <a class="list-group-item active" style="margin-top: 6px">
-            <div class="list-group-item-heading" ng-model="Username">
-              <strong>{{message.sender_name}}</strong>
-              <span class="time pull-right" style="font-size:x-small">
-                <i class="fa fa-clock-o"></i> 
-                {{parseTime(message.created_at, "1")}}
-              </span>
-            </div>
-            <div class="list-group-item-text">
-              <div class="row">
-                <div class="col-xs-12 col-md-12">
-                  {{parseNewline(message.text, false, $index)}}
-                  <span ng-repeat="msgText in chatTexts[$index] track by $index"> {{msgText}} <br></span>
-                </div>
-              </div>
-            </div>
-          </a>
-        </div>
-      </div>
-      <div class="modal-footer">
-        <form role="form" name="SendForm" ng-submit="sendMessage()">
-          <div class="row">
-            <div class="col-lg-10 col-md-10 col-sm-10">
-              <textarea autofocus 
-                        name="inputtext" 
-                        id="inputtext" 
-                        class="form-control" 
-                        rows="3" 
-                        ng-model="newMess.text" 
-                        type="text" 
-                        placeholder="<%= t('.new_text_placeholder') %>" 
-                        required maxlength="255">
-              </textarea>
-            </div>
-            <div class="col-lg-2 col-md-2 col-sm-2">
-              <a style="text-decoration: none;">
-                <span class="hidden-lg hidden-md hidden-sm">
-                  <button style="margin-top: 6px" 
-                          id="send" 
-                          name="send" 
-                          class="btn btn-success btn-block" 
-                          onclick="start(100)" 
-                          type="submit" 
-                          ng-click="sendMessage()" 
-                          ng-disabled="!SendForm.$valid">
-                          <span class="glyphicon glyphicon-ok"></span> 
-                          <%= t('.send') %>
-                  </button>
-                </span>
-                <span class="hidden-xs">
-                  <button id="send2" 
-                          name="send" 
-                          class="btn btn-success btn-block" 
-                          onclick="start(100)" 
-                          type="submit" 
-                          ng-click="sendMessage()" 
-                          ng-disabled="!SendForm.$valid">
-                          <span class="glyphicon glyphicon-ok"></span> 
-                          <%= t('.send') %>
-                  </button>
-                </span>
-              </a>
-              <a ng-click="setChatView()" style="text-decoration: none;">
-                <button style="margin-top: 6px" type="button" class = "btn btn-default btn-block">
-                  <i class="glyphicon glyphicon-arrow-left"></i> <%= t('.back') %>
-                </button>
-              </a>
             </div>
           </div>
-        </form>
+        </a>
       </div>
+      <div ng-show="!currentUserIsSender(message) && currentlyRead(message, setAllRead)">
+        <a class="list-group-item active" style="margin-top: 6px">
+          <div class="list-group-item-heading" ng-model="Username">
+            <strong>{{message.sender_name}}</strong>
+            <span class="time pull-right" style="font-size:x-small">
+              <i class="fa fa-clock-o"></i> 
+              {{parseTime(message.created_at, "1")}}
+            </span>
+          </div>
+          <div class="list-group-item-text">
+            <div class="row">
+              <div class="col-xs-12 col-md-12">
+                {{parseNewline(message.text, false, $index)}}
+                <span ng-repeat="msgText in chatTexts[$index] track by $index"> {{msgText}} <br></span>
+              </div>
+            </div>
+          </div>
+        </a>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <form role="form" name="SendForm" ng-submit="sendMessage()">
+        <div class="row">
+          <div class="col-lg-10 col-md-10 col-sm-10">
+            <textarea autofocus 
+                      name="inputtext" 
+                      id="inputtext" 
+                      class="form-control" 
+                      rows="3" 
+                      ng-model="newMess.text" 
+                      type="text" 
+                      placeholder="<%= t('.new_text_placeholder') %>" 
+                      required maxlength="255">
+            </textarea>
+          </div>
+          <div class="col-lg-2 col-md-2 col-sm-2">
+            <a style="text-decoration: none;">
+              <span class="hidden-lg hidden-md hidden-sm">
+                <button style="margin-top: 6px" 
+                        id="send" 
+                        name="send" 
+                        class="btn btn-success btn-block" 
+                        onclick="start(100)" 
+                        type="submit" 
+                        ng-click="sendMessage()" 
+                        ng-disabled="!SendForm.$valid">
+                        <span class="glyphicon glyphicon-ok"></span> 
+                        <%= t('.send') %>
+                </button>
+              </span>
+              <span class="hidden-xs">
+                <button id="send2" 
+                        name="send" 
+                        class="btn btn-success btn-block" 
+                        onclick="start(100)" 
+                        type="submit" 
+                        ng-click="sendMessage()" 
+                        ng-disabled="!SendForm.$valid">
+                        <span class="glyphicon glyphicon-ok"></span> 
+                        <%= t('.send') %>
+                </button>
+              </span>
+            </a>
+            <a href="/#/chats" style="text-decoration: none;">
+              <button style="margin-top: 6px" type="button" class = "btn btn-default btn-block">
+                <i class="glyphicon glyphicon-arrow-left"></i> <%= t('.back') %>
+              </button>
+            </a>
+          </div>
+        </div>
+      </form>
     </div>
   </div>
 </body>
 
 
 <!-- todo
+- var ausmisten
 - optimieren
 - text der angezeigt wird begrenzen
 - messages nav bar back (split in chatview and messageview)
 - gleiche höhe für verschiedene browser
+- alles am Anfang laden?
 -->
 

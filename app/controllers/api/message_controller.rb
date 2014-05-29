@@ -7,12 +7,16 @@ class Api::MessageController < Api::RestController
   end
 
   def get_messages
-    @meslist=Message.find_messages(params[:mes_id], current_user)
-    @meslist.each do |m|
-      if !m.read && m.receiver_id == current_user.id
-        m.read = true
-        m.save!
+    if params[:id] != nil && params[:id] != "0"
+      @meslist=Message.find_messages(params[:id], current_user)
+      @meslist.each do |m|
+        if !m.read && m.receiver_id == current_user.id
+          m.read = true
+          m.save!
+        end
       end
+    else
+      @meslist = []
     end
     @meslist
   end
@@ -23,21 +27,9 @@ class Api::MessageController < Api::RestController
     @flatChat.sort! { |a,b| a.created_at <=> b.created_at }
     @lastFlatChat = @flatChat.last
     if @lastFlatChat == nil
-      @lastFlatChat = Message.new({sender_id: current_user.id, receiver_id: current_user.id, text: "start chating with your flat members", header: "0", created_at: 0})
+      @lastFlatChat = Message.new({id: 0, sender_id: current_user.id, receiver_id: current_user.id, text: "start chating with your flat members", header: "0", created_at: 0})
     end
     @lastFlatChat
-  end
-
-  def getFlatChatMessages
-    header = "flatchat" + current_user.flat_id.to_s
-    @flatMes = Message.where("header = ?", header)
-    @flatMes.each do |m|
-      if !m.readers.include?(current_user.id) 
-        m.readers = m.readers + [current_user.id]
-        m.save!
-      end
-    end
-    @flatMes.sort! { |a,b| a.created_at <=> b.created_at }
   end
 
   def find_partner

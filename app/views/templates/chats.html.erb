@@ -1,0 +1,181 @@
+<% content_for :title, t('.page_title') %>
+
+<div class="row" style="margin-left: 8px;">
+  <div class="page-head">
+      <h2 class="page-header">
+        <span class="fa fa-envelope"></span>
+          <%= t('.page_header') %> 
+        <a href="/#/create_message">
+          <button class="btn btn-primary pull-right">
+            <i class="fa fa-plus"></i> 
+            <span class="hidden-xs"><%= t('.page_title') %></span>
+          </button>
+        </a>
+      </h2>
+  </div>
+</div>
+<div class="container modal-body">
+<!-- start flatChat -->
+  <div class="row">
+    <div ng-init="countUnreadFlatChat()">
+      <a  style="cursor:pointer; text-decoration: none;" 
+          href="/#/messages/{{flatchat.id}}" 
+          onclick="start(500)">
+      <!-- flatchat unread -->
+        <div class="panel panel-primary" ng-show="getFlatUnreadCounter() > 0">
+          <div class="panel-heading">
+            <div class="btn-group pull-right">
+              <button type="button" class="btn btn-default btn-xs">
+                <span class="badge" style="background-color:CornflowerBlue">{{getFlatUnreadCounter()}}</span>
+              </button>
+            </div>
+            <strong><i class="fa fa-home"></i> {{flatchat.flat_name}}</strong>
+          </div>
+          <div class="panel-footer">
+            <div class="row">
+              <div class="col-xs-6 col-md-6">
+                <span ng-show="true"><i class="fa fa-angle-double-right"></i> {{flatchat.sender_name}}: </span> 
+                {{parseNewline(flatchat.text, true, 0)}}
+                <span ng-repeat="msgText in flatTexts track by $index"> {{msgText}} <br></span>
+              </div>
+              <div class="col-xs-6 col-md-6">
+                <span class="time">
+                  <p class="text-right" style="font-size:x-small" ng-show="flatchat.time != null">
+                    <i class="fa fa-clock-o"></i> {{parseTime(flatchat.time, "0")}}
+                  </p>
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- flatchat read -->
+        <div class="panel panel-primary" ng-show="getFlatUnreadCounter() < 1">
+          <div class="list-group-item">
+            <div class="btn-group pull-right">
+              <button type="button" class="btn btn-default btn-xs">
+                <span class="badge" style="background-color:CornflowerBlue">{{getFlatUnreadCounter()}}</span>
+              </button>
+            </div>
+            <strong><i class="fa fa-home"></i> {{flatchat.flat_name}}</strong>
+          </div>
+          <div class="panel-footer">
+            <div class="row">
+              <div class="col-xs-6 col-md-6">
+                <span ng-show="flatchat.header != '0'">
+                  <span ng-show="checkLastSender(flatchat.sender_id)">
+                    <i class="fa fa-check-circle"></i>
+                  </span>
+                  <span ng-show="!checkLastSender(flatchat.sender_id)">
+                    <i class="fa fa-angle-double-right"></i> 
+                    {{flatchat.sender_name}}:
+                  </span>
+                </span> 
+                {{parseNewline(flatchat.text, true, 0)}}
+                <span ng-repeat="msgText in flatTexts track by $index"> {{msgText}} <br></span>
+              </div>
+              <div class="col-xs-6 col-md-6">
+                <span class="time">
+                  <p class="text-right" style="font-size:x-small" ng-show="flatchat.time != null">
+                    <i class="fa fa-clock-o"></i>
+                    {{parseTime(flatchat.time, "0")}}
+                  </p>
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </a>
+    </div>
+  </div>
+<!-- end flatChat -->
+<!-- start chats -->
+  <div class="row" ng-repeat="chat in chats track by $index">
+    <div ng-init="countUnread(chat, $index)">
+      <a  style="cursor:pointer; text-decoration: none;" 
+          href="/#/messages/{{chat.id}}" 
+          onclick="start(500)">
+      <!-- chat read -->
+        <div class="panel panel-primary" ng-show="getUnreadCounter($index) < 1">
+          <div class="list-group-item">
+            <div class="btn-group pull-right">
+              <button type="button" 
+                      class="btn btn-default btn-xs" 
+                      ng-click="removeChat(chat, '<%= t('.questionDeleteChat') %>')">
+                <span class="glyphicon glyphicon-trash"></span>
+              </button>
+              <button type="button" class="btn btn-default btn-xs">
+                <span class="badge" style="background-color:CornflowerBlue">{{getUnreadCounter($index)}}</span>
+              </button>
+            </div>
+            <strong><span class="glyphicon glyphicon-user"></span> {{chat.partner}}</strong>
+          </div>
+          <div class="panel-footer">
+            <div class="row">
+              <div class="col-xs-6 col-md-6">
+                <span ng-show="checkLastSender(chat.sender_id)">
+                  <i class="fa fa-check-circle"></i>
+                </span>
+                <span ng-show="!checkLastSender(chat.sender_id)">
+                  <i class="fa fa-angle-double-right"></i> 
+                  {{chat.sender_name}}:
+                </span> 
+                {{parseNewline(chat.text, false, $index)}}
+                <span ng-repeat="msgText in chatTexts[$index] track by $index"> {{msgText}} <br></span>
+              </div>
+              <div class="col-xs-6 col-md-6">
+                <span class="time">
+                  <p class="text-right" style="font-size:x-small">
+                    <i class="fa fa-clock-o"></i> {{parseTime(chat.time, "0")}}
+                  </p>
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </a>
+      <!-- chat unread -->
+      <a  style="cursor:pointer; text-decoration: none;" 
+          href="/#/messages/{{chat.id}}" 
+          onclick="start(500)">
+        <div class="panel panel-primary" ng-show="getUnreadCounter($index) > 0">
+          <div class="panel-heading">
+            <div class="btn-group pull-right">
+              <button type="button" 
+                      class="btn btn-default btn-xs" 
+                      ng-click="removeChat(chat, '<%= t('.questionDeleteChat') %>')">
+                <span class="glyphicon glyphicon-trash"></span>
+              </button>
+              <button type="button" class="btn btn-default btn-xs">
+                <span class="badge" style="background-color:CornflowerBlue">{{getUnreadCounter($index)}}</span>
+              </button>
+            </div>
+            <strong>{{chat.partner}}</strong>
+          </div>
+          <div class="panel-footer">
+            <div class="row">
+              <div class="col-xs-6 col-md-6">
+                <span ng-show="checkLastSender(chat.sender_id)">
+                  <i class="fa fa-check-circle"></i>
+                </span>
+                <span ng-show="!checkLastSender(chat.sender_id)">
+                  <i class="fa fa-angle-double-right"></i> 
+                  {{chat.sender_name}}:
+                </span> 
+                {{parseNewline(chat.text, false, $index)}}
+                <span ng-repeat="msgText in chatTexts[$index] track by $index"> {{msgText}} <br></span>
+              </div>
+              <div class="col-xs-6 col-md-6">
+                <span class="time">
+                  <p class="text-right" style="font-size:x-small">
+                    <i class="fa fa-clock-o"></i> 
+                    {{parseTime(chat.time, "0")}}
+                  </p>
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </a>
+    </div>
+  </div>
+</div>
