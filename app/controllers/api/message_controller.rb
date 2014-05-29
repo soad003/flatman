@@ -36,6 +36,11 @@ class Api::MessageController < Api::RestController
     @partner=Message.find_partner(params[:mes_id], current_user)
   end
 
+  def find_active_chat
+    ret = Message.find(params[:mes_id]).header == "flatchat" + current_user.flat_id.to_s
+    respond_with({active: ret})
+  end
+
   def getUserId
     respond_with({id: current_user.id})
   end

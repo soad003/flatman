@@ -16,9 +16,10 @@ angular.module('flatman').service("messageService", function($resource) {
                             'getFlatChat': {method: "GET"}
                         });
 
-    var partnerSer = $resource('/api/message/:id/partner/', {},
+    var partnerSer = $resource('/api/message/:id/partner/:option', {},
                         {
-                            'getPartner': {method: "GET"}
+                            'getPartner': {method: "GET"},
+                            'getActiveChat': {method: "GET"}
                         });
 
     var usersSer = $resource('/api/message/users/', {},
@@ -66,6 +67,9 @@ angular.module('flatman').service("messageService", function($resource) {
         partner: {
             getPartner: function(mesId) {
                 return partnerSer.getPartner({id:mesId});
+            },
+            getActiveChat: function(mesId, active){ 
+                return partnerSer.getActiveChat({id:mesId, option: active});
             }
         }
     }

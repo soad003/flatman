@@ -1,12 +1,16 @@
 angular.module('flatman').controller("messageCtrl", function($scope, $route, $q, $timeout, $sce, messageService, statusService, Util){
     $scope.activeChat = {sender_id: "", receiver_id: "", id: "" };
+
     $scope.loc = window.location.href.toString().split("/")
     $scope.activeChat.id = $scope.loc[$scope.loc.length -1];
+    $scope.flatchatActive = false;
     if ($scope.activeChat.id == "chats"){
         $scope.flatchat = messageService.message.getFlatChat();
         $scope.chats = messageService.message.get();
     }
-    $scope.flatchatActive = false;
+    else {
+        $scope.flatchatActive = messageService.partner.getActiveChat($scope.activeChat.id, "option");
+    }
     $scope.chatPartner = null;
     $scope.currentUserId = messageService.user.getUserId();
     $scope.unreadCounter = [];
@@ -24,37 +28,40 @@ angular.module('flatman').controller("messageCtrl", function($scope, $route, $q,
         $scope.currentFlatChatMessages = mass.flat_messages[mass.flat_messages.length-1];       // flat_messages fetch last
         $scope.currentChats = mass.chats;                                                       // last message of each chat
         $scope.countUnreadFlatChat();
-        if ($scope.flatchatActive === true){
-            if ($scope.currentFlatChatMessages !== undefined){
-                if ($scope.currentFlatChatMessages.readers.indexOf($scope.currentUserId.id) == -1){
-                    $scope.setAllRead = false;
-                    $scope.messages = messageService.messages.get($scope.activeChat.id);
-                    start(500);
-                }   // two people write at the same time
-                else if (mass.flat_messages.length > 1 && mass.flat_messages[mass.flat_messages.length-2].readers.indexOf($scope.currentUserId.id) == -1){
-                    $scope.setAllRead = false;
-                    $scope.messages = messageService.messages.get($scope.activeChat.id);
-                    start(500);
-                }   // three people write at the same time
-                else if (mass.flat_messages.length > 2 && mass.flat_messages[mass.flat_messages.length-3].readers.indexOf($scope.currentUserId.id) == -1){
-                    $scope.setAllRead = false;
-                    $scope.messages = messageService.messages.get($scope.activeChat.id);
-                    start(500);
-                }
-            }
-        }
-        if (!isNaN($scope.activeChat.id)){
-            for (var i = 0; i < $scope.currentChats.length; i++) {
-                if (($scope.currentChats[i].sender_id == $scope.activeChat.sender_id && $scope.currentChats[i].receiver_id == $scope.activeChat.receiver_id) ||
-                    ($scope.currentChats[i].receiver_id == $scope.activeChat.sender_id && $scope.currentChats[i].sender_id == $scope.activeChat.receiver_id)){
-                    if ($scope.currentChats[i].sender_id != $scope.currentUserId.id){
+        $q.all([$scope.flatchatActive.$promise, $scope.activeChat.$promise  // http://stackoverflow.com/questions/19944897/angularjs-run-code-after-multiple-resources-load
+            ]).then(function() {
+            if ($scope.flatchatActive.active === true){
+                if ($scope.currentFlatChatMessages !== undefined){
+                    if ($scope.currentFlatChatMessages.readers.indexOf($scope.currentUserId.id) == -1){
+                        $scope.setAllRead = false;
+                        $scope.messages = messageService.messages.get($scope.activeChat.id);
+                        start(500);
+                    }   // two people write at the same time
+                    else if (mass.flat_messages.length > 1 && mass.flat_messages[mass.flat_messages.length-2].readers.indexOf($scope.currentUserId.id) == -1){
+                        $scope.setAllRead = false;
+                        $scope.messages = messageService.messages.get($scope.activeChat.id);
+                        start(500);
+                    }   // three people write at the same time
+                    else if (mass.flat_messages.length > 2 && mass.flat_messages[mass.flat_messages.length-3].readers.indexOf($scope.currentUserId.id) == -1){
                         $scope.setAllRead = false;
                         $scope.messages = messageService.messages.get($scope.activeChat.id);
                         start(500);
                     }
                 }
             }
-        }
+            if (!isNaN($scope.activeChat.id)){
+                for (var i = 0; i < $scope.currentChats.length; i++) {
+                    if (($scope.currentChats[i].sender_id == $scope.activeChat.sender_id.id && $scope.currentChats[i].receiver_id == $scope.activeChat.receiver_id.id) ||
+                        ($scope.currentChats[i].receiver_id == $scope.activeChat.sender_id.id && $scope.currentChats[i].sender_id == $scope.activeChat.receiver_id.id)){
+                        if ($scope.currentChats[i].sender_id != $scope.currentUserId.id){
+                            $scope.setAllRead = false;
+                            $scope.messages = messageService.messages.get($scope.activeChat.id);
+                            start(500);
+                        }
+                    }
+                }
+            }
+        });
     });
 
     $scope.newMess = {sender_id: "", receiver_id: "", text: "", header: "", read: false, readers: [], deleted: [] };
@@ -64,47 +71,34 @@ angular.module('flatman').controller("messageCtrl", function($scope, $route, $q,
         $scope.setAllRead = false;
         $scope.messages = messageService.messages.get($scope.activeChat.id);
         start(1000);
-        $q.all([$scope.messages.$promise
-        ]).then(function() { 
-            if (!isNaN($scope.activeChat.id)){
-                $scope.flatchatActive = $scope.checkFlatChatActive($scope.messages);
-                $scope.chatPartner = messageService.partner.getPartner($scope.activeChat.id);
-            }
-        // http://stackoverflow.com/questions/19944897/angularjs-run-code-after-multiple-resources-load
-        });
-    };
-
-    $scope.checkFlatChatActive = function(mes){
-        if (mes.length === 0){
-            return true;    // 0 messages ist nur möglich bei flatchat (am Anfang)
+        if (!isNaN($scope.activeChat.id)){
+            $scope.chatPartner = messageService.partner.getPartner($scope.activeChat.id);
+            $scope.activeChat.sender_id = messageService.partner.getPartner($scope.activeChat.id);
+            $scope.activeChat.receiver_id = messageService.user.getUserId();
         }
-        if (mes[0].header.indexOf("flatchat") === -1){
-            $scope.activeChat.sender_id = mes[0].sender_id;
-            $scope.activeChat.receiver_id = mes[0].receiver_id;
-            return false;
-        }
-        else
-            return true;
     };
 
     $scope.sendMessage=function(){
-        if ($scope.flatchatActive){
-            // to say controller that this is a flatchat message
-            $scope.newMess.header = "flatchat";
-            // set some value. later current_user.id will be set
-            $scope.newMess.receiver_id = 13;
-            $scope.newMess.sender_id = 13;
-            $scope.newMess.readers = [3];
-        }
-        else {
-            $scope.newMess.receiver_id = $scope.chatPartner.id
-            $scope.newMess.header = "";
-        }
-        messageService.message.create($scope.newMess,function(data){
-            $scope.messages.push(data);
-            $scope.newMess.text='';
+        $q.all([$scope.flatchatActive.$promise
+            ]).then(function() {
+                if ($scope.flatchatActive.active){
+                    // to say controller that this is a flatchat message
+                    $scope.newMess.header = "flatchat";
+                    // set some value. later current_user.id will be set
+                    $scope.newMess.receiver_id = 13;
+                    $scope.newMess.sender_id = 13;
+                    $scope.newMess.readers = [3];
+                }
+                else {
+                    $scope.newMess.receiver_id = $scope.chatPartner.id
+                    $scope.newMess.header = "";
+                }
+                messageService.message.create($scope.newMess,function(data){
+                    $scope.messages.push(data);
+                    $scope.newMess.text='';
+                });
+                $scope.setAllRead = true;
         });
-        $scope.setAllRead = true;
     };
 
     $scope.removeChat=function(chat, question){
