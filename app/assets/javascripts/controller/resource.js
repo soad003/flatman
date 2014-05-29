@@ -35,6 +35,10 @@ angular.module('flatman').controller("resourceCtrl", function($scope, $filter, r
     };
 
     $scope.getChartData = function(resource) {
+    //green, blue, yellow, red
+    // bootstrap colors from shoppinglist 
+    //var colors = ["223,240,216", "212, 237,247","252, 248,227", "242,222,222"];
+    var colors = ["92,184,92", "66,139,202","240,173,78", "217,83,79"];
         var response = resourceService.chart.get(resource.id, resource.chartDateRange.startDate, resource.chartDateRange.endDate,
             function(response) {
                 //convert labes date to local format
@@ -94,11 +98,7 @@ angular.module('flatman').controller("resourceCtrl", function($scope, $filter, r
         });
     };
 
-    //green, blue, yellow, red
-    // bootstrap colors from shoppinglist 
-    //var colors = ["223,240,216", "212, 237,247","252, 248,227", "242,222,222"];
-    // colors from chart finances
-    var colors = ["92,184,92", "66,139,202","240,173,78", "217,83,79"];
+
     $scope.resources = resourceService.resource.getAll(function() {
         if ($scope.resources.length === 0) {
             $scope.showIntro = true;
