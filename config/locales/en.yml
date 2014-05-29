@@ -236,7 +236,7 @@ en:
       status                             : "status"
       mate                               : "mate"
 
-    messages:
+    chats:
       page_header                        : "Messages"
       page_title                         : "Messages"
       new_text_placeholder               : "Enter text"
@@ -248,6 +248,9 @@ en:
       send                               : "send"
       back                               : "back"
       create_Message_user_placeholder    : "Username"
+      new_text_placeholder               : "Enter text"
+    messages:
+      send                               : "send"
       new_text_placeholder               : "Enter text"
     resources:
       page_header                        : "Resources"

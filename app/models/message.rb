@@ -4,15 +4,26 @@ class Message < ActiveRecord::Base
     validates       :receiver_id, :text, presence: true
 
 	def self.find_messages(mesId, current_user)
-        user = Message.find(mesId).sender_id
-        user2 = Message.find(mesId).receiver_id
-        mesL = Message.where("sender_id = ? AND receiver_id = ?", user, user2)
-        mesL2 = Message.where("sender_id = ? AND receiver_id = ?", user2, user)
-        messList = mesL+mesL2
         retList = Array.new
-        messList.each do |mes|
-            if !mes.deleted.include?(current_user.id)
-                retList << mes
+        header = "flatchat" + current_user.flat_id.to_s
+        if Message.find(mesId).header == header
+            retList = Message.where("header = ?", header)
+            retList.each do |m|
+                if !m.readers.include?(current_user.id) 
+                    m.readers = m.readers + [current_user.id]
+                    m.save!
+                end
+            end
+        else
+            user = Message.find(mesId).sender_id
+            user2 = Message.find(mesId).receiver_id
+            mesL = Message.where("sender_id = ? AND receiver_id = ?", user, user2)
+            mesL2 = Message.where("sender_id = ? AND receiver_id = ?", user2, user)
+            messList = mesL+mesL2
+            messList.each do |mes|
+                if !mes.deleted.include?(current_user.id)
+                    retList << mes
+                end
             end
         end
         retList.sort! { |a,b| a.created_at <=> b.created_at }
@@ -26,7 +37,12 @@ class Message < ActiveRecord::Base
         else 
             retUser = user
         end
-        User.find(retUser)
+
+        if user == user2
+            ret = ({id: user, flat_name: Flat.find(User.find(user).flat_id).name})
+        else
+            ret = ({id: retUser, flat_name: ""})
+        end
     end
 
     def self.find_chats(user)

@@ -30,7 +30,11 @@ angular.module('flatman', ['ngRoute','ngResource','google-maps','angles','ui.boo
         templateUrl: '/templates/finances',
         controller: 'financesCtrl'
       }).
-      when('/messages', {
+      when('/chats', {
+        templateUrl: '/templates/chats',
+        controller: 'messageCtrl'
+      }).
+      when('/messages/:id', {
         templateUrl: '/templates/messages',
         controller: 'messageCtrl'
       }).

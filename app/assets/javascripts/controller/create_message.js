@@ -22,7 +22,7 @@ angular.module('flatman').controller("create_messageCtrl", function($scope, mess
             messageService.message.create($scope.newMess,function(data){
                 $scope.messages.push(data);
                 $scope.newMess.text='';
-                location.href ="/#/messages";
+                location.href ="/#/chats";
             });
         }
     };
