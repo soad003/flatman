@@ -2,7 +2,7 @@ class Api::ResourceController < Api::RestController
     around_filter :wrap_in_transaction, only: [:create,:destroy]
 
     def index
-        @r=Ressource.set_attributes(current_user.flat.ressources)
+        @r=Ressource.set_attributes(current_user.flat.ressources).sort! { |a,b| a.name.downcase <=> b.name.downcase }
         #logic model calc call
         #respond_with(current_user.flat.ressources)
     end

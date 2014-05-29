@@ -1,8 +1,3 @@
-<div>
-    <% content_for :title, t( '.page_title') %>
-        <% content_for :page_header, t( '.page_header') %>
-</div>
-
 <div class="row modal-body">
     <div class="page-head">
         <h1 class="page-header"><i class="glyphicon glyphicon-globe"></i>
@@ -33,25 +28,25 @@
         <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
             <div class="row">
                 <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-                    <h2 title="{{resource.description}}" class="pull-left">
-                        {{resource.name}}
-                        <button type="button" class="btn btn-default dropdown-toggle btn-xs" data-toggle="dropdown">
-                            <span class="glyphicon glyphicon-pencil"></span>
-                        </button>
-                        <ul class="dropdown-menu">
-                            <li>
-                                <a href="/#/update_resource/{{resource.id}}">
-                                    <span class="fa fa-edit"></span>
-                                    <%=t( ".edit") %>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="" ng-click="removeResource(resource, '<%= t('.questionDeleteResource') %>')">
-                                    <span class="glyphicon glyphicon-trash"></span>
-                                    <%=t( ".delete") %>
-                                </a>
-                            </li>
-                        </ul>
+                    <h2>{{resource.name}}
+                        <span class="btn-group">
+                            <button type="button" class="btn btn-default dropdown-toggle btn-xs" data-toggle="dropdown">
+                                <span class="glyphicon glyphicon-pencil"></span>
+                            </button>
+                            <ul class="dropdown-menu">
+                                <li>
+                                    <a href="/#/update_resource/{{resource.id}}">
+                                        <span class="fa fa-edit"></span>
+                                        <%=t( ".edit") %>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="" ng-click="removeResource(resource, '<%= t('.questionDeleteResource') %>')">
+                                        <span class="glyphicon glyphicon-trash"></span>
+                                        <%=t( ".delete") %>
+                                    </a>
+                            </ul>
+                        </span>
                     </h2>
 
                     <pagination on-select-page="setPage(resource, page)" total-items="resource.entryLength" page="resource.page" items-per-page="entriesPerPage" max-size="5" class="hidden-xs pagination-sm pull-right" boundary-links="true" ng-hide="entriesPerPage >= resource.entryLength" rotate="true" previous-text="&lsaquo;" next-text="&rsaquo;" first-text="&laquo;" last-text="&raquo;">
@@ -167,20 +162,20 @@
 
                     <div ng-hide="resource.showChart">
                         <div class="adv-table">
-                            <div ng-show="resource.infos.general.length == 0">
+                            <div class="col-md-offset-1" ng-show="resource.infos.general.length == 0">
                                 <h4>
                                     <%=t ( '.addMoreEntriesForOverview') %>
                                 </h4>
                             </div>
                             <table class="table table-striped table-hover table-borderless ">
                                 <tbody>
-                                    <tr ng-repeat="info in resource.infos.general">
+                                    <tr class="text-right" ng-repeat="info in resource.infos.general">
                                         <td>{{info.name}}</td>
                                         <td>{{info.usage}} {{resource.unit}}</td>
                                         <td>€ {{info.costs}}</td>
                                     </tr>
-                                    <tr ng-repeat="info in resource.infos.years">
-                                        <td>...{{info.name}}</td>
+                                    <tr class="text-right" ng-repeat="info in resource.infos.years">
+                                        <td>... {{info.name}}</td>
                                         <td>{{info.usage}} {{resource.unit}}</td>
                                         <td>€ {{info.costs}}</td>
 

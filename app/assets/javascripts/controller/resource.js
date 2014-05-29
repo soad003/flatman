@@ -1,16 +1,9 @@
 angular.module('flatman').controller("resourceCtrl", function($scope, $filter, resourceService, Util) {
-    $scope.showIntro = false;
-    $scope.entriesPerPage = 5;
 
-    $scope.resources = resourceService.resource.getAll(function() {
-        if ($scope.resources.length === 0) {
-            $scope.showIntro = true;
-        }
-        _.each($scope.resources, function(resource) {
-            $scope.init(resource);
-            $scope.setEntries(resource);
-        });
-    });
+    $scope.getColor=function(index){
+        var colors=['success','info','warning','danger'];
+        return colors[index%4];
+    };
 
     $scope.formatNumber = function(number) {
         return (locale != 'en') ? number.toString().replace('.', ',') : number;
@@ -19,6 +12,7 @@ angular.module('flatman').controller("resourceCtrl", function($scope, $filter, r
     $scope.init = function(resource) {
         resource.date = new Date();
         resource.page = 1;
+
         $scope.showInfos(resource, true);
         resource.chartDateRange.startDate = new Date(resource.chartDateRange.startDate);
         resource.chartDateRange.endDate = new Date(resource.chartDateRange.endDate);
@@ -29,7 +23,6 @@ angular.module('flatman').controller("resourceCtrl", function($scope, $filter, r
         $scope.setOverview(resource);
         resource.showChart = flag;
     };
-
 
     $scope.removeResource = function(resource, text) {
         bootbox.confirm(text, function(result) {
@@ -51,9 +44,9 @@ angular.module('flatman').controller("resourceCtrl", function($scope, $filter, r
                 resource.chart = {
                     "labels": response.labels,
                     "datasets": [{
-                        "fillColor": "rgba(151,187,205,0.5)",
-                        "strokeColor": "rgba(151,187,205,1)",
-                        "pointColor": "rgba(151,187,205,1)",
+                        "fillColor": "rgba("+colors[resource.index%4]+",0.5)",//"rgba(151,187,205,0.5)",
+                        "strokeColor": "rgba("+colors[resource.index%4]+",1)",
+                        "pointColor": "rgba("+colors[resource.index%4]+",1)",
                         "pointStrokeColor": "#fff",
                         "data": response.costs
                     }]
@@ -75,7 +68,7 @@ angular.module('flatman').controller("resourceCtrl", function($scope, $filter, r
 
 
     $scope.setEntries = function(resource) {
-        resource.entries = resourceService.entry.get_range(resource.id, (resource.page - 1) * resource.entriesPerPage, resource.page * resource.entriesPerPage);
+        resource.entries = resourceService.entry.get_range(resource.id, (resource.page - 1) * $scope.entriesPerPage, resource.page * $scope.entriesPerPage);
         resource.entryvalue = "";
 
     };
@@ -100,4 +93,22 @@ angular.module('flatman').controller("resourceCtrl", function($scope, $filter, r
             $scope.setOverview(resource);
         });
     };
+
+    //green, blue, yellow, red
+    // bootstrap colors from shoppinglist 
+    //var colors = ["223,240,216", "212, 237,247","252, 248,227", "242,222,222"];
+    // colors from chart finances
+    var colors = ["92,184,92", "66,139,202","240,173,78", "217,83,79"];
+    $scope.resources = resourceService.resource.getAll(function() {
+        if ($scope.resources.length === 0) {
+            $scope.showIntro = true;
+        }
+        _.each($scope.resources, function(resource, i) {
+            resource.index = i;
+            $scope.init(resource);
+            $scope.setEntries(resource);
+        });
+    });
+    $scope.showIntro = false;
+    $scope.entriesPerPage = 5;
 });
