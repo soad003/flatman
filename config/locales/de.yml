@@ -46,6 +46,7 @@ de:
     message:
       create:
         no_user_found                     : "Kein User gefunden"
+        user_already_selected             : "User ist bereits selektiert"
   # mail
   user_mailer:
     invite:

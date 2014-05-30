@@ -2,7 +2,7 @@ angular.module('flatman').service("messageService", function($resource) {
     var messageSer = $resource('/api/message/:id',{},
                         {
                             'get': {method: "GET", isArray:true},
-                            'create': {method: "POST"},
+                            'create': {method: "POST", isArray:true},
                             'destroy': {method: "DELETE", isArray:true}                            
                         });
     var messagesSer = $resource('/api/message/messages/:id', {},
@@ -22,9 +22,10 @@ angular.module('flatman').service("messageService", function($resource) {
                             'getActiveChat': {method: "GET"}
                         });
 
-    var usersSer = $resource('/api/message/users/', {},
+    var usersSer = $resource('/api/message/users/:id', {},
                         {
-                            'getUsers': {method: "GET", isArray:true}
+                            'getUsers': {method: "GET", isArray:true},
+                            'getFlatUsers': {method: "GET"}
                         });
     var userSer = $resource('/api/message/user/', {},
                         {
@@ -59,7 +60,10 @@ angular.module('flatman').service("messageService", function($resource) {
         },
         user: {
             getUsers: function(){ return usersSer.getUsers();},
-            getUserId: function(){ return userSer.getUserId();}
+            getUserId: function(){ return userSer.getUserId();},
+            getFlatUsers: function(flat_id, succH){
+                usersSer.getFlatUsers({id: flat_id}, succH);
+            }
         },
         messages: {
             get: function(mesId){ return messagesSer.get({id: mesId});}

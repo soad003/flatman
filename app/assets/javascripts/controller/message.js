@@ -91,10 +91,13 @@ angular.module('flatman').controller("messageCtrl", function($scope, $route, $q,
                 }
                 else {
                     $scope.newMess.receiver_id = $scope.chatPartner.id
-                    $scope.newMess.header = "";
+                    $scope.newMess.header = $scope.chatPartner.id.toString();
                 }
                 messageService.message.create($scope.newMess,function(data){
-                    $scope.messages.push(data);
+                    for (var i = 0; i < data.length; i++) {
+                        $scope.messages.push(data[i]);
+                    }
+                    
                     $scope.newMess.text='';
                 });
                 $scope.setAllRead = true;

@@ -69,6 +69,7 @@ scope "(:locale)", locale: /en|de/ do
    get '/message/:mes_id/partner' => 'message#find_partner'
    get '/message/:mes_id/partner/:option' => 'message#find_active_chat'
    get '/message/users' => 'message#get_users'
+   get '/message/users/:flat_id' => 'message#getFlatMembers'
    get '/message/:mes_id/counter' => 'message#count_messages'
    get '/message/counter' => 'message#count_messages'
    get '/message/flatChat' => 'message#getFlatChat'

@@ -1,4 +1,4 @@
-<% content_for :title, t('.page_title') %>
+<% content_for :title, t('.page_title') %>  
 
 <script type="text/ng-template" id="customTemplate.html">
   <a>
@@ -7,7 +7,7 @@
   </a>
 </script>
 
-<div class="row" style="margin-left: 20px; margin-right: 8px">
+<div class="row" style="margin-left: 20px; margin-right: 8px" ng-init="fetchUsers()">
   <div class="page-head" >
     <h2 class="page-header">
       <span class="fa fa-envelope"></span> <%= t('.page_header') %>
@@ -18,18 +18,22 @@
   </div>
 </div>
 <div class="modal-body">
+<div >
+<button ng-repeat="label in labels track by $index" style="margin-right: 5px" ng-click="removeTag($index)" class="btn btn-primary btn-sm"> {{label.text}} <span aria-hidden="true">&times;</span></button>
+</div>
 	<div class="input-group">
     <span class="input-group-addon">@</span>
-    <input  autofocus type="text" 
+    <input  autofocus type="text"
             ng-model="selectedUser" 
             typeahead="user as user.name for user in users | filter:{name:$viewValue}" 
             typeahead-template-url="customTemplate.html" 
             class="typeahead form-control" 
             placeholder="<%= t('.create_Message_user_placeholder') %>">
   </div>
+  </div>
 </div>
 <div class="row">
-  <div class="modal-footer" ng-init="fetchUsers()">
+  <div class="modal-footer">
     <form role="form" name="NewForm">
     	<div class="col-lg-10 col-md-10">
       	<textarea name="inputtext" 
