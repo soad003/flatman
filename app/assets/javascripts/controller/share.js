@@ -1,10 +1,6 @@
 angular.module('flatman').controller("shareCtrl", function($scope, shareService, Util, $location) {
 	$scope.shareditems = shareService.items.get();
 
-	$('.panel-tooltip, .tooltip').tooltip({
-		placement : "bottom"
-	});
-
 	$scope.addItem = function() {
 		shareService.items.create($scope.newItemName, function(data) {
 			data.items = [];

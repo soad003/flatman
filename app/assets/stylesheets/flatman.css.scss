@@ -97,7 +97,19 @@ canvas{
 
 
  /* add a cursor to following classes */
- .nav, .pagination, .carousel, .panel-title a 
-  { 
-    cursor: pointer; 
+ .nav, .pagination, .carousel, .panel-title a
+  {
+    cursor: pointer;
   }
+
+// http://stackoverflow.com/questions/8222528/ios5-show-numeric-keypad-by-default-without-using-type-number-or-type-tel
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+// http://stackoverflow.com/questions/3790935/can-i-hide-the-html5-number-inputs-spin-box
+input[type='number'] {
+    -moz-appearance:textfield;
+}
