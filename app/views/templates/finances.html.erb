@@ -1,25 +1,28 @@
 <div>
-    <div class = "page-head">
+    <div class="page-head dropdown">
         <h1 class="page-header"><span class="fa fa-bitcoin"></span> <%= t('.page_header') %>
 
             <div class="btn-group pull-right">
-                <button type="button" class="btn btn-primary pull-right" data-toggle="dropdown">
+                <button type="button"
+                        class="btn btn-primary dropdown-toggle pull-right"
+                        data-toggle="dropdown"
+                        id="dropdownMenu1">
                     <span class="glyphicon glyphicon-plus"> </span><span class="hidden-xs"> <%= t(".add_fin") %></span>
                 </button>
+                <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
+                    <li>
+                        <a href="/#/finances_new">
+                            <span class="glyphicon glyphicon-ok"></span> <%= t(".newBill") %>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="/#/create_payment">
+                            <span class="glyphicon glyphicon-euro"></span> <%= t(".newPaym") %>
+                        </a>
+                    </li>
+                </ul>
             </div>
         </h1>
-        <ul class="dropdown-menu">
-            <li>
-                <a href="/#/finances_new">
-                    <span class="glyphicon glyphicon-ok"></span> <%= t(".newBill") %>
-                </a>
-            </li>
-            <li>
-                <a href="/#/create_payment">
-                    <span class="glyphicon glyphicon-euro"></span> <%= t(".newPaym") %>
-                </a>
-            </li>
-        </ul>
     </div>
 
     <div>
