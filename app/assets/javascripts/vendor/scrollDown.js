@@ -2,15 +2,17 @@ function scrolldown() {
 	$("#scrollarea").animate({ scrollTop: 100000 }, "fast");
 };
 
-function start(time){
-	var scroll = document.getElementById('scrollarea');
-	if (scroll != null){
-		scroll.style.height = ($(window).height()-270).toString() + "px";
-		var checkHeight = scroll.style.height.split("p")[0];
+function start(time, send){
+	if (!send){
+		var scroll = document.getElementById('scrollarea');
+		if (scroll != null){
+			scroll.style.height = ($(window).height()-270).toString() + "px";
+			var checkHeight = scroll.style.height.split("p")[0];
 
-		/*if (parseInt(checkHeight) < 250){ // testen ob minimum sinnvoll?
-		scroll.style.height = "250px";
-		}*/
+			/*if (parseInt(checkHeight) < 250){ // testen ob minimum sinnvoll?
+			scroll.style.height = "250px";
+			}*/
+		}
 	}
 	// don't work on mobile phone
 	if (document.getElementById('scrollarea') != null){

@@ -35,17 +35,17 @@ angular.module('flatman').controller("messageCtrl", function($scope, $route, $q,
                     if ($scope.currentFlatChatMessages.readers.indexOf($scope.currentUserId.id) == -1){
                         $scope.setAllRead = false;
                         $scope.messages = messageService.messages.get($scope.activeChat.id);
-                        start(500);
+                        start(500, true);
                     }   // two people write at the same time
                     else if (mass.flat_messages.length > 1 && mass.flat_messages[mass.flat_messages.length-2].readers.indexOf($scope.currentUserId.id) == -1){
                         $scope.setAllRead = false;
                         $scope.messages = messageService.messages.get($scope.activeChat.id);
-                        start(500);
+                        start(500, true);
                     }   // three people write at the same time
                     else if (mass.flat_messages.length > 2 && mass.flat_messages[mass.flat_messages.length-3].readers.indexOf($scope.currentUserId.id) == -1){
                         $scope.setAllRead = false;
                         $scope.messages = messageService.messages.get($scope.activeChat.id);
-                        start(500);
+                        start(500, true);
                     }
                 }
             }
@@ -56,7 +56,7 @@ angular.module('flatman').controller("messageCtrl", function($scope, $route, $q,
                         if ($scope.currentChats[i].sender_id != $scope.currentUserId.id){
                             $scope.setAllRead = false;
                             $scope.messages = messageService.messages.get($scope.activeChat.id);
-                            start(500);
+                            start(500, true);
                         }
                     }
                 }
@@ -70,7 +70,7 @@ angular.module('flatman').controller("messageCtrl", function($scope, $route, $q,
     $scope.getMessages = function (){
         $scope.setAllRead = false;
         $scope.messages = messageService.messages.get($scope.activeChat.id);
-        start(1000);
+        start(1000, false);
         if (!isNaN($scope.activeChat.id)){
             $scope.chatPartner = messageService.partner.getPartner($scope.activeChat.id);
             $scope.activeChat.sender_id = messageService.partner.getPartner($scope.activeChat.id);
@@ -111,6 +111,10 @@ angular.module('flatman').controller("messageCtrl", function($scope, $route, $q,
             }
             location.href="/#/chats";
         });
+
+    };
+
+    $scope.sendToFlat=function(flat_id){
 
     };
 
