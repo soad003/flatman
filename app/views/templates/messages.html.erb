@@ -18,7 +18,7 @@
         id="scrollarea"
         style="overflow-y: auto; overflow-x: hidden;">
     <div ng-repeat="message in messages">
-      <div ng-show="!currentlyRead(message, setAllRead)">
+      <div ng-show="currentUserIsSender(message) || !currentlyRead(message, setAllRead)">
         <a class="list-group-item" style="margin-top: 6px">
           <div class="list-group-item-heading" ng-model="Username">
             <strong>{{message.sender_name}}</strong>
