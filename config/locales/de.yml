@@ -248,6 +248,10 @@ de:
       back                               : "Zurück"
       create_Message_user_placeholder    : "Username"
       new_text_placeholder               : "Text eingeben"
+    messages:
+      send                               : "senden"
+      back                               : "zurück"
+      new_text_placeholder               : "Text eingeben"
     resources:
       page_header                        : "Ressourcen"
       page_title                         : "Ressource"
