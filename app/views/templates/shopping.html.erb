@@ -59,7 +59,10 @@
                 <ul class="list-unstyled">
                     <li ng-repeat="item in list.items">
                       <input id="{{''+$parent.$index+$index}}" type="checkbox" ng-model="item.checked" ng-change="changeChecked(list,item)">
-                      <label for="{{''+$parent.$index+$index}}" class="done-{{item.checked}}">
+                      <label  for="{{''+$parent.$index+$index}}"
+                              class="done-{{item.checked}}"
+                              tooltip-placement="bottom"
+                              tooltip="{{item.created_by}} ({{item.created_at | date : 'shortDate'}})">
                         {{item.name}}
                       </label>
                       <a href="" class="pull-right" ng-click="removeItem(list,item)">

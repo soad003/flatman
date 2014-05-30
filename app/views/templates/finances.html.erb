@@ -1,26 +1,25 @@
 <div>
     <div class = "page-head">
         <h1 class="page-header"><span class="fa fa-bitcoin"></span> <%= t('.page_header') %>
-           
-                <div class="btn-group pull-right">
+
+            <div class="btn-group pull-right">
                 <button type="button" class="btn btn-primary pull-right" data-toggle="dropdown">
                     <span class="glyphicon glyphicon-plus"> </span><span class="hidden-xs"> <%= t(".add_fin") %></span>
                 </button>
-                <ul class="dropdown-menu">
-                                            <li>
-                                                <a href="/#/finances_new">
-                                                    <span class="glyphicon glyphicon-ok"></span> <%= t(".newBill") %>
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a href="/#/create_payment">
-                                                    <span class="glyphicon glyphicon-euro"></span> <%= t(".newPaym") %>
-                                                </a>
-                                            </li>
-                                        </ul>
-                                    </div>
-            
+            </div>
         </h1>
+        <ul class="dropdown-menu">
+            <li>
+                <a href="/#/finances_new">
+                    <span class="glyphicon glyphicon-ok"></span> <%= t(".newBill") %>
+                </a>
+            </li>
+            <li>
+                <a href="/#/create_payment">
+                    <span class="glyphicon glyphicon-euro"></span> <%= t(".newPaym") %>
+                </a>
+            </li>
+        </ul>
     </div>
 
     <div>
@@ -35,7 +34,7 @@
 
     <div class ="container" ng-show="intro()">
         <div class="row">
-            <div class="col-md-7"> 
+            <div class="col-md-7">
                            <div class="panel panel-default">
                     <div class="panel-heading text-center">
                        <i class="fa fa-money"></i> <%= t(".overview_flat_members") %>
@@ -132,7 +131,7 @@
                             </a>
                         </span>
                     </div>
-                </div>         
+                </div>
                  <div class="panel panel-default">
                     <div class="panel-heading text-center">
                        <i class="fa fa-credit-card"></i> <%= t(".spendings") %>
@@ -182,7 +181,7 @@
                     </div>
                 </div>
 
- 
+
             </div>
 
             <div class="row col-md-5">
@@ -201,7 +200,7 @@
                         </div>
                     </div>
                 </div>
-               
+
 
             </div>
 
