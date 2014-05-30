@@ -1,12 +1,13 @@
 angular.module('flatman').controller("financesCtrl", function($scope, financesService, flatService, Util) {
     $scope.intro = function() {
-        return ($scope.finances.length !== 0);
+        return $scope.arePaymentsToShow();
     };
 
     $scope.removeEntry = function(finance) {
         financesService.bill.destroy(finance.id, function() {
             $scope.finances = _($scope.finances).without(finance);
         });
+        $scope.financeTables = financesService.finance.get_tables();
     };
 
     $scope.payDebt = function(debt) {
@@ -38,6 +39,11 @@ angular.module('flatman').controller("financesCtrl", function($scope, financesSe
             $scope.financeTables[index].entries = data.entries;
             $scope.financeTables[index].entryLength = data.entryLength;
         });
+    };
+
+    $scope.arePaymentsToShow = function (){
+        var sum = _.reduce($scope.financeTables, function(mem, financeTable) { return mem + financeTable.entryLength;},0);
+        return sum != 0;
     };
 
     $scope.chartData = [];

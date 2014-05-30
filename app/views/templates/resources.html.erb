@@ -169,15 +169,15 @@
                             </div>
                             <table class="table table-striped table-hover table-borderless ">
                                 <tbody>
-                                    <tr class="text-right" ng-repeat="info in resource.infos.general">
+                                    <tr ng-repeat="info in resource.infos.general">
                                         <td>{{info.name}}</td>
-                                        <td>{{info.usage}} {{resource.unit}}</td>
-                                        <td>€ {{info.costs}}</td>
+                                        <td class="text-right">{{info.usage}} {{resource.unit}}</td>
+                                        <td class="text-right">€ {{info.costs}}</td>
                                     </tr>
-                                    <tr class="text-right" ng-repeat="info in resource.infos.years">
+                                    <tr ng-repeat="info in resource.infos.years">
                                         <td>... {{info.name}}</td>
-                                        <td>{{info.usage}} {{resource.unit}}</td>
-                                        <td>€ {{info.costs}}</td>
+                                        <td class="text-right">{{info.usage}} {{resource.unit}}</td>
+                                        <td class="text-right">€ {{info.costs}}</td>
 
                                     </tr>
                                 </tbody>

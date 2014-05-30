@@ -53,7 +53,7 @@ class Ressource < ActiveRecord::Base
 
     def self.get_chart_data(statistic_data, from, to)
       returnData = OpenStruct.new({"labels" => [], "costs" => []})
-      if (hideEvery = ((to.to_date - from.to_date)/15).round) < 2 
+      if (hideEvery = (([(to.to_date - from.to_date), statistic_data.labels.length].min)/15).round) < 2 
         hideEvery = 1
       end
        

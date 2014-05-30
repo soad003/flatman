@@ -65,7 +65,7 @@
                                                         <span ng-class="{'text-success':finance_member.value >
                                                             0, 'text-danger': finance_member.value
                                                             < 0}">
-                                                                {{math.abs(finance_member.value) | customCurrency : '€ '}}
+                                                                {{(finance_member.value) | customCurrency : '€ '}}
                                                         </span>
                                                     </span>
 
@@ -73,7 +73,7 @@
                                               </div>
                                         </div>
                                         <div id="collapse{{$index}}" class="panel-collapse collapse">
-                                            <div class="panel-body row">
+                                            <div class="panel-body">
                                                 <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
                                                     <div class="row adv-table editable-table">
                                                         <div ng-show="{{finance_member.entries.length == 0}}">
@@ -97,7 +97,9 @@
                                                                     <td class="hidden-xs">{{entry.date| date : 'longDate'}}</td>
                                                                     <td class="visible-xs">{{entry.date| date : 'shortDate'}}</td>
                                                                     <td>{{entry.what}}</td>
-                                                                    <td class="text-right"> {{entry.value| customCurrency : '€ '}} </td>
+                                                                    <td class="text-right" ng-class="{'text-success':entry.value >
+                                                            0, 'text-danger': entry.value
+                                                            < 0}"> {{entry.value| customCurrency : '€ '}} </td>
                                                                     <td>
                                                                         <button class="btn btn-default btn-xs pull-right"
                                                                                 ng-hide="entry.id == -1"
@@ -137,7 +139,7 @@
                     <div class="panel-heading text-center">
                        <i class="fa fa-credit-card"></i> <%= t(".spendings") %>
                     </div>
-                    <div class="row panel-body">
+                    <div class="panel-body">
                         <table class="table table-striped">
                             <tr>
                                 <th><%= t(".date") %></th>
