@@ -95,7 +95,6 @@ angular.module('flatman').controller("financesCtrl", function($scope, financesSe
     $scope.finances= financesService.bill.get_range(0,5);
     $scope.setFinanceTables();
 
-    //load categories and chart data
     $scope.AllCategories = financesService.category.get_all(function(data){
         $scope.chartData = financesService.category.get_chart_view(data);
     });

@@ -293,7 +293,7 @@ de:
     finances:
       page_title                         : "Finanzen"
       page_header                        : "Finanzstatus"
-      add_fin                            : "Rechnung"
+      add_fin                            : "Hinzufügen"
       newBill                            : "Neue Rechnung"
       newPaym                            : "Neue Zahlung"
       help_title                         : "Erstelle eine neue Ausgabe"

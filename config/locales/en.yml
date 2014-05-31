@@ -296,7 +296,7 @@ en:
     finances:
       page_title                         : "Finances"
       page_header                        : "Finances"
-      add_fin                            : "Bill"
+      add_fin                            : "Add"
       newBill                            : "New Bill"
       newPaym                            : "New Payment"
       help_title                         : "Create a new expense"
