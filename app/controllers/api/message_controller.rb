@@ -55,9 +55,6 @@ class Api::MessageController < Api::RestController
   end
 
   def create
-    #mes_params = {sender_id: "3", receiver_id: "1", text: "habi25", header: "1,2,10", read: false}
-    #current_user = User.find(3)
-
     recId = mes_params[:header]
     @newMess = Array.new
     if (recId == "")
@@ -116,7 +113,7 @@ class Api::MessageController < Api::RestController
         mess.destroy
       end
     end
-    @mesd = Message.find_chats(current_user)
+    respond_with(nil)
   end
 
   def count_messages

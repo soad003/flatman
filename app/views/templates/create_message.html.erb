@@ -18,9 +18,14 @@
   </div>
 </div>
 <div class="modal-body">
-<div >
-<button ng-repeat="label in labels track by $index" style="margin-right: 5px" ng-click="removeTag($index)" class="btn btn-primary btn-sm"> {{label.text}} <span aria-hidden="true">&times;</span></button>
-</div>
+  <div>
+    <button ng-repeat="label in labels track by $index" 
+            style="margin-right: 5px" 
+            ng-click="removeTag($index)" 
+            class="btn btn-primary btn-sm"> {{label.text}} 
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
 	<div class="input-group">
     <span class="input-group-addon">@</span>
     <input  autofocus type="text"
@@ -29,7 +34,6 @@
             typeahead-template-url="customTemplate.html" 
             class="typeahead form-control" 
             placeholder="<%= t('.create_Message_user_placeholder') %>">
-  </div>
   </div>
 </div>
 <div class="row">

@@ -3,7 +3,6 @@ angular.module('flatman').controller("create_messageCtrl", function($scope, $tim
     $scope.selectedUser = undefined;
     $scope.newMess = {sender_id: "", receiver_id: "", text: "", header: "", read: false, readers: [], deleted: []};
     $scope.labels = [];
-    $scope.userNames = [];
     
     $scope.createMessage=function(){
         if ($scope.labels.length === 0){
