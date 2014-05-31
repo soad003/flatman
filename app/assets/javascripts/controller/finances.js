@@ -43,7 +43,7 @@ angular.module('flatman').controller("financesCtrl", function($scope, financesSe
 
     $scope.arePaymentsToShow = function (){
         var sum = _.reduce($scope.financeTables, function(mem, financeTable) { return mem + financeTable.entryLength;},0);
-        return sum != 0;
+        return sum !== 0;
     };
 
     $scope.chartData = [];
