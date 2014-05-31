@@ -45,33 +45,51 @@ class Api::MessageController < Api::RestController
     respond_with({id: current_user.id})
   end
 
+  def getFlatMembers
+    flat_users = User.where(flat_id: params[:flat_id])
+    ret_users = Array.new
+    flat_users.each do |user|
+      ret_users = ret_users + [({text: user.name, id: user.id})]
+    end
+    respond_with({users: ret_users} )
+  end
+
   def create
-    recId = mes_params[:receiver_id]
+    recId = mes_params[:header]
+    @newMess = Array.new
     if (recId == "")
       respond_with_errors([t('.no_user_found')])
+    elsif recId == "dub"
+      respond_with_errors([t('.user_already_selected')])      
     else
-      @mes=Message.new(mes_params)
-      if mes_params[:header] == "flatchat"
-        header = "flatchat" + current_user.flat_id.to_s
-        @mes.header = header
-        @mes.receiver_id = current_user.id
-        @mes.sender_id = current_user.id
+      recIdArray = recId.lines(",")
+      recIdArray.each do |rec|
+        @mes=Message.new(mes_params)
+        @mes.receiver_id = rec
+        @mes.header = "";
+        if rec == "flatchat"
+          header = "flatchat" + current_user.flat_id.to_s
+          @mes.header = header
+          @mes.receiver_id = current_user.id
+          @mes.sender_id = current_user.id
+        end
+        beginDate2014 = Time.new(2014,3,30,2,0)
+        endDate2014 = Time.new(2014,10,26,3,0)
+        beginDate2015 = Time.new(2015,3,29,2,0)
+        endDate2015 = Time.new(2015,10,25,3,0)
+        nowTime = Time.at(Time.now.to_i + 3600)
+        if nowTime.between?(beginDate2014, endDate2014) || nowTime.between?(beginDate2015, endDate2015)
+          @mes.created_at = Time.at(nowTime.to_i + 3600)
+        else 
+          @mes.created_at = nowTime
+        end
+        @mes.readers = [current_user.id]
+        @mes.deleted = []
+        current_user.sentMessages << @mes.clone
+        @newMess << @mes.clone
       end
-      beginDate2014 = Time.new(2014,3,30,2,0)
-      endDate2014 = Time.new(2014,10,26,3,0)
-      beginDate2015 = Time.new(2015,3,29,2,0)
-      endDate2015 = Time.new(2015,10,25,3,0)
-      nowTime = Time.at(Time.now.to_i + 3600)
-      if nowTime.between?(beginDate2014, endDate2014) || nowTime.between?(beginDate2015, endDate2015)
-        @mes.created_at = Time.at(nowTime.to_i + 3600)
-      else 
-        @mes.created_at = nowTime
-      end
-      @mes.readers = [current_user.id]
-      @mes.deleted = []
-      current_user.sentMessages << @mes
       current_user.save!
-      @mes
+      @newMess
     end
   end
 
@@ -95,7 +113,7 @@ class Api::MessageController < Api::RestController
         mess.destroy
       end
     end
-    @mesd = Message.find_chats(current_user)
+    respond_with(nil)
   end
 
   def count_messages

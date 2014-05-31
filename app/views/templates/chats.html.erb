@@ -6,10 +6,18 @@
         <span class="fa fa-envelope"></span>
           <%= t('.page_header') %> 
         <a href="/#/create_message">
-          <button class="btn btn-primary pull-right">
-            <i class="fa fa-plus"></i> 
-            <span class="hidden-xs"><%= t('.page_title') %></span>
-          </button>
+          <span class="hidden-sm hidden-md hidden-lg hidden-">
+            <button class="btn btn-primary pull-right" style="margin-right: 20px">
+              <i class="fa fa-plus"></i> 
+              <span class="hidden-xs"><%= t('.page_title') %></span>
+            </button>
+          </span>
+          <span class="hidden-xs">
+            <button class="btn btn-primary pull-right">
+              <i class="fa fa-plus"></i> 
+              <span class="hidden-xs"><%= t('.page_title') %></span>
+            </button>
+          </span>
         </a>
       </h2>
   </div>
@@ -20,7 +28,7 @@
     <div ng-init="countUnreadFlatChat()">
       <a  style="cursor:pointer; text-decoration: none;" 
           href="/#/messages/{{flatchat.id}}" 
-          onclick="start(500)">
+          onclick="start(500, false)">
       <!-- flatchat unread -->
         <div class="panel panel-primary" ng-show="getFlatUnreadCounter() > 0">
           <div class="panel-heading">
@@ -93,7 +101,7 @@
     <div ng-init="countUnread(chat, $index)">
       <a  style="cursor:pointer; text-decoration: none;" 
           href="/#/messages/{{chat.id}}" 
-          onclick="start(500)">
+          onclick="start(500, false)">
       <!-- chat read -->
         <div class="panel panel-primary" ng-show="getUnreadCounter($index) < 1">
           <div class="list-group-item">
@@ -136,7 +144,7 @@
       <!-- chat unread -->
       <a  style="cursor:pointer; text-decoration: none;" 
           href="/#/messages/{{chat.id}}" 
-          onclick="start(500)">
+          onclick="start(500, false)">
         <div class="panel panel-primary" ng-show="getUnreadCounter($index) > 0">
           <div class="panel-heading">
             <div class="btn-group pull-right">

@@ -46,6 +46,7 @@ de:
     message:
       create:
         no_user_found                     : "Kein User gefunden"
+        user_already_selected             : "User ist bereits selektiert"
   # mail
   user_mailer:
     invite:
@@ -248,6 +249,10 @@ de:
       send                               : "Senden"
       back                               : "Zurück"
       create_Message_user_placeholder    : "Username"
+      new_text_placeholder               : "Text eingeben"
+    messages:
+      send                               : "senden"
+      back                               : "zurück"
       new_text_placeholder               : "Text eingeben"
     resources:
       page_header                        : "Ressourcen"

@@ -79,7 +79,7 @@
                         id="send" 
                         name="send" 
                         class="btn btn-success btn-block" 
-                        onclick="start(100)" 
+                        onclick="start(100, true)" 
                         type="submit" 
                         ng-click="sendMessage()" 
                         ng-disabled="!SendForm.$valid">
@@ -91,7 +91,7 @@
                 <button id="send2" 
                         name="send" 
                         class="btn btn-success btn-block" 
-                        onclick="start(100)" 
+                        onclick="start(100, true)" 
                         type="submit" 
                         ng-click="sendMessage()" 
                         ng-disabled="!SendForm.$valid">
@@ -114,10 +114,8 @@
 
 
 <!-- todo
-- var ausmisten
 - optimieren
 - text der angezeigt wird begrenzen
-- messages nav bar back (split in chatview and messageview)
 - gleiche höhe für verschiedene browser
 - alles am Anfang laden?
 -->

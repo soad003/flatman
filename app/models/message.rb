@@ -39,9 +39,9 @@ class Message < ActiveRecord::Base
         end
 
         if user == user2
-            ret = ({id: user, flat_name: Flat.find(User.find(user).flat_id).name})
+            ret = ({id: user, name: User.find(user).flat.name})
         else
-            ret = ({id: retUser, flat_name: ""})
+            ret = ({id: retUser, name: User.find(retUser).name})
         end
     end
 
