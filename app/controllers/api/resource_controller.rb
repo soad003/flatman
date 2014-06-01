@@ -2,9 +2,14 @@ class Api::ResourceController < Api::RestController
     around_filter :wrap_in_transaction, only: [:create,:destroy]
 
     def index
-        @r=Ressource.set_attributes(current_user.flat.ressources).sort! { |a,b| a.name.downcase <=> b.name.downcase }
-        #logic model calc call
-        #respond_with(current_user.flat.ressources)
+        resources =Ressource.set_attributes(current_user.flat.ressources).sort! { |a,b| a.name.downcase <=> b.name.downcase }
+        resources.each do |resource|
+          resource.entries = Ressource.calc(resource).drop(0).take(5)
+          statistic = Ressource.get_statistic_data(nil,nil,resource)
+          resource.overview = Ressource.get_overview_data(statistic, resource)
+          resource.chart = Ressource.get_chart_data(statistic, resource.chartDateRange.startDate, resource.chartDateRange.endDate)
+        end
+        @r = resources;
     end
 
     def create
@@ -62,7 +67,7 @@ class Api::ResourceController < Api::RestController
     def destroy
         r = Ressource.find_resource_with_user_constraint(params[:id], current_user)
         Ressourceentry.delete_all(["ressource_id = ?", r.id])
-        r.destroy!  
+        r.destroy!
         respond_with(nil)
     end
 

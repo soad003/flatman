@@ -4,9 +4,11 @@ class Ressource < ActiveRecord::Base
 		attr_accessor             :entryLength
 		attr_accessor             :chart
 		attr_accessor             :chartDateRange
+    attr_accessor             :overview
+    attr_accessor             :entries
     validates                 :name,:startDate, :unit, :pricePerUnit, :startValue,  presence: true
     validates_numericality_of :pricePerUnit, :greater_than => 0
-    
+
     def self.get_months (date)
       (date.year*12+date.month)
     end
@@ -49,14 +51,12 @@ class Ressource < ActiveRecord::Base
       end
       returnEntries
     end
-    
 
     def self.get_chart_data(statistic_data, from, to)
       returnData = OpenStruct.new({"labels" => [], "costs" => []})
       if (hideEvery = (([(to.to_date - from.to_date), statistic_data.labels.length].min)/15).round) < 2 
         hideEvery = 1
       end
-       
       sum = 0
       for i in 0...statistic_data.labels.size
         if (statistic_data.labels[i] >= from && statistic_data.labels[i] <= to)
@@ -82,10 +82,7 @@ class Ressource < ActiveRecord::Base
         (resource.ressourceentries.sort!{|a,b| a.date <=> b.date}).last.date
     end
 
-
-
-
-    def self.get_statistic_data (from,to, resource)   
+    def self.get_statistic_data (from,to, resource)
       values = OpenStruct.new({"labels" => [], "costs" => [], "usages" => []})
       if from == nil || to == nil
         entries = resource.ressourceentries.sort! {|a,b| a.date <=> b.date}
@@ -106,7 +103,7 @@ class Ressource < ActiveRecord::Base
             values.labels << date
             values.costs << costs.round(2)
             values.usages << usage
-          end 
+          end
         end
       end
       values
@@ -158,8 +155,7 @@ class Ressource < ActiveRecord::Base
 
        	if (currentYear.firstEntry != nil)
        		returnData.years << set_overview_costs(currentYear, resource);
-       	end  
-       	
+       	end
         if (thisMonth.firstEntry != nil)
        		returnData.general << set_overview_costs(thisMonth, resource);
        	end
@@ -172,7 +168,6 @@ class Ressource < ActiveRecord::Base
           returnData.general << set_overview_costs(all, resource);
         end
       end
-    
     	returnData
     end
 
@@ -193,7 +188,6 @@ class Ressource < ActiveRecord::Base
     resources
     end
 
-    
     def self.add_overview_entry (overviewEntry, date, entry)
     	overviewEntry.usage += entry
     	if overviewEntry.firstEntry == nil
@@ -210,9 +204,6 @@ class Ressource < ActiveRecord::Base
       overviewEntry.usage = overviewEntry.usage.round(2)
       overviewEntry
     end
-
-    
-
 
     def self.calc(resource)
 	    re = (resource.ressourceentries.sort! {|a,b| b.date <=> a.date})

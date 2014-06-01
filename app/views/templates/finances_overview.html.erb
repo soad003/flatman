@@ -86,3 +86,61 @@
   </div>
 </div>
 
+<div class="row" ng-show="overviewMates.length !== 0">
+  <div class="btn-group">
+    <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+      <img style="height:35px; width:35px" class="img-circle" ng-src="{{getSelectedOverviewMate().img_path}}"> {{getSelectedOverviewMate().name}} 
+      <span class="caret"></span>
+    </button>
+    <ul class="dropdown-menu">
+      <li ng-repeat="overviewMate in overviewMates">
+        <div ng-click="setSelectedOverviewMateIndex($index)">
+        <p>
+          <img style="height:35px; width:35px" class="img-circle" ng-src="{{overviewMate.img_path}}"> {{overviewMate.name}}
+          </p>
+        </div>
+      </li>
+    </ul>
+  </div>
+    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+      <div class="row adv-table editable-table">
+          <div ng-show="{{getSelectedOverviewMate().entries.length == 0}}">
+              <%= t('.no_entries') %>
+          </div>
+          <table ng-hide="{{getSelectedOverviewMate().entries.length == 0}}"
+                  class="table table-striped table-hover table-borderless table-scrollable"
+                  id="editable-sample">
+              <thead>
+                  <tr>
+                      <th>
+                          <%= t('.date') %></th>
+                      <th>
+                          <%= t('.what') %></th>
+                      <th class="text-right"><%= t('.value') %></th>
+                      <th> </th>
+                  </tr>
+              </thead>
+              <tbody>
+                  <tr ng-repeat="entry in getSelectedOverviewMate().entries">
+                      <td class="hidden-xs">{{entry.date| date : 'longDate'}}</td>
+                      <td class="visible-xs">{{entry.date| date : 'shortDate'}}</td>
+                      <td>{{entry.what}}</td>
+                      <td class="text-right" ng-class="{'text-success':entry.value >
+              0, 'text-danger': entry.value
+              < 0}"> {{entry.value| customCurrency : '€ '}} </td>
+                      <td>
+                          <button class="btn btn-default btn-xs pull-right"
+                                  ng-hide="entry.id == -1"
+                                  ng-click="removePayment(entry,  getSelectedOverviewMate())">
+                              <span class="glyphicon glyphicon-trash"></span>
+                          </button>
+                      </td>
+                  </tr>
+              </tbody>
+          </table>
+
+          <pagination on-select-page="setPage(getSelectedOverviewMate(), page)" total-items="getSelectedOverviewMate().entryLength" page="getSelectedOverviewMate().page" items-per-page="entriesPerPage" max-size="5" class="hidden-xs pagination-sm pull-right" boundary-links="true" ng-hide="entriesPerPage >= getSelectedOverviewMate().entryLength" rotate="true" previous-text="&lsaquo;" next-text="&rsaquo;" first-text="&laquo;" last-text="&raquo;">
+          </pagination>
+      </div>
+</div>
+

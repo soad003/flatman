@@ -162,19 +162,19 @@
 
                     <div ng-hide="resource.showChart">
                         <div class="adv-table">
-                            <div class="col-md-offset-1" ng-show="resource.infos.general.length == 0">
+                            <div class="col-md-offset-1" ng-show="resource.overview.general.length == 0">
                                 <h4>
                                     <%=t ( '.addMoreEntriesForOverview') %>
                                 </h4>
                             </div>
                             <table class="table table-striped table-hover table-borderless ">
                                 <tbody>
-                                    <tr ng-repeat="info in resource.infos.general">
+                                    <tr ng-repeat="info in resource.overview.general">
                                         <td>{{info.name}}</td>
                                         <td class="text-right">{{info.usage}} {{resource.unit}}</td>
                                         <td class="text-right">€ {{info.costs}}</td>
                                     </tr>
-                                    <tr ng-repeat="info in resource.infos.years">
+                                    <tr ng-repeat="info in resource.overview.years">
                                         <td>... {{info.name}}</td>
                                         <td class="text-right">{{info.usage}} {{resource.unit}}</td>
                                         <td class="text-right">€ {{info.costs}}</td>

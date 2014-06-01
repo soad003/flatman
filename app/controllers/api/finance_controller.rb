@@ -5,15 +5,18 @@ class Api::FinanceController <Api::RestController
         @name=Bill.includes(:billcategory).references(:billcategory).group("billcategories.name").sum(:value)
     end
 
-    def get_finance_tables
-      @userTables = Finance.get_user_tables(current_user)
+    def get_overview_mates
+        from = Integer(params[:from] || 0)
+        to = Integer(params[:to] || 10) - from
+        @overviewMates = Finance.get_overview_mates(current_user, from, to)
+      
     end
 
-    def get_finance_table
-    	userTable = Finance.get_user_table(current_user, User.find(params[:member_id]))
+    def get_overview_mate
+    	overviewMate = Finance.get_overview_mate(current_user, User.find(params[:mate_id]))
         from = Integer(params[:from] || 0)
-        to = Integer(params[:to] || userTable.length) -from
-        userTable.entries=userTable.entries.drop(from).take(to)
-        @userTable = userTable
+        to = Integer(params[:to] || overviewMate.length) - from
+        overviewMate.entries=overviewMate.entries.drop(from).take(to)
+        @overviewMate = overviewMate
     end
 end

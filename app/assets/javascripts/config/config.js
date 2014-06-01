@@ -74,7 +74,11 @@ angular.module('flatman', ['ngRoute','ngResource','google-maps','angles','ui.boo
         templateUrl: '/templates/finance_entry',
         controller: 'financeEntryCtrl'
       }).
-      when('/finances_overview', {
+      when('/finances_overview/:id', {
+        templateUrl: '/templates/finances_overview',
+        controller: 'financesOverviewCtrl'
+      }).
+      when('/finances_overview/', {
         templateUrl: '/templates/finances_overview',
         controller: 'financesOverviewCtrl'
       }).

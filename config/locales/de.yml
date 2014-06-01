@@ -318,9 +318,9 @@ de:
     finances:
       page_title                         : "Finanzen"
       page_header                        : "Finanzstatus"
-      add_fin                            : "Rechnung"
-      newBill                            : "Neue Rechnung"
-      newPaym                            : "Neue Zahlung"
+      add_fin                            : "Zahlungen"
+      newBill                            : "Ausgaben"
+      newPaym                            : "Einnahmen"
       help_title                         : "Erstelle eine neue Ausgabe"
       help_paragraph1                    : "Hier behältst du den Überblick über deine Ausgaben und Schulden"
       biggest_by_cat                     : "6 größte Kategorien"
