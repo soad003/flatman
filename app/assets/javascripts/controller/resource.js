@@ -1,7 +1,7 @@
 angular.module('flatman').controller("resourceCtrl", function($scope, $filter, resourceService, Util) {
 
     $scope.formatNumber = function(number) {
-        return (locale != 'en') ? number.toString().replace('.', ',') : number;
+       return (locale != 'en') ? number.toString().replace('.', ',') : number;
     };
 
     $scope.showInfos = function(resource, flag) {
@@ -22,9 +22,7 @@ angular.module('flatman').controller("resourceCtrl", function($scope, $filter, r
 
     $scope.convertAndSetChartData = function(data, resource) {
         var colors = ["92,184,92", "66,139,202", "240,173,78", "217,83,79"];
-        for (var i = 0; i < data.labels.length; i++) {
-            data.labels[i] = $filter('date')(new Date(data.labels[i]), "shortDate");
-        }
+        data.labels = _.map(data.labels, function (label){return $filter('date')(new Date(label), "shortDate");});
         $scope.resources[resource.index].chart = {
             "labels": data.labels,
             "datasets": [{
@@ -63,10 +61,7 @@ angular.module('flatman').controller("resourceCtrl", function($scope, $filter, r
     };
 
     $scope.addEntry = function(resource) {
-        resourceService.entry.create(resource.id, {
-            date: resource.date,
-            value: resource.entryvalue
-        }, function(data) {
+        resourceService.entry.create(resource.id, {date: resource.date, value: resource.entryvalue}, function(data) {
             $scope.setEntries(resource);
             resource.entryLength++;
             $scope.getChartData(resource);

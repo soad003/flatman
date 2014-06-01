@@ -1,14 +1,12 @@
 class Finance
 	def self.get_overview_mates (user, from, to)
-		returnValue = []
-		user.flat.users.each do |mate|
-			if (mate.id != user.id)
-				overview_mate = get_overview_mate(user, mate)
-				overview_mate.entries = overview_mate.entries.drop(from).take(to)
-				returnValue << overview_mate
-			end
-		end
-		returnValue
+		list = (user.flat.users.map {|mate|
+					if (mate.id != user.id)
+						overview_mate = get_overview_mate(user, mate)
+						overview_mate.entries = overview_mate.entries.drop(from).take(to)
+						overview_mate
+					end
+				}).compact
     end
 
     def self.get_overview_mate (user, mate)
@@ -24,7 +22,7 @@ class Finance
 		mate_info.entries = mate_info.entries + getEntrysOfBills(billsUserHasToPay, -1)
 
 		mate_info.entries.sort! {|a,b| b.date <=> a.date}
-		mate_info.entries.each do |entry| 
+		mate_info.entries.each do |entry|
 			mate_info.value += entry.value
 		end
 		mate_info.entryLength = mate_info.entries.length

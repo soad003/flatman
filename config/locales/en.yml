@@ -76,7 +76,7 @@ en:
             email:
               invalid                     : "Your email doesn't look right!"
               blank                       : "Email must be provided!"
-        ressource:
+        resource:
           attributes:
             name:
               blank                       : "Please provide a name for your resource!"
@@ -86,7 +86,7 @@ en:
               blank                       : "Please provide a name for the unit of the resource!"
             startValue:
               blank                       : "Please enter a start value!"
-        ressourceentry:
+        resourceentry:
           attributes:
             value:
               blank                       : "Entry can't be blank."
@@ -130,7 +130,7 @@ en:
             shoppinglistitems:
               invalid                     : "This item looks invalid!"
 
-    ressource:
+    resource:
       info_all                        : "Total"
       info_currentMonth               : "this month"
       info_lastthreemonths            : "last 3 months"
@@ -229,12 +229,12 @@ en:
       panel_shopping_header              : "Shopping"
       panel_finances_header              : "Finances"
       panel_share_header                 : "Shared Items"
-      panel_resources_header             : "Ressource Usage (last 30 days)"
+      panel_resources_header             : "Resource Usage (last 30 days)"
       no_shoppinglists                   : "Nothing to buy yet..."
       no_shareditems                     : "No items available"
       share_available                    : "items offered to share"
       share_borrowed                     : "currently borrowed items"
-      share_helptext                     : "share ressources, feel better and make the world a better place"
+      share_helptext                     : "share resources, feel better and make the world a better place"
       status                             : "status"
       mate                               : "mate"
 

@@ -9,7 +9,6 @@ class Api::FinanceController <Api::RestController
         from = Integer(params[:from] || 0)
         to = Integer(params[:to] || 10) - from
         @overviewMates = Finance.get_overview_mates(current_user, from, to)
-      
     end
 
     def get_overview_mate
