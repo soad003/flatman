@@ -4,12 +4,6 @@ angular.module('flatman').controller("resourceCtrl", function($scope, $filter, r
         return (locale != 'en') ? number.toString().replace('.', ',') : number;
     };
 
-    $scope.init = function(resource) {
-        resource.date = new Date();
-        resource.chartDateRange.startDate = new Date(resource.chartDateRange.startDate);
-        resource.chartDateRange.endDate = new Date(resource.chartDateRange.endDate);
-    };
-
     $scope.showInfos = function(resource, flag) {
         $scope.getChartData(resource);
         $scope.setOverview(resource);
@@ -91,17 +85,14 @@ angular.module('flatman').controller("resourceCtrl", function($scope, $filter, r
 
 
     $scope.resources = resourceService.resource.getAll(function() {
-        if ($scope.resources.length === 0) {
-            $scope.showIntro = true;
-        }
+        $scope.showIntro = $scope.resources.length === 0;
         _.each($scope.resources, function(resource, i) {
             resource.index = i;
             resource.showChart = true;
             $scope.convertAndSetChartData(resource.chart, resource);
-            $scope.init(resource);
+            resource.date = new Date();
         });
     });
     $scope.showIntro = false;
     $scope.entriesPerPage = 5;
-
 });
