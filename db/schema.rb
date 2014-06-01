@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140526051516) do
+ActiveRecord::Schema.define(version: 20140601124835) do
 
   create_table "billcategories", force: true do |t|
     t.integer  "flat_id"
@@ -82,16 +82,16 @@ ActiveRecord::Schema.define(version: 20140526051516) do
     t.datetime "updated_at"
   end
 
-  create_table "ressourceentries", force: true do |t|
-    t.integer  "ressource_id"
+  create_table "resourceentries", force: true do |t|
+    t.integer  "resource_id"
     t.date     "date"
     t.float    "value"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.boolean  "isFirst",      default: false
+    t.boolean  "isFirst",     default: false
   end
 
-  create_table "ressources", force: true do |t|
+  create_table "resources", force: true do |t|
     t.integer  "flat_id"
     t.string   "name"
     t.string   "unit"

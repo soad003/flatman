@@ -76,17 +76,17 @@ de:
             email:
               invalid                     : "Die Mailadresse sieht nicht richtig aus!"
               blank                       : "Wir benötigen eine Mailadresse!"
-        ressource:
+        resource:
           attributes:
             name:
-              blank                       : "Bitte gib einen Namen für die Ressource an!"
+              blank                       : "Bitte gib einen Namen für die Resource an!"
             startDate:
               blank                       : "Bitte gib ein Startdatum an!"
             unit:
-              blank                       : "Bitte gib eine maßeinheit für die Ressource an!"
+              blank                       : "Bitte gib eine maßeinheit für die Resource an!"
             startValue:
               blank                       : "Bitte gib einen Startwert an!"
-        ressourceentry:
+        resourceentry:
           attributes:
             value:
               blank                       : "Bitte Wert eingeben."
@@ -129,7 +129,7 @@ de:
           attributes:
             shoppinglistitems:
               invalid                     : "Das item sieht falsch aus!"
-    ressource:
+    resource:
       info_all                        : "Gesamt"
       info_currentMonth               : "diesen Monat"
       info_lastthreemonths            : "letzten 3 Monate"
@@ -181,7 +181,7 @@ de:
         finances                          : "Finanzen"
         flat_settings                     : "WG Einstellungen"
         user_settings                     : "User Profil"
-        resources                         : "Ressourcen"
+        resources                         : "Resourcen"
         dashboard                         : "Dashboard"
         shopping                          : "Einkaufen"
         search_placeholder                : "suche Items"
@@ -221,14 +221,14 @@ de:
       view_finance_details               : "zeige Abrechnungen"
       items_borrowed                     : "verliehene items"
       view_share_details                 : "zeige items"
-      view_resource_details              : "zeige Ressourcenverbrauch"
+      view_resource_details              : "zeige Resourcenverbrauch"
       view_resource_titel                : "letzen 30 Tage"
-      panel_no_resources                 : "keine Ressourcen verfügbar"
+      panel_no_resources                 : "keine Resourcen verfügbar"
       view_details                       : "zeige Details"
       panel_shopping_header              : "Einkaufen"
       panel_finances_header              : "Finanzen"
       panel_share_header                 : "Geteilte Items"
-      panel_resources_header             : "Ressourcen Verbrauch (letzten 30 Tage)"
+      panel_resources_header             : "Resourcen Verbrauch (letzten 30 Tage)"
       no_shoppinglists                   : "noch nichts auf der Liste..."
       no_shareditems                     : "keine items verfügbar"
       share_available                    : "angebotene items"
@@ -255,10 +255,10 @@ de:
       back                               : "zurück"
       new_text_placeholder               : "Text eingeben"
     resources:
-      page_header                        : "Ressourcen"
-      page_title                         : "Ressource"
-      help_title                         : "Erstelle deine erste Ressource ..."
-      help_paragraph1                    : "Du kannst deinen Ressourcenverbrauch überwachen"
+      page_header                        : "Resourcen"
+      page_title                         : "Resource"
+      help_title                         : "Erstelle deine erste Resource ..."
+      help_paragraph1                    : "Du kannst deinen Resourcenverbrauch überwachen"
       help_paragraph2                    : "Das hilft dir dabei Kosten zu sparen und unsere Umwelt zu schützen"
       chart                              : "Chart"
       data                               : "Übersicht"
@@ -272,11 +272,11 @@ de:
       edit                               : "bearbeiten"
       delete                             : "löschen"
 
-      questionDeleteResource             : "Bist du dir sicher, dass du die Ressource löschen willst?"
+      questionDeleteResource             : "Bist du dir sicher, dass du die Resource löschen willst?"
       add                                : "hinzufügen"
     create_resource:
-      page_title                         : "Ressource"
-      page_header                        : "Ressource"
+      page_title                         : "Resource"
+      page_header                        : "Resource"
       name                               : "Name"
       name_placeholder                   : "Elektrizität"
       unitName                           : "Einheit"
@@ -412,7 +412,7 @@ de:
         shopping_text                    : "Maecenas sed diam eget risus varius blandit sit amet non magna."
         finances_title                   : "Rechnungen"
         finafinnces_text                    : "Morbi leo risus, porta ac consectetur ac, vestibulum at eros. Cras mattis consectetur purus sit amet fermentum."
-        resources_title                  : "Ressourcenverbrauch"
+        resources_title                  : "Resourcenverbrauch"
         resources_text                   : "Maecenas sed diam eget risus varius blandit sit amet non magna."
         share_title                      : "Teilen"
         share_text                       : "Donec id elit non mi porta gravida at eget metus. Maecenas faucibus mollis interdum."

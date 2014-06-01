@@ -1,12 +1,14 @@
-class Ressource < ActiveRecord::Base
-		belongs_to	              :flat
-		has_many	                :ressourceentries
-		attr_accessor             :entryLength
-		attr_accessor             :chart
-		attr_accessor             :chartDateRange
+class Resource < ActiveRecord::Base
+	belongs_to	              :flat
+	has_many	              :resourceentries
+	attr_accessor             :entryLength
+	attr_accessor             :chart
+	attr_accessor             :chartDateRange
+  attr_accessor             :overview
+   attr_accessor             :entries
     validates                 :name,:startDate, :unit, :pricePerUnit, :startValue,  presence: true
     validates_numericality_of :pricePerUnit, :greater_than => 0
-    
+
     def self.get_months (date)
       (date.year*12+date.month)
     end
@@ -16,11 +18,11 @@ class Ressource < ActiveRecord::Base
     end
 
     def self.get_resource_entries (from, to, resource)
-      resource.ressourceentries.where(['date >= ? AND date <= ?', from, to]).sort! {|a,b| a.date <=> b.date}
+      resource.resourceentries.where(['date >= ? AND date <= ?', from, to]).sort! {|a,b| a.date <=> b.date}
     end
 
     def self.get_resource_entry_before (date, resource)
-      entry = resource.ressourceentries.where(['date < ?', date]).sort! {|a,b| a.date <=> b.date}
+      entry = resource.resourceentries.where(['date < ?', date]).sort! {|a,b| a.date <=> b.date}
       if entry != nil
         entry = entry.last
       end
@@ -28,7 +30,7 @@ class Ressource < ActiveRecord::Base
     end
 
     def self.get_resource_entry_after (date, resource)
-      entry = resource.ressourceentries.where(['date > ?', date]).sort! {|a,b| a.date <=> b.date}
+      entry = resource.resourceentries.where(['date > ?', date]).sort! {|a,b| a.date <=> b.date}
       if entry != nil
         entry = entry.first
       end
@@ -37,7 +39,7 @@ class Ressource < ActiveRecord::Base
 
     def self.get_resource_entries_inkl_after_and_before (from, to, resource)
       returnEntries = []
-      entries = get_resource_entries(from, to, resource) 
+      entries = get_resource_entries(from, to, resource)
       if (entries.size == 0 || entries.first.date != from) && (entry = get_resource_entry_before(from, resource)) != nil
         returnEntries << entry
       end
@@ -49,14 +51,12 @@ class Ressource < ActiveRecord::Base
       end
       returnEntries
     end
-    
 
     def self.get_chart_data(statistic_data, from, to)
       returnData = OpenStruct.new({"labels" => [], "costs" => []})
       if (hideEvery = (([(to.to_date - from.to_date), statistic_data.labels.length].min)/15).round) < 2 
         hideEvery = 1
       end
-       
       sum = 0
       for i in 0...statistic_data.labels.size
         if (statistic_data.labels[i] >= from && statistic_data.labels[i] <= to)
@@ -79,16 +79,13 @@ class Ressource < ActiveRecord::Base
     end
 
     def self.get_oldest_entryDate(resource)
-        (resource.ressourceentries.sort!{|a,b| a.date <=> b.date}).last.date
+        (resource.resourceentries.sort!{|a,b| a.date <=> b.date}).last.date
     end
 
-
-
-
-    def self.get_statistic_data (from,to, resource)   
+    def self.get_statistic_data (from,to, resource)
       values = OpenStruct.new({"labels" => [], "costs" => [], "usages" => []})
       if from == nil || to == nil
-        entries = resource.ressourceentries.sort! {|a,b| a.date <=> b.date}
+        entries = resource.resourceentries.sort! {|a,b| a.date <=> b.date}
       else
         entries = get_resource_entries_inkl_after_and_before(from, to, resource)
       end      #calc for all days
@@ -106,7 +103,7 @@ class Ressource < ActiveRecord::Base
             values.labels << date
             values.costs << costs.round(2)
             values.usages << usage
-          end 
+          end
         end
       end
       values
@@ -132,9 +129,9 @@ class Ressource < ActiveRecord::Base
     def self.get_overview_data (statistic_data, resource)
   		returnData = OpenStruct.new({general: [], years: []})
       if statistic_data.labels.size != 0
-    		all = OpenStruct.new({name: I18n.t('activerecord.ressource.info_all'), usage: 0, costs: 0, firstEntry: nil, lastEntry: nil})
-    		thisMonth = OpenStruct.new({name: I18n.t('activerecord.ressource.info_currentMonth'), usage: 0, costs: 0, firstEntry: nil, lastEntry: nil})
-    		lastThreeMonth = OpenStruct.new({name: I18n.t('activerecord.ressource.info_lastthreemonths'), usage: 0, firstEntry: nil, lastEntry: nil})
+    		all = OpenStruct.new({name: I18n.t('activerecord.resource.info_all'), usage: 0, costs: 0, firstEntry: nil, lastEntry: nil})
+    		thisMonth = OpenStruct.new({name: I18n.t('activerecord.resource.info_currentMonth'), usage: 0, costs: 0, firstEntry: nil, lastEntry: nil})
+    		lastThreeMonth = OpenStruct.new({name: I18n.t('activerecord.resource.info_lastthreemonths'), usage: 0, firstEntry: nil, lastEntry: nil})
     		currentYear = OpenStruct.new({name: statistic_data.labels[0].year, usage: 0, costs: 0, firstEntry: nil, lastEntry: nil})
 
     		for i in 0...statistic_data.labels.size
@@ -158,8 +155,7 @@ class Ressource < ActiveRecord::Base
 
        	if (currentYear.firstEntry != nil)
        		returnData.years << set_overview_costs(currentYear, resource);
-       	end  
-       	
+       	end
         if (thisMonth.firstEntry != nil)
        		returnData.general << set_overview_costs(thisMonth, resource);
        	end
@@ -172,19 +168,18 @@ class Ressource < ActiveRecord::Base
           returnData.general << set_overview_costs(all, resource);
         end
       end
-    
     	returnData
     end
 
     def self.find_resource_with_user_constraint(id, user)
-        Ressource.where(id: id, flat_id: user.flat.id).first
+        Resource.where(id: id, flat_id: user.flat.id).first
     end
 
     # setAttributes to all resources before get response
     def self.set_attributes(resources)
       for resource in resources
-        resource.entryLength = resource.ressourceentries.size
-        res = resource.ressourceentries.sort! {|a,b| a.date <=> b.date}
+        resource.entryLength = resource.resourceentries.size
+        res = resource.resourceentries.sort! {|a,b| a.date <=> b.date}
         resource.chartDateRange = OpenStruct.new({startDate: res.first.date, endDate: res.last.date})
         if get_month_diff(res.first.date, res.last.date) > 12
           resource.chartDateRange.startDate = Date.new(res.last.date.year-1, res.last.date.month, res.last.date.day)
@@ -193,7 +188,6 @@ class Ressource < ActiveRecord::Base
     resources
     end
 
-    
     def self.add_overview_entry (overviewEntry, date, entry)
     	overviewEntry.usage += entry
     	if overviewEntry.firstEntry == nil
@@ -211,11 +205,8 @@ class Ressource < ActiveRecord::Base
       overviewEntry
     end
 
-    
-
-
     def self.calc(resource)
-	    re = (resource.ressourceentries.sort! {|a,b| b.date <=> a.date})
+	    re = (resource.resourceentries.sort! {|a,b| b.date <=> a.date})
 	    for index in 0 ... re.size
 	    	entry = re[index]
   			if entry.isFirst

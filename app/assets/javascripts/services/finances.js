@@ -12,11 +12,11 @@ angular.module('flatman').factory("financesService", function($resource){
                             'get_all': {method: "GET", isArray:true}
                         });
 
-    var financeTables = $resource('/api/finance/financeTables/',{},
+    var overviewMates = $resource('/api/finance/overviewMates/',{},
                         {
                             'get': {method: "GET", isArray:true}
                         });
-    var financeTable = $resource('/api/finance/financeTables/:id/',{},
+    var overviewMate = $resource('/api/finance/overviewMates/:id/',{},
                         {
                             'get': {method: "GET"}
                         });
@@ -35,11 +35,11 @@ angular.module('flatman').factory("financesService", function($resource){
                 })
                 return Math.round(sum);
             },
-            get_tables: function (succH, errH){
-                return financeTables.get(null,succH, errH);
+            get_overview_mates: function (from, to, succH, errH){
+                return overviewMates.get({from: from, to: to},succH, errH);
             },
-            get_table: function (member_id, from, to, succH, errH){
-                return financeTable.get({id: member_id, from: from, to: to},succH, errH);
+            get_overview_mate: function (member_id, from, to, succH, errH){
+                return overviewMate.get({id: member_id, from: from, to: to},succH, errH);
             }
         },
         bill: {

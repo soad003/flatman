@@ -8,11 +8,10 @@ class Api::PaymentController < Api::RestController
     end
 
     def destroy
-        payment = Payment.find(delete_params[:id])
-        if payment.payee_id == current_user.id || payment.payer_id == current_user.id
-            payment.destroy!
-            respond_with(nil, :location => nil)
-        end
+        payment = Payment.find_with_user_constraint(delete_params[:id], current_user, User.find(delete_params[mate_id]))
+        payment.destroy!
+        respond_with(nil, :location => nil)
+        
     end
 
     private
@@ -22,7 +21,7 @@ class Api::PaymentController < Api::RestController
     end
 
     def delete_params
-          params.permit(:id, :member_id, :page)
+          params.permit(:id, :mate_id, :page)
     end
 
 end

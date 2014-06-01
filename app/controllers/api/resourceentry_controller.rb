@@ -1,33 +1,33 @@
 class Api::ResourceentryController < Api::RestController
 
      def page
-        #@r=Ressource.calc(current_user.flat.ressources);
+        #@r=Resource.calc(current_user.flat.resources);
         #logic model calc call
-        resource = Ressource.find_resource_with_user_constraint(params[:resource_id], current_user)
-        resourceentries = Ressource.calc(resource)
+        resource = Resource.find_resource_with_user_constraint(params[:resource_id], current_user)
+        resourceentries = Resource.calc(resource)
         from = Integer(params[:from] || 0)
         to = Integer(params[:to] || bills_of_all_users.length) -from
         @re=resourceentries.drop(from).take(to)
     end
 
     def create
-        entry=Ressourceentry.new(entry_params)
-        r = Ressource.find_resource_with_user_constraint(params[:resource_id], current_user)
-        firstEntry = r.ressourceentries.where(isFirst:true).first
+        entry=Resourceentry.new(entry_params)
+        r = Resource.find_resource_with_user_constraint(params[:resource_id], current_user)
+        firstEntry = r.resourceentries.where(isFirst:true).first
         if (firstEntry.date > entry.date)
             respond_with_errors([t('.entryDate_before_startDate')])
-        elsif r.ressourceentries.where('date = ?', entry.date).all.count != 0
+        elsif r.resourceentries.where('date = ?', entry.date).all.count != 0
              respond_with_errors([t('.entryDate_exists')])
         else
 
-            entry.ressource = r
+            entry.resource = r
             entry.save!
             respond_with(entry, :location => nil)
         end
     end
 
     def destroy
-        Ressourceentry.destroy_with_user_constraint(params[:id],params[:resource_id],current_user)
+        Resourceentry.destroy_with_user_constraint(params[:id],params[:resource_id],current_user)
         respond_with(nil)
     end
 
