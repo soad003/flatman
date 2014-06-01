@@ -32,7 +32,7 @@ class Api::ShareditemController < Api::RestController
     item = Shareditem.find(item_params[:id])
     
     if !params[:imagePath]
-      @up[:image] = nil
+      @up[:image] = item[:image]
       item.update!(@up)
     end
 
@@ -71,7 +71,6 @@ class Api::ShareditemController < Api::RestController
  
 
   private
-  #requrie funzt nit, weil /id.
   def item_params
     @up = params.permit(:id, :image, :imageContent, :imagePath, :imageData, :description, :hidden, :sharingNote, :tags, :name, :available)
   end

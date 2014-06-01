@@ -1,183 +1,114 @@
-angular.module('flatman').controller("resourceCtrl",function($scope, $filter, resourceService, Util){
-    //to get the env to reduce the loads of data
-    $scope.isMobile=function() {
-          return false;
-        //return $(window).width()<=770;
-        
+angular.module('flatman').controller("resourceCtrl", function($scope, $filter, resourceService, Util) {
+
+    $scope.getColor=function(index){
+        var colors=['success','info','warning','danger'];
+        return colors[index%4];
     };
 
-    $scope.isMobile = $scope.isMobile();
-
-    $scope.showIntro = false;
-    $scope.resources = resourceService.resource.getAll(function(){
-        if ($scope.resources.length === 0){
-            $scope.showIntro = true;
-        }
-        _.each($scope.resources, function(resource){
-                                        resource.enoughEntriesForChart = (resource.entryLength > 2);
-                                        $scope.init(resource);
-                                        $scope.setEntries(resource);
-                                        $scope.initChart(resource);
-                                    });
-    });
-
-
-    $scope.formatNumber = function (number){
-        return (locale != 'en')? number.toString().replace('.',','): number;
+    $scope.formatNumber = function(number) {
+        return (locale != 'en') ? number.toString().replace('.', ',') : number;
     };
 
-    $scope.init = function (resource) {
+    $scope.init = function(resource) {
         resource.date = new Date();
         resource.page = 1;
-        $scope.showInfos(resource,true);
+
+        $scope.showInfos(resource, true);
         resource.chartDateRange.startDate = new Date(resource.chartDateRange.startDate);
         resource.chartDateRange.endDate = new Date(resource.chartDateRange.endDate);
     };
 
-    $scope.showInfos = function (resource, flag){
-        if (!$scope.isMobile){
-            $scope.getChartData(resource);
-            $scope.setOverview(resource);
-        }
-        resource.showChart=flag;
+    $scope.showInfos = function(resource, flag) {
+        $scope.getChartData(resource);
+        $scope.setOverview(resource);
+        resource.showChart = flag;
     };
 
-
-     $scope.removeResource=function(resource, text){
+    $scope.removeResource = function(resource, text) {
         bootbox.confirm(text, function(result) {
-            if (result){
-                resourceService.resource.destroy(resource.id,function(){
+            if (result) {
+                resourceService.resource.destroy(resource.id, function() {
                     $scope.resources = _($scope.resources).without(resource);
                 });
             }
         });
     };
 
-    $scope.getChartData=function (resource){
-        var response = resourceService.chart.get(resource.id,resource.chartDateRange.startDate, resource.chartDateRange.endDate,
-            function (response){
+    $scope.getChartData = function(resource) {
+    //green, blue, yellow, red
+    // bootstrap colors from shoppinglist 
+    //var colors = ["223,240,216", "212, 237,247","252, 248,227", "242,222,222"];
+    var colors = ["92,184,92", "66,139,202","240,173,78", "217,83,79"];
+        var response = resourceService.chart.get(resource.id, resource.chartDateRange.startDate, resource.chartDateRange.endDate,
+            function(response) {
                 //convert labes date to local format
-                for (var i = 0; i < response.labels.length; i++){
+                for (var i = 0; i < response.labels.length; i++) {
                     response.labels[i] = $filter('date')(new Date(response.labels[i]), "shortDate");
                 }
                 resource.chart = {
-                    "labels":response.labels,
-                    "datasets":[
-                    {
-                        "fillColor":"rgba(151,187,205,0.5)",
-                        "strokeColor":"rgba(151,187,205,1)",
-                        "pointColor":"rgba(151,187,205,1)",
-                        "pointStrokeColor":"#fff",
-                        "data":response.costs
+                    "labels": response.labels,
+                    "datasets": [{
+                        "fillColor": "rgba("+colors[resource.index%4]+",0.5)",//"rgba(151,187,205,0.5)",
+                        "strokeColor": "rgba("+colors[resource.index%4]+",1)",
+                        "pointColor": "rgba("+colors[resource.index%4]+",1)",
+                        "pointStrokeColor": "#fff",
+                        "data": response.costs
                     }]
-            };
-
-
+                };
             });
     };
 
-    $scope.setOverview =function (resource){
-        resourceService.overview.get(resource.id,resource.chartDateRange.startDate, resource.chartDateRange.endDate,
-            function (response){
+    $scope.setOverview = function(resource) {
+        resourceService.overview.get(resource.id, resource.chartDateRange.startDate, resource.chartDateRange.endDate,
+            function(response) {
                 resource.infos = response;
             });
     };
 
-
-
-    $scope.setEntries=function(resource){
-        resource.entries = resourceService.entry.get(resource.id, resource.page);
-        resource.entryvalue = "";
+    $scope.setPage = function(resource, page) {
+        resource.page = page;
+        $scope.setEntries(resource);
     };
 
-     $scope.addEntry=function(resource){
-        //resource.entryvalue =  $filter('number')(resource.entryvalue, 2);
-        //alert(resource.entryvalue);
-        resourceService.entry.create(resource.id,{date:resource.date,value:resource.entryvalue}, function(data){
-                 $scope.setEntries(resource);
-                 resource.entryLength++;
-                 $scope.getChartData(resource);
-                 $scope.setOverview(resource);
-                 resource.enoughEntriesForChart = (resource.entryLength > 2);
+
+    $scope.setEntries = function(resource) {
+        resource.entries = resourceService.entry.get_range(resource.id, (resource.page - 1) * $scope.entriesPerPage, resource.page * $scope.entriesPerPage);
+        resource.entryvalue = "";
+
+    };
+
+    $scope.addEntry = function(resource) {
+        resourceService.entry.create(resource.id, {
+            date: resource.date,
+            value: resource.entryvalue
+        }, function(data) {
+            $scope.setEntries(resource);
+            resource.entryLength++;
+            $scope.getChartData(resource);
+            $scope.setOverview(resource);
         });
     };
 
-    $scope.removeEntry=function(resource, entry){
-        resourceService.entry.destroy(resource.id, entry.id, function(){
+    $scope.removeEntry = function(resource, entry) {
+        resourceService.entry.destroy(resource.id, entry.id, function() {
             $scope.setEntries(resource);
             resource.entryLength--;
             $scope.getChartData(resource);
             $scope.setOverview(resource);
-            resource.enoughEntriesForChart = (resource.entryLength > 2);
         });
     };
 
-    $scope.getRange=function (resource){
-        var pages = $scope.getPages(resource);
-        if (pages <= 5){
-            return _.range(1, pages+1);
-        }else{
-            if (resource.page <= 3){
-                return _.range(1, 6);
-            } else if (resource.page >= (pages-2)){
-                return _.range(pages-4, pages+1);
-            }
-            return _.range((resource.page-2), (resource.page+3));
-        }
-    };
 
-    $scope.setEntriesForPage=function (i, resource){
-        resource.page = i;
-        $scope.setEntries(resource);
-    };
-
-    $scope.getPages = function (resource){
-        return Math.ceil(resource.entryLength/5);
-    };
-
-    $scope.changePage=function(resource, value){
-        var pages = $scope.getPages(resource);
-        var changeflag = true;
-        resource.page += value;
-        if (resource.page > pages){
-            resource.page = pages;
-            changeflag =false;
+    $scope.resources = resourceService.resource.getAll(function() {
+        if ($scope.resources.length === 0) {
+            $scope.showIntro = true;
         }
-        if(resource.page < 1){
-            resource.page = 1;
-            changeflag = false;
-        }
-        if (changeflag){
+        _.each($scope.resources, function(resource, i) {
+            resource.index = i;
+            $scope.init(resource);
             $scope.setEntries(resource);
-        }
-    };
-
-    $scope.initChart=function(resource){
-       /* resource.chart = {
-            "labels":[],
-            "datasets":[
-                {
-                    "fillColor":"rgba(151,187,205,0.5)",
-                    "strokeColor":"rgba(151,187,205,1)",
-                    "pointColor":"rgba(151,187,205,1)",
-                    "pointStrokeColor":"#fff",
-                    "data":[]
-                }]
-            };*/
-    };
-
+        });
+    });
+    $scope.showIntro = false;
+    $scope.entriesPerPage = 5;
 });
-
-/*$(window).resize(respondCanvas);
-    function respondCanvas() {
-       var width = jQuery("#statistic").width();
-       var height = jQuery("#statistic").height();
-       jQuery("#chart").attr('width', width);
-       jQuery("#chart").attr('height', height);
-       resources[0].chart = resources[0].chart;
-       //alert(width + " - " + height);
-        //Call a function to redraw other content (texts, images etc)
-        myNewChart = new Chart(ct).Bar(data, options);
-    }
-//Initial call 
-respondCanvas();*/

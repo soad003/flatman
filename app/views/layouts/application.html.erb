@@ -75,8 +75,8 @@
               <li ng-class="{active:isActive('/share')}">
                 <a href="/#/share"><span class="glyphicon glyphicon-share"></span> <%=t(".navbar.share")%></a>
               </li>
-              <li ng-class="{active:isActive('/messages')}">
-                <a href="/#/messages" ng-controller="messageCtrl" ng-click="setChatView()"><span class="glyphicon glyphicon-envelope"></span> <%=t(".navbar.messages")%> <span class="badge">{{server_status.unread_messages}}</span></a>
+              <li ng-class="{active:isActive('/chats')}">
+                <a href="/#/chats"><span class="glyphicon glyphicon-envelope"></span> <%=t(".navbar.messages")%> <span class="badge">{{server_status.unread_messages}}</span></a>
               </li>
               <li ng-class="{active:isActive('/resources')}">
                 <a href="/#/resources"><span class="glyphicon glyphicon-globe"></span>  <%=t(".navbar.resources")%></a>

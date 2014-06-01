@@ -1,30 +1,32 @@
 <div>
-    <div class = "page-head">
+    <div class="page-head dropdown">
         <h1 class="page-header"><span class="fa fa-bitcoin"></span> <%= t('.page_header') %>
-           
-                <div class="btn-group pull-right">
-                <button type="button" class="btn btn-primary pull-right" data-toggle="dropdown">
+
+            <div class="btn-group pull-right">
+                <button type="button"
+                        class="btn btn-primary dropdown-toggle pull-right"
+                        data-toggle="dropdown"
+                        id="dropdownMenu1">
                     <span class="glyphicon glyphicon-plus"> </span><span class="hidden-xs"> <%= t(".add_fin") %></span>
                 </button>
-                <ul class="dropdown-menu">
-                                            <li>
-                                                <a href="/#/finances_new">
-                                                     <i class="fa fa-credit-card"></i> <%= t(".newBill") %>
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a href="/#/create_payment">
-                                                   <i class="fa fa-money"></i> <%= t(".newPaym") %>
-                                                </a>
-                                            </li>
-                                        </ul>
-                                    </div>
-            
+                <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
+                    <li>
+                        <a href="/#/finances_new">
+                           <i class="fa fa-credit-card"></i> <%= t(".newBill") %>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="/#/create_payment">
+                             <i class="fa fa-money"></i> <%= t(".newPaym") %>
+                        </a>
+                    </li>
+                </ul>
+            </div>
         </h1>
     </div>
 
     <div>
-        <form action="/#/finances_new" ng-show="!intro()">
+        <form action="/#/finances_new" ng-show="false">
             <div class="jumbotron text-center">
                 <i class="fa fa-bitcoin fa-5x"></i>
                 <h2><%= t(".help_title") %></h2>
@@ -33,9 +35,10 @@
         </form>
     </div>
 
-    <div class ="container" ng-show="intro()">
+
+    <div class ="container" ng-show="true">
         <div class="row">
-            <div class="col-md-7"> 
+            <div class="col-md-7">
                            <div class="panel panel-default">
                     <div class="panel-heading text-center">
                        <i class="fa fa-money"></i> <%= t(".overview_flat_members") %>
@@ -43,9 +46,9 @@
                     <div class="panel-body">
                         <div class="row">
                             <div class="col-md-12">
-                                <div class="panel-group row" id="accordion">
+                                <div class="panel-group row" id="accordion" >
                                     <div ng-repeat="finance_member in financeTables track by $index" class="panel panel-default">
-                                        <div class="panel-heading"  data-toggle="collapse" data-parent="#accordion" data-target="#collapse{{$index}}">
+                                        <div class="panel-heading"  data-toggle="collapse" data-parent="#accordion" data-target="#collapse{{$index}}" >
                                             <div class="row panel-title" style="cursor: pointer">
                                                 <div class="col-xs-2 col-sm-1">
                                                     <img style="height:35px; width:35px" class="img-circle" ng-src="{{finance_member.img_path}}">
@@ -65,15 +68,26 @@
                                                         <span ng-class="{'text-success':finance_member.value >
                                                             0, 'text-danger': finance_member.value
                                                             < 0}">
-                                                                {{math.abs(finance_member.value) | customCurrency : '€ '}}
+                                                                {{(finance_member.value) | customCurrency : '€ '}}
                                                         </span>
+                                                        <i class="fa fa-chevron-right"></i>
                                                     </span>
 
                                                 </div>
                                               </div>
                                         </div>
                                         <div id="collapse{{$index}}" class="panel-collapse collapse">
-                                            <div class="panel-body row">
+                                            <script>
+                                                $('div.panel-collapse').on('shown', function () {
+        alert("test");
+        $(this).parent("div").find(".fa fa-chevron-right").removeClass("fa fa-chevron-right").addClass("fa fa-chevron-down");
+    });
+
+    $('div.panel-collapse').on('hidden', function () {
+        $(this).parent("div").find(".fa fa-chevron-down").removeClass("fa fa-chevron-down").addClass("fa fa-chevron-right");
+    });
+    </script>
+                                            <div class="panel-body">
                                                 <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
                                                     <div class="row adv-table editable-table">
                                                         <div ng-show="{{finance_member.entries.length == 0}}">
@@ -97,11 +111,13 @@
                                                                     <td class="hidden-xs">{{entry.date| date : 'longDate'}}</td>
                                                                     <td class="visible-xs">{{entry.date| date : 'shortDate'}}</td>
                                                                     <td>{{entry.what}}</td>
-                                                                    <td class="text-right"> {{entry.value| customCurrency : '€ '}} </td>
+                                                                    <td class="text-right" ng-class="{'text-success':entry.value >
+                                                            0, 'text-danger': entry.value
+                                                            < 0}"> {{entry.value| customCurrency : '€ '}} </td>
                                                                     <td>
                                                                         <button class="btn btn-default btn-xs pull-right"
                                                                                 ng-hide="entry.id == -1"
-                                                                                ng-click="removePayment(entry, finance_member)">
+                                                                                ng-click="removePayment(entry,  finance_member, $parent.$index)">
                                                                             <span class="glyphicon glyphicon-trash"></span>
                                                                         </button>
                                                                     </td>
@@ -111,22 +127,8 @@
                                                     </div>
                                                 </div>
                                                 <div class="col-sm-12">
-                                                    <ul class="pagination pagination-sm pull-right" ng-show="getPages(finance_member) != 1">
-                                                        <li>
-                                                            <a ng-click="changePage(finance_member, - 1)" href="">&laquo;</a>
-                                                        </li>
-                                                        <li ng-class="{active: i == finance_member.page}"
-                                                            class="hidden-xs hidden-sm"
-                                                            ng-repeat="i in getRange(finance_member)">
-                                                            <a ng-click="setEntriesForPage(i, finance_member)" href="">{{i}}</a>
-                                                        </li>
-                                                        <li class="active hidden-md hidden-lg">
-                                                            <a href="">{{finance_member.page}}</a>
-                                                        </li>
-                                                        <li>
-                                                            <a href="" ng-click="changePage(finance_member, 1)">&raquo;</a>
-                                                        </li>
-                                                    </ul>
+                                                    <pagination on-select-page="setPage(finance_member, page, $index)" total-items="finance_member.entryLength" page="finance_member.page" items-per-page="entriesPerPage" max-size="5" class="hidden-xs pagination-sm pull-right" boundary-links="true" ng-hide="entriesPerPage >= finance_member.entryLength" rotate="true" previous-text="&lsaquo;" next-text="&rsaquo;" first-text="&laquo;" last-text="&raquo;">
+                                                    </pagination>
                                                 </div>
                                             </div>
                                         </div>
@@ -146,7 +148,7 @@
                             </a>
                         </span>
                     </div>
-                </div>         
+                </div>
                  <div class="panel panel-default">
                     <div class="panel-heading text-center">
                        <i class="fa fa-credit-card"></i> <%= t(".spendings") %>
@@ -196,7 +198,7 @@
                     </div>
                 </div>
 
- 
+
             </div>
 
             <div class="row col-md-5">
@@ -215,7 +217,7 @@
                         </div>
                     </div>
                 </div>
-               
+
 
             </div>
 

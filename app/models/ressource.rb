@@ -53,7 +53,7 @@ class Ressource < ActiveRecord::Base
 
     def self.get_chart_data(statistic_data, from, to)
       returnData = OpenStruct.new({"labels" => [], "costs" => []})
-      if (hideEvery = ((to.to_date - from.to_date)/15).round) < 2 
+      if (hideEvery = (([(to.to_date - from.to_date), statistic_data.labels.length].min)/15).round) < 2 
         hideEvery = 1
       end
        
@@ -214,8 +214,8 @@ class Ressource < ActiveRecord::Base
     
 
 
-    def self.calc(resource, page)
-	    re = (resource.ressourceentries.sort! {|a,b| b.date <=> a.date})[(page.to_i-1)*5,page.to_i*5+1]
+    def self.calc(resource)
+	    re = (resource.ressourceentries.sort! {|a,b| b.date <=> a.date})
 	    for index in 0 ... re.size
 	    	entry = re[index]
   			if entry.isFirst
@@ -225,11 +225,7 @@ class Ressource < ActiveRecord::Base
 	    		entry.usage = (entry.value - re[index+1].value).round(2)
 	    		entry.costs = (entry.usage * resource.pricePerUnit).round(2)
 	    	end
-        if index == 4
-         break
-        end
-
 		  end
-		  re[0, 5]
+		  re
     end
 end

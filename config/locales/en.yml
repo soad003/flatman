@@ -46,6 +46,7 @@ en:
     message:
       create:
         no_user_found                     : "No user found"
+        user_already_selected             : "User already selected"
   # mail
   user_mailer:
     invite:
@@ -85,6 +86,20 @@ en:
               blank                       : "Please provide a name for the unit of the resource!"
             startValue:
               blank                       : "Please enter a start value!"
+        ressourceentry:
+          attributes:
+            value:
+              blank                       : "Entry can't be blank."
+              not_a_number                : "Entry must be a number."
+              greater_than                : "Must be greater than zero."
+        payment:
+          attributes:
+            value:
+              blank                       : "Price can't be blank."
+              not_a_number                : "Price must be a number."
+              greater_than                : "Must be greater than zero."
+            payer_id:
+              blank                       : "Please add a payer"
         message:
           attributes:
             receiver_id:
@@ -203,6 +218,7 @@ en:
       items_to_buy                       : "items to buy"
       view_shopping_details              : "view lists"
       you_owe                            : "you owe ..."
+      you_get                            : "you get ..."
       view_finance_details               : "show clearing"
       items_borrowed                     : "items borrowed"
       view_share_details                 : "view items"
@@ -222,15 +238,12 @@ en:
       status                             : "status"
       mate                               : "mate"
 
-    messages:
+    chats:
       page_header                        : "Messages"
       page_title                         : "Messages"
       new_text_placeholder               : "Enter text"
       send                               : "send"
       back                               : "back"
-      intro_header                       : "Start creating your first chat"
-      intro_text1                        : "With this feature you can contact other Users to share some items or other things."
-      intro_text2                        : "Maybe you can find someone to borrowed an item you need."
       questionDeleteChat                 : "Do you really want to delete this chat?"
     create_message:
       page_header                        : "New Message"
@@ -238,41 +251,50 @@ en:
       back                               : "back"
       create_Message_user_placeholder    : "Username"
       new_text_placeholder               : "Enter text"
+    messages:
+      send                               : "send"
+      back                               : "back"
+      new_text_placeholder               : "Enter text"
     resources:
       page_header                        : "Resources"
       page_title                         : "Resource"
       help_title                         : "Start creating your first resource ..."
       help_paragraph1                    : "With this feature you can view your resource usage and costs. "
       help_paragraph2                    : "Maybe we will help you to save some costs and to protect your environment."
-      chart                              : "Chart"
-      data                               : "Overview"
-      date                               : "Date"
-      value                              : "Value"
-      usage                              : "Usage"
-      costs                              : "Costs"
+      chart                              : "chart"
+      data                               : "overview"
+      date                               : "date"
+      value                              : "value"
+      usage                              : "usage"
+      costs                              : "costs"
       resourceValue                      : "1724"
       addMoreEntriesForChart             : "More entries are required to view the chart"
+      addMoreEntriesForOverview          : "Add at least two entries for the overview"
       questionDeleteResource             : "Do you really want to delete the resource?"
       add                                : "add"
+      edit                               : "edit"
+      delete                             : "delete"
     create_resource:
       page_title                         : "Resource"
       page_header                        : "Resource"
-      name                               : "Name"
+      name                               : "name"
       name_placeholder                   : "electricity"
-      unitName                           : "Unit Name"
+      unitName                           : "unit name"
       unitName_placeholder               : "kw/h"
-      description                        : "Description"
+      description                        : "description"
       description_placeholder            : "Nightenergy"
+      back                               : "back"
+      save                               : "save"
 
-      priceUnit                          : "Price/Unit"
+      priceUnit                          : "price/unit"
       priceUnit_placeholder              : "0,13"
-      monthlyCosts                       : "Monthly Costs"
+      monthlyCosts                       : "monthly Costs"
       monthlyCosts_placeholder           : "6,30"
-      annualCosts                        : "Annual Costs"
+      annualCosts                        : "annual Costs"
       annualCosts_placeholder            : "12,30"
-      startValue                         : "Start Value"
+      startValue                         : "start Value"
       startValue_placeholder             : "82767"
-      startDate                          : "Start Date"
+      startDate                          : "start Date"
     search:
       page_header                        : "Searching for"
       no_items_found                     : "no items found for your query..."

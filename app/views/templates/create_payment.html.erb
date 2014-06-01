@@ -8,15 +8,15 @@
 
         <div class="form-group">
             <label for="Payer"><%= t('.payer') %></label>
-            <select class="form-control" ng-model="newPayment.payer_id" ng-options="mate.id as mate.name for mate in mates"></select>
+            <select class="form-control" ng-model="newPayment.payer_id" ng-options="mate.id as mate.name for mate in mates">
+            </select>
         </div>
-
 
         <div class="form-group">
           <label for="value">
             <%= t('.value') %></label>
           <div class="input-group">
-            <input id="value" ng-model="newPayment.value" numberinput placeholder="<%= t('.value_placeholder') %>" type="text"/>
+            <input id="value" ng-model="newPayment.value" numberinput placeholder="<%= t('.value_placeholder') %>" type="number"/>
             <span class="input-group-addon">
               <span class="glyphicon glyphicon-euro"></span>
             </span>
@@ -27,7 +27,7 @@
           <label for="date">
             <%= t('.date') %></label>
           <div class="input-group">
-            <input id="value" onfocus="blur();"
+            <input id="date" onfocus="blur();"
               show-button-bar="false" showWeeks="false" datepicker-popup="shortDate"
               is-open="opened" date-disabled="disabled(date, mode)" ng-required="true" close-text="close"
               ng-model="newPayment.date" type="text"/>
@@ -37,12 +37,10 @@
           </div>
         </div>
 
-
-
         <div class="row">
           <div class="col-md-3 col-xs-4">
             <a href="/#/finances" class = "btn btn-sm btn-default">
-              <i class="fa fa-arrow-circle-o-left"></i> <%= t('.back') %>
+              <i class="glyphicon glyphicon-arrow-left"></i> <%= t('.back') %>
             </a>
           </div>
           <div class="col-md-3 col-md-offset-6 col-xs-4 col-xs-offset-4">
@@ -51,7 +49,6 @@
             </button>
           </div>
         </div>
-
       </form>
     </div>
   </div>

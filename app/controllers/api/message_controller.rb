@@ -7,12 +7,16 @@ class Api::MessageController < Api::RestController
   end
 
   def get_messages
-    @meslist=Message.find_messages(params[:mes_id], current_user)
-    @meslist.each do |m|
-      if !m.read && m.receiver_id == current_user.id
-        m.read = true
-        m.save!
+    if params[:id] != nil && params[:id] != "0"
+      @meslist=Message.find_messages(params[:id], current_user)
+      @meslist.each do |m|
+        if !m.read && m.receiver_id == current_user.id
+          m.read = true
+          m.save!
+        end
       end
+    else
+      @meslist = []
     end
     @meslist
   end
@@ -23,58 +27,69 @@ class Api::MessageController < Api::RestController
     @flatChat.sort! { |a,b| a.created_at <=> b.created_at }
     @lastFlatChat = @flatChat.last
     if @lastFlatChat == nil
-      @lastFlatChat = Message.new({sender_id: current_user.id, receiver_id: current_user.id, text: "start chating with your flat members", header: "0", created_at: 0})
+      @lastFlatChat = Message.new({id: 0, sender_id: current_user.id, receiver_id: current_user.id, text: "start chating with your flat members", header: "0", created_at: 0})
     end
     @lastFlatChat
-  end
-
-  def getFlatChatMessages
-    header = "flatchat" + current_user.flat_id.to_s
-    @flatMes = Message.where("header = ?", header)
-    @flatMes.each do |m|
-      if !m.readers.include?(current_user.id) 
-        m.readers = m.readers + [current_user.id]
-        m.save!
-      end
-    end
-    @flatMes.sort! { |a,b| a.created_at <=> b.created_at }
   end
 
   def find_partner
     @partner=Message.find_partner(params[:mes_id], current_user)
   end
 
+  def find_active_chat
+    ret = Message.find(params[:mes_id]).header == "flatchat" + current_user.flat_id.to_s
+    respond_with({active: ret})
+  end
+
   def getUserId
     respond_with({id: current_user.id})
   end
 
+  def getFlatMembers
+    flat_users = User.where(flat_id: params[:flat_id])
+    ret_users = Array.new
+    flat_users.each do |user|
+      ret_users = ret_users + [({text: user.name, id: user.id})]
+    end
+    respond_with({users: ret_users} )
+  end
+
   def create
-    recId = mes_params[:receiver_id]
+    recId = mes_params[:header]
+    @newMess = Array.new
     if (recId == "")
       respond_with_errors([t('.no_user_found')])
+    elsif recId == "dub"
+      respond_with_errors([t('.user_already_selected')])      
     else
-      @mes=Message.new(mes_params)
-      if mes_params[:header] == "flatchat"
-        header = "flatchat" + current_user.flat_id.to_s
-        @mes.header = header
-        @mes.receiver_id = current_user.id
-        @mes.sender_id = current_user.id
+      recIdArray = recId.lines(",")
+      recIdArray.each do |rec|
+        @mes=Message.new(mes_params)
+        @mes.receiver_id = rec
+        @mes.header = "";
+        if rec == "flatchat"
+          header = "flatchat" + current_user.flat_id.to_s
+          @mes.header = header
+          @mes.receiver_id = current_user.id
+          @mes.sender_id = current_user.id
+        end
+        beginDate2014 = Time.new(2014,3,30,2,0)
+        endDate2014 = Time.new(2014,10,26,3,0)
+        beginDate2015 = Time.new(2015,3,29,2,0)
+        endDate2015 = Time.new(2015,10,25,3,0)
+        nowTime = Time.at(Time.now.to_i + 3600)
+        if nowTime.between?(beginDate2014, endDate2014) || nowTime.between?(beginDate2015, endDate2015)
+          @mes.created_at = Time.at(nowTime.to_i + 3600)
+        else 
+          @mes.created_at = nowTime
+        end
+        @mes.readers = [current_user.id]
+        @mes.deleted = []
+        current_user.sentMessages << @mes.clone
+        @newMess << @mes.clone
       end
-      beginDate2014 = Time.new(2014,3,30,2,0)
-      endDate2014 = Time.new(2014,10,26,3,0)
-      beginDate2015 = Time.new(2015,3,29,2,0)
-      endDate2015 = Time.new(2015,10,25,3,0)
-      nowTime = Time.at(Time.now.to_i + 3600)
-      if nowTime.between?(beginDate2014, endDate2014) || nowTime.between?(beginDate2015, endDate2015)
-        @mes.created_at = Time.at(nowTime.to_i + 3600)
-      else 
-        @mes.created_at = nowTime
-      end
-      @mes.readers = [current_user.id]
-      @mes.deleted = []
-      current_user.sentMessages << @mes
       current_user.save!
-      @mes
+      @newMess
     end
   end
 
@@ -98,7 +113,7 @@ class Api::MessageController < Api::RestController
         mess.destroy
       end
     end
-    @mesd = Message.find_chats(current_user)
+    respond_with(nil)
   end
 
   def count_messages

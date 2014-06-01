@@ -46,6 +46,7 @@ de:
     message:
       create:
         no_user_found                     : "Kein User gefunden"
+        user_already_selected             : "User ist bereits selektiert"
   # mail
   user_mailer:
     invite:
@@ -85,6 +86,20 @@ de:
               blank                       : "Bitte gib eine maßeinheit für die Ressource an!"
             startValue:
               blank                       : "Bitte gib einen Startwert an!"
+        ressourceentry:
+          attributes:
+            value:
+              blank                       : "Bitte Wert eingeben."
+              not_a_number                : "Wert muss numerisch sein."
+              greater_than                : "Wert muss größer als null sein."
+        payment:
+          attributes:
+            value:
+              blank                       : "Bitte Preis eingeben."
+              not_a_number                : "Preis muss numerisch sein."
+              greater_than                : "Preis muss größer als null sein."
+            payer_id:
+              blank                       : "Please add a payer"
         message:
           attributes:
             receiver_id:
@@ -202,6 +217,7 @@ de:
       items_to_buy                       : "dinge zu kaufen"
       view_shopping_details              : "zu den listen"
       you_owe                            : "du schuldest ..."
+      you_get                            : "do bekommst ..."
       view_finance_details               : "zeige Abrechnungen"
       items_borrowed                     : "verliehene items"
       view_share_details                 : "zeige items"
@@ -221,20 +237,23 @@ de:
       status                             : "Status"
       mate                               : "Bewohner"
 
-    messages:
+    chats:
       page_header                        : "Nachrichten"
       page_title                         : "Nachrichten"
-      new_text_placeholder               : "text eingeben"
-      send                               : "senden"
-      intro_header                       : "erstelle deine ersten Nachrichten"
-      intro_text1                        : "Kontaktiere andere User um zb. dinge zu borgen"
-      intro_text2                        : "..."
+      new_text_placeholder               : "Text eingeben"
+      send                               : "Senden"
+      back                               : "Zurück"
       questionDeleteChat                 : "Möchtest du diesen Nachrichtenverlauf wirklich löschen?"
     create_message:
-      page_header                        : "neue Nachricht"
-      send                               : "senden"
+      page_header                        : "Neue Nachricht"
+      send                               : "Senden"
+      back                               : "Zurück"
       create_Message_user_placeholder    : "Username"
-      new_text_placeholder               : "text eingeben"
+      new_text_placeholder               : "Text eingeben"
+    messages:
+      send                               : "senden"
+      back                               : "zurück"
+      new_text_placeholder               : "Text eingeben"
     resources:
       page_header                        : "Ressourcen"
       page_title                         : "Ressource"
@@ -248,9 +267,13 @@ de:
       usage                              : "Verbrauch"
       costs                              : "Kosten"
       resourceValue                      : "1724"
-      addMoreEntriesForChart             : "Es werden mehr einträge benötigt um den Chart anzuzeigen."
+      addMoreEntriesForChart             : "Es werden mehr Einträge benötigt um den Chart anzuzeigen."
+      addMoreEntriesForOverview          : "Es werden mindestens zwei Einträge für den Überblick benötigt."
+      edit                               : "bearbeiten"
+      delete                             : "löschen"
+
       questionDeleteResource             : "Bist du dir sicher, dass du die Ressource löschen willst?"
-      add                                : "add"
+      add                                : "hinzufügen"
     create_resource:
       page_title                         : "Ressource"
       page_header                        : "Ressource"
@@ -270,6 +293,8 @@ de:
       startValue                         : "start Wert"
       startValue_placeholder             : "82767"
       startDate                          : "start Datum"
+      back                               : "zurück"
+      save                               : "speichern"
     search:
       page_header                        : "Suche nach"
       no_items_found                     : "keine items gefunden..."

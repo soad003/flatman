@@ -13,6 +13,7 @@ scope "(:locale)", locale: /en|de/ do
     get '/finances', to: :finances, as: 'finances'
     get '/flat_settings', to: :flat_settings, as: 'flat_settings'
     get '/create_resource', to: :create_resource, as: 'create_resource'
+    get '/chats', to: :chats, as: 'chats'
     get '/messages', to: :messages, as: 'messages'
     get '/resources', to: :resources, as: 'resources'
     get '/share', to: :share, as: 'share'
@@ -54,7 +55,7 @@ scope "(:locale)", locale: /en|de/ do
 	 resources :resource, only: [:index, :create, :update, :destroy] do
       resources :resourceentry, only: [:create, :destroy]
    end
-   get '/resource/:resource_id/resourceentry/:page' => 'resourceentry#page'
+   get '/resource/:resource_id/resourceentry/' => 'resourceentry#page'
    get '/resource/:resource_id/chart' => 'resource#get_chart'
    get '/resource/:resource_id/overview' => 'resource#get_overview'
    get '/resource/:resource_id' => 'resource#get_by_id'
@@ -64,13 +65,14 @@ scope "(:locale)", locale: /en|de/ do
    #messages
    resources :message, only: [:index, :create, :update, :destroy]
 
-   get '/message/:mes_id/messages' => 'message#get_messages'
+   get '/message/messages/:id' => 'message#get_messages'
    get '/message/:mes_id/partner' => 'message#find_partner'
+   get '/message/:mes_id/partner/:option' => 'message#find_active_chat'
    get '/message/users' => 'message#get_users'
+   get '/message/users/:flat_id' => 'message#getFlatMembers'
    get '/message/:mes_id/counter' => 'message#count_messages'
    get '/message/counter' => 'message#count_messages'
    get '/message/flatChat' => 'message#getFlatChat'
-   get '/message/flatChatMessages' => 'message#getFlatChatMessages'
    get '/message/user' => 'message#getUserId'
 
    #sharing
@@ -86,7 +88,7 @@ scope "(:locale)", locale: /en|de/ do
 
    get '/finance/category' => 'finance#get_by_category'
    get '/finance/financeTables' => 'finance#get_finance_tables'
-   get '/finance/financeTables/:member_id/:page' => 'finance#get_finance_table'
+   get '/finance/financeTables/:member_id/' => 'finance#get_finance_table'
 
    post "/payment" => 'payment#create'
    delete "/payment/:id/:member_id" => 'payment#destroy'

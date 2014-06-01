@@ -31,6 +31,9 @@ GEM
     arel (4.0.2)
     assert_json (0.2.0)
       activesupport
+    aws-sdk (1.41.0)
+      json (~> 1.4)
+      nokogiri (>= 1.4.4)
     bootbox-rails (0.3.0)
     bootstrap-sass (3.1.1.0)
       sass (~> 3.2)
@@ -45,7 +48,6 @@ GEM
       activesupport (>= 3.0)
     cocaine (0.5.4)
       climate_control (>= 0.0.3, < 1.0)
-    commonjs (0.2.7)
     erubis (2.7.0)
     exception_notification (4.0.1)
       actionmailer (>= 3.0.4)
@@ -73,17 +75,13 @@ GEM
     kgio (2.9.2)
     launchy (2.4.2)
       addressable (~> 2.3)
-    less (2.5.0)
-      commonjs (~> 0.2.7)
-    less-rails (2.5.0)
-      actionpack (>= 3.1)
-      less (~> 2.5.0)
     libv8 (3.16.14.3)
     magnific-popup-rails (0.9.9)
     mail (2.5.4)
       mime-types (~> 1.16)
       treetop (~> 1.4.8)
     mime-types (1.25.1)
+    mini_portile (0.6.0)
     minitest (4.7.5)
     multi_json (1.9.2)
     multi_xml (0.5.5)
@@ -92,6 +90,8 @@ GEM
       net-ssh (>= 2.6.5)
     net-ssh (2.8.0)
     netrc (0.7.7)
+    nokogiri (1.6.2.1)
+      mini_portile (= 0.6.0)
     oauth2 (0.9.3)
       faraday (>= 0.8, < 0.10)
       jwt (~> 0.1.8)
@@ -197,6 +197,7 @@ DEPENDENCIES
   angular-ui-bootstrap-rails
   angularjs-rails
   assert_json
+  aws-sdk
   bootbox-rails
   bootstrap-sass (~> 3.1.1)
   capistrano
@@ -209,7 +210,6 @@ DEPENDENCIES
   jquery-rails
   jshint_on_rails
   launchy
-  less-rails
   magnific-popup-rails
   netrc
   omniauth-facebook

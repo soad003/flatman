@@ -1,103 +1,75 @@
-angular.module('flatman').controller("financesCtrl", function($scope, financesService,flatService, Util){
-	$scope.intro = function(){
-		return ($scope.finances.length !== 0);
-	};
+angular.module('flatman').controller("financesCtrl", function($scope, financesService, flatService, Util) {
+    
+    $('div.panel-collapse').on('shown', function () {
+        //alert("test");
+        $(this).parent("div").find(".fa fa-chevron-right").removeClass("fa fa-chevron-right").addClass("fa fa-chevron-down");
+    });
+
+    $('div.panel-collapse').on('hidden', function () {
+        $(this).parent("div").find(".fa fa-chevron-down").removeClass("fa fa-chevron-down").addClass("fa fa-chevron-right");
+    });
+
+
+    $scope.intro = function() {
+        return $scope.arePaymentsToShow();
+    };
 
 	$scope.removeEntry=function(finance){
 		financesService.bill.destroy(finance.id, function(){
             $scope.finances = _($scope.finances).without(finance);
         });
-	};
-
-	$scope.payDebt = function(debt){
-		financesService.debts.pay_debt(debt.id, function(){
-			$scope.allDebts = _($scope.allDebts).without(debt);
-		})
-	};
-
-	$scope.enoughEntries = function(){
-		return $scope.AllCategories.length > 2;
-	};
-
-	$scope.setFinanceTables = function (){
-		var i = 0;
-		$scope.financeTables = financesService.finance.get_tables(function (data){
-			_.each($scope.financeTables, function(table){
-                                       table.date = new Date();
-                                       table.index = i;
-                                       i++;
-                                       table.page = 1;
-            });
-		}, function(){});
-	};
-
-
-	$scope.math = Math;
-	
-	$scope.removePayment = function (payment, member){
-		if (member.entryLength == 6){
-			member.page = 1;
-		}
-		financesService.payment.destroy(payment.id, member.id, member.page, function (data){
-			$scope.financeTables[member.index].value = data.value;
-			$scope.financeTables[member.index].entries = data.entries;
-			$scope.financeTables[member.index].entryLength = data.entryLength;
-		});
-	};
-
-	$scope.getRange=function (member){
-        var pages = $scope.getPages(member);
-        if (pages <= 5){
-            return _.range(1, pages+1);
-        }else{
-            if (member.page <= 3){
-                return _.range(1, 6);
-            } else if (member.page >= (pages-2)){
-                return _.range(pages-4, pages+1);
-            }
-            return _.range((member.page-2), (member.page+3));
-        }
+        $scope.financeTables = financesService.finance.get_tables();
     };
 
-    $scope.setEntriesForPage=function (i, member){
-        member.page = i;
-        $scope.setEntries(member);
+    $scope.payDebt = function(debt) {
+        financesService.debts.pay_debt(debt.id, function() {
+            $scope.allDebts = _($scope.allDebts).without(debt);
+        })
     };
 
-    $scope.getPages = function (member){
-        return Math.ceil(member.entryLength/5);
+    $scope.enoughEntries = function() {
+        return $scope.AllCategories.length > 2;
     };
 
-    $scope.setEntries=function(member){
-        financesService.finance.get_table(member.id, member.page, function (data){
-        member.entries = data.entries;
-        member.value = data.value;    }, function () {});
+    $scope.setPage = function(member, page, index) {
+        member.page = page;
+        $scope.setPaymentEntries(member, index);
     };
 
-    $scope.changePage=function(member, value){
-        var pages = $scope.getPages(member);
-        var changeflag = true;
-        member.page += value;
-        if (member.page > pages){
-            member.page = pages;
-            changeflag =false;
-        }
-        if(member.page < 1){
-            member.page = 1;
-            changeflag = false;
-        }
-        if (changeflag){
-            $scope.setEntries(member);
-        }
+    $scope.removePayment = function(payment, member, index) {
+        financesService.payment.destroy(payment.id, member.id, member.page, function(data) {
+            if (member.entryLength == 5)
+                member.page = 1;
+            $scope.setPaymentEntries(member, index);
+        });
+    };
+
+    $scope.setPaymentEntries = function(member, index) {
+        financesService.finance.get_table(member.id, (member.page - 1) * 5, member.page * 5, function(data) {
+            $scope.financeTables[index].value = data.value;
+            $scope.financeTables[index].entries = data.entries;
+            $scope.financeTables[index].entryLength = data.entryLength;
+        });
+    };
+
+    $scope.arePaymentsToShow = function (){
+        var sum = _.reduce($scope.financeTables, function(mem, financeTable) { return mem + financeTable.entryLength;},0);
+        return sum !== 0;
     };
 
     $scope.chartData = [];
-    $scope.finances= financesService.bill.get_range(0,5);
-    $scope.setFinanceTables();
+    $scope.finances = financesService.bill.get_range(0, 5);
+    $scope.entriesPerPage = 5;
+    $scope.math = Math;
 
-    $scope.AllCategories = financesService.category.get_all(function(data){
+    $scope.financeTables = financesService.finance.get_tables();
+
+    //load categories and chart data
+    $scope.AllCategories = financesService.category.get_all(function(data) {
         $scope.chartData = financesService.category.get_chart_view(data);
     });
 
     $scope.getFlatMates = flatService.mates.get();
+
+      
 });

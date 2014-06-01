@@ -22,5 +22,11 @@ class Flat < ActiveRecord::Base
         nf.add_user(user)
         nf
     end
-
+    
+    def get_distance_to(flat) 
+       point1 = self.zip + " " + self.city + ", " + self.street
+       point2 = flat.zip + " " + flat.city + ", " + flat.street
+       return Geocoder::Calculations.distance_between(point1, point2)
+    end
+  
 end

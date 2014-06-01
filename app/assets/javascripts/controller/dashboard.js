@@ -27,7 +27,6 @@ angular.module('flatman').controller("dashboardCtrl",
 		return shoppingService.list.get_summary_string(list) + "...";
 	};
 
-
 	$scope.shoppinglists = shoppingService.list.get();
 	$scope.dashboardResources = resourceService.resource.getDashboard();
 	$scope.dashboardFinances = financesService.finance.get_tables();
