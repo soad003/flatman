@@ -40,25 +40,18 @@ class Bill < ActiveRecord::Base
 		returnList
 	end
 
-	def self.get_payers(bills, user)
-		returnList = []
-		bills.each do |b|
-			#if b.payerOne == user.id
-			#	returnList << b
-			#end
-			#if b.payerTwo == user.id
-			#	returnList << b
-			#end
-			#if b.payerThree == user.id
-			#	returnList << b
-			#end
-			#if b.payerFour == user.id
-			#	returnList << b
-			#end
+	def self.get_categories_and_sum(categoryFlat, billsFlat)
+		catsum = Hash.new
+		categoryFlat.each do |c|
+			tmp = 0
+			billsFlat.each do |b|
+				if c.id == b.billcategory_id
+					tmp = tmp + b.value
+				end
+				catsum[c.name] = tmp
+			end
 		end
+		catsum
 	end
 
-	def self.get_values_of_debts(payee, payer)
-
-	end
 end

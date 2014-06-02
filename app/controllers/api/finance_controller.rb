@@ -2,9 +2,10 @@ class Api::FinanceController <Api::RestController
 
     def get_by_category
         @catName=Billcategory.where(:flat_id => current_user.flat_id)
-        #billsFlat = Bill.where(:flat_id => current_user.flat_i)
-        #bills_of_all_users=current_user.flat.users.collect(&:bills)
-        @name=Bill.includes(:billcategory).references(:billcategory).group("billcategories.name").sum(:value)
+        billsFlat=current_user.flat.users.collect(&:bills).flatten
+                                                  .uniq(&:id)
+        @catSum = Bill.get_categories_and_sum(@catName, billsFlat)
+        #@name=Bill.includes(:billcategory).references(:billcategory).group("billcategories.name").sum(:value)
     end
 
     def get_overview_mates
