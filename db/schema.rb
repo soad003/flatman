@@ -35,11 +35,6 @@ ActiveRecord::Schema.define(version: 20140601124835) do
     t.integer "bill_id"
   end
 
-  create_table "finances", force: true do |t|
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
   create_table "flats", force: true do |t|
     t.string   "name"
     t.string   "street"
