@@ -1,11 +1,11 @@
 angular.module('flatman').controller("financesCtrl", function($scope, financesService, flatService, Util) {
     
     $('div.panel-body').on('shown.bs.collapse', function () {
-        $(this).parents("div").find(".glyphicon-chevron-right").removeClass("glyphicon-chevron-right").addClass("glyphicon-chevron-down");
+        $(this).parent("div").find(".glyphicon-chevron-right").removeClass("glyphicon-chevron-right").addClass("glyphicon-chevron-down");
     });
 
     $('div.panel-body').on('hidden.bs.collapse', function () {
-        $(this).parents("div").find(".glyphicon-chevron-down").removeClass("glyphicon-chevron-down").addClass("glyphicon-chevron-right");
+        $(this).parent("div").find(".glyphicon-chevron-down").removeClass("glyphicon-chevron-down").addClass("glyphicon-chevron-right");
     });
 
 
