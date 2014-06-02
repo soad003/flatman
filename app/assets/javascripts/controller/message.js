@@ -162,14 +162,14 @@ angular.module('flatman').controller("messageCtrl", function($scope, $route, $q,
         var data = "";
         var textlength = text.length;
         var displayWidth = $(window).width().toString().split("p")[0];
-        var cut = chatview && parseInt(displayWidth)<304 && textlength > 50; 
+        var cut = chatview && parseInt(displayWidth, 10)<304 && textlength > 50; 
         if (cut){
             text = text.slice(0,50)
         }
         data = text.split('\n');
         var datalength = data.length;
-        cutSmall = chatview && parseInt(displayWidth)<304 && (textlength > 50 || datalength > 1);
-        cutLarge = chatview && parseInt(displayWidth)>303 && datalength > 2;
+        var cutSmall = chatview && parseInt(displayWidth, 10)<304 && (textlength > 50 || datalength > 1);
+        var cutLarge = chatview && parseInt(displayWidth, 10)>303 && datalength > 2;
         console.log(datalength);
         
         if (cutSmall){
@@ -191,7 +191,7 @@ angular.module('flatman').controller("messageCtrl", function($scope, $route, $q,
         var lastSpace = null;
         for (var i = 2; i < data.length; i++) {
                 data[i] = "";
-        };
+        }
         if (data[0].length > 30){
             data[1] = "";
             data[0] = data[0].slice(0,40) + "...";
@@ -212,7 +212,7 @@ angular.module('flatman').controller("messageCtrl", function($scope, $route, $q,
     $scope.cutTextsLargeDevices = function(data){
         for (var i = 2; i < data.length; i++) {
                 data[i] = "";
-        };
+        }
         data[1] = data[1] + "...";
         return data;
     };
