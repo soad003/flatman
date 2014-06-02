@@ -30,7 +30,7 @@
           <div class="list-group-item-text">
             <div class="row">
               <div class="col-xs-12 col-md-12">
-                {{parseNewline(message.text, false, $index)}}
+                {{parseNewline(message.text, false, $index, false)}}
                 <span ng-repeat="msgText in chatTexts[$index] track by $index"> {{msgText}} <br></span>
               </div>
             </div>
@@ -49,7 +49,7 @@
           <div class="list-group-item-text">
             <div class="row">
               <div class="col-xs-12 col-md-12">
-                {{parseNewline(message.text, false, $index)}}
+                {{parseNewline(message.text, false, $index, false)}}
                 <span ng-repeat="msgText in chatTexts[$index] track by $index"> {{msgText}} <br></span>
               </div>
             </div>
