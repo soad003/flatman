@@ -43,7 +43,7 @@
             <div class="row">
               <div class="col-xs-6 col-md-6">
                 <span ng-show="true"><i class="fa fa-angle-double-right"></i> {{flatchat.sender_name}}: </span> 
-                {{parseNewline(flatchat.text, true, 0)}}
+                {{parseNewline(flatchat.text, true, 0, true)}}
                 <span ng-repeat="msgText in flatTexts track by $index"> {{msgText}} <br></span>
               </div>
               <div class="col-xs-6 col-md-6">
@@ -78,7 +78,7 @@
                     {{flatchat.sender_name}}:
                   </span>
                 </span> 
-                {{parseNewline(flatchat.text, true, 0)}}
+                {{parseNewline(flatchat.text, true, 0, true)}}
                 <span ng-repeat="msgText in flatTexts track by $index"> {{msgText}} <br></span>
               </div>
               <div class="col-xs-6 col-md-6">
@@ -119,7 +119,7 @@
           </div>
           <div class="panel-footer">
             <div class="row">
-              <div class="col-xs-6 col-md-6">
+              <div class="col-xs-8 col-md-8 col-lg-10">
                 <span ng-show="checkLastSender(chat.sender_id)">
                   <i class="fa fa-check-circle"></i>
                 </span>
@@ -127,10 +127,10 @@
                   <i class="fa fa-angle-double-right"></i> 
                   {{chat.sender_name}}:
                 </span> 
-                {{parseNewline(chat.text, false, $index)}}
+                {{parseNewline(chat.text, false, $index, true)}}
                 <span ng-repeat="msgText in chatTexts[$index] track by $index"> {{msgText}} <br></span>
               </div>
-              <div class="col-xs-6 col-md-6">
+              <div class="col-xs-4 col-md-4 col-lg-2">
                 <span class="time">
                   <p class="text-right" style="font-size:x-small">
                     <i class="fa fa-clock-o"></i> {{parseTime(chat.time, "0")}}
@@ -161,7 +161,7 @@
           </div>
           <div class="panel-footer">
             <div class="row">
-              <div class="col-xs-6 col-md-6">
+              <div class="col-xs-8 col-md-8 col-lg-10">
                 <span ng-show="checkLastSender(chat.sender_id)">
                   <i class="fa fa-check-circle"></i>
                 </span>
@@ -169,10 +169,10 @@
                   <i class="fa fa-angle-double-right"></i> 
                   {{chat.sender_name}}:
                 </span> 
-                {{parseNewline(chat.text, false, $index)}}
+                {{parseNewline(chat.text, false, $index, true)}}
                 <span ng-repeat="msgText in chatTexts[$index] track by $index"> {{msgText}} <br></span>
               </div>
-              <div class="col-xs-6 col-md-6">
+              <div class="col-xs-4 col-md-4 col-lg-2">
                 <span class="time">
                   <p class="text-right" style="font-size:x-small">
                     <i class="fa fa-clock-o"></i> 

@@ -117,10 +117,6 @@ angular.module('flatman').controller("messageCtrl", function($scope, $route, $q,
 
     };
 
-    $scope.sendToFlat=function(flat_id){
-
-    };
-
     $scope.countUnread=function(chat, index){
         $scope.unreadCounter[index] = messageService.message.count(chat.id);
     };
@@ -160,18 +156,66 @@ angular.module('flatman').controller("messageCtrl", function($scope, $route, $q,
         return (compareDate < mes.updated_at);
     };
 
-    $scope.parseNewline = function(text, flatchat, index){
+    $scope.parseNewline = function(text, flatchat, index, chatview){
         if (text === undefined || text === null)
             return null;
         var data = "";
+        var textlength = text.length;
+        var displayWidth = $(window).width().toString().split("p")[0];
+        var cut = chatview && parseInt(displayWidth)<304 && textlength > 50; 
+        if (cut){
+            text = text.slice(0,50)
+        }
         data = text.split('\n');
+        var datalength = data.length;
+        cutSmall = chatview && parseInt(displayWidth)<304 && (textlength > 50 || datalength > 1);
+        cutLarge = chatview && parseInt(displayWidth)>303 && datalength > 2;
+        console.log(datalength);
+        
+        if (cutSmall){
+            data = $scope.cutTextsSmallDevices(data);
+        }
+        else if (cutLarge){
+            data = $scope.cutTextsLargeDevices(data);
+        }
+
         if (flatchat){
             $scope.flatTexts = data; 
         }
         else {
             $scope.chatTexts[index] = data;
         }
-    }
+    };
+
+    $scope.cutTextsSmallDevices = function(data){
+        var lastSpace = null;
+        for (var i = 2; i < data.length; i++) {
+                data[i] = "";
+        };
+        if (data[0].length > 30){
+            data[1] = "";
+            data[0] = data[0].slice(0,40) + "...";
+            lastSpace = data[0].lastIndexOf(" ");
+            data[0] = data[0].slice(0,lastSpace) + "...";
+        }
+        else {
+            if (data[1] !== undefined){
+                data[1] = data[1].slice(0,40) + "...";
+                lastSpace = data[1].lastIndexOf(" ");
+                data[1] = data[1].slice(0,lastSpace) + "...";
+            }
+        }
+
+        return data;
+    };
+
+    $scope.cutTextsLargeDevices = function(data){
+        for (var i = 2; i < data.length; i++) {
+                data[i] = "";
+        };
+        data[1] = data[1] + "...";
+        return data;
+    };
 
     $scope.parseTime = function(time, modus){
         if (time === null || time === undefined){
