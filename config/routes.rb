@@ -87,11 +87,11 @@ scope "(:locale)", locale: /en|de/ do
    resources :bill, only: [:create, :update,:show, :destroy, :index]
 
    get '/finance/category' => 'finance#get_by_category'
-   get '/finance/financeTables' => 'finance#get_finance_tables'
-   get '/finance/financeTables/:member_id/' => 'finance#get_finance_table'
+   get '/finance/overviewMates' => 'finance#get_overview_mates'
+   get '/finance/overviewMates/:mate_id/' => 'finance#get_overview_mate'
 
    post "/payment" => 'payment#create'
-   delete "/payment/:id/:member_id" => 'payment#destroy'
+   delete "/payment/:id/:mate_id" => 'payment#destroy'
   end
 
   # Authentication

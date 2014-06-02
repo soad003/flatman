@@ -30,7 +30,7 @@ angular.module('flatman').controller("financeEntryCtrl", function($scope,$routeP
                                  user_id:"",
                                  cat_name:$routeParams.list,
                                  user_ids: _(data).map(function(i){return i.id; })
-                         };// alle vorselektieren
+                         };
 
             $scope.mates = data;
         });

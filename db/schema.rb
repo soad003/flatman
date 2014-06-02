@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140526051516) do
+ActiveRecord::Schema.define(version: 20140601124835) do
 
   create_table "billcategories", force: true do |t|
     t.integer  "flat_id"
@@ -33,6 +33,11 @@ ActiveRecord::Schema.define(version: 20140526051516) do
   create_table "bills_users", force: true do |t|
     t.integer "user_id"
     t.integer "bill_id"
+  end
+
+  create_table "finances", force: true do |t|
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "flats", force: true do |t|
@@ -77,16 +82,16 @@ ActiveRecord::Schema.define(version: 20140526051516) do
     t.datetime "updated_at"
   end
 
-  create_table "ressourceentries", force: true do |t|
-    t.integer  "ressource_id"
+  create_table "resourceentries", force: true do |t|
+    t.integer  "resource_id"
     t.date     "date"
     t.float    "value"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.boolean  "isFirst",      default: false
+    t.boolean  "isFirst",     default: false
   end
 
-  create_table "ressources", force: true do |t|
+  create_table "resources", force: true do |t|
     t.integer  "flat_id"
     t.string   "name"
     t.string   "unit"
@@ -130,16 +135,6 @@ ActiveRecord::Schema.define(version: 20140526051516) do
     t.integer  "flat_id"
     t.datetime "created_at"
     t.datetime "updated_at"
-  end
-
-  create_table "uploads", force: true do |t|
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.integer  "shareditem_id"
-    t.string   "file_file_name"
-    t.string   "file_content_type"
-    t.integer  "file_file_size"
-    t.datetime "file_updated_at"
   end
 
   create_table "users", force: true do |t|

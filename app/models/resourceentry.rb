@@ -1,17 +1,17 @@
-class Ressourceentry < ActiveRecord::Base
-	belongs_to	:ressource
+class Resourceentry < ActiveRecord::Base
+	belongs_to	:resource
 	attr_accessor :costs
 	attr_accessor :usage
     validates   :date, presence: true
     validates   :value, numericality: {greater_than: 0}, presence: true
 
 	def self.find_with_user_constraint(id, r_id, user)
-            r = Ressource.find_resource_with_user_constraint(r_id, user)
-            r.ressourceentries.where(id:id).first
+            r = Resource.find_resource_with_user_constraint(r_id, user)
+            r.resourceentries.where(id:id).first
     end
 
 	def self.destroy_with_user_constraint(id, r_id, user)
-            item = Ressourceentry.find_with_user_constraint(id, r_id, user)
+            item = Resourceentry.find_with_user_constraint(id, r_id, user)
             item.destroy!
     end
 end

@@ -4,7 +4,7 @@
 
 <div class="row">
   <div class="col-lg-3 col-sm-6">
-    <div class="panel panel-info">
+    <div class="panel panel-info clickable" ng-click="Util.redirect_to.shopping()">
       <div class="panel-heading">
         <div class="row">
           <div class="col-xs-4">
@@ -31,7 +31,7 @@
     </div>
   </div>
   <div class="col-lg-3 col-sm-6">
-    <div class="panel panel-warning">
+    <div class="panel panel-warning clickable" ng-click="Util.redirect_to.finances()">
       <div class="panel-heading">
         <div class="row">
           <div class="col-xs-4">
@@ -58,7 +58,7 @@
     </div>
   </div>
   <div class="col-lg-3 col-sm-6">
-    <div class="panel panel-danger">
+    <div class="panel panel-danger clickable" ng-click="Util.redirect_to.share()">
       <div class="panel-heading">
         <div class="row">
           <div class="col-xs-4">
@@ -85,7 +85,7 @@
     </div>
   </div>
   <div class="col-lg-3 col-sm-6">
-    <div class="panel panel-success">
+    <div class="panel panel-success clickable" ng-click="Util.redirect_to.resources()">
       <div class="panel-heading">
         <div class="row">
           <div class="col-xs-4">
@@ -150,10 +150,10 @@
                 </tr>
               </thead>
               <tbody>
-                <tr ng-repeat="financeTable in dashboardFinances">
+                <tr ng-repeat="overviewMate in overviewMates">
                   <td>{{$index + 1}}</td>
-                  <td>{{financeTable.name}}</td>
-                  <td class="text-right">{{financeTable.value| customCurrency : '€ '}}</td>
+                  <td>{{overviewMate.name}}</td>
+                  <td class="text-right">{{overviewMate.value| customCurrency : '€ '}}</td>
                 </tr>
               </tbody>
               <tfoot>
