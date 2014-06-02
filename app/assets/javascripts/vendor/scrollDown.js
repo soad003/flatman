@@ -8,14 +8,10 @@ function start(time, send){
 		if (scroll != null){
 			scroll.style.height = ($(window).height()-270).toString() + "px";
 			var checkHeight = scroll.style.height.split("p")[0];
-
-			/*if (parseInt(checkHeight) < 250){ // testen ob minimum sinnvoll?
-			scroll.style.height = "250px";
-			}*/
 		}
 	}
-	// don't work on mobile phone
 	if (document.getElementById('scrollarea') != null){
+		// don't work on mobile phone
 		scrolldown();
 		var myVar = window.setTimeout(function() {
 		    var elem = document.getElementById('scrollarea');

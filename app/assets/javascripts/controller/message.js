@@ -167,7 +167,7 @@ angular.module('flatman').controller("messageCtrl", function($scope, $route, $q,
         }
         data = text.split('\n');
         var datalength = data.length;
-        var cut = chatview && (textlength > 50 || datalength > 1);
+        cut = chatview && (textlength > 50 || datalength > 1);
         if (cut){
             data = $scope.cutTexts(data);
         }
