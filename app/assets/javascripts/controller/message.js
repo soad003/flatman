@@ -153,23 +153,11 @@ angular.module('flatman').controller("messageCtrl", function($scope, $route, $q,
         if (allRead){
             return false;
         }
-        var date = new Date();
-        var min = date.getMinutes();
-        var sec = date.getSeconds();
-        // message will be marked as unread ~5 sec
-        if (sec >= 0 && sec <= 5){
-            sec = 58;
-            if (min !== 0){
-                min = min - 1;
-            }
-        }
-        else {
-            sec = sec - 5;
-        }
-        date.setMilliseconds(0);
-        date.setSeconds(sec);
-        date.setMinutes(min);
-        return (date.toISOString() < mes.updated_at);
+        var date = new Date().toISOString();
+        var millis = Date.parse(date) - 5000;
+        var compareDate = new Date(millis).toISOString();
+        
+        return (compareDate < mes.updated_at);
     };
 
     $scope.parseNewline = function(text, flatchat, index){
@@ -186,81 +174,26 @@ angular.module('flatman').controller("messageCtrl", function($scope, $route, $q,
     }
 
     $scope.parseTime = function(time, modus){
-        if (time === null){
+        if (time === null || time === undefined){
             return null;
         }
-        if (time === undefined){
-            return null;
-        }
-
-        if (time !== undefined){
-            $scope.dateTime = time.split("T");
-            $scope.date = $scope.dateTime[0];
-            //2014-05-05 $scope.date
-            $scope.time = $scope.dateTime[1].split(".");
-            $scope.time = $scope.time[0]
-
-
-            //letzter So im März um 2:00 +1h
-            //letzter So im Oktober um 3:00 -1h
-
-            var todayDay = new Date().getDate().toString();
-            var todayMonth = (new Date().getMonth() + 1).toString();
-            if (todayMonth.length < 2)
-                todayMonth = "0" + todayMonth;
-            var todayYear = new Date().getFullYear().toString();
-            if (todayDay.length < 2)
-                todayDay = "0" + todayDay;
-            var todayDate = todayYear + "-" + todayMonth + "-" + todayDay;
-            if (todayDay == "01")
-                if (todayMonth == "01"){
-                    todayYear = (parseInt(todayYear, 10) - 1).toString();
-                    todayDay = "31";
-                }
-                else 
-                    switch(todayMonth){
-                        case "05":
-                        case "07":
-                        case "10":
-                        case "12": todayMonth = (parseInt(todayMonth, 10) - 1).toString();
-                            todayDay = "30";
-                            break;
-                        //  das durch 4, aber nicht auch durch 100 ohne Rest teilbar ist, mit der Ausnahme, dass ein durch 400 ohne Rest teilbares Jahr wiederum ein Schaltjahr ist
-                        case "03":  if ((parseInt(todayYear, 10)%4 === 0 && parseInt(todayYear, 10)%100 !== 0) || parseInt(todayYear, 10)%400 === 0)
-                                        {todayDay = "29";}
-                                    else {todayDay = "28";}
-                            todayMonth = (parseInt(todayMonth, 10) - 1).toString();
-                            if (todayMonth.length < 2)
-                                todayMonth = "0" + todayMonth;
-                            break;
-                        case "02": 
-                        case "04":
-                        case "06":
-                        case "08":
-                        case "09":
-                        case "11": todayMonth = (parseInt(todayMonth, 10) -1).toString();
-                                    if (todayMonth.length < 2)
-                                        todayMonth = "0" + todayMonth;
-                                    todayDate = "31";
-                                    break;
-
-                }
-            else {
-                todayDay = (parseInt(todayDay, 10) -1).toString();
-                if (todayDay.length < 2)
-                    todayDay = "0" + todayDay;
-            }
-            var yesterday = todayYear + "-" + todayMonth + "-" + todayDay;
-            if (todayDate == $scope.date)
-                return "today" +" "+ $scope.time;
-            else if (yesterday == $scope.date && modus == "0")  // chat view
+        
+        else {
+            var millis = Date.parse(time);
+            var day = new Date(millis).toISOString().split("T")[0];
+            var daytime = new Date(millis).toISOString().split("T")[1].split(".")[0];
+            var today = new Date().toISOString().split("T")[0];
+            var yesterday = new Date(Date.parse(new Date().toISOString()) - 86400000).toISOString().split("T")[0];
+            if (today == day)
+                return "today" +" "+ daytime;
+            else if (yesterday == day && modus == "0")  // chat view
                 return "yesterday";
-            else if (yesterday == $scope.date && modus == "1")  // messages view
-                return "yesterday" +" "+ $scope.time;
+            else if (yesterday == day && modus == "1")  // messages view
+                return "yesterday" +" "+ daytime;
             else if (modus == "0")
-                return $scope.date;
+                return day;
             else if (modus == "1")
-                return $scope.date +" "+ $scope.time;
+                return day +" "+ daytime;
         }
     };
 
