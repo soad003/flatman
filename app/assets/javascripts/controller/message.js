@@ -170,8 +170,6 @@ angular.module('flatman').controller("messageCtrl", function($scope, $route, $q,
         var datalength = data.length;
         var cutSmall = chatview && parseInt(displayWidth, 10)<304 && (textlength > 50 || datalength > 1);
         var cutLarge = chatview && parseInt(displayWidth, 10)>303 && datalength > 2;
-        console.log(datalength);
-        
         if (cutSmall){
             data = $scope.cutTextsSmallDevices(data);
         }
