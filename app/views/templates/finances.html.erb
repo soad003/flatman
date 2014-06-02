@@ -50,7 +50,7 @@
                                 <div class="panel-group row" id="accordion">
                                     <div ng-repeat="overviewMate in overviewMates track by $index" class="panel panel-default">
                                         <div class="panel-heading"  data-toggle="collapse" data-parent="#accordion" data-target="#collapse{{$index}}">
-                                            <div class="row panel-title" style="cursor: pointer">
+                                            <div class="row panel-title" style="cursor: pointer" id="test">
                                                 <div class="col-xs-2 col-sm-1">
                                                     <img style="height:35px; width:35px" class="img-circle" ng-src="{{overviewMate.img_path}}">
                                                 </div>
@@ -71,13 +71,14 @@
                                                             < 0}">
                                                                 {{(overviewMate.value) | customCurrency : '€ '}}
                                                         </span>
-                                                        <i class="fa fa-chevron-right"></i>
+                                                        <span class="glyphicon glyphicon-chevron-right"></span>
                                                     </span>
 
                                                 </div>
                                               </div>
                                         </div>
                                         <div id="collapse{{$index}}" class="panel-collapse collapse">
+
                                             <div class="panel-body">
                                                 <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
                                                     <div class="row adv-table editable-table">
