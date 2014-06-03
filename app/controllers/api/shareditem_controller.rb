@@ -1,5 +1,5 @@
 class Api::ShareditemController < Api::RestController
-  #before_action :item_params, only: [:show, :create, :update, :destroy]
+ 
 
   def get
     item=Shareditem.find(params[:id])

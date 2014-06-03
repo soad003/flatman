@@ -7,22 +7,32 @@
 	
 	<div class="col-lg-3 ">
 		 <div class="thumbnail">
-		 	<input type="file" id="fileUpload" ng-show="true" upload-image />
+		 
+		 	<input type="file" id="fileUpload" ng-show="false" upload-image />
+	     	
 	      	<img class="image-popup img-rounded" ng-src="{{item.image}}"   >
 			
-	      	<h3>{{item.name}}</h3>
-	      	<p><%= t(".image_static_text") %></p>
-	      	<p> 
-	  	      	<button class="btn btn-primary" ng-class=" {hidden: item.image}"   ng-click="openFileWindow()">
-	      			<span class="glyphicon glyphicon-camera"></span> <%= t(".upload_image") %>
-	      		</button>
-	      		<button class="btn btn-primary" ng-class=" {hidden: !item.image}"  ng-click="openFileWindow()">
-	      			<span class="glyphicon glyphicon-camera"></span> <%= t(".change_image") %>
-	      		</button>		
-	      		<button class="btn btn-error" ng-class=" {hidden: !item.image}" ng-click="removeImage()">
-	      			<span class="glyphicon glyphicon-remove"></span> <%= t(".remove_image") %>
-	      		</button>	
-	    	</p>
+	   		<p></p>
+	      	<div class="row form-group">
+	      		<div class="col-md-3 col-xs-4">
+	      			<button class="btn btn-primary btn-sm" ng-class=" {hidden: item.image}"   ng-click="openFileWindow()">
+	      				<span class="glyphicon glyphicon-camera"></span> <%= t(".upload_image") %>
+	      			</button>
+	      		
+		      		<button class="btn btn-primary btn-sm" ng-class=" {hidden: !item.image}"  ng-click="openFileWindow()">
+		      			<span class="glyphicon glyphicon-camera"></span> <%= t(".change_image") %>
+		      		</button>
+	      		</div>	
+	      		
+	      		<div class="col-md-3 col-md-offset-6 col-xs-4 col-xs-offset-4">
+		      		<button class="btn btn-error btn-sm pull-right" ng-class=" {hidden: !item.image}" ng-click="removeImage()">
+		      			<span class="glyphicon glyphicon-remove"></span> <%= t(".remove_image") %>
+		      		</button>	
+	      		</div>
+				
+				
+	      	
+	      	</div>
 	     </div>
     
 	    
@@ -90,25 +100,21 @@
 		</tags-input>
 				
 			
-				<p>
+		
+			<div class="row form-group">
+				<div class="col-md-3 col-xs-4">
+					<a href="/#/share" class = "btn btn-sm btn-default"> 
+						<i class="glyphicon glyphicon-arrow-left"></i> <%= t('.back') %>
+					</a>
+				</div>
 				
-				<button class="btn btn-success"
-						ng-disabled="!itemform.$valid"
-						type="submit">
-          			<span class="glyphicon glyphicon-floppy-disk"></span> <%= t(".save") %>
-          		</button>
-          			        
-                  
-               <button class="btn btn-danger" ng-click="removeItem('<%= t(".confirm_delete") %>')">
-            		<span class="glyphicon glyphicon-remove"></span> <%= t(".remove") %>
-               </button>
-            	
-                
-                  <a href="#/share"><button class="btn btn-primary">
-                	<span class="glyphicon glyphicon-arrow-left"></span> <%= t(".back") %></button>
-                </a>	
-               </p>
-                </div> </div>
+				<div class="col-md-3 col-md-offset-6 col-xs-4 col-xs-offset-4">
+					<button type="submit" class = "btn btn-sm btn-success pull-right" ng-disabled="!itemform.$valid">
+						<span class="glyphicon glyphicon-ok"></span> <%= t('.save') %></button>
+				</div>
+			</div>
+			
+			
 		</form>
 	</div>		
 	

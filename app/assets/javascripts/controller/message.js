@@ -170,7 +170,6 @@ angular.module('flatman').controller("messageCtrl", function($scope, $route, $q,
         if (cut){
             data = $scope.cutTexts(data);
         }
-
         if (flatchat){
             $scope.flatTexts = data;
         }
