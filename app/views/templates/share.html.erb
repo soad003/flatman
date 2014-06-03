@@ -36,7 +36,7 @@
 						        		data-toggle="dropdown">
 						        	<span class="glyphicon glyphicon-pencil"></span>
 						        </button>
-						        <ul class="dropdown-menu">
+						        <ul class="dropdown-menu pull-right">
 						        	<li>
 										<a href="/#/shareditem/{{item.id}}">
 											<span class="glyphicon glyphicon-pencil"></span> <%= t(".item_edit") %>
@@ -77,7 +77,7 @@
 
 	                          <span class="input-group-btn">
 	                          	<button class="btn btn-primary" type="submit" ng-disabled="!addItemForm.$valid" >
-			                      <span class="glyphicon glyphicon-plus"></span> <%= t(".add") %>
+			                      <span class="glyphicon glyphicon-plus"></span> <span class="hidden-xs"><%= t(".add") %></span>
 			                    </button>
 	                        </div>
 	                    </form>
