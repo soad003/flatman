@@ -22,14 +22,7 @@ class Api::MessageController < Api::RestController
   end
 
   def getFlatChat
-    header = "flatchat" + current_user.flat_id.to_s
-    @flatChat=Message.where("header = ?", header)
-    @flatChat.sort! { |a,b| a.created_at <=> b.created_at }
-    @lastFlatChat = @flatChat.last
-    if @lastFlatChat == nil
-      @lastFlatChat = Message.new({id: 0, sender_id: current_user.id, receiver_id: current_user.id, text: "start chating with your flat members", header: "0", created_at: 0})
-    end
-    @lastFlatChat
+    @lastFlatChat = Message.getFlatChat(current_user)
   end
 
   def find_partner
@@ -56,40 +49,13 @@ class Api::MessageController < Api::RestController
 
   def create
     recId = mes_params[:header]
-    @newMess = Array.new
     if (recId == "")
       respond_with_errors([t('.no_user_found')])
     elsif recId == "dub"
       respond_with_errors([t('.user_already_selected')])      
     else
       recIdArray = recId.lines(",")
-      recIdArray.each do |rec|
-        @mes=Message.new(mes_params)
-        @mes.receiver_id = rec
-        @mes.header = "";
-        if rec == "flatchat"
-          header = "flatchat" + current_user.flat_id.to_s
-          @mes.header = header
-          @mes.receiver_id = current_user.id
-          @mes.sender_id = current_user.id
-        end
-        beginDate2014 = Time.new(2014,3,30,2,0)
-        endDate2014 = Time.new(2014,10,26,3,0)
-        beginDate2015 = Time.new(2015,3,29,2,0)
-        endDate2015 = Time.new(2015,10,25,3,0)
-        nowTime = Time.at(Time.now.to_i + 3600)
-        if nowTime.between?(beginDate2014, endDate2014) || nowTime.between?(beginDate2015, endDate2015)
-          @mes.created_at = Time.at(nowTime.to_i + 3600)
-        else 
-          @mes.created_at = nowTime
-        end
-        @mes.readers = [current_user.id]
-        @mes.deleted = []
-        current_user.sentMessages << @mes.clone
-        @newMess << @mes.clone
-      end
-      current_user.save!
-      @newMess
+      @newMess = Message.createMessages(recIdArray, current_user, mes_params)
     end
   end
 
@@ -98,28 +64,13 @@ class Api::MessageController < Api::RestController
   end
 
   def destroy
-    recId = Message.find(params[:id]).receiver_id
-    senId = Message.find(params[:id]).sender_id
-    m1 = Message.where(receiver_id: recId, sender_id: senId)
-    m2 = Message.where(sender_id: recId, receiver_id: senId)
-    m = m1.clone + m2.clone
-    m.each do |mess| 
-      if !mess.deleted.include?(current_user.id)
-        mess.deleted = mess.deleted + [current_user.id]
-        mess.save!
-      end
-
-      if mess.deleted.size > 1
-        mess.destroy
-      end
-    end
+    Message.destroyMessages(params[:id], current_user)
     respond_with(nil)
   end
 
   def count_messages
     header = "flatchat" + current_user.flat_id.to_s
     if params[:mes_id] == nil
-    #if Message.find(params[:mes_id]).header == header
       @counterList = Message.where("header = ?", header)
       @counter = Message.countFlatChatUnread(@counterList, current_user)
       respond_with({counter: @counter})

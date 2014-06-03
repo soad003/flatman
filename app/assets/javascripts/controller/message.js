@@ -97,7 +97,6 @@ angular.module('flatman').controller("messageCtrl", function($scope, $route, $q,
                     for (var i = 0; i < data.length; i++) {
                         $scope.messages.push(data[i]);
                     }
-                    
                     $scope.newMess.text='';
                 });
                 $scope.setAllRead = true;
@@ -182,20 +181,42 @@ angular.module('flatman').controller("messageCtrl", function($scope, $route, $q,
 
     $scope.cutTexts = function(data){
         var lastSpace = null;
-        for (var i = 2; i < data.length; i++) {
-                data[i] = "";
-        }
+        var lastHyphen = null;
+        data = data.slice(0,2);
         if (data[0].length > 30){
-            data[1] = "";
+            data = data.slice(0,1);
             data[0] = data[0].slice(0,40) + "...";
             lastSpace = data[0].lastIndexOf(" ");
-            data[0] = data[0].slice(0,lastSpace) + "...";
+            if (lastSpace == -1){
+                lastHyphen = data[0].lastIndexOf("-");
+                if (lastHyphen == -1){
+                    strings = new String(data[0]);
+                    datalength = strings.length;
+                    data[0] = strings.slice(0, 30);
+                    data[1] = strings.slice(30, 60);
+                }
+            }
+            else{
+                data[0] = data[0].slice(0,lastSpace) + "...";
+            }
         }
         else {
             if (data[1] !== undefined){
                 data[1] = data[1].slice(0,40) + "...";
                 lastSpace = data[1].lastIndexOf(" ");
-                data[1] = data[1].slice(0,lastSpace) + "...";
+                lastHyphen = data[1].lastIndexOf("-");
+                if (lastSpace == -1){
+                    if (lastHyphen == -1){
+                        lastSpace = 30;
+                        data[1] = data[1].slice(0,lastSpace) + "...";
+                    }
+                    else{
+                        data[1] = data[1].slice(0,lastHyphen) + "...";
+                    }
+                }
+                else{
+                    data[1] = data[1].slice(0,lastSpace) + "...";
+                }
             }
         }
 
