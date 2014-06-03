@@ -15,14 +15,13 @@ class Api::ShareditemController < Api::RestController
     respond_with(item)
   end
   
-  
-  
   def removeImage
     item=Shareditem.find(item_params[:id])
     item.image = nil
     item.save
     respond_with(item)
   end
+  
   
   def to_json(*a)
       {"text" => @items}.to_json(*a)
@@ -76,7 +75,7 @@ class Api::ShareditemController < Api::RestController
   end
   
   def params_no_image
-    params.permit(:id, :description, :sharingNote, :imagePath, :tags, :name, :available, :hidden)
+    params.permit(:id, :description, :sharingNote, :tags, :name, :available, :hidden)
   end
 end
 

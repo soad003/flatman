@@ -4,10 +4,10 @@ class Shareditem < ActiveRecord::Base
 	#allow strange parameters for image loading
 	attr_accessor :imageContent, :imagePath, :imageData
 
-  validates   :name, :flat, presence: true
+  validates :name, :flat, presence: true
   
 	### image validation functions
-  has_attached_file :image, styles: {thumb: "100x100"}, :default_url => ActionController::Base.helpers.asset_path('missing.png')
+  has_attached_file :image, styles: {thumb: "100x100"},  default_url: "http://www.aurangabadcity.com/images/userimages/no_image.jpg"
   validates_attachment :image, :content_type => { :content_type => ["image/jpg", "image/jpeg", "image/gif", "image/png"] }
   validates_attachment_file_name :image, :matches => [/png\Z/, /jpe?g\Z/, /gif\Z/]
   
