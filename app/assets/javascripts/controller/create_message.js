@@ -3,6 +3,19 @@ angular.module('flatman').controller("create_messageCtrl", function($scope, $tim
     $scope.selectedUser = undefined;
     $scope.newMess = {sender_id: "", receiver_id: "", text: "", header: "", read: false, readers: [], deleted: []};
     $scope.labels = [];
+
+    $scope.sendMessageToFlat=function(flat_id){
+        messageService.user.getFlatUsers(flat_id, function(data){
+            for (var i = 0; i < data.users.length; i++) {
+                $scope.labels[i] = data.users[i];
+            }
+        })
+    };
+
+    var loc = window.location.href.toString().split("/");
+    if (loc[loc.length-1] != "create_message"){
+        $scope.sendMessageToFlat(loc[loc.length-1]);
+    }
     
     $scope.createMessage=function(){
         if ($scope.labels.length === 0){
@@ -28,15 +41,6 @@ angular.module('flatman').controller("create_messageCtrl", function($scope, $tim
             });
             
         }
-    };
-
-    $scope.sendMessageToFlat=function(flat_id){
-        messageService.user.getFlatUsers(flat_id, function(data){
-            for (var i = 0; i < data.users.length; i++) {
-                $scope.labels[i] = data.users[i];
-            }
-        })
-
     };
 
     (function check(){
