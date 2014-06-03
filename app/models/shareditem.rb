@@ -34,8 +34,4 @@ class Shareditem < ActiveRecord::Base
     Shareditem.joins(:flat).where('flats.city like ? or zip = ?', city, zip)
   end
 
-  def self.get_flat
-    return flat
-  end
-
 end
