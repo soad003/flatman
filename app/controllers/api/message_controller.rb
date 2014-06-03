@@ -30,8 +30,12 @@ class Api::MessageController < Api::RestController
   end
 
   def find_active_chat
-    ret = Message.find(params[:mes_id]).header == "flatchat" + current_user.flat_id.to_s
-    respond_with({active: ret})
+    if params[:mes_id] == "0"
+      respond_with({active: true})
+    else
+      ret = Message.find(params[:mes_id]).header == "flatchat" + current_user.flat_id.to_s
+      respond_with({active: ret})
+    end
   end
 
   def getUserId
