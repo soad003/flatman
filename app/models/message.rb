@@ -30,18 +30,22 @@ class Message < ActiveRecord::Base
     end
 
     def self.find_partner(mesId, current_user)
-        user = Message.find(mesId).sender_id
-        user2 = Message.find(mesId).receiver_id
-        if user == current_user.id
-            retUser = user2
-        else 
-            retUser = user
-        end
+        if mesId != "0"
+            user = Message.find(mesId).sender_id
+            user2 = Message.find(mesId).receiver_id
+            if user == current_user.id
+                retUser = user2
+            else 
+                retUser = user
+            end
 
-        if user == user2
-            ret = ({id: user, name: User.find(user).flat.name})
-        else
-            ret = ({id: retUser, name: User.find(retUser).name})
+            if user == user2
+                ret = ({id: user, name: User.find(user).flat.name})
+            else
+                ret = ({id: retUser, name: User.find(retUser).name})
+            end
+        else 
+            ret = ({id: current_user.id, name: User.find(current_user.id).flat.name})
         end
     end
 
