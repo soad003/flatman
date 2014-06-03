@@ -1,5 +1,5 @@
 angular.module('flatman').controller("financesCtrl", function($scope, financesService, flatService, Util) {
-    
+
     $('div.panel-body').on('show.bs.collapse', function () {
         $(this).parent("div").find(".glyphicon-chevron-right").removeClass("glyphicon-chevron-right").addClass("glyphicon-chevron-down");
     });
