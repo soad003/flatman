@@ -7,7 +7,7 @@ class Shareditem < ActiveRecord::Base
   validates   :name, :flat, presence: true
 
 	### image validation functions
-  has_attached_file :image, styles: {thumb: "100x100"}, :default_url => ActionController::Base.helpers.asset_path('missing.svg')
+  has_attached_file :image, styles: {thumb: "100x100"}, :default_url => 'missing.svg'
   validates_attachment :image, :content_type => { :content_type => ["image/jpg", "image/jpeg", "image/gif", "image/png"] }
   validates_attachment_file_name :image, :matches => [/png\Z/, /jpe?g\Z/, /gif\Z/]
 
