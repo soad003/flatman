@@ -1,13 +1,16 @@
 angular.module('flatman').controller("financesCtrl", function($scope, financesService, flatService, Util) {
     
-    $('div.panel-body').on('show.bs.collapse', function () {
-        $(this).parent("div").find(".glyphicon-chevron-right").removeClass("glyphicon-chevron-right").addClass("glyphicon-chevron-down");
-    });
+ 
 
-    $('div.panel-body').on('hide.bs.collapse', function () {
-        $(this).parent("div").find(".glyphicon-chevron-down").removeClass("glyphicon-chevron-down").addClass("glyphicon-chevron-right");
-    });
+    $scope.test = function(index){
+        $('#collapse' + index).on('show.bs.collapse', function () {
+            $(this).parent("div").find(".glyphicon-chevron-right").removeClass("glyphicon-chevron-right").addClass("glyphicon-chevron-down");
+        });
 
+        $('#collapse' + index).on('hide.bs.collapse', function () {
+            $(this).parent("div").find(".glyphicon-chevron-down").removeClass("glyphicon-chevron-down").addClass("glyphicon-chevron-right");
+        });
+    };
 
     $scope.intro = function() {
         return $scope.finances.length !== 0 || $scope.arePaymentsToShow();
@@ -35,12 +38,15 @@ angular.module('flatman').controller("financesCtrl", function($scope, financesSe
         return sum !== 0;
     };
 
+    $scope.sliceText = function(data){
+        
+    };
+
     $scope.chartData = [];
     $scope.finances = financesService.bill.get_range(0, 5);
     
     $scope.overviewMates = financesService.finance.get_overview_mates(0, 5);
 
-    //load categories and chart data
     $scope.AllCategories = financesService.category.get_all(function(data) {
         $scope.chartData = financesService.category.get_chart_view(data);
     });

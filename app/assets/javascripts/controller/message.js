@@ -182,6 +182,7 @@ angular.module('flatman').controller("messageCtrl", function($scope, $route, $q,
     $scope.cutTexts = function(data){
         var lastSpace = null;
         var lastHyphen = null;
+        var datalength = 0;
         data = data.slice(0,2);
         if (data[0].length > 30){
             data = data.slice(0,1);
@@ -190,7 +191,7 @@ angular.module('flatman').controller("messageCtrl", function($scope, $route, $q,
             if (lastSpace == -1){
                 lastHyphen = data[0].lastIndexOf("-");
                 if (lastHyphen == -1){
-                    strings = new String(data[0]);
+                    var strings = data[0];
                     datalength = strings.length;
                     data[0] = strings.slice(0, 30);
                     data[1] = strings.slice(30, 60);
