@@ -41,7 +41,7 @@ class Api::ShareditemController < Api::RestController
         data.original_filename = params[:imagePath]
         item.update!({image: data})
     else
-        if(!params[:tags].is_a? String)
+        if((!params[:tags].is_a? String) && params[:tags])
           item.tags=params[:tags].map {|a| a[:text]}.join(", ")
         end
         item.update!(params_no_image)
