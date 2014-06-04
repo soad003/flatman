@@ -41,8 +41,9 @@ class Api::ShareditemController < Api::RestController
         data.original_filename = params[:imagePath]
         item.update!({image: data})
     else
-        #convert json object to string
-        item.tags=params[:tags].map {|a| a[:text]}.join(", ")
+        if((!params[:tags].is_a? String) && params[:tags])
+          item.tags=params[:tags].map {|a| a[:text]}.join(", ")
+        end
         item.update!(params_no_image)
     end
 
@@ -54,8 +55,5 @@ class Api::ShareditemController < Api::RestController
   def params_no_image
     params.permit(:id, :description, :sharingNote, :tags, :name, :available, :hidden)
   end
+  
 end
-
-
-
-

@@ -2,13 +2,8 @@ source 'https://rubygems.org'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.0.0'
 
-gem 'rails_12factor', group: :production
-
 # postgresql
 gem 'pg', '0.16.0'
-
-# heroku open needs this gem
-gem 'launchy'
 
 # ORMapper
 gem 'activerecord'
@@ -26,16 +21,13 @@ gem 'therubyracer', platforms: :ruby
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
 
-# developer console rails
-gem 'rb-readline'
-
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'jbuilder', '~> 1.2'
 
-group :doc do
+#group :doc do
   # bundle exec rake doc:rails generates the API under doc/api.
-  gem 'sdoc', require: false
-end
+#  gem 'sdoc', require: false
+#end
 
 # Twitter Bootstrap
 gem 'bootstrap-sass', '~> 3.1.1'
@@ -65,29 +57,10 @@ gem 'underscore-rails'
 # Angular bindings bootstrap, typeahead
 gem 'angular-ui-bootstrap-rails'
 
-# cool way to test json api's format
-gem 'assert_json'
-
 #gem "animate-rails"
-
-# mail exception notification, if something goes wrong, not yet configured
-gem 'exception_notification'
-
-#javascript linter (syntax checker)
-gem 'jshint_on_rails'
 
 #lightbox pictures
 gem 'magnific-popup-rails'
-
-
-# Use unicorn as the app server
-gem 'unicorn'
-
-# Use Capistrano for deployment
-gem 'capistrano', group: :development
-
-gem 'netrc'
-
 
 #alert box
 gem 'bootbox-rails'
@@ -95,11 +68,42 @@ gem 'bootbox-rails'
 #image handling
 gem 'paperclip'
 
-#file storage in amazon cloud?? needed, 
-gem 'aws-sdk'
-
-
 #calculate distance
 gem 'geocoder'
+
+
+group :production do
+    # Use unicorn as the app server
+    gem 'unicorn'
+
+    #file storage in amazon cloud?? needed,
+    gem 'aws-sdk'
+
+    # mail exception notification, if something goes wrong, not yet configured
+    gem 'exception_notification'
+
+    # heroku open needs this gem
+    gem 'launchy'
+
+    gem 'rails_12factor'
+end
+
+group :development, :test do
+    # Use Capistrano for deployment (app Server)
+    gem 'capistrano'
+
+    gem 'netrc'
+
+    # developer console rails
+    gem 'rb-readline'
+
+    #javascript linter (syntax checker)
+    gem 'jshint_on_rails'
+
+    # cool way to test json api's format
+    gem 'assert_json'
+end
+
+
 # Use debugger
 # gem 'debugger', group: [:development, :test]
