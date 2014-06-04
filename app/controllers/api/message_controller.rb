@@ -8,11 +8,16 @@ class Api::MessageController < Api::RestController
 
   def get_messages
     if params[:id] != nil && params[:id] != "0"
-      @meslist=Message.find_messages(params[:id], current_user)
-      @meslist.each do |m|
-        if !m.read && m.receiver_id == current_user.id
-          m.read = true
-          m.save!
+      mesId = params[:id]
+      sender = Message.find(mesId).sender_id
+      rec = Message.find(mesId).receiver_id
+      if (sender == current_user.id || rec == current_user.id)
+        @meslist=Message.find_messages(params[:id], current_user)
+        @meslist.each do |m|
+          if !m.read && m.receiver_id == current_user.id
+            m.read = true
+            m.save!
+          end
         end
       end
     else
