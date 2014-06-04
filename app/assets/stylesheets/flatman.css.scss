@@ -59,22 +59,6 @@ input.ng-error {
 .pointer {
   cursor: pointer;
 }
-.si-avail-false .athome {
-  display: none;
-}
-.si-avail-true .athome {
-  display: inline-block;
-}
-.si-avail-false .away {
-  display: inline-block;
-}
-.si-avail-true .away {
-  display: none;
-}
-
-.si-avail- .away {
-  display: none;
-}
 
 .page-header-right { padding-bottom: 14px; margin: 40px 0 20px; }
 
@@ -113,3 +97,19 @@ input::-webkit-inner-spin-button {
 input[type='number'] {
     -moz-appearance:textfield;
 }
+
+.btn-group-header {
+  display: relative;
+  max-width: 400px;
+  bottom: 15px;
+  top: 25px;
+  float: right!important;
+}
+.marg-bottom-md {
+  margin-bottom: 20px;
+}
+.si-hidden-true h3{
+  text-decoration: line-through;
+  color: #ccc;
+}
+

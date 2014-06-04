@@ -1,154 +1,170 @@
-	<div class="row">
-		<div class="col-lg-12">
-			<h1 class="page-header"><span class="fa fa-share"></span> <%= t(".title") %></h1>
-		</div>
+<div class="page-header">
+      <h1 class="pull-left">
+        <span class="fa fa-share"></span> <%= t(".title") %>
+      </h1>
+      
+	<div class="btn-group btn-group-header visible-lg">
+			<form role="form" class="pull-right" ng-submit="addItem()" name="addItemForm">
+				<div class="input-group">
+					<span class="input-group-addon"><span class="glyphicon glyphicon-plus"></span></span>
+	
+					<input 	type="text"
+					maxlength="30" required
+					ng-model="newItemName"
+					class="form-control"
+					placeholder="<%= t(".item_new") %>">
+	
+					<span class="input-group-btn">
+						<button class="btn btn-primary" type="submit" type="submit" ng-disabled="!addItemForm.$valid">
+							<span class="glyphicon glyphicon-plus"></span><span class="hidden-xs"><%= t(".add") %></span>
+						</button> </span>
+				</div>
+			</form>
 	</div>
-	<div class="row">
-	<div class="col-lg-6" ng-show="shareditems.length!==0">
-			<div class="panel panel-success">
-			  <div class="panel-heading pointer" tooltip-placement="bottom" tooltip="<%= t(".available_info") %>">
-			  	<span class="glyphicon glyphicon-eye-open"></span> <%= t(".available_items") %></div>
+	<div class="clearfix"></div>
+</div>
 
+<div class="row">
+<div class="col-md-12 hidden-lg marg-bottom-md" >
+	<div class="btn-group">
+			<form role="form" class="pull-right" ng-submit="addItem()" name="addItemForm">
+				<div class="input-group">
+					<span class="input-group-addon"><span class="glyphicon glyphicon-plus"></span></span>
+	
+					<input 	type="text"
+					maxlength="30" required
+					ng-model="newItemName"
+					class="form-control"
+					placeholder="<%= t(".item_new") %>">
+	
+					<span class="input-group-btn">
+						<button class="btn btn-primary" type="submit" type="submit" ng-disabled="!addItemForm.$valid">
+							<span class="glyphicon glyphicon-plus"></span><span class="hidden-xs"><%= t(".add") %></span>
+						</button> </span>
+				</div>
+			</form>
+		</div>
+</div>
+</div>
+
+<div class="row">
+<div class="col-lg-8 col-md-12" ng-show="shareditems.length!==0">
+		<div class="panel panel-success">
+			<div class="panel-heading pointer" tooltip-placement="bottom" tooltip="<%= t(".available_info") %>">
+			  	<span class="glyphicon glyphicon-home"></span> <%= t(".available_items") %></div>
 			  <div class="panel-body list-group">
+			  	
+		    		<div class="sharing-item  si-hidden-{{item.hidden}}"
+		    			ng-repeat="item in shareditems | filter:qa | filter:{ available: 'true'}">
+	      				<!-- item header-->
+	      				<div class="input-group">
+								
+	          					<h3 class="panel-title form-control">{{item.name}}</h3>
+	          					
+	          				<!-- edit box -->
+	          				<div class="input-group-btn">
+						        <button  type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
+						        	<span class="glyphicon glyphicon-pencil"></span>
+						        </button>
+	
+						        <ul class="dropdown-menu pull-right">
+						        	<li>
+										<a href="/#/shareditem/{{item.id}}">
+											<span class="glyphicon glyphicon-pencil"></span> <%= t(".item_edit") %>
+										</a>
+									</li>
+						        	<li>
+						        		<a class="pointer" ng-click="borrowItem(item)">
+						        			<span class="glyphicon glyphicon glyphicon-road"></span> <%= t(".item_borrow") %>
+					        			</a>
+						        	</li>
+									<li>
+						        		<a ng-show="!item.hidden" class="pointer" ng-click="hideItem(item)">
+						        			<span  class="glyphicon glyphicon-eye-open"></span> <%= t(".item_hide") %>
+						        		</a>
+						        		<a ng-show="item.hidden" class="pointer" ng-click="hideItem(item)">
+						        			<span  class="glyphicon glyphicon-eye-open"></span> <%= t(".item_unhide") %>
+						        		</a>
+						        	</li>
+						        	<li>
+						        		<a class="pointer" 	ng-click="removeItem('<%= t(".confirm_delete") %>', item)">
+						        			<span class="glyphicon glyphicon-remove"></span> <%= t(".item_remove") %>
+						        		</a>
+						        	</li>
+	
+	
+						        </ul>
+					     	 </div><!-- edit box-->
+	      				</div><!-- item header -->
+			        </div>
+			  </div>
 
-					  	<!--filter -->
-				    	<div class="input-group">
-						<span class="input-group-addon"><span class="glyphicon glyphicon-filter"></span></span>
-							<input type="search" class="form-control" ng-model="qa" placeholder="<%= t(".filter") %>" >
-						</div>
+
+		</div>
+</div>
 
 
-			    		<!--item -->
-			    		<div class="sharing-item  si-avail-{{item.available}}"
-			    			ng-repeat="item in shareditems | filter:qa | filter:{ hidden: '!true'}">
-              				<!-- item header-->
-              				<div class="input-group">
+	<!--boorowed items-->
+	<div class="col-lg-4 col-md-12" ng-show="shareditems.length!==0">
+		<div class="panel panel-warning">
+			<div class="panel-heading panel-tooltip pointer" tooltip-placement="bottom"  tooltip="<%= t(".available_info") %>">
+			  	<span class="glyphicon glyphicon-share-alt"></span> <%= t(".borrowed_items") %></div>
+			  	
+			<div class="panel-body list-group">
 
-                  					<h3 class="panel-title form-control">
-                  					<span class="glyphicon glyphicon-share-alt away"></span><span class="glyphicon glyphicon-home athome"></span> {{item.name}}</h3>
+    		<!--item -->
+				<div 	class="sharing-item  si-avail-{{item.available}}"
+			    		ng-repeat="item in shareditems | filter:qh | filter:{ available: 'false'}">
+              				
+              		<!-- item header-->
+              		<div class="input-group">
+
+                  					<h3 class="panel-title form-control">{{item.name}}</h3>
                   				<!-- edit box -->
-                  				<div class="input-group-btn">
-							        <button  type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
-							        	<span class="glyphicon glyphicon-pencil"></span>
-							        </button>
-
-							        <ul class="dropdown-menu pull-right">
-							        	<li>
-											<a href="/#/shareditem/{{item.id}}">
-												<span class="glyphicon glyphicon-pencil"></span> <%= t(".item_edit") %>
-											</a>
-										</li>
-							        	<li>
-							        		<a class="pointer" ng-click="borrowItem(item)">
-							        			<span class="away"><span class="glyphicon glyphicon-repeat"></span> <%= t(".item_backhome") %></span>
-							        			<span class="athome"><span class="glyphicon glyphicon glyphicon-road"></span> <%= t(".item_borrow") %></span>
-						        			</a>
-							        	</li>
-										<li>
-							        		<a class="pointer" ng-click="hideItem(item)">
-							        			<span class="glyphicon glyphicon-eye-open"></span> <%= t(".item_hide") %>
-							        		</a>
-							        	</li>
-							        	<li>
-							        		<a class="pointer" 	ng-click="removeItem('<%= t(".confirm_delete") %>', item)">
-							        			<span class="glyphicon glyphicon-remove"></span> <%= t(".item_remove") %>
-							        		</a>
-							        	</li>
-
-
-							        </ul>
-						     	 </div><!-- edit box-->
+	          				<div class="input-group-btn">
+						        <button  type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
+						        	<span class="glyphicon glyphicon-pencil"></span>
+						        </button>
+	
+						        <ul class="dropdown-menu pull-right">
+						        	<li>
+										<a href="/#/shareditem/{{item.id}}">
+											<span class="glyphicon glyphicon-pencil"></span> <%= t(".item_edit") %>
+										</a>
+									</li>
+						        	<li>
+						        		<a class="pointer" ng-click="borrowItem(item)">
+						        			<span class="glyphicon glyphicon-repeat"></span> <%= t(".item_backhome") %></span>
+					        			</a>
+						        	</li>
+									<li>
+						        		<a ng-show="!item.hidden" class="pointer" ng-click="hideItem(item)">
+						        			<span  class="glyphicon glyphicon-eye-open"></span> <%= t(".item_hide") %>
+						        		</a>
+						        		<a ng-show="item.hidden" class="pointer" ng-click="hideItem(item)">
+						        			<span  class="glyphicon glyphicon-eye-open"></span> <%= t(".item_unhide") %>
+						        		</a>
+						        	</li>
+						        	<li>
+						        		<a class="pointer" 	ng-click="removeItem('<%= t(".confirm_delete") %>', item)">
+						        			<span class="glyphicon glyphicon-remove"></span> <%= t(".item_remove") %>
+						        		</a>
+						        	</li>
+	
+	
+						        </ul>
+					     	 </div><!-- edit box-->
               				</div><!-- item header -->
 				        </div>
 			  </div>
-
-			  	<div class="panel-footer">
-				     	 <form role="form" ng-submit="addItem()" name="addItemForm">
-	                        <div class="input-group">
-	                          <span class="input-group-addon"><span class="glyphicon glyphicon-plus"></span></span>
-
-	                          <input 	type="text"
-	                          			maxlength="30" required
-	                          			ng-model="newItemName"
-	                          			class="form-control"
-	                          			placeholder="<%= t(".item_new") %>">
-
-	                          <span class="input-group-btn">
-	                          	<button class="btn btn-primary" type="submit" ng-disabled="!addItemForm.$valid" >
-			                      <span class="glyphicon glyphicon-plus"></span> <%= t(".add") %>
-			                    </button>
-	                        </div>
-	                    </form>
-			     	</div>
 			</div>
 		</div>
 
 
-
-	<!--hidden items-->
-		<div class="col-lg-6" ng-show="shareditems.length!==0">
-			<div class="panel panel-success">
-			  <div class="panel-heading panel-tooltip pointer" title="<%= t(".hidden_info") %>">
-			  	<span class="glyphicon glyphicon-eye-close"></span> <%= t(".hidden_items") %></div>
-
-			  <div class="panel-body list-group">
-
-					  	<!--filter -->
-				    	<div class="input-group">
-						<span class="input-group-addon"><span class="glyphicon glyphicon-filter"></span></span>
-							<input type="search" class="form-control" ng-model="qh" placeholder="<%= t(".filter") %>" >
-						</div>
-
-
-			    		<!--item -->
-			    		<div class="sharing-item  si-avail-{{item.available}}"
-			    			ng-repeat="item in shareditems | filter:qh | filter:{ hidden: 'true'}">
-              				<!-- item header-->
-              				<div class="input-group">
-
-                  					<h3 class="panel-title form-control">
-                  					<span class="glyphicon glyphicon-share-alt away"></span><span class="glyphicon glyphicon-home athome"></span> {{item.name}}</h3>
-                  				<!-- edit box -->
-                  				<div class="input-group-btn">
-							        <button  type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
-							        	<span class="glyphicon glyphicon-pencil"></span>
-							        </button>
-
-							        <ul class="dropdown-menu pull-right">
-							        	<li>
-											<a href="/#/shareditem/{{item.id}}">
-												<span class="glyphicon glyphicon-pencil"></span> <%= t(".item_edit") %>
-											</a>
-										</li>
-							        	<li>
-							        		<a class="pointer" ng-click="borrowItem(item)">
-							        			<span class="away"><span class="glyphicon glyphicon-repeat"></span> <%= t(".item_backhome") %></span>
-							        			<span class="athome"><span class="glyphicon glyphicon glyphicon-road"></span> <%= t(".item_borrow") %></span>
-						        			</a>
-							        	</li>
-										<li>
-							        		<a class="pointer" ng-click="hideItem(item)">
-							        			<span class="glyphicon glyphicon-eye-open"></span> <%= t(".item_unhide") %>
-							        		</a>
-							        	</li>
-							        	<li>
-							        		<a class="pointer" 	ng-click="removeItem('<%= t(".confirm_delete") %>', item)">
-							        			<span class="glyphicon glyphicon-remove"></span> <%= t(".item_remove") %>
-							        		</a>
-							        	</li>
-
-							        </ul>
-						     	 </div><!-- edit box-->
-              				</div><!-- item header -->
-				        </div>
-			  </div>
-			</div>
-		</div>
-
-
 	</div>
+</div>
 
-	 <div class="jumbotron text-center" ng-show="shareditems.length===0">
+<div class="jumbotron text-center" ng-show="shareditems.length===0 ">
           <i class="fa fa-share fa-5x"></i>
           <h2><%= t(".help_title") %></h2>
           <p><%= t(".help_paragraph1") %></p>
@@ -177,5 +193,5 @@
           <div class="col-md-3"></div>
         </div>
 	 </div>
-	</div>
+	</div><span class="away">
 
