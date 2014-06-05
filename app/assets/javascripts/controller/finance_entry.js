@@ -3,11 +3,11 @@ angular.module('flatman').controller("financeEntryCtrl", function($scope,$routeP
      $scope.process_entry=function(){
         if($scope.edit){
             financesService.bill.update($scope.finTmp, function(data){
-                Util.redirect_to.finances();
+                Util.redirect_to.back();
             });
         }else{
             financesService.bill.create($scope.finTmp, function(data){
-                Util.redirect_to.finances();
+                Util.redirect_to.back();
             });
         }
     };

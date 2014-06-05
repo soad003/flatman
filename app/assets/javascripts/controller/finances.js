@@ -1,16 +1,13 @@
 angular.module('flatman').controller("financesCtrl", function($scope, financesService, flatService, Util) {
 
-    $('div.panel-body').on('show.bs.collapse', function () {
-        $(this).parent("div").find(".glyphicon-chevron-right").removeClass("glyphicon-chevron-right").addClass("glyphicon-chevron-down");
-    });
+    $scope.test = function(index){
+        $('#collapse' + index).on('show.bs.collapse', function () {
+            $(this).parent("div").find(".glyphicon-chevron-right").removeClass("glyphicon-chevron-right").addClass("glyphicon-chevron-down");
+        });
 
-    $('div.panel-body').on('hide.bs.collapse', function () {
-        $(this).parent("div").find(".glyphicon-chevron-down").removeClass("glyphicon-chevron-down").addClass("glyphicon-chevron-right");
-    });
-
-
-    $scope.intro = function() {
-        return $scope.finances.length !== 0 || $scope.arePaymentsToShow();
+        $('#collapse' + index).on('hide.bs.collapse', function () {
+            $(this).parent("div").find(".glyphicon-chevron-down").removeClass("glyphicon-chevron-down").addClass("glyphicon-chevron-right");
+        });
     };
 
 	$scope.removeEntry=function(finance){
@@ -18,12 +15,6 @@ angular.module('flatman').controller("financesCtrl", function($scope, financesSe
             $scope.finances = _($scope.finances).without(finance);
         });
         $scope.overviewMates = financesService.finance.get_overview_mates(0,5);
-    };
-
-    $scope.payDebt = function(debt) {
-        financesService.debts.pay_debt(debt.id, function() {
-            $scope.allDebts = _($scope.allDebts).without(debt);
-        })
     };
 
     $scope.enoughEntries = function() {
@@ -35,17 +26,33 @@ angular.module('flatman').controller("financesCtrl", function($scope, financesSe
         return sum !== 0;
     };
 
+    $scope.removePayment = function(payment, overviewMate) {
+        financesService.payment.destroy(payment.id, overviewMate.id, function(data) {
+            $scope.setFinanceOverviewMate(overviewMate);
+        });
+    };
+
+    $scope.setSelectedOverviewMateIndex = function (index){
+        $scope.selectedIndex = index;
+    };
+
+    $scope.setFinanceOverviewMate = function(mate) {
+        financesService.finance.get_overview_mate(mate.id, 0,5, function (data){
+            $scope.overviewMates[$scope.selectedIndex].value = data.value;
+            $scope.overviewMates[$scope.selectedIndex].entries = data.entries;
+        });
+    };
+
+    $scope.sliceText = function(data){
+    };
+
     $scope.chartData = [];
     $scope.finances = financesService.bill.get_range(0, 5);
-    
     $scope.overviewMates = financesService.finance.get_overview_mates(0, 5);
 
-    //load categories and chart data
     $scope.AllCategories = financesService.category.get_all(function(data) {
         $scope.chartData = financesService.category.get_chart_view(data);
     });
 
     $scope.getFlatMates = flatService.mates.get();
-
-      
 });

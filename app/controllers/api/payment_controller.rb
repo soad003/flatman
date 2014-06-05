@@ -8,16 +8,15 @@ class Api::PaymentController < Api::RestController
     end
 
     def destroy
-        payment = Payment.find_with_user_constraint(delete_params[:id], current_user, User.find(delete_params[mate_id]))
+        payment = Payment.find_with_user_constraint(delete_params[:id], current_user, User.find(delete_params[:mate_id]))
         payment.destroy!
         respond_with(nil, :location => nil)
-        
     end
 
     private
     # Never trust parameters from the scary internet, only allow the white list through.
     def entry_params
-          params.permit(:date, :value, :payer_id)   
+          params.permit(:date, :value, :payer_id)
     end
 
     def delete_params

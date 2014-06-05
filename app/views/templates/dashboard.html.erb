@@ -39,7 +39,8 @@
           </div>
           <div class="col-xs-8 text-right">
               <p class="announcement-heading">{{get_you_owe()}}</p>
-             <p class="announcement-text"><%=t(".you_owe")%></p>
+             <p class="announcement-text" ng-show="get_you_owe() < 0"><%=t(".you_owe")%></p>
+             <p class="announcement-text"  ng-show="get_you_owe() >= 0"><%=t(".you_get")%></p>
           </div>
         </div>
       </div>

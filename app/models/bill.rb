@@ -29,7 +29,6 @@ class Bill < ActiveRecord::Base
 		}
 	end
 
-
 	def self.get_payees(bills, user)
 		returnList = []
 		bills.each do |b|

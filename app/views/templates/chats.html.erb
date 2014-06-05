@@ -23,7 +23,6 @@
   </div>
 </div>
 <div class="container modal-body">
-<!-- start flatChat -->
   <div class="row">
     <div ng-init="countUnreadFlatChat()">
       <a  style="cursor:pointer; text-decoration: none;" 
@@ -97,8 +96,6 @@
       </a>
     </div>
   </div>
-<!-- end flatChat -->
-<!-- start chats -->
   <div class="row" ng-repeat="chat in chats track by $index">
     <div ng-init="countUnread(chat, $index)">
       <a  style="cursor:pointer; text-decoration: none;" 
