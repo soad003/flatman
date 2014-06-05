@@ -66,6 +66,7 @@ scope "(:locale)", locale: /en|de/ do
    resources :message, only: [:index, :create, :update, :destroy]
 
    get '/message/messages/:id' => 'message#get_messages'
+   get '/message/messages/:id/:quantity' => 'message#get_messages'
    get '/message/:mes_id/partner' => 'message#find_partner'
    get '/message/:mes_id/partner/:option' => 'message#find_active_chat'
    get '/message/users' => 'message#get_users'

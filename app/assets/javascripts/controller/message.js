@@ -19,6 +19,8 @@ angular.module('flatman').controller("messageCtrl", function($scope, $route, $q,
     $scope.flatTexts = [];
     $scope.messages = [];
     $scope.setAllRead = false;
+    $scope.quantity = 20;
+    $scope.allLoaded = false;
     
 
 
@@ -67,10 +69,21 @@ angular.module('flatman').controller("messageCtrl", function($scope, $route, $q,
     $scope.newMess = {sender_id: "", receiver_id: "", text: "", header: "", read: false, readers: [], deleted: [] };
 
 
-    $scope.getMessages = function (){
+    $scope.getMessages = function (quantity){
+        if (quantity === 0){
+            $scope.quantity += 30;
+            quantity = $scope.quantity
+        }
+        /*if (quantity === -1){
+            $scope.allLoaded = true;
+        }*/
         $scope.setAllRead = false;
-        $scope.messages = messageService.messages.get($scope.activeChat.id);
-        start(1000, false);
+        $scope.messages = messageService.messages.get($scope.activeChat.id, quantity);
+        if ($scope.quantity == 20)
+            start(1000, false);
+        else {
+            start(2170, true, true);
+        }
         if (!isNaN($scope.activeChat.id)){
             $scope.chatPartner = messageService.partner.getPartner($scope.activeChat.id);
             $scope.activeChat.sender_id = messageService.partner.getPartner($scope.activeChat.id);
@@ -154,6 +167,14 @@ angular.module('flatman').controller("messageCtrl", function($scope, $route, $q,
         
         return (compareDate < mes.updated_at);
     };
+
+    $scope.checkAllLoaded=function(){
+        if ($scope.messages.length != $scope.quantity)
+            $scope.allLoaded = true;
+        else 
+            $scope.allLoaded = false;
+        return $scope.allLoaded;
+    }
 
     $scope.parseNewline = function(text, flatchat, index, chatview){
         if (text === undefined || text === null)

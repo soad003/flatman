@@ -3,7 +3,7 @@ class Message < ActiveRecord::Base
 	belongs_to  	:receiver, :class_name => 'User'
     validates       :receiver_id, :text, presence: true
 
-	def self.find_messages(mesId, current_user)
+	def self.find_messages(mesId, current_user, quantity)
         retList = Array.new
         header = "flatchat" + current_user.flat_id.to_s
         if Message.find(mesId).header == header
@@ -26,7 +26,11 @@ class Message < ActiveRecord::Base
                 end
             end
         end
-        retList.sort! { |a,b| a.created_at <=> b.created_at }
+        retList = retList.sort! { |a,b| a.created_at <=> b.created_at }
+        if quantity.to_i != -1 && (retList.length - quantity.to_i) > 0
+            retList = retList.drop(retList.length - quantity.to_i)
+        end
+        retList
     end
 
     def self.find_partner(mesId, current_user)

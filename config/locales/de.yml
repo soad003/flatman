@@ -254,6 +254,7 @@ de:
       send                               : "senden"
       back                               : "zurück"
       new_text_placeholder               : "Text eingeben"
+      old_messages                       : "Ältere Nachrichten"
     resources:
       page_header                        : "Resourcen"
       page_title                         : "Resource"

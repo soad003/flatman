@@ -255,6 +255,7 @@ en:
       send                               : "send"
       back                               : "back"
       new_text_placeholder               : "Enter text"
+      old_messages                       : "Get older messages"
     resources:
       page_header                        : "Resources"
       page_title                         : "Resource"

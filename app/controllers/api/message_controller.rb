@@ -12,7 +12,7 @@ class Api::MessageController < Api::RestController
       sender = Message.find(mesId).sender_id
       rec = Message.find(mesId).receiver_id
       if (sender == current_user.id || rec == current_user.id)
-        @meslist=Message.find_messages(params[:id], current_user)
+        @meslist=Message.find_messages(params[:id], current_user, params[:quantity])
         @meslist.each do |m|
           if !m.read && m.receiver_id == current_user.id
             m.read = true
@@ -84,7 +84,7 @@ class Api::MessageController < Api::RestController
       @counter = Message.countFlatChatUnread(@counterList, current_user)
       respond_with({counter: @counter})
     else
-      @counterList = Message.find_messages(params[:mes_id], current_user)
+      @counterList = Message.find_messages(params[:mes_id], current_user, -1)
       @counter = Message.countUnread(@counterList, current_user)
       respond_with({counter: @counter})
     end

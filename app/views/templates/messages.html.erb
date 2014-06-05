@@ -12,11 +12,17 @@
   </div>
 </div>
 <body>
-  <div ng-init="getMessages()"></div>
+  <div ng-init="getMessages(quantity)"></div>
   <div  class="modal-body" 
         name="scrollarea" 
         id="scrollarea"
         style="overflow-y: auto; overflow-x: hidden;">
+    <div ng-show="!checkAllLoaded()">
+      <button class="btn btn-default btn-xs center-block" 
+              ng-click="getMessages(0)">
+            <%= t('.old_messages') %>
+      </button>
+    </div>
     <div ng-repeat="message in messages">
       <div ng-show="currentUserIsSender(message) || !currentlyRead(message, setAllRead)">
         <a class="list-group-item" style="margin-top: 6px">
