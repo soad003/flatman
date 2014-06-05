@@ -255,6 +255,7 @@ en:
       send                               : "send"
       back                               : "back"
       new_text_placeholder               : "Enter text"
+      old_messages                       : "Get older messages"
     resources:
       page_header                        : "Resources"
       page_title                         : "Resource"
@@ -441,6 +442,8 @@ en:
       hidden_items                       : "hidden items"
       hidden_info                        : "hidden items are just visible for you and cannot be found by anyone"
       confirm_delete                     : "do you really want to delete this item?"
+      borrowed_info                      : "borrowed items info, borrowed items info"
+      borrowed_items                     : "borrowed items"
     shareditem:
       add_file                           : "add file"
       upload                             : "upload"

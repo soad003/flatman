@@ -8,11 +8,16 @@ class Api::MessageController < Api::RestController
 
   def get_messages
     if params[:id] != nil && params[:id] != "0"
-      @meslist=Message.find_messages(params[:id], current_user)
-      @meslist.each do |m|
-        if !m.read && m.receiver_id == current_user.id
-          m.read = true
-          m.save!
+      mesId = params[:id]
+      sender = Message.find(mesId).sender_id
+      rec = Message.find(mesId).receiver_id
+      if (sender == current_user.id || rec == current_user.id)
+        @meslist=Message.find_messages(params[:id], current_user, params[:quantity])
+        @meslist.each do |m|
+          if !m.read && m.receiver_id == current_user.id
+            m.read = true
+            m.save!
+          end
         end
       end
     else
@@ -30,8 +35,12 @@ class Api::MessageController < Api::RestController
   end
 
   def find_active_chat
-    ret = Message.find(params[:mes_id]).header == "flatchat" + current_user.flat_id.to_s
-    respond_with({active: ret})
+    if params[:mes_id] == "0"
+      respond_with({active: true})
+    else
+      ret = Message.find(params[:mes_id]).header == "flatchat" + current_user.flat_id.to_s
+      respond_with({active: ret})
+    end
   end
 
   def getUserId
@@ -75,7 +84,7 @@ class Api::MessageController < Api::RestController
       @counter = Message.countFlatChatUnread(@counterList, current_user)
       respond_with({counter: @counter})
     else
-      @counterList = Message.find_messages(params[:mes_id], current_user)
+      @counterList = Message.find_messages(params[:mes_id], current_user, -1)
       @counter = Message.countUnread(@counterList, current_user)
       respond_with({counter: @counter})
     end

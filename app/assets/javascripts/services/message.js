@@ -5,7 +5,7 @@ angular.module('flatman').service("messageService", function($resource) {
                             'create': {method: "POST", isArray:true},
                             'destroy': {method: "DELETE"}                            
                         });
-    var messagesSer = $resource('/api/message/messages/:id', {},
+    var messagesSer = $resource('/api/message/messages/:id/:quantity', {},
                         {
                             'get': {method: "GET", isArray:true}
                             
@@ -66,7 +66,7 @@ angular.module('flatman').service("messageService", function($resource) {
             }
         },
         messages: {
-            get: function(mesId){ return messagesSer.get({id: mesId});}
+            get: function(mesId, quantity){ return messagesSer.get({id: mesId, quantity: quantity});}
         },
         partner: {
             getPartner: function(mesId) {

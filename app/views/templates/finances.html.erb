@@ -28,7 +28,7 @@
     </div>
 
     <div>
-        <form action="/#/finances_new" ng-show="!intro()">
+        <form action="/#/finances_new" ng-show="!intro() && !isLoading()">
             <div class="jumbotron text-center">
                 <i class="fa fa-bitcoin fa-5x"></i>
                 <h2><%= t(".help_title") %></h2>
@@ -95,7 +95,7 @@
                                                                     <th>
                                                                         <%= t('.what') %></th>
                                                                     <th class="text-right"><%= t('.value') %></th>
-                                                                    
+
                                                                 </tr>
                                                             </thead>
                                                             <tbody>
@@ -107,7 +107,7 @@
                                                                     <td class="text-right" ng-class="{'text-success':entry.value >
                                                             0, 'text-danger': entry.value
                                                             < 0}"> {{entry.value| customCurrency : '€ '}} </td>
-                                                                
+
                                                                 </tr>
                                                             </tbody>
                                                         </table>
@@ -120,7 +120,7 @@
                                                         <%= t(".show_all") %> <i class="fa fa-arrow-circle-right"></i>
                                                     </a>
                                                 </div>
-                                                    
+
                                                 </div>
                                             </div>
                                         </div>

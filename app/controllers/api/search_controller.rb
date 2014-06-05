@@ -5,7 +5,8 @@ class Api::SearchController < Api::RestController
     c = items.map { |v| {
         :data => v, 
         :distance => current_user.flat.get_distance_to(v.flat).round(2), 
-        :flatname => v.flat.name 
+        :flatname => v.flat.name,
+        :flat_id => v.flat_id
         }
     }
     respond_with({items:c})
