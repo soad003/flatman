@@ -49,7 +49,7 @@
                             <div class="col-md-12">
                                 <div class="panel-group row" id="accordion">
                                     <div ng-repeat="overviewMate in overviewMates track by $index" class="panel panel-default">
-                                        <div class="panel-heading"  ng-click="test($index)" data-toggle="collapse" data-parent="#accordion" data-target="#collapse{{$index}}">
+                                        <div class="panel-heading"  ng-click="switchChevron($index)" data-toggle="collapse" data-parent="#accordion" data-target="#collapse{{$index}}">
                                             <div class="row panel-title" style="cursor: pointer" id="test">
                                                 <div class="col-xs-2 col-sm-1">
                                                     <img style="height:35px; width:35px" class="img-circle" ng-src="{{overviewMate.img_path}}">
@@ -102,6 +102,7 @@
                                                                 <tr ng-repeat="entry in overviewMate.entries">
                                                                     <td class="hidden-xs">{{entry.date| date : 'longDate'}}</td>
                                                                     <td class="visible-xs">{{entry.date| date : 'shortDate'}}</td>
+                                                                    <!--{{sliceText(entry.what)}}-->
                                                                     <td>{{entry.what}}</td>
                                                                     <td class="text-right" ng-class="{'text-success':entry.value >
                                                             0, 'text-danger': entry.value
@@ -147,14 +148,14 @@
                     <div class="panel-body">
                         <table class="table table-striped">
                             <tr>
-                                <th><%= t(".date") %></th>
+                                <th class="hidden-xs"><%= t(".date") %></th>
                                 <th><%= t(".name") %></th>
                                 <th class="hidden-xs"><%= t(".cat")%></th>
                                 <th class="text-right"><%= t(".value")%></th>
                                 <th>&nbsp;</th>
                             </tr>
                             <tr ng-repeat="finance in finances track by $index">
-                                <td>{{finance.date| date: 'shortDate'}}</td>
+                                <td class="hidden-xs">{{finance.date| date: 'shortDate'}}</td>
                                 <td>{{finance.name}}</td>
                                 <td class="hidden-xs">{{finance.cat_name}}</td>
                                 <td class="text-right">{{finance.value| customCurrency : '€ '}}</td>

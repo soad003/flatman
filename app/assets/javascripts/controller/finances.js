@@ -1,8 +1,8 @@
 angular.module('flatman').controller("financesCtrl", function($scope, financesService, flatService, Util) {
     
- 
+    $scope.Textcut = [];
 
-    $scope.test = function(index){
+    $scope.switchChevron = function(index){
         $('#collapse' + index).on('show.bs.collapse', function () {
             $(this).parent("div").find(".glyphicon-chevron-right").removeClass("glyphicon-chevron-right").addClass("glyphicon-chevron-down");
         });
@@ -30,7 +30,7 @@ angular.module('flatman').controller("financesCtrl", function($scope, financesSe
     };
 
     $scope.enoughEntries = function() {
-        return $scope.AllCategories.length > 2;
+        return $scope.AllCategories.length > 0;
     };
 
     $scope.arePaymentsToShow = function (){
@@ -38,8 +38,12 @@ angular.module('flatman').controller("financesCtrl", function($scope, financesSe
         return sum !== 0;
     };
 
-    $scope.sliceText = function(data){
-        
+    $scope.sliceText = function(entry){
+        if (entry == null)
+            return "-";
+        var textlength = entry.length;
+        //var words = entry.split("");
+
     };
 
     $scope.chartData = [];
