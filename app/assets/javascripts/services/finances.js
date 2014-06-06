@@ -3,7 +3,7 @@ angular.module('flatman').factory("financesService", function($resource){
                         {
                             'create': {method: "POST"},
                             'get': {method: "GET"},
-                            'get_range': {method: "GET", isArray:true},
+                            'get_range': {method: "GET"},
                             'destroy': {method:"DELETE"},
                             'update': {method:"PUT"}
                         });
@@ -20,7 +20,7 @@ angular.module('flatman').factory("financesService", function($resource){
                         {
                             'get': {method: "GET"}
                         });
-    var paymentService = $resource('/api/payment/:id/:member_id',{},
+    var paymentService = $resource('/api/payment/:id/:mate_id',{},
                         {
                             'create': {method: "POST"},
                             'destroy': {method: "DELETE"}
@@ -33,13 +33,13 @@ angular.module('flatman').factory("financesService", function($resource){
                 _(finance).each (function (entry){
                     sum += entry.value;
                 })
-                return Math.round(sum);
+                return sum;
             },
             get_overview_mates: function (from, to, succH, errH){
                 return overviewMates.get({from: from, to: to},succH, errH);
             },
-            get_overview_mate: function (member_id, from, to, succH, errH){
-                return overviewMate.get({id: member_id, from: from, to: to},succH, errH);
+            get_overview_mate: function (mate_id, from, to, succH, errH){
+                return overviewMate.get({id: mate_id, from: from, to: to},succH, errH);
             }
         },
         bill: {
@@ -81,8 +81,8 @@ angular.module('flatman').factory("financesService", function($resource){
             create: function(payer_id, date, value ,succH,errH) {
                 paymentService.create(null,{payer_id: payer_id, date: date, value: value}, succH,errH);
             },
-            destroy: function(payment_id, member_id, page, succH,errH){
-                paymentService.destroy({id: payment_id, member_id: member_id, page: page},succH,errH);
+            destroy: function(payment_id, mate_id, succH,errH){
+                paymentService.destroy({id: payment_id, mate_id: mate_id},succH,errH);
             }
         }
     };

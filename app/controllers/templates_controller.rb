@@ -17,10 +17,19 @@ class TemplatesController < ProtectedController
   def finance_entry
   end
 
-  def finances_overview
+  def finance_overview_mate
+  end
+
+  def bills_overview
   end
 
   def resources
+  end
+
+  def create_resource
+  end
+
+  def create_payment
   end
 
   def messages

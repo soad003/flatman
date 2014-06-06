@@ -19,7 +19,7 @@ angular.module('number_localized', ['ngLocale']).directive('numberinput', functi
                 data = (data + "" ).replace('.',',');
               }
               return data;
-          })          
+          })
         }
       };
 });

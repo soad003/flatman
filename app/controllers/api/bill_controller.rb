@@ -9,7 +9,7 @@ class Api::BillController <Api::RestController
         from = Integer(params[:from] || 0)
         to = Integer(params[:to] || bills_of_all_users.length) -from
 
-        @bills=bills_of_all_users.drop(from).take(to)
+        @bills=OpenStruct.new({"totalLength" => bills_of_all_users.length, "subset" => bills_of_all_users.drop(from).take(to)})
     end
 
     def show
@@ -26,6 +26,8 @@ class Api::BillController <Api::RestController
     def update
         f = Bill.find_bill_with_user_constraint(params[:id])
         f.update_attributes!(bill_params)
+        cat = Billcategory.new_or_existing(params[:cat_name], current_user.flat)
+        f.billcategory = cat
         f.save!
         respond_with(nil)
     end

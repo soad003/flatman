@@ -38,13 +38,38 @@ angular.module('flatman').controller("financesCtrl", function($scope, financesSe
         return sum !== 0;
     };
 
+    $scope.removePayment = function(payment, overviewMate) {
+        financesService.payment.destroy(payment.id, overviewMate.id, function(data) {
+            $scope.setFinanceOverviewMate(overviewMate);
+        });
+    };
+
     $scope.sliceText = function(entry){
-        if (entry == null)
+        if (entry === null)
             return "-";
         var textlength = entry.length;
-        //var words = entry.split("");
-
+        if (textlength < 25){
+            return entry;
+        }
+        else {
+            var words = entry.slice(0,20) +"...";
+            return words;
+        }
     };
+
+    $scope.setSelectedOverviewMateIndex = function (index){
+        $scope.selectedIndex = index;
+        $scope.test(index);
+    };
+
+    $scope.setFinanceOverviewMate = function(mate) {
+        financesService.finance.get_overview_mate(mate.id, 0,5, function (data){
+            $scope.overviewMates[$scope.selectedIndex].value = data.value;
+            $scope.overviewMates[$scope.selectedIndex].entries = data.entries;
+        });
+    };
+
+          
 
     $scope.chartData = [];
     $scope.finances = financesService.bill.get_range(0, 5);

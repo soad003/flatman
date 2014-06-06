@@ -25,7 +25,8 @@ scope "(:locale)", locale: /en|de/ do
     get '/create_flat', to: :create_flat
     get '/search', to: :search, as: 'search'
     get '/finance_entry', to: :finance_entry, as: 'finance_entry'
-    get '/finances_overview', to: :finances_overview, as: 'finances_overview'
+    get '/bills_overview', to: :bills_overview, as: 'bills_overview'
+    get '/finance_overview_mate', to: :finance_overview_mate, as: 'finance_overview_mate'
     get '/create_message', to: :create_message, as: 'create_message'
     get '/create_payment', to: :create_payment, as: 'create_payment'
   end

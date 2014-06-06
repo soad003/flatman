@@ -16,9 +16,9 @@ class Api::UserControllerTest < ActionController::TestCase
       has 'name'
       has 'email'
       has 'image_path'
+      has 'id'
       has_not 'oauth_token'
       has_not 'uid'
-      has_not 'id'
     end
   end
 

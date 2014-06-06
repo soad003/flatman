@@ -1,0 +1,138 @@
+<h1 class="page-header">
+    <%=t ( '.page_header') %>
+        <div class="btn-group pull-right">
+            <button type="button" class="btn btn-primary dropdown-toggle pull-right" data-toggle="dropdown" id="dropdownMenu1">
+                <span class="glyphicon glyphicon-plus danger"></span>
+                <span class="hidden-xs">
+                    <%=t ( ".add_fin") %>
+                </span>
+                <span class="caret"></span>
+            </button>
+            <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
+                <li>
+                    <a href="/#/finances_new">
+                        <i class="fa fa-credit-card"></i> 
+                        <%=t ( ".newBill") %>
+                    </a>
+                </li>
+                <li>
+                    <a href="/#/create_payment">
+                        <i class="fa fa-money"></i> 
+                        <%=t ( ".newPaym") %>
+                    </a>
+                </li>
+            </ul>
+        </div>
+</h1>
+
+<div class="row" ng-show="overviewMates.length !== 0">
+    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+        <div> <h3>
+         <img style="height:35px; width:35px" class="img-thumbnail" ng-src="{{currentOverviewMate.img_path}}">
+                {{currentOverviewMate.name}}
+                <span ng-show="currentOverviewMate.value > 0">
+                    <%=t ( '.owes_you') %>
+                </span>
+                <span ng-show="currentOverviewMate.value < 0">
+                    <%=t ( '.gets') %>
+                </span>
+                <span ng-class="{'text-success':currentOverviewMate.value > 0, 'text-danger': currentOverviewMate.value < 0}">
+                    {{(currentOverviewMate.value) | customCurrency : '€ '}}
+                </span>
+            </h3>
+        </div>
+        <div class="row adv-table editable-table">
+            <div ng-show="{{currentOverviewMate.entries.length === 0}}">
+                <%=t ( '.no_entries') %>
+            </div>
+            <table ng-hide="{{currentOverviewMate.entries.length === 0}}" class="table table-striped table-hover table-borderless table-scrollable" id="editable-sample">
+                <thead>
+                    <tr>
+                        <th>
+                            <%=t ( '.date') %>
+                        </th>
+                        <th>
+                            <%=t ( '.what') %>
+                        </th>
+                        <th>
+                            <%=t ( '.who_paid')%>
+                        </th>
+                        <th class="text-right">
+                            <%=t ( '.invoice_amount') %>
+                        </th>
+                        <th class="text-right">
+                            <%=t ( '.+') %>
+                        </th>
+                        <th class="text-right">
+                            <%=t ( '.-') %>
+                        </th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-repeat="entry in currentOverviewMate.entries">
+                        <td>
+                            <span class="hidden-xs">{{entry.date| date : 'longDate'}}</span>
+                            <span class="visible-xs">{{entry.date| date : 'shortDate'}}</span>
+                        </td>
+                        <td>
+                            <span ng-show="entry.id === -1">{{entry.what}}</span>
+                            <span ng-show="entry.id !== -1">
+                                <%=t ( '.payment') %>
+                        </td>
+                        <td>
+                            <span ng-show="entry.payer_id === current_user.id">{{current_user.name}}</span>
+                            <span ng-show="entry.payer_id !== current_user.id">{{currentOverviewMate.name}}</span>
+                        </td>
+                        <td class="text-right">
+                            <span ng-show="entry.id === -1">{{entry.total_price| customCurrency : '€ '}}</span>
+                        </td>
+                        <td class="text-right">
+                            <span class="text-success" ng-show="entry.value > 0">{{entry.value| customCurrency : '€ '}}</span>
+                        </td>
+                        <td class="text-right">
+                            <span class="text-danger" ng-show="entry.value < 0">{{math.abs(entry.value)| customCurrency : '€ '}}</span>
+                        </td>
+                        <td>
+                            <button class="btn btn-default btn-xs pull-right" ng-hide="entry.id === -1" ng-click="removePayment(entry)">
+                                <span class="glyphicon glyphicon-trash"></span>
+                            </button>
+                            <div class="btn-group pull-right" ng-show="false">
+                                <button type="button" class="btn btn-default dropdown-toggle btn-xs" data-toggle="dropdown">
+                                    <span class="glyphicon glyphicon-pencil"></span>
+                                </button>
+                                <ul class="dropdown-menu">
+                                    <li>
+                                        <a href="/#/finances_edit/{{finance.id}}">
+                                            <span class="glyphicon glyphicon-pencil"></span>
+                                            <%=t ( ".edit") %>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="" ng-click="removeEntry(finance)">
+                                            <span class="glyphicon glyphicon-trash"></span>
+                                            <%=t ( ".delete") %>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <pagination on-select-page="setPage(page)" total-items="currentOverviewMate.entryLength" page="currentOverviewMate.page" items-per-page="entriesPerPage" max-size="5" class="hidden-xs pagination-sm pull-right" boundary-links="true" ng-hide="entriesPerPage >= currentOverviewMate.entryLength" rotate="true" previous-text="&lsaquo;" next-text="&rsaquo;" first-text="&laquo;" last-text="&raquo;">
+            </pagination>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-3 col-xs-4">
+        <a href="/#/finances" class="btn btn-sm btn-default">
+            <i class="glyphicon glyphicon-arrow-left"></i>
+            <%=t ( '.back') %>
+        </a>
+    </div>
+</div>

@@ -83,21 +83,27 @@ de:
             startDate:
               blank                       : "Bitte gib ein Startdatum an!"
             unit:
-              blank                       : "Bitte gib eine maßeinheit für die Resource an!"
+              blank                       : "Bitte gib eine Einheit für die Resource an!"
             startValue:
               blank                       : "Bitte gib einen Startwert an!"
+              greater_than_or_equal_to    : "Startwert müss größer oder gleich 0 sein!"
+              not_a_number                : "Start Wert muss numerisch sein"
+            pricePerUnit:
+              blank                       : "Bitte git einen Preis für eine Einheit an!"
+              greater_than                : "Preis pro Einheit muss größer als 0 sein!"
+              not_a_number                : "Preis pro Einheitmuss numerisch sein."
         resourceentry:
           attributes:
             value:
               blank                       : "Bitte Wert eingeben."
               not_a_number                : "Wert muss numerisch sein."
-              greater_than                : "Wert muss größer als null sein."
+              greater_than                : "Wert muss größer als 0 sein."
         payment:
           attributes:
             value:
               blank                       : "Bitte Preis eingeben."
               not_a_number                : "Preis muss numerisch sein."
-              greater_than                : "Preis muss größer als null sein."
+              greater_than                : "Preis muss größer als 0 sein."
             payer_id:
               blank                       : "Please add a payer"
         message:
@@ -216,8 +222,8 @@ de:
       page_header                        : "Dashboard"
       items_to_buy                       : "dinge zu kaufen"
       view_shopping_details              : "zu den listen"
-      you_owe                            : "du schuldest ..."
-      you_get                            : "do bekommst ..."
+      you_owe                            : "du schuldest"
+      you_get                            : "du bekommst"
       view_finance_details               : "zeige Abrechnungen"
       items_borrowed                     : "verliehene items"
       view_share_details                 : "zeige items"
@@ -344,6 +350,7 @@ de:
       add_payment                        : "Zahlung eintragen"
       received_money_enter_payment       : "Jemand hat seine Schulden bezahlt?"
       overview_flat_members              : "Übersicht"
+      payment                            : "Zahlung"
     finance_entry:
       page_header_new                    : "neue Rechnung"
       page_header_edit                   : "Rechnung"
@@ -363,20 +370,43 @@ de:
       page_header                        : "Zahlung eingeben"
       back                               : "zurück"
       save                               : "speichern"
-      value                              : "Pries"
+      value                              : "Preis"
       value_placeholder                  : "42,00"
       date                               : "Datum"
       payer                              : "Wer hat seine Schulden beglichen?"
-    finances_overview:
-      page_header                        : "Übersicht"
+    bills_overview:
+      page_header                        : "Rechnungen"
       edit                               : "bearbeiten"
       delete                             : "löschen"
       back                               : "zurück"
       date                               : "Datum"
       name                               : "Name"
       category                           : "Kategorie"
-      value                              : "Ausgaben"
-      month                              : "Monat"
+      value                              : "Preis"
+      who_paid                           : "gezahlt von"
+      splitted_up                        : "wird aufgeteilt "
+      add_fin                            : "Hinzufügen"
+      newBill                            : "Neue Rechnung"
+      newPaym                            : "Neue Zahlung"
+      all                                : "Alle"
+    finance_overview_mate:
+      page_header                        : "Finanzübersicht"
+      delete                             : "löschen"
+      back                               : "zurück"
+      date                               : "Datum"
+      what                               : "Was"
+      category                           : "Kategorie"
+      value                              : "Preis"
+      total_price                        : "Gesamt Preis"
+      contribution                       : "teil Betrag"
+      add_fin                            : "hinzufügen"
+      newBill                            : "Neue Rechnung"
+      newPaym                            : "Neue Zahlung"
+      who_paid                           : "wer hat gezahlt"
+      invoice_amount                     : "Rechnungsbetrag"
+      gets                               : "bekommt"
+      owes_you                           : "schuldet dir"
+      payment                            : "Zahlung"
     user_settings:
       page_header                        : "Dein Profil"
       name                               : "Name"
