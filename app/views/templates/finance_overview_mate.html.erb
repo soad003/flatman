@@ -19,21 +19,7 @@
 
 <div class="row" ng-show="overviewMates.length !== 0">
     <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-        <div> <h3>
-         <img style="height:35px; width:35px" class="img-thumbnail" ng-src="{{currentOverviewMate.img_path}}">
-                {{currentOverviewMate.name}}
-                <span ng-show="currentOverviewMate.value > 0">
-                    <%=t ( '.owes_you') %>
-                </span>
-                <span ng-show="currentOverviewMate.value < 0">
-                    <%=t ( '.gets') %>
-                </span>
-                <span ng-class="{'text-success':currentOverviewMate.value > 0, 'text-danger': currentOverviewMate.value < 0}">
-                    {{(currentOverviewMate.value) | customCurrency : '€ '}}
-                </span>
-            </h3>
-        </div>
-        <div class="row adv-table editable-table">
+        <div class="adv-table editable-table">
             <div ng-show="{{currentOverviewMate.entries.length === 0}}">
                 <%=t ( '.no_entries') %>
             </div>
@@ -108,7 +94,6 @@
                                     </li>
                                 </ul>
                             </div>
-
                         </td>
                     </tr>
                 </tbody>
@@ -117,14 +102,24 @@
             <pagination on-select-page="setPage(page)" total-items="currentOverviewMate.entryLength" page="currentOverviewMate.page" items-per-page="entriesPerPage" max-size="5" class="hidden-xs pagination-sm pull-right" boundary-links="true" ng-hide="entriesPerPage >= currentOverviewMate.entryLength" rotate="true" previous-text="&lsaquo;" next-text="&rsaquo;" first-text="&laquo;" last-text="&raquo;">
             </pagination>
         </div>
+        <div> <h4>
+                {{currentOverviewMate.name}}
+                <span ng-show="currentOverviewMate.value > 0">
+                    <%=t ( '.owes_you') %>
+                </span>
+                <span ng-show="currentOverviewMate.value < 0">
+                    <%=t ( '.gets') %>
+                </span>
+                <span ng-class="{'text-success':currentOverviewMate.value > 0, 'text-danger': currentOverviewMate.value < 0}">
+                    {{(currentOverviewMate.value) | customCurrency : '€ '}}
+                </span>
+            </h4>
     </div>
 </div>
 
-<div class="row">
     <div class="col-md-3 col-xs-4">
         <a href="/#/finances" class="btn btn-sm btn-default">
             <i class="glyphicon glyphicon-arrow-left"></i>
             <%=t ( '.back') %>
         </a>
     </div>
-</div>

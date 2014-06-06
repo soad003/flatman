@@ -1,5 +1,4 @@
 angular.module('flatman').controller("financesCtrl", function($scope, financesService, flatService, Util) {
-    
     $scope.Textcut = [];
 
     $scope.switchChevron = function(index){
@@ -59,7 +58,7 @@ angular.module('flatman').controller("financesCtrl", function($scope, financesSe
 
     $scope.setSelectedOverviewMateIndex = function (index){
         $scope.selectedIndex = index;
-        $scope.test(index);
+        $scope.switchChevron(index);
     };
 
     $scope.setFinanceOverviewMate = function(mate) {
@@ -68,19 +67,13 @@ angular.module('flatman').controller("financesCtrl", function($scope, financesSe
             $scope.overviewMates[$scope.selectedIndex].entries = data.entries;
         });
     };
-
-          
-
     $scope.chartData = [];
     $scope.finances = financesService.bill.get_range(0, 5);
-    
     $scope.overviewMates = financesService.finance.get_overview_mates(0, 5);
-
     $scope.AllCategories = financesService.category.get_all(function(data) {
         $scope.chartData = financesService.category.get_chart_view(data);
     });
 
     $scope.getFlatMates = flatService.mates.get();
 
-      
 });
