@@ -390,7 +390,7 @@ en:
       newPaym                            : "New Payment"
       all                                : "all"
     finance_overview_mate:
-      page_header                        : "Finanzoverview"
+      page_header                        : "Overview"
       delete                             : "delete"
       back                               : "back"
       date                               : "date"

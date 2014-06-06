@@ -390,7 +390,7 @@ de:
       newPaym                            : "Neue Zahlung"
       all                                : "Alle"
     finance_overview_mate:
-      page_header                        : "Finanzübersicht"
+      page_header                        : "Übersicht"
       delete                             : "löschen"
       back                               : "zurück"
       date                               : "Datum"
@@ -403,7 +403,7 @@ de:
       newBill                            : "Neue Rechnung"
       newPaym                            : "Neue Zahlung"
       who_paid                           : "wer hat gezahlt"
-      invoice_amount                     : "Rechnungsbetrag"
+      invoice_amount                     : "Rechungsbetrag"
       gets                               : "bekommt"
       owes_you                           : "schuldet dir"
       payment                            : "Zahlung"

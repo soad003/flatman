@@ -36,14 +36,14 @@
                 <th>
                     <%=t ( ".name") %>
                 </th>
-                <th>
+                <th class="hidden-xs">
                     <%=t ( ".category") %>
                 </th>
                 <th>
                     <%=t ( ".who_paid") %>
                 </th>
-                <th>
-                    <%=t (".splitted_up") %>
+                <th class="hidden-xs">
+                    <%=t ( ".splitted_up") %>
                 </th>
                 <th class="text-right">
                     <%=t ( ".value") %>
@@ -53,19 +53,24 @@
         </thead>
         <tbody>
             <tr ng-repeat="finance in finances.subset track by $index">
-                <td>{{finance.date | date : 'mediumDate'}}</td>
+
+                <td>
+                    <span class="hidden-xs">{{finance.date| date : 'longDate'}}</span>
+                    <span class="visible-xs">{{finance.date| date : 'shortDate'}}</span>
+                </td>
                 <td>{{finance.name}}</th>
-                    <td>{{finance.cat_name}}</td>
+                    <td class="hidden-xs">{{finance.cat_name}}</td>
                     <td>
                         <span ng-class="{'bold': finance.user_id === current_user.id}">{{finance.user_name.split(' ')[0]}}
                             <span>
                     </td>
-                    <td>
+                    <td class="hidden-xs">
                         <span ng-show="finance.isPaidBy.length === mates.length">
                             <%=t ( ".all") %>
                         </span>
                         <span ng-show="finance.isPaidBy.length !== mates.length" ng-repeat="user in finance.isPaidBy" ng-class="{'bold': user.id === current_user.id}">
-                            {{user.name.split(' ')[0]}}<span ng-show="$index != finance.isPaidBy.length-1">, </span>
+                            {{user.name.split(' ')[0]}}
+                            <span ng-show="$index != finance.isPaidBy.length-1">,</span>
                         </span>
                     </td>
                     <td class="text-right">{{finance.value | customCurrency : '€ '}}</td>
@@ -95,7 +100,7 @@
         <tfoot>
             <tr>
                 <td colspan="7">
-                    <pagination  on-select-page="setPage(page)" total-items="finances.totalLength" page="current_page" items-per-page="entriesPerPage" max-size="5" class="hidden-xs pagination-sm pull-right" boundary-links="true" ng-hide="entriesPerPage >= finances.totalLength" rotate="true" previous-text="&lsaquo;" next-text="&rsaquo;" first-text="&laquo;" last-text="&raquo;">
+                    <pagination on-select-page="setPage(page)" total-items="finances.totalLength" page="current_page" items-per-page="entriesPerPage" max-size="5" class="hidden-xs pagination-sm pull-right" boundary-links="true" ng-hide="entriesPerPage >= finances.totalLength" rotate="true" previous-text="&lsaquo;" next-text="&rsaquo;" first-text="&laquo;" last-text="&raquo;">
                     </pagination>
                 </td>
             </tr>
