@@ -86,6 +86,12 @@ en:
               blank                       : "Please provide a name for the unit of the resource!"
             startValue:
               blank                       : "Please enter a start value!"
+              greater_than_or_equal_to    : "Start value must be greater or equal zero."
+              not_a_number                : "Start value must be a number."
+            pricePerUnit:
+              blank                       : "Please provide a price for the unit of the resource!"
+              greater_than                : "Price per unit must be greater than zero."
+              not_a_number                : "Price per unit must be a number."
         resourceentry:
           attributes:
             value:
@@ -255,6 +261,7 @@ en:
       send                               : "send"
       back                               : "back"
       new_text_placeholder               : "Enter text"
+      old_messages                       : "Get older messages"
     resources:
       page_header                        : "Resources"
       page_title                         : "Resource"
@@ -464,6 +471,8 @@ en:
       hidden_items                       : "hidden items"
       hidden_info                        : "hidden items are just visible for you and cannot be found by anyone"
       confirm_delete                     : "do you really want to delete this item?"
+      borrowed_info                      : "borrowed items info, borrowed items info"
+      borrowed_items                     : "borrowed items"
     shareditem:
       add_file                           : "add file"
       upload                             : "upload"

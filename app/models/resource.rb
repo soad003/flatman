@@ -1,13 +1,21 @@
 class Resource < ActiveRecord::Base
 	belongs_to	              :flat
-	has_many	              :resourceentries
+	has_many	                :resourceentries
 	attr_accessor             :entryLength
 	attr_accessor             :chart
 	attr_accessor             :chartDateRange
   attr_accessor             :overview
-   attr_accessor             :entries
-    validates                 :name,:startDate, :unit, :pricePerUnit, :startValue,  presence: true
-    validates_numericality_of :pricePerUnit, :greater_than => 0
+  attr_accessor             :entries
+  validates                 :name,:startDate, :unit, :pricePerUnit, :startValue,  presence: true
+  validates_numericality_of :pricePerUnit, :greater_than => 0
+  validates_numericality_of :startValue, :greater_than_or_equal_to => 0
+
+  before_save :setDefault                #doesn't work with database default value
+
+    def setDefault
+      self.monthlyCost ||= 0.0           #will set the default value only if it's nil
+      self.annualCost ||= 0.0
+    end
 
     def self.get_months (date)
       (date.year*12+date.month)

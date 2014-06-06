@@ -19,7 +19,7 @@ angular.module('flatman').factory("Util",function($rootScope,$location) {
             flat_settings: function(){$location.path("flat_settings");},
             search: function(term){$location.path("search/"+escape(term));},
             finances_done_shopping: function(name){$location.path("finances_done_shopping/"+escape(name));},
-            back: function(url){if (url != undefined) $location.path(url); else history.back();}
+            back: function(url){if (url !== undefined) $location.path(url); else history.back();}
         }
     };
 

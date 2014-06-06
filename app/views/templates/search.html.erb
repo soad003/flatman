@@ -21,7 +21,9 @@
 	      			 <h4 class="media-heading" ng-show="item.data.description"><%=t(".description")%></h4>
 	      			 <p ng-show="item.data.description">{{item.data.description}}</p>
 	      			 <h4 ng-show="!item.data.description"><%=t(".no_description_available")%></h4>
-	      			 
+	      			 <a href="/#/create_message/{{item.flat_id}}">
+	      			 <button class="btn btn-primary pull-right">send borrow request</button>
+	      			 </a>
 	      			
 	      			
 	      			 <h5 ng-show="item.data.tags" class="media-heading"><%=t(".tags")%></h5>

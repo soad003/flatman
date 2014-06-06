@@ -1,7 +1,7 @@
 angular.module('flatman').controller("financesOverviewMateCtrl", function($scope, $routeParams,  financesService, userService, Util){
 
     $scope.setPage = function(page) {
-        $currentOverviewMate.page = page;
+        $scope.currentOverviewMate.page = page;
         $scope.setPaymentEntries();
     };
 
@@ -14,11 +14,16 @@ angular.module('flatman').controller("financesOverviewMateCtrl", function($scope
     };
 
     $scope.setPaymentEntries = function() {
-        financesService.finance.get_overview_mate($scope.currentOverviewMate.id, ($scope.currentOverviewMate.page - 1) * $scope.entriesPerPage, $scope.currentOverviewMate.page * $scope.entriesPerPage, function (data){
-            $scope.currentOverviewMate.value = data.value;
-            $scope.currentOverviewMate.entries = data.entries;
-            $scope.currentOverviewMate.entryLength = data.entryLength;
-        });
+        financesService.finance.get_overview_mate(
+            $scope.currentOverviewMate.id,
+            ($scope.currentOverviewMate.page - 1) * $scope.entriesPerPage,
+            $scope.currentOverviewMate.page * $scope.entriesPerPage,
+            function (data){
+                $scope.currentOverviewMate.value = data.value;
+                $scope.currentOverviewMate.entries = data.entries;
+                $scope.currentOverviewMate.entryLength = data.entryLength;
+            }
+        );
     };
 
     $scope.current_user = userService.get();

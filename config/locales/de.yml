@@ -83,21 +83,27 @@ de:
             startDate:
               blank                       : "Bitte gib ein Startdatum an!"
             unit:
-              blank                       : "Bitte gib eine maßeinheit für die Resource an!"
+              blank                       : "Bitte gib eine Einheit für die Resource an!"
             startValue:
               blank                       : "Bitte gib einen Startwert an!"
+              greater_than_or_equal_to    : "Startwert müss größer oder gleich 0 sein!"
+              not_a_number                : "Start Wert muss numerisch sein"
+            pricePerUnit:
+              blank                       : "Bitte git einen Preis für eine Einheit an!"
+              greater_than                : "Preis pro Einheit muss größer als 0 sein!"
+              not_a_number                : "Preis pro Einheitmuss numerisch sein."
         resourceentry:
           attributes:
             value:
               blank                       : "Bitte Wert eingeben."
               not_a_number                : "Wert muss numerisch sein."
-              greater_than                : "Wert muss größer als null sein."
+              greater_than                : "Wert muss größer als 0 sein."
         payment:
           attributes:
             value:
               blank                       : "Bitte Preis eingeben."
               not_a_number                : "Preis muss numerisch sein."
-              greater_than                : "Preis muss größer als null sein."
+              greater_than                : "Preis muss größer als 0 sein."
             payer_id:
               blank                       : "Please add a payer"
         message:
@@ -254,6 +260,7 @@ de:
       send                               : "senden"
       back                               : "zurück"
       new_text_placeholder               : "Text eingeben"
+      old_messages                       : "Ältere Nachrichten"
     resources:
       page_header                        : "Resourcen"
       page_title                         : "Resource"
