@@ -51,7 +51,7 @@ angular.module('flatman').service("resourceService",function($resource) {
             },
             getSumCosts: function (list){
                 var sum = 0;
-                _(list).each(function (entry){ sum += entry.cost;});
+                _(list).each(function (entry){sum += entry.cost;});
                 return sum;
             }
 

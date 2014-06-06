@@ -406,6 +406,7 @@ en:
       invoice_amount                     : "invoice amount"
       gets                               : "gets"
       owes_you                           : "owes you"
+      payment                            : "Payment"
     user_settings:
       page_header                        : "Your Profile"
       name                               : "name"

@@ -406,6 +406,7 @@ de:
       invoice_amount                     : "Rechnungsbetrag"
       gets                               : "bekommt"
       owes_you                           : "schuldet dir"
+      payment                            : "Zahlung"
     user_settings:
       page_header                        : "Dein Profil"
       name                               : "Name"

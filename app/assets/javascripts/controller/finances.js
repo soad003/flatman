@@ -34,6 +34,7 @@ angular.module('flatman').controller("financesCtrl", function($scope, financesSe
 
     $scope.setSelectedOverviewMateIndex = function (index){
         $scope.selectedIndex = index;
+        $scope.test(index);
     };
 
     $scope.setFinanceOverviewMate = function(mate) {
