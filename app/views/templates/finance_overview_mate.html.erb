@@ -2,23 +2,15 @@
     <%=t ( '.page_header') %>
         <div class="btn-group pull-right">
             <button type="button" class="btn btn-primary dropdown-toggle pull-right" data-toggle="dropdown" id="dropdownMenu1">
-                <span class="glyphicon glyphicon-plus danger"></span>
-                <span class="hidden-xs">
-                    <%=t ( ".add_fin") %>
-                </span>
+                <i class="glyphicon glyphicon-user"></i> 
+                {{currentOverviewMate.name}}
                 <span class="caret"></span>
             </button>
-            <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
-                <li>
-                    <a href="/#/finances_new">
-                        <i class="fa fa-credit-card"></i> 
-                        <%=t ( ".newBill") %>
-                    </a>
-                </li>
-                <li>
-                    <a href="/#/create_payment">
-                        <i class="fa fa-money"></i> 
-                        <%=t ( ".newPaym") %>
+            <ul class="dropdown-menu" role="menu">
+                <li ng-repeat="overviewMate in overviewMates">
+                    <a href="" ng-click="setCurrentOverviewMate(overviewMate)">
+                        <i class="glyphicon glyphicon-user"></i> 
+                        {{overviewMate.name}}
                     </a>
                 </li>
             </ul>
