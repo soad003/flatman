@@ -1,7 +1,7 @@
 class Message < ActiveRecord::Base
 	belongs_to     	:sender, :class_name => 'User'
 	belongs_to  	:receiver, :class_name => 'User'
-    validates       :receiver_id, :text, presence: true
+    validates       :sender_id, :receiver_id, :text, presence: true
 
 	def self.find_messages(mesId, current_user, quantity)
         retList = Array.new
@@ -34,7 +34,7 @@ class Message < ActiveRecord::Base
     end
 
     def self.find_partner(mesId, current_user)
-        if mesId != "0"
+        if mesId != "0" #first flatchat message
             user = Message.find(mesId).sender_id
             user2 = Message.find(mesId).receiver_id
             if user == current_user.id
