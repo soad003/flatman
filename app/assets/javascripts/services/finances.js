@@ -33,7 +33,7 @@ angular.module('flatman').factory("financesService", function($resource){
                 _(finance).each (function (entry){
                     sum += entry.value;
                 })
-                return Math.round(sum);
+                return sum;
             },
             get_overview_mates: function (from, to, succH, errH){
                 return overviewMates.get({from: from, to: to},succH, errH);

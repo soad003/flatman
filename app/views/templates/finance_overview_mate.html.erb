@@ -1,47 +1,29 @@
-<h1 class="page-header">
-    <%=t ( '.page_header') %>
+<div class="page-header">
+    <h1>
+        <span class="fa fa-bitcoin"></span>
+        <span class="hidden-xs">
+            <%=t ( ".page_header") %>
+        </span>
         <div class="btn-group pull-right">
             <button type="button" class="btn btn-primary dropdown-toggle pull-right" data-toggle="dropdown" id="dropdownMenu1">
-                <span class="glyphicon glyphicon-plus danger"></span>
-                <span class="hidden-xs">
-                    <%=t ( ".add_fin") %>
-                </span>
+                <i class="glyphicon glyphicon-user"></i>
+                <span>{{currentOverviewMate.name}}</span>
                 <span class="caret"></span>
             </button>
-            <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
-                <li>
-                    <a href="/#/finances_new">
-                        <i class="fa fa-credit-card"></i> 
-                        <%=t ( ".newBill") %>
-                    </a>
-                </li>
-                <li>
-                    <a href="/#/create_payment">
-                        <i class="fa fa-money"></i> 
-                        <%=t ( ".newPaym") %>
+            <ul class="dropdown-menu" role="menu">
+                <li ng-repeat="overviewMate in overviewMates">
+                    <a href="" ng-click="setCurrentOverviewMate(overviewMate)">
+                        <i class="glyphicon glyphicon-user"></i> 
+                        <span>{{overviewMate.name}}</span>
                     </a>
                 </li>
             </ul>
         </div>
-</h1>
-
+    </h1>
+</div>
 <div class="row" ng-show="overviewMates.length !== 0">
     <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-        <div> <h3>
-         <img style="height:35px; width:35px" class="img-thumbnail" ng-src="{{currentOverviewMate.img_path}}">
-                {{currentOverviewMate.name}}
-                <span ng-show="currentOverviewMate.value > 0">
-                    <%=t ( '.owes_you') %>
-                </span>
-                <span ng-show="currentOverviewMate.value < 0">
-                    <%=t ( '.gets') %>
-                </span>
-                <span ng-class="{'text-success':currentOverviewMate.value > 0, 'text-danger': currentOverviewMate.value < 0}">
-                    {{(currentOverviewMate.value) | customCurrency : '€ '}}
-                </span>
-            </h3>
-        </div>
-        <div class="row adv-table editable-table">
+        <div class="adv-table editable-table">
             <div ng-show="{{currentOverviewMate.entries.length === 0}}">
                 <%=t ( '.no_entries') %>
             </div>
@@ -54,17 +36,17 @@
                         <th>
                             <%=t ( '.what') %>
                         </th>
-                        <th>
+                        <th class="hidden-xs">
                             <%=t ( '.who_paid')%>
                         </th>
-                        <th class="text-right">
+                        <th class="text-right hidden-xs">
                             <%=t ( '.invoice_amount') %>
                         </th>
                         <th class="text-right">
-                            <%=t ( '.+') %>
+                            +
                         </th>
                         <th class="text-right">
-                            <%=t ( '.-') %>
+                            -
                         </th>
                         <th></th>
                     </tr>
@@ -80,11 +62,11 @@
                             <span ng-show="entry.id !== -1">
                                 <%=t ( '.payment') %>
                         </td>
-                        <td>
+                        <td class="hidden-xs">
                             <span ng-show="entry.payer_id === current_user.id">{{current_user.name}}</span>
                             <span ng-show="entry.payer_id !== current_user.id">{{currentOverviewMate.name}}</span>
                         </td>
-                        <td class="text-right">
+                        <td class="text-right hidden-xs">
                             <span ng-show="entry.id === -1">{{entry.total_price| customCurrency : '€ '}}</span>
                         </td>
                         <td class="text-right">
@@ -116,7 +98,6 @@
                                     </li>
                                 </ul>
                             </div>
-
                         </td>
                     </tr>
                 </tbody>
@@ -125,14 +106,28 @@
             <pagination on-select-page="setPage(page)" total-items="currentOverviewMate.entryLength" page="currentOverviewMate.page" items-per-page="entriesPerPage" max-size="5" class="hidden-xs pagination-sm pull-right" boundary-links="true" ng-hide="entriesPerPage >= currentOverviewMate.entryLength" rotate="true" previous-text="&lsaquo;" next-text="&rsaquo;" first-text="&laquo;" last-text="&raquo;">
             </pagination>
         </div>
+        <div>
+            <b>{{currentOverviewMate.name}}
+                <span ng-show="currentOverviewMate.value > 0">
+                    <%=t ( '.owes_you') %>
+                </span>
+                <span ng-show="currentOverviewMate.value < 0">
+                    <%=t ( '.gets') %>
+                </span>
+                <span ng-class="{'text-success':currentOverviewMate.value > 0, 'text-danger': currentOverviewMate.value < 0}">
+                    {{(currentOverviewMate.value) | customCurrency : '€ '}}
+                </span>
+                </b>
+                <hr>
+        </div>
     </div>
-</div>
 
-<div class="row">
-    <div class="col-md-3 col-xs-4">
-        <a href="/#/finances" class="btn btn-sm btn-default">
-            <i class="glyphicon glyphicon-arrow-left"></i>
-            <%=t ( '.back') %>
-        </a>
+    <div class="form-group">
+        <div class="col-md-3 col-xs-4">
+            <a href="" ng-click="Util.redirect_to.back()" class="btn btn-sm btn-default">
+                <i class="glyphicon glyphicon-arrow-left"></i> 
+                <%=t ( '.back') %>
+            </a>
+        </div>
     </div>
 </div>

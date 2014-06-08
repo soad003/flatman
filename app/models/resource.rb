@@ -121,7 +121,7 @@ class Resource < ActiveRecord::Base
       info = OpenStruct.new({name: "", unit: "", usage: "", cost:""})
       sum = 0
       if statistic_data.labels.size != 0
-          for i in 0 ... (statistic_data.labels.size-1)
+          for i in 0 ... statistic_data.labels.size
             if (statistic_data.labels[i] >= from && statistic_data.labels[i] <= to)
               sum += statistic_data.usages[i]
             end

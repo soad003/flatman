@@ -5,6 +5,10 @@ angular.module('flatman').controller("financesOverviewMateCtrl", function($scope
         $scope.setPaymentEntries();
     };
 
+    $scope.setCurrentOverviewMate = function (overviewMate){
+        $scope.currentOverviewMate = overviewMate;
+    }
+
     $scope.removePayment = function(payment) {
         financesService.payment.destroy(payment.id, $scope.currentOverviewMate.id, function(data) {
             if ($scope.currentOverviewMate.entryLength === $scope.entriesPerPage)

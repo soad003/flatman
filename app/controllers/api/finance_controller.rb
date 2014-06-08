@@ -5,7 +5,6 @@ class Api::FinanceController <Api::RestController
         billsFlat=current_user.flat.users.collect(&:bills).flatten
                                                   .uniq(&:id)
         @catSum = Bill.get_categories_and_sum(@catName, billsFlat)
-        #@name=Bill.includes(:billcategory).references(:billcategory).group("billcategories.name").sum(:value)
     end
 
     def get_overview_mates

@@ -44,7 +44,7 @@ class Api::ResourceController < Api::RestController
 
       resources.each do |resource|
         oldestEntry = Resource.get_oldest_entryDate(resource)
-        statistic_data = Resource.get_statistic_data(oldestEntry - 30, oldestEntry, resource)
+        statistic_data = Resource.get_statistic_data(oldestEntry - 29, oldestEntry, resource)
         returnList << Resource.get_dashboard_data(statistic_data, resource, oldestEntry - 30, oldestEntry)
       end
       @dashboardList=returnList
