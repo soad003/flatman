@@ -24,6 +24,7 @@ chrisi:
   email: ch.test@testen.com
   name: Schöpfi
   flat: wg_chri
+  provider: facebook
   uid: 1438808020
   oauth_token: blabla
 

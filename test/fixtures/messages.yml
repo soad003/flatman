@@ -22,7 +22,7 @@ three:
  sender_id: 1
  header: "flatchat3"
  text: "hello3"
- readers: [1]
+ readers: [1, 4]
  deleted: [3]
 
 four: 
@@ -48,3 +48,21 @@ six:
  header: ""
  text: "hello6"
  read: false
+
+seven:
+ id: 7
+ receiver_id: 3
+ sender_id: 3
+ header: "flatchat3"
+ text: "hello7"
+ readers: [3]
+ deleted: []
+
+eight:
+ id: 8
+ receiver_id: 4
+ sender_id: 4
+ header: "flatchat3"
+ text: "hello8"
+ readers: [3, 4]
+ deleted: [3]
