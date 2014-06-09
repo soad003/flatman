@@ -39,6 +39,16 @@ angular.module('flatman').controller("sharedItemCtrl", function($scope, $routePa
 			}, function(error) {
 			});
 		};
+		
+		$scope.showImage = function(source) {
+		$.magnificPopup.open({
+		    items: {
+		      src: source
+		    },
+		    type: 'image'
+		});
+	 
+	};
 
 	});
 

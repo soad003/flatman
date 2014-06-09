@@ -112,4 +112,10 @@ input[type='number'] {
   text-decoration: line-through;
   color: #ccc;
 }
+.panel-title a {
+  display: block;
+}
 
+.sharing-item .input-group .form-control {
+  font-size: 16px!important;
+}

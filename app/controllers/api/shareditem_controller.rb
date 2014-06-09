@@ -5,11 +5,7 @@ class Api::ShareditemController < Api::RestController
     item=Shareditem.find(params[:id])
 
     if item.tags
-      item = Shareditem.find(params[:id])
-      a = item.tags.split(",")
-      b = a.collect{|x| x.gsub(/\s+/, "")}
-      c = b.map { |v| {:text => v} }
-      item.tags = c
+      item.tags  = item.tags.split(",").collect{|x| x.gsub(/\s+/, "")}.map { |v| {:text => v} } 
     end
 
     respond_with(item)
