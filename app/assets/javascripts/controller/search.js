@@ -6,12 +6,11 @@ angular.module('flatman').controller("searchCtrl",function($scope,$routeParams,s
     });
 	
 	$scope.showImage = function(source) {
-		console.log(source);
-		 $(".show-image").magnificPopup({
+		$.magnificPopup.open({
 		    items: {
 		      src: source
 		    },
-		    type: 'image' // this is default type
+		    type: 'image'
 		});
 	 
 	};
