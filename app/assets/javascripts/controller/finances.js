@@ -1,8 +1,7 @@
 angular.module('flatman').controller("financesCtrl", function($scope, financesService, flatService, Util) {
-    
- 
+    $scope.Textcut = [];
 
-    $scope.test = function(index){
+    $scope.switchChevron = function(index){
         $('#collapse' + index).on('show.bs.collapse', function () {
             $(this).parent("div").find(".glyphicon-chevron-right").removeClass("glyphicon-chevron-right").addClass("glyphicon-chevron-down");
         });
@@ -30,7 +29,7 @@ angular.module('flatman').controller("financesCtrl", function($scope, financesSe
     };
 
     $scope.enoughEntries = function() {
-        return $scope.AllCategories.length > 2;
+        return $scope.AllCategories.length > 0;
     };
 
     $scope.arePaymentsToShow = function (){
@@ -38,20 +37,43 @@ angular.module('flatman').controller("financesCtrl", function($scope, financesSe
         return sum !== 0;
     };
 
-    $scope.sliceText = function(data){
-        
+    $scope.removePayment = function(payment, overviewMate) {
+        financesService.payment.destroy(payment.id, overviewMate.id, function(data) {
+            $scope.setFinanceOverviewMate(overviewMate);
+        });
     };
 
+    $scope.sliceText = function(entry){
+        if (entry === null)
+            return "-";
+        var textlength = entry.length;
+        if (textlength < 25){
+            return entry;
+        }
+        else {
+            var words = entry.slice(0,20) +"...";
+            return words;
+        }
+    };
+
+    $scope.setSelectedOverviewMateIndex = function (index){
+        $scope.selectedIndex = index;
+        $scope.switchChevron(index);
+    };
+
+    $scope.setFinanceOverviewMate = function(mate) {
+        financesService.finance.get_overview_mate(mate.id, 0,5, function (data){
+            $scope.overviewMates[$scope.selectedIndex].value = data.value;
+            $scope.overviewMates[$scope.selectedIndex].entries = data.entries;
+        });
+    };
     $scope.chartData = [];
     $scope.finances = financesService.bill.get_range(0, 5);
-    
     $scope.overviewMates = financesService.finance.get_overview_mates(0, 5);
-
     $scope.AllCategories = financesService.category.get_all(function(data) {
         $scope.chartData = financesService.category.get_chart_view(data);
     });
 
     $scope.getFlatMates = flatService.mates.get();
 
-      
 });

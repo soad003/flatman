@@ -86,6 +86,12 @@ en:
               blank                       : "Please provide a name for the unit of the resource!"
             startValue:
               blank                       : "Please enter a start value!"
+              greater_than_or_equal_to    : "Start value must be greater or equal zero."
+              not_a_number                : "Start value must be a number."
+            pricePerUnit:
+              blank                       : "Please provide a price for the unit of the resource!"
+              greater_than                : "Price per unit must be greater than zero."
+              not_a_number                : "Price per unit must be a number."
         resourceentry:
           attributes:
             value:
@@ -217,8 +223,8 @@ en:
       page_header                        : "Dashboard"
       items_to_buy                       : "items to buy"
       view_shopping_details              : "view lists"
-      you_owe                            : "you owe ..."
-      you_get                            : "you get ..."
+      you_owe                            : "you owe"
+      you_get                            : "you get"
       view_finance_details               : "show clearing"
       items_borrowed                     : "items borrowed"
       view_share_details                 : "view items"
@@ -255,6 +261,7 @@ en:
       send                               : "send"
       back                               : "back"
       new_text_placeholder               : "Enter text"
+      old_messages                       : "Get older messages"
     resources:
       page_header                        : "Resources"
       page_title                         : "Resource"
@@ -343,6 +350,7 @@ en:
       add_payment                        : "add payment"
       received_money_enter_payment       : "You received money?"
       overview_flat_members              : "Overview Finances"
+      payment                            : "Payment"
     finance_entry:
       page_header_new                    : "New Bill"
       page_header_edit                   : "Bill"
@@ -366,16 +374,39 @@ en:
       value_placeholder                  : "42.00"
       date                               : "date"
       payer                              : "who paid you?"
-    finances_overview:
-      page_header                        : "Overview"
+    bills_overview:
+      page_header                        : "Bills"
       edit                               : "edit"
       delete                             : "delete"
       back                               : "back"
       date                               : "date"
       name                               : "name"
       category                           : "category"
-      value                              : "expense"
-      month                              : "month"
+      value                              : "price"
+      who_paid                           : "paid by"
+      splitted_up                        : "splitted up to"
+      add_fin                            : "Add"
+      newBill                            : "New Bill"
+      newPaym                            : "New Payment"
+      all                                : "all"
+    finance_overview_mate:
+      page_header                        : "Overview"
+      delete                             : "delete"
+      back                               : "back"
+      date                               : "date"
+      what                               : "what"
+      category                           : "category"
+      value                              : "price"
+      total_price                        : "total price"
+      contribution                       : "contribution"
+      add_fin                            : "Add"
+      newBill                            : "new Bill"
+      newPaym                            : "new Payment"
+      who_paid                           : "who paid"
+      invoice_amount                     : "invoice amount"
+      gets                               : "gets"
+      owes_you                           : "owes you"
+      payment                            : "Payment"
     user_settings:
       page_header                        : "Your Profile"
       name                               : "name"

@@ -12,11 +12,21 @@
 #  end
 
 niko:
+  id: 2
   email: niko1003@gmx.net
   name: Niko Risslegger
   provider: facebook
   uid: 1438808021
   oauth_token: wuseldusel
+
+chrisi:
+  id: 1
+  email: ch.test@testen.com
+  name: Schöpfi
+  flat: wg_chri
+  provider: facebook
+  uid: 1438808020
+  oauth_token: blabla
 
 michi:
   email: michi@test.com
@@ -27,6 +37,7 @@ michi:
   oauth_token: wuseldusel
 
 clemi:
+  id: 4
   email: cle@test.com
   name: Clemens Brunner
   flat: wg_clemi

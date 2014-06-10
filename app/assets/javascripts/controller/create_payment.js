@@ -2,7 +2,7 @@ angular.module('flatman').controller("createPaymentCtrl",function($scope, financ
 	$scope.createPayment = function (){
 		financesService.payment.create($scope.newPayment.payer_id, $scope.newPayment.date, $scope.newPayment.value, 
 		function(data){
-				location.href ="/#/finances";
+				Util.redirect_to.back();
 			});
 	};
 

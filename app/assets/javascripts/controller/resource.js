@@ -80,7 +80,6 @@ angular.module('flatman').controller("resourceCtrl", function($scope, $filter, r
 
 
     $scope.resources = resourceService.resource.getAll(function() {
-        $scope.showIntro = $scope.resources.length === 0;
         _.each($scope.resources, function(resource, i) {
             resource.index = i;
             resource.showChart = true;
@@ -88,6 +87,5 @@ angular.module('flatman').controller("resourceCtrl", function($scope, $filter, r
             resource.date = new Date();
         });
     });
-    $scope.showIntro = false;
     $scope.entriesPerPage = 5;
 });

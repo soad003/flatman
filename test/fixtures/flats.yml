@@ -21,3 +21,9 @@ wg_michi:
   street: Westbahnhof
   city: Innsbruck
   zip: 6020
+
+wg_chri:
+  name: Chri WG
+  street: Home
+  city: NBB
+  zip: 6336

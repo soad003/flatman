@@ -13,7 +13,7 @@
     		
     		
     		<div class="col-lg-3">
-	      			<img ng-click="showImage(item.data.image)" class="img-rounded show-image pointer" width="80" ng-src="{{item.data.thumb}}"   >
+	      			<img ng-click="showImage(item.data.image)" class="img-rounded show-image pointer" width="80" ng-src="{{item.data.thumb}}">
 			</div>
 			<div class="col-lg-9 ">
 					 <p><%=t(".flatname")%>: {{item.flatname}} | <%=t(".status")%>: <span ng-show="item.data.available"><%=t(".currently_available")%></span><span ng-show="!item.data.available"><%=t(".currently_borrowed")%></span></p>

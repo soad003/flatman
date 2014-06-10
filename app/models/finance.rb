@@ -1,6 +1,6 @@
 class Finance
 	def self.get_overview_mates (user, from, to)
-		list = (user.flat.users.map {|mate|
+		(user.flat.users.map {|mate|
 					if (mate.id != user.id)
 						overview_mate = get_overview_mate(user, mate)
 						overview_mate.entries = overview_mate.entries.drop(from).take(to)
@@ -32,7 +32,7 @@ class Finance
     def self.getEntrysOfPayments (payments, sign)
     	list = []
     	payments.each do |payment|
-    		list << OpenStruct.new({"id" => payment.id, "date" => payment.date,"what" => "Payment","value" => (payment.value*sign)})
+    		list << OpenStruct.new({"id" => payment.id,"payer_id" => payment.payer.id, "date" => payment.date,"what" => "","total_price" => (payment.value*sign),"value" => (payment.value*sign)})
     	end
     	list
     end
@@ -41,7 +41,7 @@ class Finance
     	list = []
     	bills.each do |bill|
     		partialAmount = bill.value / bill.users.length
-    		list << OpenStruct.new({"id" => -1, "date" => bill.date,"what" => bill.text, "value" => partialAmount*sign})
+    		list << OpenStruct.new({"id" => -1, "payer_id" => bill.user.id, "date" => bill.date,"what" => bill.text,"total_price" => bill.value, "value" => partialAmount*sign})
     	end
     	list
     end

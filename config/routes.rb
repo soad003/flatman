@@ -25,7 +25,8 @@ scope "(:locale)", locale: /en|de/ do
     get '/create_flat', to: :create_flat
     get '/search', to: :search, as: 'search'
     get '/finance_entry', to: :finance_entry, as: 'finance_entry'
-    get '/finances_overview', to: :finances_overview, as: 'finances_overview'
+    get '/bills_overview', to: :bills_overview, as: 'bills_overview'
+    get '/finance_overview_mate', to: :finance_overview_mate, as: 'finance_overview_mate'
     get '/create_message', to: :create_message, as: 'create_message'
     get '/create_payment', to: :create_payment, as: 'create_payment'
   end
@@ -66,6 +67,7 @@ scope "(:locale)", locale: /en|de/ do
    resources :message, only: [:index, :create, :update, :destroy]
 
    get '/message/messages/:id' => 'message#get_messages'
+   get '/message/messages/:id/:quantity' => 'message#get_messages'
    get '/message/:mes_id/partner' => 'message#find_partner'
    get '/message/:mes_id/partner/:option' => 'message#find_active_chat'
    get '/message/users' => 'message#get_users'

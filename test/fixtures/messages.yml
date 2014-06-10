@@ -1,11 +1,68 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
 
-# This model initially had no columns defined.  If you add columns to the
-# model remove the '{}' from the fixture names and add the columns immediately
-# below each fixture, per the syntax in the comments below
-#
-one: {}
-# column: value
-#
-two: {}
-#  column: value
+one: 
+ id: 1
+ receiver_id: 1
+ sender_id: 2
+ header: ""
+ text: "hello1"
+ read: false
+
+two: 
+ id: 2
+ receiver_id: 2
+ sender_id: 1
+ header: ""
+ text: "hello2"
+ read: false
+
+three:
+ id: 3
+ receiver_id: 1
+ sender_id: 1
+ header: "flatchat3"
+ text: "hello3"
+ readers: [1, 4]
+ deleted: [3]
+
+four: 
+ id: 4
+ receiver_id: 1
+ sender_id: 4
+ header: ""
+ text: "hello4"
+ read: true
+
+five:
+ id: 5
+ receiver_id: 4
+ sender_id: 2
+ header: ""
+ text: "hello5"
+ read: true
+
+six: 
+ id: 6
+ receiver_id: 3
+ sender_id: 4
+ header: ""
+ text: "hello6"
+ read: false
+
+seven:
+ id: 7
+ receiver_id: 3
+ sender_id: 3
+ header: "flatchat3"
+ text: "hello7"
+ readers: [3]
+ deleted: []
+
+eight:
+ id: 8
+ receiver_id: 4
+ sender_id: 4
+ header: "flatchat3"
+ text: "hello8"
+ readers: [3, 4]
+ deleted: [3]
