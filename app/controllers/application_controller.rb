@@ -34,6 +34,7 @@ class ApplicationController < ActionController::Base
   def set_locale
       if (params[:locale].nil? || params[:locale].empty?) && (cookies[:locale].nil? || cookies[:locale].empty?)
           I18n.locale = http_accept_language.compatible_language_from(I18n.available_locales)
+          puts I18n.locale
       elsif !(params[:locale].nil? || params[:locale].empty?)
           I18n.locale = params[:locale]
       elsif !(cookies[:locale].nil? || cookies[:locale].empty?)
