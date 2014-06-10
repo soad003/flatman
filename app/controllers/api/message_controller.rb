@@ -11,7 +11,7 @@ class Api::MessageController < Api::RestController
       mesId = params[:id]
       sender = Message.find(mesId).sender_id
       rec = Message.find(mesId).receiver_id
-      header = Message.find(mesId).header == "flatchat" + current_user.flat_id.to_s
+      header = Message.find(mesId).header == "flatchat" + current_user.flat.id.to_s
       if sender == current_user.id || rec == current_user.id || header
         @meslist=Message.find_messages(params[:id], current_user, params[:quantity])
         @meslist.each do |m|
@@ -79,7 +79,7 @@ class Api::MessageController < Api::RestController
   end
 
   def count_messages
-    header = "flatchat" + current_user.flat_id.to_s
+    header = "flatchat" + current_user.flat.id.to_s
     if params[:mes_id] == nil
       @counterList = Message.where("header = ?", header)
       @counter = Message.countFlatChatUnread(@counterList, current_user)

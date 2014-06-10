@@ -4,17 +4,25 @@ one:
  id: 1
  receiver_id: 1
  sender_id: 2
- header: ""
+ header: "1"
+ deleted: []
+ readers:
+ - 1
  text: "hello1"
  read: false
+ created_at: "2014-06-03 07:43:40"
 
 two: 
  id: 2
  receiver_id: 2
  sender_id: 1
- header: ""
+ header: "2"
+ deleted: []
+ readers:
+ - 1
  text: "hello2"
  read: false
+ created_at: "2014-06-03 08:43:40"
 
 three:
  id: 3
@@ -22,41 +30,60 @@ three:
  sender_id: 1
  header: "flatchat3"
  text: "hello3"
- readers: [1, 4]
- deleted: [3]
+ readers:
+ - 1
+ deleted:
+ - 1
+ - 5
+ read: false
+ created_at: "2014-06-03 09:43:40"
 
 four: 
  id: 4
  receiver_id: 1
  sender_id: 4
- header: ""
+ header: "1"
+ deleted: []
+ readers:
+ - 4
  text: "hello4"
  read: true
+ created_at: "2014-06-03 10:43:40"
 
 five:
  id: 5
  receiver_id: 4
  sender_id: 2
- header: ""
+ header: "4"
  text: "hello5"
+ deleted: []
+ readers:
+ - 2
  read: true
+ created_at: "2014-06-03 11:43:40"
 
 six: 
  id: 6
- receiver_id: 3
+ receiver_id: 5
  sender_id: 4
- header: ""
+ header: "4"
  text: "hello6"
  read: false
+ readers:
+ - 4
+ deleted: []
+ created_at: "2014-06-03 12:43:40"
 
 seven:
  id: 7
- receiver_id: 3
- sender_id: 3
+ receiver_id: 5
+ sender_id: 5
  header: "flatchat3"
  text: "hello7"
- readers: [3]
+ readers:
+ - 5
  deleted: []
+ created_at: "2014-06-03 13:43:40"	
 
 eight:
  id: 8
@@ -64,5 +91,30 @@ eight:
  sender_id: 4
  header: "flatchat3"
  text: "hello8"
- readers: [3, 4]
- deleted: [3]
+ readers:
+ - 5
+ - 4
+ deleted:
+ - 5
+ created_at: "2014-06-03 14:43:40"
+
+nine: 
+ id: 9
+ receiver_id: 1
+ sender_id: 6
+ header: "6"
+ text: "hello9"
+ readers: 
+ - 6
+ deleted: []
+ created_at: "2014-06-03 15:43:40"
+
+ten: 
+ id: 10
+ receiver_id: 4
+ sender_id: 5
+ header: "6"
+ text: "hello10"
+ readers: [5]
+ deleted: [5]
+ created_at: "2014-06-03 16:43:40"

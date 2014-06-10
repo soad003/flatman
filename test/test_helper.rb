@@ -34,6 +34,18 @@ class ActionController::TestCase
         def login_as_niko
             session[:user_id]=users(:niko).id
         end
+
+        def login_as_chri
+            session[:user_id]=users(:chrisi).id
+        end
+
+        def login_as_hans
+            session[:user_id]=users(:hans).id
+        end
+
+        def login_as_clemi
+            session[:user_id]=users(:hans).id
+        end
       end
 
 end
