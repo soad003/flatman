@@ -9,18 +9,25 @@ angular.module('flatman').controller("financesOverviewMateCtrl", function($scope
         $scope.currentOverviewMate = overviewMate;
     }
 
-    $scope.removePayment = function(payment) {
-        financesService.payment.destroy(payment.id, $scope.currentOverviewMate.id, function(data) {
-            if ($scope.currentOverviewMate.entryLength === $scope.entriesPerPage)
-                $scope.currentOverviewMate.page = 1;
+    $scope.removeBill=function(id){
+        financesService.bill.destroy(id, function(){
+            $scope.setPaymentEntries();
+        });
+    };
+
+    $scope.removePayment = function(id) {
+        financesService.payment.destroy(id, $scope.currentOverviewMate.id, function(data) {
             $scope.setPaymentEntries();
         });
     };
 
     $scope.setPaymentEntries = function() {
-        financesService.finance.get_overview_mate(
-            $scope.currentOverviewMate.id,
-            ($scope.currentOverviewMate.page - 1) * $scope.entriesPerPage,
+        if ($scope.currentOverviewMate.entryLength === $scope.entriesPerPage){
+                $scope.currentOverviewMate.page = 1;
+        }
+
+        financesService.finance.get_overview_mate($scope.currentOverviewMate.id, 
+            ($scope.currentOverviewMate.page - 1) * $scope.entriesPerPage, 
             $scope.currentOverviewMate.page * $scope.entriesPerPage,
             function (data){
                 $scope.currentOverviewMate.value = data.value;

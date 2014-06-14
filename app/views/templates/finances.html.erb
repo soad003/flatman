@@ -42,7 +42,7 @@
     </form>
 </div>
 
-<div class="container row" ng-show="arePaymentsToShow() || finances.subset.length !== 0">
+<div class="container row" ng-show="arePaymentsToShow() || finances.subset.length !== 0 && !isLoading()">
     <div class="row">
         <div class="col-md-7">
             <div class="panel panel-default" ng-show="overviewMates.length != 0">
@@ -110,18 +110,19 @@
                                                             <tr ng-repeat="entry in overviewMate.entries">
                                                                 <td class="hidden-xs">{{entry.date| date : 'longDate'}}</td>
                                                                 <td>
-                                                                    <span ng-show="entry.id === -1" class="visible-xs">{{sliceText(entry.what)}}</span>
-                                                                    <span ng-show="entry.id === -1" class="hidden-xs">{{entry.what}}</span>
-                                                                    <span ng-show="entry.id !== -1">
+                                                                    <span ng-hide="entry.isPayment" class="visible-xs">{{sliceText(entry.what)}}</span>
+                                                                    <span ng-hide="entry.isPayment" class="hidden-xs">{{entry.what}}</span>
+                                                                    <span ng-show="entry.isPayment">
                                                                         <%=t ( '.payment') %>
                                                                 </td>
                                                                 <td class="text-right" ng-class="{'text-success':entry.value >
                                                             0, 'text-danger': entry.value
                                                             < 0}">{{entry.value| customCurrency : '€ '}}</td>
                                                                 <td>
-                                                                    <button class="btn btn-default btn-xs pull-right" ng-hide="entry.id === -1" ng-click="removePayment(entry,  overviewMate)">
+                                                                    <button class="btn btn-default btn-xs pull-right" ng-show="entry.isPayment" ng-click="removePayment(entry,  overviewMate)">
                                                                         <span class="glyphicon glyphicon-trash"></span>
                                                                     </button>
+
                                                                 </td>
                                                             </tr>
                                                             </tr>
