@@ -1,4 +1,4 @@
-json.array!(@meslist) do |json, chat|
+json.array!(@meslist) do |chat|
   json.id chat.id
   json.sender_id chat.sender_id
   json.text chat.text

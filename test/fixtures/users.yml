@@ -23,7 +23,7 @@ chrisi:
   id: 1
   email: ch.test@testen.com
   name: Schöpfi
-  flat: wg_chri
+  flat_id: 3
   provider: facebook
   uid: 1438808020
   oauth_token: blabla
@@ -43,6 +43,24 @@ clemi:
   flat: wg_clemi
   provider: facebook
   uid: 1438808023
+  oauth_token: wuseldusel
+
+raffi: 
+  id: 5
+  email: raffi@test.com
+  name: raffi
+  flat_id: 3
+  provider: facebook
+  uid: 1438808019
+  oauth_token: wuseldusel
+
+hans:
+  id: 6
+  email: hans@test.com
+  name: hans
+  flat_id: 3
+  provider: facebook
+  uid: 1313232323
   oauth_token: wuseldusel
 
 michi_without_flat_and_without_invite:

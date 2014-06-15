@@ -85,6 +85,7 @@ angular.module('flatman').controller("resourceCtrl", function($scope, $filter, r
             resource.showChart = true;
             $scope.convertAndSetChartData(resource.chart, resource);
             resource.date = new Date();
+            resource.entryvalue = "";
         });
     });
     $scope.entriesPerPage = 5;

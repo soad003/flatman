@@ -23,6 +23,7 @@ wg_michi:
   zip: 6020
 
 wg_chri:
+  id: 3
   name: Chri WG
   street: Home
   city: NBB

@@ -6,6 +6,6 @@ json.array!(@overviewMates) do |overviewMate|
   json.page overviewMate.page
   json.entryLength overviewMate.entryLength
   json.entries overviewMate.entries do |entry|
-    json.(entry, :what, :id, :date, :value, :payer_id, :total_price)
+    json.(entry, :what, :id, :isPayment, :date, :value, :payer_id, :total_price)
   end
 end

@@ -40,10 +40,9 @@ class MessageTest < ActiveSupport::TestCase
     	chri = users(:chrisi)
     	cle = users(:clemi)
     	pferd = users(:niko)
-    	chri.flat_id = "3"
     	cle.flat_id = "3"
     	assert Message.find_chats(cle).length == 3
-    	assert Message.find_chats(chri).length == 2
+    	assert Message.find_chats(chri).length == 3
     	assert Message.find_chats(pferd).length == 2
     end
 
@@ -57,14 +56,13 @@ class MessageTest < ActiveSupport::TestCase
     test "countFlatChatUnread" do
     	messList = Message.where(header: "flatchat3")
     	assert Message.countFlatChatUnread(messList, users(:chrisi)) == "2"
-    	assert Message.countFlatChatUnread(messList, users(:clemi)) == "1"
+    	assert Message.countFlatChatUnread(messList, users(:clemi)) == "2"
     end
 
     test "getFlatChat" do
     	chri = users(:chrisi)
     	cle = users(:clemi)
     	pferd = users(:niko)
-    	chri.flat_id = "3"
     	cle.flat_id = "3"
     	pferd.flat_id = "3"
     	assert Message.getFlatChat(chri).text == "hello8"
@@ -81,7 +79,6 @@ class MessageTest < ActiveSupport::TestCase
     	mesparams3 = ({receiver_id: 1, sender_id: 1, header: "flatchat", text: "hello11"})
     	messageRec3 = ["flatchat"]
     	chrisi = users(:chrisi)
-    	chrisi.flat_id = "3"
     	assert Message.createMessages(messageRec1, users(:niko), mesparams1)
     	assert Message.createMessages(messageRec2, users(:clemi), mesparams2)
     	assert Message.createMessages(messageRec3, users(:chrisi), mesparams3)

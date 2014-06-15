@@ -407,6 +407,7 @@ en:
       gets                               : "gets"
       owes_you                           : "owes you"
       payment                            : "Payment"
+      edit                               : "edit"
     user_settings:
       page_header                        : "Your Profile"
       name                               : "name"

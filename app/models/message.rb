@@ -61,18 +61,19 @@ class Message < ActiveRecord::Base
        	mesL2 = Message.where("receiver_id = ? AND header != ?", user.id, header)
         messList = mesL.clone+mesL2.clone
         helpList = Array.new
-        
         messList.each do |mes| 
             if !mes.deleted.include?(user.id)
                 helpList << mes
             end
-        end
+        end        
         # sort by newest
         helpList.sort! { |a,b| b.created_at <=> a.created_at }
         # create array with sender, receiver pair
         returnList = Array.new
         pairs = Array.new
         helpList.each do |mes|
+            mes.receiver_id = mes.receiver_id.to_s
+            mes.sender_id = mes.sender_id.to_s
             if !(pairs.include?([mes.receiver_id, mes.sender_id]))
                     newpair = Array.new
                     newpair[0] = mes.sender_id
@@ -92,7 +93,6 @@ class Message < ActiveRecord::Base
                     pairs.delete([mes.sender_id, mes.receiver_id])
             end
         end
-
         returnList
     end
 
@@ -168,18 +168,20 @@ class Message < ActiveRecord::Base
     def self.destroyMessages(mess_id, current_user)
         recId = Message.find(mess_id).receiver_id
         senId = Message.find(mess_id).sender_id
-        messages1 = Message.where(receiver_id: recId, sender_id: senId)
-        messages2 = Message.where(sender_id: recId, receiver_id: senId)
-        messages = messages1.clone + messages2.clone
-        messages.each do |mess| 
-          if !mess.deleted.include?(current_user.id)
-            mess.deleted = mess.deleted + [current_user.id]
-            mess.save!
-          end
+        if current_user.id == senId || current_user.id == recId
+            messages1 = Message.where(receiver_id: recId, sender_id: senId)
+            messages2 = Message.where(sender_id: recId, receiver_id: senId)
+            messages = messages1.clone + messages2.clone
+            messages.each do |mess| 
+              if !mess.deleted.include?(current_user.id)
+                mess.deleted = mess.deleted + [current_user.id]
+                mess.save!
+              end
 
-          if mess.deleted.size > 1
-            mess.destroy
-          end
+              if mess.deleted.size > 1
+                mess.destroy
+              end
+            end
         end
     end
 
