@@ -1,4 +1,4 @@
-angular.module('flatman').controller("createPaymentCtrl",function($scope, financesService, flatService ,Util){
+angular.module('flatman').controller("createPaymentCtrl",function($scope, financesService, flatService, userService, Util){
 	$scope.createPayment = function (){
 		financesService.payment.create($scope.newPayment.payer_id, $scope.newPayment.date, $scope.newPayment.value, 
 		function(data){
@@ -6,6 +6,11 @@ angular.module('flatman').controller("createPaymentCtrl",function($scope, financ
 			});
 	};
 
+	$scope.getMatesWithoutCurrentUser = function (){
+		return _.filter($scope.mates, function(mate){return mate.id !== $scope.current_user.id;});
+	};
+
+	$scope.current_user = userService.get();
 	$scope.mates = flatService.mates.get();
 	$scope.newPayment={ date: new Date(), value:"", payer_id:""};
 

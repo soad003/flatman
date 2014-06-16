@@ -8,7 +8,7 @@
 
         <div class="form-group">
             <label for="Payer"><%= t('.payer') %></label>
-            <select class="form-control" ng-model="newPayment.payer_id" ng-options="mate.id as mate.name for mate in mates">
+            <select class="form-control" ng-model="newPayment.payer_id" ng-options="mate.id as mate.name for mate in getMatesWithoutCurrentUser()">
             </select>
         </div>
 

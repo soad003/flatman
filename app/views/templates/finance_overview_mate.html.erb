@@ -76,7 +76,7 @@
                             <span class="text-danger" ng-show="entry.value < 0">{{math.abs(entry.value)| customCurrency : '€ '}}</span>
                         </td>
                         <td>
-                            <button class="btn btn-default btn-xs pull-right" ng-show="entry.isPayment" ng-click="removePayment(entry)">
+                            <button class="btn btn-default btn-xs pull-right" ng-show="entry.isPayment" ng-click="removePayment(entry.id)">
                                 <span class="glyphicon glyphicon-trash"></span>
                             </button>
                             <div class="btn-group pull-right" ng-hide="entry.isPayment">
