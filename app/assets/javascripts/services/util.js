@@ -17,8 +17,8 @@ angular.module('flatman').factory("Util",function($rootScope,$location) {
             bills_overview: function(){$location.path("bills_overview");},
             finance_overview_mate: function(id){$location.path("finance_overview_mate/"+id);},
             flat_settings: function(){$location.path("flat_settings");},
-            search: function(term){$location.path("search/"+escape(term));},
-            finances_done_shopping: function(name){$location.path("finances_done_shopping/"+escape(name));},
+            search: function(term){$location.path("search/"+encodeURIComponent(term));},
+            finances_done_shopping: function(name){$location.path("finances_done_shopping/"+encodeURIComponent(name));},
             back: function(url){if (url !== undefined) $location.path(url); else history.back();}
         }
     };

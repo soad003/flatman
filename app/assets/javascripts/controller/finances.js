@@ -11,21 +11,11 @@ angular.module('flatman').controller("financesCtrl", function($scope, financesSe
         });
     };
 
-    $scope.intro = function() {
-        return $scope.finances.length !== 0 || $scope.arePaymentsToShow();
-    };
-
 	$scope.removeEntry=function(finance){
 		financesService.bill.destroy(finance.id, function(){
             $scope.finances = _($scope.finances).without(finance);
         });
         $scope.overviewMates = financesService.finance.get_overview_mates(0,5);
-    };
-
-    $scope.payDebt = function(debt) {
-        financesService.debts.pay_debt(debt.id, function() {
-            $scope.allDebts = _($scope.allDebts).without(debt);
-        })
     };
 
     $scope.enoughEntries = function() {

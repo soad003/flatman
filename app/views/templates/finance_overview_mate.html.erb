@@ -58,8 +58,8 @@
                             <span class="visible-xs">{{entry.date| date : 'shortDate'}}</span>
                         </td>
                         <td>
-                            <span ng-show="entry.id === -1">{{entry.what}}</span>
-                            <span ng-show="entry.id !== -1">
+                            <span ng-hide="entry.isPayment">{{entry.what}}</span>
+                            <span ng-show="entry.isPayment">
                                 <%=t ( '.payment') %>
                         </td>
                         <td class="hidden-xs">
@@ -67,31 +67,31 @@
                             <span ng-show="entry.payer_id !== current_user.id">{{currentOverviewMate.name}}</span>
                         </td>
                         <td class="text-right hidden-xs">
-                            <span ng-show="entry.id === -1">{{entry.total_price| customCurrency : '€ '}}</span>
+                            <span ng-hide="entry.isPayment">{{entry.total_price| customCurrency : '€ '}}</span>
                         </td>
                         <td class="text-right">
-                            <span class="text-success" ng-show="entry.value > 0">{{entry.value| customCurrency : '€ '}}</span>
+                              <span class="text-success" ng-show="entry.value > 0">{{entry.value| customCurrency : '€ '}}</span>
                         </td>
                         <td class="text-right">
                             <span class="text-danger" ng-show="entry.value < 0">{{math.abs(entry.value)| customCurrency : '€ '}}</span>
                         </td>
                         <td>
-                            <button class="btn btn-default btn-xs pull-right" ng-hide="entry.id === -1" ng-click="removePayment(entry)">
+                            <button class="btn btn-default btn-xs pull-right" ng-show="entry.isPayment" ng-click="removePayment(entry)">
                                 <span class="glyphicon glyphicon-trash"></span>
                             </button>
-                            <div class="btn-group pull-right" ng-show="false">
+                            <div class="btn-group pull-right" ng-hide="entry.isPayment">
                                 <button type="button" class="btn btn-default dropdown-toggle btn-xs" data-toggle="dropdown">
                                     <span class="glyphicon glyphicon-pencil"></span>
                                 </button>
                                 <ul class="dropdown-menu">
                                     <li>
-                                        <a href="/#/finances_edit/{{finance.id}}">
+                                        <a href="/#/finances_edit/{{entry.id}}">
                                             <span class="glyphicon glyphicon-pencil"></span>
                                             <%=t ( ".edit") %>
                                         </a>
                                     </li>
                                     <li>
-                                        <a href="" ng-click="removeEntry(finance)">
+                                        <a href="" ng-click="removeBill(entry.id)">
                                             <span class="glyphicon glyphicon-trash"></span>
                                             <%=t ( ".delete") %>
                                         </a>
