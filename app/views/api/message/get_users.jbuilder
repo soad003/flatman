@@ -3,6 +3,8 @@ json.array!(@users) do |user|
   json.name user.name
   json.email user.email
   json.uid user.uid
-  json.flat_name user.flat.name
-  json.flat_id user.flat_id
+  if user.flat_id != nil
+  	json.flat_name user.flat.name
+  	json.flat_id user.flat_id
+  end
 end
