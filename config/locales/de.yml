@@ -443,7 +443,7 @@ de:
         shopping_title                   : "Einkaufen"
         shopping_text                    : "Maecenas sed diam eget risus varius blandit sit amet non magna."
         finances_title                   : "Rechnungen"
-        finafinnces_text                    : "Morbi leo risus, porta ac consectetur ac, vestibulum at eros. Cras mattis consectetur purus sit amet fermentum."
+        finafinnces_text                 : "Morbi leo risus, porta ac consectetur ac, vestibulum at eros. Cras mattis consectetur purus sit amet fermentum."
         resources_title                  : "Resourcenverbrauch"
         resources_text                   : "Maecenas sed diam eget risus varius blandit sit amet non magna."
         share_title                      : "Teilen"
@@ -473,6 +473,9 @@ de:
       hidden_items                       : "verborgene items"
       hidden_info                        : "verborgene items sind nur für dich sichtbar."
       confirm_delete                     : "Bist du dir sicher das du das Itme löschen willst?"
+      borrowed_items                     : "verliehene items"
+
+      
     shareditem:
       add_file                           : "füge bild hinzu"
       upload                             : "upload"
@@ -491,10 +494,10 @@ de:
       sharingNote                        : "Notiz für das Teilen"
       sharingNote_placeholder            : "Notiere wem du was ausgeliehen hast"
       tags                               : "tags"
-      tags_placeholder                   : "tag, tog, tig"
+      tags_placeholder                   : "füge ein paar Tags ein"
       confirm_delete                     : "Bist du dir sicher das du das Item löschen willst?"
-
-
+      sharingnote_placeholder            : "kurze Notiz (nur für dich sichtbar) "
+      
   session:
     index:
       page_title                         : "Bitte einloggen"
