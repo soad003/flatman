@@ -360,7 +360,7 @@ en:
       value_placeholder                  : "42.00"
       date                               : "date"
       date_placeholder                   : "dd/mm/YYYY"
-      cat                                : "categorie"
+      cat                                : "category"
       cat_placeholder                    : "whatever"
       payer                              : "who paid?"
       bill_affects                       : "bill affects"
@@ -493,9 +493,9 @@ en:
       sharingNote                        : "sharing note"
       sharingNote_placeholder            : "notice who has taken your item"
       tags                               : "tags"
-      tags_placeholder                   : "tag, tog, tig"
+      tags_placeholder                   : "add some tags"
       confirm_delete                     : "do you really want to delete this item?"
-
+      sharingnote_placeholder            : "short sharing note (just visible for you)"
 
   session:
     index:
