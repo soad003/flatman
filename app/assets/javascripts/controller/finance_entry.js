@@ -1,4 +1,4 @@
-angular.module('flatman').controller("financeEntryCtrl", function($scope,$routeParams, financesService, flatService, Util){
+angular.module('flatman').controller("financeEntryCtrl", function($scope,$routeParams, financesService, userService, flatService, Util){
 
      $scope.process_entry=function(){
         if($scope.edit){
@@ -35,5 +35,4 @@ angular.module('flatman').controller("financeEntryCtrl", function($scope,$routeP
             $scope.mates = data;
         });
     }
-
 });

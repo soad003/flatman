@@ -13,7 +13,7 @@ angular.module('flatman').controller("financesCtrl", function($scope, financesSe
 
 	$scope.removeEntry=function(finance){
 		financesService.bill.destroy(finance.id, function(){
-            $scope.finances = _($scope.finances).without(finance);
+            $scope.finances = financesService.bill.get_range(0, 5);
         });
         $scope.overviewMates = financesService.finance.get_overview_mates(0,5);
     };

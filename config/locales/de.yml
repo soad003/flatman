@@ -97,7 +97,7 @@ de:
             value:
               blank                       : "Bitte Wert eingeben."
               not_a_number                : "Wert muss numerisch sein."
-              greater_than                : "Wert muss größer als 0 sein."
+              greater_than_or_equal_to    : "Wert muss größer als 0 sein."
         payment:
           attributes:
             value:

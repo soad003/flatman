@@ -1,55 +1,61 @@
-  <div class="hidden-print">
-    <h1 class="page-header"><%= t('.page_header') %></h1>
-  </div>
+<div class="hidden-print">
+    <h1 class="page-header">
+        <%=t ( '.page_header') %>
+    </h1>
+</div>
 
-  <div class="row">
+<div class="row">
     <div class="col-md-offset-3 col-md-6">
-      <form ng-submit="createPayment()">
+        <form ng-submit="createPayment()">
 
-        <div class="form-group">
-            <label for="Payer"><%= t('.payer') %></label>
-            <select class="form-control" ng-model="newPayment.payer_id" ng-options="mate.id as mate.name for mate in getMatesWithoutCurrentUser()">
-            </select>
-        </div>
+            <div class="form-group">
+                <label for="Payer">
+                    <%=t ( '.payer') %>
+                </label>
+                <select class="form-control" ng-model="newPayment.payer_id" ng-options="mate.id as mate.name for mate in getMatesWithoutCurrentUser()">
+                </select>
+            </div>
 
-        <div class="form-group">
-          <label for="value">
-            <%= t('.value') %></label>
-          <div class="input-group">
-            <input id="value" ng-model="newPayment.value" numberinput placeholder="<%= t('.value_placeholder') %>" type="text"/>
-            <span class="input-group-addon">
-              <span class="glyphicon glyphicon-euro"></span>
-            </span>
-          </div>
-        </div>
+            <div class="form-group">
+                <label for="value">
+                    <%=t ( '.value') %>
+                </label>
+                <div class="input-group">
+                    <input id="value" ng-model="newPayment.value" numberinput placeholder="<%= t('.value_placeholder') %>" type="text" />
+                    <span class="input-group-addon">
+                        <span class="glyphicon glyphicon-euro"></span>
+                    </span>
+                </div>
+            </div>
 
-        <div class="form-group">
-          <label for="date">
-            <%= t('.date') %></label>
-          <div class="input-group">
-            <input id="date" onfocus="blur();"
-              show-button-bar="false" showWeeks="false" datepicker-popup="shortDate"
-              is-open="opened" date-disabled="disabled(date, mode)" ng-required="true" close-text="close"
-              ng-model="newPayment.date" type="text"/>
-            <span class="input-group-addon">
-              <span class="glyphicon glyphicon-calendar"></span>
-            </span>
-          </div>
-        </div>
+            <div class="form-group">
+                <label for="date">
+                    <%=t ( '.date') %>
+                </label>
+                <div class="input-group">
+                    <input type="text" onfocus="blur();" class="form-control visible-xs visible-sm" show-button-bar="false" showWeeks="false" datepicker-popup="shortDate" ng-model="newPayment.date" is-open="opened" date-disabled="disabled(date, mode)" close-text="Close" />
+                    <input type="text" class="form-control hidden-xs hidden-sm" show-button-bar="false" showWeeks="false" datepicker-popup="shortDate" ng-model="newPayment.date" is-open="opened1" date-disabled="disabled(date, mode)" close-text="Close" />
+                    <span class="input-group-addon">
+                        <span class="glyphicon glyphicon-calendar"></span>
+                    </span>
+                </div>
+            </div>
 
-        <div class="row">
-          <div class="col-md-3 col-xs-4">
-            <a href="" ng-click="Util.redirect_to.back()" class = "btn btn-sm btn-default">
-              <i class="glyphicon glyphicon-arrow-left"></i> <%= t('.back') %>
-            </a>
-          </div>
-          <div class="col-md-3 col-md-offset-6 col-xs-4 col-xs-offset-4">
-            <button type="submit" class="btn btn-sm btn-success pull-right">
-              <span class="glyphicon glyphicon-ok"></span> <%= t('.save') %>
-            </button>
-          </div>
-        </div>
-      </form>
+            <div class="row">
+                <div class="col-md-3 col-xs-4">
+                    <a href="" ng-click="Util.redirect_to.back()" class="btn btn-sm btn-default">
+                        <i class="glyphicon glyphicon-arrow-left"></i> 
+                        <%=t ( '.back') %>
+                    </a>
+                </div>
+                <div class="col-md-3 col-md-offset-6 col-xs-4 col-xs-offset-4">
+                    <button type="submit" class="btn btn-sm btn-success pull-right">
+                        <span class="glyphicon glyphicon-ok"></span>
+                        <%=t ( '.save') %>
+                    </button>
+                </div>
+            </div>
+        </form>
     </div>
-  </div>
-  <hr/>
+</div>
+<hr/>

@@ -37,10 +37,8 @@
           <label for="date">
             <%= t('.date') %></label>
           <div class="input-group">
-            <input id="value" onfocus="blur();"
-              show-button-bar="false" showWeeks="false" datepicker-popup="shortDate"
-              is-open="opened" date-disabled="disabled(date, mode)" ng-required="true" close-text="close"
-              ng-model="finTmp.date" placeholder="<%= t('.date_placeholder') %>" type="text"/>
+               <input type="text" onfocus="blur();" class="form-control visible-xs visible-sm" show-button-bar="false" showWeeks="false" datepicker-popup="shortDate" ng-model="finTmp.date" is-open="opened" date-disabled="disabled(date, mode)" close-text="Close" />
+                <input type="text" class="form-control hidden-xs hidden-sm" show-button-bar="false" showWeeks="false" datepicker-popup="shortDate" ng-model="finTmp.date" is-open="opened1" date-disabled="disabled(date, mode)" close-text="Close" />
             <span class="input-group-addon">
               <span class="glyphicon glyphicon-calendar"></span>
             </span>
