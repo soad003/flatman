@@ -493,9 +493,9 @@ en:
       sharingNote                        : "sharing note"
       sharingNote_placeholder            : "notice who has taken your item"
       tags                               : "tags"
-      tags_placeholder                   : "tag, tog, tig"
+      tags_placeholder                   : "add some tags"
       confirm_delete                     : "do you really want to delete this item?"
-
+      sharingnote_placeholder            : "short sharing note (just visible for you)"
 
   session:
     index:

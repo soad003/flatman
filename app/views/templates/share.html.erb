@@ -50,7 +50,7 @@
 <div class="row">
 <div class="col-lg-8 col-md-12" ng-show="shareditems.length!==0">
 		<div class="panel panel-success">
-			<div class="panel-heading pointer" tooltip-placement="bottom" tooltip="<%= t(".available_info") %>">
+			<div class="panel-heading" >
 			  	<span class="glyphicon glyphicon-home"></span> <%= t(".available_items") %></div>
 			  <div class="panel-body list-group">
 			  	
@@ -104,16 +104,16 @@
 </div>
 
 
-	<!--boorowed items-->
+	<!--borrowed items-->
 	<div class="col-lg-4 col-md-12" ng-show="shareditems.length!==0">
 		<div class="panel panel-warning">
-			<div class="panel-heading panel-tooltip pointer" tooltip-placement="bottom"  tooltip="<%= t(".available_info") %>">
+			<div class="panel-heading">
 			  	<span class="glyphicon glyphicon-share-alt"></span> <%= t(".borrowed_items") %></div>
 			  	
 			<div class="panel-body list-group">
 
     		<!--item -->
-				<div 	class="sharing-item  si-avail-{{item.available}}"
+				<div class="sharing-item  si-hidden-{{item.hidden}}"
 			    		ng-repeat="item in shareditems | filter:qh | filter:{ available: 'false'}">
               				
               		<!-- item header-->
