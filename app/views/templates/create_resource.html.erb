@@ -105,7 +105,8 @@
                 </label>
 
                 <div class="input-group">
-                    <input type="text" onfocus="blur();" class="form-control" show-button-bar="false" showWeeks="false" datepicker-popup="mediumDate" ng-model="resourceTmp.startDate" is-open="opened" date-disabled="disabled(date, mode)" ng-required="true" close-text="Close" />
+                    <input type="text" onfocus="blur();" class="form-control visible-xs visible-sm" show-button-bar="false" showWeeks="false" datepicker-popup="shortDate" ng-model="resourceTmp.startDate" is-open="opened" date-disabled="disabled(date, mode)" close-text="Close" />
+                    <input type="text" class="form-control hidden-xs hidden-sm" show-button-bar="false" showWeeks="false" datepicker-popup="shortDate" ng-model="resourceTmp.startDate" is-open="opened1" date-disabled="disabled(date, mode)" close-text="Close" />
                     <span class="input-group-addon">
                         <span class="glyphicon glyphicon-calendar"></span>
                     </span>

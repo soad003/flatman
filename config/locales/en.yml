@@ -97,7 +97,7 @@ en:
             value:
               blank                       : "Entry can't be blank."
               not_a_number                : "Entry must be a number."
-              greater_than                : "Must be greater than zero."
+              greater_than_or_equal_to    : "Must be greater than zero."
         payment:
           attributes:
             value:
@@ -360,7 +360,7 @@ en:
       value_placeholder                  : "42.00"
       date                               : "date"
       date_placeholder                   : "dd/mm/YYYY"
-      cat                                : "categorie"
+      cat                                : "category"
       cat_placeholder                    : "whatever"
       payer                              : "who paid?"
       bill_affects                       : "bill affects"

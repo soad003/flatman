@@ -3,7 +3,7 @@ class Resourceentry < ActiveRecord::Base
 	attr_accessor :costs
 	attr_accessor :usage
     validates   :date, presence: true
-    validates   :value, numericality: {greater_than: 0}, presence: true
+    validates   :value, numericality: {greater_than_or_equal_to: 0}, presence: true
 
 	def self.find_with_user_constraint(id, r_id, user)
             r = Resource.find_resource_with_user_constraint(r_id, user)

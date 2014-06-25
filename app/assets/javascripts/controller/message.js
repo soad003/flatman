@@ -21,7 +21,7 @@ angular.module('flatman').controller("messageCtrl", function($scope, $route, $q,
     $scope.setAllRead = false;
     $scope.quantity = 20;
     $scope.allLoaded = false;
-    
+
 
 
     $scope.$on('message_count_changed', function(event, mass){
