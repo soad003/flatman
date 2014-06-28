@@ -1,4 +1,4 @@
-angular.module('flatman').controller("messageCtrl", function($scope, $route, $q, $timeout, $sce, messageService, statusService, Util){
+angular.module('flatman').controller("messageCtrl", function($scope, $route, $q, $timeout, messageService, statusService, Util){
     $scope.activeChat = {sender_id: "", receiver_id: "", id: "" };
 
     $scope.loc = window.location.href.toString().split("/")
@@ -36,17 +36,17 @@ angular.module('flatman').controller("messageCtrl", function($scope, $route, $q,
                 if ($scope.currentFlatChatMessages !== undefined){
                     if ($scope.currentFlatChatMessages.readers.indexOf($scope.currentUserId.id) == -1){
                         $scope.setAllRead = false;
-                        $scope.messages = messageService.messages.get($scope.activeChat.id);
+                        $scope.messages = messageService.messages.get($scope.activeChat.id, 20);
                         start(500, true);
                     }   // two people write at the same time
                     else if (mass.flat_messages.length > 1 && mass.flat_messages[mass.flat_messages.length-2].readers.indexOf($scope.currentUserId.id) == -1){
                         $scope.setAllRead = false;
-                        $scope.messages = messageService.messages.get($scope.activeChat.id);
+                        $scope.messages = messageService.messages.get($scope.activeChat.id, 20);
                         start(500, true);
                     }   // three people write at the same time
                     else if (mass.flat_messages.length > 2 && mass.flat_messages[mass.flat_messages.length-3].readers.indexOf($scope.currentUserId.id) == -1){
                         $scope.setAllRead = false;
-                        $scope.messages = messageService.messages.get($scope.activeChat.id);
+                        $scope.messages = messageService.messages.get($scope.activeChat.id, 20);
                         start(500, true);
                     }
                 }
@@ -57,7 +57,7 @@ angular.module('flatman').controller("messageCtrl", function($scope, $route, $q,
                         ($scope.currentChats[i].receiver_id == $scope.activeChat.sender_id.id && $scope.currentChats[i].sender_id == $scope.activeChat.receiver_id.id)){
                         if ($scope.currentChats[i].sender_id != $scope.currentUserId.id){
                             $scope.setAllRead = false;
-                            $scope.messages = messageService.messages.get($scope.activeChat.id);
+                            $scope.messages = messageService.messages.get($scope.activeChat.id, 20);
                             start(500, true);
                         }
                     }

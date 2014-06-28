@@ -8,12 +8,16 @@ json.array!(@meslist) do |chat|
   json.receiver_name chat.receiver.name
   json.header chat.header
   if chat.receiver_id == current_user.id
-    json.flat_name Flat.find(chat.sender.flat_id).name
+    if chat.sender.flat_id != nil
+      json.flat_name Flat.find(chat.sender.flat_id).name
+    end
   	json.partner chat.sender.name
   	json.partner_id chat.sender.id
   else
   	json.partner chat.receiver.name
   	json.partner_id chat.receiver.id
-    json.flat_name Flat.find(chat.receiver.flat_id).name
+    if chat.receiver.flat_id != nil
+      json.flat_name Flat.find(chat.receiver.flat_id).name
+    end
   end
 end
