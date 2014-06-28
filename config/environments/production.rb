@@ -93,7 +93,8 @@ Flatman::Application.configure do
   # Use default logging formatter so that PID and timestamp are not suppressed.
   config.log_formatter = ::Logger::Formatter.new
 
-  config.force_ssl = true
+# change if we go in production and by a ssl c
+  config.force_ssl = false
   config.assets.precompile += %w( vendor/angular-locale_de-de.js )
   
   #amazon s3 storage for images
