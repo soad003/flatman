@@ -7,10 +7,16 @@ class Flat < ActiveRecord::Base
     has_many    :invites
     has_many    :bills
     validates   :name, :street, :city, :zip, presence: true
+    geocoded_by :full_street_address
+    after_validation :geocode
 
     def add_user(user)
         user.flat = self
         user.save!
+    end
+
+    def full_street_address
+        self.zip + " " + self.city + ", " + self.street
     end
 
     def is_member?(user)
@@ -23,11 +29,13 @@ class Flat < ActiveRecord::Base
         nf.add_user(user)
         nf
     end
-    
-    def get_distance_to(flat) 
-       point1 = self.zip + " " + self.city + ", " + self.street
-       point2 = flat.zip + " " + flat.city + ", " + flat.street
-       return Geocoder::Calculations.distance_between(point1, point2)
+
+    def get_distance_to(flat)
+        eradius = 6378.137;
+        dist = Math.acos(
+                    Math.sin(flat.latitude/180*Math::PI)*Math.sin(self.latitude/180*Math::PI) +
+                    Math.cos(flat.latitude/180*Math::PI)*Math.cos(self.latitude/180*Math::PI)*Math.cos(flat.longitude/180*Math::PI-self.longitude/180*Math::PI)
+                ) * eradius
+        dist
     end
-  
 end

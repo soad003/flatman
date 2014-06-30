@@ -1,7 +1,11 @@
 class Api::SearchController < Api::RestController
   
   def search
-    items = Shareditem.which_contain(s_params[:term]).from_city(current_user.flat[:zip], current_user.flat[:city])
+    Flat.all.each do |flat|
+      flat.save!
+    end
+    
+    items = Shareditem.which_contain(s_params[:term])
     c = items.map { |v| {
         :data => v, 
         :distance => current_user.flat.get_distance_to(v.flat).round(2), 
@@ -9,6 +13,7 @@ class Api::SearchController < Api::RestController
         :flat_id => v.flat_id
         }
     }
+    c = c.sort {|x,y| -(x.distance <=> y.distance)}
     respond_with({items:c})
   end
 
