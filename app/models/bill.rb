@@ -2,6 +2,7 @@ class Bill < ActiveRecord::Base
 	has_and_belongs_to_many :users
 	belongs_to 				:billcategory
 	belongs_to 				:user
+	belongs_to              :flat
 
   	validates :date,:text,:user, presence: true
   	validates :value, numericality: {greater_than: 0}, presence: true
@@ -25,6 +26,7 @@ class Bill < ActiveRecord::Base
 			b.value = p[:value]
 			b.user_id = p[:user_id]
 			b.billcategory = cat
+			b.flat_id = flat.id
 			b.users = p[:user_ids].map {|id| User.find_with_flat_constraint(id,flat)}
 		}
 	end

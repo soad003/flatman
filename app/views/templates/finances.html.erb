@@ -76,7 +76,7 @@
                                                 <div class="pull-right">
                                                     <span ng-class="{'text-success':overviewMate.value >0, 'text-danger': overviewMate.value
                                                                 < 0}">
-                                                        {{(overviewMate.value) | customCurrency : '€ '}}
+                                                        {{Math.abs(overviewMate.value) | customCurrency : '€ '}}
                                                     </span>
                                                     <span class="glyphicon glyphicon-chevron-right"></span>
                                                 </div>

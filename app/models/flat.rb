@@ -5,6 +5,7 @@ class Flat < ActiveRecord::Base
 	has_many	:shoppinglists, -> { order 'created_at asc' }
 	has_many 	:resources
     has_many    :invites
+    has_many    :bills
     validates   :name, :street, :city, :zip, presence: true
 
     def add_user(user)

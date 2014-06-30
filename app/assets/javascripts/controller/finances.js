@@ -1,5 +1,4 @@
 angular.module('flatman').controller("financesCtrl", function($scope, financesService, flatService, Util) {
-    $scope.Textcut = [];
 
     $scope.switchChevron = function(index){
         $('#collapse' + index).on('show.bs.collapse', function () {
@@ -57,7 +56,9 @@ angular.module('flatman').controller("financesCtrl", function($scope, financesSe
             $scope.overviewMates[$scope.selectedIndex].entries = data.entries;
         });
     };
+    $scope.Textcut = [];
     $scope.chartData = [];
+    $scope.Math = Math;
     $scope.finances = financesService.bill.get_range(0, 5);
     $scope.overviewMates = financesService.finance.get_overview_mates(0, 5);
     $scope.AllCategories = financesService.category.get_all(function(data) {
