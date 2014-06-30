@@ -8,7 +8,7 @@ class Api::SearchController < Api::RestController
         :flat_id => v.flat_id
         }
     }
-    c = c.sort {|x,y| (x.distance <=> y.distance)}
+    #c = c.sort {|x,y| (x.distance <=> y.distance)}
     respond_with({items:c})
   end
 
