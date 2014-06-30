@@ -16,7 +16,11 @@ class Flat < ActiveRecord::Base
     end
 
     def full_street_address
-        self.zip + " " + self.city + ", " + self.street
+        if (self.zip != nil && self.city != nil && self.street != nil)
+            self.zip + " " + self.city + ", " + self.street
+        else
+            ""
+        end
     end
 
     def is_member?(user)
@@ -31,11 +35,14 @@ class Flat < ActiveRecord::Base
     end
 
     def get_distance_to(flat)
-        eradius = 6378.137;
-        dist = Math.acos(
-                    Math.sin(flat.latitude/180*Math::PI)*Math.sin(self.latitude/180*Math::PI) +
-                    Math.cos(flat.latitude/180*Math::PI)*Math.cos(self.latitude/180*Math::PI)*Math.cos(flat.longitude/180*Math::PI-self.longitude/180*Math::PI)
-                ) * eradius
+        eradius = 6378.137
+        dist = -1
+        if (flat != nil && flat.latitude != nil && flat.longitude != nil && self.longitude != nil && self.latitude != nil)
+            dist = Math.acos(
+                       Math.sin(flat.latitude/180*Math::PI)*Math.sin(self.latitude/180*Math::PI) +
+                       Math.cos(flat.latitude/180*Math::PI)*Math.cos(self.latitude/180*Math::PI)*Math.cos(flat.longitude/180*Math::PI-self.longitude/180*Math::PI)
+                    ) * eradius
+        end
         dist
     end
 end

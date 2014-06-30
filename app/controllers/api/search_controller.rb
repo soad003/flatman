@@ -1,14 +1,12 @@
 class Api::SearchController < Api::RestController
-  
-  def search
-    Flat.all.each do |flat|
-      flat.save!
-    end
-    
-    items = Shareditem.which_contain(s_params[:term])
+   def search
+      Flat.all.each do |flat|
+       flat.save!
+      end
+    items = Shareditem.which_contain(s_params[:term]).from_city(current_user.flat[:zip], current_user.flat[:city])
     c = items.map { |v| {
-        :data => v, 
-        :distance => current_user.flat.get_distance_to(v.flat).round(2), 
+        :data => v,
+        :distance => current_user.flat.get_distance_to(v.flat).round(2),
         :flatname => v.flat.name,
         :flat_id => v.flat_id
         }
