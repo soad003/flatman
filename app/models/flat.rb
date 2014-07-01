@@ -1,7 +1,7 @@
 class Flat < ActiveRecord::Base
 	has_many	:users
 	has_many 	:billcategories
-	has_many 	:shareditems
+	has_many 	:shareditems , -> { order 'name asc' }
 	has_many	:shoppinglists, -> { order 'created_at asc' }
 	has_many 	:resources
     has_many    :invites
@@ -36,8 +36,8 @@ class Flat < ActiveRecord::Base
 
     def get_distance_to(flat)
         eradius = 6378.137
-        dist = -1
-        if (flat != nil && flat.latitude != nil && flat.longitude != nil && self.longitude != nil && self.latitude != nil)
+        dist = 40000
+        if (flat.latitude != nil && flat.longitude != nil && self.longitude != nil && self.latitude != nil)
             dist = Math.acos(
                        Math.sin(flat.latitude/180*Math::PI)*Math.sin(self.latitude/180*Math::PI) +
                        Math.cos(flat.latitude/180*Math::PI)*Math.cos(self.latitude/180*Math::PI)*Math.cos(flat.longitude/180*Math::PI-self.longitude/180*Math::PI)
