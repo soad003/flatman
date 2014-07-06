@@ -128,6 +128,7 @@ angular.module('flatman', ['ngRoute','ngResource','google-maps','angles','ui.boo
   $rootScope.pending_requests=0;
   $rootScope.$on('$routeChangeStart',function(){
     Util.clear_server_errors();     //clear errors on view change
-    $('.modal.in').modal('hide');   //dirty nasty ugly hack!!! DON'T DO THIS AT HOME
+    $('.modal.in').modal('hide');   //dirty nasty ugly hack!!! DON'T DO THIS AT
+    fix_android_stock_select();
   });
 });

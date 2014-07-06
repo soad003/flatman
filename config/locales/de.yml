@@ -439,19 +439,6 @@ de:
       city_label                         : "Stadt"
       city_placeholder                   : "Gotham"
       create_flat                        : "WG erstellen!"
-      marketing:
-        shopping_title                   : "Einkaufen"
-        shopping_text                    : "Maecenas sed diam eget risus varius blandit sit amet non magna."
-        finances_title                   : "Rechnungen"
-        finafinnces_text                 : "Morbi leo risus, porta ac consectetur ac, vestibulum at eros. Cras mattis consectetur purus sit amet fermentum."
-        resources_title                  : "Ressourcenverbrauch"
-        resources_text                   : "Maecenas sed diam eget risus varius blandit sit amet non magna."
-        share_title                      : "Teilen"
-        share_text                       : "Donec id elit non mi porta gravida at eget metus. Maecenas faucibus mollis interdum."
-        info_title                       : "Bleib auf dem laufenden"
-        info_text                        : "Morbi leo risus, porta ac consectetur ac, vestibulum at eros. Cras mattis consectetur purus sit amet fermentum."
-        connect_title                    : "Bleib verbunden"
-        connect_text                     : "Maecenas sed diam eget risus varius blandit sit amet non magna."
     share:
       title                              : "Teilen"
       available_items                    : "verfügbare items"
@@ -475,7 +462,7 @@ de:
       confirm_delete                     : "Bist du dir sicher das du das Itme löschen willst?"
       borrowed_items                     : "verliehene items"
 
-      
+
     shareditem:
       add_file                           : "füge bild hinzu"
       upload                             : "upload"
@@ -497,13 +484,20 @@ de:
       tags_placeholder                   : "füge ein paar Tags ein"
       confirm_delete                     : "Bist du dir sicher das du das Item löschen willst?"
       sharingnote_placeholder            : "kurze Notiz (nur für dich sichtbar) "
-      
+
   session:
     index:
       page_title                         : "Bitte einloggen"
-      login                              : "Login"
-      or                                 : "or"
-      signup                             : "Sign up"
       sign_in_Facebook                   : "Facebook"
       sign_in_Google                     : "Google"
-      forgot_pw                          : "passwort vergessen?"
+      title                              : "Willkommen bei Flatman"
+      subtitle                           : "Flatman impliziert organisierte WG"
+      shopping_title                     : "Organisiere deine Einkäufe"
+      shopping_description               : "Shoppinglisten helfen dir beim Einkaufen nichts zu vergessen oder doppelt zu kaufen."
+      finances_title                     : "Behalte deine Finanzen im Auge"
+      finances_description               : "Verwalte deine Rechungen, Schulden von WG bewohnern und Zahlungen und behalte den Überblick."
+      resources_title                    : "Ressourcenverbrauch"
+      resources_description              : "Überwache deinen Ressourcenverbrauch und hilf die Umwelt zu schützen."
+      share_title                        : "Teile und Hersche"
+      share_description                  : "Nicht jede WG hat immer alle Geräte die man so braucht. Teile deine Haushaltsgeräte und mit etwas Glück hat jemand genau was du brauchst"
+      signin_with                        : "einloggen mit"
