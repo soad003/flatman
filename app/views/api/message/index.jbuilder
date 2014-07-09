@@ -13,9 +13,11 @@ json.array!(@meslist) do |chat|
     end
   	json.partner chat.sender.name
   	json.partner_id chat.sender.id
+    json.partner_pic chat.sender.image_path
   else
   	json.partner chat.receiver.name
   	json.partner_id chat.receiver.id
+    json.partner_pic chat.receiver.image_path
     if chat.receiver.flat_id != nil
       json.flat_name Flat.find(chat.receiver.flat_id).name
     end

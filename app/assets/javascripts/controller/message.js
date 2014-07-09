@@ -74,9 +74,6 @@ angular.module('flatman').controller("messageCtrl", function($scope, $route, $q,
             $scope.quantity += 30;
             quantity = $scope.quantity
         }
-        /*if (quantity === -1){
-            $scope.allLoaded = true;
-        }*/
         $scope.setAllRead = false;
         $scope.messages = messageService.messages.get($scope.activeChat.id, quantity);
         if ($scope.quantity == 20)
