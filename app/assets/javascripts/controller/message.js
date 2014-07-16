@@ -242,6 +242,8 @@ angular.module('flatman').controller("messageCtrl", function($scope, $route, $q,
     };
 
     $scope.parseTime = function(time, modus){
+        var oneDayInMillis = 86400000;
+        var oneHourInMillis = 3600000;
         if (time === null || time === undefined){
             return null;
         }
@@ -251,25 +253,33 @@ angular.module('flatman').controller("messageCtrl", function($scope, $route, $q,
             var beginDate2015 = Date.parse(new Date(2015,3,29,2,0));
             var endDate2015 = Date.parse(new Date(2015,10,25,3,0));
             var millis = Date.parse(time);
-            var offset = 3600000;
+            var offset = oneHourInMillis;
             if ((millis > beginDate2014 && millis < endDate2014) || (millis > beginDate2015 && millis < endDate2015))
                 offset = offset * 2; 
-            millis = millis + offset;
             var day = new Date(millis).toISOString().split("T")[0];
             var daytime = new Date(millis).toISOString().split("T")[1].split(".")[0];
-            var today = new Date().toISOString().split("T")[0];
-            var yesterday = new Date(Date.parse(new Date().toISOString()) - 86400000).toISOString().split("T")[0];
-            daytime = new Date(millis - offset).toISOString().split("T")[1].split(".")[0];
-            if (today == day)
-                return "today" +" "+ daytime;
-            else if (yesterday == day && modus == "0")  // chat view
-                return "yesterday";
-            else if (yesterday == day && modus == "1")  // messages view
-                return "yesterday" +" "+ daytime;
-            else if (modus == "0")
+            var todayMillis = Date.parse(new Date()) + offset;
+            var yesterdayMillis = todayMillis - oneDayInMillis;
+            var today = new Date(todayMillis).toISOString().split("T")[0];
+            var yesterday = new Date(yesterdayMillis).toISOString().split("T")[0];
+            daytime = new Date(millis).toISOString().split("T")[1].split(".")[0];
+            daytime = daytime.split(":")[0] + ":" + daytime.split(":")[1];
+            
+            if (modus === "0"){
+                if (today === day)
+                    return "today " + daytime;
+                if (yesterday === day)
+                    return "yesterday";
                 return day;
-            else if (modus == "1")
-                return day +" "+ daytime;
+            }
+
+            if (modus === "1"){
+                if (today === day)
+                    return daytime;
+                if (yesterday === day)
+                    return "yesterday " + daytime;
+                return day + " " + daytime;
+            }
         }
     };
 
