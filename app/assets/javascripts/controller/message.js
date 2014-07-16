@@ -264,7 +264,6 @@ angular.module('flatman').controller("messageCtrl", function($scope, $route, $q,
             var yesterday = new Date(yesterdayMillis).toISOString().split("T")[0];
             daytime = new Date(millis).toISOString().split("T")[1].split(".")[0];
             daytime = daytime.split(":")[0] + ":" + daytime.split(":")[1];
-            
             if (modus === "0"){
                 if (today === day)
                     return "today " + daytime;
@@ -272,7 +271,6 @@ angular.module('flatman').controller("messageCtrl", function($scope, $route, $q,
                     return "yesterday";
                 return day;
             }
-
             if (modus === "1"){
                 if (today === day)
                     return daytime;
