@@ -26,18 +26,25 @@
     <div ng-repeat="message in messages">
       <div ng-show="currentUserIsSender(message) || !currentlyRead(message, setAllRead)">
         <a class="list-group-item" style="margin-top: 6px">
-          <div class="list-group-item-heading" ng-model="Username">
-            <strong>{{message.sender_name}}</strong>
-            <span class="time pull-right" style="font-size:x-small">
-              <i class="fa fa-clock-o"></i> 
-              {{parseTime(message.created_at, "1")}}
-            </span>
-          </div>
-          <div class="list-group-item-text">
-            <div class="row">
-              <div class="col-xs-12 col-md-12">
-                {{parseNewline(message.text, false, $index, false)}}
-                <span ng-repeat="msgText in chatTexts[$index] track by $index"> {{msgText}} <br></span>
+          <div class="row">
+            <div class="col-lg-1 col-md-1 col-ms-2 col-xs-2">
+              <img style="height:60px; width:60px" class="img-circle" ng-src="{{message.sender_pic}}" />
+            </div>
+            <div class="col-lg-11 col-md-11 col-ms-10 col-xs-10">
+              <div class="list-group-item-heading" ng-model="Username">
+                <strong>{{message.sender_name}}</strong>
+                <span class="time pull-right" style="font-size:x-small">
+                  <i class="fa fa-clock-o"></i> 
+                  {{parseTime(message.created_at, "1")}}
+                </span>
+              </div>
+              <div class="list-group-item-text">
+                <div class="row">
+                  <div class="col-xs-12 col-md-12">
+                    {{parseNewline(message.text, false, $index, false)}}
+                    <span ng-repeat="msgText in chatTexts[$index] track by $index"> {{msgText}} <br></span>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
@@ -45,18 +52,25 @@
       </div>
       <div ng-show="!currentUserIsSender(message) && currentlyRead(message, setAllRead)">
         <a class="list-group-item active" style="margin-top: 6px">
-          <div class="list-group-item-heading" ng-model="Username">
-            <strong>{{message.sender_name}}</strong>
-            <span class="time pull-right" style="font-size:x-small">
-              <i class="fa fa-clock-o"></i> 
-              {{parseTime(message.created_at, "1")}}
-            </span>
-          </div>
-          <div class="list-group-item-text">
-            <div class="row">
-              <div class="col-xs-12 col-md-12">
-                {{parseNewline(message.text, false, $index, false)}}
-                <span ng-repeat="msgText in chatTexts[$index] track by $index"> {{msgText}} <br></span>
+          <div class="row">
+            <div class="col-lg-1 col-md-2">
+              <img style="height:60px; width:60px" class="img-circle" ng-src="{{message.receiver_pic}}" />
+            </div>
+            <div class="col-lg-11 col-md-10">
+              <div class="list-group-item-heading" ng-model="Username">
+                <strong>{{message.sender_name}}</strong>
+                <span class="time pull-right" style="font-size:x-small">
+                  <i class="fa fa-clock-o"></i> 
+                  {{parseTime(message.created_at, "1")}}
+                </span>
+              </div>
+              <div class="list-group-item-text">
+                <div class="row">
+                  <div class="col-xs-12 col-md-12">
+                    {{parseNewline(message.text, false, $index, false)}}
+                    <span ng-repeat="msgText in chatTexts[$index] track by $index"> {{msgText}} <br></span>
+                  </div>
+                </div>
               </div>
             </div>
           </div>

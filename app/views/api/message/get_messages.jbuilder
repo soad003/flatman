@@ -10,4 +10,6 @@ json.array!(@meslist) do |message|
   json.header message.header
   json.updated_at message.updated_at
   json.readers message.readers
+  json.receiver_pic message.receiver.image_path
+  json.sender_pic message.sender.image_path
 end
