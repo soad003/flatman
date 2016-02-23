@@ -72,6 +72,8 @@ gem 'bootbox-rails'
 #calculate distance
 gem 'geocoder'
 
+gem 'paperclip'
+
 
 group :production do
     # Use unicorn as the app server
