@@ -2,9 +2,11 @@
 
 wg_michi_one:
   email: niko1003@gmx.net
+  token: 2P0BylDWfMoNn6aNShYmUg
   flat: wg_michi
 
 
 wg_clemi_one:
   email: michael.froewis@gmail.com
+  token: 2P0BylDWfMoNn6aNShYmUh
   flat: wg_clemi

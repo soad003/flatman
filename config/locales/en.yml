@@ -40,13 +40,7 @@ en:
       create:
         entryDate_before_startDate        : "The date for your entry is before the start date"
         entryDate_exists                  : "There is already an entry for this date"
-    shareditem:
-      get:
-        no_item_found                     : "The requested Item is currently not available"
-    message:
-      create:
-        no_user_found                     : "No user found"
-        user_already_selected             : "User already selected"
+
   # mail
   user_mailer:
     invite:
@@ -106,12 +100,6 @@ en:
               greater_than                : "Must be greater than zero."
             payer_id:
               blank                       : "Please add a payer"
-        message:
-          attributes:
-            receiver_id:
-              blank                       : "Please enter the username of the receiver"
-            text:
-              blank                       : "Please enter a message to send"
         bill:
           attributes:
             date:
@@ -149,6 +137,7 @@ en:
   #misc
   misc:
     titles:
+      login_to_join                       : "Please log in to join the flat!"
       yes_text                            : "yes"
       no_text                             : "no"
       optional                            : "(optional)"
@@ -183,8 +172,6 @@ en:
     application:
       default_description                 : "nananananananana flatman"
       navbar:
-        messages                          : "Messages"
-        share                             : "Share"
         finances                          : "Finances"
         flat_settings                     : "Flat Settings"
         user_settings                     : "User Profile"
@@ -227,41 +214,17 @@ en:
       you_get                            : "you get"
       view_finance_details               : "show clearing"
       items_borrowed                     : "items borrowed"
-      view_share_details                 : "view items"
       view_resource_details              : "view resources"
       view_resource_titel                : "last 30 days"
       panel_no_resources                 : "No resources are available"
       view_details                       : "View Details"
       panel_shopping_header              : "Shopping"
       panel_finances_header              : "Finances"
-      panel_share_header                 : "Shared Items"
       panel_resources_header             : "Resource Usage (last 30 days)"
       no_shoppinglists                   : "Nothing to buy yet..."
-      no_shareditems                     : "No items available"
-      share_available                    : "items offered to share"
-      share_borrowed                     : "currently borrowed items"
-      share_helptext                     : "share resources, feel better and make the world a better place"
       status                             : "status"
       mate                               : "mate"
 
-    chats:
-      page_header                        : "Messages"
-      page_title                         : "Messages"
-      new_text_placeholder               : "Enter text"
-      send                               : "send"
-      back                               : "back"
-      questionDeleteChat                 : "Do you really want to delete this chat?"
-    create_message:
-      page_header                        : "New Message"
-      send                               : "send"
-      back                               : "back"
-      create_Message_user_placeholder    : "Username"
-      new_text_placeholder               : "Enter text"
-    messages:
-      send                               : "send"
-      back                               : "back"
-      new_text_placeholder               : "Enter text"
-      old_messages                       : "Get older messages"
     resources:
       page_header                        : "Resources"
       page_title                         : "Resource"
@@ -439,50 +402,6 @@ en:
       city_label                         : "city"
       city_placeholder                   : "Gotham"
       create_flat                        : "create a flat!"
-    share:
-      title                              : "sharing"
-      available_items                    : "available items"
-      available_info                     : "available items text available items text available items text available items text "
-      filter                             : "filter"
-      item_borrow                        : "currently borrowed"
-      item_hide                          : "hide"
-      item_unhide                        : "unhide"
-      item_edit                          : "edit"
-      item_remove                        : "remove"
-      item_new                           : "new item"
-      item_backhome                      : "back home"
-      add                                : "add"
-      help_title                         : "sharing is caring"
-      help_paragraph1                    : "Share items which are used rarely (like soldering iron, impact drill etc.) with your neighbours. "
-      help_paragraph2                    : "Add a product, insert some additional information and let the love act."
-      first_item                         : "create your first item"
-      add_item_new                       : "add"
-      hidden_items                       : "hidden items"
-      hidden_info                        : "hidden items are just visible for you and cannot be found by anyone"
-      confirm_delete                     : "do you really want to delete this item?"
-      borrowed_info                      : "borrowed items info, borrowed items info"
-      borrowed_items                     : "borrowed items"
-    shareditem:
-      add_file                           : "add file"
-      upload                             : "upload"
-      upload                             : "upload"
-      save                               : "save"
-      back                               : "back"
-      remove                             : "remove item"
-      remove_image                       : "remove image"
-      upload_image                       : "upload image"
-      change_image                       : "change"
-      available                          : "available"
-      hidden                             : "hidden"
-      currentState                       : "current state of the item"
-      descritpion                        : "descritpion"
-      description_placeholder            : "describe your item"
-      sharingNote                        : "sharing note"
-      sharingNote_placeholder            : "notice who has taken your item"
-      tags                               : "tags"
-      tags_placeholder                   : "add some tags"
-      confirm_delete                     : "do you really want to delete this item?"
-      sharingnote_placeholder            : "short sharing note (just visible for you)"
 
   session:
     index:
@@ -497,6 +416,4 @@ en:
       finances_description               : "Enter your expenses, debts or payments and easily keep track of the flats biggest expenses and the current balance with your flat mates."
       resources_title                    : "Resource usage"
       resources_description              : "Keep track of your resource usage to save money and help the environment to last."
-      share_title                        : "Sharing is caring"
-      share_description                  : "Not every flat has every item ever needed, for example you need a drill but you don't own one. Flatman provides the posibility to share your item and borrow them to other flatman users. Maybe you are lucky and someone in your city provides what you are looking for."
       signin_with                        : "sign in with"

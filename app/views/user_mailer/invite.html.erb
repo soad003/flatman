@@ -1,3 +1,3 @@
 <h2><%= t('.heading') %> <%= h(@flat_name)%></h2>
 
-<p><%= t('.text') %> <%=link_to t('misc.titles.here'), root_url%>.</p>
+<p><%= t('.text') %> <%=link_to t('misc.titles.here'),  controller: "session", action: "join", token: @token%>.</p>

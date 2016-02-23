@@ -2,8 +2,9 @@ class UserMailer < ActionMailer::Base
   layout 'mail_layout'
   before_filter :set_locale
 
-    def invite(email,flat_name)
+    def invite(email,flat_name,token)
         @flat_name=flat_name
+        @token=token
         mail(to: email)
     end
 

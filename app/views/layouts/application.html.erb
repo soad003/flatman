@@ -73,16 +73,9 @@
               <li ng-class="{active:isActive('/finances')}">
                 <a href="/#/finances"><span class="glyphicon glyphicon-euro"></span> <%=t(".navbar.finances")%></a>
               </li>
-              <!-- <li ng-class="{active:isActive('/share')}">
-                <a href="/#/share"><span class="glyphicon glyphicon-share"></span> <%=t(".navbar.share")%></a>
-              </li>
-               <li ng-class="{active:isActive('/chats')}">
-                <a href="/#/chats"><span class="glyphicon glyphicon-envelope"></span> <%=t(".navbar.messages")%> <span class="badge">{{server_status.unread_messages}}</span></a>
-              </li> -->
               <li ng-class="{active:isActive('/resources')}">
                 <a href="/#/resources"><span class="glyphicon glyphicon-globe"></span>  <%=t(".navbar.resources")%></a>
               </li>
-              
             </ul>
             <ul class="nav navbar-nav navbar-right">
               <li class="flatman-navbar-item" ng-show="isLoading()">
@@ -104,20 +97,6 @@
                 </ul>
               </li>
             </ul>
-
-            <!-- <div class="col-lg-2 pull-right">
-              nasty navbar Hack  http://stackoverflow.com/questions/18619740/how-to-add-a-search-box-with-icon-to-the-navbar-in-bootstrap-3/18620303#18620303 
-              <form class="navbar-form " role="search" ng-submit="search()">
-                <div class="input-group">
-                  <input type="text" class="form-control" ng-model="search_term" placeholder="<%=t(".navbar.search_placeholder")%>">
-                  <span class="input-group-btn">
-                    <button class="btn btn-success" type="submit" data-toggle="collapse" data-target=".navbar-collapse">
-                      <span class="glyphicon glyphicon-search"></span>
-                    </button>
-                  </span>
-                </div>
-              </form>
-            </div> -->
           </div> 
         <% end %>
       </div>
@@ -126,7 +105,7 @@
     <div id="container" class="<%= content_for?(:no_container) ? "" : "container" %>" ng-cloak>
       <section>
         <% flash.each do |key,message| %>
-          <div class="alert alert-<%= key.to_s %> alert-dismissable auto-fadeout">
+          <div class="alert alert-<%= key.to_s %> alert-dismissable">
             <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
             <%=message%>
           </div>

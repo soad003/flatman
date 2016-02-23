@@ -4,13 +4,15 @@
 <% content_for :no_container, true %>
 
 <style type="text/css">
+body { padding-top: 50px; }
+.alert{ margin-bottom: 0px;}
 .lead {
   font-size: 18px;
   font-weight: 400;
 }
 
 .intro-header {
-  padding-top: 100px; /* If you're making other pages, make sure there is 50px of padding to make sure the navbar doesn't overlap content! */
+  padding-top: 100px; 
   padding-bottom: 50px;
   color: #f8f8f8;
   background: url("<%=asset_path('flatman_logo_square.png') %>") no-repeat center center;
@@ -157,11 +159,9 @@ h4:after {
               </div>
 
           </div>
-          <!-- /.container -->
 
 </div>
   <!-- /.intro-header -->
-
 <div class="content-section-a">
 
     <div class="container">
@@ -179,7 +179,6 @@ h4:after {
         </div>
 
     </div>
-    <!-- /.container -->
 
 </div>
 <!-- /.content-section-a -->
@@ -201,7 +200,6 @@ h4:after {
         </div>
 
     </div>
-    <!-- /.container -->
 
 </div>
 <!-- /.content-section-b -->
@@ -223,28 +221,6 @@ h4:after {
         </div>
 
     </div>
-    <!-- /.container -->
 
 </div>
 <!-- /.content-section-a -->
-
-<div class="content-section-b">
-
-    <div class="container">
-
-        <div class="row">
-            <div class="col-lg-5 col-lg-offset-1 col-sm-push-6 col-sm-6">
-                <hr class="section-heading-spacer">
-                <div class="clearfix"></div>
-                <h2 class="section-heading"><%= t(".share_title") %></h2>
-                <p class="lead"><%= t(".share_description") %></p>
-            </div>
-            <div class="col-lg-5 col-sm-pull-6  col-sm-6">
-                 <i class="glyphicon glyphicon-share text-danger intro-icon"></i>
-            </div>
-        </div>
-
-    </div>
-    <!-- /.container -->
-
-</div>

@@ -58,33 +58,6 @@
       </a>
     </div>
   </div>
- <!--  <div class="col-lg-3 col-sm-6">
-    <div class="panel panel-danger clickable" ng-click="Util.redirect_to.share()">
-      <div class="panel-heading">
-        <div class="row">
-          <div class="col-xs-2">
-            <i class="fa fa-share-square-o fa-5x"></i>
-          </div>
-          <div class="col-xs-10 text-right">
-            <p class="announcement-heading">{{count_sharedItems(false)}}</p>
-            <p class="announcement-text"><%=t(".items_borrowed")%></p>
-          </div>
-        </div>
-      </div>
-      <a href="/#/share">
-        <div class="panel-footer announcement-bottom">
-          <div class="row">
-            <div class="col-xs-10">
-                <%=t(".view_share_details")%>
-            </div>
-            <div class="col-xs-2 text-right">
-              <i class="fa fa-arrow-circle-right"></i>
-            </div>
-          </div>
-        </div>
-      </a>
-    </div>
-  </div> -->
   <div class="col-lg-4 col-sm-6">
     <div class="panel panel-success clickable" ng-click="Util.redirect_to.resources()">
       <div class="panel-heading">
@@ -174,70 +147,3 @@
     </div>
   </div>
 </div>
-
-<!-- <div class="row hidden-xs">
-  <div class="col-md-6">
-    <div class="panel panel-default">
-      <div class="panel-heading panel-link">
-        <a href="/#/share"><span class="glyphicon glyphicon-share"></span> <%=t(".panel_share_header")%></a>
-      </div>
-      <div class="panel-body">
-        <ul class="list-group">
-	         <li class="list-group-item">
-    	       <span ng-show="count_sharedItems(true)>0" class="badge">{{count_sharedItems(true)}}</span>
-	         	 <h4 class="list-group-item-heading"><%=t(".share_available")%></h4>
-	         	 <p ng-show="count_sharedItems(true)==0"><%=t(".no_shareditems")%></p>
-	         	 <p class="list-group-item-text">{{ get_sharedItems(true) }}</p>
-	         </li>
-	         <li class="list-group-item">
-	           <span class="badge">{{count_sharedItems(false)}}</span>
-	         	 <h4 class="list-group-item-heading"><%=t(".share_borrowed")%></h4>
-	         	 <p class="list-group-item-text">{{ get_sharedItems(false) }}</p>
-	         </li>
-        </ul>
-        <div class="text-right">
-          <a href="/#/share"><%=t(".view_details")%> <i class="fa fa-arrow-circle-right"></i></a>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <div class="col-md-6">
-    <div class="panel panel-default">
-      <div class="panel-heading">
-        <a href="/#/resources"><span class="glyphicon glyphicon-globe"></span> <%=t(".panel_resources_header")%></a>
-      </div>
-      <div class="panel-body">
-        <div ng-show="dashboardResources.length === 0">
-          <%=t(".panel_no_resources")%>
-        </div>
-        <table ng-hide="dashboardResources.length === 0" class="table table-striped table-hover">
-          <thead>
-            <tr>
-              <th><%=t(".name")%></th>
-              <th class="text-right"><%=t(".usage")%></th>
-              <th class="text-right"><%=t(".costs")%></th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr ng-repeat="info in dashboardResources">
-              <td>{{info.name}}</td>
-              <td class="text-right">{{info.usage | number : number}} {{info.unit}}</td>
-              <td class="text-right">{{info.cost| customCurrency : '€ '}}</td>
-            </tr>
-          </tbody>
-          <tfoot>
-              <tr>
-                <td>&nbsp;</td>
-                <td>&nbsp;</td>
-                <td class="text-right"><b>{{get_resource_usage()| customCurrency : '€ '}}</b></td>
-              </tr>
-          </tfoot>
-        </table>
-        <div class="text-right">
-          <a href="/#/resources"><%=t(".view_details")%> <i class="fa fa-arrow-circle-right"></i></a>
-        </div>
-      </div>
-    </div>
-  </div>
-</div> -->

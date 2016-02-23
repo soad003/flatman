@@ -8,9 +8,6 @@ class TemplatesController < ProtectedController
   def dashboard
   end
 
-  def share
-  end
-
   def finances
   end
 
@@ -32,12 +29,6 @@ class TemplatesController < ProtectedController
   def create_payment
   end
 
-  def messages
-  end
-
-  def create_message
-  end
-
   def shopping
   end
 
@@ -48,9 +39,6 @@ class TemplatesController < ProtectedController
   end
 
   def create_flat
-  end
-
-  def search
   end
 
   private

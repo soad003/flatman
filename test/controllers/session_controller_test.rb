@@ -89,6 +89,7 @@ class SessionControllerTest < ActionController::TestCase
         )
 
     assert_difference('Invite.count',-1) do
+      session[:invite_token] = "2P0BylDWfMoNn6aNShYmUg"
       get :create, :provider => user.provider
     end
 

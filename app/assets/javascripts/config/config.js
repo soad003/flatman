@@ -18,33 +18,9 @@ angular.module('flatman', ['ngRoute','ngResource','google-maps','angles','ui.boo
         templateUrl: '/templates/dashboard',
         controller: 'dashboardCtrl'
       }).
-      when('/share', {
-        templateUrl: '/templates/share',
-        controller: 'shareCtrl'
-      }).
-      when('/shareditem/:itemid', {
-        templateUrl: '/templates/shareditem',
-        controller: 'sharedItemCtrl'
-      }).
       when('/finances', {
         templateUrl: '/templates/finances',
         controller: 'financesCtrl'
-      }).
-      when('/chats', {
-        templateUrl: '/templates/chats',
-        controller: 'messageCtrl'
-      }).
-      when('/messages/:id', {
-        templateUrl: '/templates/messages',
-        controller: 'messageCtrl'
-      }).
-      when('/create_message',{
-        templateUrl: '/templates/create_message',
-        controller: 'create_messageCtrl'
-      }).
-      when('/create_message/:id', {
-        templateUrl: '/templates/create_message',
-        controller: 'create_messageCtrl'
       }).
       when('/resources', {
         templateUrl: '/templates/resources',
@@ -89,10 +65,6 @@ angular.module('flatman', ['ngRoute','ngResource','google-maps','angles','ui.boo
       when('/create_payment', {
         templateUrl:'/templates/create_payment',
         controller: 'createPaymentCtrl'
-      }).
-      when('/search/:term', {
-        templateUrl: '/templates/search',
-        controller: 'searchCtrl'
       }).
       otherwise({
         redirectTo: '/dashboard'

@@ -13,21 +13,14 @@ scope "(:locale)", locale: /en|de/ do
     get '/finances', to: :finances, as: 'finances'
     get '/flat_settings', to: :flat_settings, as: 'flat_settings'
     get '/create_resource', to: :create_resource, as: 'create_resource'
-    get '/chats', to: :chats, as: 'chats'
-    get '/messages', to: :messages, as: 'messages'
     get '/resources', to: :resources, as: 'resources'
-    get '/share', to: :share, as: 'share'
-    get '/shareditem', to: :shareditem, as: 'shareditem'
-    get '/upload', to: :upload, as: 'upload'
     get '/shopping', to: :shopping, as: 'shopping'
     get '/user_settings', to: :user_settings, as: 'user_settings'
     get '/dashboard', to: :dashboard, as: 'dashboard_template'
     get '/create_flat', to: :create_flat
-    get '/search', to: :search, as: 'search'
     get '/finance_entry', to: :finance_entry, as: 'finance_entry'
     get '/bills_overview', to: :bills_overview, as: 'bills_overview'
     get '/finance_overview_mate', to: :finance_overview_mate, as: 'finance_overview_mate'
-    get '/create_message', to: :create_message, as: 'create_message'
     get '/create_payment', to: :create_payment, as: 'create_payment'
   end
 
@@ -35,7 +28,6 @@ scope "(:locale)", locale: /en|de/ do
   namespace :api, defaults: {format: :json} do
    resources :status, only: [:index]
    resources :invite, only: [:create,:destroy]
-   get '/search/:term' => 'search#search'
 
    #Flat
    namespace :flat do
@@ -47,7 +39,6 @@ scope "(:locale)", locale: /en|de/ do
 
    #user
    resources :user, only: [:index]
-
 
    resources :shoppinglist, only: [:index, :create, :destroy] do
       resources :shoppingitem, only: [:create, :update, :destroy]
@@ -63,28 +54,6 @@ scope "(:locale)", locale: /en|de/ do
 
    get '/dashboard/resource' => 'resource#dashboard'
 
-   #messages
-   resources :message, only: [:index, :create, :update, :destroy]
-
-   get '/message/messages/:id' => 'message#get_messages'
-   get '/message/messages/:id/:quantity' => 'message#get_messages'
-   get '/message/:mes_id/partner' => 'message#find_partner'
-   get '/message/:mes_id/partner/:option' => 'message#find_active_chat'
-   get '/message/users' => 'message#get_users'
-   get '/message/users/:flat_id' => 'message#getFlatMembers'
-   get '/message/:mes_id/counter' => 'message#count_messages'
-   get '/message/counter' => 'message#count_messages'
-   get '/message/flatChat' => 'message#getFlatChat'
-   get '/message/user' => 'message#getUserId'
-
-   #sharing
-   get '/shareditem/:id' => 'shareditem#get'
-   post '/shareditem/:id' => 'shareditem#update'
-   resources :share, only: [:index, :create, :destroy]
-   resources :shareditem, only: [:index, :create, :update, :upload]
-   get '/tag/:term' => 'tag#find'
-
-
     #finances
    resources :bill, only: [:create, :update,:show, :destroy, :index]
 
@@ -99,6 +68,7 @@ scope "(:locale)", locale: /en|de/ do
   # Authentication
   match 'auth/:provider/callback', to: 'session#create', via: [:get, :post]
   match 'auth/failure', to: redirect('/'), via: [:get, :post]
+  get "auth/join_flat/:token" => "session#join" 
   match 'signout', to: 'session#destroy', as: 'signout', via: [:get, :post]
   match 'signin', to: 'session#index', as: 'signin', via: [:get, :post]
 

@@ -86,8 +86,8 @@ Flatman::Application.configure do
 
   config.action_mailer.raise_delivery_errors = false
   config.action_mailer.perform_deliveries = true
-  config.action_mailer.default_url_options = { :host => 'http://flatman.herokuapp.com' }
-  config.action_mailer.asset_host = 'http://flatman.herokuapp.com'
+  config.action_mailer.default_url_options = { :host => 'http://www.flatman.at' }
+  config.action_mailer.asset_host = 'http://www.flatman.at'
   config.action_mailer.default_options = {   :from => 'info.flatman@gmx.net'  }
 
   # Use default logging formatter so that PID and timestamp are not suppressed.

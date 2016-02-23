@@ -40,13 +40,7 @@ de:
       create:
         entryDate_before_startDate        : "Das Datum ist vor den Startdatum"
         entryDate_exists                  : "Es gibt schon einen eintrag mit diesem Datum"
-    shareditem:
-      get:
-        no_item_found                     : "Diese Item ist momentan nicht verfügbar!"
-    message:
-      create:
-        no_user_found                     : "Kein User gefunden"
-        user_already_selected             : "User ist bereits selektiert"
+
   # mail
   user_mailer:
     invite:
@@ -106,12 +100,6 @@ de:
               greater_than                : "Preis muss größer als 0 sein."
             payer_id:
               blank                       : "Please add a payer"
-        message:
-          attributes:
-            receiver_id:
-              blank                       : "Bitte gib den Empfängernamen an!"
-            text:
-              blank                       : "Bitte gib eine Nachricht an!"
         bill:
           attributes:
             date:
@@ -148,6 +136,7 @@ de:
   #misc
   misc:
     titles:
+      login_to_join                       : "Bitte melde dich an um der WG beizutreten!"
       yes_text                            : "ja"
       no_text                             : "nein"
       optional                            : "(optional)"
@@ -182,8 +171,6 @@ de:
     application:
       default_description                 : "nananananananana flatman"
       navbar:
-        messages                          : "Nachrichten"
-        share                             : "Teilen"
         finances                          : "Finanzen"
         flat_settings                     : "WG Einstellungen"
         user_settings                     : "User Profil"
@@ -226,41 +213,17 @@ de:
       you_get                            : "du bekommst"
       view_finance_details               : "zeige Abrechnungen"
       items_borrowed                     : "verliehene items"
-      view_share_details                 : "zeige items"
       view_resource_details              : "zeige Ressourcenverbrauch"
       view_resource_titel                : "letzen 30 Tage"
       panel_no_resources                 : "keine Ressourcen verfügbar"
       view_details                       : "zeige Details"
       panel_shopping_header              : "Einkaufen"
       panel_finances_header              : "Finanzen"
-      panel_share_header                 : "Geteilte Items"
       panel_resources_header             : "Ressourcen Verbrauch (letzten 30 Tage)"
       no_shoppinglists                   : "noch nichts auf der Liste..."
-      no_shareditems                     : "keine items verfügbar"
-      share_available                    : "angebotene items"
-      share_borrowed                     : "verliehene items"
-      share_helptext                     : "teile und mache die Welt zu einem besseren Ort"
       status                             : "Status"
       mate                               : "Bewohner"
 
-    chats:
-      page_header                        : "Nachrichten"
-      page_title                         : "Nachrichten"
-      new_text_placeholder               : "Text eingeben"
-      send                               : "Senden"
-      back                               : "Zurück"
-      questionDeleteChat                 : "Möchtest du diesen Nachrichtenverlauf wirklich löschen?"
-    create_message:
-      page_header                        : "Neue Nachricht"
-      send                               : "Senden"
-      back                               : "Zurück"
-      create_Message_user_placeholder    : "Username"
-      new_text_placeholder               : "Text eingeben"
-    messages:
-      send                               : "senden"
-      back                               : "zurück"
-      new_text_placeholder               : "Text eingeben"
-      old_messages                       : "Ältere Nachrichten"
     resources:
       page_header                        : "Ressourcen"
       page_title                         : "Ressource"
@@ -439,51 +402,6 @@ de:
       city_label                         : "Stadt"
       city_placeholder                   : "Gotham"
       create_flat                        : "WG erstellen!"
-    share:
-      title                              : "Teilen"
-      available_items                    : "verfügbare items"
-      available_info                     : "available items text available items text available items text available items text "
-      filter                             : "filter"
-      item_borrow                        : "aktuell verliehen"
-      item_hide                          : "verbergen"
-      item_unhide                        : "wieder verfügbar"
-      item_edit                          : "ändern"
-      item_remove                        : "löschen"
-      item_new                           : "neues item"
-      item_backhome                      : "zurück"
-      add                                : "hinzufügen"
-      help_title                         : "teilen ist rücksichtsvoll"
-      help_paragraph1                    : "Teile dinge die du nicht immer brauchst (Bohrmaschine usw.) mit anderen"
-      help_paragraph2                    : "Füge items hinzu und mache andere und dich glücklich damit."
-      first_item                         : "erstelle dein erstes item"
-      add_item_new                       : "hinzufügen"
-      hidden_items                       : "verborgene items"
-      hidden_info                        : "verborgene items sind nur für dich sichtbar."
-      confirm_delete                     : "Bist du dir sicher das du das Itme löschen willst?"
-      borrowed_items                     : "verliehene items"
-
-
-    shareditem:
-      add_file                           : "füge bild hinzu"
-      upload                             : "upload"
-      upload                             : "upload"
-      save                               : "speichern"
-      back                               : "zurück"
-      remove                             : "lösche Item"
-      remove_image                       : "lösche Bild"
-      upload_image                       : "lade Bild hinauf"
-      change_image                       : "ändern"
-      available                          : "verfügbar"
-      hidden                             : "verborgen"
-      currentState                       : "Status des Items"
-      descritpion                        : "Beschreibung"
-      description_placeholder            : "Beschreibe das Item"
-      sharingNote                        : "Notiz für das Teilen"
-      sharingNote_placeholder            : "Notiere wem du was ausgeliehen hast"
-      tags                               : "tags"
-      tags_placeholder                   : "füge ein paar Tags ein"
-      confirm_delete                     : "Bist du dir sicher das du das Item löschen willst?"
-      sharingnote_placeholder            : "kurze Notiz (nur für dich sichtbar) "
 
   session:
     index:
@@ -498,6 +416,4 @@ de:
       finances_description               : "Verwalte deine Rechungen, Schulden von WG bewohnern und Zahlungen und behalte den Überblick."
       resources_title                    : "Ressourcenverbrauch"
       resources_description              : "Überwache deinen Ressourcenverbrauch und hilf die Umwelt zu schützen."
-      share_title                        : "Teile und Hersche"
-      share_description                  : "Nicht jede WG hat immer alle Geräte die man so braucht. Teile deine Haushaltsgeräte und mit etwas Glück hat jemand genau was du brauchst"
       signin_with                        : "einloggen mit"

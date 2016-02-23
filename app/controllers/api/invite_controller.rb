@@ -7,7 +7,7 @@ class Api::InviteController < Api::RestController
             invite=Invite.new(invite_params)
             current_user.flat.invites << invite
             invite.save!
-            UserMailer.invite(invite.email,current_user.flat.name).deliver
+            UserMailer.invite(invite.email,current_user.flat.name, invite.token).deliver
             @return = OpenStruct.new({already_registred: false, invite: invite})
         else
             if current_user.flat.is_member?(user)
