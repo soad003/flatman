@@ -69,9 +69,6 @@ gem 'magnific-popup-rails'
 #alert box
 gem 'bootbox-rails'
 
-#image handling
-gem 'paperclip'
-
 #calculate distance
 gem 'geocoder'
 
@@ -81,7 +78,7 @@ group :production do
     gem 'unicorn'
 
     #file storage in amazon cloud?? needed,
-    gem 'aws-sdk'
+    #gem 'aws-sdk'
 
     # mail exception notification, if something goes wrong, not yet configured
     gem 'exception_notification'

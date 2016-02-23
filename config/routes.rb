@@ -68,7 +68,7 @@ scope "(:locale)", locale: /en|de/ do
   # Authentication
   match 'auth/:provider/callback', to: 'session#create', via: [:get, :post]
   match 'auth/failure', to: redirect('/'), via: [:get, :post]
-  get "auth/join_flat/:token" => "session#join" 
+  get "auth/join_flat/:token", to: "session#join", as: "join" 
   match 'signout', to: 'session#destroy', as: 'signout', via: [:get, :post]
   match 'signin', to: 'session#index', as: 'signin', via: [:get, :post]
 

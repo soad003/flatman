@@ -97,13 +97,13 @@ Flatman::Application.configure do
   config.assets.precompile += %w( vendor/angular-locale_de-de.js )
   
   #amazon s3 storage for images
-  config.paperclip_defaults = {
-    :storage => :s3,
-    :s3_credentials => {
-      :bucket => ENV['AWS_BUCKET_NAME'],
-      :access_key_id => ENV['AWS_ACCESSKEY_ID'],
-      :secret_access_key => ENV['AWS_SECRET_KEY']
-    }
-  }
+  # config.paperclip_defaults = {
+  #   :storage => :s3,
+  #   :s3_credentials => {
+  #     :bucket => ENV['AWS_BUCKET_NAME'],
+  #     :access_key_id => ENV['AWS_ACCESSKEY_ID'],
+  #     :secret_access_key => ENV['AWS_SECRET_KEY']
+  #   }
+  # }
   
 end
