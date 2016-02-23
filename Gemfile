@@ -1,7 +1,10 @@
 source 'https://rubygems.org'
 ruby "2.2.4"
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '4.0.0'
+gem 'rails', '4.0.13'
+
+#gem 'responders', '~> 2.0'
+
 
 # postgresql
 gem 'pg', '0.16.0'
@@ -37,7 +40,7 @@ gem 'bootstrap-sass', '~> 3.1.1'
 gem 'http_accept_language'
 
 # chart js
-gem 'chart-js-rails'
+gem 'chart-js-rails', '0.0.6'
 
 #super cool icons
 gem "font-awesome-rails"
@@ -47,7 +50,7 @@ gem 'omniauth-facebook'
 gem "omniauth-google-oauth2"
 
 #angular js
-gem 'angularjs-rails'
+gem 'angularjs-rails', '1.2.16'
 
 #Underscore js, cool collection api's for js
 gem 'underscore-rails'
@@ -56,7 +59,7 @@ gem 'underscore-rails'
 #gem 'rufus-scheduler'
 
 # Angular bindings bootstrap, typeahead
-gem 'angular-ui-bootstrap-rails'
+gem 'angular-ui-bootstrap-rails', '0.10.0'
 
 #gem "animate-rails"
 
@@ -102,7 +105,7 @@ group :development, :test do
     gem 'jshint_on_rails'
 
     # cool way to test json api's format
-    gem 'assert_json'
+    gem 'assert_json', '0.2.0'
 end
 
 

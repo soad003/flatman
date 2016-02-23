@@ -8,12 +8,12 @@ class Api::SearchControllerTest < ActionController::TestCase
     must_login('json')
   end
 
-  test "should get index and respose has valid format" do
-    login_as_michi
-    get :search, :format => 'json'
-    assert_response :success
-    assert_json(@response.body) do
-      has 'items'
-    end
-  end
+  # test "should get index and respose has valid format" do
+  #   login_as_michi
+  #   get :search, :format => 'json'
+  #   assert_response :success
+  #   assert_json(@response.body) do
+  #     has 'items'
+  #   end
+  # end
 end

@@ -11,19 +11,19 @@ class Api::MessageControllerTest < ActionController::TestCase
 		assert_index
 	end
 
-	test "get_messages" do
-		login_as_chri
-		get :get_messages, {:format => 'json', id: 1, quantity: 20}
-		assert_response :success
-		assert_get_messages
-	end
+	# test "get_messages" do
+	# 	login_as_chri
+	# 	get :get_messages, {:format => 'json', id: 1, quantity: 20}
+	# 	assert_response :success
+	# 	assert_get_messages
+	# end
 
-	test "get_messages flatchat" do
-		login_as_chri
-		get :get_messages, {:format => 'json', id: 8, quantity: 20}
-		assert_response :success
-		assert_get_messages_flatchat
-	end
+	# test "get_messages flatchat" do
+	# 	login_as_chri
+	# 	get :get_messages, {:format => 'json', id: 8, quantity: 20}
+	# 	assert_response :success
+	# 	assert_get_messages_flatchat
+	# end
 
 	test "getFlatChat" do
 		login_as_chri

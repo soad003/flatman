@@ -37,7 +37,7 @@ class SessionControllerTest < ActionController::TestCase
 
 
     assert_no_difference('Invite.count') do
-      get :create
+      get :create, :provider => user.provider
     end
 
     assert_redirected_to root_url
@@ -63,7 +63,7 @@ class SessionControllerTest < ActionController::TestCase
         )
 
     assert_no_difference('Invite.count') do
-      get :create
+      get :create, :provider => user.provider
     end
 
     assert_redirected_to root_url(:anchor => "create_flat")
@@ -89,7 +89,7 @@ class SessionControllerTest < ActionController::TestCase
         )
 
     assert_difference('Invite.count',-1) do
-      get :create
+      get :create, :provider => user.provider
     end
 
     assert_redirected_to root_url
