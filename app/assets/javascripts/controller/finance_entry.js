@@ -1,6 +1,6 @@
 angular.module('flatman').controller("financeEntryCtrl", function($scope,$routeParams, financesService, userService, flatService, Util){
 
-     $scope.process_entry=function(){
+    $scope.process_entry=function(){
         if($scope.edit){
             financesService.bill.update($scope.finTmp, function(data){
                 Util.redirect_to.back();
@@ -11,7 +11,7 @@ angular.module('flatman').controller("financeEntryCtrl", function($scope,$routeP
             });
         }
     };
-
+    $scope.is_editable=true;
     $scope.id = $routeParams.id;
 
     financesService.category.get_all(function(data){
@@ -19,7 +19,10 @@ angular.module('flatman').controller("financeEntryCtrl", function($scope,$routeP
     });
 
     if($scope.id){
-        $scope.finTmp=financesService.bill.get($scope.id);
+        financesService.bill.get($scope.id,function(data){
+            $scope.finTmp=data;
+            $scope.is_editable = $scope.finTmp.is_editable;
+        });
         $scope.mates = flatService.mates.get();
         $scope.edit=true;
     }else{

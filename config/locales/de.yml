@@ -32,6 +32,8 @@ de:
     flat:
       create:
         already_in_flat                   : "Dein User ist schon in einer WG"
+      leave_flat:
+        balance_not_zero                  : "Deine Schulden sind noch nicht getilgt, bitte begleiche deine Schulden bevor du aussteigst."
     invite:
       create:
         already_in_flat                   : "Dein User ist schon in einer anderen WG eingetragen"
@@ -40,6 +42,14 @@ de:
       create:
         entryDate_before_startDate        : "Das Datum ist vor den Startdatum"
         entryDate_exists                  : "Es gibt schon einen eintrag mit diesem Datum"
+    bill:
+      update:
+        no_edit_deleted_users             : "Einträge die gelöschte user enthalten sind nicht editierbar!"
+      destroy:
+        no_edit_deleted_users             : "Einträge die gelöschte user enthalten sind nicht editierbar!"
+    payment:
+      destroy:
+        no_edit_deleted_users             : "Einträge die gelöschte user enthalten sind nicht editierbar!"
 
   # mail
   user_mailer:
@@ -166,6 +176,9 @@ de:
     forms:
       errors_in_form                      : "Es sind noch fehler in der Eingabe!"
 
+  javascript:
+    conf_leave_flat                     : "Bist du dir sicher, dass du die WG verlassen willst?"
+
    # views
   layouts:
     application:
@@ -285,12 +298,14 @@ de:
       invites                            : "Einladungen"
       email                              : "Email"
       save_btn                           : "speichern"
+      leave                              : "WG verlassen"
+      actions                            : "aktionen"
     finances:
       page_title                         : "Finanzen"
       page_header                        : "Finanzstatus"
-      add_fin                            : "Hinzufügen"
-      newBill                            : "Neue Rechnung"
-      newPaym                            : "Neue Zahlung"
+      add_fin                            : "hinzufügen"
+      newBill                            : "neue Rechnung"
+      newPaym                            : "neue Zahlung"
       help_title                         : "Erstelle eine neue Ausgabe"
       help_paragraph1                    : "Hier behältst du den Überblick über deine Ausgaben und Schulden"
       biggest_by_cat                     : "6 größte Kategorien"
@@ -348,9 +363,9 @@ de:
       value                              : "Preis"
       who_paid                           : "gezahlt von"
       splitted_up                        : "wird aufgeteilt "
-      add_fin                            : "Hinzufügen"
-      newBill                            : "Neue Rechnung"
-      newPaym                            : "Neue Zahlung"
+      add_fin                            : "hinzufügen"
+      newBill                            : "neue Rechnung"
+      newPaym                            : "neue Zahlung"
       all                                : "Alle"
     finance_overview_mate:
       page_header                        : "Übersicht"
@@ -363,8 +378,8 @@ de:
       total_price                        : "Gesamt Preis"
       contribution                       : "teil Betrag"
       add_fin                            : "hinzufügen"
-      newBill                            : "Neue Rechnung"
-      newPaym                            : "Neue Zahlung"
+      newBill                            : "neue Rechnung"
+      newPaym                            : "neue Zahlung"
       who_paid                           : "wer hat gezahlt"
       invoice_amount                     : "Rechungsbetrag"
       gets                               : "bekommt"

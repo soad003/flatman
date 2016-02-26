@@ -29,6 +29,11 @@ class ApplicationController < ActionController::Base
     logged_in && !current_user.flat.nil?
   end
 
+  def logout
+    session[:user_id] = nil
+    @current_user = nil
+  end
+
   private
 
   def set_locale

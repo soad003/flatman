@@ -19,18 +19,18 @@ angular.module('flatman').controller("rootCtrl",function($scope,$rootScope,$time
         Util.delete_server_error(index);
     };
 
-    (function tick() {
-        $scope.pending_status_requests++;
-        statusService.get(function(data){
-            if($scope.old_status){   
-                $scope.emitEvents($scope.old_status,data);
-            }
-            $scope.old_status = data;
-            $timeout(tick, 5000);
-            $scope.pending_status_requests--;
-        },
-        function(){ $scope.pending_status_requests--; });
-    })();
+    // (function tick() {
+    //     $scope.pending_status_requests++;
+    //     statusService.get(function(data){
+    //         if($scope.old_status){   
+    //             $scope.emitEvents($scope.old_status,data);
+    //         }
+    //         $scope.old_status = data;
+    //         $timeout(tick, 5000);
+    //         $scope.pending_status_requests--;
+    //     },
+    //     function(){ $scope.pending_status_requests--; });
+    // })();
 
     $scope.emitEvents=function(old_status,new_status) {
         //$scope.$broadcast('message_count_changed', new_status);

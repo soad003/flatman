@@ -113,7 +113,7 @@
 
         <div class="flyover flyover-top"
               ng-class="{in:Util.has_server_errors}">
-          <alert ng-repeat="error in server_errors track by $index" type="danger" close="delete_error($index)">
+          <alert ng-repeat="error in server_errors track by $index" type="error_type" close="delete_error($index)">
             <i class="fa fa-exclamation-triangle fa-lg"></i> {{error}}
           </alert>
         </div>
@@ -157,7 +157,15 @@
     <%if I18n.locale.to_s === "de"%>
         <%= javascript_include_tag "vendor/angular-locale_de-de" %>
     <%end%>
-    <script>var locale = "<%=I18n.locale.to_s%>";</script>
+    <%
+    @translator = I18n.backend
+    @translator.load_translations
+    @translations ||= @translator.send(:translations)[I18n.locale][:javascript]
+    %>
+    <script type="text/javascript">
+      var locale = "<%=I18n.locale.to_s%>";
+      window.I18n = <%= @translations.to_json.html_safe %>;
+    </script>
 
   </body>
 </html>

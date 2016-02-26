@@ -44,7 +44,7 @@ class TemplatesController < ProtectedController
   private
   def check_if_flat
     #special case user not in flat see config.js
-    render json: nil, status: 409 unless current_user.has_flat?
+    render json: nil, status: 409 if current_user.nil? || !current_user.has_flat?
   end
 
 end

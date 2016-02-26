@@ -57,6 +57,14 @@
       </form>
   </div>
   <div class="col-md-3">
+    <div class="panel panel-danger">
+        <div class="panel-heading"><strong><%=t('.actions')%></strong></div>
+        <div class="panel-body">
+          <button class = "btn btn-sm btn-danger btn-block" title ="<%= t('.leave') %>" ng-click="leave_flat()">
+            <span class="glyphicon glyphicon-remove-sign"></span> <%= t('.leave') %>
+          </button>
+        </div>
+    </div>
     <div class="panel panel-success">
       <div class="panel-heading"><strong><%=t('.members')%></strong></div>
       <div class="panel-body">

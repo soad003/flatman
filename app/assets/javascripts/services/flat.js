@@ -3,14 +3,21 @@ angular.module('flatman').factory("flatService",function($resource) {
                     {
                         'get': {method: "GET", isArray:true}
                     });
-    var flatService = $resource('/api/flat/:id',{}, {
-                'create': { method: "PUT"},
-                'get': {method: "GET"},
-                'update': {method: "POST"}
-                 });
+    var flatService = $resource('/api/flat/:id',{}, 
+                    {
+                    'create': { method: "PUT"},
+                    'get': {method: "GET"},
+                    'update': {method: "POST"}
+
+                    });
+    var userService = $resource('/api/flat/leave_flat',{}, 
+                    {
+                    'leave_flat': {method: "POST"}
+                    });
     return {
         flat: flatService,
-        mates: mateService
+        mates: mateService,
+        user: userService
     };
 
 });

@@ -8,6 +8,7 @@ json.subset      @bills.subset do |finance|
   json.date finance.date
   json.id finance.id
   json.cat_name finance.billcategory.name
+  json.is_editable finance.is_editable?
   json.isPaidBy finance.users do |user|
     json.(user, :id, :name)
   end
