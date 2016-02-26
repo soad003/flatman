@@ -24,7 +24,8 @@ module Flatman
 
     config.exceptions_app = self.routes
     config.encoding="utf-8"
-
+    config.action_dispatch.default_headers.merge!({'X-Frame-Options' => 'ALLOWALL'})
     I18n.enforce_available_locales = false
+
   end
 end
