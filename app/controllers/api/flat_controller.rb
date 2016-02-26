@@ -22,7 +22,7 @@ class Api::FlatController < Api::RestController
 
     def leave_flat
         balance = Finance.get_overview_mates(current_user,0,0)
-        if balance.any? {|mate| mate.value != 0}
+        if balance.any? {|mate| mate.value.round(2) != 0.0}
             respond_with_errors([t('.balance_not_zero')])
         else
             current_user.flat_id = nil
