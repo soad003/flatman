@@ -37,6 +37,10 @@ class Api::FlatController < Api::RestController
         @mates=current_user.flat.users
     end
 
+    def former_flat_mates
+        @mates=nil
+    end
+
     private
 
     # Never trust parameters from the scary internet, only allow the white list through.

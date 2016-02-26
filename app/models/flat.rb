@@ -15,6 +15,9 @@ class Flat < ActiveRecord::Base
         user.save!
     end
 
+    def users_involved
+    end
+
     def full_street_address
         if (self.zip != nil && self.city != nil && self.street != nil)
             self.zip + " " + self.city + ", " + self.street
