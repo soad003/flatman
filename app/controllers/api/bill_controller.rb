@@ -22,16 +22,25 @@ class Api::BillController <Api::RestController
 
     def update
         f = Bill.find_bill_with_user_constraint(params[:id])
-        f.update_attributes!(bill_params)
-        cat = Billcategory.new_or_existing(params[:cat_name], current_user.flat)
-        f.billcategory = cat
-        f.save!
-        respond_with(nil)
+        if(f.is_editable?)
+            f.update_attributes!(bill_params)
+            cat = Billcategory.new_or_existing(params[:cat_name], current_user.flat)
+            f.billcategory = cat
+            f.save!
+            respond_with(nil)
+        else
+            respond_with_errors([t('.no_edit_deleted_users')])
+        end  
     end
 
     def destroy
-       Bill.destroy_with_user_constraint(params[:id], current_user)
-       respond_with(nil)
+        f = Bill.find_bill_with_user_constraint(params[:id])
+        if(f.is_editable?)
+            Bill.destroy_with_user_constraint(params[:id], current_user)
+            respond_with(nil)
+        else
+            respond_with_errors([t('.no_edit_deleted_users')])
+        end
     end
 
     private

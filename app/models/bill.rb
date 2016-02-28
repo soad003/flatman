@@ -9,6 +9,10 @@ class Bill < ActiveRecord::Base
   	validates :users, length: { minimum: 1 }
   	validates_associated :billcategory, :message => nil
 
+  	def is_editable?
+  		users.all? {|u| flat.id == u.flat_id} && user.flat_id == flat.id
+  	end
+
 	def self.destroy_with_user_constraint(id,user)
 		b=Bill.joins(:user).select('bills.*').where('bills.id=? and users.flat_id=?',id,user.flat_id).first
 		b.billcategory.destroy! if b.billcategory.bills.count == 1

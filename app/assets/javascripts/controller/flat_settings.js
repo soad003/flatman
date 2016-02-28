@@ -10,6 +10,16 @@ angular.module('flatman').controller("flatSettingsCtrl",function($scope,flatServ
         if(!Util.has_server_errors()) { $scope.content_form.$setPristine(); }
     };
 
+    $scope.leave_flat=function(){
+        bootbox.confirm(I18n.conf_leave_flat, function(leave) {
+            if (leave) {
+                flatService.user.leave_flat({},function(data){
+                    Util.redirect_to.signin();
+                });  
+            }
+        });
+    };
+
     $scope.get_address_string=function(){
         return $scope.flat.street + ", " + $scope.flat.zip + ", " + $scope.flat.city;
     };

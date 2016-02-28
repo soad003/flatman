@@ -12,13 +12,13 @@ class Finance
     def self.get_overview_mate (user, mate)
 		mate_info = OpenStruct.new({"name" => mate.name, "page"=>1, "entryLength"=>"", "id" => mate.id, "img_path" => mate.image_path, "value" => 0, "entries" => []})
 
-		paymentsUserToMate = Payment.where(payer_id: user.id, payee_id: mate.id)
+		paymentsUserToMate = Payment.where(payer_id: user.id, payee_id: mate.id, flat_id: user.flat_id)
 		mate_info.entries = mate_info.entries + getEntrysOfPayments(paymentsUserToMate, 1)
-		paymentsMateToUser = Payment.where(payer_id: mate.id, payee_id: user.id)
+		paymentsMateToUser = Payment.where(payer_id: mate.id, payee_id: user.id, flat_id: user.flat_id)
 		mate_info.entries = mate_info.entries + getEntrysOfPayments(paymentsMateToUser, -1)
-		billsPayedByUser = Bill.where(user_id: user.id, id: mate.bills)
+		billsPayedByUser = Bill.where(user_id: user.id, id: mate.bills, flat_id: user.flat_id)
 		mate_info.entries = mate_info.entries + getEntrysOfBills(billsPayedByUser, 1)
-		billsUserHasToPay = Bill.where(user_id: mate.id, id: user.bills)
+		billsUserHasToPay = Bill.where(user_id: mate.id, id: user.bills, flat_id: user.flat_id)
 		mate_info.entries = mate_info.entries + getEntrysOfBills(billsUserHasToPay, -1)
 
 		mate_info.entries.sort! {|a,b| b.date <=> a.date}

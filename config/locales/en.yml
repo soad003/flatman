@@ -32,6 +32,8 @@ en:
     flat:
       create:
         already_in_flat                   : "Your user already belongs to a flat"
+      leave_flat:
+        balance_not_zero                  : "Your balance is not zero. Please pay your depts before you leave the flat."
     invite:
       create:
         already_in_flat                   : "The user(email) already belongs to an other flat"
@@ -40,6 +42,14 @@ en:
       create:
         entryDate_before_startDate        : "The date for your entry is before the start date"
         entryDate_exists                  : "There is already an entry for this date"
+    bill:
+      update:
+        no_edit_deleted_users             : "You can't edit entries with deleted users!"
+      destroy:
+        no_edit_deleted_users             : "You can't edit entries with deleted users!"
+    payment:
+      destroy:
+        no_edit_deleted_users             : "You can't edit entries from deleted users!"
 
   # mail
   user_mailer:
@@ -167,6 +177,9 @@ en:
     forms:
       errors_in_form                      : "There are errors in your input!"
 
+  javascript:
+    conf_leave_flat                     : "Are you sure you want to leave the flat?"
+
    # views
   layouts:
     application:
@@ -285,12 +298,14 @@ en:
       invites                            : "invite flat member"
       email                              : "email"
       save_btn                           : "save"
+      leave                              : "leave flat"
+      actions                            : "actions"
     finances:
       page_title                         : "Finances"
       page_header                        : "Finances"
-      add_fin                            : "Add"
-      newBill                            : "New Bill"
-      newPaym                            : "New Payment"
+      add_fin                            : "add"
+      newBill                            : "new Bill"
+      newPaym                            : "new Payment"
       help_title                         : "Create a new expense"
       help_paragraph1                    : "Here you can enter expenses and check your balance"
       biggest_by_cat                     : "largest 6 expense categories"
@@ -330,7 +345,7 @@ en:
       back                               : "back"
       save                               : "save"
     create_payment:
-      page_header                        : "Enter a payment"
+      page_header                        : "Enter payment"
       back                               : "back"
       save                               : "save"
       value                              : "value"
@@ -348,9 +363,9 @@ en:
       value                              : "price"
       who_paid                           : "paid by"
       splitted_up                        : "splitted up to"
-      add_fin                            : "Add"
-      newBill                            : "New Bill"
-      newPaym                            : "New Payment"
+      add_fin                            : "add"
+      newBill                            : "new Bill"
+      newPaym                            : "new Payment"
       all                                : "all"
     finance_overview_mate:
       page_header                        : "Overview"
@@ -411,7 +426,7 @@ en:
       title                              : "Flatman"
       subtitle                           : "Flatman implies organized flat"
       shopping_title                     : "Organize your shopping behaviour"
-      shopping_description               : "Shopping list help you to organize your flats purchases so that nothing is forgotten or bought twice."
+      shopping_description               : "Shopping lists help you to organize your flats purchases so that nothing is forgotten or bought twice."
       finances_title                     : "Keep an eye on your finances"
       finances_description               : "Enter your expenses, debts or payments and easily keep track of the flats biggest expenses and the current balance with your flat mates."
       resources_title                    : "Resource usage"

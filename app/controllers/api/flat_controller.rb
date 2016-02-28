@@ -20,8 +20,25 @@ class Api::FlatController < Api::RestController
         respond_with(flat, :location => api_flat_path(flat))
     end
 
+    def leave_flat
+        balance = Finance.get_overview_mates(current_user,0,0)
+        if balance.any? {|mate| mate.value.round(2) != 0.0}
+            respond_with_errors([t('.balance_not_zero')])
+        else
+            current_user.flat_id = nil
+            current_user.flat = nil
+            current_user.save!
+            logout
+            respond_with(nil, :location => api_flat_path(nil))
+        end
+    end
+
     def flat_mates
         @mates=current_user.flat.users
+    end
+
+    def former_flat_mates
+        @mates=nil
     end
 
     private
