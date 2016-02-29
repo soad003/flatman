@@ -102,6 +102,8 @@
                 <td colspan="7">
                     <pagination on-select-page="setPage(page)" total-items="finances.totalLength" page="current_page" items-per-page="entriesPerPage" max-size="5" class="hidden-xs pagination-sm pull-right" boundary-links="true" ng-hide="entriesPerPage >= finances.totalLength" rotate="true" previous-text="&lsaquo;" next-text="&rsaquo;" first-text="&laquo;" last-text="&raquo;">
                     </pagination>
+                    <pagination on-select-page="setPage(page)" total-items="finances.totalLength" page="current_page" items-per-page="entriesPerPage" max-size="3" class="visible-xs pagination-sm pull-right" boundary-links="true" ng-hide="entriesPerPage >= finances.totalLength" rotate="true" previous-text="&lsaquo;" next-text="&rsaquo;" first-text="&laquo;" last-text="&raquo;">
+                    </pagination>
                 </td>
             </tr>
         </tfoot>
