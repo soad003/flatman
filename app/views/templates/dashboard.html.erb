@@ -3,7 +3,7 @@
 </section>
 
 <div class="row">
-  <div class="col-lg-4 col-sm-6">
+  <div ng-class="(get_resource_usage() === 0) ? 'col-lg-6 col-sm-6' :'col-lg-4 col-sm-6'">
     <div class="panel panel-info clickable" ng-click="Util.redirect_to.shopping()">
       <div class="panel-heading">
         <div class="row">
@@ -30,7 +30,7 @@
       </a>
     </div>
   </div>
-  <div class="col-lg-4 col-sm-6">
+  <div ng-class="(get_resource_usage() === 0) ? 'col-lg-6 col-sm-6' :'col-lg-4 col-sm-6'">
     <div class="panel panel-warning clickable" ng-click="Util.redirect_to.finances()">
       <div class="panel-heading">
         <div class="row">
@@ -58,7 +58,7 @@
       </a>
     </div>
   </div>
-  <div class="col-lg-4 col-sm-6">
+  <div class="col-lg-4 col-sm-6" ng-hide="get_resource_usage() === 0">
     <div class="panel panel-success clickable" ng-click="Util.redirect_to.resources()">
       <div class="panel-heading">
         <div class="row">
