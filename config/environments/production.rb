@@ -76,9 +76,9 @@ Flatman::Application.configure do
 
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.smtp_settings = {
-    address:              'mail.gmx.net',
-    port:                 587,
-    user_name:            'info.flatman@gmx.net',
+    address:              'smtp.mailgun.org',
+    port:                 587,   
+    user_name:            'postmaster@flatman.at',
     password:             ENV['FLATMAN_SMTP_PASSWORD'],
     authentication:       'plain',
     enable_starttls_auto: true
@@ -88,7 +88,7 @@ Flatman::Application.configure do
   config.action_mailer.perform_deliveries = true
   config.action_mailer.default_url_options = { :host => 'http://www.flatman.at' }
   config.action_mailer.asset_host = 'http://www.flatman.at'
-  config.action_mailer.default_options = {   :from => 'info.flatman@gmx.net'  }
+  config.action_mailer.default_options = {   :from => 'info@flatman.at'  }
 
   # Use default logging formatter so that PID and timestamp are not suppressed.
   config.log_formatter = ::Logger::Formatter.new

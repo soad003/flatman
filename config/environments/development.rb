@@ -24,30 +24,41 @@ Flatman::Application.configure do
   # number of complex assets.
   config.assets.debug = true
 
-  config.action_mailer.delivery_method = :smtp
-  config.action_mailer.smtp_settings = {
-    address:              'mail.gmx.net',
-    port:                 587,
-    user_name:            'info.flatman@gmx.net',
-    password:             ENV['FLATMAN_SMTP_PASSWORD'],
-    authentication:       'plain',
-    enable_starttls_auto: true
-  }
+  config.action_mailer.delivery_method = :file
 
   config.action_mailer.raise_delivery_errors = true
-  config.action_mailer.perform_deliveries = true
-  config.action_mailer.default_url_options = {
-    :host => 'localhost',
-    :port => 3000,
-    :protocol => 'http'
-  }
-  config.action_mailer.asset_host = 'http://localhost:3000'
+  config.action_mailer.default_url_options = { :host => 'localhost:3000' }
   config.action_mailer.file_settings = {
       location: 'log/mails'
   }
   config.action_mailer.default_options = {
-    :from => 'info.flatman@gmx.net'
+    :from => "info.flatman@gmx.at"
   }
+
+  # config.action_mailer.delivery_method = :smtp
+  # config.action_mailer.smtp_settings = {
+  #   address:              'smtp.mailgun.org',
+  #   port:                 587,   
+  #   user_name:            'postmaster@flatman.at',
+  #   password:             ENV['FLATMAN_SMTP_PASSWORD'],
+  #   authentication:       'plain',
+  #   enable_starttls_auto: true
+  # }
+
+  # config.action_mailer.raise_delivery_errors = true
+  # config.action_mailer.perform_deliveries = true
+  # config.action_mailer.default_url_options = {
+  #   :host => 'localhost',
+  #   :port => 3000,
+  #   :protocol => 'http'
+  # }
+  # config.action_mailer.asset_host = 'http://localhost:3000'
+  # config.action_mailer.file_settings = {
+  #     location: 'log/mails'
+  # }
+  # config.action_mailer.default_options = {
+  #   :from => 'info@flatman.at'
+  # }
   config.assets.precompile += %w( vendor/angular-locale_de-de.js )
   #Mail.register_interceptor(DevelopmentMailInterceptor) if Rails.env.development?
 
