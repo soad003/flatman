@@ -46,18 +46,18 @@ $brand-danger:          #E74C3C; */
 // $state-warning-bg: $brand-warning;
 // $state-danger-bg:  $brand-danger;
 
+$grid-float-breakpoint: 992px;
+
+
 
 @import "bootstrap";
 @import "flatman";
 @import "sticky-footer-navbar";
 @import "font-awesome";
 @import "bootstrap-social";
-@import "ng-tags-input";
 @import "navbar";
 @import "animation";
 @import "loading-indicator";
-@import "magnific-popup";
-@import "responiveText";
 @import "win-phone8-fix";
 
 

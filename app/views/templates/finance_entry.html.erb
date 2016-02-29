@@ -51,7 +51,7 @@
           <div class="input-group">
             <input id="value" ng-model="finTmp.cat_name"
                     typeahead="category for category in categories | filter:$viewValue | limitTo:8"
-                    placeholder="<%= t('.cat_placeholder') %>" type="text" ng-disabled="!is_editable"/>
+                    placeholder="<%= t('.cat_placeholder') %>" type="text" ng-disabled="!is_editable" autocomplete="off"/>
             <span class="input-group-addon">
               <span class="glyphicon glyphicon-wrench"></span>
             </span>

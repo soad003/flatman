@@ -11,8 +11,6 @@
 // about supported directives.
 //
 //= require jquery
-
-//= require ./vendor/jquery.magnific-popup.js
 //= require jquery_ujs
 //= require bootstrap/modal
 //= require bootstrap/transition
@@ -37,5 +35,4 @@
 //= require ./vendor/angles.js
 //= require bootbox.js
 //= require ./vendor/angular-google-maps.min.js
-//= require ./vendor/scrollDown.js
-//= require ./vendor/ng-tags-input.js
+

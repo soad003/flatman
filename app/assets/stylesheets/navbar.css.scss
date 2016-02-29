@@ -1,5 +1,5 @@
 @import "bootstrap/variables";
-/* fix navbar collapse 1200px */
+/* fix navbar collapse 1200px 
 @media (max-width: $screen-lg) {
     .navbar-header {
         float: none;
@@ -53,7 +53,8 @@
     .flyover.in {
        left: 10% !important;
     }
-}
+}*/
+
 
 
 /* fix navbar scroller on collapse */
@@ -61,11 +62,11 @@
     overflow-y: visible;
 }
 
-/*no transition for dropdown nav (performance)*/
+/*no transition for dropdown nav (performance)
 .no-transition {
   -webkit-transition: height 0.001s;
   -moz-transition: height 0.001s;
   -ms-transition: height 0.001s;
   -o-transition: height 0.001s;
   transition: height 0.001s;
-}
+}*/
