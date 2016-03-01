@@ -2,16 +2,11 @@ class Api::NewsfeedController < Api::RestController
     around_filter :wrap_in_transaction, only: [:create,:destroy, :delete_checked]
 
     def index
-        @newsfeed=current_user.flat.newsitems.order(created_at: :desc)
+        @newsfeed = Newsitem.generateNewsfeed(current_user)
     end
 
     def create
-        flat=current_user.flat
-        newsitem = Newsitem.new(ni_params)
-        newsitem.user = current_user
-        newsitem.newsitemcategory = Newsitemcategory.getMessageCategory()
-        flat.newsitems << newsitem
-        flat.save!
+        Newsitem.createMessage(ni_params[:text], current_user)
         respond_with(nil, :location => nil)
     end
 

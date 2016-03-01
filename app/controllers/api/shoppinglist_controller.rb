@@ -10,12 +10,13 @@ class Api::ShoppinglistController < Api::RestController
         sl=Shoppinglist.new(sl_params)
         flat.shoppinglists << sl
         flat.save!
-        Newsitem.createShoppinglist(sl.name, current_user)
+        Newsitem.createShoppinglist(sl, current_user)
         respond_with(sl, :location => nil)
     end
 
     def destroy
         sl = Shoppinglist.find_list_with_user_constraint(params[:id], current_user)
+        Newsitem.deleteShoppinglist(sl, current_user)
         sl.destroy!
         respond_with(nil)
     end

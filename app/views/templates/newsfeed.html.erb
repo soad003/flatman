@@ -21,8 +21,9 @@
 			<div class="panel-heading" style="height:55px">
 				<div class="col-xs-1">
 					<img ng-src="{{n.image}}" ng-show="n.category == 'message'" class="img-circle news-image">
-					<span class="fa fa-bitcoin fa-3x" ng-show="n.category == 'finance'"></span>
-					<span class="fa fa-shopping-cart fa-3x" ng-show="n.category == 'shopping'"></span>
+					<span class="fa fa-bitcoin fa-3x" ng-show="n.image == 'finance'"></span>
+					<span class="fa fa-shopping-cart fa-3x" ng-show="n.image == 'shopping'"></span>
+					<span class="fa fa-globe fa-3x" ng-show="n.image == 'resource'"></span>
 				</div>
 				<div class="col-xs-11">
 					<span class="news-name">{{n.name}}</span> {{n.header}} <br>

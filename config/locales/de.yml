@@ -137,7 +137,15 @@ de:
       info_all                        : "Gesamt"
       info_currentMonth               : "diesen Monat"
       info_lastthreemonths            : "letzten 3 Monate"
-
+    
+    newsitem:
+      add                          : "hinzugefügt"
+      change                          : "bearbeitet"
+      remove                          : "gelöscht"
+      got                             : "bekommen"
+      shoppinglist                    : "hat die Einkaufsliste '%{name}' %{action}."
+      bill                            : "hat die Rechnung '%{name}' %{action}."
+      payment                         : "hat Geld von '%{name}' %{action}."
 
   buttons:
     confirmations:

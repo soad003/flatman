@@ -17,7 +17,7 @@ class Api::BillController <Api::RestController
         cat = Billcategory.new_or_existing(create_params[:cat_name], current_user.flat)
         @bill= Bill.new_with_params(create_params,cat, current_user.flat)
         @bill.save!
-        Newsitem.createBill(@bill.text, current_user)
+        Newsitem.createBill(@bill, current_user)
         respond_with(nil)
     end
 
@@ -28,6 +28,7 @@ class Api::BillController <Api::RestController
             cat = Billcategory.new_or_existing(params[:cat_name], current_user.flat)
             f.billcategory = cat
             f.save!
+            Newsitem.updateBill(f, current_user)
             respond_with(nil)
         else
             respond_with_errors([t('.no_edit_deleted_users')])
@@ -37,6 +38,7 @@ class Api::BillController <Api::RestController
     def destroy
         f = Bill.find_bill_with_user_constraint(params[:id])
         if(f.is_editable?)
+            Newsitem.deleteBill(f, current_user)
             Bill.destroy_with_user_constraint(params[:id], current_user)
             respond_with(nil)
         else

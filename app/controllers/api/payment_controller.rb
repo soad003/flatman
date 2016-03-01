@@ -5,12 +5,14 @@ class Api::PaymentController < Api::RestController
         payment.payee_id = current_user.id
         payment.flat = current_user.flat
         payment.save!
+        Newsitem.createPayment(payment, current_user)
         respond_with(nil, :location => nil)
     end
 
     def destroy
         payment = Payment.find_with_user_constraint(delete_params[:id], current_user, User.find(delete_params[:mate_id]))
         if payment.is_editable?
+            Newsitem.deletePayment(payment, current_user)
             payment.destroy!
             respond_with(nil, :location => nil)
         else
