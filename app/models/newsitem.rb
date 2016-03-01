@@ -1,5 +1,7 @@
+include ActionView::Helpers::DateHelper
 class Newsitem < ActiveRecord::Base
-    attr_accessor :header, :image
+
+    attr_accessor :header, :image, :date
 
     CATEGORIES = {message: [0, 'add'], shoppinglist:[1, 'shoppinglist'], shoppinglistitem:[2, 'shoppinglistitem'], todolist:[3, 'todolist'], todolistitem:[4, 'todolistitem'], resource:[5, 'resource'], resourceitem:[6, 'resourceitem'], bill:[7, 'bill'], payment:[8, 'payment']}
     ACTIONS = {add: [0, 'add'], change: [1,'change'], remove: [2,'remove']}
@@ -62,11 +64,12 @@ class Newsitem < ActiveRecord::Base
     def self.generateNewsfeed(user)
         newsitems = user.flat.newsitems.order(created_at: :desc)
         nisGroupedByItems = []
-        
+
         newsitems.each do |newsitem|
             newsitem.header = Newsitem.getHeader(newsitem)
             newsitem.text = Newsitem.getText(newsitem)
             newsitem.image = Newsitem.getImage(newsitem)
+            newsitem.date = time_ago_in_words(newsitem.created_at)
         end
         newsitems
     end
@@ -109,5 +112,4 @@ class Newsitem < ActiveRecord::Base
         end
         return ""
     end
-
 end
