@@ -1,9 +1,10 @@
 class Newsitem < ActiveRecord::Base
-    enum category: [:message, :shoppinglist, :shoppinglistitem, :todolist, :todolistitem, :resource, :resourceitem, :bill, :payment]
-    enum action: [:add, :change, :remove]
+    attr_accessor :header, :image
 
-    attr_accessor :header
-    attr_accessor :image
+    CATEGORIES = {message: [0, 'add'], shoppinglist:[1, 'shoppinglist'], shoppinglistitem:[2, 'shoppinglistitem'], todolist:[3, 'todolist'], todolistitem:[4, 'todolistitem'], resource:[5, 'resource'], resourceitem:[6, 'resourceitem'], bill:[7, 'bill'], payment:[8, 'payment']}
+    ACTIONS = {add: [0, 'add'], change: [1,'change'], remove: [2,'remove']}
+
+
 
 	belongs_to 				:user
 	belongs_to              :flat
@@ -12,47 +13,47 @@ class Newsitem < ActiveRecord::Base
 	validates   :user, :flat, presence: true
 
     def self.createShoppinglist(shoppinglist, user)
-        Newsitem.saveNewsitem(user, categories[:shoppinglist], actions[:add], shoppinglist.id, shoppinglist.name)
+        Newsitem.saveNewsitem(user, Newsitem::CATEGORIES[:shoppinglist], Newsitem::ACTIONS[:add], shoppinglist.id, shoppinglist.name)
     end
 
     def self.deleteShoppinglist(shoppinglist, user)
-        Newsitem.saveNewsitem(user, categories[:shoppinglist], actions[:remove], nil, shoppinglist.name)
+        Newsitem.saveNewsitem(user, Newsitem::CATEGORIES[:shoppinglist], Newsitem::ACTIONS[:remove], nil, shoppinglist.name)
     end
 
     def self.createShoppinglistitem(shoppinglistitem, user)
-        Newsitem.saveNewsitem(user, categories[:shoppinglistitem], actions[:add], shoppinglistitem.id, shoppinglistitem.name)
+        Newsitem.saveNewsitem(user, Newsitem::CATEGORIES[:shoppinglistitem], Newsitem::ACTIONS[:add], shoppinglistitem.id, shoppinglistitem.name)
     end
 
     def self.createMessage(text, user)
-        Newsitem.saveNewsitem(user, categories[:message], actions[:add], nil, text)
+        Newsitem.saveNewsitem(user, Newsitem::CATEGORIES[:message], Newsitem::ACTIONS[:add], nil, text)
     end
 
     def self.createBill(bill, user)
-        Newsitem.saveNewsitem(user, categories[:bill], actions[:add], bill.id, bill.text)
+        Newsitem.saveNewsitem(user, Newsitem::CATEGORIES[:bill], Newsitem::ACTIONS[:add], bill.id, bill.text)
     end
 
     def self.updateBill(bill, user)
-        Newsitem.saveNewsitem(user, categories[:bill], actions[:change], bill.id, bill.text)
+        Newsitem.saveNewsitem(user, Newsitem::CATEGORIES[:bill], Newsitem::ACTIONS[:change], bill.id, bill.text)
     end
 
     def self.deleteBill(bill, user)
-        Newsitem.saveNewsitem(user, categories[:bill], actions[:remove], nil, bill.text)
+        Newsitem.saveNewsitem(user, Newsitem::CATEGORIES[:bill], Newsitem::ACTIONS[:remove], nil, bill.text)
     end
 
     def self.createPayment(payment, user)
-        Newsitem.saveNewsitem(user, categories[:payment], actions[:add], payment.id, payment.payer.name)
+        Newsitem.saveNewsitem(user, Newsitem::CATEGORIES[:payment], Newsitem::ACTIONS[:add], payment.id, payment.payer.name)
     end
 
     def self.deletePayment(payment, user)
-        Newsitem.saveNewsitem(user, categories[:payment], actions[:remove], nil, payment.payer.name)
+        Newsitem.saveNewsitem(user, Newsitem::CATEGORIES[:payment], Newsitem::ACTIONS[:remove], nil, payment.payer.name)
     end
 
     def self.saveNewsitem(user, category, action, key, text)
         ni=Newsitem.new()
         ni.user = user
         ni.flat = user.flat
-        ni.category = category
-        ni.action = action
+        ni.category = category[0]
+        ni.action = action[0]
         if !key.nil? then ni.key = key end
         if !text.nil? then ni.text = text end
         ni.save!
@@ -69,33 +70,40 @@ class Newsitem < ActiveRecord::Base
     end
 
     def self.getImage(ni)
-        if ni[:category] == categories[:message] then
+        if ni[:category] == Newsitem::CATEGORIES[:message][0] then
             return ni.user.image_path
-        elsif [categories[:payment], categories[:bill]].include? ni[:category] then
+        elsif [Newsitem::CATEGORIES[:payment][0], Newsitem::CATEGORIES[:bill][0]].include? ni[:category] then
             return "finance"
-        elsif [categories[:shoppinglistitem], categories[:shoppinglist]].include? ni[:category] then
+        elsif [Newsitem::CATEGORIES[:shoppinglistitem][0], Newsitem::CATEGORIES[:shoppinglist][0]].include? ni[:category] then
             return "shopping"
-        elsif [categories[:resource], categories[:resourceitem]].include? ni[:category] then
+        elsif [Newsitem::CATEGORIES[:resource][0], Newsitem::CATEGORIES[:resourceitem][0]].include? ni[:category] then
             return "resource"
         end
     end
 
     def self.getText(ni)
-        if ni[:category] == categories[:message] then
+        if ni[:category] == Newsitem::CATEGORIES[:message][0] then
             return ni.text
         end
         return ""
     end
 
     def self.getHeader(ni)
-        if categories[:shoppinglist] == ni[:category] then
-            return I18n.t('activerecord.newsitem.shoppinglist', :name => ni.text, :action => I18n.t('activerecord.newsitem.' + ni.action))
-        elsif categories[:bill] == ni[:category] then
-            return I18n.t('activerecord.newsitem.bill', :name => ni.text, :action => I18n.t('activerecord.newsitem.' + ni.action))
-        elsif categories[:payment] == ni[:category] and actions[:add] == ni[:action] then
+        if Newsitem::CATEGORIES[:shoppinglist][0] == ni[:category] then
+            return I18n.t('activerecord.newsitem.shoppinglist', :name => ni.text, :action => I18n.t('activerecord.newsitem.' + Newsitem.getActionText(ni.action)))
+        elsif Newsitem::CATEGORIES[:bill][0] == ni[:category] then
+            return I18n.t('activerecord.newsitem.bill', :name => ni.text, :action => I18n.t('activerecord.newsitem.' + Newsitem.getActionText(ni.action)))
+        elsif Newsitem::CATEGORIES[:payment][0] == ni[:category] and Newsitem::ACTIONS[:add][0] == ni.action then
             return I18n.t('activerecord.newsitem.payment', :name => ni.text, :action => I18n.t('activerecord.newsitem.got'))
         end
         return ''
+    end
+
+    def self.getActionText(i)
+        Newsitem::ACTIONS.each do |key, array|
+            if array[0] == i then return array[1] end
+        end
+        return ""
     end
 
 end
