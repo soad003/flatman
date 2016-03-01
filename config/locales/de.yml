@@ -146,6 +146,8 @@ de:
       shoppinglist                    : "hat die Einkaufsliste '%{name}' %{action}."
       bill                            : "hat die Rechnung '%{name}' %{action}."
       payment                         : "hat Geld von '%{name}' %{action}."
+      shoppinglistitem                : "hat %{items} zur Einkaufsliste '%{list}' %{action}."
+
 
   buttons:
     confirmations:

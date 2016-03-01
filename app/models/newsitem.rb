@@ -21,7 +21,7 @@ class Newsitem < ActiveRecord::Base
     end
 
     def self.createShoppinglistitem(shoppinglistitem, user)
-        Newsitem.saveNewsitem(user, Newsitem::CATEGORIES[:shoppinglistitem], Newsitem::ACTIONS[:add], shoppinglistitem.id, shoppinglistitem.name)
+        Newsitem.saveNewsitem(user, Newsitem::CATEGORIES[:shoppinglistitem], Newsitem::ACTIONS[:add], shoppinglistitem.shoppinglist.id, shoppinglistitem.name)
     end
 
     def self.createMessage(text, user)
@@ -95,6 +95,8 @@ class Newsitem < ActiveRecord::Base
             return I18n.t('activerecord.newsitem.bill', :name => ni.text, :action => I18n.t('activerecord.newsitem.' + Newsitem.getActionText(ni.action)))
         elsif Newsitem::CATEGORIES[:payment][0] == ni[:category] and Newsitem::ACTIONS[:add][0] == ni.action then
             return I18n.t('activerecord.newsitem.payment', :name => ni.text, :action => I18n.t('activerecord.newsitem.got'))
+        elsif Newsitem::CATEGORIES[:shoppinglistitem][0] == ni[:category] then
+            return I18n.t('activerecord.newsitem.shoppinglistitem', :items => ni.text, :list => Shoppinglist.find_list_with_user_constraint(ni.key, ni.user).name, :action => I18n.t('activerecord.newsitem.' + Newsitem.getActionText(ni.action)))
         end
         return ''
     end

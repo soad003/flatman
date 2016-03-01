@@ -147,6 +147,7 @@ en:
       shoppinglist                    : "%{action} the shoppinglist '%{name}'."
       bill                            : "%{action} the bill '%{name}'."
       payment                         : "%{action} money from '%{name}'."
+      shoppinglistitem                : "%{action} %{items} to the shoppinglist '%{list}'."
 
   buttons:
     confirmations:
