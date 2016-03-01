@@ -1,4 +1,4 @@
-angular.module('flatman').controller("rootCtrl",function($scope,$rootScope,$timeout,$location,Util,statusService){
+angular.module('flatman').controller("rootCtrl",function($scope,$rootScope,$timeout,$location,$route,Util,statusService){
     $scope.Util=Util;
     $scope.error_type="danger";
     $scope.pending_status_requests=0;
@@ -9,15 +9,11 @@ angular.module('flatman').controller("rootCtrl",function($scope,$rootScope,$time
         return route === $location.path();
     };
 
-    $scope.search=function(){
-        var tmp=$scope.search_term;
-        $scope.search_term='';
-        Util.redirect_to.search(tmp);
-    };
-
     $scope.delete_error=function(index){
         Util.delete_server_error(index);
     };
+
+    $scope.reload_view=function(){$route.reload();}
 
     // (function tick() {
     //     $scope.pending_status_requests++;

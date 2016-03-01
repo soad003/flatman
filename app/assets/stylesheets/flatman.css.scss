@@ -105,3 +105,13 @@ input[type='number'] {
 .sharing-item .input-group .form-control {
   font-size: 16px!important;
 }
+
+.navbar-inverse .navbar-btn {
+  background-color: #222222;
+  border-color: #333333;
+  color: #999999;
+}
+.navbar-inverse .navbar-btn:hover {
+  color: #ffffff;
+  background-color: #333333;
+}
