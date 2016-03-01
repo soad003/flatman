@@ -12,11 +12,13 @@ scope "(:locale)", locale: /en|de/ do
   namespace :templates do
     get '/finances', to: :finances, as: 'finances'
     get '/flat_settings', to: :flat_settings, as: 'flat_settings'
+    get '/newsfeed', to: :newsfeed, as: 'newsfeed'
     get '/create_resource', to: :create_resource, as: 'create_resource'
     get '/resources', to: :resources, as: 'resources'
     get '/shopping', to: :shopping, as: 'shopping'
     get '/user_settings', to: :user_settings, as: 'user_settings'
     get '/dashboard', to: :dashboard, as: 'dashboard_template'
+    get '/newsfeed', to: :newsfeed, as: 'newsfeed_template'
     get '/create_flat', to: :create_flat
     get '/finance_entry', to: :finance_entry, as: 'finance_entry'
     get '/bills_overview', to: :bills_overview, as: 'bills_overview'
@@ -45,6 +47,9 @@ scope "(:locale)", locale: /en|de/ do
       resources :shoppingitem, only: [:create, :update, :destroy]
       delete '/delete_checked', to: :delete_checked
    end
+
+   resources :newsfeed, only: [:index, :create, :destroy]
+
 	 resources :resource, only: [:index, :create, :update, :destroy] do
       resources :resourceentry, only: [:create, :destroy]
    end
@@ -61,6 +66,8 @@ scope "(:locale)", locale: /en|de/ do
    get '/finance/category' => 'finance#get_by_category'
    get '/finance/overviewMates' => 'finance#get_overview_mates'
    get '/finance/overviewMates/:mate_id/' => 'finance#get_overview_mate'
+
+
 
    post "/payment" => 'payment#create'
    delete "/payment/:id/:mate_id" => 'payment#destroy'

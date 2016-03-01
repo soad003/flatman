@@ -8,6 +8,9 @@ class TemplatesController < ProtectedController
   def dashboard
   end
 
+  def newsfeed
+  end
+
   def finances
   end
 

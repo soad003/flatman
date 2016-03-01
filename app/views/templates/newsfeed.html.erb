@@ -1,0 +1,41 @@
+<div class="row">
+    <div class="col-xs-8">
+		<div class="panel">
+			<form role="form" ng-submit="addMessage()" name="newsForm" class="panel-body">
+				<div class="col-xs-2">
+					<img ng-src="{{current_user.image_path}}" class="img-circle news-image-add" style="">
+				</div>
+				<div class="col-xs-10">
+					<textarea class="form-control" rows="3"  autofocus="autofocus" id="news_text" ng-model="newsText" name="news_text" placeholder="<%= t('.sampletext_placeholder') %>" type="text" required></textarea>
+				</div>
+				<div class="col-xs-12">
+					<button class="btn btn-primary pull-right" type="submit" type="submit" ng-disabled="!newsForm.$valid">
+                  		<span class="glyphicon glyphicon-plus"></span> <span class="hidden-xs"><%= t(".send") %></span>
+                	</button>
+				</div>
+			</form>
+       </div>
+       <hr>
+
+       	<div ng-repeat="n in news" class="panel" style="background-color: rgb(248,248,248)">
+			<div class="panel-heading" style="height:55px">
+				<div class="col-xs-1">
+					<img ng-src="{{n.image}}" ng-show="n.category == 'message'" class="img-circle news-image">
+					<span class="fa fa-bitcoin fa-3x" ng-show="n.category == 'finance'"></span>
+					<span class="fa fa-shopping-cart fa-3x" ng-show="n.category == 'shopping'"></span>
+				</div>
+				<div class="col-xs-11">
+					<span class="news-name">{{n.name}}</span> {{n.header}} <br>
+					<span class="news-date">
+						{{n.date}}
+                    </span>
+				</div>
+			</div>
+			<div ng-show="n.text != ''"class="panel-body">
+				<div class="col-xs-12">
+					{{n.text}}
+				</div>
+			<div>
+       </div>
+    </div>
+</div>

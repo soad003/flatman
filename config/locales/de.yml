@@ -238,6 +238,8 @@ de:
       no_shoppinglists                   : "noch nichts auf der Liste..."
       status                             : "Status"
       mate                               : "Bewohner"
+    newsfeed:
+      sampletext_placeholder             : "Sag deiner WG was..."
 
     resources:
       page_header                        : "Ressourcen"

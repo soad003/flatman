@@ -10,6 +10,7 @@ class Api::ShoppinglistController < Api::RestController
         sl=Shoppinglist.new(sl_params)
         flat.shoppinglists << sl
         flat.save!
+        Newsitem.createShoppinglist(sl.name, current_user)
         respond_with(sl, :location => nil)
     end
 

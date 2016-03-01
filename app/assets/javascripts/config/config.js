@@ -18,6 +18,10 @@ angular.module('flatman', ['ngRoute','ngResource','google-maps','angles','ui.boo
         templateUrl: '/templates/dashboard',
         controller: 'dashboardCtrl'
       }).
+      when('/newsfeed', {
+        templateUrl: '/templates/newsfeed',
+        controller: 'newsfeedCtrl'
+      }).
       when('/finances', {
         templateUrl: '/templates/finances',
         controller: 'financesCtrl'

@@ -238,6 +238,8 @@ en:
       no_shoppinglists                   : "Nothing to buy yet..."
       status                             : "status"
       mate                               : "mate"
+    newsfeed:
+      sampletext_placeholder             : "Say something to your flat mates..."
 
     resources:
       page_header                        : "Resources"

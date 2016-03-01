@@ -17,6 +17,7 @@ class Api::BillController <Api::RestController
         cat = Billcategory.new_or_existing(create_params[:cat_name], current_user.flat)
         @bill= Bill.new_with_params(create_params,cat, current_user.flat)
         @bill.save!
+        Newsitem.createBill(@bill.text, current_user)
         respond_with(nil)
     end
 
