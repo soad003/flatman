@@ -45,9 +45,12 @@ input[type=text], input[type=email], select {
 }
 
 .news-image-add {
-  width: 71px;
-  height: 71px; 
+  max-width:75px;
   margin-bottom:10px
+}
+
+.news-button-add{
+  margin-top:10px;
 }
 
 .announcement-heading {

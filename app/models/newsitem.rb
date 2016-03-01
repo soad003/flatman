@@ -61,6 +61,8 @@ class Newsitem < ActiveRecord::Base
 
     def self.generateNewsfeed(user)
         newsitems = user.flat.newsitems.order(created_at: :desc)
+        nisGroupedByItems = []
+        
         newsitems.each do |newsitem|
             newsitem.header = Newsitem.getHeader(newsitem)
             newsitem.text = Newsitem.getText(newsitem)
