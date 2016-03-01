@@ -29,6 +29,27 @@ input[type=text], input[type=email], select {
   color: grey;
 }
 
+.news-date {
+  color:grey;
+  font-size: 12px;
+}
+
+.news-name {
+  font-weight: bold;
+}
+
+.news-image {
+  width: 45px;
+  height: 45px;
+  font-size: 45px;
+}
+
+.news-image-add {
+  width: 71px;
+  height: 71px; 
+  margin-bottom:10px
+}
+
 .announcement-heading {
   font-size: 50px;
   margin: 0;

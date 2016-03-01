@@ -3,7 +3,6 @@ angular.module('flatman').controller("resourceCtrl", function($scope, $filter, r
     $scope.formatNumber = function(number) {
        return (locale != 'en') ? number.toString().replace('.', ',') : number;
     };
-
     $scope.showInfos = function(resource, flag) {
         $scope.getChartData(resource);
         $scope.setOverview(resource);

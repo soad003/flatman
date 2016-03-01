@@ -7,6 +7,7 @@ class User < ActiveRecord::Base
     has_many    :receivedMessages, :class_name => 'Message', :foreign_key => 'receiver_id'
     has_many    :paidPayments, :class_name => 'Payment', :foreign_key => 'payer_id'
     has_many    :receivedPayments, :class_name => 'Payment', :foreign_key => 'payee_id'
+    has_many    :newsitems
     validates   :provider, :uid, :name, :oauth_token, :email, presence: true
 
     def has_flat?()
