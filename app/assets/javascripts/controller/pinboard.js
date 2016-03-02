@@ -24,34 +24,34 @@ angular.module('flatman').controller("pinboardCtrl",function($scope,shoppingServ
         $scope.lists=angular.copy($scope.data);
     };
 
-    $scope.removeItem=function(list,item){
+    $scope.remove_item=function(list,item){
         list.items = _(list.items).without(item);
     };
 
-    $scope.removeList=function(list){
+    $scope.remove_list=function(list){
         $scope.lists = _($scope.lists).without(list);
     };
 
-    $scope.addItem=function(list){
+    $scope.add_item=function(list){
         list.items.push({checked:false, text: list.new_Text });
         list.new_Text='';
     };
 
 
-    $scope.changeChecked=function(list,item){
+    $scope.change_checked=function(list,item){
         $scope.lists=$scope.data;
     };
 
-    $scope.getColor=function(index){
+    $scope.get_color=function(index){
         var colors=['success','info','warning','danger'];
         return colors[index%4];
     };
 
-    $scope.doneShopping=function(list){
+    $scope.done_shopping=function(list){
        Util.redirect_to.finances_done_shopping(list.name);
     };
 
-    $scope.deleteChecked=function(list){
+    $scope.delete_checked=function(list){
         list.items= _(list.items).reject(function(i){ return i.checked});
     };
 
@@ -97,3 +97,5 @@ angular.module('flatman').controller("pinboardCtrl",function($scope,shoppingServ
     
 
 });
+
+
