@@ -1,7 +1,6 @@
-include ActionView::Helpers::DateHelper
 class Newsitem < ActiveRecord::Base
 
-    attr_accessor :header, :image, :date
+    attr_accessor :header, :imagetype, :date, :link
 
     CATEGORIES = {message: [0, 'add'], shoppinglist:[1, 'shoppinglist'], shoppinglistitem:[2, 'shoppinglistitem'], todolist:[3, 'todolist'], todolistitem:[4, 'todolistitem'], resource:[5, 'resource'], resourceitem:[6, 'resourceitem'], bill:[7, 'bill'], payment:[8, 'payment']}
     ACTIONS = {add: [0, 'add'], change: [1,'change'], remove: [2,'remove']}
@@ -20,6 +19,11 @@ class Newsitem < ActiveRecord::Base
 
     def self.deleteShoppinglist(shoppinglist, user)
         Newsitem.saveNewsitem(user, Newsitem::CATEGORIES[:shoppinglist], Newsitem::ACTIONS[:remove], nil, shoppinglist.name)
+        Newsitem.clearShoppingListID(shoppinglist, user)
+    end
+
+    def self.clearShoppingListID(shoppinglist, user)
+        Newsitem.where(key: shoppinglist.id, category: Newsitem::CATEGORIES[:shoppinglistitem][0]).update_all(key: nil)
     end
 
     def self.createShoppinglistitem(shoppinglistitem, user)
@@ -37,14 +41,13 @@ class Newsitem < ActiveRecord::Base
     end
 
     def self.createMessage(text, user)
-        newsitem = Newsitem.where(category: Newsitem::CATEGORIES[:message][0], flat: user.flat, action: Newsitem::ACTIONS[:add][0], updated_at: (DateTime.current - 1.minutes) ..  DateTime.current).order(updated_at: :desc).first
+        newsitem = Newsitem.where(category: Newsitem::CATEGORIES[:message][0], flat: user.flat, action: Newsitem::ACTIONS[:add][0], updated_at: (DateTime.current - 20.seconds) ..  DateTime.current).order(updated_at: :desc).first
         if !newsitem.nil? and newsitem.user.id == user.id then
             newsitem.text = (newsitem.text  + " " + text).strip
             newsitem.save!
         else
            Newsitem.saveNewsitem(user, Newsitem::CATEGORIES[:message], Newsitem::ACTIONS[:add], nil, text)
         end
-        
     end
 
     def self.createBill(bill, user)
@@ -76,51 +79,6 @@ class Newsitem < ActiveRecord::Base
         if !key.nil? then ni.key = key end
         if !text.nil? then ni.text = text end
         ni.save!
-    end
-
-    def self.generateNewsfeed(user)
-        newsitems = user.flat.newsitems.order(created_at: :desc)
-        nisGroupedByItems = []
-
-        newsitems.each do |newsitem|
-            newsitem.header = Newsitem.getHeader(newsitem)
-            newsitem.text = Newsitem.getText(newsitem)
-            newsitem.image = Newsitem.getImage(newsitem)
-            newsitem.date = time_ago_in_words(newsitem.created_at)
-        end
-        newsitems
-    end
-
-    def self.getImage(ni)
-        if ni[:category] == Newsitem::CATEGORIES[:message][0] then
-            return ni.user.image_path
-        elsif [Newsitem::CATEGORIES[:payment][0], Newsitem::CATEGORIES[:bill][0]].include? ni[:category] then
-            return "finance"
-        elsif [Newsitem::CATEGORIES[:shoppinglistitem][0], Newsitem::CATEGORIES[:shoppinglist][0]].include? ni[:category] then
-            return "shopping"
-        elsif [Newsitem::CATEGORIES[:resource][0], Newsitem::CATEGORIES[:resourceitem][0]].include? ni[:category] then
-            return "resource"
-        end
-    end
-
-    def self.getText(ni)
-        if ni[:category] == Newsitem::CATEGORIES[:message][0] then
-            return ni.text
-        end
-        return ""
-    end
-
-    def self.getHeader(ni)
-        if Newsitem::CATEGORIES[:shoppinglist][0] == ni[:category] then
-            return I18n.t('activerecord.newsitem.shoppinglist', :name => ni.text, :action => I18n.t('activerecord.newsitem.' + Newsitem.getActionText(ni.action)))
-        elsif Newsitem::CATEGORIES[:bill][0] == ni[:category] then
-            return I18n.t('activerecord.newsitem.bill', :name => ni.text, :action => I18n.t('activerecord.newsitem.' + Newsitem.getActionText(ni.action)))
-        elsif Newsitem::CATEGORIES[:payment][0] == ni[:category] and Newsitem::ACTIONS[:add][0] == ni.action then
-            return I18n.t('activerecord.newsitem.payment', :name => ni.text, :action => I18n.t('activerecord.newsitem.got'))
-        elsif Newsitem::CATEGORIES[:shoppinglistitem][0] == ni[:category] then
-            return I18n.t('activerecord.newsitem.shoppinglistitem', :items => ni.text, :list => Shoppinglist.find_list_with_user_constraint(ni.key, ni.user).name, :action => I18n.t('activerecord.newsitem.' + Newsitem.getActionText(ni.action)))
-        end
-        return ''
     end
 
     def self.getActionText(i)

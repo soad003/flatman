@@ -148,6 +148,7 @@ en:
       bill                            : "%{action} the bill '%{name}'."
       payment                         : "%{action} money from '%{name}'."
       shoppinglistitem                : "%{action} %{items} to the shoppinglist '%{list}'."
+      deletedList                     : "Unknown"
 
   buttons:
     confirmations:
@@ -249,6 +250,7 @@ en:
       mate                               : "mate"
     newsfeed:
       sampletext_placeholder             : "Say something to your flat mates..."
+      send                               : "Send"
 
     resources:
       page_header                        : "Resources"

@@ -1,44 +1,54 @@
 <div class="row">
     <div class="col-xs-12 col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-2 col-lg-8 col-lg-offset-2">
+		
 		<div class="panel">
-			<form role="form" ng-submit="addMessage()" name="newsForm" class="panel-body">
-				<div class="col-sm-2 col-md-2 col-lg-2 hidden-xs">
+			<form role="form" ng-submit="addMessage()" name="newsForm">
+				<div class="row">
+				<div class="col-sm-1 col-md-1 col-lg-1 hidden-xs">
 					<img ng-src="{{current_user.image_path}}" class="img-circle news-image-add">
 				</div>
-				<div class="col-xs-12 col-sm-10 col-md-10 col-lg-10">
-					<textarea class="form-control news-textfield" rows="3"  autofocus="autofocus" id="news_text" ng-model="newsText" name="news_text" placeholder="<%= t('.sampletext_placeholder') %>" type="text" required></textarea>
+				<div class="col-xs-12 col-sm-11 col-md-11 col-lg-11">
+					<div class="input-group" style="margin-top: 5px">
+                      <input type="text" class="form-control"
+                              ng-model="newsText"
+                              maxlength="240"
+                              placeholder="<%= t('.sampletext_placeholder') %>" required>
+                      <span class="input-group-btn">
+                        <button class="btn btn-primary"
+                                type="submit"
+                                ng-disabled="!newsForm.$valid">
+                          <span class="glyphicon glyphicon-plus"></span> <span class="hidden-xs"><%= t(".send") %></span>
+                        </button>
+                      </span>
+                    </div>
 				</div> 
-
-				<div class="col-xs-12  news-button-add">
-					<button class="btn btn-primary pull-right" type="submit" type="submit" ng-disabled="!newsForm.$valid">
-                  		<span class="glyphicon glyphicon-plus"></span> <span><%= t(".send") %></span>
-                	</button>
-				</div>
+			</div>
 			</form>
        </div>
        <hr>
-
-       	<div ng-repeat="n in news" class="panel panel-default" style="background-color: rgb(250,250,250)">
+       	<div ng-repeat="n in news" class="panel" 
+       		ng-class="{'panel-warning' : n.type == 'finance', 'panel-success' : n.type == 'resource', 'panel-info': n.type == 'shopping', 'panel-default' : n.type == 'message'}"
+       		ng-click="redirectToSource(n.type)"
+       		style="margin: 10px;"
+       		>
 			<div class="panel-heading">
 				<div class="row">
-				<div class="col-sm-2 col-md-2 col-lg-1 col-xs-2">
-					<img ng-src="{{n.image}}" ng-show="n.category == 0" class="img-circle news-image"-->
-					<span class="fa fa-bitcoin fa-3x" ng-show="n.image == 'finance'"></span>
-					<span class="fa fa-shopping-cart fa-3x" ng-show="n.image == 'shopping'"></span>
-					<span class="fa fa-globe fa-3x" ng-show="n.image == 'resource'"></span>
+				<div class="col-sm-1 col-md-1 col-lg-1 col-xs-2">
+					<img ng-src="{{n.link}}" ng-show="n.type == 'message'" class="img-circle news-image"-->
+					<span class="fa fa-bitcoin fa-2x" ng-show="n.type == 'finance'"></span>
+					<span class="fa fa-shopping-cart fa-2x" ng-show="n.type == 'shopping'"></span>
+					<span class="fa fa-globe fa-2x" ng-show="n.type == 'resource'"></span>
 				</div>
-				<div class="col-xs-10 col-sm-10 col-md-10 col-lg-11">
-					<span class="news-name">{{n.name}}</span> {{n.header}} <br>
+				<div style="word-wrap:break-word;" class="col-xs-10 col-sm-11 col-md-11 col-lg-11">
+					<span class="news-name">{{n.name}}<span ng-show="n.text != ''">:</span></span> 
+					<span class="nowrap" ng-show="n.header != ''"> {{n.header}} </span>
+					<span ng-show="n.text != ''"> {{n.text}}</span>
+					<br>
 					<span class="news-date">{{n.date}}</span>
 				</div>
 			</div>
 			</div>
-
-			<div ng-show="n.text != ''"class="panel-body">
-				<div class="col-xs-12" style="word-wrap:break-word;">
-					<span>{{n.text}}</span>
-				</div>
-			<div>
        </div>
+
     </div>
 </div>

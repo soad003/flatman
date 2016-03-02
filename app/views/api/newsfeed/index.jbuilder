@@ -3,7 +3,8 @@ json.array!(@newsfeed) do |newsitem|
   json.text newsitem.text
   json.date newsitem.date
   json.header newsitem.header
+  json.link newsitem.link
   json.category newsitem.category
   json.action newsitem.action
-  json.image newsitem.image
+  json.type newsitem.imagetype
 end

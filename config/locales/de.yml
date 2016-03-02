@@ -123,8 +123,8 @@ de:
             user:
               blank                       : "Wer hat die Rechnung gezahlt?"
             users:
-              blank                       : "Auf wen wird die rechnung aufgeteilt?"
-              too_short                   : "Auf wen wird die rechnung aufgeteilt?"
+              blank                       : "Auf wen wird die Rechnung aufgeteilt?"
+              too_short                   : "Auf wen wird die Rechnung aufgeteilt?"
         billcategory:
           attributes:
             name:
@@ -147,6 +147,8 @@ de:
       bill                            : "hat die Rechnung '%{name}' %{action}."
       payment                         : "hat Geld von '%{name}' %{action}."
       shoppinglistitem                : "hat %{items} zur Einkaufsliste '%{list}' %{action}."
+      deletedList                     : "Unbekannt"
+
 
   buttons:
     confirmations:
@@ -249,6 +251,7 @@ de:
       mate                               : "Bewohner"
     newsfeed:
       sampletext_placeholder             : "Sag deiner WG was..."
+      send                               : "Senden"
 
     resources:
       page_header                        : "Ressourcen"

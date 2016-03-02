@@ -13,4 +13,13 @@ angular.module('flatman').controller("newsfeedCtrl", function($scope, $filter, n
                 $scope.newsText='';
         });
 	}
+
+	$scope.redirectToSource = function (type){
+		if (type == 'finance')
+			Util.redirect_to.finances()
+		else if (type == 'resource')
+			Util.redirect_to.resources()
+		else if (type == 'shopping')
+			Util.redirect_to.shopping()
+	}
 });
