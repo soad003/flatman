@@ -2,7 +2,7 @@ angular.module('flatman').factory("newsfeedService",function($resource) {
     var newsfeedService = $resource('/api/newsfeed/',{},
                         {
                             'get': {method: "GET", isArray:true},
-                            'create': {method: "POST"},
+                            'create': {method: "POST"}
                         });
      var commentService = $resource('/api/newsfeed/comment/',{},
                         {

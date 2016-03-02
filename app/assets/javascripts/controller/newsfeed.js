@@ -3,7 +3,7 @@ angular.module('flatman').controller("newsfeedCtrl",
 	$scope.current_user = userService.get();
 	$scope.news = newsfeedService.newsfeed.get();
 
-	  $scope.get_you_owe=function(){return financesService.finance.get_sum($scope.overviewMates);};
+	$scope.get_you_owe=function(){return financesService.finance.get_sum($scope.overviewMates);};
 
 	$scope.get_resource_usage = function() {
 		return resourceService.resource.getSumCosts($scope.dashboardResources);
@@ -31,7 +31,7 @@ angular.module('flatman').controller("newsfeedCtrl",
 
 	$scope.addComment = function (newsitem){
         newsfeedService.comment.create(newsitem.id, newsitem.new_Text, function(data){
-        	data.name = $scope.current_user.name
+			data.name = $scope.current_user.name
             newsitem.comments.push(data);
             newsitem.new_Text='';
         });
