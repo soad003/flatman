@@ -12,6 +12,6 @@ json.array!(@newsfeed) do |newsitem|
         json.name comment.user.name
         json.link comment.user.image_path
         json.text comment.text
-        json.date comment.created_at
+        json.date comment.date
     end
 end
