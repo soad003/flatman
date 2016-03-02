@@ -1,4 +1,5 @@
 json.array!(@newsfeed) do |newsitem|
+  json.id newsitem.id
   json.name newsitem.user.name
   json.text newsitem.text
   json.date newsitem.date
@@ -7,4 +8,10 @@ json.array!(@newsfeed) do |newsitem|
   json.category newsitem.category
   json.action newsitem.action
   json.type newsitem.imagetype
+  json.comments newsitem.newsitems do |comment|
+        json.name comment.user.name
+        json.link comment.user.image_path
+        json.text comment.text
+        json.date comment.created_at
+    end
 end

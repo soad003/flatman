@@ -21,10 +21,6 @@ angular.module('flatman').controller("newsfeedCtrl",
 	$scope.dashboardResources = resourceService.resource.getDashboard();
 	$scope.overviewMates = financesService.finance.get_overview_mates(0,1);
 
-	$scope.getDateString = function (date){
-		return "vor 1 Std."
-	}
-
 	$scope.addMessage = function (){
 		newsfeedService.newsfeed.create($scope.newsText, function(data){
                 data.items=[];
@@ -32,6 +28,14 @@ angular.module('flatman').controller("newsfeedCtrl",
                 $scope.newsText='';
         });
 	}
+
+	$scope.addComment = function (newsitem){
+        newsfeedService.comment.create(newsitem.id, newsitem.new_Text, function(data){
+        	data.name = $scope.current_user.name
+            newsitem.comments.push(data);
+            newsitem.new_Text='';
+        });
+    };
 
 	$scope.redirectToSource = function (type){
 		if (type == 'finance')

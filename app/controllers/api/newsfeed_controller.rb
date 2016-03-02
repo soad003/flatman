@@ -12,6 +12,19 @@ class Api::NewsfeedController < Api::RestController
         respond_with(nil, :location => nil)
     end
 
+    def comment
+        comment=Newsitem.new(comment_params)
+        comment.flat = current_user.flat
+        comment.user = current_user
+        comment.save!
+        respond_with(comment, :location => nil)
+    end
+
+    private 
+    def comment_params
+      params.permit(:text, :newsitem_id)
+    end
+
     private
         # Never trust parameters from the scary internet, only allow the white list through.
     def ni_params
@@ -19,7 +32,7 @@ class Api::NewsfeedController < Api::RestController
     end
 
     def generateNewsfeed(user)
-        newsitems = user.flat.newsitems.order(created_at: :desc)
+        newsitems = user.flat.newsitems.where(newsitem_id: nil).order(created_at: :desc)
         newsitems.each do |newsitem|
             newsitem.header = getHeader(newsitem)
             newsitem.text = getText(newsitem)

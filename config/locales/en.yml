@@ -267,6 +267,8 @@ en:
       no_shoppinglists                   : "Nothing to buy yet..."
       status                             : "status"
       mate                               : "mate"
+      comment_placeholder                : "Say something..."
+      comment                            : "Comments"
 
 
 

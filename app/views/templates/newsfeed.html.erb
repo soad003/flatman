@@ -115,7 +115,7 @@
             </div>
             <div class="col-xs-12 col-sm-11 col-md-11 col-lg-11">
                <div class="input-group">
-                  <input type="text" class="form-control"
+                  <input type="text" class="form-control"  focus-item
                      ng-model="newsText"
                      maxlength="240"
                      placeholder="<%= t('.sampletext_placeholder') %>" required>
@@ -131,10 +131,9 @@
          </form>
       </div>
       <hr>
-      <div ng-repeat="n in news" class="panel" 
-         ng-class="{'panel-warning' : n.type == 'finance', 'panel-success' : n.type == 'resource', 'panel-info': n.type == 'shopping', 'panel-default' : n.type == 'message', 'clickable' : n.type != 'message'}"
-         ng-click="redirectToSource(n.type)"
-         style="margin-bottom: 10px "
+      <div ng-repeat="n in news track by $index" class="panel" 
+         ng-class="{'panel-warning' : n.type == 'finance', 'panel-success' : n.type == 'resource', 'panel-info': n.type == 'shopping', 'panel-default' : n.type == 'message'}"
+         style="margin-bottom: 12px "
          >
          <div class="panel-heading">
             <div class="row">
@@ -145,14 +144,41 @@
                   <span class="fa fa-globe fa-2x" ng-show="n.type == 'resource'"></span>
                </div>
                <div style="word-wrap:break-word;" class="col-xs-10 col-sm-11 col-md-11 col-lg-11">
+                 <div ng-class="{'clickable' : n.type != 'message'}"  ng-click="redirectToSource(n.type)">
                   <span class="news-name">{{n.name}}<span ng-show="n.text != ''">:</span></span> 
                   <span class="nowrap" ng-show="n.header != ''"> {{n.header}} </span>
                   <span ng-show="n.text != ''"> {{n.text}}</span>
                   <br>
-                  <span class="news-date">{{n.date}}</span>
+                  <span class="news-date">{{n.date}} </span> <br>
+                </div>
+                  <a data-toggle="collapse" data-target="#collapseExample{{$index}}" aria-expanded="false" aria-controls="collapseExample" class="news-comment clickable"><%= t('.comment') %> <span ng-show="n.comments.length != 0"> {{n.comments.length}}</span>
+                  </a>
                </div>
+
             </div>
          </div>
+          <div id="collapseExample{{$index}}" class="collapse panel-footer announcement-bottom">
+            <ul class="list-unstyled">
+              <li ng-repeat="c in n.comments">
+                <span class="news-name">{{c.name}}: </span> {{c.text}}
+              </li>
+            </ul>
+            <form role="form" name="Commentform" ng-submit="addComment(n)">
+              <div class="input-group">
+                <input type="text" class="form-control"
+                        ng-model="n.new_Text"
+                        maxlength="250"
+                        placeholder="<%= t(".comment_placeholder") %>" required>
+                <span class="input-group-btn">
+                  <button class="btn btn-primary"
+                          type="submit"
+                          ng-disabled="!Commentform.$valid">
+                    <span class="fa fa-plus fa-lg"></span> <span class="hidden-xs"><%= t(".add") %></span>
+                  </button>
+                </span>
+              </div>
+            </form>
+          </div>
       </div>
    </div>
 </div>

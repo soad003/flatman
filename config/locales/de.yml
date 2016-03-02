@@ -268,6 +268,9 @@ de:
       no_shoppinglists                   : "noch nichts auf der Liste..."
       status                             : "Status"
       mate                               : "Bewohner"
+      comment_placeholder                : "Schreibe einen Kommentar..."
+      comment                            : "Kommentare"
+
 
     resources:
       page_header                        : "Strom/Gas"

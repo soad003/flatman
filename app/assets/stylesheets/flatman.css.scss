@@ -34,9 +34,16 @@ input[type=text], input[type=email], select {
   font-size: 11px;
 }
 
+.news-comment {
+  color:grey;
+  font-size: 11px;
+  font-weight: bold;
+}
+
 .news-name {
   font-weight: bold;
 }
+
 
 .news-image {
   width: 35px;
@@ -51,6 +58,10 @@ input[type=text], input[type=email], select {
 .news-image-add {
   width:35px;
   margin-bottom:0px
+}
+
+.news-image-comment {
+  width:30px;
 }
 
 .announcement-heading {
