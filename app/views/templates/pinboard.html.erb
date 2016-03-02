@@ -47,14 +47,14 @@
                     </a>
                 </li>
                 <li>
-                    <a ng-bootbox-prompt="Name your shopping list!"
+                    <a ng-bootbox-prompt="Where you want to go shopping!"
                        ng-bootbox-prompt-action="create_shoppinglist(result)">
                         <i class="fa fa-shopping-cart fa-lg"></i> 
                         shopping list
                     </a>
                 </li>
                 <li>
-                    <a ng-bootbox-prompt="Name your note list!"
+                    <a ng-bootbox-prompt="Set a title for your note!"
                        ng-bootbox-prompt-action="create_note(result)">
                         <i class="fa fa-sticky-note-o fa-lg"></i> 
                         note
@@ -67,7 +67,7 @@
 
 <div class="row">
     <div class="col-md-4 col-sm-6" ng-repeat="list in lists track by $index">
-        <div class="panel panel-{{getColor($index)}}">
+        <div class="panel panel-{{get_color($index)}}">
             <div class="panel-heading">
                 <div class="form-group">
                     <strong>
@@ -81,39 +81,39 @@
                       </button>
                       <ul class="dropdown-menu">
                         <li ng-hide="list.todo">
-                          <a href="" ng-click="doneShopping(list)">
+                          <a href="" ng-click="done_shopping(list)">
                             <span class="fa fa-credit-card"></span> <%= t(".done") %>
                           </a>
                         </li>
                         <li>
-                          <a href="" ng-click="deleteChecked(list)"><i class="fa fa-eraser"></i> <%= t(".delete_checked") %></a>
+                          <a href="" ng-click="delete_checked(list)"><i class="fa fa-eraser"></i> <%= t(".delete_checked") %></a>
                         </li>
                         <li>
-                          <a href="" ng-click="removeList(list)"><span class="glyphicon glyphicon-trash"></span>delete list</a>
+                          <a href="" ng-click="remove_list(list)"><span class="glyphicon glyphicon-trash"></span>delete list</a>
                         </li>
                       </ul>
                     </div>
                 </div>
                 <ul class="list-unstyled">
                     <li ng-repeat="item in list.items">
-                      <input id="{{''+$parent.$index+$index}}" type="checkbox" ng-model="item.checked" ng-change="changeChecked(list,item)">
+                      <input id="{{''+$parent.$index+$index}}" type="checkbox" ng-model="item.checked" ng-change="change_checked(list,item)">
                       <label for="{{''+$parent.$index+$index}}"
                               class="done-{{item.checked}}">
                         {{item.text}}
                       </label>
-                      <a href="" class="pull-right" ng-click="removeItem(list,item)">
+                      <a href="" class="pull-right" ng-click="remove_item(list,item)">
                         <span class="glyphicon glyphicon-remove"></span>
                       </a>
                     </li>
                 </ul>
             </div>
             <div class="panel-footer announcement-bottom">
-                <form role="form" name="Itemform" ng-submit="addItem(list)">
+                <form role="form" name="Itemform" ng-submit="add_item(list)">
                     <div class="input-group">
                       <input type="text" class="form-control"
                               ng-model="list.new_Text"
                               maxlength="30"
-                              placeholder="wut" required>
+                              placeholder="wut" required focus-item>
                       <span class="input-group-btn">
                         <button class="btn btn-primary"
                                 type="submit"
@@ -138,7 +138,7 @@
 <div class="row">
     <h4>Notes</h4>
     <div class="col-md-4 col-sm-6" ng-repeat="list in notes track by $index">
-        <div class="panel panel-{{getColor($index)}}">
+        <div class="panel panel-{{get_color($index)}}">
             <div class="panel-heading">
                 <div class="form-group">
                     <strong><i class="fa fa-sticky-note-o fa-lg"></i> {{list.name}}</strong>
@@ -148,7 +148,7 @@
                       </button>
                       <ul class="dropdown-menu">
                         <li>
-                          <a href="" ng-click="removeList(list)"><span class="glyphicon glyphicon-trash"></span> delete</a>
+                          <a href="" ng-click="remove_list(list)"><span class="glyphicon glyphicon-trash"></span> delete</a>
                         </li>
                       </ul>
                     </div>
