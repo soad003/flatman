@@ -23,11 +23,28 @@ class Newsitem < ActiveRecord::Base
     end
 
     def self.createShoppinglistitem(shoppinglistitem, user)
-        Newsitem.saveNewsitem(user, Newsitem::CATEGORIES[:shoppinglistitem], Newsitem::ACTIONS[:add], shoppinglistitem.shoppinglist.id, shoppinglistitem.name)
+        newsitem = Newsitem.getNewsitem(shoppinglistitem.shoppinglist.id, Newsitem::CATEGORIES[:shoppinglistitem], Newsitem::ACTIONS[:add], user)
+        if newsitem.nil? then
+            Newsitem.saveNewsitem(user, Newsitem::CATEGORIES[:shoppinglistitem], Newsitem::ACTIONS[:add], shoppinglistitem.shoppinglist.id, shoppinglistitem.name)
+        else
+            newsitem.text = (newsitem.text  + ", " + shoppinglistitem.name).strip
+            newsitem.save!
+        end
+    end
+
+    def self.getNewsitem(key, category, action, user)
+        Newsitem.where(key: key, category: category[0], user: user, flat: user.flat, action: action[0], updated_at: (DateTime.current - 10.minutes) ..  DateTime.current).take
     end
 
     def self.createMessage(text, user)
-        Newsitem.saveNewsitem(user, Newsitem::CATEGORIES[:message], Newsitem::ACTIONS[:add], nil, text)
+        newsitem = Newsitem.where(category: Newsitem::CATEGORIES[:message][0], flat: user.flat, action: Newsitem::ACTIONS[:add][0], updated_at: (DateTime.current - 1.minutes) ..  DateTime.current).order(updated_at: :desc).first
+        if !newsitem.nil? and newsitem.user.id == user.id then
+            newsitem.text = (newsitem.text  + " " + text).strip
+            newsitem.save!
+        else
+           Newsitem.saveNewsitem(user, Newsitem::CATEGORIES[:message], Newsitem::ACTIONS[:add], nil, text)
+        end
+        
     end
 
     def self.createBill(bill, user)
