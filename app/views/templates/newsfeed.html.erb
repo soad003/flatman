@@ -1,14 +1,13 @@
 <div class="row">
     <div class="col-xs-12 col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-2 col-lg-8 col-lg-offset-2">
 		
-		<div class="panel">
+		<div class="row">
 			<form role="form" ng-submit="addMessage()" name="newsForm">
-				<div class="row">
 				<div class="col-sm-1 col-md-1 col-lg-1 hidden-xs">
 					<img ng-src="{{current_user.image_path}}" class="img-circle news-image-add">
 				</div>
 				<div class="col-xs-12 col-sm-11 col-md-11 col-lg-11">
-					<div class="input-group" style="margin-top: 5px">
+					<div class="input-group">
                       <input type="text" class="form-control"
                               ng-model="newsText"
                               maxlength="240"
@@ -21,7 +20,6 @@
                         </button>
                       </span>
                     </div>
-				</div> 
 			</div>
 			</form>
        </div>
@@ -29,7 +27,7 @@
        	<div ng-repeat="n in news" class="panel" 
        		ng-class="{'panel-warning' : n.type == 'finance', 'panel-success' : n.type == 'resource', 'panel-info': n.type == 'shopping', 'panel-default' : n.type == 'message', 'clickable' : n.type != 'message'}"
        		ng-click="redirectToSource(n.type)"
-       		style="margin: 10px;"
+       		style="margin-bottom: 10px "
        		>
 			<div class="panel-heading">
 				<div class="row">
