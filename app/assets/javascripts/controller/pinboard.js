@@ -1,7 +1,7 @@
 angular.module('flatman').controller("pinboardCtrl",function($scope,shoppingService,Util){
 
     $scope.create_todo=function(result){                                           
-        $scope.ĺists.push({name: result, items: [], todo:true});
+        $scope.lists.push({name: result, items: [], todo:true});
     };
 
     $scope.create_shoppinglist=function(result){
