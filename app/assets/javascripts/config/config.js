@@ -1,6 +1,6 @@
 // Angular Config / Routes
 
-angular.module('flatman', ['ngRoute','ngResource','google-maps','angles','ui.bootstrap','ngLocale', 'number_localized','checklist-model'])
+angular.module('flatman', ['ngRoute','ngResource','google-maps','angles','ui.bootstrap','ngLocale', 'number_localized','checklist-model','ngBootbox'])
         .config(function($httpProvider, $routeProvider){
 
   $httpProvider.defaults.headers.common = {'X-CSRF-Token': $("meta[name='csrf-token']").attr("content"),
@@ -21,6 +21,10 @@ angular.module('flatman', ['ngRoute','ngResource','google-maps','angles','ui.boo
       when('/newsfeed', {
         templateUrl: '/templates/newsfeed',
         controller: 'newsfeedCtrl'
+      }).
+      when('/pinboard', {
+        templateUrl: '/templates/pinboard',
+        controller: 'pinboardCtrl'
       }).
       when('/finances', {
         templateUrl: '/templates/finances',

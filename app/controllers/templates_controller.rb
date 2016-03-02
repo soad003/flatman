@@ -11,6 +11,9 @@ class TemplatesController < ProtectedController
   def newsfeed
   end
 
+  def pinboard
+  end
+
   def finances
   end
 
