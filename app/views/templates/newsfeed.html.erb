@@ -160,7 +160,7 @@
           <div id="collapseExample{{$index}}" class="collapse panel-footer announcement-bottom">
             <ul class="list-unstyled">
               <li ng-repeat="c in n.comments">
-                <span class="news-name">{{c.name}}: </span> {{c.text}}
+                <span class="news-name">{{c.name}}: </span> {{c.text}}  <span class="news-date">{{n.date}} </span>
               </li>
             </ul>
             <form role="form" name="Commentform" ng-submit="addComment(n)">

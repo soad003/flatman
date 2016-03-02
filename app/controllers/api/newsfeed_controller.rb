@@ -38,7 +38,11 @@ class Api::NewsfeedController < Api::RestController
             newsitem.text = getText(newsitem)
             newsitem.imagetype = getImageType(newsitem)
             newsitem.link = getLink(newsitem)
-            newsitem.date = time_ago_in_words(newsitem.created_at)
+            newsitem.date = time_ago_in_words(newsitem.updated_at)
+            newsitem.newsitems.each do |comment|
+                comment.date = time_ago_in_words(comment.created_at)
+            end
+
         end
         newsitems
     end
