@@ -27,7 +27,7 @@
        </div>
        <hr>
        	<div ng-repeat="n in news" class="panel" 
-       		ng-class="{'panel-warning' : n.type == 'finance', 'panel-success' : n.type == 'resource', 'panel-info': n.type == 'shopping', 'panel-default' : n.type == 'message'}"
+       		ng-class="{'panel-warning' : n.type == 'finance', 'panel-success' : n.type == 'resource', 'panel-info': n.type == 'shopping', 'panel-default' : n.type == 'message', 'clickable' : n.type != 'message'}"
        		ng-click="redirectToSource(n.type)"
        		style="margin: 10px;"
        		>
