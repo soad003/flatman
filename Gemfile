@@ -64,9 +64,6 @@ gem 'angular-ui-bootstrap-rails', '0.10.0'
 
 #gem "animate-rails"
 
-#lightbox pictures
-gem 'magnific-popup-rails'
-
 #alert box
 gem 'bootbox-rails'
 

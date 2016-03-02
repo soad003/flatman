@@ -79,7 +79,6 @@ GEM
     launchy (2.4.3)
       addressable (~> 2.3)
     libv8 (3.16.14.13)
-    magnific-popup-rails (1.1.0)
     mail (2.6.3)
       mime-types (>= 1.16, < 3)
     mime-types (2.99.1)
@@ -198,7 +197,6 @@ DEPENDENCIES
   jquery-rails
   jshint_on_rails
   launchy
-  magnific-popup-rails
   netrc
   omniauth-facebook
   omniauth-google-oauth2

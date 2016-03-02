@@ -112,7 +112,7 @@
     <div id="container" class="<%= content_for?(:no_container) ? "" : "container" %>" ng-cloak>
       <section>
         <% flash.each do |key,message| %>
-          <div class="alert alert-<%= key.to_s %> alert-dismissable">
+          <div class="alert alert-<%= key.to_s %> alert-dismissable auto-fadeout">
             <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
             <%=message%>
           </div>

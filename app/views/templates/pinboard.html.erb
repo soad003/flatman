@@ -1,0 +1,164 @@
+<style type="text/css">
+  input[type=checkbox] { display:none; } /* to hide the checkbox itself */
+  input[type=checkbox] + label:before {
+    font-family: FontAwesome;
+    display: inline-block;
+  }
+
+  input[type=checkbox] + label:before { content: "\f096"; } /* unchecked icon */
+  input[type=checkbox] + label:before { letter-spacing: 10px; } /* space between checkbox and label */
+
+  input[type=checkbox]:checked + label:before { content: "\f046"; } /* checked icon */
+  input[type=checkbox]:checked + label:before { letter-spacing: 5px; }
+
+</style>
+
+<div class="page-head dropdown">
+    <h1 class="page-header">
+        <span class="fa fa-thumb-tack"></span>
+        Pinboard
+        <div class="btn-group pull-right" data-toggle="buttons">
+          <label class="btn btn-default hidden-xs" ng-click="only_todo()">
+            <input type="radio" name="options" id="option1" autocomplete="off"><i class="fa fa-list-alt fa-lg"></i> Todo
+          </label>            
+          <label class="btn btn-default hidden-xs" ng-click="only_shopping()">
+            <input type="radio" name="options" id="option2" autocomplete="off"><i class="fa fa-shopping-cart fa-lg"></i> Shopping
+          </label>
+          <label class="btn btn-default hidden-xs">
+            <input type="radio" name="options" id="option3" autocomplete="off"><i class="fa fa-sticky-note-o fa-lg"></i> Notes
+          </label>
+          <label class="btn btn-default hidden-xs active" ng-click="only_all()">
+            <input type="radio" name="options" id="option4" autocomplete="off" checked><i class="fa fa-ban fa-lg"></i> All
+          </label>
+          <button type="button" 
+                    class="btn dropdown-toggle btn-primary" 
+                    data-toggle="dropdown"
+                    id="dropdownMenu1">
+                <span class="fa fa-plus fa-lg"></span>
+                
+                <span class="caret"></span>
+            </button>
+            <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
+                <li>
+                    <a ng-bootbox-prompt="Name your todo list!"
+                       ng-bootbox-prompt-action="create_todo(result)">
+                        <i class="fa fa-list-alt fa-lgfa-lg"></i> 
+                        todo
+                    </a>
+                </li>
+                <li>
+                    <a ng-bootbox-prompt="Name your shopping list!"
+                       ng-bootbox-prompt-action="create_shoppinglist(result)">
+                        <i class="fa fa-shopping-cart fa-lg"></i> 
+                        shopping list
+                    </a>
+                </li>
+                <li>
+                    <a ng-bootbox-prompt="Name your note list!"
+                       ng-bootbox-prompt-action="create_note(result)">
+                        <i class="fa fa-sticky-note-o fa-lg"></i> 
+                        note
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </h1>
+</div>
+
+<div class="row">
+    <div class="col-md-4 col-sm-6" ng-repeat="list in lists track by $index">
+        <div class="panel panel-{{getColor($index)}}">
+            <div class="panel-heading">
+                <div class="form-group">
+                    <strong>
+                        <i class="fa fa-shopping-cart fa-lg" ng-show="!list.todo"></i>
+                        <i class="fa fa-list-alt fa-lg" ng-show="list.todo"></i>
+                        {{list.name}}
+                    </strong>
+                    <div class="btn-group pull-right">
+                      <button type="button" class="btn btn-default dropdown-toggle btn-xs" data-toggle="dropdown">
+                        <span class="glyphicon glyphicon-pencil"></span>
+                      </button>
+                      <ul class="dropdown-menu">
+                        <li ng-hide="list.todo">
+                          <a href="" ng-click="doneShopping(list)">
+                            <span class="fa fa-credit-card"></span> <%= t(".done") %>
+                          </a>
+                        </li>
+                        <li>
+                          <a href="" ng-click="deleteChecked(list)"><i class="fa fa-eraser"></i> <%= t(".delete_checked") %></a>
+                        </li>
+                        <li>
+                          <a href="" ng-click="removeList(list)"><span class="glyphicon glyphicon-trash"></span>delete list</a>
+                        </li>
+                      </ul>
+                    </div>
+                </div>
+                <ul class="list-unstyled">
+                    <li ng-repeat="item in list.items">
+                      <input id="{{''+$parent.$index+$index}}" type="checkbox" ng-model="item.checked" ng-change="changeChecked(list,item)">
+                      <label for="{{''+$parent.$index+$index}}"
+                              class="done-{{item.checked}}">
+                        {{item.text}}
+                      </label>
+                      <a href="" class="pull-right" ng-click="removeItem(list,item)">
+                        <span class="glyphicon glyphicon-remove"></span>
+                      </a>
+                    </li>
+                </ul>
+            </div>
+            <div class="panel-footer announcement-bottom">
+                <form role="form" name="Itemform" ng-submit="addItem(list)">
+                    <div class="input-group">
+                      <input type="text" class="form-control"
+                              ng-model="list.new_Text"
+                              maxlength="30"
+                              placeholder="wut" required>
+                      <span class="input-group-btn">
+                        <button class="btn btn-primary"
+                                type="submit"
+                                ng-disabled="!Itemform.$valid">
+                          <span class="fa fa-plus fa-lg"></span> <span class="hidden-xs">add</span>
+                        </button>
+                      </span>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <div class="jumbotron text-center" ng-show="lists.length===0 && !isLoading()">
+      <i class="fa fa-shopping-cart fa-5x"></i>
+      <h2><%= t(".help_title") %></h2>
+      <%= t(".help_paragraph1") %><br>
+      <%= t(".help_paragraph2") %>
+    </div>
+</div>
+
+<div class="row">
+    <h4>Notes</h4>
+    <div class="col-md-4 col-sm-6" ng-repeat="list in notes track by $index">
+        <div class="panel panel-{{getColor($index)}}">
+            <div class="panel-heading">
+                <div class="form-group">
+                    <strong><i class="fa fa-sticky-note-o fa-lg"></i> {{list.name}}</strong>
+                    <div class="btn-group pull-right">
+                      <button type="button" class="btn btn-default dropdown-toggle btn-xs" data-toggle="dropdown">
+                        <span class="glyphicon glyphicon-pencil"></span>
+                      </button>
+                      <ul class="dropdown-menu">
+                        <li>
+                          <a href="" ng-click="removeList(list)"><span class="glyphicon glyphicon-trash"></span> delete</a>
+                        </li>
+                      </ul>
+                    </div>
+                </div>
+                <div class="form-group">
+                  <textarea class="form-control" rows="5" id="comment" ng-model="list.text"></textarea>
+                </div>
+                
+            </div>
+        </div>
+    </div>
+</div>
+

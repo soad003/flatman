@@ -19,6 +19,7 @@ scope "(:locale)", locale: /en|de/ do
     get '/user_settings', to: :user_settings, as: 'user_settings'
     get '/dashboard', to: :dashboard, as: 'dashboard_template'
     get '/newsfeed', to: :newsfeed, as: 'newsfeed_template'
+    get '/pinboard', to: :pinboard, as: 'pinboard'
     get '/create_flat', to: :create_flat
     get '/finance_entry', to: :finance_entry, as: 'finance_entry'
     get '/bills_overview', to: :bills_overview, as: 'bills_overview'
