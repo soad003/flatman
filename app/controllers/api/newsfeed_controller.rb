@@ -61,8 +61,8 @@ class Api::NewsfeedController < Api::RestController
             return I18n.t('activerecord.newsitem.shoppinglist', :name => ni.text, :action => I18n.t('activerecord.newsitem.' + Newsitem.getActionText(ni.action)))
         elsif Newsitem::CATEGORIES[:bill][0] == ni[:category] then
             return I18n.t('activerecord.newsitem.bill', :name => ni.text, :action => I18n.t('activerecord.newsitem.' + Newsitem.getActionText(ni.action)))
-        elsif Newsitem::CATEGORIES[:payment][0] == ni[:category] and Newsitem::ACTIONS[:add][0] == ni.action then
-            return I18n.t('activerecord.newsitem.payment', :name => ni.text, :action => I18n.t('activerecord.newsitem.got'))
+        elsif Newsitem::CATEGORIES[:payment][0] == ni[:category] then
+            return I18n.t('activerecord.newsitem.payment', :name => ni.text, :action => I18n.t('activerecord.newsitem.' + Newsitem.getActionText(ni.action)))
         elsif Newsitem::CATEGORIES[:shoppinglistitem][0] == ni[:category] then
             return I18n.t('activerecord.newsitem.shoppinglistitem', :items => ni.text, :list => getShoppingListName(ni.key, ni.user), :action => I18n.t('activerecord.newsitem.' + Newsitem.getActionText(ni.action)))
         end
@@ -71,7 +71,7 @@ class Api::NewsfeedController < Api::RestController
 
     def getShoppingListName(key, user)
         sl = Shoppinglist.where(id: key, flat_id: user.flat.id).first
-        if sl.nil? then return I18n.t('activerecord.newsitem.deletedList')
+        if sl.nil? then return ""
         else return sl.name
         end
     end

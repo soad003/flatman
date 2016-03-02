@@ -1,6 +1,25 @@
-angular.module('flatman').controller("newsfeedCtrl", function($scope, $filter, newsfeedService, userService, Util) {
+angular.module('flatman').controller("newsfeedCtrl", 
+	function($scope, newsfeedService, userService, shoppingService,resourceService,financesService, Util) {
 	$scope.current_user = userService.get();
 	$scope.news = newsfeedService.newsfeed.get();
+
+	  $scope.get_you_owe=function(){return financesService.finance.get_sum($scope.overviewMates);};
+
+	$scope.get_resource_usage = function() {
+		return resourceService.resource.getSumCosts($scope.dashboardResources);
+	};
+
+	$scope.get_items_to_buy = function() {
+		return shoppingService.list.get_item_count($scope.shoppinglists);
+	};
+
+	$scope.get_shoppinglist_summary = function(list) {
+		return shoppingService.list.get_summary_string(list) + "...";
+	};
+
+	$scope.shoppinglists = shoppingService.list.get();
+	$scope.dashboardResources = resourceService.resource.getDashboard();
+	$scope.overviewMates = financesService.finance.get_overview_mates(0,1);
 
 	$scope.getDateString = function (date){
 		return "vor 1 Std."

@@ -139,14 +139,13 @@ de:
       info_lastthreemonths            : "letzten 3 Monate"
     
     newsitem:
-      add                          : "hinzugefügt"
+      add                             : "hinzugefügt"
       change                          : "bearbeitet"
       remove                          : "gelöscht"
-      got                             : "bekommen"
-      shoppinglist                    : "hat die Einkaufsliste '%{name}' %{action}."
-      bill                            : "hat die Rechnung '%{name}' %{action}."
-      payment                         : "hat Geld von '%{name}' %{action}."
-      shoppinglistitem                : "hat %{items} zur Einkaufsliste '%{list}' %{action}."
+      shoppinglist                    : "hat die Einkaufsliste %{name} %{action}."
+      bill                            : "hat die Rechnung %{name} %{action}."
+      payment                         : "hat eine Zahlung von %{name} %{action}."
+      shoppinglistitem                : "hat %{items} zur Einkaufsliste %{list} %{action}."
       deletedList                     : "Unbekannt"
 
 
@@ -252,6 +251,23 @@ de:
     newsfeed:
       sampletext_placeholder             : "Sag deiner WG was..."
       send                               : "Senden"
+      page_header                        : "Dashboard"
+      items_to_buy                       : "dinge zu kaufen"
+      view_shopping_details              : "zu den listen"
+      you_owe                            : "du schuldest"
+      you_get                            : "du bekommst"
+      view_finance_details               : "zeige Abrechnungen"
+      items_borrowed                     : "verliehene items"
+      view_resource_details              : "zeige Ressourcenverbrauch"
+      view_resource_titel                : "letzen 30 Tage"
+      panel_no_resources                 : "keine Ressourcen verfügbar"
+      view_details                       : "zeige Details"
+      panel_shopping_header              : "Einkaufen"
+      panel_finances_header              : "Finanzen"
+      panel_resources_header             : "Ressourcen Verbrauch (letzten 30 Tage)"
+      no_shoppinglists                   : "noch nichts auf der Liste..."
+      status                             : "Status"
+      mate                               : "Bewohner"
 
     resources:
       page_header                        : "Ressourcen"

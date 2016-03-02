@@ -53,7 +53,6 @@ input[type=text], input[type=email], select {
   margin-bottom:0px
 }
 
-
 .announcement-heading {
   font-size: 50px;
   margin: 0;
@@ -62,6 +61,19 @@ input[type=text], input[type=email], select {
 .announcement-text {
   margin: 0;
 }
+
+.padding-left {
+  margin-left: 10px; 
+}
+
+.padding-right {
+  margin-right: 10px;
+}
+
+.announcement-heading-xs {
+  font-size: 23px;
+}
+
 
 // input.ng-dirty {
 //     border-color: #8a6d3b;

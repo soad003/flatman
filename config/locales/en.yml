@@ -143,11 +143,11 @@ en:
       add                             : "added"
       change                          : "updated"
       remove                          : "removed"
-      got                             : "got"
-      shoppinglist                    : "%{action} the shoppinglist '%{name}'."
-      bill                            : "%{action} the bill '%{name}'."
-      payment                         : "%{action} money from '%{name}'."
-      shoppinglistitem                : "%{action} %{items} to the shoppinglist '%{list}'."
+      shoppinglist                    : "%{action} the shoppinglist %{name}."
+      bill                            : "%{action} the bill %{name}."
+      payment                         : "%{action}  a payment from %{name}."
+      shoppinglistitem                : "%{action} %{items} to the shoppinglist %{list}."
+
       deletedList                     : "Unknown"
 
   buttons:
@@ -251,6 +251,24 @@ en:
     newsfeed:
       sampletext_placeholder             : "Say something to your flat mates..."
       send                               : "Send"
+      items_to_buy                       : "items to buy"
+      view_shopping_details              : "view lists"
+      you_owe                            : "you owe"
+      you_get                            : "you get"
+      view_finance_details               : "show clearing"
+      items_borrowed                     : "items borrowed"
+      view_resource_details              : "view resources"
+      view_resource_titel                : "last 30 days"
+      panel_no_resources                 : "No resources are available"
+      view_details                       : "View Details"
+      panel_shopping_header              : "Shopping"
+      panel_finances_header              : "Finances"
+      panel_resources_header             : "Resource Usage (last 30 days)"
+      no_shoppinglists                   : "Nothing to buy yet..."
+      status                             : "status"
+      mate                               : "mate"
+
+
 
     resources:
       page_header                        : "Resources"

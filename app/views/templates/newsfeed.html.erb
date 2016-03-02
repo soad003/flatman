@@ -1,52 +1,158 @@
 <div class="row">
-    <div class="col-xs-12 col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-2 col-lg-8 col-lg-offset-2">
-		
-		<div class="row">
-			<form role="form" ng-submit="addMessage()" name="newsForm">
-				<div class="col-sm-1 col-md-1 col-lg-1 hidden-xs">
-					<img ng-src="{{current_user.image_path}}" class="img-circle news-image-add">
-				</div>
-				<div class="col-xs-12 col-sm-11 col-md-11 col-lg-11">
-					<div class="input-group">
-                      <input type="text" class="form-control"
-                              ng-model="newsText"
-                              maxlength="240"
-                              placeholder="<%= t('.sampletext_placeholder') %>" required>
-                      <span class="input-group-btn">
-                        <button class="btn btn-primary"
-                                type="submit"
-                                ng-disabled="!newsForm.$valid">
-                          <span class="glyphicon glyphicon-plus"></span> <span class="hidden-xs"><%= t(".send") %></span>
-                        </button>
-                      </span>
-                    </div>
-			</div>
-			</form>
-       </div>
-       <hr>
-       	<div ng-repeat="n in news" class="panel" 
-       		ng-class="{'panel-warning' : n.type == 'finance', 'panel-success' : n.type == 'resource', 'panel-info': n.type == 'shopping', 'panel-default' : n.type == 'message', 'clickable' : n.type != 'message'}"
-       		ng-click="redirectToSource(n.type)"
-       		style="margin-bottom: 10px "
-       		>
-			<div class="panel-heading">
-				<div class="row">
-				<div class="col-sm-1 col-md-1 col-lg-1 col-xs-2">
-					<img ng-src="{{n.link}}" ng-show="n.type == 'message'" class="img-circle news-image"-->
-					<span class="fa fa-bitcoin fa-2x" ng-show="n.type == 'finance'"></span>
-					<span class="fa fa-shopping-cart fa-2x" ng-show="n.type == 'shopping'"></span>
-					<span class="fa fa-globe fa-2x" ng-show="n.type == 'resource'"></span>
-				</div>
-				<div style="word-wrap:break-word;" class="col-xs-10 col-sm-11 col-md-11 col-lg-11">
-					<span class="news-name">{{n.name}}<span ng-show="n.text != ''">:</span></span> 
-					<span class="nowrap" ng-show="n.header != ''"> {{n.header}} </span>
-					<span ng-show="n.text != ''"> {{n.text}}</span>
-					<br>
-					<span class="news-date">{{n.date}}</span>
-				</div>
-			</div>
-			</div>
-       </div>
+  <div ng-class="(get_resource_usage() === 0) ? 'col-lg-6 col-sm-6 col-xs-6' :'col-lg-4 col-xs-12 col-sm-6'">
+     <div class="panel panel-info clickable" ng-click="Util.redirect_to.shopping()">
+        <div class="panel-heading">
+           <div class="row hidden-xs">
+              <div class="col-xs-2">
+                 <i class="fa fa-shopping-cart fa-5x"></i>
+              </div>
+              <div class="col-xs-10 text-right">
+                 <p class="announcement-heading">{{get_items_to_buy()}}</p>
+                 <p class="announcement-text"><%=t(".items_to_buy")%></p>
+              </div>
+           </div>
+           <div class="row visible-xs">
+              <div class="announcement-heading-xs">
+                  <span class="fa fa-shopping-cart padding-left"></span>
+                  <span class="pull-right padding-right">{{get_items_to_buy()}}</span>
+              </div>
+           </div>
+        </div>
+        <a href="/#/shopping" class="hidden-xs">
+           <div class="panel-footer announcement-bottom">
+              <div class="row">
+                 <div class="col-xs-10">
+                    <%=t(".view_shopping_details")%>
+                 </div>
+                 <div class="col-xs-2 text-right">
+                    <i class="fa fa-arrow-circle-right"></i>
+                 </div>
+              </div>
+           </div>
+        </a>
+     </div>
+  </div>
+  <div ng-class="(get_resource_usage() === 0) ? 'col-lg-6 col-sm-6 col-xs-6' :'col-lg-4 col-xs-12 col-sm-6'">
+     <div class="panel panel-warning clickable" ng-click="Util.redirect_to.finances()">
+        <div class="panel-heading">
+           <div class="row hidden-xs">
+              <div class="col-xs-2">
+                 <i class="fa fa-bitcoin fa-5x"></i>
+              </div>
+              <div class="col-xs-10 text-right">
+                 <p class="announcement-heading">{{get_you_owe() | number: 0 }} €</p>
+                 <p class="announcement-text" ng-show="get_you_owe() < 0"><%=t(".you_owe")%></p>
+                 <p class="announcement-text"  ng-show="get_you_owe() >= 0"><%=t(".you_get")%></p>
+              </div>
+           </div>
+           <div class="row visible-xs">
+              <div class="announcement-heading-xs">
+                  <span class="fa fa-bitcoin padding-left"></span>
+                  <span class="pull-right padding-right">{{get_you_owe() | number: 0 }} €</span>
+              </div>
+           </div>
+        </div>
+        <a href="/#/finances" class="hidden-xs">
+           <div class="panel-footer announcement-bottom">
+              <div class="row">
+                 <div class="col-xs-10">
+                    <%=t(".view_finance_details")%>
+                 </div>
+                 <div class="col-xs-2 text-right">
+                    <i class="fa fa-arrow-circle-right"></i>
+                 </div>
+              </div>
+           </div>
+        </a>
+     </div>
+  </div>
 
-    </div>
+  <div ng-hide="get_resource_usage() === 0" ng-class="(get_resource_usage() === 0) ? 'col-lg-6 col-sm-6 col-xs-6' :'col-lg-4 col-xs-12 col-sm-6'">
+     <div class="panel panel-success clickable" ng-click="Util.redirect_to.resources()">
+        <div class="panel-heading">
+           <div class="row hidden-xs">
+              <div class="col-xs-2">
+                 <i class="fa fa-globe fa-5x"></i>
+              </div>
+              <div class="col-xs-10 text-right">
+                 <p class="announcement-heading">{{get_resource_usage() | number: 0}} €</p>
+                 <p class="announcement-text"><%=t(".view_resource_titel")%></p>
+              </div>
+           </div>
+           <div class="row visible-xs">
+              <div class="announcement-heading-xs">
+                  <span class="fa fa-globe padding-left"></span>
+                  <span class="pull-right padding-right">{{get_resource_usage() | number: 0}} €</span>
+              </div>
+           </div>
+
+        </div>
+         <a href="/#/resources" class="hidden-xs">
+           <div class="panel-footer announcement-bottom">
+              <div class="row">
+                 <div class="col-xs-10">
+                    <%=t(".view_resource_details")%>
+                 </div>
+                 <div class="col-xs-2 text-right">
+                    <i class="fa fa-arrow-circle-right"></i>
+                 </div>
+              </div>
+           </div>
+        </a>
+     </div>
+  </div>
+
+</div>
+
+
+
+<div class="row">
+   <div class="col-xs-12 col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-2 col-lg-8 col-lg-offset-2">
+      <div class="row">
+         <form role="form" ng-submit="addMessage()" name="newsForm">
+            <div class="col-sm-1 col-md-1 col-lg-1 hidden-xs">
+               <img ng-src="{{current_user.image_path}}" class="img-circle news-image-add">
+            </div>
+            <div class="col-xs-12 col-sm-11 col-md-11 col-lg-11">
+               <div class="input-group">
+                  <input type="text" class="form-control"
+                     ng-model="newsText"
+                     maxlength="240"
+                     placeholder="<%= t('.sampletext_placeholder') %>" required>
+                  <span class="input-group-btn">
+                  <button class="btn btn-primary"
+                     type="submit"
+                     ng-disabled="!newsForm.$valid">
+                  <span class="glyphicon glyphicon-plus"></span> <span class="hidden-xs"><%= t(".send") %></span>
+                  </button>
+                  </span>
+               </div>
+            </div>
+         </form>
+      </div>
+      <hr>
+      <div ng-repeat="n in news" class="panel" 
+         ng-class="{'panel-warning' : n.type == 'finance', 'panel-success' : n.type == 'resource', 'panel-info': n.type == 'shopping', 'panel-default' : n.type == 'message', 'clickable' : n.type != 'message'}"
+         ng-click="redirectToSource(n.type)"
+         style="margin-bottom: 10px "
+         >
+         <div class="panel-heading">
+            <div class="row">
+               <div class="col-sm-1 col-md-1 col-lg-1 col-xs-2">
+                  <img ng-src="{{n.link}}" ng-show="n.type == 'message'" class="img-circle news-image"-->
+                  <span class="fa fa-bitcoin fa-2x" ng-show="n.type == 'finance'"></span>
+                  <span class="fa fa-shopping-cart fa-2x" ng-show="n.type == 'shopping'"></span>
+                  <span class="fa fa-globe fa-2x" ng-show="n.type == 'resource'"></span>
+               </div>
+               <div style="word-wrap:break-word;" class="col-xs-10 col-sm-11 col-md-11 col-lg-11">
+                  <span class="news-name">{{n.name}}<span ng-show="n.text != ''">:</span></span> 
+                  <span class="nowrap" ng-show="n.header != ''"> {{n.header}} </span>
+                  <span ng-show="n.text != ''"> {{n.text}}</span>
+                  <br>
+                  <span class="news-date">{{n.date}}</span>
+               </div>
+            </div>
+         </div>
+      </div>
+   </div>
 </div>
