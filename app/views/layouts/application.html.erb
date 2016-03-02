@@ -56,7 +56,7 @@
             <span class="fa fa-refresh fa-lg" ></span>
           </button>
           <%end%>
-          <a class="navbar-brand" href="/#/dashboard"><%= image_tag("flatman_logo_30.png", width: 30) %> flatman</a>
+          <a class="navbar-brand" href="/#/newsfeed"><%= image_tag("flatman_logo_30.png", width: 30) %> flatman</a>
         </div>
         <% if not is_user_ready_to_go and logged_in %>
           <ul class="nav navbar-nav pull-right">
@@ -68,8 +68,8 @@
         <% if is_user_ready_to_go %>
           <div class="navbar-collapse collapse no-transition">
             <ul class="nav navbar-nav">
-              <li ng-class="{active:isActive('/dashboard')}">
-                <a href="/#/dashboard" ><span class="fa fa-dashboard"></span> <%=t(".navbar.dashboard")%></a>
+              <li ng-class="{active:isActive('/newsfeed')}">
+                <a href="/#/newsfeed" ><span class="fa fa-dashboard"></span> <%=t(".navbar.newsfeed")%></a>
               </li>
               <li ng-class="{active:isActive('/shopping')}">
                 <a href="/#/shopping"><span class="glyphicon glyphicon-shopping-cart"></span>  <%=t(".navbar.shopping")%></a>
