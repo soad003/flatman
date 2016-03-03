@@ -35,9 +35,6 @@ class TemplatesController < ProtectedController
   def create_payment
   end
 
-  def shopping
-  end
-
   def user_settings
   end
 

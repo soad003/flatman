@@ -21,6 +21,11 @@
     width: 1px;
   }
 
+  @media (max-width: 768px) {
+    .mobile-font-size{font-size: 20px;}
+  }
+
+
 </style>
 
 <div class="page-head dropdown">
@@ -70,7 +75,7 @@
 <div class="row">
     <div class="col-md-4 col-sm-6" ng-repeat="list in bla = (lists | filter: {type: filter_type}) track by $index">
         <div class="panel panel-{{get_color($index)}}">
-            <div class="panel-heading">
+            <div class="panel-heading mobile-font-size">
                 <div class="form-group">
                     <strong>
                         <i class="fa fa-shopping-cart fa-lg" ng-show="is_shopping(list)"></i>
@@ -100,7 +105,7 @@
                     <li ng-repeat="item in list.items">
                       <input id="{{''+$parent.$index+$index}}" type="checkbox" ng-model="item.checked" ng-change="change_checked(list,item)">
                       <label for="{{''+$parent.$index+$index}}"
-                              class="done-{{item.checked}}">
+                              class="done-{{item.checked}}" style="word-wrap:break-word;">
                         {{item.name}}
                       </label>
                       <a href="" class="pull-right" ng-click="remove_item(list,item)">

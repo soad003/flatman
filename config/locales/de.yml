@@ -457,7 +457,7 @@ de:
       delete_checked                     : "lösche erledigte items"
       todo                               : "Todo"
       create_todo                        : "Gib deiner neuen Todoliste einen Namen!"
-      create_shopping                    : "Wo gehst du Einkaufen?"
+      create_shopping                    : "Wo gehst du Einkaufen? Was soll gekauft werden?"
     create_flat:
       subtitle                           : "Willkommen bei"
       title                              : "Flatman"

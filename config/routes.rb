@@ -15,7 +15,6 @@ scope "(:locale)", locale: /en|de/ do
     get '/newsfeed', to: :newsfeed, as: 'newsfeed'
     get '/create_resource', to: :create_resource, as: 'create_resource'
     get '/resources', to: :resources, as: 'resources'
-    get '/shopping', to: :shopping, as: 'shopping'
     get '/user_settings', to: :user_settings, as: 'user_settings'
     get '/dashboard', to: :dashboard, as: 'dashboard_template'
     get '/newsfeed', to: :newsfeed, as: 'newsfeed_template'
