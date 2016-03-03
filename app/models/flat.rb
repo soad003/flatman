@@ -8,7 +8,7 @@ class Flat < ActiveRecord::Base
     has_many    :invites
     has_many    :bills
     has_many    :newsitems
-    validates   :name, presence: true #:street, :city, :zip,
+    validates   :name, :street, :city, :zip, presence: true
     geocoded_by :full_street_address
     after_validation :geocode
 
