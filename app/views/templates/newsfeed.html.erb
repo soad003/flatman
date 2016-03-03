@@ -1,8 +1,8 @@
 <div class="row">
   <div class="col-xs-12 col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-2 col-lg-8 col-lg-offset-2">
     <div class="row">
-      <div ng-class="(get_resource_usage() === 0) ? 'col-lg-6 col-sm-6 col-xs-6' :'col-lg-4 col-xs-12 col-sm-6'">
-        <div class="panel panel-info clickable" ng-click="Util.redirect_to.shopping()">
+      <div ng-class="(get_resource_usage() === 0) ? 'col-lg-6 col-sm-6 col-xs-12' :'col-lg-4 col-xs-12 col-sm-12'">
+        <div class="panel panel-info clickable  padding-small-bottom" ng-click="Util.redirect_to.shopping()">
           <div class="panel-heading">
             <div class="row hidden-xs">
               <div class="col-xs-2">
@@ -16,11 +16,12 @@
             <div class="row visible-xs">
               <div class="announcement-heading-xs">
                 <span class="fa fa-shopping-cart padding-left"></span>
+                <%=t(".items_to_buy")%>
                 <span class="pull-right padding-right">{{get_items_to_buy()}}</span>
               </div>
             </div>
           </div>
-          <a href="/#/shopping" class="hidden-xs">
+          <a href="/#/shopping" class="hidden">
             <div class="panel-footer announcement-bottom">
               <div class="row">
                 <div class="col-xs-10">
@@ -34,8 +35,8 @@
           </a>
         </div>
       </div>
-      <div ng-class="(get_resource_usage() === 0) ? 'col-lg-6 col-sm-6 col-xs-6' :'col-lg-4 col-xs-12 col-sm-6'">
-        <div class="panel panel-warning clickable" ng-click="Util.redirect_to.finances()">
+      <div ng-class="(get_resource_usage() === 0) ? 'col-lg-6 col-sm-6 col-xs-12' :'col-lg-4 col-xs-12 col-sm-12'">
+        <div class="panel panel-warning clickable padding-small-bottom" ng-click="Util.redirect_to.finances()">
           <div class="panel-heading">
             <div class="row hidden-xs">
               <div class="col-xs-2">
@@ -50,11 +51,13 @@
             <div class="row visible-xs">
               <div class="announcement-heading-xs">
                 <span class="fa fa-bitcoin padding-left"></span>
+                <span ng-show="get_you_owe() < 0"><%=t(".you_owe")%></span>
+                <span ng-show="get_you_owe() >= 0"><%=t(".you_get")%></span>
                 <span class="pull-right padding-right">{{get_you_owe() | number: 0 }} €</span>
               </div>
             </div>
           </div>
-          <a href="/#/finances" class="hidden-xs">
+          <a href="/#/finances" class="hidden">
             <div class="panel-footer announcement-bottom">
               <div class="row">
                 <div class="col-xs-10">
@@ -68,7 +71,7 @@
           </a>
         </div>
       </div>
-      <div ng-hide="get_resource_usage() === 0" ng-class="(get_resource_usage() === 0) ? 'col-lg-6 col-sm-6 col-xs-6' :'col-lg-4 col-xs-12 col-sm-6'">
+      <div ng-hide="get_resource_usage() === 0" ng-class="(get_resource_usage() === 0) ? 'col-lg-6 col-sm-6 col-xs-12' :'col-lg-4 col-xs-12 col-sm-12'">
         <div class="panel panel-success clickable" ng-click="Util.redirect_to.resources()">
           <div class="panel-heading">
             <div class="row hidden-xs">
@@ -83,11 +86,12 @@
             <div class="row visible-xs">
               <div class="announcement-heading-xs">
                 <span class="fa fa-globe padding-left"></span>
+                <%=t(".view_resource_titel")%>
                 <span class="pull-right padding-right">{{get_resource_usage() | number: 0}} €</span>
               </div>
             </div>
           </div>
-          <a href="/#/resources" class="hidden-xs">
+          <a href="/#/resources" class="hidden">
             <div class="panel-footer announcement-bottom">
               <div class="row">
                 <div class="col-xs-10">
@@ -125,9 +129,8 @@
       </form>
     </div>
     <hr>
-    <div ng-repeat="n in news track by $index" class="panel" 
+    <div ng-repeat="n in news track by $index" class="panel padding-small-bottom"
       ng-class="{'panel-warning' : n.type == 'finance', 'panel-success' : n.type == 'resource', 'panel-info': n.type == 'shopping', 'panel-default' : n.type == 'message'}"
-      style="margin-bottom: 12px"
       >
       <div class="panel-heading">
         <div class="row">
@@ -159,7 +162,10 @@
         <table class="table table-condensed">
           <tbody>
             <tr ng-repeat="c in n.comments track by $index">
-              <td ng-class="{'td-remove-boarder' : $index == 0}"><span class="news-name">{{c.name}}: </span> {{c.text}}  <span class="news-date"><i class="fa fa-clock-o" ng-show="c.date == '' "></i> {{c.date}} </span></td>
+              <td ng-class="{'td-remove-boarder' : $index == 0}">
+                <span class="news-name">{{c.name}}: </span> {{c.text}}  
+                <span class="news-date" ng-show="c.date"><i class="fa fa-clock-o" ></i> {{c.date}} </span>
+              </td>
             </tr>
           </tbody>
         </table>
