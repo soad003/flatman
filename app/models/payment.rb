@@ -15,8 +15,8 @@ class Payment < ActiveRecord::Base
 
     def self.find_with_user_constraint(id, user1, user2)
     	payment = find_by(id: id)
-    	if ((payment.payer_id == user1.id && payment.payee_id == user2.id) || 
-    		(payment.payer_id == user2.id && payment.payee_id == user1.id))
+    	if ((payment.payer_id == user2.id && payment.payee_id == user1.id)) #|| 
+    		#(payment.payer_id == user2.id && payment.payee_id == user1.id))
     		payment
     	end
     end

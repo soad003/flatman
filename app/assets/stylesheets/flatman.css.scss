@@ -29,9 +29,24 @@ input[type=text], input[type=email], select {
   color: grey;
 }
 
+.td-remove-boarder{
+  border: 0px !important
+}
+
 .news-date {
   color:grey;
   font-size: 11px;
+  margin-right: 10px;
+}
+
+.news-comment {
+  color:grey;
+  font-size: 11px;
+  font-weight: bold;
+}
+
+.padding-small-bottom{
+  margin-bottom: 12px
 }
 
 .news-name {
@@ -53,6 +68,9 @@ input[type=text], input[type=email], select {
   margin-bottom:0px
 }
 
+.news-image-comment {
+  width:30px;
+}
 
 .announcement-heading {
   font-size: 50px;
@@ -62,6 +80,19 @@ input[type=text], input[type=email], select {
 .announcement-text {
   margin: 0;
 }
+
+.padding-left {
+  margin-left: 10px; 
+}
+
+.padding-right {
+  margin-right: 10px;
+}
+
+.announcement-heading-xs {
+  font-size: 23px;
+}
+
 
 // input.ng-dirty {
 //     border-color: #8a6d3b;

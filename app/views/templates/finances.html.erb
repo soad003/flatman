@@ -118,7 +118,7 @@
                                                             0, 'text-danger': entry.value
                                                             < 0}">{{entry.value| customCurrency : '€ '}}</td>
                                                                 <td>
-                                                                    <button class="btn btn-default btn-xs pull-right" ng-show="entry.isPayment" ng-click="removePayment(entry,  overviewMate)">
+                                                                    <button class="btn btn-default btn-xs pull-right" ng-show="entry.isPayment && entry.payer_id == overviewMate.id" ng-click="removePayment(entry,  overviewMate)">
                                                                         <span class="glyphicon glyphicon-trash"></span>
                                                                     </button>
 

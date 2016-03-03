@@ -55,6 +55,7 @@ scope "(:locale)", locale: /en|de/ do
    end
 
    resources :newsfeed, only: [:index, :create, :destroy]
+   post '/newsfeed/comment/' => 'newsfeed#comment'
 
    resources :resource, only: [:index, :create, :update, :destroy] do
       resources :resourceentry, only: [:create, :destroy]

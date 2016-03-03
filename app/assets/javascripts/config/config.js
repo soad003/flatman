@@ -75,7 +75,7 @@ angular.module('flatman', ['ngRoute','ngResource','google-maps','angles','ui.boo
         controller: 'createPaymentCtrl'
       }).
       otherwise({
-        redirectTo: '/dashboard'
+        redirectTo: '/newsfeed'
       });
 
       $httpProvider.interceptors.push(function($q,$rootScope,Util) {
