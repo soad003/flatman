@@ -23,17 +23,19 @@ class Api::NewsfeedController < Api::RestController
 
     private 
     def comment_params
-      params.permit(:text, :newsitem_id)
+      params.permit(:text, :newsitem_id, :from, :to)
     end
 
     private
         # Never trust parameters from the scary internet, only allow the white list through.
     def ni_params
-      params.permit(:text)
+      params.permit(:text, :from, :to)
     end
 
     def generateNewsfeed(user)
-        newsitems = user.flat.newsitems.where(newsitem_id: nil).order(created_at: :desc)
+        from = Integer(ni_params[:from] || 0)
+        to = Integer(ni_params[:to] || 10)  - from
+        newsitems = user.flat.newsitems.where(newsitem_id: nil).order(created_at: :desc).drop(from).take(to)
         newsitems.each do |newsitem|
             newsitem.header = getHeader(newsitem)
             newsitem.text = getText(newsitem)

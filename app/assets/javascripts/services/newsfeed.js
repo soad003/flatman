@@ -10,7 +10,9 @@ angular.module('flatman').factory("newsfeedService",function($resource) {
                         });
     return {
         newsfeed: {
-            get: function(succH,errH){ return newsfeedService.get(succH,errH);},
+            get: function(from, to, succH,errH){
+                return newsfeedService.get({from: from, to: to}, succH,errH);
+            },
             create: function(text,succH,errH) {
                 newsfeedService.create(null,{text: text},succH,errH);
             }
