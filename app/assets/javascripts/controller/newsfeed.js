@@ -35,6 +35,12 @@ angular.module('flatman').controller("newsfeedCtrl",
         });
 	}
 
+	$scope.removeMessage=function(newsitem){
+        newsfeedService.newsfeed.destroy(newsitem.id,function(){
+            $scope.news = _($scope.news).without(newsitem);
+        });
+    };
+
 	$scope.addComment = function (newsitem){
         newsfeedService.comment.create(newsitem.id, newsitem.new_Text, function(data){
 			data.name = $scope.current_user.name

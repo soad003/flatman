@@ -1,8 +1,9 @@
 angular.module('flatman').factory("newsfeedService",function($resource) {
-    var newsfeedService = $resource('/api/newsfeed/',{},
+    var newsfeedService = $resource('/api/newsfeed/:id',{},
                         {
                             'get': {method: "GET", isArray:true},
-                            'create': {method: "POST"}
+                            'create': {method: "POST"},
+                            'destroy': {method: "DELETE"}
                         });
      var commentService = $resource('/api/newsfeed/comment/',{},
                         {
@@ -15,6 +16,9 @@ angular.module('flatman').factory("newsfeedService",function($resource) {
             },
             create: function(text,succH,errH) {
                 newsfeedService.create(null,{text: text},succH,errH);
+            },
+            destroy: function(newsitem_id, succH,errH){
+                newsfeedService.destroy({id: newsitem_id},succH,errH);
             }
         },
         comment: {

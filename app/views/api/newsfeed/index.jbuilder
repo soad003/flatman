@@ -1,5 +1,6 @@
 json.array!(@newsfeed) do |newsitem|
   json.id newsitem.id
+  json.user_id newsitem.user.id
   json.name newsitem.user.name
   json.text newsitem.text
   json.date newsitem.date

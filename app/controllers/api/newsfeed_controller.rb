@@ -1,7 +1,7 @@
 include ActionView::Helpers::DateHelper
 
 class Api::NewsfeedController < Api::RestController
-    around_filter :wrap_in_transaction, only: [:create,:destroy, :delete_checked]
+    around_filter :wrap_in_transaction, only: [:create, :destroy]
 
     def index
         @newsfeed = generateNewsfeed(current_user)
@@ -10,6 +10,11 @@ class Api::NewsfeedController < Api::RestController
     def create
         Newsitem.createMessage(ni_params[:text], current_user)
         respond_with(nil, :location => nil)
+    end
+
+    def destroy
+        Newsitem.destroy_with_user_constraint(ni_params[:id], current_user)
+        respond_with(nil)
     end
 
     def comment
@@ -29,7 +34,7 @@ class Api::NewsfeedController < Api::RestController
     private
         # Never trust parameters from the scary internet, only allow the white list through.
     def ni_params
-      params.permit(:text, :from, :to)
+      params.permit(:text, :from, :to, :id)
     end
 
     def generateNewsfeed(user)

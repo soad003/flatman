@@ -9,9 +9,18 @@ class Newsitem < ActiveRecord::Base
 
 	belongs_to 				:user
 	belongs_to              :flat
-	has_many                :newsitems
+	has_many                :newsitems, -> { order 'created_at asc' },  :dependent => :destroy
 	belongs_to				:newsitem
 	validates   :user, :flat, presence: true
+
+    def self.destroy_with_user_constraint(id, user)
+        msg = Newsitem.find_with_user_constraint(id,user)
+        msg.destroy!
+    end
+
+    def self.find_with_user_constraint(id, user)
+        find_by!(id: id, user_id: user.id, flat_id: user.flat.id)
+    end
 
     def self.createShoppinglist(shoppinglist, user)
         Newsitem.saveNewsitem(user, Newsitem::CATEGORIES[:shoppinglist], Newsitem::ACTIONS[:add], shoppinglist.id, shoppinglist.name)

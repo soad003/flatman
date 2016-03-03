@@ -250,7 +250,7 @@ en:
       mate                               : "mate"
     newsfeed:
       sampletext_placeholder             : "Say something to your flat mates..."
-      send                               : "Send"
+      post                               : "Post"
       items_to_buy                       : "items to buy"
       view_shopping_details              : "view lists"
       you_owe                            : "you owe"

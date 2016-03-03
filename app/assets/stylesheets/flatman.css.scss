@@ -29,9 +29,14 @@ input[type=text], input[type=email], select {
   color: grey;
 }
 
+.td-remove-boarder{
+  border: 0px !important
+}
+
 .news-date {
   color:grey;
   font-size: 11px;
+  margin-right: 10px;
 }
 
 .news-comment {
@@ -43,7 +48,6 @@ input[type=text], input[type=email], select {
 .news-name {
   font-weight: bold;
 }
-
 
 .news-image {
   width: 35px;

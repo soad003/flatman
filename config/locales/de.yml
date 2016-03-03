@@ -250,7 +250,7 @@ de:
       mate                               : "Bewohner"
     newsfeed:
       sampletext_placeholder             : "Sag deiner WG was..."
-      send                               : "Senden"
+      post                               : "Posten"
       page_header                        : "Newsfeed"
       items_to_buy                       : "dinge zu kaufen"
       view_shopping_details              : "zu den listen"
