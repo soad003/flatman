@@ -3,6 +3,7 @@ class Flat < ActiveRecord::Base
 	has_many 	:billcategories
 	has_many 	:shareditems , -> { order 'name asc' }
 	has_many	:shoppinglists, -> { order 'created_at asc' }
+    has_many    :todos, -> { order 'created_at asc' }
 	has_many 	:resources
     has_many    :invites
     has_many    :bills

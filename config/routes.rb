@@ -49,6 +49,11 @@ scope "(:locale)", locale: /en|de/ do
       delete '/delete_checked', to: :delete_checked
    end
 
+   resources :todo, only: [:index, :create, :destroy] do
+      resources :todo_item, only: [:create, :update, :destroy]
+      delete '/delete_checked', to: :delete_checked
+   end
+
    resources :newsfeed, only: [:index, :create, :destroy]
 
    resources :resource, only: [:index, :create, :update, :destroy] do

@@ -11,8 +11,8 @@ angular.module('flatman', ['ngRoute','ngResource','google-maps','angles','ui.boo
         controller: 'createFlatCtrl'
       }).
       when('/shopping', {
-        templateUrl: '/templates/shopping',
-        controller: 'shoppingCtrl'
+        templateUrl: '/templates/pinboard',
+        controller: 'pinboardCtrl'
       }).
       when('/dashboard', {
         templateUrl: '/templates/dashboard',

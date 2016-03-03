@@ -424,6 +424,7 @@ en:
       all                                : "All"
       new_list_placeholder               : "groceries"
       new_item_placeholder               : "jellybeans"
+      new_item_placeholder_todo          : "serious work"
       help_title                         : "Your Flats shopping needs ..."
       help_paragraph1                    : "Use the textbox above to add a list, after that you can add/delete items ... "
       help_paragraph2                    : "If you are done with shopping just click ... to enter your bill and you are done!"

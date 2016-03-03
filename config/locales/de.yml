@@ -426,6 +426,7 @@ de:
       all                                : "Alle"
       new_list_placeholder               : "Lebensmittel"
       new_item_placeholder               : "Bier"
+      new_item_placeholder_todo          : "Arbeit Arbeit"
       help_title                         : "Alles was deine WG gerade so kaufen sollte ..."
       help_paragraph1                    : "Benutze das Textfeld oben rechts um neue listen zu erstellen... "
       help_paragraph2                    : "Wenn ein enkauf abgeschlossen ist einfach auf zahlung klicken und erledigt."

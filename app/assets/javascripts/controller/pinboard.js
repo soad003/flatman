@@ -1,45 +1,70 @@
-angular.module('flatman').controller("pinboardCtrl",function($scope,shoppingService,Util){
+angular.module('flatman').controller("pinboardCtrl",function($scope,$location,shoppingService,todoService,Util){
 
-    $scope.create_todo=function(result){                                           
-        $scope.lists.push({name: result, items: [], todo:true});
+    var SHOP_TYPE="shop";
+    var TODO_TYPE="todo";
+
+    function get_service(list){
+        return (list.type==TODO_TYPE)? todoService : shoppingService;
+    }
+
+    $scope.filter_type=($location.path()==="/shopping")? SHOP_TYPE: "";
+    $scope.lists = [];
+
+    $scope.is_shopping = function(list){ return list.type===SHOP_TYPE; };
+
+    $scope.is_todo = function(list){ return list.type===TODO_TYPE; };
+
+    $scope.only_shopping=function(){ $scope.filter_type=SHOP_TYPE; };
+
+    $scope.only_todo=function(){ $scope.filter_type=TODO_TYPE; };
+
+    $scope.only_all=function(){ $scope.filter_type=""; };
+
+    $scope.create_todo=function(result){ 
+        todoService.list.create(result, function(data){
+                data.items=[];
+                data.type=TODO_TYPE;
+                $scope.lists.push(data);
+        });                                          
     };
 
     $scope.create_shoppinglist=function(result){
-        $scope.lists.push({name: result, items: [], todo:false});
-    };
-
-    $scope.create_note=function(result){                                     
-        $scope.notes.push({name: result, text: "i'm a banana"});
-    };
-
-    $scope.only_shopping=function(){
-        $scope.lists = _($scope.data).reject(function(i){ return i.todo})
-    };
-
-    $scope.only_todo=function(){
-        $scope.lists = _($scope.data).reject(function(i){ return !i.todo})
-    };
-
-    $scope.only_all=function(){
-        $scope.lists=angular.copy($scope.data);
+        shoppingService.list.create(result, function(data){
+                data.items=[];
+                data.type=SHOP_TYPE;
+                $scope.lists.push(data);
+        });
     };
 
     $scope.remove_item=function(list,item){
-        list.items = _(list.items).without(item);
+        get_service(list).item.destroy(item.id,list.id,function(){
+            list.items = _(list.items).without(item);
+        });
     };
 
     $scope.remove_list=function(list){
-        $scope.lists = _($scope.lists).without(list);
+        get_service(list).list.destroy(list.id,function(){
+            $scope.lists = _($scope.lists).without(list);
+        });
     };
 
     $scope.add_item=function(list){
-        list.items.push({checked:false, text: list.new_Text });
-        list.new_Text='';
+        get_service(list).item.create(list.id,list.new_Text,function(data){
+                list.items.push(data);
+                list.new_Text='';
+        });
     };
 
+    $scope.delete_checked=function(list){
+        get_service(list).list.destroy_checked(list.id, function(data){
+            list.items= _(list.items).reject(function(i){ return i.checked});
+       });
+    };
 
     $scope.change_checked=function(list,item){
-        $scope.lists=$scope.data;
+        get_service(list).item.update(item,list.id,null, function(){
+            item.checked=!item.checked;
+        });
     };
 
     $scope.get_color=function(index){
@@ -51,51 +76,13 @@ angular.module('flatman').controller("pinboardCtrl",function($scope,shoppingServ
        Util.redirect_to.finances_done_shopping(list.name);
     };
 
-    $scope.delete_checked=function(list){
-        list.items= _(list.items).reject(function(i){ return i.checked});
-    };
+    shoppingService.list.get(function(data){
+        $scope.lists = $scope.lists.concat(data);
+    });  
 
-    $scope.data = [
-            {name: "Merkur", items: [
-                                        {checked: false, text:"Brot"},
-                                        {checked: false, text:"Milch"},
-                                        {checked: false, text:"Butter"},
-                                        {checked: false, text:"Hefe"},
-                                        {checked: false, text:"Bier"}
-
-                                    ], todo:false},
-            {name: "Bauhaus", items: [
-                                        {checked: false, text:"Hammer"},
-                                        {checked: false, text:"Sichel"},
-                                        {checked: false, text:"Rotes Tuch"}
-
-                                    ], todo:false},
-            {name: "Todos vor Auszug", items: [
-                                                {checked: false, text:"Wand streichen"},
-                                                {checked: false, text:"Löcher ausbessern"},
-                                                {checked: false, text:"Putzen"},
-                                                {checked: false, text:"Nachmieter finden"},
-                                                {checked: false, text:"Kaution!!!"}
-
-                                               ], todo:true},
-            {name: "Important", items: [
-                                                {checked: true, text:"be nice"},
-                                                {checked: false, text:"clean"},
-                                                {checked: false, text:"talk to your mates"}
-
-                                               ], todo:true}
-
-        ];
-
-    $scope.lists=angular.copy($scope.data);
-    
-
-    $scope.notes = [
-            {name: "Nicht vergessen", text:"Termin bei Makler"}
-        ];
-
+    todoService.list.get(function(data){
+        $scope.lists = $scope.lists.concat(data);
+    });  
     
 
 });
-
-

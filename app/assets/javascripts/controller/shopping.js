@@ -43,7 +43,7 @@ angular.module('flatman').controller("shoppingCtrl",function($scope,shoppingServ
 
     $scope.deleteChecked=function(list){
         shoppingService.list.destroy_checked(list.id, function(data){
-                list.items= _(list.items).reject(function(i){ return i.checked});
+            list.items= _(list.items).reject(function(i){ return i.checked});
         });
     };
 
