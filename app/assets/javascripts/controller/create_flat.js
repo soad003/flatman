@@ -6,6 +6,14 @@ angular.module('flatman').controller("createFlatCtrl",function($scope,flatServic
         });
     };
 
-    $scope.newFlat={ city:"", name:"", zip:"", street:"" };
+    $scope.add_invite=function(){
+        $scope.newFlat.invites.push($scope.invite_email);
+    };
+
+    $scope.remove_invite=function(invite){
+        $scope.newFlat.invites=_($scope.newFlat.invites).without(invite);
+    };
+
+    $scope.newFlat={ name:"", invites: [] };
 
 });

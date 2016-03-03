@@ -75,6 +75,10 @@ de:
               blank                       : "Bitte gib eine Postleitzahl an!"
             street:
               blank                       : "Bitte gib Straße deiner WG an!"
+            shoppinglists:
+              invalid                     : "Bitte gib der Einkaufsliste einen Namen!"
+            todos:
+              invalid                     : "Bitte gib deinem Todo einen Namen!"
         invite:
           attributes:
             email:
@@ -131,7 +135,15 @@ de:
               blank                       : "Bitte Kategorie angeben."
         shoppinglist:
           attributes:
+            name:
+              blank                       : "Bitte gib der Einkaufsliste einen Namen!"
             shoppinglistitems:
+              invalid                     : "Das item sieht falsch aus!"
+        todo:
+          attributes:
+            name:
+              blank                       : "Bitte gib deinem Todo einen Namen!"
+            todo_items:
               invalid                     : "Das item sieht falsch aus!"
     resource:
       info_all                        : "Gesamt"
@@ -473,6 +485,8 @@ de:
       city_label                         : "Stadt"
       city_placeholder                   : "Gotham"
       create_flat                        : "WG erstellen!"
+      invites                            : "Lade WG mitglieder ein"
+      email                              : "email deines WG buddys"
 
   session:
     index:

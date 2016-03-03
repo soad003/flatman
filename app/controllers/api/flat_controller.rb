@@ -7,7 +7,13 @@ class Api::FlatController < Api::RestController
 
     def create
         if !current_user.has_flat?
-            flat=Flat.create_with_user!(current_user, flat_params)
+            flat=Flat.create_with_user!(current_user, flat_params_name_only)
+            if !params[:invites].nil?
+                params[:invites].each do |inv_email| 
+                    invite=Invite.create_invite_from_email(inv_email, current_user)
+                    UserMailer.invite(invite.email,current_user.flat.name, invite.token).deliver
+                end
+            end
             respond_with(nil, :location => api_flat_path(flat))
         else
             respond_with_errors([t('.already_in_flat')])
@@ -45,6 +51,10 @@ class Api::FlatController < Api::RestController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def flat_params
-        params.permit(:name, :street, :city, :zip)
+        params.permit(:name, :invites)
+    end
+
+    def flat_params_name_only
+        params.permit(:name)
     end
 end

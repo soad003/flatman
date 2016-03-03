@@ -7,7 +7,6 @@
       <p><%=t(".description3")%></p>
     </div>
     <div class="col-md-4">
-      <form role="form" ng-submit="create_flat()">
         <div class="form-group">
           <label class="control-label" for="flat_name"><%=t(".name_label")%></label>
           <div>
@@ -15,30 +14,40 @@
           </div>
         </div>
 
-        <div class="form-group">
-          <label class="control-label" for="street"><%=t(".street_label")%></label>
-          <div>
-            <input id="street" ng-model="newFlat.street" type="text" placeholder="<%=t(".street_placeholder")%>" >
+        <div class="panel panel-default">
+          <div class="panel-heading"><strong><%=t('.invites')%></strong></div>
+          <div class="panel-body">
+            <div class="row form-group">
+              <ul class="list-unstyled">
+                <li ng-repeat="invite in newFlat.invites">
+                  <div class="col-lg-10 col-sm-10 col-md-10 col-xs-10">{{invite}}</div>
+                  <a href="" class="pull-right col-lg-2 col-sm-2 col-md-2 col-xs-2" ng-click="remove_invite(invite)">
+                    <span class="glyphicon glyphicon-remove"></span>
+                  </a>
+                </li>
+              </ul>
+            </div>
+            <form role="form" name="Inviteform" ng-submit="add_invite()">
+              <div class="input-group">
+                <input type="email" class="form-control"
+                        ng-model="invite_email"
+                        maxlength="100"
+                        placeholder="<%=t('.email')%>" required>
+                <span class="input-group-btn">
+                  <button class="btn btn-primary"
+                          type="submit"
+                          ng-disabled="!Inviteform.$valid">
+                    <span class="glyphicon glyphicon-plus"></span>
+                  </button>
+                </span>
+              </div>
+            </form>
           </div>
         </div>
 
-        <div class="form-group">
-          <label class="control-label" for="post_code"><%=t(".zip_label")%></label>
-          <div>
-            <input id="post_code" ng-model="newFlat.zip" type="text" placeholder="<%=t(".zip_placeholder")%>" >
-          </div>
-        </div>
+        <button class="btn btn-lg btn-success" ng-click="create_flat()"><%=t(".create_flat")%></button>
 
-        <div class="form-group">
-          <label class="control-label" for="city"><%=t(".city_label")%></label>
-          <div>
-            <input id="city" ng-model="newFlat.city" type="text" placeholder="<%=t(".city_placeholder")%>" >
-          </div>
-        </div>
 
-        <button class="btn btn-lg btn-success" type="submit"><%=t(".create_flat")%></button>
-
-      </form>
     </div>
   </div>
 </div>

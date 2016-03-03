@@ -4,9 +4,7 @@ class Api::InviteController < Api::RestController
     def create
         user = User.find_by_email(invite_params[:email])
         if user.nil?
-            invite=Invite.new(invite_params)
-            current_user.flat.invites << invite
-            invite.save!
+            invite=Invite.create_invite_from_email(invite_params[:email], current_user)
             UserMailer.invite(invite.email,current_user.flat.name, invite.token).deliver
             @return = OpenStruct.new({already_registred: false, invite: invite})
         else

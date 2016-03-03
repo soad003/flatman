@@ -75,6 +75,10 @@ en:
               blank                       : "Please enter your zip code!"
             street:
               blank                       : "Please enter your flat's street!"
+            shoppinglists:
+              invalid                     : "Please provide some name for your shopping list!"
+            todos:
+              invalid                     : "Please provide some name for your Todo!"
         invite:
           attributes:
             email:
@@ -131,7 +135,17 @@ en:
               blank                       : "Category name can't be blank."
         shoppinglist:
           attributes:
+            name:
+              blank                       : "Please provide some name for your shopping list!"
+              invalid                     : "Please provide some name for your shopping list!"
             shoppinglistitems:
+              invalid                     : "This item looks invalid!"
+        todo:
+          attributes:
+            name:
+              blank                       : "Please provide some name for your todo!"
+              invalid                     : "Please provide some name for your todo!"
+            todo_items:
               invalid                     : "This item looks invalid!"
 
     resource:
@@ -472,6 +486,8 @@ en:
       city_label                         : "city"
       city_placeholder                   : "Gotham"
       create_flat                        : "create a flat!"
+      invites                            : "Invite some flat mates"
+      email                              : "email of your mate"
 
   session:
     index:

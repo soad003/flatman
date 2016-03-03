@@ -5,6 +5,14 @@ class Invite < ActiveRecord::Base
     validates   :flat, presence: true
     belongs_to  :flat
 
+    def self.create_invite_from_email(email, current_user)
+        invite=Invite.new()
+        invite.email=email
+        current_user.flat.invites << invite
+        invite.save!
+        return invite
+    end
+
     def self.find_by_email(email)
         find_by email: email
     end
