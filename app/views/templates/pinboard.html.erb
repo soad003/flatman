@@ -34,9 +34,6 @@
           <label class="btn btn-default hidden-xs" ng-class="{'active': filter_type === 'shop'}" ng-click="only_shopping()">
             <input type="radio" name="options" id="option2" autocomplete="off"><i class="fa fa-shopping-cart fa-lg"></i> <%= t(".shopping") %>
           </label>
-<!--           <label class="btn btn-default hidden-xs">
-            <input type="radio" name="options" id="option3" autocomplete="off"><i class="fa fa-sticky-note-o fa-lg"></i> Notes
-          </label> -->
           <label class="btn btn-default hidden-xs" ng-class="{'active': filter_type === ''}" ng-click="only_all()">
             <input type="radio" name="options" id="option4" autocomplete="off" checked><i class="fa fa-ban fa-lg"></i> <%= t(".all") %>
           </label>
@@ -52,33 +49,26 @@
             </button>
             <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
                 <li>
-                    <a href="" ng-bootbox-prompt="Name your todo list!"
+                    <a href="" ng-bootbox-prompt="<%= t(".create_todo") %>"
                        ng-bootbox-prompt-action="create_todo(result)">
                         <i class="fa fa-list-alt fa-lg"></i> 
                         <%= t(".todo") %>
                     </a>
                 </li>
                 <li>
-                    <a href="" ng-bootbox-prompt="Where you want to go shopping!"
+                    <a href="" ng-bootbox-prompt="<%= t(".create_shopping") %>"
                        ng-bootbox-prompt-action="create_shoppinglist(result)">
                         <i class="fa fa-shopping-cart fa-lg"></i> 
                         <%= t(".shoppinglist") %>
                     </a>
                 </li>
-<!--                 <li>
-                    <a ng-bootbox-prompt="Set a title for your note!"
-                       ng-bootbox-prompt-action="create_note(result)">
-                        <i class="fa fa-sticky-note-o fa-lg"></i> 
-                        note
-                    </a>
-                </li> -->
             </ul>
         </div>
     </h1>
 </div>
 
 <div class="row">
-    <div class="col-md-4 col-sm-6" ng-repeat="list in lists | filter: {type: filter_type} track by $index">
+    <div class="col-md-4 col-sm-6" ng-repeat="list in bla = (lists | filter: {type: filter_type}) track by $index">
         <div class="panel panel-{{get_color($index)}}">
             <div class="panel-heading">
                 <div class="form-group">
@@ -139,38 +129,17 @@
         </div>
     </div>
 
-    <div class="jumbotron text-center" ng-show="lists.length===0 && !isLoading()">
+    <div class="jumbotron text-center" ng-show="bla.length===0 && !isLoading() && filtered_shopping()">
       <i class="fa fa-shopping-cart fa-5x"></i>
       <h2><%= t(".help_title") %></h2>
       <%= t(".help_paragraph1") %><br>
       <%= t(".help_paragraph2") %>
     </div>
-</div>
 
-<!-- <div class="row">
-    <h4>Notes</h4>
-    <div class="col-md-4 col-sm-6" ng-repeat="list in notes track by $index">
-        <div class="panel panel-{{get_color($index)}}">
-            <div class="panel-heading">
-                <div class="form-group">
-                    <strong><i class="fa fa-sticky-note-o fa-lg"></i> {{list.name}}</strong>
-                    <div class="btn-group pull-right">
-                      <button type="button" class="btn btn-default dropdown-toggle btn-xs" data-toggle="dropdown">
-                        <span class="glyphicon glyphicon-pencil"></span>
-                      </button>
-                      <ul class="dropdown-menu">
-                        <li>
-                          <a href="" ng-click="remove_list(list)"><span class="glyphicon glyphicon-trash"></span> delete</a>
-                        </li>
-                      </ul>
-                    </div>
-                </div>
-                <div class="form-group">
-                  <textarea class="form-control" rows="5" id="comment" ng-model="list.text"></textarea>
-                </div>
-                
-            </div>
-        </div>
+      <div class="jumbotron text-center" ng-show="bla.length===0 && !isLoading() && filtered_todo()">
+      <i class="fa fa-list-alt fa-5x"></i>
+      <h2><%= t(".help_title_todo") %></h2>
+      <%= t(".help_paragraph1_todo") %><br>
+      <%= t(".help_paragraph2_todo") %>
     </div>
-</div> -->
-
+</div>

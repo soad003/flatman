@@ -201,7 +201,7 @@ en:
         resources                         : "Resource"
         dashboard                         : "Dashboard"
         shopping                          : "Shopping"
-        search_placeholder                : "search items"
+        pinboard                          : "Todos"
 
     mail_layout:
       complimentary_close                 : "Greetings, your Flatman Team"
@@ -448,10 +448,15 @@ en:
       help_title                         : "Your Flats shopping needs ..."
       help_paragraph1                    : "Use the textbox above to add a list, after that you can add/delete items ... "
       help_paragraph2                    : "If you are done with shopping just click ... to enter your bill and you are done!"
+      help_title_todo                    : "What needs to be done or remembered?"
+      help_paragraph1_todo               : "Create todos for your Flat, easy as that ... "
+      help_paragraph2_todo               : ""
       delete_list                        : "delete list"
       done                               : "enter payment"
       delete_checked                     : "delete checked items"
       todo                               : "Todo"
+      create_todo                        : "Give a name to your new todo list!"
+      create_shopping                    : "Where do you go shopping?"
     create_flat:
       subtitle                           : "Welcome to"
       title                              : "Flatman"

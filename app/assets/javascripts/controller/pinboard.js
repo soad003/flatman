@@ -7,8 +7,11 @@ angular.module('flatman').controller("pinboardCtrl",function($scope,$location,sh
         return (list.type==TODO_TYPE)? todoService : shoppingService;
     }
 
-    $scope.filter_type=($location.path()==="/shopping")? SHOP_TYPE: "";
+    $scope.filter_type=($location.path()==="/shopping")? SHOP_TYPE: TODO_TYPE;
     $scope.lists = [];
+    
+    $scope.filtered_shopping=function(){return $scope.filter_type===SHOP_TYPE; };
+    $scope.filtered_todo=function(){return $scope.filter_type===TODO_TYPE; };
 
     $scope.is_shopping = function(list){ return list.type===SHOP_TYPE; };
 
