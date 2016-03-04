@@ -238,7 +238,7 @@ de:
       you_get                            : "du bekommst"
       view_finance_details               : "zeige Abrechnungen"
       items_borrowed                     : "verliehene items"
-      view_resource_details              : "zeige Strom/Gas verbrauch"
+      view_resource_details              : "zeige Strom/Gas"
       view_resource_titel                : "letzen 30 Tage"
       panel_no_resources                 : "keine Zähler verfügbar"
       view_details                       : "zeige Details"

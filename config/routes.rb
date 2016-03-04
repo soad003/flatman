@@ -12,7 +12,6 @@ scope "(:locale)", locale: /en|de/ do
   namespace :templates do
     get '/finances', to: :finances, as: 'finances'
     get '/flat_settings', to: :flat_settings, as: 'flat_settings'
-    get '/newsfeed', to: :newsfeed, as: 'newsfeed'
     get '/create_resource', to: :create_resource, as: 'create_resource'
     get '/resources', to: :resources, as: 'resources'
     get '/shopping', to: :shopping, as: 'shopping'

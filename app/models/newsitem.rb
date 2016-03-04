@@ -57,6 +57,8 @@ class Newsitem < ActiveRecord::Base
         else
            Newsitem.saveNewsitem(user, Newsitem::CATEGORIES[:message], Newsitem::ACTIONS[:add], nil, text)
         end
+        push = PushBot::Push.new(user.device_token, :android)
+        push.notify('Hello and Welcome to the App!')
     end
 
     def self.createBill(bill, user)
