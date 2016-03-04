@@ -141,11 +141,11 @@ class Newsitem < ActiveRecord::Base
     end
 
     def self.getPushMessage(newsitem)
-        if newsitem.isFinance() then return I18n.t('activerecord.newsitem.pushFinance') end
-        if newsitem.isShopping() then return I18n.t('activerecord.newsitem.pushShopping') end
-        if newsitem.isTodo() then return I18n.t('activerecord.newsitem.pushTodo') end
-        if newsitem.isResource() then return I18n.t('activerecord.newsitem.pushResource') end
-        if newsitem.isMessage() then return I18n.t('activerecord.newsitem.pushMessage') end
+        if newsitem.isFinance() then return I18n.t('activerecord.newsitem.pushFinance', :name => newsitem.user.name) end
+        if newsitem.isShopping() then return I18n.t('activerecord.newsitem.pushShopping', :name => newsitem.user.name) end
+        if newsitem.isTodo() then return I18n.t('activerecord.newsitem.pushTodo', :name => newsitem.user.name) end
+        if newsitem.isResource() then return I18n.t('activerecord.newsitem.pushResource', :name => newsitem.user.name) end
+        if newsitem.isMessage() then return I18n.t('activerecord.newsitem.pushMessage', :name => newsitem.user.name) end
     end
 
     def self.push(newsitem)

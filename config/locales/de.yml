@@ -163,11 +163,11 @@ de:
       todolist                        : "hat die Todoliste %{name} %{action}."
       matechange_remove               : " ist aus der WG ausgetreten."
       matechange_add                  : " ist in die WG eingetreten."
-      pushFinance                     : "Deine Finanzen wurden bearbeitet."
-      pushShopping                    : "Deine Einkaufslisten wurden verändert."
-      pushTodo                        : "Deine Todolisten wurden verändert."
-      pushResource                    : "Deine Resourcen wurden verändert."
-      pushMessage                     : "In deiner WG gibt es eine neue Miteilung"
+      pushFinance                     : "%{name} hat die Finanzen bearbeitet."
+      pushShopping                    : "%{name} hat die Einkauflisten verändert."
+      pushTodo                        : "%{name} hat die Todolisten bearbeitet."
+      pushResource                    : "%{name} hat die Strom/Gas Zähler bearbeitet."
+      pushMessage                     : "%{name} hat dir eine Nachricht geschrieben."
 
 
   buttons:
