@@ -62,8 +62,8 @@ class Api::NewsfeedController < Api::RestController
             return "shopping"
         elsif ni.isResource() then
             return "resource"
-        elsif ni.isMateChange() then
-            return "matechange"
+        elsif ni.isUseraction() then
+            return "useraction"
         elsif ni.isTodo() then
             return "todo"
         end
@@ -96,7 +96,7 @@ class Api::NewsfeedController < Api::RestController
             return I18n.t('activerecord.newsitem.todolist', :name => ni.text, :action => I18n.t('activerecord.newsitem.' + ni.action))
         elsif ni.isTodoListItem() then
             return I18n.t('activerecord.newsitem.todolistitem', :items => ni.text, :list => getTodoName(ni.key, ni.user), :action => I18n.t('activerecord.newsitem.' + ni.action))
-        elsif ni.isMateChange() then
+        elsif ni.isUseraction() then
             return I18n.t('activerecord.newsitem.matechange_' + ni.action)
         end
         return ''

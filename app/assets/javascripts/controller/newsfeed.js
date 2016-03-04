@@ -1,6 +1,11 @@
 angular.module('flatman').controller("newsfeedCtrl", 
-	function($scope, newsfeedService, userService, shoppingService,resourceService,financesService, Util) {
+	function($scope, newsfeedService, userService, shoppingService,resourceService,financesService,todoService, Util) {
 	
+	$scope.tileClass=function(){
+		if ($scope.get_resource_usage() === 0)
+			return "col-lg-4 col-sm-4 col-xs-12";
+		return "col-lg-3 col-sm-6 col-xs-12";
+	}
 
 	$scope.get_you_owe=function(){return financesService.finance.get_sum($scope.overviewMates);};
 
@@ -12,9 +17,10 @@ angular.module('flatman').controller("newsfeedCtrl",
 		return shoppingService.list.get_item_count($scope.shoppinglists);
 	};
 
-	$scope.get_shoppinglist_summary = function(list) {
-		return shoppingService.list.get_summary_string(list) + "...";
+	$scope.get_items_todos = function() {
+		return todoService.list.get_item_count($scope.todos);
 	};
+
 
 	$scope.loadNews = function (){
 		newsfeedService.newsfeed.get($scope.newsitemLoaded, $scope.newsitemLoaded + $scope.newsitemCount, function(data){
@@ -24,6 +30,8 @@ angular.module('flatman').controller("newsfeedCtrl",
 	}
 
 	$scope.shoppinglists = shoppingService.list.get();
+	$scope.todos = todoService.list.get();
+
 	$scope.dashboardResources = resourceService.resource.getDashboard();
 	$scope.overviewMates = financesService.finance.get_overview_mates(0,1);
 
@@ -56,6 +64,8 @@ angular.module('flatman').controller("newsfeedCtrl",
 			Util.redirect_to.resources()
 		else if (type == 'shopping')
 			Util.redirect_to.shopping()
+		else if (type == 'todo')
+			Util.redirect_to.todo()
 	}
 
 	$scope.switchChevron = function(index){
@@ -74,5 +84,4 @@ angular.module('flatman').controller("newsfeedCtrl",
 	$scope.newsitemCount = 9
 	$scope.news = []
 	$scope.loadNews()
-
 });

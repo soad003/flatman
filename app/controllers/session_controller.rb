@@ -13,6 +13,7 @@ class SessionController < ApplicationController
             if !invite.nil?
                 user.flat=invite.flat
                 user.save!
+                Newsitem.addUser(user)
                 invite.destroy!
                 redirect_to root_url, :notice => t('misc.titles.logged_in')
             else

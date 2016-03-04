@@ -56,7 +56,14 @@ input[type=text], input[type=email], select {
 .news-image {
   width: 35px;
   height: 35px;
-  font-size: 40px;
+  text-align: center;
+  vertical-align: middle;
+}
+
+.news-icon {
+  font-size:30px;
+  text-align: center;
+  vertical-align: middle;
 }
 
 .nowarp {
@@ -73,8 +80,12 @@ input[type=text], input[type=email], select {
 }
 
 .announcement-heading {
-  font-size: 50px;
+  font-size: 35px;
   margin: 0;
+}
+
+.announcement-heading-text-xs{
+  font-size: 20px;
 }
 
 .announcement-text {

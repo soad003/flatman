@@ -2,7 +2,7 @@ class Newsitem < ActiveRecord::Base
 
     attr_accessor :header, :imagetype, :date, :link
 
-    CATEGORIES = {message: 'message', matechange: 'matechange', shoppinglist: 'shoppinglist', shoppinglistitem: 'shoppinglistitem', todolist: 'todolist', todolistitem: 'todolistitem', resource: 'resourcelist', resourceitem: 'resourcelistitem', bill: 'bill', payment: 'payment'}
+    CATEGORIES = {message: 'message', useraction: 'useraction', shoppinglist: 'shoppinglist', shoppinglistitem: 'shoppinglistitem', todolist: 'todolist', todolistitem: 'todolistitem', resource: 'resourcelist', resourceitem: 'resourcelistitem', bill: 'bill', payment: 'payment'}
     ACTIONS = {add: 'add', change: 'change', remove: 'remove'}
 
 
@@ -25,7 +25,7 @@ class Newsitem < ActiveRecord::Base
     def isResourceListItem()        self[:category] == Newsitem::CATEGORIES[:resourcelistitem]      end
     def isResource()                self.isResourceList() || self.isResourceListItem()              end
     def isMessage()                 self[:category] == Newsitem::CATEGORIES[:message]               end
-    def isMateChange()              self[:category] == Newsitem::CATEGORIES[:matechange]            end
+    def isUseraction()              self[:category] == Newsitem::CATEGORIES[:useraction]            end
 
     def self.destroy_with_user_constraint(id, user)
         msg = Newsitem.find_with_user_constraint(id,user)
@@ -118,6 +118,14 @@ class Newsitem < ActiveRecord::Base
         Newsitem.saveNewsitem(user, Newsitem::CATEGORIES[:payment], Newsitem::ACTIONS[:remove], nil, payment.payer.name)
     end
 
+    def self.deleteUser(user)
+        Newsitem.saveNewsitem(user, Newsitem::CATEGORIES[:useraction], Newsitem::ACTIONS[:remove], nil, nil)
+    end
+
+    def self.addUser(user)
+        Newsitem.saveNewsitem(user, Newsitem::CATEGORIES[:useraction], Newsitem::ACTIONS[:add], nil, nil)
+    end
+
     def self.saveNewsitem(user, category, action, key, text)
         ni=Newsitem.new()
         ni.user = user
@@ -145,7 +153,7 @@ class Newsitem < ActiveRecord::Base
         if Newsitem.sendPush(newsitem) then
             message = Newsitem.getPushMessage(newsitem)
             newsitem.user.flat.users.each do |mate|
-                if (mate.id != newsitem.user.id and mate.device_token != '') then
+                if (mate.id != newsitem.user.id and !(mate.device_token == '' or mate.device_token.nil?)) then
                     push = PushBot::Push.new(mate.device_token, :ios)
                     push.notify(message)
                     push = PushBot::Push.new(mate.device_token, :android)
