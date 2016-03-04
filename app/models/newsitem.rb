@@ -135,9 +135,7 @@ class Newsitem < ActiveRecord::Base
         if !key.nil? then ni.key = key end
         if !text.nil? then ni.text = text end
         ni.save!
-        #Thread.new {
-            Newsitem.push(ni)
-        #}
+        Newsitem.push(ni)
     end
 
     def self.getPushMessage(newsitem)
@@ -154,10 +152,13 @@ class Newsitem < ActiveRecord::Base
             message = Newsitem.getPushMessage(newsitem)
             newsitem.user.flat.users.each do |mate|
                 if (mate.id != newsitem.user.id and !(mate.device_token == '' or mate.device_token.nil?)) then
-                    push = PushBot::Push.new(mate.device_token, :ios)
-                    push.notify(message)
-                    push = PushBot::Push.new(mate.device_token, :android)
-                    push.notify(message)
+                    device_token = mate.device_token
+                    Thread.new {
+                        push = PushBot::Push.new(device_token, :ios)
+                        push.notify(message)
+                        push = PushBot::Push.new(device_token, :android)
+                        push.notify(message)
+                    }
                 end
             end
         end
