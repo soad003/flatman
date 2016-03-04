@@ -153,7 +153,7 @@ class Newsitem < ActiveRecord::Base
         if Newsitem.sendPush(newsitem) then
             message = Newsitem.getPushMessage(newsitem)
             newsitem.user.flat.users.each do |mate|
-                if (mate.id != newsitem.user.id and !(mate.device_token == '' or mate.device_token.nil?) then
+                if (mate.id != newsitem.user.id and !(mate.device_token == '' or mate.device_token.nil?)) then
                     push = PushBot::Push.new(mate.device_token, :ios)
                     push.notify(message)
                     push = PushBot::Push.new(mate.device_token, :android)

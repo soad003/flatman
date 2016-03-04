@@ -4,13 +4,13 @@ angular.module('flatman').controller("newsfeedCtrl",
 	$scope.tileClass=function(){
 		if ($scope.get_resource_usage() === 0)
 			return "col-lg-4 col-sm-4 col-xs-12";
-		return "col-lg-3 col-sm-4 col-xs-12";
+		return "col-lg-3 col-sm-6 col-xs-12";
 	}
 
 	$scope.get_you_owe=function(){return financesService.finance.get_sum($scope.overviewMates);};
 
 	$scope.get_resource_usage = function() {
-		return 0; //resourceService.resource.getSumCosts($scope.dashboardResources);
+		return resourceService.resource.getSumCosts($scope.dashboardResources);
 	};
 
 	$scope.get_items_to_buy = function() {
@@ -82,5 +82,4 @@ angular.module('flatman').controller("newsfeedCtrl",
 	$scope.newsitemCount = 9
 	$scope.news = []
 	$scope.loadNews()
-
 });
