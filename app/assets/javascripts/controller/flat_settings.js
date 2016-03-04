@@ -15,7 +15,7 @@ angular.module('flatman').controller("flatSettingsCtrl",function($scope,flatServ
             if (leave) {
                 flatService.user.leave_flat({},function(data){
                     Util.redirect_to.signin();
-                });  
+                });
             }
         });
     };

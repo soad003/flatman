@@ -2,7 +2,7 @@ class Newsitem < ActiveRecord::Base
 
     attr_accessor :header, :imagetype, :date, :link
 
-    CATEGORIES = {message: 'message', matechange: 'matechange', shoppinglist: 'shoppinglist', shoppinglistitem: 'shoppinglistitem', todolist: 'todolist', todolistitem: 'todolistitem', resource: 'resourcelist', resourceitem: 'resourcelistitem', bill: 'bill', payment: 'payment'}
+    CATEGORIES = {message: 'message', useraction: 'useraction', shoppinglist: 'shoppinglist', shoppinglistitem: 'shoppinglistitem', todolist: 'todolist', todolistitem: 'todolistitem', resource: 'resourcelist', resourceitem: 'resourcelistitem', bill: 'bill', payment: 'payment'}
     ACTIONS = {add: 'add', change: 'change', remove: 'remove'}
 
 
@@ -25,7 +25,7 @@ class Newsitem < ActiveRecord::Base
     def isResourceListItem()        self[:category] == Newsitem::CATEGORIES[:resourcelistitem]      end
     def isResource()                self.isResourceList() || self.isResourceListItem()              end
     def isMessage()                 self[:category] == Newsitem::CATEGORIES[:message]               end
-    def isMateChange()              self[:category] == Newsitem::CATEGORIES[:matechange]            end
+    def isUseraction()              self[:category] == Newsitem::CATEGORIES[:useraction]            end
 
     def self.destroy_with_user_constraint(id, user)
         msg = Newsitem.find_with_user_constraint(id,user)
@@ -116,6 +116,14 @@ class Newsitem < ActiveRecord::Base
 
     def self.deletePayment(payment, user)
         Newsitem.saveNewsitem(user, Newsitem::CATEGORIES[:payment], Newsitem::ACTIONS[:remove], nil, payment.payer.name)
+    end
+
+    def self.deleteUser(user)
+        Newsitem.saveNewsitem(user, Newsitem::CATEGORIES[:useraction], Newsitem::ACTIONS[:remove], nil, nil)
+    end
+
+    def self.addUser(user)
+        Newsitem.saveNewsitem(user, Newsitem::CATEGORIES[:useraction], Newsitem::ACTIONS[:add], nil, nil)
     end
 
     def self.saveNewsitem(user, category, action, key, text)
