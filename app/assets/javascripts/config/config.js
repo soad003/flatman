@@ -23,6 +23,10 @@ angular.module('flatman', ['ngRoute',
         templateUrl: '/templates/pinboard',
         controller: 'pinboardCtrl'
       }).
+      when('/todo', {
+        templateUrl: '/templates/pinboard',
+        controller: 'pinboardCtrl'
+      }).
       when('/dashboard', {
         templateUrl: '/templates/dashboard',
         controller: 'dashboardCtrl'

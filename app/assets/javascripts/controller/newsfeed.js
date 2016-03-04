@@ -64,6 +64,8 @@ angular.module('flatman').controller("newsfeedCtrl",
 			Util.redirect_to.resources()
 		else if (type == 'shopping')
 			Util.redirect_to.shopping()
+		else if (type == 'todo')
+			Util.redirect_to.todo()
 	}
 
 	$scope.switchChevron = function(index){
