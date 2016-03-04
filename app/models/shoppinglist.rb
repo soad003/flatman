@@ -1,5 +1,6 @@
 class Shoppinglist < ActiveRecord::Base
 	belongs_to 	:flat
+	belongs_to  :user
 	has_many	:shoppinglistitems, -> { order 'created_at asc' }, :dependent => :destroy
     validates   :name,:flat, presence: true
 

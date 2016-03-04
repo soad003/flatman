@@ -182,6 +182,8 @@ en:
       logged_out                          : "Successfully logged out!"
       logged_in                           : "Successfully logged in!"
       in_progress                         : ""
+      ok                                  : "OK"
+      cancel                              : "Cancel"
       menus:
         about:
           title                           : "About us"
@@ -202,7 +204,7 @@ en:
       errors_in_form                      : "There are errors in your input!"
 
   javascript:
-    conf_leave_flat                     : "Are you sure you want to leave the flat?"
+    
 
    # views
   layouts:
@@ -348,6 +350,7 @@ en:
       save_btn                           : "save"
       leave                              : "leave flat"
       actions                            : "actions"
+      conf_leave_flat                     : "Are you sure you want to leave the flat?"
     finances:
       page_title                         : "Finances"
       page_header                        : "Finances"
@@ -456,7 +459,8 @@ en:
       shopping                           : "Shopping"
       shoppinglist                       : "Shopping list"
       all                                : "All"
-      new_list_placeholder               : "groceries"
+      new_list_placeholder               : "groceries, walmart"
+      new_list_placeholder_todo          : "laundry, fight evil"
       new_item_placeholder               : "jellybeans"
       new_item_placeholder_todo          : "serious work"
       help_title                         : "Your Flats shopping needs ..."
@@ -470,7 +474,8 @@ en:
       delete_checked                     : "delete checked items"
       todo                               : "Todo"
       create_todo                        : "Give a name to your new todo list!"
-      create_shopping                    : "Where do you go shopping?"
+      create_shopping                    : "Where do you go shopping? What do you buy?"
+      private                            : "Private"
     create_flat:
       subtitle                           : "Welcome to"
       title                              : "Flatman"

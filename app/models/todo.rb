@@ -1,5 +1,6 @@
 class Todo < ActiveRecord::Base
 	belongs_to 	:flat
+	belongs_to  :user
 	has_many	:todo_items, -> { order 'created_at asc' }, :dependent => :destroy
     validates   :name,:flat, presence: true
 

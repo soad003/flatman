@@ -9,7 +9,7 @@
   input[type=checkbox] + label:before { letter-spacing: 10px; } /* space between checkbox and label */
 
   input[type=checkbox]:checked + label:before { content: "\f046"; } /* checked icon */
-  input[type=checkbox]:checked + label:before { letter-spacing: 5px; }
+  input[type=checkbox]:checked + label:before { letter-spacing: 8px; }
 
   .btn-separator:after {
     content: ' ';
@@ -54,15 +54,13 @@
             </button>
             <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
                 <li>
-                    <a href="" ng-bootbox-prompt="<%= t(".create_todo") %>"
-                       ng-bootbox-prompt-action="create_todo(result)">
+                    <a href="" ng-click="create_todo()">
                         <i class="fa fa-list-alt fa-lg"></i> 
                         <%= t(".todo") %>
                     </a>
                 </li>
                 <li>
-                    <a href="" ng-bootbox-prompt="<%= t(".create_shopping") %>"
-                       ng-bootbox-prompt-action="create_shoppinglist(result)">
+                    <a href="" ng-click="create_shoppinglist()">
                         <i class="fa fa-shopping-cart fa-lg"></i> 
                         <%= t(".shoppinglist") %>
                     </a>
@@ -79,8 +77,8 @@
                 <div class="form-group">
                     <strong>
                         <i class="fa fa-shopping-cart fa-lg" ng-show="is_shopping(list)"></i>
-                        <i class="fa fa-list-alt fa-lg" ng-show="is_todo(list)"></i>
-                        {{list.name}}
+                        <i class="fa fa-list-alt fa-lg" ng-show="is_todo(list)"></i> <i class="fa fa-user-secret" title="<%= t(".private") %>" ng-show="list.private"></i>
+                        {{list.name}} 
                     </strong>
                     <div class="btn-group pull-right">
                       <button type="button" class="btn btn-link dropdown-toggle btn-xs" data-toggle="dropdown">
@@ -143,10 +141,30 @@
       <%= t(".help_paragraph2") %>
     </div>
 
-      <div class="jumbotron text-center" ng-show="bla.length===0 && !isLoading() && filtered_todo()">
+    <div class="jumbotron text-center" ng-show="bla.length===0 && !isLoading() && filtered_todo()">
       <i class="fa fa-list-alt fa-5x"></i>
       <h2><%= t(".help_title_todo") %></h2>
       <%= t(".help_paragraph1_todo") %><br>
       <%= t(".help_paragraph2_todo") %>
     </div>
 </div>
+
+<script type="text/ng-template" id="create_list.html">
+  <form name="questionForm" ng-submit="ok()" modalWindow>
+    <div class="modal-header">
+        <h3 class="modal-title" ng-show="is_todo"><%= t(".create_todo") %></h3>
+        <h3 class="modal-title" ng-show="!is_todo"><%= t(".create_shopping") %></h3>
+    </div>
+    <div class="modal-body">
+      <input type="text" class="form-control" placeholder="{{is_todo && '<%= t(".new_list_placeholder_todo") %>' || '<%= t(".new_list_placeholder") %>' }}" ng-model="item.text"> 
+      <div class="checkbox">      
+          <input type="checkbox" ng-model="item.priv" id="modal_text"> 
+          <label for="modal_text"><%= t(".private") %> <i class="fa fa-user-secret"></i></label>
+      </div>
+    </div>
+    <div class="modal-footer">
+        <button class="btn btn-primary" type="submit" ng-click="ok()"><%= t("misc.titles.OK") %></button>
+        <button class="btn btn-warning" type="button" ng-click="cancel()"><%= t("misc.titles.cancel") %></button>
+    </div>
+  </form>
+</script>

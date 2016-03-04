@@ -2,16 +2,16 @@ class Api::ShoppinglistController < Api::RestController
     around_filter :wrap_in_transaction, only: [:create,:destroy, :delete_checked]
 
     def index
-        @sl=current_user.flat.shoppinglists
+        @sl=current_user.flat.shoppinglists.select {|x| x.user == nil || x.user == current_user }
     end
 
     def create
         flat=current_user.flat
-        sl=Shoppinglist.new(sl_params)
-        flat.shoppinglists << sl
+        @sl=Shoppinglist.new(sl_params)
+        @sl.user = current_user if params[:privat]
+        flat.shoppinglists << @sl
         flat.save!
-        Newsitem.createShoppinglist(sl, current_user)
-        respond_with(sl, :location => nil)
+        Newsitem.createShoppinglist(@sl, current_user)
     end
 
     def destroy

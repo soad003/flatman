@@ -1,4 +1,4 @@
-angular.module('flatman').controller("flatSettingsCtrl",function($scope,flatService,inviteService,Util){
+angular.module('flatman').controller("flatSettingsCtrl",function($scope,$modal,flatService,inviteService,Util){
 
     $scope.is_dirty=function(){
        return $scope.content_form.$dirty;
@@ -11,13 +11,16 @@ angular.module('flatman').controller("flatSettingsCtrl",function($scope,flatServ
     };
 
     $scope.leave_flat=function(){
-        bootbox.confirm(I18n.conf_leave_flat, function(leave) {
-            if (leave) {
-                flatService.user.leave_flat({},function(data){
-                    Util.redirect_to.signin();
-                });  
-            }
-        });
+                $modal.open({
+                      animation: true,
+                      templateUrl: 'confirm.html',
+                      controller: 'confirmCtrl',
+                      resolve: null
+                    }).result.then(function(){
+                        flatService.user.leave_flat({},function(data){
+                            Util.redirect_to.signin();
+                        });  
+                    });
     };
 
     $scope.get_address_string=function(){
@@ -68,4 +71,10 @@ angular.module('flatman').controller("flatSettingsCtrl",function($scope,flatServ
         $scope.set_location();
     });
 
+});
+
+angular.module('flatman').controller('confirmCtrl', function ($scope, $modalInstance) {
+  $scope.ok = function () { $modalInstance.close(true); };
+
+  $scope.cancel = function () { $modalInstance.dismiss('cancel');};
 });

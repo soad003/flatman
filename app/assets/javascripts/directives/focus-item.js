@@ -1,8 +1,10 @@
-angular.module('focus-item', []).directive('focusItem', function() {
+angular.module('focus-item', []).directive('focusItem', function($timeout, $parse) {
   return {
     link: function(scope, element, attrs) {
-      scope.$watch(attrs.focusItem, function() {
-            element[0].focus();
+      scope.$watch($parse(attrs.focusItem), function() {
+             $timeout(function() {
+	             element[0].focus(); 
+	           });
       });
     }
   };

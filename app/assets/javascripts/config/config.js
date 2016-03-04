@@ -1,6 +1,15 @@
 // Angular Config / Routes
 
-angular.module('flatman', ['ngRoute','ngResource','google-maps','angles','ui.bootstrap','ngLocale', 'number_localized','checklist-model','ngBootbox','focus-item'])
+angular.module('flatman', ['ngRoute',
+                            'ngResource',
+                            'google-maps',
+                            'angles',
+                            'ui.bootstrap',
+                            'ngLocale',
+                            'number_localized',
+                            'checklist-model',
+                            'focus-item',
+                            'infinite-scroll'])
         .config(function($httpProvider, $routeProvider){
 
   $httpProvider.defaults.headers.common = {'X-CSRF-Token': $("meta[name='csrf-token']").attr("content"),

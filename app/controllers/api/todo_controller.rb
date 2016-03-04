@@ -2,17 +2,16 @@ class Api::TodoController < Api::RestController
     around_filter :wrap_in_transaction, only: [:create,:destroy, :delete_checked]
 
     def index
-        puts current_user.flat.todos.to_json
-        @sl=current_user.flat.todos
+        @sl=current_user.flat.todos.select {|x| x.user == nil || x.user == current_user }
     end
 
     def create
         flat=current_user.flat
-        sl=Todo.new(sl_params)
-        flat.todos << sl
+        @todo=Todo.new(sl_params)
+        @todo.user = current_user if params[:privat]
+        flat.todos << @todo
         flat.save!
         #Newsitem.createShoppinglist(sl, current_user)
-        respond_with(sl, :location => nil)
     end
 
     def destroy

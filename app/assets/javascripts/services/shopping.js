@@ -19,8 +19,8 @@ angular.module('flatman').factory("shoppingService",function($resource) {
     return {
         list: {
             get: function(succH,errH){ return listService.get(null,succH,errH);},
-            create: function(name,succH,errH) {
-                listService.create(null,{name: name},succH,errH);
+            create: function(name,privat,succH,errH) {
+                listService.create(null,{name: name, privat:privat},succH,errH);
             },
             destroy: function(list_id,succH,errH){
                 listService.destroy({id: list_id},succH,errH);

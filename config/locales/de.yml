@@ -179,6 +179,8 @@ de:
       logged_out                          : "Du bist ausgelogged!"
       logged_in                           : "Du bist eingelogged!"
       in_progress                         : ""
+      ok                                  : "OK"
+      cancel                              : "Abbrechen"
       menus:
         about:
           title                           : "Über uns"
@@ -199,7 +201,6 @@ de:
       errors_in_form                      : "Es sind noch fehler in der Eingabe!"
 
   javascript:
-    conf_leave_flat                     : "Bist du dir sicher, dass du die WG verlassen willst?"
 
    # views
   layouts:
@@ -347,6 +348,7 @@ de:
       save_btn                           : "speichern"
       leave                              : "WG verlassen"
       actions                            : "aktionen"
+      conf_leave_flat                     : "Bist du dir sicher, dass du die WG verlassen willst?"
     finances:
       page_title                         : "Finanzen"
       page_header                        : "Finanzstatus"
@@ -455,7 +457,8 @@ de:
       shopping                           : "Einkauf"
       shoppinglist                       : "Einkaufsliste"
       all                                : "Alle"
-      new_list_placeholder               : "Lebensmittel"
+      new_list_placeholder               : "Lebensmittel, Merkur, Bauhaus"
+      new_list_placeholder_todo          : "Wäsche waschen, das böse bekämpfen"
       new_item_placeholder               : "Bier"
       new_item_placeholder_todo          : "Arbeit Arbeit"
       help_title                         : "Alles was deine WG gerade so kaufen sollte ..."
@@ -470,6 +473,7 @@ de:
       todo                               : "Todo"
       create_todo                        : "Gib deiner neuen Todoliste einen Namen!"
       create_shopping                    : "Wo gehst du Einkaufen? Was soll gekauft werden?"
+      private                            : "Privat"
     create_flat:
       subtitle                           : "Willkommen bei"
       title                              : "Flatman"

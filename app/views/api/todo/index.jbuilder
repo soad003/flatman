@@ -6,4 +6,5 @@ json.array!(@sl) do |list|
     json.created_by item.user.name if not item.user.nil?
   end
   json.type 'todo'
+  json.private !list.user.nil?
 end
