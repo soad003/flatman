@@ -54,40 +54,50 @@ class Api::NewsfeedController < Api::RestController
     end
     
     def getImageType(ni)
-        if ni[:category] == Newsitem::CATEGORIES[:message][0] then
+        if ni.isMessage() then
             return "message"
-        elsif [Newsitem::CATEGORIES[:payment][0], Newsitem::CATEGORIES[:bill][0]].include? ni[:category] then
+        elsif ni.isFinance() then
             return "finance"
-        elsif [Newsitem::CATEGORIES[:shoppinglistitem][0], Newsitem::CATEGORIES[:shoppinglist][0]].include? ni[:category] then
+        elsif ni.isShopping() then
             return "shopping"
-        elsif [Newsitem::CATEGORIES[:resource][0], Newsitem::CATEGORIES[:resourceitem][0]].include? ni[:category] then
+        elsif ni.isResource() then
             return "resource"
+        elsif ni.isMateChange() then
+            return "matechange"
+        elsif ni.isTodo() then
+            return "todo"
         end
     end
 
      def getLink(ni)
-        if ni[:category] == Newsitem::CATEGORIES[:message][0] then
+        if ni.isMessage() then
             return ni.user.image_path
         end
         ""
     end
 
     def getText(ni)
-        if ni[:category] == Newsitem::CATEGORIES[:message][0] then
+        if ni.isMessage() then
             return ni.text
         end
         return ""
     end
 
     def getHeader(ni)
-        if Newsitem::CATEGORIES[:shoppinglist][0] == ni[:category] then
-            return I18n.t('activerecord.newsitem.shoppinglist', :name => ni.text, :action => I18n.t('activerecord.newsitem.' + Newsitem.getActionText(ni.action)))
-        elsif Newsitem::CATEGORIES[:bill][0] == ni[:category] then
-            return I18n.t('activerecord.newsitem.bill', :name => ni.text, :action => I18n.t('activerecord.newsitem.' + Newsitem.getActionText(ni.action)))
-        elsif Newsitem::CATEGORIES[:payment][0] == ni[:category] then
-            return I18n.t('activerecord.newsitem.payment', :name => ni.text, :action => I18n.t('activerecord.newsitem.' + Newsitem.getActionText(ni.action)))
-        elsif Newsitem::CATEGORIES[:shoppinglistitem][0] == ni[:category] then
-            return I18n.t('activerecord.newsitem.shoppinglistitem', :items => ni.text, :list => getShoppingListName(ni.key, ni.user), :action => I18n.t('activerecord.newsitem.' + Newsitem.getActionText(ni.action)))
+        if ni.isShoppingList() then
+            return I18n.t('activerecord.newsitem.shoppinglist', :name => ni.text, :action => I18n.t('activerecord.newsitem.' + ni.action))
+        elsif ni.isShoppingListItem() then
+            return I18n.t('activerecord.newsitem.shoppinglistitem', :items => ni.text, :list => getShoppingListName(ni.key, ni.user), :action => I18n.t('activerecord.newsitem.' + ni.action))
+        elsif ni.isBill() then
+            return I18n.t('activerecord.newsitem.bill', :name => ni.text, :action => I18n.t('activerecord.newsitem.' + ni.action))
+        elsif ni.isPayment() then
+            return I18n.t('activerecord.newsitem.payment', :name => ni.text, :action => I18n.t('activerecord.newsitem.' + ni.action))
+        elsif ni.isTodoList() then
+            return I18n.t('activerecord.newsitem.todolist', :name => ni.text, :action => I18n.t('activerecord.newsitem.' + ni.action))
+        elsif ni.isTodoListItem() then
+            return I18n.t('activerecord.newsitem.todolistitem', :items => ni.text, :list => getTodoName(ni.key, ni.user), :action => I18n.t('activerecord.newsitem.' + ni.action))
+        elsif ni.isMateChange() then
+            return I18n.t('activerecord.newsitem.matechange_' + ni.action)
         end
         return ''
     end
@@ -96,6 +106,13 @@ class Api::NewsfeedController < Api::RestController
         sl = Shoppinglist.where(id: key, flat_id: user.flat.id).first
         if sl.nil? then return ""
         else return sl.name
+        end
+    end
+
+    def getTodoName(key, user)
+        todo = Todo.where(id: key, flat_id: user.flat.id).first
+        if todo.nil? then return ""
+        else return todo.name
         end
     end
 

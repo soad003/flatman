@@ -11,13 +11,13 @@ class Api::TodoController < Api::RestController
         sl=Todo.new(sl_params)
         flat.todos << sl
         flat.save!
-        #Newsitem.createShoppinglist(sl, current_user)
+        Newsitem.createTodolist(sl, current_user)
         respond_with(sl, :location => nil)
     end
 
     def destroy
         sl = Todo.find_list_with_user_constraint(params[:id], current_user)
-        #Newsitem.deleteShoppinglist(sl, current_user)
+        Newsitem.deleteTodolist(sl, current_user)
         sl.destroy!
         respond_with(nil)
     end
