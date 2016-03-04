@@ -135,9 +135,9 @@ class Newsitem < ActiveRecord::Base
         if !key.nil? then ni.key = key end
         if !text.nil? then ni.text = text end
         ni.save!
-        Thread.new {
+        #Thread.new {
             Newsitem.push(ni)
-        }
+        #}
     end
 
     def self.getPushMessage(newsitem)
