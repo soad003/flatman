@@ -6,7 +6,7 @@ class Api::TodoItemController < Api::RestController
         sl = Todo.find_list_with_user_constraint(params[:todo_id], current_user)
         sl.todo_items << item
         sl.save!
-        Newsitem.createTodolistitem(item, current_user)
+        Newsitem.createTodolistitem(item, current_user) if !sl.is_private?
         respond_with(item, :location => nil)
     end
 

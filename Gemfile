@@ -67,9 +67,6 @@ gem 'angular-ui-bootstrap-rails', '0.10.0'
 
 #gem "animate-rails"
 
-#alert box
-gem 'bootbox-rails'
-
 #calculate distance
 gem 'geocoder'
 

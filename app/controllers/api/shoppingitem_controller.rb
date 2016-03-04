@@ -6,7 +6,7 @@ class Api::ShoppingitemController < Api::RestController
         sl = Shoppinglist.find_list_with_user_constraint(params[:shoppinglist_id], current_user)
         sl.shoppinglistitems << item
         sl.save!
-        Newsitem.createShoppinglistitem(item, current_user)
+        Newsitem.createShoppinglistitem(item, current_user) if !sl.is_private?
         respond_with(item, :location => nil)
     end
 

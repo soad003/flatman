@@ -1,5 +1,5 @@
 class SessionController < ApplicationController
-        around_filter :wrap_in_transaction, only: [:create]
+    around_filter :wrap_in_transaction, only: [:create]
 
     def index
     end
@@ -29,7 +29,6 @@ class SessionController < ApplicationController
         session[:invite_token]=join_params[:token]
         redirect_to signin_url, :notice => t('misc.titles.login_to_join')
     end
-
 
     def destroy
         logout

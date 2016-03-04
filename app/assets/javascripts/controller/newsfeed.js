@@ -77,21 +77,6 @@ angular.module('flatman').controller("newsfeedCtrl",
         });
     };
 
-   $scope.getDocHeight =  function () {
-		var D = document;
-		return Math.max(
-			D.body.scrollHeight, D.documentElement.scrollHeight,
-			D.body.offsetHeight, D.documentElement.offsetHeight,
-			D.body.clientHeight, D.documentElement.clientHeight
-		);
-	}
-
-	$(window).scroll(function() {
-       if($(window).scrollTop() + $(window).height() == $scope.getDocHeight()) {
-           $scope.loadNews()
-       }
-	});
-
     $scope.current_user = userService.get();
 	$scope.newsitemLoaded = 0
 	$scope.newsitemCount = 9

@@ -2,22 +2,21 @@ class Api::TodoController < Api::RestController
     around_filter :wrap_in_transaction, only: [:create,:destroy, :delete_checked]
 
     def index
-        puts current_user.flat.todos.to_json
-        @sl=current_user.flat.todos
+        @sl=current_user.flat.todos.select {|x| x.user == nil || x.owned_by?(current_user) }
     end
 
     def create
         flat=current_user.flat
-        sl=Todo.new(sl_params)
-        flat.todos << sl
+        @todo=Todo.new(sl_params)
+        @todo.user = current_user if params[:privat]
+        flat.todos << @todo
         flat.save!
-        Newsitem.createTodolist(sl, current_user)
-        respond_with(sl, :location => nil)
+        Newsitem.createTodolist(@todo, current_user) if !@todo.is_private?
     end
 
     def destroy
         sl = Todo.find_list_with_user_constraint(params[:id], current_user)
-        Newsitem.deleteTodolist(sl, current_user)
+        Newsitem.deleteTodolist(sl, current_user) if !sl.is_private?
         sl.destroy!
         respond_with(nil)
     end

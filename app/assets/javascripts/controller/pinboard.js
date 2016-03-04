@@ -1,10 +1,20 @@
-angular.module('flatman').controller("pinboardCtrl",function($scope,$location,shoppingService,todoService,Util){
+angular.module('flatman').controller("pinboardCtrl",function($scope,$location,$modal,shoppingService,todoService,Util){
 
     var SHOP_TYPE="shop";
     var TODO_TYPE="todo";
 
     function get_service(list){
         return (list.type==TODO_TYPE)? todoService : shoppingService;
+    }
+
+    function open_modal(callback_succ, todo) {
+        $modal.open({
+                      animation: true,
+                      templateUrl: 'create_list.html',
+                      controller: 'createListCtrl',
+                      size: null,
+                      resolve: { is_todo: function() {return todo;} }
+                    }).result.then(callback_succ);
     }
 
     $scope.filter_type=($location.path()==="/shopping")? SHOP_TYPE: TODO_TYPE;
@@ -23,20 +33,24 @@ angular.module('flatman').controller("pinboardCtrl",function($scope,$location,sh
 
     $scope.only_all=function(){ $scope.filter_type=""; };
 
-    $scope.create_todo=function(result){ 
-        todoService.list.create(result, function(data){
+    $scope.create_todo=function(){ 
+        open_modal(function(result){
+            todoService.list.create(result.text, result.priv, function(data){
                 data.items=[];
                 data.type=TODO_TYPE;
                 $scope.lists.push(data);
-        });                                          
+            });  
+        },true);                                     
     };
 
-    $scope.create_shoppinglist=function(result){
-        shoppingService.list.create(result, function(data){
-                data.items=[];
-                data.type=SHOP_TYPE;
-                $scope.lists.push(data);
-        });
+    $scope.create_shoppinglist=function(){
+        open_modal(function(result){
+            shoppingService.list.create(result.text, result.priv, function(data){
+                    data.items=[];
+                    data.type=SHOP_TYPE;
+                    $scope.lists.push(data);
+            });
+        },false); 
     };
 
     $scope.remove_item=function(list,item){
@@ -86,6 +100,25 @@ angular.module('flatman').controller("pinboardCtrl",function($scope,$location,sh
     todoService.list.get(function(data){
         $scope.lists = $scope.lists.concat(data);
     });  
-    
+   
 
+});
+
+
+angular.module('flatman').controller('createListCtrl', function ($scope, $modalInstance, is_todo) {
+  $scope.item = {text:"", priv:false};
+  $scope.is_todo = is_todo;
+
+    // Ugly hack due to bug https://github.com/angular-ui/bootstrap/issues/2017
+    setTimeout(function() {
+        $(".modal").find('input:text:visible:first').focus();
+    }, 200);
+    
+  $scope.ok = function () {
+    $modalInstance.close($scope.item);
+  };
+
+  $scope.cancel = function () {
+    $modalInstance.dismiss('cancel');
+  };
 });

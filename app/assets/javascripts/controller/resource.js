@@ -9,14 +9,11 @@ angular.module('flatman').controller("resourceCtrl", function($scope, $filter, r
         resource.showChart = flag;
     };
 
-    $scope.removeResource = function(resource, text) {
-        bootbox.confirm(text, function(result) {
-            if (result) {
-                resourceService.resource.destroy(resource.id, function() {
-                    $scope.resources = _($scope.resources).without(resource);
-                });
-            }
+    $scope.removeResource = function(resource) {
+        resourceService.resource.destroy(resource.id, function() {
+            $scope.resources = _($scope.resources).without(resource);
         });
+
     };
 
     $scope.convertAndSetChartData = function(data, resource) {

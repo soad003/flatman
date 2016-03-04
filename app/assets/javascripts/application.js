@@ -33,7 +33,6 @@
 //= require_tree ./directives
 //= require_tree ./filter
 //= require ./vendor/angles.js
-//= require bootbox.js
-//= require ./vendor/ngBootbox.min.js
+//= require ./vendor/ng-infinite-scroll.min.js
 //= require ./vendor/angular-google-maps.min.js
 
