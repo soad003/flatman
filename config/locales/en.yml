@@ -161,8 +161,16 @@ en:
       bill                            : "%{action} the bill %{name}."
       payment                         : "%{action}  a payment from %{name}."
       shoppinglistitem                : "%{action} %{items} to the shoppinglist %{list}."
-
+      todolistitem                    : "%{action} %{items} to the todolist %{list}."
+      todolist                        : "%{action} the todolist %{name}."
       deletedList                     : "Unknown"
+      matechange_remove               : " leaves your flat."
+      matechange_add                  : " joins to your flat."
+      pushFinance                     : "Finances are changed."
+      pushShopping                    : "Shoppinglist are edited"
+      pushTodo                        : "Todolist are edited"
+      pushResource                    : "Resources are edited"
+      pushMessage                     : "There is a new message."
 
   buttons:
     confirmations:
@@ -218,6 +226,7 @@ en:
         dashboard                         : "Dashboard"
         shopping                          : "Shopping"
         pinboard                          : "Todos"
+        newsfeed                          : "Dashboard"
 
     mail_layout:
       complimentary_close                 : "Greetings, your Flatman Team"

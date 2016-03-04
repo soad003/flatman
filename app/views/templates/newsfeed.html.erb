@@ -130,7 +130,7 @@
     </div>
     <hr>
     <div ng-repeat="n in news track by $index" class="panel padding-small-bottom"
-      ng-class="{'panel-warning' : n.type == 'finance', 'panel-success' : n.type == 'resource', 'panel-info': n.type == 'shopping', 'panel-default' : n.type == 'message'}"
+      ng-class="{'panel-warning' : n.type == 'finance', 'panel-success' : n.type == 'resource', 'panel-info': n.type == 'shopping' || n.type == 'todo', 'panel-default' : n.type == 'message'}"
       >
       <div class="panel-heading">
         <div class="row">
@@ -139,12 +139,13 @@
             <span class="fa fa-bitcoin fa-2x" ng-show="n.type == 'finance'"></span>
             <span class="fa fa-shopping-cart fa-2x" ng-show="n.type == 'shopping'"></span>
             <span class="fa fa-globe fa-2x" ng-show="n.type == 'resource'"></span>
+            <span class="fa fa-list-alt fa-2x" ng-show="n.type == 'todo'"></span>
           </div>
           <div style="word-wrap:break-word;" class="col-xs-10 col-sm-11 col-md-11 col-lg-11">
             <a href="" class="pull-right" ng-show="n.type === 'message' && n.user_id === current_user.id" ng-click="removeMessage(n)">
               <span class="glyphicon glyphicon-remove"></span>
             </a>
-            <span ng-class="{'clickable' : n.type != 'message'}"  ng-click="redirectToSource(n.type)">
+            <span ng-class="{'clickable' : !(n.type == 'message' || n.type == 'matechange')}"  ng-click="redirectToSource(n.type)">
             <span class="news-name">{{n.name}}<span ng-show="n.text != ''">:</span></span> 
             <span class="nowrap" ng-show="n.header != ''"> {{n.header}} </span>
             <span ng-show="n.text != ''"> {{n.text}}</span>

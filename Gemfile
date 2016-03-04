@@ -13,6 +13,9 @@ gem 'pg', '0.16.0'
 # ORMapper
 gem 'activerecord'
 
+#Pushbots
+gem 'push_bot'
+
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 4.0.0'
 
