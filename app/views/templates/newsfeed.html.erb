@@ -1,4 +1,4 @@
-<div class="row" infinite-scroll="loadNews()">
+<div class="row" infinite-scroll="loadNews()" infinite-scroll-disabled='isLoading()'>
   <div class="col-xs-12 col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-2 col-lg-8 col-lg-offset-2">
     <div class="row">
       <div ng-class="(get_resource_usage() === 0) ? 'col-lg-6 col-sm-6 col-xs-12' :'col-lg-4 col-xs-12 col-sm-12'">
