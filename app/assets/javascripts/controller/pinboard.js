@@ -21,6 +21,7 @@ angular.module('flatman').controller("pinboardCtrl",function($scope,$location,$m
     $scope.lists = [];
     
     $scope.filtered_shopping=function(){return $scope.filter_type===SHOP_TYPE; };
+    
     $scope.filtered_todo=function(){return $scope.filter_type===TODO_TYPE; };
 
     $scope.is_shopping = function(list){ return list.type===SHOP_TYPE; };
