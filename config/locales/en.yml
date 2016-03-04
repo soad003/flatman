@@ -75,6 +75,10 @@ en:
               blank                       : "Please enter your zip code!"
             street:
               blank                       : "Please enter your flat's street!"
+            shoppinglists:
+              invalid                     : "Please provide some name for your shopping list!"
+            todos:
+              invalid                     : "Please provide some name for your Todo!"
         invite:
           attributes:
             email:
@@ -131,7 +135,17 @@ en:
               blank                       : "Category name can't be blank."
         shoppinglist:
           attributes:
+            name:
+              blank                       : "Please provide some name for your shopping list!"
+              invalid                     : "Please provide some name for your shopping list!"
             shoppinglistitems:
+              invalid                     : "This item looks invalid!"
+        todo:
+          attributes:
+            name:
+              blank                       : "Please provide some name for your todo!"
+              invalid                     : "Please provide some name for your todo!"
+            todo_items:
               invalid                     : "This item looks invalid!"
 
     resource:
@@ -201,7 +215,7 @@ en:
         resources                         : "Resource"
         dashboard                         : "Dashboard"
         shopping                          : "Shopping"
-        search_placeholder                : "search items"
+        pinboard                          : "Todos"
 
     mail_layout:
       complimentary_close                 : "Greetings, your Flatman Team"
@@ -444,13 +458,19 @@ en:
       all                                : "All"
       new_list_placeholder               : "groceries"
       new_item_placeholder               : "jellybeans"
+      new_item_placeholder_todo          : "serious work"
       help_title                         : "Your Flats shopping needs ..."
       help_paragraph1                    : "Use the textbox above to add a list, after that you can add/delete items ... "
       help_paragraph2                    : "If you are done with shopping just click ... to enter your bill and you are done!"
+      help_title_todo                    : "What needs to be done or remembered?"
+      help_paragraph1_todo               : "Create todos for your Flat, easy as that ... "
+      help_paragraph2_todo               : ""
       delete_list                        : "delete list"
       done                               : "enter payment"
       delete_checked                     : "delete checked items"
       todo                               : "Todo"
+      create_todo                        : "Give a name to your new todo list!"
+      create_shopping                    : "Where do you go shopping?"
     create_flat:
       subtitle                           : "Welcome to"
       title                              : "Flatman"
@@ -466,6 +486,8 @@ en:
       city_label                         : "city"
       city_placeholder                   : "Gotham"
       create_flat                        : "create a flat!"
+      invites                            : "Invite some flat mates"
+      email                              : "email of your mate"
 
   session:
     index:

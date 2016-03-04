@@ -14,7 +14,6 @@ scope "(:locale)", locale: /en|de/ do
     get '/flat_settings', to: :flat_settings, as: 'flat_settings'
     get '/create_resource', to: :create_resource, as: 'create_resource'
     get '/resources', to: :resources, as: 'resources'
-    get '/shopping', to: :shopping, as: 'shopping'
     get '/user_settings', to: :user_settings, as: 'user_settings'
     get '/dashboard', to: :dashboard, as: 'dashboard_template'
     get '/newsfeed', to: :newsfeed, as: 'newsfeed_template'
@@ -45,6 +44,11 @@ scope "(:locale)", locale: /en|de/ do
 
    resources :shoppinglist, only: [:index, :create, :destroy] do
       resources :shoppingitem, only: [:create, :update, :destroy]
+      delete '/delete_checked', to: :delete_checked
+   end
+
+   resources :todo, only: [:index, :create, :destroy] do
+      resources :todo_item, only: [:create, :update, :destroy]
       delete '/delete_checked', to: :delete_checked
    end
 

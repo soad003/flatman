@@ -11,6 +11,21 @@
   input[type=checkbox]:checked + label:before { content: "\f046"; } /* checked icon */
   input[type=checkbox]:checked + label:before { letter-spacing: 5px; }
 
+  .btn-separator:after {
+    content: ' ';
+    display: block;
+    float: left;
+    background: #ADADAD;
+    margin: 0 10px;
+    height: 34px;
+    width: 1px;
+  }
+
+  @media (max-width: 768px) {
+    .mobile-font-size{font-size: 20px;}
+  }
+
+
 </style>
 
 <div class="page-head dropdown">
@@ -18,18 +33,17 @@
         <span class="fa fa-thumb-tack"></span>
         <%= t(".page_header") %>
         <div class="btn-group pull-right" data-toggle="buttons">
-          <label class="btn btn-default hidden-xs" ng-click="only_todo()">
+          <label class="btn btn-default hidden-xs" ng-class="{'active': filter_type === 'todo'}" ng-click="only_todo()">
             <input type="radio" name="options" id="option1" autocomplete="off"><i class="fa fa-list-alt fa-lg"></i> <%= t(".Todo") %>
           </label>            
-          <label class="btn btn-default hidden-xs" ng-click="only_shopping()">
+          <label class="btn btn-default hidden-xs" ng-class="{'active': filter_type === 'shop'}" ng-click="only_shopping()">
             <input type="radio" name="options" id="option2" autocomplete="off"><i class="fa fa-shopping-cart fa-lg"></i> <%= t(".shopping") %>
           </label>
-<!--           <label class="btn btn-default hidden-xs">
-            <input type="radio" name="options" id="option3" autocomplete="off"><i class="fa fa-sticky-note-o fa-lg"></i> Notes
-          </label> -->
-          <label class="btn btn-default hidden-xs active" ng-click="only_all()">
+          <label class="btn btn-default hidden-xs" ng-class="{'active': filter_type === ''}" ng-click="only_all()">
             <input type="radio" name="options" id="option4" autocomplete="off" checked><i class="fa fa-ban fa-lg"></i> <%= t(".all") %>
           </label>
+
+          <span class="btn-separator hidden-xs"></span>
           <button type="button" 
                     class="btn dropdown-toggle btn-primary" 
                     data-toggle="dropdown"
@@ -40,39 +54,32 @@
             </button>
             <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
                 <li>
-                    <a href="" ng-bootbox-prompt="Name your todo list!"
+                    <a href="" ng-bootbox-prompt="<%= t(".create_todo") %>"
                        ng-bootbox-prompt-action="create_todo(result)">
                         <i class="fa fa-list-alt fa-lg"></i> 
                         <%= t(".todo") %>
                     </a>
                 </li>
                 <li>
-                    <a href="" ng-bootbox-prompt="Where you want to go shopping!"
+                    <a href="" ng-bootbox-prompt="<%= t(".create_shopping") %>"
                        ng-bootbox-prompt-action="create_shoppinglist(result)">
                         <i class="fa fa-shopping-cart fa-lg"></i> 
                         <%= t(".shoppinglist") %>
                     </a>
                 </li>
-<!--                 <li>
-                    <a ng-bootbox-prompt="Set a title for your note!"
-                       ng-bootbox-prompt-action="create_note(result)">
-                        <i class="fa fa-sticky-note-o fa-lg"></i> 
-                        note
-                    </a>
-                </li> -->
             </ul>
         </div>
     </h1>
 </div>
 
 <div class="row">
-    <div class="col-md-4 col-sm-6" ng-repeat="list in lists track by $index">
+    <div class="col-md-4 col-sm-6" ng-repeat="list in bla = (lists | filter: {type: filter_type}) track by $index">
         <div class="panel panel-{{get_color($index)}}">
-            <div class="panel-heading">
+            <div class="panel-heading mobile-font-size">
                 <div class="form-group">
                     <strong>
-                        <i class="fa fa-shopping-cart fa-lg" ng-show="!list.todo"></i>
-                        <i class="fa fa-list-alt fa-lg" ng-show="list.todo"></i>
+                        <i class="fa fa-shopping-cart fa-lg" ng-show="is_shopping(list)"></i>
+                        <i class="fa fa-list-alt fa-lg" ng-show="is_todo(list)"></i>
                         {{list.name}}
                     </strong>
                     <div class="btn-group pull-right">
@@ -80,7 +87,7 @@
                         <span class="fa fa-ellipsis-v fa-lg"></span>
                       </button>
                       <ul class="dropdown-menu">
-                        <li ng-hide="list.todo">
+                        <li ng-hide="is_todo(list)">
                           <a href="" ng-click="done_shopping(list)">
                             <span class="fa fa-credit-card"></span> <%= t(".done") %>
                           </a>
@@ -94,15 +101,17 @@
                       </ul>
                     </div>
                 </div>
-                <ul class="list-unstyled">
+                <ul class="list-unstyled row">
                     <li ng-repeat="item in list.items">
-                      <input id="{{''+$parent.$index+$index}}" type="checkbox" ng-model="item.checked" ng-change="change_checked(list,item)">
-                      <label for="{{''+$parent.$index+$index}}"
-                              class="done-{{item.checked}}">
-                        {{item.text}}
-                      </label>
-                      <a href="" class="pull-right" ng-click="remove_item(list,item)">
-                        <span class="glyphicon glyphicon-remove"></span>
+                      <div class="col-lg-10 col-sm-10 col-md-10 col-xs-10">
+                        <input id="{{''+$parent.$index+$index}}" type="checkbox" ng-model="item.checked" ng-change="change_checked(list,item)">
+                        <label for="{{''+$parent.$index+$index}}"
+                                class="done-{{item.checked}}" style="word-wrap:break-word;">
+                          {{item.name}}
+                        </label>
+                      </div>
+                      <a href="" class="col-lg-2 col-sm-2 col-md-2 col-xs-2" ng-click="remove_item(list,item)">
+                        <span class="glyphicon glyphicon-remove pull-right"></span>
                       </a>
                     </li>
                 </ul>
@@ -112,14 +121,14 @@
                     <div class="input-group">
                       <input type="text" class="form-control"
                               ng-model="list.new_Text"
-                              maxlength="30"
-                              placeholder="<%= t(".new_item_placeholder") %>" required focus-item>
+                              maxlength="130"
+                              placeholder="{{is_todo(list) && '<%= t(".new_item_placeholder_todo") %>' || '<%= t(".new_item_placeholder") %>' }}" required focus-item>
                       <span class="input-group-btn">
                         <button class="btn btn-primary"
                                 type="submit"
                                 ng-disabled="!Itemform.$valid">
                           <span class="fa fa-plus fa-lg"></span> <span class="hidden-xs"><%= t(".add") %></span>
-                        </button>
+                        </button>y
                       </span>
                     </div>
                 </form>
@@ -127,38 +136,17 @@
         </div>
     </div>
 
-    <div class="jumbotron text-center" ng-show="lists.length===0 && !isLoading()">
+    <div class="jumbotron text-center" ng-show="bla.length===0 && !isLoading() && filtered_shopping()">
       <i class="fa fa-shopping-cart fa-5x"></i>
       <h2><%= t(".help_title") %></h2>
       <%= t(".help_paragraph1") %><br>
       <%= t(".help_paragraph2") %>
     </div>
-</div>
 
-<!-- <div class="row">
-    <h4>Notes</h4>
-    <div class="col-md-4 col-sm-6" ng-repeat="list in notes track by $index">
-        <div class="panel panel-{{get_color($index)}}">
-            <div class="panel-heading">
-                <div class="form-group">
-                    <strong><i class="fa fa-sticky-note-o fa-lg"></i> {{list.name}}</strong>
-                    <div class="btn-group pull-right">
-                      <button type="button" class="btn btn-default dropdown-toggle btn-xs" data-toggle="dropdown">
-                        <span class="glyphicon glyphicon-pencil"></span>
-                      </button>
-                      <ul class="dropdown-menu">
-                        <li>
-                          <a href="" ng-click="remove_list(list)"><span class="glyphicon glyphicon-trash"></span> delete</a>
-                        </li>
-                      </ul>
-                    </div>
-                </div>
-                <div class="form-group">
-                  <textarea class="form-control" rows="5" id="comment" ng-model="list.text"></textarea>
-                </div>
-                
-            </div>
-        </div>
+      <div class="jumbotron text-center" ng-show="bla.length===0 && !isLoading() && filtered_todo()">
+      <i class="fa fa-list-alt fa-5x"></i>
+      <h2><%= t(".help_title_todo") %></h2>
+      <%= t(".help_paragraph1_todo") %><br>
+      <%= t(".help_paragraph2_todo") %>
     </div>
-</div> -->
-
+</div>

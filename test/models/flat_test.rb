@@ -12,21 +12,6 @@ class FlatTest < ActiveSupport::TestCase
      assert !flat.save, "not allowed to create flat without name"
     end
 
-    test "should not create flat without city" do
-     flat = Flat.new(street: "abc", zip: "abc", name: "dbb")
-     assert !flat.save
-    end
-
-    test "should not create flat without zip" do
-     flat = Flat.new(street: "abc", city: "abc", name: "dbb")
-     assert !flat.save
-    end
-
-    test "should not create flat without street" do
-     flat = Flat.new(zip: "abc", city: "abc", name: "dbb")
-     assert !flat.save
-    end
-
     test "should not create valid flat" do
      user=users(:michi)
      flat = Flat.create_with_user!(user,{street: "abc",zip: "abc", city: "abc", name: "dbb"})

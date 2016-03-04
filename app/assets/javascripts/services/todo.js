@@ -1,16 +1,16 @@
-angular.module('flatman').factory("shoppingService",function($resource) {
-    var listService = $resource('/api/shoppinglist/:id',{},
+angular.module('flatman').factory("todoService",function($resource) {
+    var listService = $resource('/api/todo/:id',{},
                         {
                             'get': {method: "GET", isArray:true},
                             'create': {method: "POST"},
                             'destroy': {method: "DELETE"},
                             'destroy_checked': {method: "DELETE", url: "delete_checked"}
                         });
-    var listDeleteCheckedService = $resource('/api/shoppinglist/:id/delete_checked',{},
+    var listDeleteCheckedService = $resource('/api/todo/:id/delete_checked',{},
                         {
                             'destroy_checked': {method: "DELETE"}
                         });
-    var itemService = $resource('/api/shoppinglist/:l_id/shoppingitem/:id',{},
+    var itemService = $resource('/api/todo/:l_id/todo_item/:id',{},
                         {
                             'create': {method: "POST"},
                             'destroy': {method: "DELETE"},

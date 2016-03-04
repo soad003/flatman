@@ -75,6 +75,10 @@ de:
               blank                       : "Bitte gib eine Postleitzahl an!"
             street:
               blank                       : "Bitte gib Straße deiner WG an!"
+            shoppinglists:
+              invalid                     : "Bitte gib der Einkaufsliste einen Namen!"
+            todos:
+              invalid                     : "Bitte gib deinem Todo einen Namen!"
         invite:
           attributes:
             email:
@@ -131,7 +135,15 @@ de:
               blank                       : "Bitte Kategorie angeben."
         shoppinglist:
           attributes:
+            name:
+              blank                       : "Bitte gib der Einkaufsliste einen Namen!"
             shoppinglistitems:
+              invalid                     : "Das item sieht falsch aus!"
+        todo:
+          attributes:
+            name:
+              blank                       : "Bitte gib deinem Todo einen Namen!"
+            todo_items:
               invalid                     : "Das item sieht falsch aus!"
     resource:
       info_all                        : "Gesamt"
@@ -200,7 +212,7 @@ de:
         resources                         : "Strom/Gas"
         dashboard                         : "Dashboard"
         shopping                          : "Einkaufen"
-        search_placeholder                : "suche Items"
+        pinboard                          : "Todos"
 
     mail_layout:
       complimentary_close                 : "Grüße, dein Flatman Team"
@@ -445,13 +457,19 @@ de:
       all                                : "Alle"
       new_list_placeholder               : "Lebensmittel"
       new_item_placeholder               : "Bier"
+      new_item_placeholder_todo          : "Arbeit Arbeit"
       help_title                         : "Alles was deine WG gerade so kaufen sollte ..."
       help_paragraph1                    : "Benutze das Textfeld oben rechts um neue listen zu erstellen... "
       help_paragraph2                    : "Wenn ein enkauf abgeschlossen ist einfach auf zahlung klicken und erledigt."
+      help_title_todo                    : "Was muss gemacht werden, was steht an?"
+      help_paragraph1_todo               : "Erstelle Todos für deine WG, ganz einfach... "
+      help_paragraph2_todo               : ""
       delete_list                        : "löschen"
       done                               : "Zahlung eingeben"
       delete_checked                     : "lösche erledigte items"
       todo                               : "Todo"
+      create_todo                        : "Gib deiner neuen Todoliste einen Namen!"
+      create_shopping                    : "Wo gehst du Einkaufen? Was soll gekauft werden?"
     create_flat:
       subtitle                           : "Willkommen bei"
       title                              : "Flatman"
@@ -467,6 +485,8 @@ de:
       city_label                         : "Stadt"
       city_placeholder                   : "Gotham"
       create_flat                        : "WG erstellen!"
+      invites                            : "Lade WG mitglieder ein"
+      email                              : "email deines WG buddys"
 
   session:
     index:

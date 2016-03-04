@@ -33,6 +33,5 @@ class User < ActiveRecord::Base
             user.email = auth.info.email
             user.save!
         end
-
     end
 end

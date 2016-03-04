@@ -3,20 +3,18 @@ class Flat < ActiveRecord::Base
 	has_many 	:billcategories
 	has_many 	:shareditems , -> { order 'name asc' }
 	has_many	:shoppinglists, -> { order 'created_at asc' }
+    has_many    :todos, -> { order 'created_at asc' }
 	has_many 	:resources
     has_many    :invites
     has_many    :bills
     has_many    :newsitems
-    validates   :name, :street, :city, :zip, presence: true
-    geocoded_by :full_street_address
-    after_validation :geocode
+    validates   :name,  presence: true #:street, :city, :zip,
+    #geocoded_by :full_street_address
+    #after_validation :geocode
 
     def add_user(user)
         user.flat = self
         user.save!
-    end
-
-    def users_involved
     end
 
     def full_street_address

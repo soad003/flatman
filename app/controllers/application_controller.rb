@@ -1,4 +1,5 @@
 class ApplicationController < ActionController::Base
+  before_action :handle_device_token
   # Prevent CSRF attacks by raising an exception.
   # For APIs, you may want to use :null_session instead.
   protect_from_forgery with: :exception
@@ -32,6 +33,15 @@ class ApplicationController < ActionController::Base
   def logout
     session[:user_id] = nil
     @current_user = nil
+  end
+
+  def handle_device_token
+    token = cookies[:device_token]
+    if !token.nil? && logged_in
+      current_user.device_token=token
+      current_user.save!
+      cookies.delete :device_token
+    end
   end
 
   private
