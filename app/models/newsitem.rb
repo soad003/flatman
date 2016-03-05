@@ -89,13 +89,24 @@ class Newsitem < ActiveRecord::Base
     def self.createMessage(text, user)
         newsitem = Newsitem.where(category: Newsitem::CATEGORIES[:message], flat: user.flat, action: Newsitem::ACTIONS[:add], updated_at: (DateTime.current - 20.seconds) ..  DateTime.current).order(updated_at: :desc).first
         if !newsitem.nil? and newsitem.user.id == user.id then
-            newsitem.text = (newsitem.text  + " " + text).strip
+            newsitem.text = (newsitem.text  + "{{{{newline}}}}" + text).strip
             newsitem.save!
         else
            Newsitem.saveNewsitem(user, Newsitem::CATEGORIES[:message], Newsitem::ACTIONS[:add], nil, text)
         end
-        push = PushBot::Push.new(user.device_token, :ios)
-        push.notify('Hello and Welcome to the App!')
+    end
+
+    def self.createComment(text, newsitem_id, user)
+        comment= Newsitem.new()
+        comment.flat = user.flat
+        comment.user = user
+        comment.text = text
+        comment.newsitem_id = newsitem_id
+        comment.category = Newsitem::CATEGORIES[:message]
+        comment.action = Newsitem::ACTIONS[:add]
+        comment.save!
+        comment.date = time_ago_in_words(comment.created_at)
+        comment
     end
 
     def self.createBill(bill, user)
@@ -135,17 +146,15 @@ class Newsitem < ActiveRecord::Base
         if !key.nil? then ni.key = key end
         if !text.nil? then ni.text = text end
         ni.save!
-        Thread.new {
-            Newsitem.push(ni)
-        }
+        Newsitem.push(ni)
     end
 
     def self.getPushMessage(newsitem)
-        if newsitem.isFinance() then return I18n.t('activerecord.newsitem.pushFinance') end
-        if newsitem.isShopping() then return I18n.t('activerecord.newsitem.pushShopping') end
-        if newsitem.isTodo() then return I18n.t('activerecord.newsitem.pushTodo') end
-        if newsitem.isResource() then return I18n.t('activerecord.newsitem.pushResource') end
-        if newsitem.isMessage() then return I18n.t('activerecord.newsitem.pushMessage') end
+        if newsitem.isFinance() then return I18n.t('activerecord.newsitem.pushFinance', :name => newsitem.user.name) end
+        if newsitem.isShopping() then return I18n.t('activerecord.newsitem.pushShopping', :name => newsitem.user.name) end
+        if newsitem.isTodo() then return I18n.t('activerecord.newsitem.pushTodo', :name => newsitem.user.name) end
+        if newsitem.isResource() then return I18n.t('activerecord.newsitem.pushResource', :name => newsitem.user.name) end
+        if newsitem.isMessage() then return I18n.t('activerecord.newsitem.pushMessage', :name => newsitem.user.name) end
     end
 
     def self.push(newsitem)
@@ -154,10 +163,13 @@ class Newsitem < ActiveRecord::Base
             message = Newsitem.getPushMessage(newsitem)
             newsitem.user.flat.users.each do |mate|
                 if (mate.id != newsitem.user.id and !(mate.device_token == '' or mate.device_token.nil?)) then
-                    push = PushBot::Push.new(mate.device_token, :ios)
-                    push.notify(message)
-                    push = PushBot::Push.new(mate.device_token, :android)
-                    push.notify(message)
+                    device_token = mate.device_token
+                    Thread.new {
+                        push = PushBot::Push.new(device_token, :ios)
+                        push.notify(message)
+                        push = PushBot::Push.new(device_token, :android)
+                        push.notify(message)
+                    }
                 end
             end
         end

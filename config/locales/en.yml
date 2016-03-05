@@ -166,11 +166,11 @@ en:
       deletedList                     : "Unknown"
       matechange_remove               : " leaves your flat."
       matechange_add                  : " joins to your flat."
-      pushFinance                     : "Finances are changed."
-      pushShopping                    : "Shoppinglist are edited"
-      pushTodo                        : "Todolist are edited"
-      pushResource                    : "Resources are edited"
-      pushMessage                     : "There is a new message."
+      pushFinance                     : "%{name} edited the finances."
+      pushShopping                    : "%{name} updated the shoppinglists."
+      pushTodo                        : "%{name} updated the shoppinglists."
+      pushResource                    : "%{name} updated the resources."
+      pushMessage                     : "%{name} sends a message."
 
   buttons:
     confirmations:

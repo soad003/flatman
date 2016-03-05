@@ -1,10 +1,16 @@
 angular.module('flatman').controller("newsfeedCtrl", 
 	function($scope, newsfeedService, userService, shoppingService,resourceService,financesService,todoService, Util) {
 	
-	$scope.tileClass=function(){
-		if ($scope.get_resource_usage() === 0)
-			return "col-lg-4 col-sm-4 col-xs-12";
-		return "col-lg-3 col-sm-6 col-xs-12";
+	$scope.tileClass=function(text){
+		if ($scope.get_resource_usage() === 0){
+			if (text == 'finances')
+				return "col-lg-4 col-sm-4 col-xs-12";
+			return "col-lg-4 col-sm-4 col-xs-6";
+		}
+		if (text == 'finances'){
+			return "col-lg-3 col-sm-6 col-xs-6";
+		}
+		return "col-lg-3 col-sm-6 col-xs-6";
 	}
 
 	$scope.get_you_owe=function(){return financesService.finance.get_sum($scope.overviewMates);};
@@ -27,6 +33,10 @@ angular.module('flatman').controller("newsfeedCtrl",
 			$scope.newsitemLoaded +=  $scope.newsitemCount
 			$scope.news = $scope.news.concat(data)
 		});
+	}
+
+	$scope.getTextWithNewline = function (text){
+		return text.replace("{{{{newline}}}}", "\n");
 	}
 
 	$scope.shoppinglists = shoppingService.list.get();
