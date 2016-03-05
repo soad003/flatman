@@ -22,20 +22,8 @@
   }
 
   @media (max-width: 768px) {
-    .mobile-font-size{font-size: 20px;}
+    .mobile-font-size{font-size: 16px;}
   }
-
-  .grid-item {
-  float: left;
-  width: 50px;
-  height: 50px;
-  background: #e6e5e4;
-  border: 2px solid #b6b5b4;
-}
-
-.grid-item--width2 { width: 100px; }
-.grid-item--height2 { height: 100px; }
-
 
 </style>
 
@@ -80,8 +68,10 @@
         </div>
     </h1>
 </div>
+
 <div class="row">
-    <div class="col-md-4 col-sm-6" ng-repeat="list in bla = (lists | filter: {type: filter_type}) track by $index">
+  <ul id="isotopeContainer" isotope-container ng-cloak class="ng-cloak list-unstyled">
+    <li class="col-md-4 col-sm-6" ng-repeat="list in bla = (lists | filter: {type: filter_type}) track by track_via(list)" isotope-item>
         <div class="panel panel-{{get_color($index)}}">
             <div class="panel-heading mobile-font-size">
                 <div class="form-group">
@@ -130,20 +120,20 @@
                       <input type="text" class="form-control"
                               ng-model="list.new_Text"
                               maxlength="130"
-                              placeholder="{{is_todo(list) && '<%= t(".new_item_placeholder_todo") %>' || '<%= t(".new_item_placeholder") %>' }}" required focus-item>
+                              placeholder="{{is_todo(list) && '<%= t(".new_item_placeholder_todo") %>' || '<%= t(".new_item_placeholder") %>' }}" required focus-item="focus_items_on_add">
                       <span class="input-group-btn">
                         <button class="btn btn-primary"
                                 type="submit"
                                 ng-disabled="!Itemform.$valid">
                           <span class="fa fa-plus fa-lg"></span> <span class="hidden-xs"><%= t(".add") %></span>
-                        </button>y
+                        </button>
                       </span>
                     </div>
                 </form>
             </div>
         </div>
-    </div>
-
+    </li>
+  </ul>
     <div class="jumbotron text-center" ng-show="bla.length===0 && !isLoading() && filtered_shopping()">
       <i class="fa fa-shopping-cart fa-5x"></i>
       <h2><%= t(".help_title") %></h2>

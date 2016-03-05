@@ -9,7 +9,8 @@ angular.module('flatman', ['ngRoute',
                             'number_localized',
                             'checklist-model',
                             'focus-item',
-                            'infinite-scroll'])
+                            'infinite-scroll',
+                            'iso.directives'])
         .config(function($httpProvider, $routeProvider){
 
   $httpProvider.defaults.headers.common = {'X-CSRF-Token': $("meta[name='csrf-token']").attr("content"),
