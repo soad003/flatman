@@ -8,6 +8,12 @@
 input[type=text], input[type=email], select {
     @extend .form-control;
 }
+@import url(https://fonts.googleapis.com/css?family=Source+Sans+Pro:400);
+html *
+{
+    font-family: 'Source Sans Pro', sans-serif;
+} 
+
 
 /* fix rails bootstrap invalid field higlighting */
 .field_with_errors {
@@ -49,6 +55,12 @@ input[type=text], input[type=email], select {
   margin-bottom: 12px
 }
 
+.padding-small{
+ padding-right:0;
+  padding-left:0;
+}
+
+
 .news-name {
   font-weight: bold;
 }
@@ -85,7 +97,13 @@ input[type=text], input[type=email], select {
 }
 
 .announcement-heading-text-xs{
-  font-size: 20px;
+  font-size: 10px !important;
+}
+
+.announcement-icon {
+    font-size: 30px;
+    text-align: center;
+    vertical-align: middle;
 }
 
 .announcement-text {

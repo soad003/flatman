@@ -18,15 +18,11 @@ class Api::NewsfeedController < Api::RestController
     end
 
     def comment
-        comment=Newsitem.new(comment_params)
-        comment.flat = current_user.flat
-        comment.user = current_user
-        comment.save!
-        comment.date = time_ago_in_words(comment.created_at)
+        comment = Newsitem.createComment(comment_params[:text], comment_params[:newsitem_id], current_user)
         respond_with(comment, :location => nil)
     end
 
-    private 
+    private
     def comment_params
       params.permit(:text, :newsitem_id, :from, :to)
     end

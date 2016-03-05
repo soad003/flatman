@@ -89,13 +89,24 @@ class Newsitem < ActiveRecord::Base
     def self.createMessage(text, user)
         newsitem = Newsitem.where(category: Newsitem::CATEGORIES[:message], flat: user.flat, action: Newsitem::ACTIONS[:add], updated_at: (DateTime.current - 20.seconds) ..  DateTime.current).order(updated_at: :desc).first
         if !newsitem.nil? and newsitem.user.id == user.id then
-            newsitem.text = (newsitem.text  + " " + text).strip
+            newsitem.text = (newsitem.text  + "{{{{newline}}}}" + text).strip
             newsitem.save!
         else
            Newsitem.saveNewsitem(user, Newsitem::CATEGORIES[:message], Newsitem::ACTIONS[:add], nil, text)
         end
-        push = PushBot::Push.new(user.device_token, :ios)
-        push.notify('Hello and Welcome to the App!')
+    end
+
+    def self.createComment(text, newsitem_id, user)
+        comment= Newsitem.new()
+        comment.flat = user.flat
+        comment.user = user
+        comment.text = text
+        comment.newsitem_id = newsitem_id
+        comment.category = Newsitem::CATEGORIES[:message]
+        comment.action = Newsitem::ACTIONS[:add]
+        comment.save!
+        comment.date = time_ago_in_words(comment.created_at)
+        comment
     end
 
     def self.createBill(bill, user)
