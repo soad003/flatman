@@ -5,6 +5,13 @@ angular.module('flatman').controller("pinboardCtrl",function($scope,$location,$m
 
     function get_service(list){ return (list.type==TODO_TYPE)? todoService : shoppingService; }
 
+    //hack sublist change
+    function rebind_ui() {
+        $timeout(function() {
+            $scope.$emit('iso-method', {name:null, params:null});
+        },100);
+    }
+
     function open_modal(callback_succ, todo) {
         $scope.focus_items_on_add=true;
         var modalinst = $modal.open({
@@ -26,6 +33,8 @@ angular.module('flatman').controller("pinboardCtrl",function($scope,$location,$m
     $scope.filter_type=($location.path()==="/shopping")? SHOP_TYPE: TODO_TYPE;
     $scope.lists = [];
     $scope.focus_items_on_add=false;
+
+    $scope.track_via=function(item) { return item.type + ":" + item.id; };
     
     $scope.filtered_shopping=function(){ return $scope.filter_type===SHOP_TYPE; };
     
@@ -35,11 +44,11 @@ angular.module('flatman').controller("pinboardCtrl",function($scope,$location,$m
 
     $scope.is_todo = function(list){ return list.type===TODO_TYPE; };
 
-    $scope.only_shopping=function(){ $scope.filter_type=SHOP_TYPE; };
+    $scope.only_shopping=function(){ $scope.filter_type=SHOP_TYPE; rebind_ui(); };
 
-    $scope.only_todo=function(){ $scope.filter_type=TODO_TYPE; };
+    $scope.only_todo=function(){ $scope.filter_type=TODO_TYPE; rebind_ui();};
 
-    $scope.only_all=function(){ $scope.filter_type=""; };
+    $scope.only_all=function(){ $scope.filter_type=""; rebind_ui();};
 
     $scope.create_todo=function(){ 
         open_modal(function(result){
@@ -64,6 +73,7 @@ angular.module('flatman').controller("pinboardCtrl",function($scope,$location,$m
     $scope.remove_item=function(list,item){
         get_service(list).item.destroy(item.id,list.id,function(){
             list.items = _(list.items).without(item);
+            rebind_ui();
         });
     };
 
@@ -77,6 +87,7 @@ angular.module('flatman').controller("pinboardCtrl",function($scope,$location,$m
         get_service(list).item.create(list.id,list.new_Text,function(data){
                 list.items.push(data);
                 list.new_Text='';
+                rebind_ui();
         });
     };
 
