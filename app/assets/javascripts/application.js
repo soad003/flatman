@@ -35,3 +35,4 @@
 //= require ./vendor/angles.js
 //= require ./vendor/ng-infinite-scroll.min.js
 //= require ./vendor/angular-google-maps.min.js
+

@@ -1,28 +1,35 @@
-angular.module('flatman').controller("pinboardCtrl",function($scope,$location,$modal,shoppingService,todoService,Util){
+angular.module('flatman').controller("pinboardCtrl",function($scope,$location,$modal,$timeout,shoppingService,todoService,Util){
 
     var SHOP_TYPE="shop";
     var TODO_TYPE="todo";
 
-    function get_service(list){
-        return (list.type==TODO_TYPE)? todoService : shoppingService;
-    }
+    function get_service(list){ return (list.type==TODO_TYPE)? todoService : shoppingService; }
 
     function open_modal(callback_succ, todo) {
-        $modal.open({
+        $scope.focus_items_on_add=true;
+        var modalinst = $modal.open({
                       animation: true,
                       templateUrl: 'create_list.html',
                       controller: 'createListCtrl',
                       size: null,
                       resolve: { is_todo: function() {return todo;} }
-                    }).result.then(callback_succ);
+                    });
+        modalinst.result.then(callback_succ);
+        // Ugly hack due to bug https://github.com/angular-ui/bootstrap/issues/2017
+        modalinst.opened.then(function() {
+                                        $timeout(function() {
+                                            $(".modal").find('input:text:visible:first').focus();
+                                        },200) 
+                                    });
     }
 
     $scope.filter_type=($location.path()==="/shopping")? SHOP_TYPE: TODO_TYPE;
     $scope.lists = [];
+    $scope.focus_items_on_add=false;
     
-    $scope.filtered_shopping=function(){return $scope.filter_type===SHOP_TYPE; };
+    $scope.filtered_shopping=function(){ return $scope.filter_type===SHOP_TYPE; };
     
-    $scope.filtered_todo=function(){return $scope.filter_type===TODO_TYPE; };
+    $scope.filtered_todo=function(){ return $scope.filter_type===TODO_TYPE; };
 
     $scope.is_shopping = function(list){ return list.type===SHOP_TYPE; };
 
@@ -105,21 +112,15 @@ angular.module('flatman').controller("pinboardCtrl",function($scope,$location,$m
 
 });
 
-
 angular.module('flatman').controller('createListCtrl', function ($scope, $modalInstance, is_todo) {
-  $scope.item = {text:"", priv:false};
-  $scope.is_todo = is_todo;
+    $scope.item = {text:"", priv:false};
+    $scope.is_todo = is_todo;
+   
+    $scope.ok = function () {
+        $modalInstance.close($scope.item);
+    };
 
-    // Ugly hack due to bug https://github.com/angular-ui/bootstrap/issues/2017
-    setTimeout(function() {
-        $(".modal").find('input:text:visible:first').focus();
-    }, 200);
-    
-  $scope.ok = function () {
-    $modalInstance.close($scope.item);
-  };
-
-  $scope.cancel = function () {
-    $modalInstance.dismiss('cancel');
-  };
+    $scope.cancel = function () {
+        $modalInstance.dismiss('cancel');
+    };
 });

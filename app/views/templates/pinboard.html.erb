@@ -22,20 +22,8 @@
   }
 
   @media (max-width: 768px) {
-    .mobile-font-size{font-size: 20px;}
+    .mobile-font-size{font-size: 16px;}
   }
-
-  .grid-item {
-  float: left;
-  width: 50px;
-  height: 50px;
-  background: #e6e5e4;
-  border: 2px solid #b6b5b4;
-}
-
-.grid-item--width2 { width: 100px; }
-.grid-item--height2 { height: 100px; }
-
 
 </style>
 
@@ -80,6 +68,7 @@
         </div>
     </h1>
 </div>
+
 <div class="row">
     <div class="col-md-4 col-sm-6" ng-repeat="list in bla = (lists | filter: {type: filter_type}) track by $index">
         <div class="panel panel-{{get_color($index)}}">
@@ -130,7 +119,7 @@
                       <input type="text" class="form-control"
                               ng-model="list.new_Text"
                               maxlength="130"
-                              placeholder="{{is_todo(list) && '<%= t(".new_item_placeholder_todo") %>' || '<%= t(".new_item_placeholder") %>' }}" required focus-item>
+                              placeholder="{{is_todo(list) && '<%= t(".new_item_placeholder_todo") %>' || '<%= t(".new_item_placeholder") %>' }}" required focus-item="{{focus_items_on_add}}">
                       <span class="input-group-btn">
                         <button class="btn btn-primary"
                                 type="submit"
