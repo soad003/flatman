@@ -81,7 +81,6 @@ html *
 .nowarp {
   white-space:nowrap;
 }
-
 .news-image-add {
   width:35px;
   margin-bottom:0px
@@ -92,8 +91,11 @@ html *
 }
 
 .announcement-heading {
-  font-size: 35px;
+  font-size: 30px;
   margin: 0;
+}
+
+.announcement-heading-xs {
 }
 
 .announcement-heading-text-xs{
@@ -101,9 +103,8 @@ html *
 }
 
 .announcement-icon {
-    font-size: 30px;
-    text-align: center;
-    vertical-align: middle;
+    font-size: 20px;
+    height: 33px;
 }
 
 .announcement-text {

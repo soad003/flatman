@@ -4,8 +4,8 @@ angular.module('flatman').controller("newsfeedCtrl",
 	$scope.tileClass=function(text){
 		if ($scope.get_resource_usage() === 0){
 			if (text == 'finances')
-				return "col-lg-4 col-sm-4 col-xs-12";
-			return "col-lg-4 col-sm-4 col-xs-6";
+				return "col-lg-4 col-sm-4 col-xs-4";
+			return "col-lg-4 col-sm-4 col-xs-4";
 		}
 		if (text == 'finances'){
 			return "col-lg-3 col-sm-6 col-xs-6";
