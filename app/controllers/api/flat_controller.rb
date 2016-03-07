@@ -31,7 +31,7 @@ class Api::FlatController < Api::RestController
         if balance.any? {|mate| mate.value.round(2) != 0.0}
             respond_with_errors([t('.balance_not_zero')])
         else
-            Newsitem.deleteUser(user)
+            Newsitem.deleteUser(current_user)
             current_user.flat_id = nil
             current_user.flat = nil
             current_user.save!

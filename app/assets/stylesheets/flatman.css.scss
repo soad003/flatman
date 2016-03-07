@@ -14,7 +14,6 @@ html *
     font-family: 'Source Sans Pro', sans-serif;
 } 
 
-
 /* fix rails bootstrap invalid field higlighting */
 .field_with_errors {
     @extend .has-error;
@@ -200,4 +199,8 @@ input[type='number'] {
 .navbar-inverse .navbar-btn:hover {
   color: #ffffff;
   background-color: #333333;
+}
+
+@media (max-width: $screen-xs) {
+  .reduce-padding-xs { padding-left: 5px!important; padding-right: 5px!important; }
 }

@@ -13,7 +13,6 @@ angular.module('flatman').controller("pinboardCtrl",function($scope,$location,$m
     }
 
     function open_modal(callback_succ, todo) {
-        $scope.focus_items_on_add=true;
         var modalinst = $modal.open({
                       animation: true,
                       templateUrl: 'create_list.html',
@@ -21,7 +20,10 @@ angular.module('flatman').controller("pinboardCtrl",function($scope,$location,$m
                       size: null,
                       resolve: { is_todo: function() {return todo;} }
                     });
-        modalinst.result.then(callback_succ);
+        modalinst.result.then(function(res){
+            $scope.focus_items_on_add=true;
+            callback_succ(res);
+        });
         // Ugly hack due to bug https://github.com/angular-ui/bootstrap/issues/2017
         modalinst.opened.then(function() {
                                         $timeout(function() {
@@ -37,17 +39,14 @@ angular.module('flatman').controller("pinboardCtrl",function($scope,$location,$m
     $scope.track_via=function(item) { return item.type + ":" + item.id; };
     
     $scope.filtered_shopping=function(){ return $scope.filter_type===SHOP_TYPE; };
-    
     $scope.filtered_todo=function(){ return $scope.filter_type===TODO_TYPE; };
+    $scope.filtered_all=function(){ return $scope.filter_type===""; };
 
     $scope.is_shopping = function(list){ return list.type===SHOP_TYPE; };
-
     $scope.is_todo = function(list){ return list.type===TODO_TYPE; };
 
     $scope.only_shopping=function(){ $scope.filter_type=SHOP_TYPE; rebind_ui(); };
-
     $scope.only_todo=function(){ $scope.filter_type=TODO_TYPE; rebind_ui();};
-
     $scope.only_all=function(){ $scope.filter_type=""; rebind_ui();};
 
     $scope.create_todo=function(){ 
