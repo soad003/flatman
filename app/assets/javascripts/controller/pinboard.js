@@ -1,4 +1,4 @@
-angular.module('flatman').controller("pinboardCtrl",function($scope,$location,$modal,$timeout,shoppingService,todoService,Util){
+angular.module('flatman').controller("pinboardCtrl",function($scope,$q,$location,$modal,$timeout,shoppingService,todoService,Util){
 
     var SHOP_TYPE="shop";
     var TODO_TYPE="todo";
@@ -11,6 +11,12 @@ angular.module('flatman').controller("pinboardCtrl",function($scope,$location,$m
             $scope.$emit('iso-method', {name:null, params:null});
         },100);
     }
+
+    function load_data() { 
+        return $q.all([shoppingService.list.get().$promise,todoService.list.get().$promise])
+    }
+
+    function insert_data(data){ $scope.lists = data[0].concat(data[1]); }
 
     function open_modal(callback_succ, todo) {
         var modalinst = $modal.open({
@@ -111,15 +117,8 @@ angular.module('flatman').controller("pinboardCtrl",function($scope,$location,$m
        Util.redirect_to.finances_done_shopping(list.name);
     };
 
-    shoppingService.list.get(function(data){
-        $scope.lists = $scope.lists.concat(data);
-    });  
-
-    todoService.list.get(function(data){
-        $scope.lists = $scope.lists.concat(data);
-    });  
+    load_data().then(insert_data); 
    
-
 });
 
 angular.module('flatman').controller('createListCtrl', function ($scope, $modalInstance, is_todo) {
