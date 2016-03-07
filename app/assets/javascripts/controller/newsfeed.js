@@ -36,7 +36,7 @@ angular.module('flatman').controller("newsfeedCtrl",
 	}
 
 	$scope.getTextWithNewline = function (text){
-		console.log( text.split("\n"));
+		//console.log( text.split("\n"));
 		return text.split("\n");
 	}
 
