@@ -465,6 +465,8 @@ de:
       delete_checked                     : "lösche erledigte items"
     pinboard:
       page_header                        : "Pinnwand"
+      page_header_todo                   : "Todos"
+      page_header_shop                   : "Einkaufslisten"
       add                                : "hinzufügen"
       shopping                           : "Einkauf"
       shoppinglist                       : "Einkaufsliste"

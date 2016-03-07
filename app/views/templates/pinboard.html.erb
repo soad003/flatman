@@ -29,16 +29,19 @@
 
 <div class="page-head dropdown">
     <h1 class="page-header">
-        <span class="fa fa-thumb-tack"></span>
-        <%= t(".page_header") %>
+        
+        <span ng-show="filtered_all()"><span class="fa fa-thumb-tack"></span> <%= t(".page_header") %></span>
+        <span ng-show="filtered_shopping()"><span class="fa fa-list-alt"></span> <%= t(".page_header_shop") %></span>
+        <span ng-show="filtered_todo()"><span class="fa fa-list-alt"></span> <%= t(".page_header_todo") %></span>
+         {{focus_items_on_add}}
         <div class="btn-group pull-right" data-toggle="buttons">
-          <label class="btn btn-default hidden-xs" ng-class="{'active': filter_type === 'todo'}" ng-click="only_todo()">
+          <label class="btn btn-default hidden-xs" ng-class="{'active': filtered_todo()}" ng-click="only_todo()">
             <input type="radio" name="options" id="option1" autocomplete="off"><i class="fa fa-list-alt fa-lg"></i> <%= t(".Todo") %>
           </label>            
-          <label class="btn btn-default hidden-xs" ng-class="{'active': filter_type === 'shop'}" ng-click="only_shopping()">
+          <label class="btn btn-default hidden-xs" ng-class="{'active': filtered_shopping()}" ng-click="only_shopping()">
             <input type="radio" name="options" id="option2" autocomplete="off"><i class="fa fa-shopping-cart fa-lg"></i> <%= t(".shopping") %>
           </label>
-          <label class="btn btn-default hidden-xs" ng-class="{'active': filter_type === ''}" ng-click="only_all()">
+          <label class="btn btn-default hidden-xs" ng-class="{'active': filtered_all()}" ng-click="only_all()">
             <input type="radio" name="options" id="option4" autocomplete="off" checked><i class="fa fa-ban fa-lg"></i> <%= t(".all") %>
           </label>
 
@@ -52,13 +55,13 @@
                 <span class="caret"></span>
             </button>
             <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
-                <li>
+                <li ng-show="filtered_todo() || filtered_all()">
                     <a href="" ng-click="create_todo()">
                         <i class="fa fa-list-alt fa-lg"></i> 
                         <%= t(".todo") %>
                     </a>
                 </li>
-                <li>
+                <li ng-show="filtered_shopping() || filtered_all()">
                     <a href="" ng-click="create_shoppinglist()">
                         <i class="fa fa-shopping-cart fa-lg"></i> 
                         <%= t(".shoppinglist") %>
