@@ -143,8 +143,8 @@ class Newsitem < ActiveRecord::Base
         ni.flat = user.flat
         ni.category = category
         ni.action = action
-        if !key.nil? then ni.key = key end
-        if !text.nil? then ni.text = text end
+        ni.key = key if !key.nil?
+        ni.text = text if !text.nil?
         ni.save!
         Newsitem.push(ni)
     end
@@ -163,7 +163,6 @@ class Newsitem < ActiveRecord::Base
         if Newsitem.sendPush(newsitem) then
             newsitem.user.flat.users.each do |mate|
                 message = Newsitem.getPushMessage(newsitem, mate.locale)
-                puts(message)
                 if (mate.id != newsitem.user.id and !(mate.device_token == '' or mate.device_token.nil?)) then
                     device_token = mate.device_token
                     platform = mate.platform
