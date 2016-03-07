@@ -1,5 +1,6 @@
 class ApplicationController < ActionController::Base
   before_action :handle_device_token
+  before_action :handle_platform
   # Prevent CSRF attacks by raising an exception.
   # For APIs, you may want to use :null_session instead.
   protect_from_forgery with: :exception
@@ -44,6 +45,15 @@ class ApplicationController < ActionController::Base
     end
   end
 
+  def handle_platform
+    platform = cookies[:platform]
+    if !platform.nil? && logged_in
+      current_user.platform=platform
+      current_user.save!
+      cookies.delete :platform
+    end
+  end
+
   private
 
   def set_locale
@@ -54,9 +64,11 @@ class ApplicationController < ActionController::Base
       elsif !(cookies[:locale].nil? || cookies[:locale].empty?)
           I18n.locale = cookies[:locale]
       end
-
       I18n.locale = I18n.locale || I18n.default_locale
       cookies[:locale]=I18n.locale
+      if logged_in && current_user.locale != I18n.locale
+          current_user.locale = I18n.locale
+          current_user.save!
+      end
   end
-
 end

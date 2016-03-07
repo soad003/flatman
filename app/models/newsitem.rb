@@ -149,7 +149,8 @@ class Newsitem < ActiveRecord::Base
         Newsitem.push(ni)
     end
 
-    def self.getPushMessage(newsitem)
+    def self.getPushMessage(newsitem, locale)
+        I18n.locale = locale
         if newsitem.isFinance() then return I18n.t('activerecord.newsitem.pushFinance', :name => newsitem.user.name) end
         if newsitem.isShopping() then return I18n.t('activerecord.newsitem.pushShopping', :name => newsitem.user.name) end
         if newsitem.isTodo() then return I18n.t('activerecord.newsitem.pushTodo', :name => newsitem.user.name) end
@@ -160,8 +161,9 @@ class Newsitem < ActiveRecord::Base
     def self.push(newsitem)
         #pushlogic
         if Newsitem.sendPush(newsitem) then
-            message = Newsitem.getPushMessage(newsitem)
             newsitem.user.flat.users.each do |mate|
+                message = Newsitem.getPushMessage(newsitem, mate.locale)
+                puts(message)
                 if (mate.id != newsitem.user.id and !(mate.device_token == '' or mate.device_token.nil?)) then
                     device_token = mate.device_token
                     Thread.new {

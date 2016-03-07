@@ -168,7 +168,7 @@ en:
       matechange_add                  : " joins to your flat."
       pushFinance                     : "%{name} edited the finances."
       pushShopping                    : "%{name} updated the shoppinglists."
-      pushTodo                        : "%{name} updated the shoppinglists."
+      pushTodo                        : "%{name} updated the todolists."
       pushResource                    : "%{name} updated the resources."
       pushMessage                     : "%{name} sends a message."
 
