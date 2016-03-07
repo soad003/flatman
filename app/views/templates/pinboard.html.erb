@@ -33,7 +33,6 @@
         <span ng-show="filtered_all()"><span class="fa fa-thumb-tack"></span> <%= t(".page_header") %></span>
         <span ng-show="filtered_shopping()"><span class="fa fa-list-alt"></span> <%= t(".page_header_shop") %></span>
         <span ng-show="filtered_todo()"><span class="fa fa-list-alt"></span> <%= t(".page_header_todo") %></span>
-         {{focus_items_on_add}}
         <div class="btn-group pull-right" data-toggle="buttons">
           <label class="btn btn-default hidden-xs" ng-class="{'active': filtered_todo()}" ng-click="only_todo()">
             <input type="radio" name="options" id="option1" autocomplete="off"><i class="fa fa-list-alt fa-lg"></i> <%= t(".Todo") %>

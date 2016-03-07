@@ -30,8 +30,8 @@ angular.module('flatman').controller("newsfeedCtrl",
 
 	$scope.loadNews = function (){
 		newsfeedService.newsfeed.get($scope.newsitemLoaded, $scope.newsitemLoaded + $scope.newsitemCount, function(data){
-			$scope.newsitemLoaded +=  $scope.newsitemCount
-			$scope.news = $scope.news.concat(data)
+			$scope.newsitemLoaded +=  $scope.newsitemCount;
+			$scope.news = $scope.news.concat(data);
 		});
 	}
 
@@ -61,7 +61,7 @@ angular.module('flatman').controller("newsfeedCtrl",
 
 	$scope.addComment = function (newsitem){
         newsfeedService.comment.create(newsitem.id, newsitem.new_Text, function(data){
-			data.name = $scope.current_user.name
+			data.name = $scope.current_user.name;
             newsitem.comments.push(data);
             newsitem.new_Text='';
         });
@@ -69,13 +69,13 @@ angular.module('flatman').controller("newsfeedCtrl",
 
 	$scope.redirectToSource = function (type){
 		if (type == 'finance')
-			Util.redirect_to.finances()
+			Util.redirect_to.finances();
 		else if (type == 'resource')
-			Util.redirect_to.resources()
+			Util.redirect_to.resources();
 		else if (type == 'shopping')
-			Util.redirect_to.shopping()
+			Util.redirect_to.shopping();
 		else if (type == 'todo')
-			Util.redirect_to.todo()
+			Util.redirect_to.todo();
 	}
 
 	$scope.switchChevron = function(index){
@@ -90,8 +90,8 @@ angular.module('flatman').controller("newsfeedCtrl",
     };
 
     $scope.current_user = userService.get();
-	$scope.newsitemLoaded = 0
-	$scope.newsitemCount = 9
-	$scope.news = []
-	$scope.loadNews()
+	$scope.newsitemLoaded = 0;
+	$scope.newsitemCount = 9;
+	$scope.news = [];
+	$scope.loadNews();
 });
