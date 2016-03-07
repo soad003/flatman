@@ -36,7 +36,8 @@ angular.module('flatman').controller("newsfeedCtrl",
 	}
 
 	$scope.getTextWithNewline = function (text){
-		return text.replace("{{{{newline}}}}", "\n");
+		console.log( text.split("\n"));
+		return text.split("\n");
 	}
 
 	$scope.shoppinglists = shoppingService.list.get();

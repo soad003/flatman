@@ -89,7 +89,7 @@ class Newsitem < ActiveRecord::Base
     def self.createMessage(text, user)
         newsitem = Newsitem.where(category: Newsitem::CATEGORIES[:message], flat: user.flat, action: Newsitem::ACTIONS[:add], updated_at: (DateTime.current - 20.seconds) ..  DateTime.current).order(updated_at: :desc).first
         if !newsitem.nil? and newsitem.user.id == user.id then
-            newsitem.text = (newsitem.text  + "{{{{newline}}}}" + text).strip
+            newsitem.text = (newsitem.text  + "\n" + text).strip
             newsitem.save!
         else
            Newsitem.saveNewsitem(user, Newsitem::CATEGORIES[:message], Newsitem::ACTIONS[:add], nil, text)
@@ -166,11 +166,15 @@ class Newsitem < ActiveRecord::Base
                 puts(message)
                 if (mate.id != newsitem.user.id and !(mate.device_token == '' or mate.device_token.nil?)) then
                     device_token = mate.device_token
+                    platform = mate.platform
                     Thread.new {
-                        push = PushBot::Push.new(device_token, :ios)
-                        push.notify(message)
-                        push = PushBot::Push.new(device_token, :android)
-                        push.notify(message)
+                        if platform == "android"
+                            push = PushBot::Push.new(device_token, :android)
+                            push.notify(message)
+                        else
+                            push = PushBot::Push.new(device_token, :ios)
+                            push.notify(message)
+                        end
                     }
                 end
             end
