@@ -466,7 +466,7 @@ en:
     pinboard:
       page_header                        : "Pinboard"
       page_header_todo                   : "Todos"
-      page_header_shop                   : "Einkaufslisten"
+      page_header_shop                   : "Shopping lists"
       add                                : "add"
       shopping                           : "Shopping"
       shoppinglist                       : "Shopping list"
