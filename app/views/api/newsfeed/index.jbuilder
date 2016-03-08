@@ -1,4 +1,5 @@
-json.array!(@newsfeed) do |newsitem|
+json.newsfeed_length  @feed.length
+json.data (@feed.data) do |newsitem|
   json.id newsitem.id
   json.user_id newsitem.user.id
   json.name newsitem.user.name
@@ -14,5 +15,5 @@ json.array!(@newsfeed) do |newsitem|
         json.link comment.user.image_path
         json.text comment.text
         json.date comment.date
-    end
+  end
 end

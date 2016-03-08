@@ -16,6 +16,9 @@ angular.module('flatman').controller("rootCtrl",function($scope,$rootScope,$wind
 
     $scope.reload_view=function(){$route.reload();}
 
+    $scope.go_right=function(){Util.redirect_to.next_view($location.path());}
+    $scope.go_left=function(){Util.redirect_to.previous_view($location.path());}
+
     $window.addEventListener("offline", function() {
         $scope.$apply(function() {
           $scope.online = false;

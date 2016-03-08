@@ -21,7 +21,12 @@ class SessionController < ApplicationController
             end
             session[:invite_token] = nil
         else
-            redirect_to root_url, :notice => t('misc.titles.logged_in')
+            if session[:invite_token].nil?
+                redirect_to root_url, :notice => t('misc.titles.logged_in')
+            else
+                redirect_to root_url, :notice => t('misc.titles.logged_in_with_join')
+            end
+            session[:invite_token] = nil
         end
     end
 

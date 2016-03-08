@@ -37,5 +37,7 @@
 //= require ./vendor/angular-google-maps.min.js
 //= require ./vendor/jquery.isotope.js
 //= require ./vendor/angular-isotope.js
+//= require ./vendor/hammerjs.min.js
+//= require ./vendor/gesturesjs.min.js
 
 

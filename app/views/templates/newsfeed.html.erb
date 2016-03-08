@@ -5,9 +5,9 @@
         <div class="panel panel-info clickable padding-small padding-small-bottom" ng-click="Util.redirect_to.shopping()">
           <div class="panel-heading">
             <div class="row">
-              <div class="col-xs-5 announcement-icon">
+              <div class="col-xs-5 announcement-icon" >
                 <i class="hidden-xs fa fa-shopping-cart fa-2x"></i>
-                <i class="visible-xs fa fa-shopping-cart"></i>
+                <i class="visible-xs fa fa-shopping-cart fa-lg"></i>
               </div>
               <div class="col-xs-7 text-right">
                 <span class="announcement-heading hidden-xs">{{get_items_to_buy()}}</span>
@@ -150,9 +150,10 @@
             <span ng-class="{'clickable' : !(n.type == 'message' || n.type == 'matechange')}"  ng-click="redirectToSource(n.type)">
             <span class="news-name">{{n.name}}<span ng-show="n.text != ''">:</span></span> 
             <span class="nowrap" ng-show="n.header != ''"> {{n.header}} </span>
-            <span ng-show="n.text != ''"> {{getTextWithNewline(n.text)}}</span>
+            <span ng-repeat="line in getTextWithNewline(n.text) track by $index" ng-show="n.text != ''">
+               {{line}}<br>
             </span>
-            <br>
+            <span ng-show="n.text == ''"> <br> </span>
             <span class="news-date"><i class="fa fa-clock-o"></i> {{n.date}} </span>
             <a data-toggle="collapse" data-target="#collapseComments{{$index}}" aria-expanded="false" aria-controls="collapseComments" class="news-comment clickable"  ng-click="switchChevron($index)">
             <i class="fa fa-comment"></i> <%= t('.comment') %> <span ng-show="n.comments.length != 0"> {{n.comments.length}}</span>

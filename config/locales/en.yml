@@ -168,7 +168,7 @@ en:
       matechange_add                  : " joins to your flat."
       pushFinance                     : "%{name} edited the finances."
       pushShopping                    : "%{name} updated the shoppinglists."
-      pushTodo                        : "%{name} updated the shoppinglists."
+      pushTodo                        : "%{name} updated the todolists."
       pushResource                    : "%{name} updated the resources."
       pushMessage                     : "%{name} sends a message."
 
@@ -189,6 +189,7 @@ en:
       login                               : "login"
       logged_out                          : "Successfully logged out!"
       logged_in                           : "Successfully logged in!"
+      logged_in_with_join                 : "Successfully logged in! If you want to join a new flat please leave this one first!"
       in_progress                         : ""
       ok                                  : "OK"
       cancel                              : "Cancel"

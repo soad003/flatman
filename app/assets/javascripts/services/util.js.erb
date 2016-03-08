@@ -1,4 +1,10 @@
 angular.module('flatman').factory("Util",function($rootScope,$location) {
+    var carousel = ["/dashboard","/shopping","/todo","/finances","/resources"];
+    function get(cur, offset){
+        var count = _.indexOf(carousel, cur) + offset
+        var len = carousel.length
+        return carousel[((count % len) + len) % len];
+    };
     return {
         has_server_errors: function(){ return ($rootScope.server_errors=!null); },
         get_server_errors: function(){ return $rootScope.server_errors;},
@@ -18,7 +24,9 @@ angular.module('flatman').factory("Util",function($rootScope,$location) {
             finance_overview_mate: function(id){$location.path("finance_overview_mate/"+id);},
             flat_settings: function(){$location.path("flat_settings");},
             finances_done_shopping: function(name){$location.path("finances_done_shopping/"+encodeURIComponent(name));},
-            back: function(url){if (url !== undefined) $location.path(url); else history.back();}
+            back: function(url){if (url !== undefined) $location.path(url); else history.back();},
+            next_view: function(current_view){ $location.path(get(current_view,1)); },
+            previous_view: function(current_view){ $location.path(get(current_view,-1)); }
         }
     };
 

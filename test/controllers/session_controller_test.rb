@@ -1,6 +1,7 @@
 require 'test_helper'
 
 class SessionControllerTest < ActionController::TestCase
+  include Login
 
   test "should get index" do
     get :index
@@ -9,6 +10,7 @@ class SessionControllerTest < ActionController::TestCase
   end
 
   test "logout should delete session and redirect to root url" do
+    login_as_michi
     get :destroy
 
     assert_nil session[:user_id]

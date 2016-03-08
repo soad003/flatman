@@ -29,14 +29,17 @@ angular.module('flatman').controller("newsfeedCtrl",
 
 
 	$scope.loadNews = function (){
-		newsfeedService.newsfeed.get($scope.newsitemLoaded, $scope.newsitemLoaded + $scope.newsitemCount, function(data){
-			$scope.newsitemLoaded +=  $scope.newsitemCount;
-			$scope.news = $scope.news.concat(data);
-		});
+		if ($scope.newsfeed_length >= $scope.newsitemLoaded){
+			newsfeedService.newsfeed.get($scope.newsitemLoaded, $scope.newsitemLoaded + $scope.newsitemCount, function(data){
+				$scope.newsitemLoaded +=  $scope.newsitemCount;
+				$scope.newsfeed_length = data.newsfeed_length;
+				$scope.news = $scope.news.concat(data.data);
+			});
+		}
 	}
 
 	$scope.getTextWithNewline = function (text){
-		return text.replace("{{{{newline}}}}", "\n");
+		return text.split("\n");
 	}
 
 	$scope.shoppinglists = shoppingService.list.get();
@@ -47,9 +50,9 @@ angular.module('flatman').controller("newsfeedCtrl",
 
 	$scope.addMessage = function (){
 		newsfeedService.newsfeed.create($scope.newsText, function(data){
-                data.items=[];
-                $scope.news = newsfeedService.newsfeed.get();
-                $scope.newsText='';
+			$scope.setNewsfeed()
+			$scope.loadNews()
+            $scope.newsText='';
         });
 	}
 
@@ -89,9 +92,13 @@ angular.module('flatman').controller("newsfeedCtrl",
         });
     };
 
+    $scope.setNewsfeed = function (){
+		$scope.newsitemLoaded = 0;
+		$scope.newsitemCount = 9;
+		$scope.newsfeed_length = 0;
+		$scope.news = [];
+    }
+    $scope.setNewsfeed()
     $scope.current_user = userService.get();
-	$scope.newsitemLoaded = 0;
-	$scope.newsitemCount = 9;
-	$scope.news = [];
 	$scope.loadNews();
 });

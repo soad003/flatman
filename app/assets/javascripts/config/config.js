@@ -10,8 +10,9 @@ angular.module('flatman', ['ngRoute',
                             'checklist-model',
                             'focus-item',
                             'infinite-scroll',
-                            'iso.directives'])
-        .config(function($httpProvider, $routeProvider){
+                            'iso.directives',
+                            'angular-gestures'])
+        .config(function($httpProvider, $routeProvider, hammerDefaultOptsProvider){
 
   $httpProvider.defaults.headers.common = {'X-CSRF-Token': $("meta[name='csrf-token']").attr("content"),
                                           'Content-Type': 'application/json'};
@@ -90,6 +91,10 @@ angular.module('flatman', ['ngRoute',
       }).
       otherwise({
         redirectTo: '/newsfeed'
+      });
+
+      hammerDefaultOptsProvider.set({
+          recognizers: [[Hammer.Tap, {time: 250}],[Hammer.Pan,{direction: Hammer.DIRECTION_ALL, threshold: 0 }], [Hammer.Swipe,{direction: Hammer.DIRECTION_ALL, threshold: 10 }]]
       });
 
       $httpProvider.interceptors.push(function($q,$rootScope,Util) {

@@ -187,6 +187,7 @@ de:
       login                               : "login"
       logged_out                          : "Du bist ausgelogged!"
       logged_in                           : "Du bist eingelogged!"
+      logged_in_with_join                 : "Du bist eingelogged! Wenn du in eine neue WG wechseln möchtest bitte verlasse zuerst diese WG."
       in_progress                         : ""
       ok                                  : "OK"
       cancel                              : "Abbrechen"
