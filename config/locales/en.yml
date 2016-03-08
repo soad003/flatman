@@ -519,7 +519,7 @@ en:
       finances_description               : "Enter your expenses, debts or payments and easily keep track of the flats biggest expenses and the current balance with your flat mates."
       resources_title                    : "Resource usage"
       resources_description              : "Keep track of your resource usage to save money and help the environment to last."
-      signin_with                        : "sign in with"
+      signin_with                        : "login with"
 
   datetime:
     distance_in_words:
