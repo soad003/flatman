@@ -1,7 +1,7 @@
 angular.module('flatman').factory("newsfeedService",function($resource) {
     var newsfeedService = $resource('/api/newsfeed/:id',{},
                         {
-                            'get': {method: "GET", isArray:true},
+                            'get': {method: "GET"},
                             'create': {method: "POST"},
                             'destroy': {method: "DELETE"}
                         });

@@ -88,7 +88,7 @@ class Newsitem < ActiveRecord::Base
 
     def self.createMessage(text, user)
         newsitem = Newsitem.where(category: Newsitem::CATEGORIES[:message], flat: user.flat, action: Newsitem::ACTIONS[:add], updated_at: (DateTime.current - 20.seconds) ..  DateTime.current).order(updated_at: :desc).first
-        if !newsitem.nil? and newsitem.user.id == user.id then
+        if !newsitem.nil? and newsitem.user.id == user.id and newsitem.newsitem_id.nil? then
             newsitem.text = (newsitem.text  + "\n" + text).strip
             newsitem.save!
         else

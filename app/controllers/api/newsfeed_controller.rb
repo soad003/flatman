@@ -4,7 +4,7 @@ class Api::NewsfeedController < Api::RestController
     around_filter :wrap_in_transaction, only: [:create, :destroy]
 
     def index
-        @newsfeed = generateNewsfeed(current_user)
+        @feed = generateNewsfeed(current_user)
     end
 
     def create
@@ -34,9 +34,13 @@ class Api::NewsfeedController < Api::RestController
     end
 
     def generateNewsfeed(user)
+        feed = OpenStruct.new({"length" => 0, "data" => []})
+
         from = Integer(ni_params[:from] || 0)
         to = Integer(ni_params[:to] || 10)  - from
-        newsitems = user.flat.newsitems.where(newsitem_id: nil).order(created_at: :desc).drop(from).take(to)
+        newsitems = user.flat.newsitems.where(newsitem_id: nil).order(created_at: :desc)
+        feed.length = newsitems.length()
+        newsitems = newsitems.drop(from).take(to)
         newsitems.each do |newsitem|
             newsitem.header = getHeader(newsitem)
             newsitem.text = getText(newsitem)
@@ -47,6 +51,8 @@ class Api::NewsfeedController < Api::RestController
                 comment.date = time_ago_in_words(comment.created_at)
             end
         end
+        feed.data = newsitems
+        feed
     end
     
     def getImageType(ni)
