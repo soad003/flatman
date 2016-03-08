@@ -94,7 +94,10 @@ angular.module('flatman', ['ngRoute',
       });
 
       hammerDefaultOptsProvider.set({
-          recognizers: [[Hammer.Tap, {time: 250}],[Hammer.Pan,{direction: Hammer.DIRECTION_ALL, threshold: 0 }], [Hammer.Swipe,{direction: Hammer.DIRECTION_ALL, threshold: 10 }]]
+          dragBlockHorizontal: true,
+          dragLockToAxis: true,
+          preventDefault: true,
+          recognizers: [[Hammer.Tap, {time: 250}],[Hammer.Pan,{direction: Hammer.DIRECTION_ALL, threshold: 10 }], [Hammer.Swipe,{direction: Hammer.DIRECTION_ALL, threshold: 0 }]]
       });
 
       $httpProvider.interceptors.push(function($q,$rootScope,Util) {
