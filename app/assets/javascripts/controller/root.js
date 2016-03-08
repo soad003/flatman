@@ -2,7 +2,7 @@ angular.module('flatman').controller("rootCtrl",function($scope,$rootScope,$wind
     $scope.Util=Util;
     $scope.error_type="danger";
     $rootScope.pending_status_requests=0;
-    $scope.online = navigator.onLine;
+    $scope.online = true;
 
     $scope.isLoading = function(){ return ($rootScope.pending_requests - $rootScope.pending_status_requests)>0; };
 
