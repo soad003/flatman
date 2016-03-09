@@ -3,7 +3,7 @@ class Newsitem < ActiveRecord::Base
     attr_accessor :header, :imagetype, :date, :link
 
     CATEGORIES = {message: 'message', useraction: 'useraction', shoppinglist: 'shoppinglist', shoppinglistitem: 'shoppinglistitem', todolist: 'todolist', todolistitem: 'todolistitem', resource: 'resourcelist', resourceitem: 'resourcelistitem', bill: 'bill', payment: 'payment'}
-    ACTIONS = {add: 'add', change: 'change', remove: 'remove'}
+    ACTIONS = {add: 'add', change: 'change', remove: 'remove', done: 'done'}
 
 
 	belongs_to              :user
@@ -43,6 +43,10 @@ class Newsitem < ActiveRecord::Base
     def self.deleteShoppinglist(shoppinglist, user)
         Newsitem.saveNewsitem(user, Newsitem::CATEGORIES[:shoppinglist], Newsitem::ACTIONS[:remove], nil, shoppinglist.name)
         Newsitem.clearShoppingListID(shoppinglist, user)
+    end
+
+    def self.ShoppingDone(shoppinglist, user)
+        Newsitem.saveNewsitem(user, Newsitem::CATEGORIES[:shoppinglist], Newsitem::ACTIONS[:done], nil, shoppinglist.name)
     end
 
     def self.clearShoppingListID(shoppinglist, user)
@@ -156,6 +160,7 @@ class Newsitem < ActiveRecord::Base
         if newsitem.isTodo() then return I18n.t('activerecord.newsitem.pushTodo', :name => newsitem.user.name) end
         if newsitem.isResource() then return I18n.t('activerecord.newsitem.pushResource', :name => newsitem.user.name) end
         if newsitem.isMessage() then return I18n.t('activerecord.newsitem.pushMessage', :name => newsitem.user.name) end
+        if newsitem.isUseraction() then return I18n.t('activerecord.newsitem.pushMatechange_' + newsitem.action, :name => newsitem.user.name) end
     end
 
     def self.push(newsitem)
@@ -182,6 +187,10 @@ class Newsitem < ActiveRecord::Base
 
     def self.sendPush(newsitem)
         true
+    end
+
+    def self.getNewsitemForPush(newsitem)
+        Newsitem.where(category: newsitem.category, flat: newsitem.user.flat, updated_at: (DateTime.current - 10.minutes) ..  DateTime.current).take
     end
 
 end

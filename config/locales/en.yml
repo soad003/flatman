@@ -155,6 +155,9 @@ en:
 
     newsitem:
       add                             : "added"
+      useraction_add                  : "joined"
+      shoppinglist_done               : "%{name} was shopping for %{name}."
+      useraction_remove               : "leaved"
       change                          : "updated"
       remove                          : "removed"
       shoppinglist                    : "%{action} the shoppinglist %{name}."
@@ -166,11 +169,16 @@ en:
       deletedList                     : "Unknown"
       matechange_remove               : " leaves your flat."
       matechange_add                  : " joins to your flat."
+      pushMatechange_remove           : "%{name} leaves your flat."
+      pushMatechange_add              : "%{name} joins to your flat."
       pushFinance                     : "%{name} edited the finances."
       pushShopping                    : "%{name} updated the shoppinglists."
       pushTodo                        : "%{name} updated the todolists."
       pushResource                    : "%{name} updated the resources."
       pushMessage                     : "%{name} sends a message."
+      pushUserAction                  : "%{name} %{action} your flat."
+
+
 
   buttons:
     confirmations:

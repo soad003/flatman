@@ -86,7 +86,9 @@ class Api::NewsfeedController < Api::RestController
     end
 
     def getHeader(ni)
-        if ni.isShoppingList() then
+        if ni.isShoppingList() and ni.action == Newsitem::ACTIONS[:done] then
+            return I18n.t('activerecord.newsitem.shoppinglist_done', :name => ni.text)
+        elsif ni.isShoppingList() then
             return I18n.t('activerecord.newsitem.shoppinglist', :name => ni.text, :action => I18n.t('activerecord.newsitem.' + ni.action))
         elsif ni.isShoppingListItem() then
             return I18n.t('activerecord.newsitem.shoppinglistitem', :items => ni.text, :list => getShoppingListName(ni.key, ni.user), :action => I18n.t('activerecord.newsitem.' + ni.action))
