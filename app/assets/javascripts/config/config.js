@@ -30,8 +30,8 @@ angular.module('flatman', ['ngRoute',
         controller: 'pinboardCtrl'
       }).
       when('/dashboard', {
-        templateUrl: '/templates/dashboard',
-        controller: 'dashboardCtrl'
+        templateUrl: '/templates/newsfeed',
+        controller: 'newsfeedCtrl'
       }).
       when('/newsfeed', {
         templateUrl: '/templates/newsfeed',
@@ -96,8 +96,20 @@ angular.module('flatman', ['ngRoute',
       hammerDefaultOptsProvider.set({
           dragBlockHorizontal: true,
           dragLockToAxis: true,
-          preventDefault: true,
-          recognizers: [[Hammer.Tap, {time: 250}],[Hammer.Pan,{direction: Hammer.DIRECTION_ALL, threshold: 10 }], [Hammer.Swipe,{direction: Hammer.DIRECTION_ALL, threshold: 0 }]]
+          preventDefault: false,
+          recognizers: [
+                    [Hammer.Swipe,{
+                                    direction: Hammer.DIRECTION_HORIZONTAL,
+                                    // threshold: 0,
+                                    // delta: 10,
+                                    // flickTreshold: 0.6,  
+                                    // drag_min_distance:1,
+                                    // swipe_velocity:0.1
+                                    dragBlockHorizontal: true,
+                                    dragLockToAxis: true,
+                                    preventDefault: false
+                                  }]
+                        ]
       });
 
       $httpProvider.interceptors.push(function($q,$rootScope,Util) {

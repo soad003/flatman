@@ -50,7 +50,7 @@
       </div>
     </div>
 
-    <div class="navbar navbar-default navbar-fixed-top navbar-inverse" role="navigation" hm-swipe-down="reload_view()" ng-cloak>
+    <div class="navbar navbar-default navbar-fixed-top navbar-inverse" role="navigation" ng-cloak>
       <div class="container-fluid">
         <div class="navbar-header">
           <% if is_user_ready_to_go %>
@@ -121,7 +121,7 @@
       </div>
     </div>
 
-    <div id="container" class="<%= content_for?(:no_container) ? "" : "container" %>" ng-cloak>
+    <div id="container" class="<%= content_for?(:no_container) ? "" : "container" %>" ng-cloak hm-swipe-left="go_right()" hm-swipe-right="go_left()">
       <section>
         <% flash.each do |key,message| %>
           <div class="alert alert-<%= key.to_s %> alert-dismissable auto-fadeout">
