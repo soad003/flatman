@@ -10,8 +10,9 @@ angular.module('flatman', ['ngRoute',
                             'checklist-model',
                             'focus-item',
                             'infinite-scroll',
-                            'iso.directives'])
-        .config(function($httpProvider, $routeProvider){
+                            'iso.directives',
+                            'angular-gestures'])
+        .config(function($httpProvider, $routeProvider, hammerDefaultOptsProvider){
 
   $httpProvider.defaults.headers.common = {'X-CSRF-Token': $("meta[name='csrf-token']").attr("content"),
                                           'Content-Type': 'application/json'};
@@ -29,8 +30,8 @@ angular.module('flatman', ['ngRoute',
         controller: 'pinboardCtrl'
       }).
       when('/dashboard', {
-        templateUrl: '/templates/dashboard',
-        controller: 'dashboardCtrl'
+        templateUrl: '/templates/newsfeed',
+        controller: 'newsfeedCtrl'
       }).
       when('/newsfeed', {
         templateUrl: '/templates/newsfeed',
@@ -90,6 +91,25 @@ angular.module('flatman', ['ngRoute',
       }).
       otherwise({
         redirectTo: '/newsfeed'
+      });
+
+      hammerDefaultOptsProvider.set({
+          dragBlockHorizontal: true,
+          dragLockToAxis: true,
+          preventDefault: false,
+          recognizers: [
+                    [Hammer.Swipe,{
+                                    direction: Hammer.DIRECTION_HORIZONTAL,
+                                    // threshold: 0,
+                                    // delta: 10,
+                                    // flickTreshold: 0.6,  
+                                    // drag_min_distance:1,
+                                    // swipe_velocity:0.1
+                                    dragBlockHorizontal: true,
+                                    dragLockToAxis: true,
+                                    preventDefault: false
+                                  }]
+                        ]
       });
 
       $httpProvider.interceptors.push(function($q,$rootScope,Util) {

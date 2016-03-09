@@ -1,9 +1,10 @@
-angular.module('flatman').controller("rootCtrl",function($scope,$rootScope,$timeout,$location,$route,Util,statusService){
+angular.module('flatman').controller("rootCtrl",function($scope,$rootScope,$window,$timeout,$location,$route,Util,statusService){
     $scope.Util=Util;
     $scope.error_type="danger";
-    $scope.pending_status_requests=0;
+    $rootScope.pending_status_requests=0;
+    $scope.online = true;
 
-    $scope.isLoading = function(){ return ($rootScope.pending_requests - $scope.pending_status_requests)>0; };
+    $scope.isLoading = function(){ return ($rootScope.pending_requests - $rootScope.pending_status_requests)>0; };
 
     $scope.isActive = function(route) {
         return route === $location.path();
@@ -14,6 +15,21 @@ angular.module('flatman').controller("rootCtrl",function($scope,$rootScope,$time
     };
 
     $scope.reload_view=function(){$route.reload();}
+
+    $scope.go_right=function(){Util.redirect_to.next_view($location.path());}
+    $scope.go_left=function(){Util.redirect_to.previous_view($location.path());}
+
+    $window.addEventListener("offline", function() {
+        $scope.$apply(function() {
+          $scope.online = false;
+        });
+      }, false);
+
+    $window.addEventListener("online", function() {
+        $scope.$apply(function() {
+          $scope.online = true;
+        });
+    }, false);
 
     // (function tick() {
     //     $scope.pending_status_requests++;
@@ -28,8 +44,8 @@ angular.module('flatman').controller("rootCtrl",function($scope,$rootScope,$time
     //     function(){ $scope.pending_status_requests--; });
     // })();
 
-    $scope.emitEvents=function(old_status,new_status) {
+    // $scope.emitEvents=function(old_status,new_status) {
         //$scope.$broadcast('message_count_changed', new_status);
-    };
+    // };
 
 });

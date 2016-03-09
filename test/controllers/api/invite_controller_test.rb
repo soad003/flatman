@@ -42,28 +42,4 @@ class Api::InviteControllerTest < ActionController::TestCase
     end
   end
 
-  test "create invite for user email already in flat" do
-    login_as_michi
-    user_with_flat_mail = users(:michi).email
-    assert_no_difference('Invite.count') do
-        post :create, {format: "json",email: user_with_flat_mail }
-    end
-    assert_response :unprocessable_entity
-  end
-
-  test "create invite for user email in system and without flat" do
-    login_as_michi
-    user_with_no_flat_mail = users(:niko).email
-    assert_no_difference('Invite.count') do
-        post :create, {format: "json",email: user_with_no_flat_mail }
-    end
-    assert_response :success
-    assert_json(@response.body) do
-      has 'already_registred' , true
-      has 'user'do
-        has 'name'
-        has 'id'
-      end
-    end
-  end
 end

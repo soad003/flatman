@@ -22,6 +22,12 @@ class User < ActiveRecord::Base
         find_by(id: id, flat_id: flat.id)
     end
 
+    def logout(is_app_user)
+        #self.oauth_token = nil
+        self.device_token = nil if is_app_user
+        self.save!
+    end
+
     def self.from_omniauth(auth)
         where(provider: auth.provider, uid: auth.uid).first_or_initialize.tap do |user|
             user.provider = auth.provider

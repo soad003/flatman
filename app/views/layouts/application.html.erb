@@ -33,6 +33,16 @@
       </div>
     </div>
 
+    <!-- overlay offline -->
+<!--     <div ng-show="!online && !isLoading()">
+      <div class="loading-overlay">
+        <span class="fa-stack fa-5x loading-overlay-centered">
+          <i class="fa fa-wifi fa-stack-1x"></i>
+          <i class="fa fa-ban fa-stack-2x text-danger"></i>
+        </span>
+      </div>
+    </div>
+ -->
     <!-- loading overlay for small devices -->
     <div ng-show="isLoading()">
       <div class="visible-xs loading-overlay">
@@ -68,19 +78,19 @@
           <div class="navbar-collapse collapse no-transition">
             <ul class="nav navbar-nav">
               <li ng-class="{active:isActive('/newsfeed')}">
-                <a href="/#/newsfeed" ><span class="fa fa-dashboard"></span> <%=t(".navbar.newsfeed")%></a>
+                <a href="/#/newsfeed" ><span class="fa fa-dashboard fa-fw fa-lg"></span>  <%=t(".navbar.newsfeed")%></a>
               </li>
               <li ng-class="{active:isActive('/shopping')}">
-                <a href="/#/shopping"><span class="glyphicon glyphicon-shopping-cart"></span>  <%=t(".navbar.shopping")%></a>
+                <a href="/#/shopping"><span class="fa fa-shopping-cart fa-fw fa-lg"></span>  <%=t(".navbar.shopping")%></a>
               </li>
               <li ng-class="{active:isActive('/todo')}">
-                <a href="/#/todo"><span class="fa fa-list-alt"></span>  <%=t(".navbar.pinboard")%></a>
+                <a href="/#/todo"><span class="fa fa-list-alt fa-fw fa-lg"></span>  <%=t(".navbar.pinboard")%></a>
               </li>
               <li ng-class="{active:isActive('/finances')}">
-                <a href="/#/finances"><span class="fa fa-bitcoin"></span> <%=t(".navbar.finances")%></a>
+                <a href="/#/finances"><span class="fa fa-bitcoin fa-fw fa-lg"></span>  <%=t(".navbar.finances")%></a>
               </li>
               <li ng-class="{active:isActive('/resources')}">
-                <a href="/#/resources"><span class="glyphicon glyphicon-globe"></span>  <%=t(".navbar.resources")%></a>
+                <a href="/#/resources"><span class="fa fa-globe fa-fw fa-lg"></span>  <%=t(".navbar.resources")%></a>
               </li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
@@ -92,17 +102,17 @@
               </li>
               <li class="dropdown">
                 <a href="" class="dropdown-toggle" data-toggle="dropdown">
-                  <span class="glyphicon glyphicon-user"></span> <%=current_user.name%> <b class="caret"></b>
+                  <span class="fa fa-user fa-lg fa-fw"></span> <%=current_user.name%> <b class="caret"></b>
                 </a>
                 <ul class="dropdown-menu">
                   <li ng-class="{active:isActive('/flat_settings')}">
-                    <a href="/#/flat_settings"><span class="glyphicon glyphicon-wrench"></span> <%=t(".navbar.flat_settings")%></a>
+                    <a href="/#/flat_settings"><span class="fa fa-wrench fa-fw fa-lg"></span> <%=t(".navbar.flat_settings")%></a>
                   </li>
                   <li ng-class="{active:isActive('/user_settings')}">
-                    <a href="/#/user_settings"><span class="glyphicon glyphicon-cog"></span> <%=t(".navbar.user_settings")%></a>
+                    <a href="/#/user_settings"><span class="fa fa-cog fa-fw fa-lg"></span> <%=t(".navbar.user_settings")%></a>
                   </li>
                   <li class="divider"></li>
-                  <li><a href="/signout"><span class="glyphicon glyphicon-off"></span> <%=t("misc.titles.logout")%></a></li>
+                  <li><a href="/signout"><span class="fa fa-power-off fa-fw fa-lg"></span> <%=t("misc.titles.logout")%></a></li>
                 </ul>
               </li>
             </ul>
@@ -111,7 +121,7 @@
       </div>
     </div>
 
-    <div id="container" class="<%= content_for?(:no_container) ? "" : "container" %>" ng-cloak>
+    <div id="container" class="<%= content_for?(:no_container) ? "" : "container" %>" ng-cloak hm-swipe-left="go_right()" hm-swipe-right="go_left()">
       <section>
         <% flash.each do |key,message| %>
           <div class="alert alert-<%= key.to_s %> alert-dismissable auto-fadeout">
