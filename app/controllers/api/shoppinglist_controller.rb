@@ -27,6 +27,11 @@ class Api::ShoppinglistController < Api::RestController
         respond_with(nil)
     end
 
+    def was_shopping
+        #Newsitem
+        delete_checked
+    end
+
 
     private
         # Never trust parameters from the scary internet, only allow the white list through.

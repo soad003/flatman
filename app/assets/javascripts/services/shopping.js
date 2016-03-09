@@ -10,6 +10,10 @@ angular.module('flatman').factory("shoppingService",function($resource) {
                         {
                             'destroy_checked': {method: "DELETE"}
                         });
+    var wasShoppingService = $resource('/api/shoppinglist/:id/was_shopping',{},
+                    {
+                            'was_shopping': {method: "DELETE"}
+                    });
     var itemService = $resource('/api/shoppinglist/:l_id/shoppingitem/:id',{},
                         {
                             'create': {method: "POST"},
@@ -27,6 +31,9 @@ angular.module('flatman').factory("shoppingService",function($resource) {
             },
             destroy_checked: function(list_id,succH,errH){
                 listDeleteCheckedService.destroy_checked({id: list_id},succH,errH);
+            },
+            was_shopping: function(list_id,succH,errH){
+                wasShoppingService.was_shopping({id: list_id},succH,errH);
             },
             get_item_count: function(lists){
                 return _(lists).reduce(function(memo, l){ return memo + _(l.items).filter(function(item){return !item.checked;}).length; }, 0);
