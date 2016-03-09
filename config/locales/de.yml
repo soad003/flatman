@@ -164,13 +164,15 @@ de:
       todolist                        : "hat die Todoliste %{name} %{action}."
       matechange_remove               : "ist ausgezogen."
       matechange_add                  : "ist eingezogen."
-      pushMatechange_remove               : "%{name} ist ausgezogen."
-      pushMatechange_add                  : "%{name} ist eingezogen."
+      pushMatechange_remove           : "%{name} ist ausgezogen."
+      pushMatechange_add              : "%{name} ist eingezogen."
       pushFinance                     : "%{name} hat die Finanzen bearbeitet."
       pushShopping                    : "%{name} hat die Einkauflisten verändert."
       pushTodo                        : "%{name} hat die Todolisten bearbeitet."
       pushResource                    : "%{name} hat die Strom/Gas Zähler bearbeitet."
       pushMessage                     : "%{name} hat dir eine Nachricht geschrieben."
+      pushComment                     : "%{name} hat etwas kommentiert."
+
 
 
   buttons:

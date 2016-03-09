@@ -177,6 +177,7 @@ en:
       pushResource                    : "%{name} updated the resources."
       pushMessage                     : "%{name} sends a message."
       pushUserAction                  : "%{name} %{action} your flat."
+      pushComment                     : "%{name} commented something."
 
 
 
