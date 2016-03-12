@@ -2,7 +2,7 @@ class Newsitem < ActiveRecord::Base
 
     attr_accessor :header, :imagetype, :date, :link
 
-    CATEGORIES = {message: 'message', useraction: 'useraction', shoppinglist: 'shoppinglist', shoppinglistitem: 'shoppinglistitem', todolist: 'todolist', todolistitem: 'todolistitem', resource: 'resourcelist', resourceitem: 'resourcelistitem', bill: 'bill', payment: 'payment'}
+    CATEGORIES = {message: 'message', comment: 'comment', useraction: 'useraction', shoppinglist: 'shoppinglist', shoppinglistitem: 'shoppinglistitem', todolist: 'todolist', todolistitem: 'todolistitem', resource: 'resourcelist', resourceitem: 'resourcelistitem', bill: 'bill', payment: 'payment'}
     ACTIONS = {add: 'add', change: 'change', remove: 'remove', done: 'done'}
 
 
@@ -25,6 +25,7 @@ class Newsitem < ActiveRecord::Base
     def isResourceListItem()        self[:category] == Newsitem::CATEGORIES[:resourcelistitem]      end
     def isResource()                self.isResourceList() || self.isResourceListItem()              end
     def isMessage()                 self[:category] == Newsitem::CATEGORIES[:message]               end
+    def isComment()                 self[:category] == Newsitem::CATEGORIES[:comment]               end
     def isUseraction()              self[:category] == Newsitem::CATEGORIES[:useraction]            end
 
     def self.destroy_with_user_constraint(id, user)
@@ -37,16 +38,16 @@ class Newsitem < ActiveRecord::Base
     end
 
     def self.createShoppinglist(shoppinglist, user)
-        Newsitem.saveNewsitem(user, Newsitem::CATEGORIES[:shoppinglist], Newsitem::ACTIONS[:add], shoppinglist.id, shoppinglist.name)
+        Newsitem.saveNewsitem(user, Newsitem::CATEGORIES[:shoppinglist], Newsitem::ACTIONS[:add], shoppinglist.id, shoppinglist.name, nil)
     end
 
     def self.deleteShoppinglist(shoppinglist, user)
-        Newsitem.saveNewsitem(user, Newsitem::CATEGORIES[:shoppinglist], Newsitem::ACTIONS[:remove], nil, shoppinglist.name)
+        Newsitem.saveNewsitem(user, Newsitem::CATEGORIES[:shoppinglist], Newsitem::ACTIONS[:remove], nil, shoppinglist.name, nil)
         Newsitem.clearShoppingListID(shoppinglist, user)
     end
 
     def self.ShoppingDone(shoppinglist, user)
-        Newsitem.saveNewsitem(user, Newsitem::CATEGORIES[:shoppinglist], Newsitem::ACTIONS[:done], nil, shoppinglist.name)
+        Newsitem.saveNewsitem(user, Newsitem::CATEGORIES[:shoppinglist], Newsitem::ACTIONS[:done], nil, shoppinglist.name, nil)
     end
 
     def self.clearShoppingListID(shoppinglist, user)
@@ -56,7 +57,7 @@ class Newsitem < ActiveRecord::Base
     def self.createShoppinglistitem(shoppinglistitem, user)
         newsitem = Newsitem.getNewsitem(shoppinglistitem.shoppinglist.id, Newsitem::CATEGORIES[:shoppinglistitem], Newsitem::ACTIONS[:add], user)
         if newsitem.nil? then
-            Newsitem.saveNewsitem(user, Newsitem::CATEGORIES[:shoppinglistitem], Newsitem::ACTIONS[:add], shoppinglistitem.shoppinglist.id, shoppinglistitem.name)
+            Newsitem.saveNewsitem(user, Newsitem::CATEGORIES[:shoppinglistitem], Newsitem::ACTIONS[:add], shoppinglistitem.shoppinglist.id, shoppinglistitem.name, nil)
         else
             newsitem.text = (newsitem.text  + ", " + shoppinglistitem.name).strip
             newsitem.save!
@@ -64,11 +65,11 @@ class Newsitem < ActiveRecord::Base
     end
 
     def self.createTodolist(todolist, user)
-        Newsitem.saveNewsitem(user, Newsitem::CATEGORIES[:todolist], Newsitem::ACTIONS[:add], todolist.id, todolist.name)
+        Newsitem.saveNewsitem(user, Newsitem::CATEGORIES[:todolist], Newsitem::ACTIONS[:add], todolist.id, todolist.name, nil)
     end
 
     def self.deleteTodolist(todolist, user)
-        Newsitem.saveNewsitem(user, Newsitem::CATEGORIES[:todolist], Newsitem::ACTIONS[:remove], nil, todolist.name)
+        Newsitem.saveNewsitem(user, Newsitem::CATEGORIES[:todolist], Newsitem::ACTIONS[:remove], nil, todolist.name, nil)
         Newsitem.clearTodoListID(todolist, user)
     end
 
@@ -79,7 +80,7 @@ class Newsitem < ActiveRecord::Base
     def self.createTodolistitem(todolistitem, user)
         newsitem = Newsitem.getNewsitem(todolistitem.todo.id, Newsitem::CATEGORIES[:todolistitem], Newsitem::ACTIONS[:add], user)
         if newsitem.nil? then
-            Newsitem.saveNewsitem(user, Newsitem::CATEGORIES[:todolistitem], Newsitem::ACTIONS[:add], todolistitem.todo.id, todolistitem.name)
+            Newsitem.saveNewsitem(user, Newsitem::CATEGORIES[:todolistitem], Newsitem::ACTIONS[:add], todolistitem.todo.id, todolistitem.name, nil)
         else
             newsitem.text = (newsitem.text  + ", " + todolistitem.name).strip
             newsitem.save!
@@ -96,52 +97,45 @@ class Newsitem < ActiveRecord::Base
             newsitem.text = (newsitem.text  + "\n" + text).strip
             newsitem.save!
         else
-           Newsitem.saveNewsitem(user, Newsitem::CATEGORIES[:message], Newsitem::ACTIONS[:add], nil, text)
+           Newsitem.saveNewsitem(user, Newsitem::CATEGORIES[:message], Newsitem::ACTIONS[:add], nil, text, nil)
         end
     end
 
     def self.createComment(text, newsitem_id, user)
-        comment= Newsitem.new()
-        comment.flat = user.flat
-        comment.user = user
-        comment.text = text
-        comment.newsitem_id = newsitem_id
-        comment.category = Newsitem::CATEGORIES[:message]
-        comment.action = Newsitem::ACTIONS[:add]
-        comment.save!
+        comment = Newsitem.saveNewsitem(user, Newsitem::CATEGORIES[:comment], Newsitem::ACTIONS[:add], nil, text, newsitem_id)
         comment.date = time_ago_in_words(comment.created_at)
         comment
     end
 
     def self.createBill(bill, user)
-        Newsitem.saveNewsitem(user, Newsitem::CATEGORIES[:bill], Newsitem::ACTIONS[:add], bill.id, bill.text)
+        Newsitem.saveNewsitem(user, Newsitem::CATEGORIES[:bill], Newsitem::ACTIONS[:add], bill.id, bill.text, nil)
     end
 
     def self.updateBill(bill, user)
-        Newsitem.saveNewsitem(user, Newsitem::CATEGORIES[:bill], Newsitem::ACTIONS[:change], bill.id, bill.text)
+        Newsitem.saveNewsitem(user, Newsitem::CATEGORIES[:bill], Newsitem::ACTIONS[:change], bill.id, bill.text, nil)
     end
 
     def self.deleteBill(bill, user)
-        Newsitem.saveNewsitem(user, Newsitem::CATEGORIES[:bill], Newsitem::ACTIONS[:remove], nil, bill.text)
+        Newsitem.saveNewsitem(user, Newsitem::CATEGORIES[:bill], Newsitem::ACTIONS[:remove], nil, bill.text, nil)
     end
 
     def self.createPayment(payment, user)
-        Newsitem.saveNewsitem(user, Newsitem::CATEGORIES[:payment], Newsitem::ACTIONS[:add], payment.id, payment.payer.name)
+        Newsitem.saveNewsitem(user, Newsitem::CATEGORIES[:payment], Newsitem::ACTIONS[:add], payment.id, payment.payer.name, nil)
     end
 
     def self.deletePayment(payment, user)
-        Newsitem.saveNewsitem(user, Newsitem::CATEGORIES[:payment], Newsitem::ACTIONS[:remove], nil, payment.payer.name)
+        Newsitem.saveNewsitem(user, Newsitem::CATEGORIES[:payment], Newsitem::ACTIONS[:remove], nil, payment.payer.name, nil)
     end
 
     def self.deleteUser(user)
-        Newsitem.saveNewsitem(user, Newsitem::CATEGORIES[:useraction], Newsitem::ACTIONS[:remove], nil, nil)
+        Newsitem.saveNewsitem(user, Newsitem::CATEGORIES[:useraction], Newsitem::ACTIONS[:remove], nil, nil, nil)
     end
 
     def self.addUser(user)
-        Newsitem.saveNewsitem(user, Newsitem::CATEGORIES[:useraction], Newsitem::ACTIONS[:add], nil, nil)
+        Newsitem.saveNewsitem(user, Newsitem::CATEGORIES[:useraction], Newsitem::ACTIONS[:add], nil, nil, nil)
     end
 
-    def self.saveNewsitem(user, category, action, key, text)
+    def self.saveNewsitem(user, category, action, key, text, newsitem_id)
         ni=Newsitem.new()
         ni.user = user
         ni.flat = user.flat
@@ -149,8 +143,10 @@ class Newsitem < ActiveRecord::Base
         ni.action = action
         ni.key = key if !key.nil?
         ni.text = text if !text.nil?
+        ni.newsitem_id = newsitem_id if !newsitem_id.nil?
         ni.save!
         Newsitem.push(ni)
+        ni
     end
 
     def self.getPushMessage(newsitem, locale)
@@ -160,6 +156,7 @@ class Newsitem < ActiveRecord::Base
         if newsitem.isTodo() then return I18n.t('activerecord.newsitem.pushTodo', :name => newsitem.user.name) end
         if newsitem.isResource() then return I18n.t('activerecord.newsitem.pushResource', :name => newsitem.user.name) end
         if newsitem.isMessage() then return I18n.t('activerecord.newsitem.pushMessage', :name => newsitem.user.name) end
+        if newsitem.isComment() then return I18n.t('activerecord.newsitem.pushComment', :name => newsitem.user.name) end
         if newsitem.isUseraction() then return I18n.t('activerecord.newsitem.pushMatechange_' + newsitem.action, :name => newsitem.user.name) end
     end
 
