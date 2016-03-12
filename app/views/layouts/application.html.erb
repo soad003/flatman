@@ -44,26 +44,21 @@
       <div class="container-fluid">
         <div class="navbar-header">
           <% if is_user_ready_to_go %>
-
-           <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-            <span class="sr-only">Toggle navigation</span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </button>
-          <button type="button" class="btn btn-default navbar-btn pull-right visible-sm visible-xs" ng-click="reload_view()" style="margin-right:10px">
-            <span class="fa fa-refresh fa-lg" ></span>
-          </button>
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+              <span class="sr-only">Toggle navigation</span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+            <button type="button" class="btn btn-default navbar-btn pull-right visible-sm visible-xs" ng-click="reload_view()" style="margin-right:10px">
+              <span class="fa fa-refresh fa-lg" ></span>
+            </button>
+          <%end%>
+          <% if not is_user_ready_to_go and logged_in %>
+            <a href="/signout" class="btn btn-default navbar-btn pull-right visible-sm visible-xs"><span class="glyphicon glyphicon-off"></span> <%=t("misc.titles.logout")%></a>
           <%end%>
           <a class="navbar-brand" href="/#/newsfeed"><%= image_tag("flatman_logo_30.png", width: 30) %> flatman</a>
         </div>
-        <% if not is_user_ready_to_go and logged_in %>
-          <ul class="nav navbar-nav pull-right">
-              <li>
-                <a href="/signout"><span class="glyphicon glyphicon-off"></span> <%=t("misc.titles.logout")%></a>
-              </li>
-          </ul>
-        <% end %>
         <% if is_user_ready_to_go %>
           <div class="navbar-collapse collapse no-transition">
             <ul class="nav navbar-nav">

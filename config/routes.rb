@@ -36,7 +36,8 @@ scope "(:locale)", locale: /en|de/ do
       put '/', to: :create
       post '/', to: :update
       get '/mates', to: :flat_mates
-      post '/leave_flat', to: :leave_flat
+      delete '/user', to: :leave_flat
+      put '/user', to: :join_flat
    end
 
    #user

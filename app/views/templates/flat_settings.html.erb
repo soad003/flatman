@@ -89,6 +89,15 @@
                 </button>
               </span>
             </div>
+            <hr>
+            <div class="form-group">
+               <label class="control-label" for="token"><%= t('.share_flat_id') %></label>
+               <input type="text" class="form-control"
+                      ng-model="flat.token"
+                      maxlength="100"
+                      id="token"
+                      title="<%= t('.share_flat_id_description') %>" disabled>
+            </div>
           </form>
       </div>
     </div>

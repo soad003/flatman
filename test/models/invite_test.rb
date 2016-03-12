@@ -49,16 +49,5 @@ class InviteTest < ActiveSupport::TestCase
      end
     end
 
-    test "should not be possible to make multiple invites for same email" do
-     wg_michi_inv = invites(:wg_michi_one)
-     inv = Invite.new
-     inv.email=wg_michi_inv.email
-     inv.flat=flats(:wg_michi)
-
-     assert_raises(ActiveRecord::StatementInvalid,ActiveRecord::RecordNotUnique) do
-       inv.save
-     end
-
-    end
 
 end

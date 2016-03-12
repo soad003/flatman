@@ -34,6 +34,9 @@ de:
         already_in_flat                   : "Dein User ist schon in einer WG"
       leave_flat:
         balance_not_zero                  : "Deine Schulden sind noch nicht getilgt, bitte begleiche deine Schulden bevor du aussteigst."
+      join_flat:
+        flat_key_not_found                : "It seems that there is something wrong with your flat key..."
+        already_in_flat                   : "Dein User ist schon in einer WG"
     invite:
       create:
         already_in_flat                   : "Dein User ist schon in einer anderen WG eingetragen"
@@ -57,10 +60,7 @@ de:
       subject                             : "Du wurdest bei flatman eingeladen"
       heading                             : "Jemand hat dich zu einer WG hinzugefügt"
       text                                : "Um beizutreten klicke"
-    added_to_flat:
-      subject                             : "Du wurdest zu einer WG hinzugefügt"
-      heading                             : "Du wurdest zu einer WG hinzugefügt"
-      text                                : "Du wurdest zu einer WG hinzugefügt"
+      text2                               : "Oder nutze den folgenden WG Schlüssel um nach dem ersten login bei der WG einzusteigen: "
 
   activerecord:
     errors:
@@ -361,12 +361,14 @@ de:
       street                             : "Straße"
       street_placeholder                 : "Doestreet 10"
       members                            : "WG Bewohner"
-      invites                            : "Einladungen"
+      invites                            : "Freunde einladen"
       email                              : "Email"
       save_btn                           : "speichern"
       leave                              : "WG verlassen"
       actions                            : "aktionen"
-      conf_leave_flat                     : "Bist du dir sicher, dass du die WG verlassen willst?"
+      conf_leave_flat                    : "Bist du dir sicher, dass du die WG verlassen willst?"
+      share_flat_id                      : "Oder gib ihnen diesen Schlüssel" 
+      share_flat_id_description          : "Mit Ihm können sie dann deiner WG beitreten!"
     finances:
       page_title                         : "Finanzen"
       page_header                        : "Finanzstatus"
@@ -498,7 +500,7 @@ de:
       subtitle                           : "Willkommen bei"
       title                              : "Flatman"
       description1                       : "Du bist momentan noch keiner WG zugeordnet!"
-      description2                       : "Du kannst entweder eine erstellen oder"
+      description2                       : "Du kannst entweder eine erstellen, per schlüssel einer beitreten oder"
       description3                       : "warten bis du von deinen Mitbewohnern hinzufügt wirst."
       name_label                         : "Name"
       name_placeholder                   : "Wayne Manor"
@@ -511,6 +513,9 @@ de:
       create_flat                        : "WG erstellen!"
       invites                            : "Lade WG mitglieder ein"
       email                              : "email deines WG buddys"
+      flat_key_placeholder               : "Kauderwelsch"
+      flat_key                           : "WG Schlüssel"
+      join_flat                          : "WG beitreten!" 
 
   session:
     index:

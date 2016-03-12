@@ -1,4 +1,6 @@
 class Flat < ActiveRecord::Base
+    include Tokenable
+
 	has_many	:users
 	has_many 	:billcategories
 	has_many 	:shareditems , -> { order 'name asc' }
@@ -8,7 +10,7 @@ class Flat < ActiveRecord::Base
     has_many    :invites
     has_many    :bills
     has_many    :newsitems
-    validates   :name,  presence: true #:street, :city, :zip,
+    validates   :name, :token, presence: true #:street, :city, :zip,
     #geocoded_by :full_street_address
     #after_validation :geocode
 
@@ -34,5 +36,9 @@ class Flat < ActiveRecord::Base
         nf.save!
         nf.add_user(user)
         nf
+    end
+
+    def self.find_by_token(token)
+        find_by token: token
     end
 end

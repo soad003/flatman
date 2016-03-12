@@ -1,3 +1,4 @@
 <h2><%= t('.heading') %> <%= h(@flat_name)%></h2>
 
 <p><%= t('.text') %> <%=link_to t('misc.titles.here'),  :controller => "session", :action => "join", :only_path => false, :token => @token %>.</p>
+<p><%= t('.text2') %> <b><%= h(@flat_token)%></b></p>

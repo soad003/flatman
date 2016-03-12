@@ -2,7 +2,7 @@ class Invite < ActiveRecord::Base
 	include Tokenable
 
     validates   :email, :format => { :with => /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i }
-    validates   :flat, presence: true
+    validates   :flat, :token, presence: true
     belongs_to  :flat
 
     def self.create_invite_from_email(email, current_user)

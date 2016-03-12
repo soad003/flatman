@@ -34,6 +34,9 @@ en:
         already_in_flat                   : "Your user already belongs to a flat"
       leave_flat:
         balance_not_zero                  : "Your balance is not zero. Please pay your depts before you leave the flat."
+      join_flat:
+        flat_key_not_found                : "It seems that there is something wrong with your flat key..."
+        already_in_flat                   : "Your user already belongs to a flat"
     invite:
       create:
         already_in_flat                   : "The user(email) already belongs to an other flat"
@@ -57,10 +60,7 @@ en:
       subject                             : "You have been invited to flatman"
       heading                             : "You have been invited to the flat"
       text                                : "To join click"
-    added_to_flat:
-      subject                             : "You have been added to a flat"
-      heading                             : "You have been added to the flat"
-      text                                : "You have been added to the flat"
+      text2                               : "Or use the following flat key after your first login: "
 
   activerecord:
     errors:
@@ -365,12 +365,14 @@ en:
       street                             : "street"
       street_placeholder                 : "Doestreet 10"
       members                            : "flat members"
-      invites                            : "invite flat member"
+      invites                            : "invite new flat members"
       email                              : "email"
       save_btn                           : "save"
       leave                              : "leave flat"
       actions                            : "actions"
-      conf_leave_flat                     : "Are you sure you want to leave the flat?"
+      conf_leave_flat                    : "Are you sure you want to leave the flat?"
+      share_flat_id                      : "Or give them this key" 
+      share_flat_id_description          : "they can use it to join your flat!"
     finances:
       page_title                         : "Finances"
       page_header                        : "Finances"
@@ -502,8 +504,8 @@ en:
       subtitle                           : "Welcome to"
       title                              : "Flatman"
       description1                       : "You are currently not member of a flat!"
-      description2                       : "You can either create one or"
-      description3                       : "just wait until you get assigned to one by your roommates"
+      description2                       : "You can either create one, join it via the secret flat key or"
+      description3                       : "just wait until you get assigned to one by your roommates."
       name_label                         : "name"
       name_placeholder                   : "Wayne Manor"
       street_label                       : "street"
@@ -515,7 +517,9 @@ en:
       create_flat                        : "create a flat!"
       invites                            : "Invite some flat mates"
       email                              : "email of your mate"
-
+      flat_key_placeholder               : "gibberish"
+      flat_key                           : "Flat Key"
+      join_flat                          : "Join Flat!" 
   session:
     index:
       page_title                         : "Please sign in"

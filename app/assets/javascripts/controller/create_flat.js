@@ -6,6 +6,13 @@ angular.module('flatman').controller("createFlatCtrl",function($scope,flatServic
         });
     };
 
+    $scope.join_flat=function(){
+        flatService.user.join_flat($scope.newFlat.token, function(){
+            $scope.newFlat ={};
+            location.href="/"; //real page reload to get all menues
+        });
+    };
+
     $scope.add_invite=function(){
         $scope.newFlat.invites.push($scope.invite_email);
     };

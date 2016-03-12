@@ -47,6 +47,16 @@
 
         <button class="btn btn-lg btn-success" ng-click="create_flat()"><%=t(".create_flat")%></button>
 
+        <hr>
+        
+        <div class="form-group">
+          <label class="control-label" for="flat_id"><%=t(".flat_key")%></label>
+          <div>
+            <input id="flat_id" ng-model="newFlat.token" type="text" placeholder="<%=t(".flat_key_placeholder")%>" >
+          </div>
+        </div>
+
+        <button class="btn btn-lg btn-success" ng-click="join_flat()"><%=t(".join_flat")%></button>
 
     </div>
   </div>

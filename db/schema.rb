@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160307183428) do
+ActiveRecord::Schema.define(version: 20160312151351) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -49,6 +49,7 @@ ActiveRecord::Schema.define(version: 20160307183428) do
     t.datetime "updated_at"
     t.float    "latitude"
     t.float    "longitude"
+    t.string   "token"
   end
 
   add_index "flats", ["name"], name: "index_flats_on_name", unique: true, using: :btree
@@ -61,7 +62,7 @@ ActiveRecord::Schema.define(version: 20160307183428) do
     t.string   "token"
   end
 
-  add_index "invites", ["email"], name: "index_invites_on_email", unique: true, using: :btree
+  add_index "invites", ["email"], name: "index_invites_on_email", using: :btree
 
   create_table "messages", force: true do |t|
     t.integer  "sender_id"
