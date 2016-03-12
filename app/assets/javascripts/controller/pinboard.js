@@ -114,11 +114,10 @@ angular.module('flatman').controller("pinboardCtrl",function($scope,$q,$location
     };
 
     $scope.done_shopping=function(list){
-        get_service(list).list.was_shopping(list.id, function(data){
+        shoppingService.list.was_shopping(list.id, function(data){
             list.items= _(list.items).reject(function(i){ return i.checked});
         });
-
-        Util.redirect_to.finances_done_shopping(list.name);
+        Util.redirect_to.finances_done_shopping(list.name + ": " + shoppingService.list.get_summary_string(list,true,150));
     };
 
     load_data().then(insert_data); 

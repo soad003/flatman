@@ -22,6 +22,15 @@ class User < ActiveRecord::Base
         find_by(id: id, flat_id: flat.id)
     end
 
+    def set_device(device_token)
+      User.where(device_token: device_token).to_a.each do |user|
+                                                          user.device_token = nil
+                                                          user.save!
+                                                        end
+      current_user.device_token=device_token
+      current_user.save!
+    end
+
     def logout(is_app_user)
         #self.oauth_token = nil
         self.device_token = nil if is_app_user

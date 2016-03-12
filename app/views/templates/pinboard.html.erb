@@ -72,7 +72,7 @@
 
 <div class="row">
   <ul id="isotopeContainer" isotope-container ng-cloak class="ng-cloak list-unstyled">
-    <li class="col-md-4 col-sm-6" ng-repeat="list in bla = (lists | filter: {type: filter_type}) track by track_via(list)" isotope-item>
+    <li class="col-md-4 col-sm-6 col-xs-12" ng-repeat="list in bla = (lists | filter: {type: filter_type}) track by track_via(list)" isotope-item>
         <div class="panel panel-{{get_color($index)}}">
             <div class="panel-heading mobile-font-size">
                 <div class="form-group">
@@ -82,15 +82,14 @@
                         {{list.name}} 
                     </strong>
                     <div class="btn-group pull-right">
+                      <button ng-hide="is_todo(list)" type="button" class="btn btn-link btn-xs"  ng-click="done_shopping(list)" title="<%= t(".done") %>">
+                          <span class="fa fa-credit-card"></span> 
+                      </button>
                       <button type="button" class="btn btn-link dropdown-toggle btn-xs" data-toggle="dropdown">
                         <span class="fa fa-ellipsis-v fa-lg"></span>
                       </button>
+
                       <ul class="dropdown-menu">
-                        <li ng-hide="is_todo(list)">
-                          <a href="" ng-click="done_shopping(list)">
-                            <span class="fa fa-credit-card"></span> <%= t(".done") %>
-                          </a>
-                        </li>
                         <li>
                           <a href="" ng-click="delete_checked(list)"><i class="fa fa-eraser"></i> <%= t(".delete_checked") %></a>
                         </li>

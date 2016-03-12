@@ -31,7 +31,7 @@ angular.module('flatman').controller("financeEntryCtrl", function($scope,$routeP
                                  value:"",
                                  date:new Date(),
                                  user_id:2,
-                                 cat_name:$routeParams.list,
+                                 cat_name:$routeParams.list.split(":")[0],
                                  user_ids: _(data).map(function(i){return i.id; })
                          };
             userService.get().$promise.then(function(data){$scope.finTmp.user_id = data.id});

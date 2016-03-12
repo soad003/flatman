@@ -155,22 +155,30 @@ en:
 
     newsitem:
       add                             : "added"
+      useraction_add                  : "joined"
+      shoppinglist_done               : " bought some stuff from the shopping list %{name}."
+      useraction_remove               : "leaved"
       change                          : "updated"
       remove                          : "removed"
-      shoppinglist                    : "%{action} the shoppinglist %{name}."
+      shoppinglist                    : "%{action} the shopping list %{name}."
       bill                            : "%{action} the bill %{name}."
-      payment                         : "%{action} a payment from %{name}."
-      shoppinglistitem                : "%{action} %{items} to the shoppinglist %{list}."
-      todolistitem                    : "%{action} %{items} to the todolist %{list}."
-      todolist                        : "%{action} the todolist %{name}."
+      payment                         : "%{action}  a payment from %{name}."
+      shoppinglistitem                : "%{action} %{items} to the shopping list %{list}."
+      todolistitem                    : "%{action} %{items} to the todo list %{list}."
+      todolist                        : "%{action} the todo list %{name}."
       deletedList                     : "Unknown"
-      matechange_remove               : " left your flat."
-      matechange_add                  : " joined your flat."
+      matechange_remove               : " has left your flat."
+      matechange_add                  : " joined to your flat."
+      pushMatechange_remove           : "%{name} has left your flat."
+      pushMatechange_add              : "%{name} joined your flat."
       pushFinance                     : "%{name} edited the finances."
-      pushShopping                    : "%{name} updated a shoppinglist."
-      pushTodo                        : "%{name} updated a todolist."
+      pushShopping                    : "%{name} updated a shopping list."
+      pushTodo                        : "%{name} updated a todo list."
       pushResource                    : "%{name} updated a resource."
-      pushMessage                     : "%{name} sent you message."
+      pushMessage                     : "%{name} sent a message."
+      pushUserAction                  : "%{name} %{action} your flat."
+
+
 
   buttons:
     confirmations:
@@ -462,7 +470,7 @@ en:
       help_paragraph1                    : "Use the textbox above to add a list, after that you can add/delete items ... "
       help_paragraph2                    : "If you are done with shopping just click ... to enter your bill and you are done!"
       delete_list                        : "delete list"
-      done                               : "enter payment"
+      done                               : "was shopping"
       delete_checked                     : "delete checked items"
     pinboard:
       page_header                        : "Pinboard"
@@ -483,7 +491,7 @@ en:
       help_paragraph1_todo               : "Create todos for your Flat, easy as that ... "
       help_paragraph2_todo               : ""
       delete_list                        : "delete list"
-      done                               : "enter payment"
+      done                               : "done some shopping"
       delete_checked                     : "delete checked items"
       todo                               : "Todo"
       create_todo                        : "Give a name to your new todo list!"

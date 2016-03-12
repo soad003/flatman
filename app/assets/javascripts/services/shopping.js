@@ -38,9 +38,10 @@ angular.module('flatman').factory("shoppingService",function($resource) {
             get_item_count: function(lists){
                 return _(lists).reduce(function(memo, l){ return memo + _(l.items).filter(function(item){return !item.checked;}).length; }, 0);
             },
-            get_summary_string: function(list){
-                return _.chain(list.items).filter(function(item){return !item.checked;})
-                                .take(3)
+            get_summary_string: function(list, checked, characters){
+                checked = checked || false;
+                characters = characters || 100;
+                return _.chain(list.items).filter(function(item){return item.checked === checked;})
                                 .value()
                                 .reduce(function(mem,item){
                                                             return mem + item.name + ", "

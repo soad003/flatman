@@ -34,7 +34,7 @@ class ApplicationController < ActionController::Base
   end
 
   def is_app_user?
-    cookies[:platform].nil? && logged_in
+    !cookies[:platform].nil? && logged_in
   end
 
   def logout
@@ -48,8 +48,7 @@ class ApplicationController < ActionController::Base
   def handle_device_token
     token = cookies[:device_token]
     if !token.nil? && logged_in
-      current_user.device_token=token
-      current_user.save!
+      current_user.set_device(token)
       cookies.delete :device_token
     end
   end
