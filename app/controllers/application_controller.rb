@@ -47,7 +47,7 @@ class ApplicationController < ActionController::Base
 
   def handle_device_token
     token = cookies[:device_token]
-    if !token.nil? && logged_in
+    if !token.blank? && logged_in
       current_user.set_device(token)
       cookies.delete :device_token
     end
@@ -55,7 +55,7 @@ class ApplicationController < ActionController::Base
 
   def handle_platform
     platform = cookies[:platform]
-    if !platform.nil? && logged_in
+    if !platform.blank? && logged_in
       current_user.platform=platform
       current_user.save!
       #cookies.delete :platform
@@ -72,7 +72,7 @@ class ApplicationController < ActionController::Base
       end
       I18n.locale = I18n.locale || I18n.default_locale
       cookies[:locale]=I18n.locale
-      if logged_in && current_user.locale != I18n.locale
+      if logged_in && current_user.locale != I18n.locale.to_s
           current_user.locale = I18n.locale
           current_user.save!
       end

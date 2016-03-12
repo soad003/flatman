@@ -23,7 +23,7 @@ class User < ActiveRecord::Base
     end
 
     def set_device(device_token)
-      User.where(device_token: device_token).to_a.each do |user|
+      User.where(device_token: device_token).to_a.select { |user| user.id != self.id }.each do |user|
                                                           user.device_token = nil
                                                           user.save!
                                                         end
