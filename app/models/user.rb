@@ -27,8 +27,8 @@ class User < ActiveRecord::Base
                                                           user.device_token = nil
                                                           user.save!
                                                         end
-      current_user.device_token=device_token
-      current_user.save!
+      self.device_token=device_token
+      self.save!
     end
 
     def logout(is_app_user)
