@@ -107,6 +107,7 @@ angular.module('flatman').controller("pinboardCtrl",function($scope,$q,$location
     $scope.delete_checked=function(list){
         get_service(list).list.destroy_checked(list.id, function(data){
             list.items= _(list.items).reject(function(i){ return i.checked});
+            rebind_ui();
        });
     };
 

@@ -95,6 +95,14 @@ Flatman::Application.configure do
 
   #config.force_ssl = true
   config.assets.precompile += %w( vendor/angular-locale_de-de.js )
+
+
+  Rails.application.config.middleware.use ExceptionNotification::Rack,
+  :email => {
+    :email_prefix => "[ERROR] ",
+    :sender_address => %{"notifier" <notifier@flatman.at>},
+    :exception_recipients => %w{exceptions@flatman.at}
+  }
   
   #amazon s3 storage for images
   # config.paperclip_defaults = {

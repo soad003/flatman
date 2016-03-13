@@ -9,4 +9,4 @@
 
 # Make sure your secret_key_base is kept private
 # if you're sharing your code publicly.
-Flatman::Application.config.secret_key_base = '0a20189d4cdef6ce3e93ae4aba34f0c49058418f252229fcf78ca5329ad9fa1705fe13fc258c3a0649c61fe764290b7dfa7e1c01ec050cb11ea17db92b391106'
+Flatman::Application.config.secret_key_base = ENV["FLATMAN_SECRET_BASE_KEY"]
