@@ -20,6 +20,11 @@ angular.module('flatman').factory("shoppingService",function($resource) {
                             'destroy': {method: "DELETE"},
                             'update': {method: "PUT"}
                         });
+
+    var summaryService = $resource('/api/shopping/get_most_bought_items',{},
+                        {
+                            'get_most_bought_items': {method: "GET", isArray:true}
+                        });
     return {
         list: {
             get: function(succH,errH){ return listService.get(null,succH,errH);},
@@ -58,6 +63,9 @@ angular.module('flatman').factory("shoppingService",function($resource) {
             },
             destroy: function(item_id,list_id,succH,errH){
                 itemService.destroy({l_id: list_id,id: item_id},succH,errH);
+            },
+            get_most_bought_items: function(succH,errH){
+                return summaryService.get_most_bought_items({},succH,errH);
             }
         }
 

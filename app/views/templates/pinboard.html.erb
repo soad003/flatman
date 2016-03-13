@@ -119,6 +119,8 @@
                     <div class="input-group">
                       <input type="text" class="form-control"
                               ng-model="list.new_Text"
+                              typeahead="category for category in get_typeahead_data(list) | filter:$viewValue | limitTo:8"
+                              typeahead-append-to-body="true"
                               maxlength="130"
                               placeholder="{{is_todo(list) && '<%= t(".new_item_placeholder_todo") %>' || '<%= t(".new_item_placeholder") %>' }}" required focus-item="focus_items_on_add">
                       <span class="input-group-btn">

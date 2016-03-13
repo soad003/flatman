@@ -13,10 +13,15 @@ angular.module('flatman').controller("pinboardCtrl",function($scope,$q,$location
     }
 
     function load_data() { 
-        return $q.all([shoppingService.list.get().$promise,todoService.list.get().$promise])
+        return $q.all([shoppingService.list.get().$promise,
+                        todoService.list.get().$promise, 
+                        shoppingService.item.get_most_bought_items().$promise]);
     }
 
-    function insert_data(data){ $scope.lists = data[0].concat(data[1]); }
+    function insert_data(data){ 
+        $scope.lists = data[0].concat(data[1]);
+        $scope.most_bought = _(data[2]).map(function(x){ return x[0]; });
+    }
 
     function open_modal(callback_succ, todo) {
         var modalinst = $modal.open({
@@ -40,7 +45,10 @@ angular.module('flatman').controller("pinboardCtrl",function($scope,$q,$location
 
     $scope.filter_type=($location.path()==="/shopping")? SHOP_TYPE: TODO_TYPE;
     $scope.lists = [];
+    $scope.most_bought = [];
     $scope.focus_items_on_add=false;
+
+    $scope.get_typeahead_data=function(list) {return $scope.is_todo(list) ? [] : $scope.most_bought ;}
 
     $scope.track_via=function(item) { return item.type + ":" + item.id; };
     

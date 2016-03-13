@@ -67,6 +67,9 @@ gem 'angular-ui-bootstrap-rails', '0.10.0'
 
 #gem "animate-rails"
 
+#soft delete
+gem "paranoia", "~> 2.0"
+
 #calculate distance
 gem 'geocoder'
 

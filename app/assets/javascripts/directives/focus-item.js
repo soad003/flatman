@@ -4,7 +4,7 @@ angular.module('focus-item', []).directive('focusItem', function($timeout, $pars
     link: function(scope, element, attrs) {
       var model = $parse(attrs.focusItem);
 
-      if(model(scope) === true) { 
+      if(model(scope) === true && $(element[0]).is(':visible')) { 
         $timeout(function() {
           element[0].focus(); 
         });

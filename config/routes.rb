@@ -48,6 +48,7 @@ scope "(:locale)", locale: /en|de/ do
       delete '/delete_checked', to: :delete_checked
       delete '/was_shopping', to: :was_shopping
    end
+   get '/shopping/get_most_bought_items' => 'shoppingitem#get_most_bought_items'
 
    resources :todo, only: [:index, :create, :destroy] do
       resources :todo_item, only: [:create, :update, :destroy]

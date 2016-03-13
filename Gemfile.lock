@@ -118,6 +118,8 @@ GEM
       cocaine (~> 0.5.5)
       mime-types
       mimemagic (= 0.3.0)
+    paranoia (2.1.5)
+      activerecord (~> 4.0)
     pg (0.16.0)
     push_bot (0.4.4)
       typhoeus (~> 0.6)
@@ -206,6 +208,7 @@ DEPENDENCIES
   omniauth-facebook
   omniauth-google-oauth2
   paperclip
+  paranoia (~> 2.0)
   pg (= 0.16.0)
   push_bot
   rails (= 4.0.13)

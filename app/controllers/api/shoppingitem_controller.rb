@@ -21,6 +21,18 @@ class Api::ShoppingitemController < Api::RestController
         respond_with(nil, :location => nil)
     end
 
+    def get_most_bought_items
+        items = Shoppinglist.with_deleted
+                .where(flat_id: current_user.flat.id)
+                .select(:id)
+        res = Shoppinglistitem.with_deleted
+                .where(shoppinglist_id: items)
+                .group(:name)
+                .order("count_name desc")
+                .count("name")
+        respond_with(res.to_a.take(100), :location => nil)
+    end
+
     private
     # Never trust parameters from the scary internet, only allow the white list through.
     def item_params

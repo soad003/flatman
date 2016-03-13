@@ -1,4 +1,6 @@
 class Shoppinglist < ActiveRecord::Base
+    acts_as_paranoid
+    
 	belongs_to 	:flat
 	belongs_to  :user
 	has_many	:shoppinglistitems, -> { order 'created_at asc' }, :dependent => :destroy

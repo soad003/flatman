@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160312151351) do
+ActiveRecord::Schema.define(version: 20160313183348) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -146,7 +146,10 @@ ActiveRecord::Schema.define(version: 20160312151351) do
     t.integer  "shoppinglist_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.datetime "deleted_at"
   end
+
+  add_index "shoppinglistitems", ["deleted_at"], name: "index_shoppinglistitems_on_deleted_at", using: :btree
 
   create_table "shoppinglists", force: true do |t|
     t.string   "name"
@@ -154,8 +157,10 @@ ActiveRecord::Schema.define(version: 20160312151351) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "user_id"
+    t.datetime "deleted_at"
   end
 
+  add_index "shoppinglists", ["deleted_at"], name: "index_shoppinglists_on_deleted_at", using: :btree
   add_index "shoppinglists", ["user_id"], name: "index_shoppinglists_on_user_id", using: :btree
 
   create_table "todo_items", force: true do |t|
@@ -183,7 +188,7 @@ ActiveRecord::Schema.define(version: 20160312151351) do
     t.string   "provider"
     t.string   "uid"
     t.string   "name"
-    t.string   "oauth_token"
+    t.text     "oauth_token"
     t.datetime "oauth_expires_at"
     t.string   "image_path"
     t.datetime "created_at"

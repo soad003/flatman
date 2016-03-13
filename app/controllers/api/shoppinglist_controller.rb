@@ -34,7 +34,6 @@ class Api::ShoppinglistController < Api::RestController
        respond_with(nil)
     end
 
-
     private
         # Never trust parameters from the scary internet, only allow the white list through.
     def sl_params

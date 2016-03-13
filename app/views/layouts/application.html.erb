@@ -59,6 +59,13 @@
           <%end%>
           <a class="navbar-brand" href="/#/newsfeed"><%= image_tag("flatman_logo_30.png", width: 30) %> flatman</a>
         </div>
+        <% if not is_user_ready_to_go and logged_in %>
+        <div class="navbar-collapse collapse no-transition">
+          <ul class="nav navbar-nav navbar-right">
+            <li><a href="/signout"><span class="fa fa-power-off fa-fw fa-lg"></span> <%=t("misc.titles.logout")%></a></li>
+          </ul>  
+        </div>
+        <%end%>
         <% if is_user_ready_to_go %>
           <div class="navbar-collapse collapse no-transition">
             <ul class="nav navbar-nav">
