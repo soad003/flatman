@@ -33,6 +33,30 @@
                             </a>
                         </div>
                     </div>
+                    <div class="form-group">
+                        <label class="col-xs-2 col-sm-2 control-label"><%= t(".device")%></label>
+                        <div class="col-xs-10 col-sm-10">
+                            <p class="form-control-static"><% if browser.device.mobile? %>
+                                <% if browser.platform.android? %>
+                                    <i class="fa fa-android fa-lg"></i>
+                                <% elsif browser.platform.ios? %>
+                                    <i class="fa fa-apple fa-lg"></i>
+                                <% else %>
+                                    <i class="fa fa-mobile fa-lg"></i>
+                                <% end %>
+
+                                <% if is_app_user? %>
+                                    <i class="fa fa-heart fa-lg"></i>
+                                <% end %>
+                            <% else %>
+                                <i class="fa fa-desktop fa-lg"></i>
+                            <% end %></p>
+                                
+                            
+<!--                             <%= browser.to_s %>
+                            <%= request.user_agent %> -->
+                        </div>
+                    </div>
                 </form>
             </div>
         </div>

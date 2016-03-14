@@ -460,6 +460,7 @@ de:
       name                               : "Name"
       email                              : "Mail"
       provider                           : "Via"
+      device                             : "Gerät"
     shopping:
       page_header                        : "Einkaufen"
       add                                : "hinzufügen"

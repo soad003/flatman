@@ -70,6 +70,9 @@ gem 'angular-ui-bootstrap-rails', '0.10.0'
 #soft delete
 gem "paranoia", "~> 2.0"
 
+# browser detection
+gem "browser"
+
 #calculate distance
 gem 'geocoder'
 

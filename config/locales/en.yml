@@ -464,6 +464,7 @@ en:
       name                               : "name"
       email                              : "email"
       provider                           : "via"
+      device                             : "device"
     shopping:
       page_header                        : "Shopping"
       add                                : "add"
