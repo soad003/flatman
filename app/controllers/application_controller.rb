@@ -54,10 +54,12 @@ class ApplicationController < ActionController::Base
   end
 
   def handle_platform
-    if request.user_agent.include? ":android"
-      current_user.set_platform("android")
-    elsif request.user_agent.include? ":ios"
-      current_user.set_platform("ios")
+    if logged_in
+      if request.user_agent.include? ":android"
+        current_user.set_platform("android")
+      elsif request.user_agent.include? ":ios"
+        current_user.set_platform("ios")
+      end
     end
   end
 
