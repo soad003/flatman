@@ -23,7 +23,7 @@ class Api::ShoppingitemController < Api::RestController
 
     def get_most_bought_items
         items = Shoppinglist.with_deleted
-                .where(flat_id: current_user.flat.id)
+                .where(flat_id: current_user.flat.id, user_id: nil)
                 .select(:id)
         res = Shoppinglistitem.with_deleted
                 .where(shoppinglist_id: items)
