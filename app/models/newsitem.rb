@@ -144,13 +144,15 @@ class Newsitem < ActiveRecord::Base
         ni.key = key if !key.nil?
         ni.text = text if !text.nil?
         ni.newsitem_id = newsitem_id if !newsitem_id.nil?
-        ni.save!
         Newsitem.push(ni)
+        ni.save!
         ni
     end
 
     def self.getPushMessage(newsitem, locale)
         I18n.locale = locale
+        if newsitem.isShopping() and newsitem.action == Newsitem::ACTIONS[:done] 
+                               then return I18n.t('activerecord.newsitem.pushShoppingDone', :name => newsitem.user.name) end 
         if newsitem.isFinance() then return I18n.t('activerecord.newsitem.pushFinance', :name => newsitem.user.name) end
         if newsitem.isShopping() then return I18n.t('activerecord.newsitem.pushShopping', :name => newsitem.user.name) end
         if newsitem.isTodo() then return I18n.t('activerecord.newsitem.pushTodo', :name => newsitem.user.name) end
@@ -162,10 +164,12 @@ class Newsitem < ActiveRecord::Base
 
     def self.push(newsitem)
         #pushlogic
+        #puts (newsitem)
+        #puts ("-----------------------------> " + Newsitem.sendPush(newsitem).to_s + " <-------------------------")
         if Newsitem.sendPush(newsitem) then
             newsitem.user.flat.users.each do |mate|
                 message = Newsitem.getPushMessage(newsitem, mate.locale)
-                if (mate.id != newsitem.user.id and !(mate.device_token == '' or mate.device_token.nil?)) then
+                if (mate.id != newsitem.user.id and mate.pushflag and !(mate.device_token == '' or mate.device_token.nil?)) then
                     device_token = mate.device_token
                     platform = mate.platform
                     Thread.new {
@@ -183,11 +187,29 @@ class Newsitem < ActiveRecord::Base
     end
 
     def self.sendPush(newsitem)
-        true
+        if (newsitem.isShopping() and newsitem.action == Newsitem::ACTIONS[:done]) then         #shopping done
+            lastnewsitem = Newsitem.getNewsitemForPush(newsitem.flat, [Newsitem::CATEGORIES[:shoppinglist]], [Newsitem::ACTIONS[:done]])
+        elsif newsitem.isShopping() and not newsitem.action == Newsitem::ACTIONS[:done] then # last shopping push
+            lastnewsitem = Newsitem.getNewsitemForPush(newsitem.flat, [Newsitem::CATEGORIES[:shoppinglist],Newsitem::CATEGORIES[:shoppinglistitem]], nil)
+        elsif newsitem.isTodo() then # last todo push
+            lastnewsitem = Newsitem.getNewsitemForPush(newsitem.flat, [Newsitem::CATEGORIES[:todolist],Newsitem::CATEGORIES[:todolistitem]], nil)
+        elsif newsitem.isFinance() then # last todo push
+            lastnewsitem = Newsitem.getNewsitemForPush(newsitem.flat, [Newsitem::CATEGORIES[:bill],Newsitem::CATEGORIES[:payment]], nil)
+        elsif newsitem.isComment() then # last todo push
+            lastnewsitem = Newsitem.getNewsitemForPush(newsitem.flat, [Newsitem::CATEGORIES[:comment]], nil)
+        end
+
+        if not lastnewsitem.nil? and lastnewsitem.user == newsitem.user then
+            return false
+        end
+        return true
     end
 
-    def self.getNewsitemForPush(newsitem)
-        Newsitem.where(category: newsitem.category, flat: newsitem.user.flat, updated_at: (DateTime.current - 10.minutes) ..  DateTime.current).take
+    def self.getNewsitemForPush(flat, categories, actions)
+        if actions.nil?
+            return Newsitem.where(category: categories, flat: flat, updated_at: (DateTime.current - 2.minutes) ..  DateTime.current).order(updated_at: :desc).first
+        else
+            return Newsitem.where(category: categories, action: actions, flat: flat, updated_at: (DateTime.current - 2.minutes) ..  DateTime.current).order(updated_at: :desc).first
+        end
     end
-
 end

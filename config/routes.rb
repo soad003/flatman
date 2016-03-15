@@ -42,6 +42,8 @@ scope "(:locale)", locale: /en|de/ do
 
    #user
    resources :user, only: [:index]
+   post '/user/' => 'user#update'
+
 
    resources :shoppinglist, only: [:index, :create, :destroy] do
       resources :shoppingitem, only: [:create, :update, :destroy]

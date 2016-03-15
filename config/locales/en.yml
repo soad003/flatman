@@ -173,6 +173,7 @@ en:
       pushMatechange_add              : "%{name} joined your flat."
       pushFinance                     : "%{name} edited the finances."
       pushShopping                    : "%{name} updated a shopping list."
+      pushShoppingDone                : "%{name} was shopping."
       pushTodo                        : "%{name} updated a todo list."
       pushResource                    : "%{name} updated a resource."
       pushMessage                     : "%{name} sent a message."
@@ -465,6 +466,8 @@ en:
       email                              : "email"
       provider                           : "via"
       device                             : "device"
+      save_btn                           : "save"
+      pushflag                           : "Notifications"
     shopping:
       page_header                        : "Shopping"
       add                                : "add"
