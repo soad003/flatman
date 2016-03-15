@@ -1,8 +1,8 @@
 angular.module('flatman').factory("Util",function($rootScope,$location) {
-    var carousel = ["/dashboard","/shopping","/todo","/finances","/resources"];
+    var carousel = ["/newsfeed","/shopping","/todo","/finances","/resources"];
     function get(cur, offset){
-        var count = _.indexOf(carousel, cur) + offset
-        var len = carousel.length
+        var count = _.indexOf(carousel, cur) + offset;
+        var len = carousel.length;
         return carousel[((count % len) + len) % len];
     };
     return {

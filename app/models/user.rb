@@ -31,6 +31,13 @@ class User < ActiveRecord::Base
       self.save!
     end
 
+    def set_platform(platform)
+        if self.platform.to_s != platform
+            self.platform=platform
+            self.save!
+        end
+    end
+
     def logout(is_app_user)
         #self.oauth_token = nil
         self.device_token = nil if is_app_user

@@ -35,6 +35,30 @@
                     </div>
 
                     <div class="form-group">
+                        <label class="col-xs-4 col-sm-4 control-label"><%= t(".device")%></label>
+                        <div class="col-xs-8 col-sm-8">
+                            <p class="form-control-static"><% if browser.device.mobile? %>
+                                <% if browser.platform.android? %>
+                                    <i class="fa fa-android fa-lg"></i>
+                                <% elsif browser.platform.ios? %>
+                                    <i class="fa fa-apple fa-lg"></i>
+                                <% else %>
+                                    <i class="fa fa-mobile fa-lg"></i>
+                                <% end %>
+
+                                <% if is_app_user? %>
+                                    <i class="fa fa-heart fa-lg"></i>
+                                <% end %>
+                            <% else %>
+                                <i class="fa fa-desktop fa-lg"></i>
+                            <% end %></p>
+                                
+                            
+<!--                             <%= browser.to_s %>
+                            <%= request.user_agent %> -->
+                        </div>
+                      </div>
+                      <div class="form-group">
                         <label class="col-xs-4 col-sm-4 control-label"><%=t('.pushflag')%></label>
                         <div class="col-xs-8 col-sm-8">
                             <input id="pushflag" ng-model="user.pushflag" type="checkbox" >

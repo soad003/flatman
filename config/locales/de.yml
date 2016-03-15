@@ -461,6 +461,7 @@ de:
       name                               : "Name"
       email                              : "Mail"
       provider                           : "Via"
+      device                             : "Gerät"
       save_btn                           : "speichern"
       pushflag                           : "Notifications"
     shopping:

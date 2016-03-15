@@ -465,6 +465,7 @@ en:
       name                               : "name"
       email                              : "email"
       provider                           : "via"
+      device                             : "device"
       save_btn                           : "save"
       pushflag                           : "Notifications"
     shopping:
