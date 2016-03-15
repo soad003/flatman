@@ -151,7 +151,7 @@ class Newsitem < ActiveRecord::Base
 
     def self.getPushMessage(newsitem, locale)
         I18n.locale = locale
-        if newsitem.isShopping() and newsitem.action = Newsitem::ACTIONS[:done] 
+        if newsitem.isShopping() and newsitem.action == Newsitem::ACTIONS[:done] 
                                then return I18n.t('activerecord.newsitem.pushShoppingDone', :name => newsitem.user.name) end 
         if newsitem.isFinance() then return I18n.t('activerecord.newsitem.pushFinance', :name => newsitem.user.name) end
         if newsitem.isShopping() then return I18n.t('activerecord.newsitem.pushShopping', :name => newsitem.user.name) end
