@@ -93,7 +93,7 @@ Flatman::Application.configure do
   # Use default logging formatter so that PID and timestamp are not suppressed.
   config.log_formatter = ::Logger::Formatter.new
 
-  #config.force_ssl = true
+  config.force_ssl = true
   config.assets.precompile += %w( vendor/angular-locale_de-de.js )
 
 
