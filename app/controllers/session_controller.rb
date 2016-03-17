@@ -1,4 +1,5 @@
 class SessionController < ApplicationController
+    layout 'welcome', :only => [ :index ]
     around_filter :wrap_in_transaction, only: [:create]
 
     def index

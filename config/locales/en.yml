@@ -227,6 +227,8 @@ en:
 
    # views
   layouts:
+    welcome:
+      default_description                 : "Flatman - Your Superhero is here!"
     application:
       default_description                 : "nananananananana flatman"
       navbar:
@@ -243,6 +245,8 @@ en:
       complimentary_close                 : "Greetings, your Flatman Team"
 
   public:
+    welcome:
+      page_title                          : "Your Superhero is here!"
     about:
       page_header                         : "About us"
       page_title                          : "About us"

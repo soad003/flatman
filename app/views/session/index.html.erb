@@ -1,231 +1,43 @@
 <% content_for :robots, "INDEX, FOLLOW" %>
 
 <% content_for :title, t('.page_title') %>
-<% content_for :no_container, true %>
 
-<style type="text/css">
-body { padding-top: 50px; }
-.alert{ margin-bottom: 0px;}
-.lead {
-  font-size: 18px;
-  font-weight: 400;
-}
-
-.intro-header {
-  color: #f8f8f8;
-  background: url("<%=asset_path('flatman_logo_square.png') %>") no-repeat center center;
-  background-size: cover;
-  text-align: center;
-}
-
-.intro-message {
-  position: relative;
-  padding-top: 10%;
-  padding-bottom: 10%;
-}
-
-.intro-message > h1 {
-  margin: 0;
-  font-size: 5em;
-  text-shadow: 2px 2px 3px rgba(0, 0, 0, 0.6);
-}
-
-.intro-message > h3 {
-  text-shadow: 2px 2px 3px rgba(0, 0, 0, 0.6);
-}
-
-.intro-message > h4 {
-  margin-top: -5px;
-}
-
-@media (max-width: 767px) {
-  .intro-message {
-    padding-bottom: 15%;
-  }
-
-  .intro-message > h1 {
-    margin-top: -10px;
-    font-size: 3em;
-  }
-
-  ul.intro-social-buttons > li {
-    display: block;
-    margin-bottom: 15px;
-    padding: 0;
-  }
-
-  ul.intro-social-buttons > li:last-child {
-    margin-bottom: 0;
-  }
-
-  .intro-divider {
-    width: 100%;
-  }
-}
-
-.network-name {
-  text-transform: uppercase;
-  font-size: 14px;
-  font-weight: 400;
-  letter-spacing: 2px;
-}
-
-.content-section-a {
-  background-color: #f8f8f8;
-  padding: 50px 0;
-}
-
-.content-section-b {
-  border-top: 1px solid #e7e7e7;
-  border-bottom: 1px solid #e7e7e7;
-  padding: 50px 0;
-}
-
-.section-heading {
-  margin-bottom: 30px;
-}
-
-.section-heading-spacer {
-  border-top: 3px solid #e7e7e7;
-  width: 200px;
-  float: left;
-}
-
-@media (max-width: 767px) {
-  .intro-icon {
-    font-size:100px !important;
-  }
-}
-
-.intro-icon {
-  font-size:200px;
-}
-
-.intro-divider {
-  width: 400px;
-  border-top: 1px solid #ffffff;
-  border-bottom: 1px solid rgba(0, 0, 0, 0.2);
-}
-
-h4 {
-    overflow: hidden;
-    text-align: center;
-    padding-top:10px;
-    padding-bottom:10px;
-
-}
-h4:before,
-h4:after {
-    background-color: #f8f8f8;
-    content: "";
-    display: inline-block;
-    height: 1px;
-    position: relative;
-    vertical-align: middle;
-    width: 12%;
-}
-h4:before {
-    right: 0.5em;
-    margin-left: -50%;
-}
-h4:after {
-    left: 0.5em;
-    margin-right: -50%;
-}
-
-</style>
-
-<div class="intro-header">
-
-          <div class="container">
-
-              <div class="row">
-                  <div class="col-lg-12">
-                      <div class="intro-message">
-                          <h1><%= t(".title") %></h1>
-                          <h3 class="hidden-xs hidden-md"><%= t(".subtitle") %></h3>
-                          <h4><%= t(".signin_with") %></h4>
-                          <ul class="list-inline intro-social-buttons">
-                              <li>
-                                <a  href="/auth/facebook" class="btn btn-default btn-lg btn-facebook">
-                                  <i class="fa fa-facebook"></i> <span class="network-name"><%= t(".sign_in_Facebook") %></span>
-                                </a>
-                              </li>
-                              <li>
-                                <a href="/auth/google_oauth2" class="btn btn-default btn-lg btn-google-plus">
-                                  <i class="fa fa-google-plus"></i> <span class="network-name"><%= t(".sign_in_Google") %></span>
-                                </a>
-                              </li>
-                          </ul>
-                      </div>
-                  </div>
-              </div>
-
-          </div>
-
+<div id="flatman" class="flatman-section flatman-section__main">
+  <h3>Dein WG <br/> Superheld ist da!</h3>
+  <h1>Flatman</h1>
+  <p>
+    Log dich ein
+  </p>
+  <ul class="list-inline">
+    <li>
+      <a href="/auth/facebook" class="btn btn-social btn-facebook">
+        <span class="fa fa-facebook"></span> Facebook
+      </a>
+    </li>
+    <li>
+      <a href="/auth/google_oauth2" class="btn btn-social btn-google-plus">
+        <span class="fa fa-google"></span> Google
+      </a>
+    </li>
+    <p style="margin-top: 30px;">
+      oder hol dir die <strong>Flatman-App</strong>:
+    </p>
+    <a href="https://play.google.com/store/apps/details?id=at.flatman.android&utm_source=global_co&utm_medium=prtnr&utm_content=Mar2515&utm_campaign=PartBadge&pcampaignid=MKT-AC-global-none-all-co-pr-py-PartBadges-Oct1515-1">
+      <img alt="Get it on Google Play" src="<%= image_path( 'google-play-badge.png' ) %>" class="flatman-image__badge" />
+    </a>
+    <a href="#">
+      <img alt="Get it on the App Store" src="<%= image_path( 'ios-app-store-badge.svg' ) %>" class="flatman-image__badge" />
+    </a>
+  </ul>
 </div>
-  <!-- /.intro-header -->
-<div class="content-section-a">
 
-    <div class="container">
-
-        <div class="row">
-            <div class="col-lg-5 col-sm-6">
-                <hr class="section-heading-spacer">
-                <div class="clearfix"></div>
-                <h2 class="section-heading"><%= t(".shopping_title") %></h2>
-                <p class="lead"><%= t(".shopping_description") %></p>
-            </div>
-            <div class="col-lg-5 col-lg-offset-2 col-sm-6">
-                <i class="fa fa-shopping-cart text-primary intro-icon"></i>
-            </div>
-        </div>
-
-    </div>
-
-</div>
-<!-- /.content-section-a -->
-
-<div class="content-section-b">
-
-    <div class="container">
-
-        <div class="row">
-            <div class="col-lg-5 col-lg-offset-1 col-sm-push-6 col-sm-6">
-                <hr class="section-heading-spacer">
-                <div class="clearfix"></div>
-                <h2 class="section-heading"><%= t(".finances_title") %></h2>
-                <p class="lead"><%= t(".finances_description") %></p>
-            </div>
-            <div class="col-lg-5 col-sm-pull-6  col-sm-6">
-                 <i class="glyphicon glyphicon-euro intro-icon"></i>
-            </div>
-        </div>
-
-    </div>
-
-</div>
-<!-- /.content-section-b -->
-
-<div class="content-section-a">
-
-    <div class="container">
-
-        <div class="row">
-            <div class="col-lg-5 col-sm-6">
-                <hr class="section-heading-spacer">
-                <div class="clearfix"></div>
-                <h2 class="section-heading"><%= t(".resources_title") %></h2>
-                <p class="lead"><%= t(".resources_description") %></p>
-            </div>
-            <div class="col-lg-5 col-lg-offset-2 col-sm-6">
-                <i class="glyphicon glyphicon-globe text-success intro-icon"></i>
-            </div>
-        </div>
-
-    </div>
-
-</div>
-<!-- /.content-section-a -->
-
-</div>
+<% content_for :content_script do %>
+<script>
+  $( document ).ready( function(){
+    $( '#pagepiling' ).pagepiling({
+      sectionSelector: '.flatman-section',
+      navigation: false
+    });
+  });
+</script>
+<% end %>
