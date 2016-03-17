@@ -91,7 +91,7 @@ class Api::NewsfeedController < Api::RestController
         elsif ni.isShoppingList() then
             return I18n.t('activerecord.newsitem.shoppinglist', :name => ni.text, :action => I18n.t('activerecord.newsitem.' + ni.action))
         elsif ni.isShoppingListItem() then
-            return I18n.t('activerecord.newsitem.shoppinglistitem', :items => ni.text, :list => getShoppingListName(ni.key, ni.current_user), :action => I18n.t('activerecord.newsitem.' + ni.action))
+            return I18n.t('activerecord.newsitem.shoppinglistitem', :items => ni.text, :list => getShoppingListName(ni.key, current_user), :action => I18n.t('activerecord.newsitem.' + ni.action))
         elsif ni.isBill() then
             return I18n.t('activerecord.newsitem.bill', :name => ni.text, :action => I18n.t('activerecord.newsitem.' + ni.action))
         elsif ni.isPayment() then
