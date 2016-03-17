@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, height=device-height,  initial-scale=1.0, user-scalable=no, user-scalable=0, maximum-scale=1"/>
+    <meta name="description" content="<%= content_for?(:description) ? yield(:description) : t('.default_description') %>">
+    <meta name="robots" content="<%= yield :robots %>">
+    <meta name="author" content="">
+    <meta name="google-site-verification" content="24dGcQyKurRHX8RcO9sXp5pB-LqGotGHMVUM-U3YsgU" />
+    <%= favicon_link_tag 'favicon.ico' %>
+
+    <title>FlatMan<%= " » " + h(yield(:title)) if content_for?(:title) %></title>
+    <%= stylesheet_link_tag "welcome", media: "all"%>
+    <%= csrf_meta_tags %>
+
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+      <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+  </head>
+
+  <body>
+    
+    <nav class="navbar navbar-fixed-top">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" id="trigger-overlay">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="<%= welcome_url %>#flatman">
+            <img src="<%= image_path( 'flatman_logo_30.png' ) %>" alt="Flatman" />
+            <span class="hidden-xs">Flatman</span>
+          </a>
+        </div>
+        <div class="collapse navbar-collapse">
+          <ul class="nav navbar-nav navbar-right">
+            <li><a href="<%= welcome_url %>#flatman-contact">Kontakt</a></li>
+            <li><a href="<%= signin_url %>">Login</a></li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <div class="overlay overlay-hugeinc">
+      <button type="button" class="overlay-close">
+        <span class="fa fa-times fa-2x"></span>
+      </button>
+      <nav>
+        <ul>
+          <li><a href="<%= welcome_url %>#flatman"><img src="<%= image_path( 'flatman_logo_153x100.png' ) %>" alt="Flatman" /></a></li>
+          <li><a href="<%= welcome_url %>#flatman-contact">Kontakt</a></li>
+          <li><a href="<%= signin_url %>">Login</a></li>
+        </ul>
+      </nav>
+    </div>
+    
+    <div id="pagepiling">
+      
+      <%= yield %>
+
+    </div>
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <%= javascript_include_tag "jquery" %>
+    <%= javascript_include_tag "vendor/modernizr.min" %>
+    <%= javascript_include_tag "vendor/jquery.pagepiling" %>
+    <%= yield( :content_script ) %>
+    <script type="text/javascript">
+      (function() {
+        var triggerBttn = $( '#trigger-overlay' ),
+            overlay     = $( 'div.overlay' ),
+            closeBttn   = overlay.find( 'button.overlay-close' );
+
+        function toggleOverlay() {
+          overlay.fadeToggle();
+        }
+
+        triggerBttn.click( toggleOverlay );
+        closeBttn.click( toggleOverlay );
+      })();
+    </script>
+    <script type="text/javascript">
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+      ga('create', 'UA-48728866-2', 'auto');
+      ga('send', 'pageview');
+    </script>
+  </body>
+</html>

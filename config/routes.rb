@@ -7,6 +7,7 @@ scope "(:locale)", locale: /en|de/ do
   get '/about', :to => :about, controller: :public
   get '/contact', :to => :contact, controller: :public
   get '/terms', :to => :terms_and_privacy, controller: :public
+  get '/welcome', :to => :welcome, controller: :public
 
   # template routes
   namespace :templates do
