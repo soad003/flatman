@@ -29,6 +29,10 @@ html *
     @extend .alert-warning;
 }
 
+.hrjumbo{
+  background-color: DarkGrey ; height: 1px; border: 0;
+}
+
 .done-true {
   text-decoration: line-through;
   color: grey;

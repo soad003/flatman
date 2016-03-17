@@ -1,10 +1,19 @@
 <div class="jumbotron">
   <div class="row">
-    <div class="col-md-8 text-center">
+    <div class="hidden-xs col-md-8 text-center">
       <h1><%= image_tag("flatman_logo.png", width: 60) %> <small><%=t(".subtitle")%> </small><%=t(".title")%></h1>
       <p><%=t(".description1")%></p>
       <p><%=t(".description2")%></p>
       <p><%=t(".description3")%></p>
+    </div>
+    <div class="visible-xs col-md-8">
+      <center><%= image_tag("flatman_logo.png", width: 150) %></center>
+      <h2> <span style="color:#999999" > <%=t(".subtitle")%> </span><%=t(".title")%>!</h2>
+      <p><%=t(".description1")%>
+      <%=t(".description2")%>
+      <%=t(".description3")%></p>
+            <hr class="hrjumbo">
+
     </div>
     <div class="col-md-4">
         <div class="form-group">
@@ -47,8 +56,7 @@
 
         <button class="btn btn-lg btn-success" ng-click="create_flat()"><%=t(".create_flat")%></button>
 
-        <hr>
-        
+        <hr class="hrjumbo">
         <div class="form-group">
           <label class="control-label" for="flat_id"><%=t(".flat_key")%></label>
           <div>
