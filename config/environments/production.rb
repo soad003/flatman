@@ -96,6 +96,9 @@ Flatman::Application.configure do
   config.force_ssl = true
   config.assets.precompile += %w( vendor/angular-locale_de-de.js )
 
+  # Welcome Assets
+  config.assets.precompile += [ 'welcome.css.scss', 'welcome/*', 'vendor/jquery.pagepiling.js', 'vendor/modernizr.min.js' ]
+
 
   Rails.application.config.middleware.use ExceptionNotification::Rack,
   :email => {
