@@ -1,9 +1,15 @@
 angular.module('flatman').factory("Util",function($rootScope,$location) {
     var carousel = ["/newsfeed","/shopping","/todo","/finances","/resources"];
-    function get(cur, offset){
+    function get_view_relative(cur, offset){
+        var i = _.indexOf(carousel, cur);
+        if(i===-1) return null;
         var count = _.indexOf(carousel, cur) + offset;
         var len = carousel.length;
         return carousel[((count % len) + len) % len];
+    };
+    function goto_relative(current_view, offset){
+        var next_view = get_view_relative(current_view,offset);
+        if(next_view) $location.path(next_view);
     };
     return {
         has_server_errors: function(){ return ($rootScope.server_errors=!null); },
@@ -25,10 +31,8 @@ angular.module('flatman').factory("Util",function($rootScope,$location) {
             flat_settings: function(){$location.path("flat_settings");},
             finances_done_shopping: function(name){$location.path("finances_done_shopping/"+encodeURIComponent(name));},
             back: function(url){if (url !== undefined) $location.path(url); else history.back();},
-            next_view: function(current_view){ $location.path(get(current_view,1)); },
-            previous_view: function(current_view){ $location.path(get(current_view,-1)); }
+            next_view: function(current_view){ goto_relative(current_view,1); },
+            previous_view: function(current_view){ goto_relative(current_view,-1); }
         }
     };
-
-
 });

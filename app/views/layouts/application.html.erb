@@ -30,7 +30,7 @@
     <![endif]-->
   </head>
 
-  <body ng-controller="rootCtrl">
+  <body ng-controller="rootCtrl" hm-swipe-left="go_right()" hm-swipe-right="go_left()">
 
     <!-- loading overlay before ng-cloak -->
     <div class="splash" ng-cloak>
@@ -119,7 +119,7 @@
       </div>
     </div>
 
-    <div id="container" class="<%= content_for?(:no_container) ? "" : "container" %>" ng-cloak hm-swipe-left="go_right()" hm-swipe-right="go_left()">
+    <div id="container" class="<%= content_for?(:no_container) ? "" : "container" %>" ng-cloak>
       <section>
         <% flash.each do |key,message| %>
           <div class="alert alert-<%= key.to_s %> alert-dismissable auto-fadeout">
