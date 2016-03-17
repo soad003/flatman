@@ -4,11 +4,17 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, height=device-height,  initial-scale=1.0, user-scalable=no, user-scalable=0, maximum-scale=1"/>
-    <meta name="description" content="<%= content_for?(:description) ? yield(:description) : t('.default_description') %>">
+    <meta property="og:description" name="description" content="<%= content_for?(:description) ? yield(:description) : t('.default_description') %>">
     <meta name="robots" content="<%= yield :robots %>">
-    <meta name="author" content="">
+    <meta name="author" content="Clemens Brunner, Michael Froewis">
     <meta name="google-site-verification" content="24dGcQyKurRHX8RcO9sXp5pB-LqGotGHMVUM-U3YsgU" />
     <%= favicon_link_tag 'favicon.ico' %>
+    <meta name="keywords" content="flatman, wg, finanzen, finances, strom, gas, zählerstände, verwalten, manage, flatman, electricity, finances, flat, shared flat, innsbruck, austria, clemens, michael, brunner, froewis, cool, newsfeed">
+    <meta http-equiv="content-language" content="de">
+    <meta property="og:image" content="<%= image_tag("flatman_logo_30.png")%>" />
+    <meta property="og:title" content="Flatman"/>
+    <meta property="og:type" content="finances" />
+    <meta property="og:url" content="https://www.flatman.at" />
 
     <title>FlatMan<%= " » " + h(yield(:title)) if content_for?(:title) %></title>
     <%= stylesheet_link_tag "application", media: "all"%>
