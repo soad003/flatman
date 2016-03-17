@@ -97,7 +97,7 @@ Flatman::Application.configure do
   config.assets.precompile += %w( vendor/angular-locale_de-de.js )
 
   # Welcome Assets
-  config.assets.precompile += [ 'welcome.css', 'welcome/*', 'jquery.js' 'vendor/modernizr.min.js', 'vendor/jquery.pagepiling.js' ]
+  config.assets.precompile += [ 'welcome.css', 'welcome/*', 'welcome.js' ]
 
   Rails.application.config.middleware.use ExceptionNotification::Rack,
   :email => {
