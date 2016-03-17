@@ -6,7 +6,7 @@ class SessionControllerTest < ActionController::TestCase
   test "should get index" do
     get :index
     assert_response :success
-    assert_template layout: "layouts/application"
+    assert_template layout: "layouts/welcome"
   end
 
   test "logout should delete session and redirect to root url" do

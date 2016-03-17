@@ -27,90 +27,91 @@
 </h1>
 
 <div class="row">
-    <table class="table table-striped">
-        <thead>
-            <tr>
-                <th>
-                    <%=t ( ".date") %>
-                </th>
-                <th>
-                    <%=t ( ".name") %>
-                </th>
-                <th class="hidden-xs">
-                    <%=t ( ".category") %>
-                </th>
-                <th>
-                    <%=t ( ".who_paid") %>
-                </th>
-                <th class="hidden-xs">
-                    <%=t ( ".splitted_up") %>
-                </th>
-                <th class="text-right">
-                    <%=t ( ".value") %>
-                </th>
-                <th>&nbsp;</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr ng-repeat="finance in finances.subset track by $index">
+    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>
+                        <%=t ( ".date") %>
+                    </th>
+                    <th>
+                        <%=t ( ".name") %>
+                    </th>
+                    <th class="hidden-xs">
+                        <%=t ( ".category") %>
+                    </th>
+                    <th>
+                        <%=t ( ".who_paid") %>
+                    </th>
+                    <th class="hidden-xs">
+                        <%=t ( ".splitted_up") %>
+                    </th>
+                    <th class="text-right">
+                        <%=t ( ".value") %>
+                    </th>
+                    <th>&nbsp;</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="finance in finances.subset track by $index">
 
-                <td>
-                    <span class="hidden-xs">{{finance.date| date : 'longDate'}}</span>
-                    <span class="visible-xs">{{finance.date| date : 'shortDate'}}</span>
-                </td>
-                <td>{{finance.name}}</th>
-                    <td class="hidden-xs">{{finance.cat_name}}</td>
                     <td>
-                        <span ng-class="{'bold': finance.user_id === current_user.id}">{{finance.user_name.split(' ')[0]}}
-                            <span>
+                        <span class="hidden-xs">{{finance.date| date : 'longDate'}}</span>
+                        <span class="visible-xs">{{finance.date| date : 'shortDate'}}</span>
                     </td>
-                    <td class="hidden-xs">
-                        <span ng-show="finance.isPaidBy.length === mates.length">
-                            <%=t ( ".all") %>
-                        </span>
-                        <span ng-show="finance.isPaidBy.length !== mates.length" ng-repeat="user in finance.isPaidBy" ng-class="{'bold': user.id === current_user.id}">
-                            {{user.name.split(' ')[0]}}
-                            <span ng-show="$index != finance.isPaidBy.length-1">,</span>
-                        </span>
+                    <td>{{finance.name}}</th>
+                        <td class="hidden-xs">{{finance.cat_name}}</td>
+                        <td>
+                            <span ng-class="{'bold': finance.user_id === current_user.id}">{{finance.user_name.split(' ')[0]}}
+                                <span>
+                        </td>
+                        <td class="hidden-xs">
+                            <span ng-show="finance.isPaidBy.length === mates.length">
+                                <%=t ( ".all") %>
+                            </span>
+                            <span ng-show="finance.isPaidBy.length !== mates.length" ng-repeat="user in finance.isPaidBy" ng-class="{'bold': user.id === current_user.id}">
+                                {{user.name.split(' ')[0]}}
+                                <span ng-show="$index != finance.isPaidBy.length-1">,</span>
+                            </span>
+                        </td>
+                        <td class="text-right">{{finance.value | customCurrency : '€ '}}</td>
+                        <td>
+                            <div class="btn-group pull-right">
+                                <button type="button" class="btn btn-default dropdown-toggle btn-xs" data-toggle="dropdown">
+                                    <span class="glyphicon glyphicon-pencil"></span>
+                                </button>
+                                <ul class="dropdown-menu">
+                                    <li>
+                                        <a href="/#/finances_edit/{{finance.id}}">
+                                            <span class="glyphicon glyphicon-pencil"></span>
+                                            <%=t ( ".edit") %>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="" ng-click="removeEntry(finance)">
+                                            <span class="glyphicon glyphicon-trash"></span>
+                                            <%=t ( ".delete") %>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </td>
+                </tr>
+            </tbody>
+            <tfoot>
+                <tr>
+                    <td colspan="7">
+                        <pagination on-select-page="setPage(page)" total-items="finances.totalLength" page="current_page" items-per-page="entriesPerPage" max-size="5" class="hidden-xs pagination-sm pull-right" boundary-links="true" ng-hide="entriesPerPage >= finances.totalLength" rotate="true" previous-text="&lsaquo;" next-text="&rsaquo;" first-text="&laquo;" last-text="&raquo;">
+                        </pagination>
+                        <pagination on-select-page="setPage(page)" total-items="finances.totalLength" page="current_page" items-per-page="entriesPerPage" max-size="3" class="visible-xs pagination-sm pull-right" boundary-links="true" ng-hide="entriesPerPage >= finances.totalLength" rotate="true" previous-text="&lsaquo;" next-text="&rsaquo;" first-text="&laquo;" last-text="&raquo;">
+                        </pagination>
                     </td>
-                    <td class="text-right">{{finance.value | customCurrency : '€ '}}</td>
-                    <td>
-                        <div class="btn-group pull-right">
-                            <button type="button" class="btn btn-default dropdown-toggle btn-xs" data-toggle="dropdown">
-                                <span class="glyphicon glyphicon-pencil"></span>
-                            </button>
-                            <ul class="dropdown-menu">
-                                <li>
-                                    <a href="/#/finances_edit/{{finance.id}}">
-                                        <span class="glyphicon glyphicon-pencil"></span>
-                                        <%=t ( ".edit") %>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="" ng-click="removeEntry(finance)">
-                                        <span class="glyphicon glyphicon-trash"></span>
-                                        <%=t ( ".delete") %>
-                                    </a>
-                                </li>
-                            </ul>
-                        </div>
-                    </td>
-            </tr>
-        </tbody>
-        <tfoot>
-            <tr>
-                <td colspan="7">
-                    <pagination on-select-page="setPage(page)" total-items="finances.totalLength" page="current_page" items-per-page="entriesPerPage" max-size="5" class="hidden-xs pagination-sm pull-right" boundary-links="true" ng-hide="entriesPerPage >= finances.totalLength" rotate="true" previous-text="&lsaquo;" next-text="&rsaquo;" first-text="&laquo;" last-text="&raquo;">
-                    </pagination>
-                    <pagination on-select-page="setPage(page)" total-items="finances.totalLength" page="current_page" items-per-page="entriesPerPage" max-size="3" class="visible-xs pagination-sm pull-right" boundary-links="true" ng-hide="entriesPerPage >= finances.totalLength" rotate="true" previous-text="&lsaquo;" next-text="&rsaquo;" first-text="&laquo;" last-text="&raquo;">
-                    </pagination>
-                </td>
-            </tr>
-        </tfoot>
-    </table>
-
+                </tr>
+            </tfoot>
+        </table>
+    </div>
 </div>
-<div class="row form-group">
+<div class="row">
     <div class="col-md-3 col-xs-4">
         <a href="" ng-click="Util.redirect_to.back()" class="btn btn-sm btn-default">
             <i class="glyphicon glyphicon-arrow-left"></i> 

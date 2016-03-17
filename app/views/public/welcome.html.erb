@@ -1,0 +1,91 @@
+<% content_for :title, t('.page_title') %>
+
+<div id="flatman" class="flatman-section flatman-section__main">
+  <div class="flatman-section__main-description">
+    <h3>Dein WG <br/> Superheld ist da!</h3>
+    <h1>Flatman</h1>
+    <p class="flatman-text__size--20">
+      <a href="<%= signin_url %>"><strong>Hier gleich loslegen</strong></a>
+    </p>
+    <p>
+      oder bequem die <strong>Flatman-App</strong> verwenden
+    </p>
+    <a href="https://play.google.com/store/apps/details?id=at.flatman.android&utm_source=global_co&utm_medium=prtnr&utm_content=Mar2515&utm_campaign=PartBadge&pcampaignid=MKT-AC-global-none-all-co-pr-py-PartBadges-Oct1515-1">
+      <img alt="Get it on Google Play" src="<%= image_path( 'google-play-badge.png' ) %>" class="flatman-image__badge" />
+    </a>
+    <a href="#">
+      <img alt="Get it on the App Store" src="<%= image_path( 'ios-app-store-badge.svg' ) %>" class="flatman-image__badge" />
+    </a>
+  </div>
+</div>
+
+<div id="flatman-shopping-lists" class="flatman-section flatman-section__shopping-lists">
+  <div class="flatman-section__description">
+    <h3>Superkraft:</h3>
+    <h2>Einkaufslisten</h2>
+    <p>
+      Shoppinglisten helfen dir beim Einkaufen nichts zu vergessen oder doppelt zu kaufen.
+    </p>
+  </div>
+</div>
+
+<div id="flatman-finances" class="flatman-section flatman-section__finances">
+  <div class="flatman-section__description">
+    <h3>Superkraft:</h3>
+    <h2>Finanzdurchblick</h2>
+    <p>
+      Verwalte deine Rechungen, Schulden von WG bewohnern und Zahlungen und behalte den Überblick.
+    </p>
+  </div>
+</div>
+
+<div id="flatman-resources" class="flatman-section flatman-section__resources">
+  <div class="flatman-section__description">
+    <h3>Superkraft:</h3>
+    <h2>Überwachung</h2>
+    <p>
+      Überwache deinen Ressourcenverbrauch und hilf die Umwelt zu schützen.
+    </p>
+  </div>
+</div>
+
+<div id="flatman-contact" class="flatman-section flatman-section__contact">
+  <div class="flatman-section__contact-description">
+    <h2>Noch Fragen?</h2>
+    <p>
+      Kontaktiere uns einfach!
+    </p>
+    <ul class="list-inline">
+      <li class="flatman-text__size--20"><a href="#"><span class="fa fa-facebook-official"></span></a></li>
+      <li class="flatman-text__size--20"><a href="#"><span class="fa fa-envelope"></span></a></li>
+    </ul>
+    <p>
+      <br />
+      <%= link_to t('misc.titles.menus.terms_and_privacy.title'), terms_path %>
+    </p>
+  </div>
+</div>
+
+<% content_for :content_script do %>
+<script>
+  $( document ).ready( function(){
+    var section_colors = [
+      '#FFD530', '#d9edf7', '#fcf8e3', '#dff0d8', '#FFD530'
+    ];
+    $( '#pagepiling' ).pagepiling({
+      sectionSelector: '.flatman-section',
+      menu: '#navbar',
+      anchors: [
+        'flatman',
+        'flatman-shopping-lists',
+        'flatman-finances',
+        'flatman-resources',
+        'flatman-contact'
+      ],
+      afterLoad: function( anchorLink, index ){
+        $( '.overlay' ).css( 'background-color', section_colors[ index - 1 ] ).fadeOut();
+      }
+    });
+  });
+</script>
+<% end %>
