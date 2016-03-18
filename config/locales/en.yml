@@ -247,6 +247,9 @@ en:
   public:
     welcome:
       page_title                          : "Your Superhero is here!"
+      shopping_text                       : "Gemeinsame Einkaufslisten helfen dir dabei, beim Einkauf nichts zu vergessen oder doppelt zu kaufen."
+      finance_text                        : "Verwalte deine Rechnungen, Schulden und Zahlungen in der WG und behalte so immer den Überblick. "
+      resource_text                       : "Behalte deinen Strom-, Wasser- und Gasverbrauch im Auge und hilf so mit die Umwelt zu schützen. "
     about:
       page_header                         : "About us"
       page_title                          : "About us"
