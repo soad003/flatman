@@ -69,6 +69,7 @@ de:
           attributes:
             name:
               blank                       : "Bitte gib einen Namen für deine WG an!"
+              taken                       : "Der WG-Name ist schon vergeben!"
             city:
               blank                       : "Bitte gib deine Stadt an!"
             zip:
