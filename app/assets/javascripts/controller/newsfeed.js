@@ -2,7 +2,7 @@ angular.module('flatman').controller("newsfeedCtrl",
 	function($scope, newsfeedService, userService, shoppingService,resourceService,financesService,todoService, Util) {
 	
 	$scope.tileClass=function(text){
-		strclass = "col-lg-3 col-sm-6 col-xs-6 "
+		var strclass = "col-lg-3 col-sm-6 col-xs-6 "
 		if ($scope.get_resource_usage() === 0)
 			strclass = "col-lg-4 col-sm-4 col-xs-4 ";
 		switch(text) {
