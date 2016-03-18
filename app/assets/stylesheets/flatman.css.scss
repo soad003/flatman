@@ -210,6 +210,8 @@ input[type='number'] {
 
  @media (max-width: $screen-xs) {
     .reduce-padding-xs { padding-left: 5px!important; padding-right: 5px!important; }
+    .reduce-padding-xs-left { padding-left: 5px!important; }
+    .reduce-padding-xs-right { padding-right: 5px!important; }
 
     .container{
          padding-left: 5px!important; padding-right: 5px!important;

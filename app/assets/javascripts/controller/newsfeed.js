@@ -2,15 +2,20 @@ angular.module('flatman').controller("newsfeedCtrl",
 	function($scope, newsfeedService, userService, shoppingService,resourceService,financesService,todoService, Util) {
 	
 	$scope.tileClass=function(text){
-		if ($scope.get_resource_usage() === 0){
-			if (text == 'finances')
-				return "col-lg-4 col-sm-4 col-xs-4";
-			return "col-lg-4 col-sm-4 col-xs-4";
+		strclass = "col-lg-3 col-sm-6 col-xs-6 "
+		if ($scope.get_resource_usage() === 0)
+			strclass = "col-lg-4 col-sm-4 col-xs-4 ";
+		switch(text) {
+			case "shopping":
+				strclass += "reduce-padding-xs-right"; break;
+			case "todo": 
+				strclass += (($scope.get_resource_usage() === 0) ? "reduce-padding-xs" : "reduce-padding-xs-left"); break;
+			case "finance":
+				strclass += (($scope.get_resource_usage() === 0) ? "reduce-padding-xs-left" : "reduce-padding-xs-right"); break;
+			case "resource":
+				strclass += "reduce-padding-xs-left"; break;
 		}
-		if (text == 'finances'){
-			return "col-lg-3 col-sm-6 col-xs-6";
-		}
-		return "col-lg-3 col-sm-6 col-xs-6";
+		return strclass
 	}
 
 	$scope.get_you_owe=function(){return financesService.finance.get_sum($scope.overviewMates);};
