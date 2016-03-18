@@ -69,6 +69,7 @@ en:
           attributes:
             name:
               blank                       : "Please provide a name for your flat!"
+              taken                       : "This flat name is already taken!"
             city:
               blank                       : "Please enter your city!"
             zip:

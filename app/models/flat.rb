@@ -11,6 +11,7 @@ class Flat < ActiveRecord::Base
     has_many    :bills
     has_many    :newsitems
     validates   :name, :token, presence: true #:street, :city, :zip,
+    validates   :name, uniqueness: { case_sensitive: false }
     #geocoded_by :full_street_address
     #after_validation :geocode
 

@@ -73,6 +73,9 @@ gem "paranoia", "~> 2.0"
 # browser detection
 gem "browser"
 
+# mail exception notification, if something goes wrong, not yet configured
+gem 'exception_notification' , '~> 4.0.0'
+
 #calculate distance
 gem 'geocoder'
 
@@ -84,9 +87,6 @@ group :production do
 
     #file storage in amazon cloud?? needed,
     gem 'aws-sdk'
-
-    # mail exception notification, if something goes wrong, not yet configured
-    gem 'exception_notification'
 
     # heroku open needs this gem
     gem 'launchy'

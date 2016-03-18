@@ -62,5 +62,11 @@ Flatman::Application.configure do
   config.assets.precompile += %w( vendor/angular-locale_de-de.js )
   #Mail.register_interceptor(DevelopmentMailInterceptor) if Rails.env.development?
 
+  Rails.application.config.middleware.use ExceptionNotification::Rack,
+  :email => {
+    :email_prefix => "[ERROR] ",
+    :sender_address => %{"notifier_dev" <notifier@flatman.at>},
+    :exception_recipients => %w{exceptions@flatman.at}
+  }
   
 end

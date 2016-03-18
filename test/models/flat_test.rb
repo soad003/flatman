@@ -42,10 +42,8 @@ class FlatTest < ActiveSupport::TestCase
      flat.name=flat_old.name
 
      #ActiveRecord::RecordNotUnique
-     assert_raises(ActiveRecord::StatementInvalid,ActiveRecord::RecordNotUnique) do
-       flat.save
-     end
 
+     assert !flat.save
     end
 
 
