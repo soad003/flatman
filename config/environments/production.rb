@@ -99,9 +99,6 @@ Flatman::Application.configure do
   # Welcome Assets
   config.assets.precompile += [ 'welcome.js', 'welcome.css', 'welcome/*' ]
 
-  #load lib dir 
-  config.autoload_paths += %W(#{config.root}/lib)
-
   Rails.application.config.middleware.use ExceptionNotification::Rack,
   :email => {
     :email_prefix => "[ERROR] ",

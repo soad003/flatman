@@ -62,6 +62,4 @@ Flatman::Application.configure do
     :from => "info.flatman@gmx.at"
   }
 
-  config.autoload_paths += %W(#{config.root}/lib)
-
 end
