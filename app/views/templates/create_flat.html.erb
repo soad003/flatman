@@ -23,11 +23,11 @@
           </div>
         </div>
 
-        <div class="panel panel-default">
+        <div class="panel panel-default" ng-show="newFlat.name != ''">
           <div class="panel-heading"><strong><%=t('.invites')%></strong></div>
           <div class="panel-body">
             <div class="row form-group">
-              <ul class="list-unstyled">
+              <ul class="list-unstyled" ng-show="newFlat.invites.length !== 0">
                 <li ng-repeat="invite in newFlat.invites">
                   <div class="col-lg-10 col-sm-10 col-md-10 col-xs-10">{{invite}}</div>
                   <a href="" class="pull-right col-lg-2 col-sm-2 col-md-2 col-xs-2" ng-click="remove_invite(invite)">
@@ -57,6 +57,7 @@
         <button class="btn btn-lg btn-success" ng-click="create_flat()"><%=t(".create_flat")%></button>
 
         <hr class="hrjumbo">
+
         <div class="form-group">
           <label class="control-label" for="flat_id"><%=t(".flat_key")%></label>
           <div>

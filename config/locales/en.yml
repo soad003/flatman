@@ -518,8 +518,8 @@ en:
       description1                       : "You are currently not member of a flat!"
       description2                       : "You can either create one, join it via the secret flat key or"
       description3                       : "just wait until you get assigned to one by your roommates."
-      name_label                         : "name"
-      name_placeholder                   : "Alias for your flat ..."
+      name_label                         : "flat name"
+      name_placeholder                   : "Superflat 3000"
       street_label                       : "street"
       street_placeholder                 : "1007 Mountain Drive"
       zip_label                          : "postal code"
@@ -530,8 +530,8 @@ en:
       invites                            : "Invite some flat mates"
       email                              : "chuck.norries@nodomain.com"
       flat_key_placeholder               : "3c0l0e5m1e9n9s2"
-      flat_key                           : "Flat Key"
-      join_flat                          : "Join Flat!" 
+      flat_key                           : "flat key"
+      join_flat                          : "join flat!" 
   session:
     index:
       page_title                         : "Please sign in"
