@@ -26,6 +26,7 @@ class Api::RestController < ProtectedController
     def general_error(error)
         puts error.message
         puts error.backtrace
+        Utility.log_exception e, info: t('errors.server_error.messages.server_error')
         render :json => {:errors => [t('errors.server_error.messages.server_error')]}, :status => :internal_server_error
     end
 end

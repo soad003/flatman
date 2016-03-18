@@ -61,7 +61,7 @@ Flatman::Application.configure do
   config.action_mailer.default_options = {
     :from => "info.flatman@gmx.at"
   }
-  
-  PAPERCLIP_STORAGE_OPTIONS = {}
+
+  config.autoload_paths += %W(#{config.root}/lib)
 
 end
