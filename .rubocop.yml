@@ -1,0 +1,21 @@
+Style/Encoding:
+  Enabled: false
+
+Metrics/LineLength:
+  Max: 100
+
+Rails:
+  Enabled: true
+
+Metrics/AbcSize:
+  Enabled: false
+
+AllCops:
+  Include:
+    - '**/Rakefile'
+    - '**/config.ru'
+  Exclude:
+    - 'db/**/*'
+    - 'config/**/*'
+    - 'script/**/*'
+    - !ruby/regexp /old_and_unused\.rb$/

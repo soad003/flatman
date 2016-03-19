@@ -2,3 +2,6 @@
 # for example lib/tasks/capistrano.rake, and they will automatically be available to Rake.
 require File.expand_path('../config/application', __FILE__)
 Flatman::Application.load_tasks
+
+require 'rubocop/rake_task'
+RuboCop::RakeTask.new

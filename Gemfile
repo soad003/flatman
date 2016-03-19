@@ -76,6 +76,9 @@ gem "browser"
 # mail exception notification, if something goes wrong, not yet configured
 gem 'exception_notification' , '~> 4.0.0'
 
+# ruby linter
+gem "rubocop"
+
 #calculate distance
 gem 'geocoder'
 

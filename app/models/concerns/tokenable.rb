@@ -2,7 +2,7 @@ module Tokenable
   extend ActiveSupport::Concern
 
   included do
-    before_validation :generate_token, :on => :create
+    before_validation :generate_token, on: :create
   end
 
   protected

@@ -23,7 +23,7 @@ angular.module('flatman').controller("pinboardCtrl",function($scope,$q,$location
         $scope.most_bought = _(data[2]).map(function(x){ return x[0]; });
     }
 
-    function open_modal(callback_succ, todo) {
+    function open_modal_create_list(callback_succ, todo) {
         var modalinst = $modal.open({
                       animation: true,
                       templateUrl: 'create_list.html',
@@ -64,7 +64,7 @@ angular.module('flatman').controller("pinboardCtrl",function($scope,$q,$location
     $scope.only_all=function(){ $scope.filter_type=""; rebind_ui();};
 
     $scope.create_todo=function(){ 
-        open_modal(function(result){
+        open_modal_create_list(function(result){
             todoService.list.create(result.text, result.priv, function(data){
                 data.items=[];
                 data.type=TODO_TYPE;
@@ -74,7 +74,7 @@ angular.module('flatman').controller("pinboardCtrl",function($scope,$q,$location
     };
 
     $scope.create_shoppinglist=function(){
-        open_modal(function(result){
+        open_modal_create_list(function(result){
             shoppingService.list.create(result.text, result.priv, function(data){
                     data.items=[];
                     data.type=SHOP_TYPE;
@@ -123,10 +123,18 @@ angular.module('flatman').controller("pinboardCtrl",function($scope,$q,$location
     };
 
     $scope.done_shopping=function(list){
-        shoppingService.list.was_shopping(list.id, function(data){
-            list.items= _(list.items).reject(function(i){ return i.checked});
-        });
-        Util.redirect_to.finances_done_shopping(list.name + ": " + shoppingService.list.get_summary_string(list,true,150));
+        $modal.open({
+                      animation: true,
+                      templateUrl: 'done_shopping.html',
+                      controller: 'doneShoppingCtrl'
+                    }).result.then(function(res){
+                        shoppingService.list.was_shopping(list.id, function(data){
+                            list.items= _(list.items).reject(function(i){ return i.checked});
+                        });
+                        if(res==="done_bill")
+                            Util.redirect_to.finances_done_shopping(list.name + ": " +
+                                         shoppingService.list.get_summary_string(list,true,150));
+                    });
     };
 
     load_data().then(insert_data); 
@@ -139,6 +147,20 @@ angular.module('flatman').controller('createListCtrl', function ($scope, $modalI
    
     $scope.ok = function () {
         $modalInstance.close($scope.item);
+    };
+
+    $scope.cancel = function () {
+        $modalInstance.dismiss('cancel');
+    };
+});
+
+angular.module('flatman').controller('doneShoppingCtrl', function ($scope, $modalInstance) {  
+    $scope.done_shopping = function () {
+        $modalInstance.close('done');
+    };
+
+    $scope.done_shopping_bill = function () {
+        $modalInstance.close('done_bill');
     };
 
     $scope.cancel = function () {

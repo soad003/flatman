@@ -1,7 +1,7 @@
 class ProtectedController < ApplicationController
-    before_action :check_if_loggedin
+  before_action :check_if_loggedin
 
-    def check_if_loggedin
-        redirect_to signin_url if !logged_in
-    end
+  def check_if_loggedin
+    redirect_to signin_url unless logged_in
+  end
 end
