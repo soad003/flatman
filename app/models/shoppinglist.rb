@@ -1,20 +1,20 @@
 class Shoppinglist < ActiveRecord::Base
-    acts_as_paranoid
-    
-	belongs_to 	:flat
-	belongs_to  :user
-	has_many	:shoppinglistitems, -> { order 'created_at asc' }, :dependent => :destroy
-    validates   :name,:flat, presence: true
+  acts_as_paranoid
 
-    def is_private?
-    	!user.nil?
-    end
+  belongs_to 	:flat
+  belongs_to  :user
+  has_many	:shoppinglistitems, -> { order 'created_at asc' }, dependent: :destroy
+  validates :name, :flat, presence: true
 
-    def owned_by?(me)
-    	is_private? && user == me
-    end
+  def is_private?
+    !user.nil?
+  end
 
-    def self.find_list_with_user_constraint(id, user)
-        find_by!(id: id, flat_id: user.flat.id)
-    end
+  def owned_by?(me)
+    is_private? && user == me
+  end
+
+  def self.find_list_with_user_constraint(id, user)
+    find_by!(id: id, flat_id: user.flat.id)
+  end
 end

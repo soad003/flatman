@@ -1,6 +1,6 @@
 class PublicController < ApplicationController
-  layout 'welcome', :only => [ :welcome ]
-  
+  layout 'welcome', only: [:welcome]
+
   def about
   end
 
