@@ -512,6 +512,10 @@ en:
       create_todo                        : "Give a name to your new todo list!"
       create_shopping                    : "Where do you go shopping? What do you buy?"
       private                            : "Private"
+      done_shopping                      : "Are you done with your shopping trip?"
+      done_shopping_yes                  : "Yes"
+      done_shopping_bill                 : "Yes and I want to enter the bill"
+      done_shopping_description          : "Yes will clear your checked items and inform your mates that you where shopping."
     create_flat:
       subtitle                           : "Welcome to"
       title                              : "Flatman"

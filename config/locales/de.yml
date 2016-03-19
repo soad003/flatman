@@ -508,6 +508,10 @@ de:
       create_todo                        : "Gib deiner neuen Todoliste einen Namen!"
       create_shopping                    : "Wo gehst du Einkaufen? Was soll gekauft werden?"
       private                            : "Privat"
+      done_shopping                      : "Bist du fertig mit einkaufen?"
+      done_shopping_yes                  : "Ja"
+      done_shopping_bill                 : "Ja, möchte gleich die Rechung eintragen"
+      done_shopping_description          : "Ja löscht die erledigten items und informiert deine WG-Buddies."
     create_flat:
       subtitle                           : "Willkommen bei"
       title                              : "Flatman"

@@ -33,17 +33,17 @@
         <span ng-show="filtered_shopping()"><span class="fa fa-shopping-cart"></span> <%= t(".page_header_shop") %></span>
         <span ng-show="filtered_todo()"><span class="fa fa-list-alt"></span> <%= t(".page_header_todo") %></span>
         <div class="btn-group pull-right" data-toggle="buttons">
-          <label class="btn btn-default hidden-xs" ng-class="{'active': filtered_todo()}" ng-click="only_todo()">
+          <label ng-show="false" class="btn btn-default hidden-xs" ng-class="{'active': filtered_todo()}" ng-click="only_todo()">
             <input type="radio" name="options" id="option1" autocomplete="off"><i class="fa fa-list-alt fa-lg"></i> <%= t(".Todo") %>
           </label>            
-          <label class="btn btn-default hidden-xs" ng-class="{'active': filtered_shopping()}" ng-click="only_shopping()">
+          <label ng-show="false" class="btn btn-default hidden-xs" ng-class="{'active': filtered_shopping()}" ng-click="only_shopping()">
             <input type="radio" name="options" id="option2" autocomplete="off"><i class="fa fa-shopping-cart fa-lg"></i> <%= t(".shopping") %>
           </label>
-          <label class="btn btn-default hidden-xs" ng-class="{'active': filtered_all()}" ng-click="only_all()">
+          <label ng-show="false" class="btn btn-default hidden-xs" ng-class="{'active': filtered_all()}" ng-click="only_all()">
             <input type="radio" name="options" id="option4" autocomplete="off" checked><i class="fa fa-ban fa-lg"></i> <%= t(".all") %>
           </label>
 
-          <span class="btn-separator hidden-xs"></span>
+          <span ng-show="false" class="btn-separator hidden-xs"></span>
           <button type="button" 
                     class="btn dropdown-toggle btn-primary" 
                     data-toggle="dropdown"
@@ -167,6 +167,32 @@
     <div class="modal-footer">
         <button class="btn btn-primary" type="submit" ng-click="ok()"><%= t("misc.titles.OK") %></button>
         <button class="btn btn-warning" type="button" ng-click="cancel()"><%= t("misc.titles.cancel") %></button>
+    </div>
+  </form>
+</script>
+
+
+<script type="text/ng-template" id="done_shopping.html">
+  <form name="questionForm" ng-submit="ok()" modalWindow>
+    <div class="modal-header">
+        <h3 class="modal-title"><%= t(".done_shopping") %></h3>
+    </div>
+    <div class="modal-body">
+      <%= t(".done_shopping_description") %>
+    </div>
+    <div class="modal-footer">
+        <button class="btn btn-primary btn-responsive" 
+                  type="submit" 
+                  ng-click="done_shopping()">
+                  <%= t(".done_shopping_yes") %></button>
+        <button class="btn btn-default btn-responsive" 
+                type="button" 
+                ng-click="done_shopping_bill()">
+                <%= t(".done_shopping_bill") %></button>
+        <button class="btn btn-warning btn-responsive" 
+                type="button" ng-click="cancel()">
+                <%= t("misc.titles.cancel") %></button>
+      </div>
     </div>
   </form>
 </script>
