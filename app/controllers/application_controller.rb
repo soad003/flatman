@@ -34,7 +34,7 @@ class ApplicationController < ActionController::Base
   end
 
   def is_app_user?
-    request.user_agent.include? 'flatman_app'
+    request.user_agent.include? "flatman_app"
   end
 
   def logout
