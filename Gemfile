@@ -110,6 +110,8 @@ group :development, :test do
     gem 'assert_json', '0.2.0'
 end
 
+#for seed dump
+gem 'seed_dump'
 
 # Use debugger
 # gem 'debugger', group: [:development, :test]
