@@ -34,7 +34,7 @@ class ApplicationController < ActionController::Base
   end
 
   def is_app_user?
-    request.user_agent.include? "flatman_app"
+    !cookies[:platform].blank?
   end
 
   def logout
@@ -56,9 +56,9 @@ class ApplicationController < ActionController::Base
   def handle_platform
     platform = cookies[:platform]
     if logged_in && !platform.blank?
-      if platform == "android"
+      if platform.to_s == "android"
         current_user.set_platform("android")
-      elsif platform == "ios"
+      elsif platform.to_s == "ios"
         current_user.set_platform("ios")
       end
     end
