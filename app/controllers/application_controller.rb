@@ -54,10 +54,11 @@ class ApplicationController < ActionController::Base
   end
 
   def handle_platform
-    if logged_in
-      if request.user_agent.include? ":android"
+    platform = cookies[:platform]
+    if logged_in && !platform.blank?
+      if platform == "android"
         current_user.set_platform("android")
-      elsif request.user_agent.include? ":ios"
+      elsif platform == "ios"
         current_user.set_platform("ios")
       end
     end
