@@ -76,6 +76,9 @@ gem "browser"
 # mail exception notification, if something goes wrong, not yet configured
 gem 'exception_notification' , '~> 4.0.0'
 
+# ruby linter
+gem "rubocop"
+
 #calculate distance
 gem 'geocoder'
 
@@ -110,6 +113,8 @@ group :development, :test do
     gem 'assert_json', '0.2.0'
 end
 
+#for seed dump
+gem 'seed_dump'
 
 # Use debugger
 # gem 'debugger', group: [:development, :test]
