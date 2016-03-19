@@ -6,7 +6,7 @@ class Finance
        overview_mate.entries = overview_mate.entries.drop(from).take(to)
        overview_mate
      end).compact
-    end
+  end
 
   def self.get_overview_mate(user, mate)
     mate_info = OpenStruct.new('name' => mate.name, 'page' => 1, 'entryLength' => '', 'id' => mate.id, 'img_path' => mate.image_path, 'value' => 0, 'entries' => [])

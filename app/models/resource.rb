@@ -47,8 +47,8 @@ class Resource < ActiveRecord::Base
     if (entries.size == 0 || entries.first.date != from) && (entry = get_resource_entry_before(from, resource)) != nil
       returnEntries << entry
     end
-    entries.each do |entry|
-      returnEntries << entry
+    entries.each do |entry_i|
+      returnEntries << entry_i
     end
     if (entries.size == 0 || entries.last.date != last) && (entry = get_resource_entry_after(to, resource)) != nil
       returnEntries << entry
@@ -120,7 +120,7 @@ class Resource < ActiveRecord::Base
         if statistic_data.labels[i] >= from && statistic_data.labels[i] <= to
           sum += statistic_data.usages[i]
         end
-        end
+      end
     end
     info.name = resource.name
     info.unit = resource.unit
@@ -154,14 +154,14 @@ class Resource < ActiveRecord::Base
           returnData.years << set_overview_costs(currentYear, resource)
           currentYear = OpenStruct.new(name: date.year, usage: entry, costs: 0, firstEntry: nil, lastEntry: nil)
         end
-       end
+      end
 
       unless currentYear.firstEntry.nil?
         returnData.years << set_overview_costs(currentYear, resource)
       end
       unless thisMonth.firstEntry.nil?
         returnData.general << set_overview_costs(thisMonth, resource)
-       end
+      end
 
       unless lastThreeMonth.firstEntry.nil?
         returnData.general << set_overview_costs(lastThreeMonth, resource)
@@ -216,7 +216,7 @@ class Resource < ActiveRecord::Base
       else
         entry.usage = (entry.value - re[index + 1].value).round(2)
         entry.costs = (entry.usage * resource.pricePerUnit).round(2)
-          end
+      end
     end
     re
   end

@@ -29,7 +29,7 @@ class Message < ActiveRecord::Base
       retList = retList.drop(retList.length - quantity.to_i)
     end
     retList
-    end
+  end
 
   def self.find_partner(mesId, current_user)
     if mesId != '0' # first flatchat message
@@ -48,7 +48,8 @@ class Message < ActiveRecord::Base
             end
     else
       ret = { id: current_user.id, name: User.find(current_user.id).flat.name }
-      end
+    end
+    ret
   end
 
   def self.find_chats(user)
@@ -95,7 +96,7 @@ class Message < ActiveRecord::Base
     counterList.each do |c|
       if c.read == false
         count = (count.to_i + 1).to_s if c.sender_id != current_user.id
-        end
+      end
     end
     count
   end

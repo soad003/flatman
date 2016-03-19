@@ -7,7 +7,7 @@ class Api::ResourceentryController < Api::RestController
     from = Integer(params[:from] || 0)
     to = Integer(params[:to] || bills_of_all_users.length) - from
     @re = resourceentries.drop(from).take(to)
- end
+  end
 
   def create
     entry = Resourceentry.new(entry_params)

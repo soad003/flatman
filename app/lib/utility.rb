@@ -15,9 +15,13 @@ class Utility
     request = args[:request]
     env = request ? request.env : nil
     if env
-      ExceptionNotifier::Notifier.exception_notification(env, e, data: { message: "Exception: #{extra_info}" }).deliver
+      ExceptionNotifier::Notifier
+        .exception_notification(env, e, data: { message: "Exception: #{extra_info}" })
+        .deliver
     else
-      ExceptionNotifier::Notifier.background_exception_notification(e, data: { message: "Exception: #{extra_info}" }).deliver
-     end
+      ExceptionNotifier::Notifier
+        .background_exception_notification(e, data: { message: "Exception: #{extra_info}" })
+        .deliver
+    end
   end
 end

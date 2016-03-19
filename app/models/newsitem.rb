@@ -193,8 +193,7 @@ class Newsitem < ActiveRecord::Base
 
   def self.getPushMessage(newsitem, locale)
     I18n.locale = locale
-    if newsitem.isShopping && newsitem.action == Newsitem::ACTIONS[:done]
-                           then return I18n.t('activerecord.newsitem.pushShoppingDone', name: newsitem.user.name) end
+    if newsitem.isShopping && newsitem.action == Newsitem::ACTIONS[:done] then return I18n.t('activerecord.newsitem.pushShoppingDone', name: newsitem.user.name) end
     if newsitem.isFinance then return I18n.t('activerecord.newsitem.pushFinance', name: newsitem.user.name) end
     if newsitem.isShopping then return I18n.t('activerecord.newsitem.pushShopping', name: newsitem.user.name) end
     if newsitem.isTodo then return I18n.t('activerecord.newsitem.pushTodo', name: newsitem.user.name) end
@@ -221,7 +220,7 @@ class Newsitem < ActiveRecord::Base
           else
             push = PushBot::Push.new(device_token, :ios)
             push.notify(message)
-            end
+          end
         end
       end
     end

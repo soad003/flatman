@@ -19,7 +19,7 @@ class ActionController::TestCase
         begin
           get action, format: format
           assert_redirected_to signin_url
-        rescue => ex
+        rescue
           Rails.logger.debug 'must login not tested for ' + action + ' because not get without param'
         end
       end

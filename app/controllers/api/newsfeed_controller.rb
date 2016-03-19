@@ -28,8 +28,6 @@ class Api::NewsfeedController < Api::RestController
     params.permit(:text, :newsitem_id, :from, :to)
   end
 
-  private
-
   # Never trust parameters from the scary internet, only allow the white list through.
   def ni_params
     params.permit(:text, :from, :to, :id)
@@ -76,7 +74,7 @@ class Api::NewsfeedController < Api::RestController
   def getLink(ni)
     return ni.user.image_path if ni.isMessage
     ''
- end
+  end
 
   def getText(ni)
     return ni.text if ni.isMessage

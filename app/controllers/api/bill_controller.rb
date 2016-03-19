@@ -19,7 +19,7 @@ class Api::BillController < Api::RestController
     @bill.save!
     Newsitem.createBill(@bill, current_user)
     respond_with(nil)
- end
+  end
 
   def update
     f = Bill.find_bill_with_user_constraint(params[:id])
@@ -52,8 +52,6 @@ class Api::BillController < Api::RestController
     params[:user_ids] ||= []
     params.permit(:text, :value, :user_id, :date, :cat_name, user_ids: [])
   end
-
-  private
 
   def bill_params
     params[:user_ids] ||= []

@@ -39,16 +39,16 @@ class ResourceTest < ActiveSupport::TestCase
   test 'get_months' do
     date = Date.new(2000, 10, 10)
 
-    assert (Resource.get_months(date) == 24_010) # 2000*12 + 10 = 24010
+    assert(Resource.get_months(date) == 24_010) # 2000*12 + 10 = 24010
   end
 
   test 'get_month_diff' do
     date1 = Date.new(2000, 10, 10)
     date2 = Date.new(2001, 4, 10)
     date3 = Date.new(2000, 1, 10)
-    assert (Resource.get_month_diff(date2, date1) == -6)
-    assert (Resource.get_month_diff(date1, date2) ==  6)
-    assert (Resource.get_month_diff(date3, date1) == 9)
+    assert(Resource.get_month_diff(date2, date1) == -6)
+    assert(Resource.get_month_diff(date1, date2) ==  6)
+    assert(Resource.get_month_diff(date3, date1) == 9)
   end
 
   test 'get_resource_entries' do
@@ -64,11 +64,11 @@ class ResourceTest < ActiveSupport::TestCase
     resource.save!
 
     entries = Resource.get_resource_entries(Date.new(2014, 1, 1), Date.new(2014, 12, 31), resource)
-    assert (entries.size == 2)
+    assert(entries.size == 2)
     entries = Resource.get_resource_entries(Date.new(2012, 1, 1), Date.new(2014, 12, 31), resource)
-    assert (entries.size == 3)
+    assert(entries.size == 3)
     entries = Resource.get_resource_entries(Date.new(2011, 1, 1), Date.new(2011, 12, 31), resource)
-    assert (entries.size == 0)
+    assert(entries.size == 0)
   end
 
   test 'get_resource_entry_before' do
@@ -84,11 +84,11 @@ class ResourceTest < ActiveSupport::TestCase
     resource.save!
 
     entry = Resource.get_resource_entry_before(Date.new(2014, 1, 1), resource)
-    assert (entry.value == 100)
+    assert(entry.value == 100)
     entry = Resource.get_resource_entry_before(Date.new(2012, 1, 1), resource)
     assert entry.nil?
     entry = Resource.get_resource_entry_before(Date.new(2015, 1, 1), resource)
-    assert (entry.value == 400)
+    assert(entry.value == 400)
   end
 
   test 'get_resource_entry_after' do
@@ -104,9 +104,9 @@ class ResourceTest < ActiveSupport::TestCase
     resource.save!
 
     entry = Resource.get_resource_entry_after(Date.new(2014, 1, 1), resource)
-    assert (entry.value == 250)
+    assert(entry.value == 250)
     entry = Resource.get_resource_entry_after(Date.new(2012, 1, 1), resource)
-    assert (entry.value == 100)
+    assert(entry.value == 100)
     entry = Resource.get_resource_entry_after(Date.new(2015, 1, 1), resource)
     assert entry.nil?
   end
@@ -124,10 +124,10 @@ class ResourceTest < ActiveSupport::TestCase
     resource.save!
 
     entries = Resource.get_resource_entries_inkl_after_and_before(Date.new(2014, 3, 3), Date.new(2014, 3, 4), resource)
-    assert (entries.size == 2)
+    assert(entries.size == 2)
     entries = Resource.get_resource_entries_inkl_after_and_before(Date.new(2011, 3, 3), Date.new(2011, 3, 4), resource)
-    assert (entries.size == 1)
+    assert(entries.size == 1)
     entries = Resource.get_resource_entries_inkl_after_and_before(Date.new(2013, 12, 12), Date.new(2014, 3, 4), resource)
-    assert (entries.size == 3)
+    assert(entries.size == 3)
   end
 end

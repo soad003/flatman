@@ -8,10 +8,10 @@ class Resourceentry < ActiveRecord::Base
   def self.find_with_user_constraint(id, r_id, user)
     r = Resource.find_resource_with_user_constraint(r_id, user)
     r.resourceentries.where(id: id).first
-    end
+  end
 
   def self.destroy_with_user_constraint(id, r_id, user)
     item = Resourceentry.find_with_user_constraint(id, r_id, user)
     item.destroy!
-    end
+  end
 end

@@ -11,7 +11,7 @@ class Bill < ActiveRecord::Base
 
   def is_editable?
     users.all? { |u| flat.id == u.flat_id } && user.flat_id == flat.id
-   end
+  end
 
   def self.destroy_with_user_constraint(id, user)
     b = Bill.joins(:user).select('bills.*').where('bills.id=? and users.flat_id=?', id, user.flat_id).first

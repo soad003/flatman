@@ -2,10 +2,13 @@ Style/Encoding:
   Enabled: false
 
 Metrics/LineLength:
-  Max: 99
+  Max: 100
 
 Rails:
   Enabled: true
+
+Metrics/AbcSize:
+  Enabled: false
 
 AllCops:
   Include:
