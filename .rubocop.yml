@@ -7,7 +7,89 @@ Metrics/LineLength:
 Rails:
   Enabled: true
 
+#remove them asap
 Metrics/AbcSize:
+  Enabled: false
+
+Metrics/MethodLength:
+  Enabled: false
+
+Metrics/CyclomaticComplexity:
+  Enabled: false
+
+Metrics/PerceivedComplexity:
+  Enabled: false
+
+Metrics/LineLength:
+  Enabled: false
+
+Metrics/ClassLength:
+  Enabled: false
+
+Metrics/ParameterLists:
+  Enabled: false
+
+Style/NonNilCheck:
+  Enabled: false
+
+Style/StringLiterals:
+  Enabled: false
+
+Style/IfUnlessModifier:
+  Enabled: false
+
+Style/ConditionalAssignment:
+  Enabled: false
+
+Style/IdenticalConditionalBranches:
+  Enabled: false
+
+Style/GuardClause:
+  Enabled: false
+
+Style/PredicateName:
+  Enabled: false
+
+Style/MethodName:
+  Enabled: false
+
+Style/Documentation:
+  Enabled: false
+
+Style/VariableName:
+  Enabled: false
+
+Style/For: 
+  Enabled: false
+
+Style/ZeroLengthPredicate:
+  Enabled: false
+
+Style/AccessorMethodName:
+  Enabled: false
+
+Style/AsciiComments:
+  Enabled: false
+
+Style/ClassAndModuleChildren:
+  Enabled: false
+
+Rails/FindBy:
+  Enabled: false
+
+Rails/HasAndBelongsToMany:
+  Enabled: false
+
+Rails/Date:
+  Enabled: false
+
+Rails/Validation:
+  Enabled: false
+
+Rails/TimeZone:
+  Enabled: false
+
+Rails/Output:
   Enabled: false
 
 AllCops:
