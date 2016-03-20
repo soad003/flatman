@@ -396,7 +396,7 @@ en:
       debts                              : "Debts/Balance"
       date                               : "date"
       cat                                : "category"
-      value                              : "partial amount"
+      value                              : "price"
       inhabit                            : "Inhabitant"
       what                               : "what"
       full                               : "total price"
