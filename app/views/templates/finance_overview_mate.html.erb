@@ -58,7 +58,7 @@
                             <span class="visible-xs">{{entry.date| date : 'shortDate'}}</span>
                         </td>
                         <td>
-                            <span ng-hide="entry.isPayment">{{entry.what}}</span>
+                            <span ng-hide="entry.isPayment">{{sliceText(entry.what)}}</span>
                             <span ng-show="entry.isPayment">
                                 <%=t ( '.payment') %>
                         </td>
