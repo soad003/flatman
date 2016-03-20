@@ -29,20 +29,20 @@ Metrics/ClassLength:
 Metrics/ParameterLists:
   Enabled: false
 
-Style/NonNilCheck:
-  Enabled: false
+# Style/NonNilCheck:
+#   Enabled: false
 
-Style/StringLiterals:
-  Enabled: false
+# Style/StringLiterals:
+#   Enabled: false
 
-Style/IfUnlessModifier:
-  Enabled: false
+# Style/IfUnlessModifier:
+#   Enabled: false
 
-Style/ConditionalAssignment:
-  Enabled: false
+# Style/ConditionalAssignment:
+#   Enabled: false
 
-Style/IdenticalConditionalBranches:
-  Enabled: false
+# Style/IdenticalConditionalBranches:
+#   Enabled: false
 
 Style/GuardClause:
   Enabled: false
@@ -62,14 +62,14 @@ Style/VariableName:
 Style/For: 
   Enabled: false
 
-Style/ZeroLengthPredicate:
-  Enabled: false
+# Style/ZeroLengthPredicate:
+#   Enabled: false
 
 Style/AccessorMethodName:
   Enabled: false
 
-Style/AsciiComments:
-  Enabled: false
+# Style/AsciiComments:
+#   Enabled: false
 
 Style/ClassAndModuleChildren:
   Enabled: false
@@ -89,8 +89,8 @@ Rails/Validation:
 Rails/TimeZone:
   Enabled: false
 
-Rails/Output:
-  Enabled: false
+# Rails/Output:
+#   Enabled: false
 
 AllCops:
   Include:

@@ -20,15 +20,12 @@ class SessionController < ApplicationController
       else
         redirect_to root_url(anchor: 'create_flat')
       end
-      session[:invite_token] = nil
+    elsif session[:invite_token].nil?
+      redirect_to root_url, notice: t('misc.titles.logged_in')
     else
-      if session[:invite_token].nil?
-        redirect_to root_url, notice: t('misc.titles.logged_in')
-      else
-        redirect_to root_url, notice: t('misc.titles.logged_in_with_join')
-      end
-      session[:invite_token] = nil
+      redirect_to root_url, notice: t('misc.titles.logged_in_with_join')
     end
+    session[:invite_token] = nil
   end
 
   def join
