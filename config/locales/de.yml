@@ -395,6 +395,7 @@ de:
       value                              : "Preis"
       inhabit                            : "Bewohner"
       what                               : "Typ"
+      full                               : "Gesamtpreis"
       payment_placeholder                : "zahlung des Users"
       edit                               : "bearbeiten"
       delete                             : "löschen"

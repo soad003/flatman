@@ -49,7 +49,6 @@ class ApplicationController < ActionController::Base
     token = cookies[:device_token]
     if !token.blank? && logged_in
       current_user.set_device(token)
-      cookies.delete :device_token
     end
   end
 

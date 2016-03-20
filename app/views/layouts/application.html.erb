@@ -148,11 +148,11 @@
             <div class="col-md-4 col-xs-6">
               &copy; flatman <%= Time.now.year %>
               <% if is_app_user? && current_user.platform == "ios"%>
-              apple app
-            <%end%>
-            <% if is_app_user? && current_user.platform == "android"%>
-              android app
-            <%end%>
+                <i class="fa fa-apple">
+              <%end%>
+              <% if is_app_user? && current_user.platform == "android"%>
+                <i class="fa fa-android">
+              <%end%>
             </div>
             <div class="col-md-4 col-xs-6 text-center">
               <%= link_to_unless(I18n.locale == :en,

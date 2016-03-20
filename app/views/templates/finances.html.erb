@@ -61,8 +61,7 @@
                                         </div>
                                         <div class="col-xs-10 col-sm-11">
                                             <div class="pull-left">
-                                                <span class="visible-xs">{{overviewMate.name.split(' ')[0]}}</span>
-                                                <span class="hidden-xs">
+                                                <span class="dhidden-xs">
                                                     {{overviewMate.name}}
                                                     <span ng-show="overviewMate.value > 0">
                                                         <%=t ( '.owes_you') %>
@@ -98,6 +97,11 @@
                                                             <th>
                                                                 <%=t ( '.what') %>
                                                             </th>
+
+                                                            <th class="text-right">
+                                                                <%=t ( '.full') %>
+                                                            </th>
+
                                                             <th class="text-right">
                                                                 <%=t ( '.value') %>
                                                             </th>
@@ -105,13 +109,14 @@
                                                     </thead>
                                                     <tbody>
                                                         <tr ng-repeat="entry in overviewMate.entries">
-                                                            <td class="hidden-xs">{{entry.date| date : 'longDate'}}</td>
+                                                            <td class="hidden-xs">{{entry.date| date : 'shortDate'}}</td>
                                                             <td>
                                                                 <span ng-hide="entry.isPayment" class="visible-xs">{{sliceText(entry.what)}}</span>
                                                                 <span ng-hide="entry.isPayment" class="hidden-xs">{{entry.what}}</span>
                                                                 <span ng-show="entry.isPayment">
                                                                     <%=t ( '.payment') %>
                                                             </td>
+                                                            <td class="text-right"> <span ng-hide="entry.isPayment"> {{entry.total_price| customCurrency : '€ '}}</span></td>
                                                             <td class="text-right" ng-class="{'text-success':entry.value >
                                                         0, 'text-danger': entry.value
                                                         < 0}">{{entry.value| customCurrency : '€ '}}</td>
