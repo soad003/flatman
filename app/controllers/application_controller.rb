@@ -47,18 +47,16 @@ class ApplicationController < ActionController::Base
 
   def handle_device_token
     token = cookies[:device_token]
-    if !token.blank? && logged_in
-      current_user.set_device(token)
-    end
+    current_user.set_device(token) if !token.blank? && logged_in
   end
 
   def handle_platform
     platform = cookies[:platform]
     if logged_in && !platform.blank?
-      if platform.to_s == "android"
-        current_user.set_platform("android")
-      elsif platform.to_s == "ios"
-        current_user.set_platform("ios")
+      if platform.to_s == 'android'
+        current_user.set_platform('android')
+      elsif platform.to_s == 'ios'
+        current_user.set_platform('ios')
       end
     end
   end

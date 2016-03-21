@@ -68,7 +68,7 @@ class ResourceTest < ActiveSupport::TestCase
     entries = Resource.get_resource_entries(Date.new(2012, 1, 1), Date.new(2014, 12, 31), resource)
     assert(entries.size == 3)
     entries = Resource.get_resource_entries(Date.new(2011, 1, 1), Date.new(2011, 12, 31), resource)
-    assert(entries.size == 0)
+    assert(entries.empty?)
   end
 
   test 'get_resource_entry_before' do

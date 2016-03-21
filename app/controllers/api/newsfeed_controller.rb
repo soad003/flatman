@@ -102,7 +102,7 @@ class Api::NewsfeedController < Api::RestController
     ''
   end
 
-  def quote (text)
+  def quote(text)
     return ("»" + text.strip + "«") if text != ''
     text
   end

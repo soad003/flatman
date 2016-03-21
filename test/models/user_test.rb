@@ -6,8 +6,6 @@ class UserTest < ActiveSupport::TestCase
     assert !user.save
   end
 
-  # 1|3|michael.froewis@gmx.at|facebook|1438808021|Michael Fröwis||2014-06-07 06:29:45.000000|http://graph.facebook.com/1438808021/picture|2014-04-08 06:31:08.723451|2014-04-08 06:40:47.620529
-
   test 'should not save user without email' do
     user = User.new(provider: 'facebook',
                     uid: '1438808021',

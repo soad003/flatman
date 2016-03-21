@@ -214,13 +214,12 @@ class Newsitem < ActiveRecord::Base
         device_token = mate.device_token
         platform = mate.platform
         Thread.new do
-          if platform == 'android'
-            push = PushBot::Push.new(device_token, :android)
-            push.notify(message)
-          else
-            push = PushBot::Push.new(device_token, :ios)
-            push.notify(message)
-          end
+          push = if platform == 'android'
+                   PushBot::Push.new(device_token, :android)
+                 else
+                   PushBot::Push.new(device_token, :ios)
+                 end
+          push.notify(message)
         end
       end
     end

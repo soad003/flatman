@@ -44,13 +44,13 @@ class Resource < ActiveRecord::Base
   def self.get_resource_entries_inkl_after_and_before(from, to, resource)
     returnEntries = []
     entries = get_resource_entries(from, to, resource)
-    if (entries.size == 0 || entries.first.date != from) && (entry = get_resource_entry_before(from, resource)) != nil
+    if (entries.empty? || entries.first.date != from) && !(entry = get_resource_entry_before(from, resource)).nil?
       returnEntries << entry
     end
     entries.each do |entry_i|
       returnEntries << entry_i
     end
-    if (entries.size == 0 || entries.last.date != last) && (entry = get_resource_entry_after(to, resource)) != nil
+    if (entries.empty? || entries.last.date != last) && !(entry = get_resource_entry_after(to, resource)).nil?
       returnEntries << entry
     end
     returnEntries
@@ -115,7 +115,7 @@ class Resource < ActiveRecord::Base
   def self.get_dashboard_data(statistic_data, resource, from, to)
     info = OpenStruct.new(name: '', unit: '', usage: '', cost: '')
     sum = 0
-    if statistic_data.labels.size != 0
+    unless statistic_data.labels.empty?
       for i in 0...statistic_data.labels.size
         if statistic_data.labels[i] >= from && statistic_data.labels[i] <= to
           sum += statistic_data.usages[i]
@@ -131,7 +131,7 @@ class Resource < ActiveRecord::Base
 
   def self.get_overview_data(statistic_data, resource)
     returnData = OpenStruct.new(general: [], years: [])
-    if statistic_data.labels.size != 0
+    unless statistic_data.labels.empty?
       all = OpenStruct.new(name: I18n.t('activerecord.resource.info_all'), usage: 0, costs: 0, firstEntry: nil, lastEntry: nil)
       thisMonth = OpenStruct.new(name: I18n.t('activerecord.resource.info_currentMonth'), usage: 0, costs: 0, firstEntry: nil, lastEntry: nil)
       lastThreeMonth = OpenStruct.new(name: I18n.t('activerecord.resource.info_lastthreemonths'), usage: 0, firstEntry: nil, lastEntry: nil)

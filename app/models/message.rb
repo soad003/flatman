@@ -149,11 +149,10 @@ class Message < ActiveRecord::Base
     endDate2015 = Time.new(2015, 10, 25, 3, 0)
     nowTime = Time.at(Time.now.to_i + 3600)
     if nowTime.between?(beginDate2014, endDate2014) || nowTime.between?(beginDate2015, endDate2015)
-      sendTime = Time.at(nowTime.to_i + 3600)
+      return Time.at(nowTime.to_i + 3600)
     else
-      sendTime = nowTime
+      return nowTime
     end
-    sendTime
   end
 
   def self.destroyMessages(mess_id, current_user)

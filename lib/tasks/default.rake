@@ -1,1 +1,1 @@
-task :default => ["test","jshint"]
+task :default => ["test","jshint","rubocop"]
