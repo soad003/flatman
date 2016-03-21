@@ -239,7 +239,7 @@ en:
         resources                         : "Resource"
         dashboard                         : "Dashboard"
         shopping                          : "Shopping"
-        pinboard                          : "Todos"
+        pinboard                          : "Todo"
         newsfeed                          : "Dashboard"
 
     mail_layout:
@@ -296,7 +296,7 @@ en:
       sampletext_placeholder             : "Say something to your flat mates..."
       post                               : "Post"
       items_to_buy                       : "items to buy"
-      todos                              : "todos"
+      todos                              : "todo"
       view_shopping_details              : "view lists"
       you_owe                            : "you owe"
       you_get                            : "you get"
@@ -490,7 +490,7 @@ en:
       delete_checked                     : "delete checked items"
     pinboard:
       page_header                        : "Pinboard"
-      page_header_todo                   : "Todos"
+      page_header_todo                   : "Todo"
       page_header_shop                   : "Shopping"
       add                                : "add"
       shopping                           : "Shopping"

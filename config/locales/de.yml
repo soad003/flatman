@@ -232,7 +232,7 @@ de:
         resources                         : "Strom/Gas"
         dashboard                         : "Dashboard"
         shopping                          : "Einkaufen"
-        pinboard                          : "Todos"
+        pinboard                          : "Todo"
         newsfeed                          : "Dashboard"
 
 
@@ -294,7 +294,7 @@ de:
       items_to_buy                       : "dinge zu kaufen"
       view_shopping_details              : "zu den listen"
       you_owe                            : "du schuldest"
-      todos                              : "offene Todos"
+      todos                              : "offene Todo"
       you_get                            : "du bekommst"
       view_finance_details               : "zeige Abrechnungen"
       items_borrowed                     : "verliehene items"
@@ -486,7 +486,7 @@ de:
       delete_checked                     : "lösche erledigte items"
     pinboard:
       page_header                        : "Pinnwand"
-      page_header_todo                   : "Todos"
+      page_header_todo                   : "Todo"
       page_header_shop                   : "Einkaufslisten"
       add                                : "hinzufügen"
       shopping                           : "Einkauf"
