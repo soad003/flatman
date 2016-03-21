@@ -22,7 +22,9 @@ class ShoppinglistitemTest < ActiveSupport::TestCase
   test 'should find item from own wg' do
     wg_michi_item = shoppinglistitems(:butter)
     user = users(:michi)
-    list_item = Shoppinglistitem.find_with_user_constraint(wg_michi_item.id, wg_michi_item.shoppinglist.id, user)
+    list_item = Shoppinglistitem.find_with_user_constraint(wg_michi_item.id,
+                                                           wg_michi_item.shoppinglist.id,
+                                                           user)
     assert list_item == wg_michi_item
   end
 
@@ -30,7 +32,9 @@ class ShoppinglistitemTest < ActiveSupport::TestCase
     wg_michi_item = shoppinglistitems(:butter)
     user = users(:clemi)
     assert_raises ActiveRecord::RecordNotFound do
-      Shoppinglistitem.find_with_user_constraint(wg_michi_item.id, wg_michi_item.shoppinglist.id, user)
+      Shoppinglistitem.find_with_user_constraint(wg_michi_item.id,
+                                                 wg_michi_item.shoppinglist.id,
+                                                 user)
     end
   end
 end

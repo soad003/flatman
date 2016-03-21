@@ -82,9 +82,9 @@ class UserTest < ActiveSupport::TestCase
                                   verified: true
                                 },
                                 credentials: {
-                                  token: 'ABCDEF...', # OAuth 2.0 access_token, which you may wish to store
-                                  expires_at: 1_321_747_205, # when the access token expires (it always will)
-                                  expires: true # this will always be true
+                                  token: 'ABCDEF...',
+                                  expires_at: 1_321_747_205,
+                                  expires: true
                                 },
                                 extra: {
                                   raw_info: {
@@ -125,9 +125,9 @@ class UserTest < ActiveSupport::TestCase
                                   verified: true
                                 },
                                 credentials: {
-                                  token: 'ABCDEF...', # OAuth 2.0 access_token, which you may wish to store
-                                  expires_at: 1_321_747_205, # when the access token expires (it always will)
-                                  expires: true # this will always be true
+                                  token: 'ABCDEF...',
+                                  expires_at: 1_321_747_205,
+                                  expires: true
                                 },
                                 extra: {
                                   raw_info: {

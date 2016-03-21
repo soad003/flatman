@@ -2,12 +2,15 @@ class Api::ResourceController < Api::RestController
   around_action :wrap_in_transaction, only: [:create, :destroy]
 
   def index
-    resources = Resource.set_attributes(current_user.flat.resources).sort! { |a, b| a.name.downcase <=> b.name.downcase }
+    resources = Resource.set_attributes(current_user.flat.resources)
+                        .sort! { |a, b| a.name.downcase <=> b.name.downcase }
     resources.each do |resource|
       resource.entries = Resource.calc(resource).drop(0).take(5)
       statistic = Resource.get_statistic_data(nil, nil, resource)
       resource.overview = Resource.get_overview_data(statistic, resource)
-      resource.chart = Resource.get_chart_data(statistic, resource.chartDateRange.startDate, resource.chartDateRange.endDate)
+      resource.chart = Resource.get_chart_data(statistic,
+                                               resource.chartDateRange.startDate,
+                                               resource.chartDateRange.endDate)
     end
     @r = resources
   end
@@ -17,7 +20,10 @@ class Api::ResourceController < Api::RestController
     r = Resource.new(r_params)
     r.flat = flat
     r.save!
-    re = Resourceentry.new(resource_id: r.id, date: r.startDate, value: r.startValue, isFirst: true)
+    re = Resourceentry.new(resource_id: r.id,
+                           date: r.startDate,
+                           value: r.startValue,
+                           isFirst: true)
     r.resourceentries << re
     r.save!
     respond_with(nil, location: nil)
@@ -45,7 +51,10 @@ class Api::ResourceController < Api::RestController
     resources.each do |resource|
       oldestEntry = Resource.get_oldest_entryDate(resource)
       statistic_data = Resource.get_statistic_data(oldestEntry - 29, oldestEntry, resource)
-      returnList << Resource.get_dashboard_data(statistic_data, resource, oldestEntry - 30, oldestEntry)
+      returnList << Resource.get_dashboard_data(statistic_data,
+                                                resource,
+                                                oldestEntry - 30,
+                                                oldestEntry)
     end
     @dashboardList = returnList
   end
@@ -75,6 +84,13 @@ class Api::ResourceController < Api::RestController
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def r_params
-    params.require(:resource).permit(:name, :description, :monthlyCost, :pricePerUnit, :startDate, :annualCost, :startValue, :unit)
+    params.require(:resource).permit(:name,
+                                     :description,
+                                     :monthlyCost,
+                                     :pricePerUnit,
+                                     :startDate,
+                                     :annualCost,
+                                     :startValue,
+                                     :unit)
   end
 end

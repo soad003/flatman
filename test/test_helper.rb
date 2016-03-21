@@ -20,13 +20,15 @@ class ActionController::TestCase
           get action, format: format
           assert_redirected_to signin_url
         rescue
-          Rails.logger.debug 'must login not tested for ' + action + ' because not get without param'
+          Rails.logger.debug 'must login not tested for ' + action +
+                             ' because not get without param'
         end
       end
     end
 
     def get_template_actions
-      (@controller.action_methods & @controller.class.instance_methods(false).map(&:to_s)).select { |item| !item.include? 'callback' }
+      (@controller.action_methods & @controller.class.instance_methods(false).map(&:to_s))
+        .select { |item| !item.include? 'callback' }
     end
 
     def login_as_michi

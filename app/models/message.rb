@@ -115,7 +115,12 @@ class Message < ActiveRecord::Base
     @flatChat.sort! { |a, b| a.created_at <=> b.created_at }
     @lastFlatChat = @flatChat.last
     if @lastFlatChat.nil?
-      @lastFlatChat = Message.new(id: 0, sender_id: current_user.id, receiver_id: current_user.id, text: 'start chating with your flat members', header: '0', created_at: 0)
+      @lastFlatChat = Message.new(id: 0,
+                                  sender_id: current_user.id,
+                                  receiver_id: current_user.id,
+                                  text: 'start chating with your flat members',
+                                  header: '0',
+                                  created_at: 0)
     end
     @lastFlatChat
   end

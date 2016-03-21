@@ -11,7 +11,11 @@ class Api::FlatController < Api::RestController
       unless params[:invites].nil?
         params[:invites].each do |inv_email|
           invite = Invite.create_invite_from_email(inv_email, current_user)
-          UserMailer.invite(invite.email, current_user.flat.name, invite.token, current_user.flat.token).deliver
+          UserMailer.invite(invite.email,
+                            current_user.flat.name,
+                            invite.token,
+                            current_user.flat.token)
+                    .deliver
         end
       end
       respond_with(nil, location: api_flat_path(flat))

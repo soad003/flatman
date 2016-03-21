@@ -7,8 +7,15 @@ class Shareditem < ActiveRecord::Base
   validates :name, :flat, presence: true
 
   ### image validation functions
-  has_attached_file :image, styles: { thumb: '100x100', medium: '300x300' }, default_url: 'missing.svg'
-  validates_attachment :image, content_type: { content_type: ['image/jpg', 'image/jpeg', 'image/gif', 'image/png'] }
+  has_attached_file :image,
+                    styles: { thumb: '100x100', medium: '300x300' },
+                    default_url: 'missing.svg'
+  validates_attachment :image,
+                       content_type: { content_type:  ['image/jpg',
+                                                       'image/jpeg',
+                                                       'image/gif',
+                                                       'image/png']
+                                     }
   validates_attachment_file_name :image, matches: [/png\Z/, /jpe?g\Z/, /gif\Z/]
 
   # to get the full image url
@@ -28,7 +35,10 @@ class Shareditem < ActiveRecord::Base
 
   def self.which_contain(query)
     query = "%#{query}%".downcase
-    where('(lower(shareditems.name) like ? or lower(shareditems.tags) like ? or lower(shareditems.description) like ?) and shareditems.hidden = false', query, query, query)
+    where('(lower(shareditems.name) like ? or '\
+          'lower(shareditems.tags) like ? or '\
+          'lower(shareditems.description) like ?) and '\
+          'shareditems.hidden = false', query, query, query)
   end
 
   def self.from_city(zip, city)

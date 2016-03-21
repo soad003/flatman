@@ -6,7 +6,8 @@ class Api::BillController < Api::RestController
     from = Integer(params[:from] || 0)
     to = Integer(params[:to] || bills_of_all_users.length) - from
 
-    @bills = OpenStruct.new('totalLength' => bills_of_all_users.length, 'subset' => bills_of_all_users.drop(from).take(to))
+    @bills = OpenStruct.new('totalLength' => bills_of_all_users.length,
+                            'subset' => bills_of_all_users.drop(from).take(to))
   end
 
   def show

@@ -14,7 +14,10 @@ class Bill < ActiveRecord::Base
   end
 
   def self.destroy_with_user_constraint(id, user)
-    b = Bill.joins(:user).select('bills.*').where('bills.id=? and users.flat_id=?', id, user.flat_id).first
+    b = Bill.joins(:user)
+            .select('bills.*')
+            .where('bills.id=? and users.flat_id=?', id, user.flat_id)
+            .first
     b.billcategory.destroy! if b.billcategory.bills.count == 1
     b.destroy!
   end

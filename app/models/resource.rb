@@ -26,17 +26,20 @@ class Resource < ActiveRecord::Base
   end
 
   def self.get_resource_entries(from, to, resource)
-    resource.resourceentries.where(['date >= ? AND date <= ?', from, to]).sort! { |a, b| a.date <=> b.date }
+    resource.resourceentries.where(['date >= ? AND date <= ?', from, to])
+            .sort! { |a, b| a.date <=> b.date }
   end
 
   def self.get_resource_entry_before(date, resource)
-    entry = resource.resourceentries.where(['date < ?', date]).sort! { |a, b| a.date <=> b.date }
+    entry = resource.resourceentries.where(['date < ?', date])
+                    .sort! { |a, b| a.date <=> b.date }
     entry = entry.last unless entry.nil?
     entry
   end
 
   def self.get_resource_entry_after(date, resource)
-    entry = resource.resourceentries.where(['date > ?', date]).sort! { |a, b| a.date <=> b.date }
+    entry = resource.resourceentries.where(['date > ?', date])
+                    .sort! { |a, b| a.date <=> b.date }
     entry = entry.first unless entry.nil?
     entry
   end
@@ -44,13 +47,15 @@ class Resource < ActiveRecord::Base
   def self.get_resource_entries_inkl_after_and_before(from, to, resource)
     returnEntries = []
     entries = get_resource_entries(from, to, resource)
-    if (entries.empty? || entries.first.date != from) && !(entry = get_resource_entry_before(from, resource)).nil?
+    if (entries.empty? || entries.first.date != from) &&
+       !(entry = get_resource_entry_before(from, resource)).nil?
       returnEntries << entry
     end
     entries.each do |entry_i|
       returnEntries << entry_i
     end
-    if (entries.empty? || entries.last.date != last) && !(entry = get_resource_entry_after(to, resource)).nil?
+    if (entries.empty? || entries.last.date != last) &&
+       !(entry = get_resource_entry_after(to, resource)).nil?
       returnEntries << entry
     end
     returnEntries
@@ -58,7 +63,8 @@ class Resource < ActiveRecord::Base
 
   def self.get_chart_data(statistic_data, from, to)
     returnData = OpenStruct.new('labels' => [], 'costs' => [])
-    if (hideEvery = ([(to.to_date - from.to_date), statistic_data.labels.length].min / 15).round) < 2
+    if (hideEvery = ([(to.to_date - from.to_date),
+                      statistic_data.labels.length].min / 15).round) < 2
       hideEvery = 1
     end
     sum = 0
@@ -125,17 +131,33 @@ class Resource < ActiveRecord::Base
     info.name = resource.name
     info.unit = resource.unit
     info.usage = sum.round(2)
-    info.cost = (info.usage * resource.pricePerUnit + resource.monthlyCost + (resource.annualCost / 12)).round(2)
+    info.cost = (info.usage * resource.pricePerUnit + resource.monthlyCost +
+                (resource.annualCost / 12)).round(2)
     info
   end
 
   def self.get_overview_data(statistic_data, resource)
     returnData = OpenStruct.new(general: [], years: [])
     unless statistic_data.labels.empty?
-      all = OpenStruct.new(name: I18n.t('activerecord.resource.info_all'), usage: 0, costs: 0, firstEntry: nil, lastEntry: nil)
-      thisMonth = OpenStruct.new(name: I18n.t('activerecord.resource.info_currentMonth'), usage: 0, costs: 0, firstEntry: nil, lastEntry: nil)
-      lastThreeMonth = OpenStruct.new(name: I18n.t('activerecord.resource.info_lastthreemonths'), usage: 0, firstEntry: nil, lastEntry: nil)
-      currentYear = OpenStruct.new(name: statistic_data.labels[0].year, usage: 0, costs: 0, firstEntry: nil, lastEntry: nil)
+      all = OpenStruct.new(name: I18n.t('activerecord.resource.info_all'),
+                           usage: 0,
+                           costs: 0,
+                           firstEntry: nil,
+                           lastEntry: nil)
+      thisMonth = OpenStruct.new(name: I18n.t('activerecord.resource.info_currentMonth'),
+                                 usage: 0,
+                                 costs: 0,
+                                 firstEntry: nil,
+                                 lastEntry: nil)
+      lastThreeMonth = OpenStruct.new(name: I18n.t('activerecord.resource.info_lastthreemonths'),
+                                      usage: 0,
+                                      firstEntry: nil,
+                                      lastEntry: nil)
+      currentYear = OpenStruct.new(name: statistic_data.labels[0].year,
+                                   usage: 0,
+                                   costs: 0,
+                                   firstEntry: nil,
+                                   lastEntry: nil)
 
       for i in 0...statistic_data.labels.size
         date = statistic_data.labels[i]
@@ -145,14 +167,19 @@ class Resource < ActiveRecord::Base
         if date.year == Date.today.year && date.month == Date.today.month # current month
           add_overview_entry(thisMonth, date, entry)
         end
-        if (date.year * 12 + date.month) >= (Date.today.year * 12 + Date.today.month - 2) # last three months
+        # last three months
+        if (date.year * 12 + date.month) >= (Date.today.year * 12 + Date.today.month - 2)
           add_overview_entry(lastThreeMonth, date, entry)
         end
         if currentYear.firstEntry.nil? || currentYear.lastEntry.year == date.year
           add_overview_entry(currentYear, date, entry)
         else
           returnData.years << set_overview_costs(currentYear, resource)
-          currentYear = OpenStruct.new(name: date.year, usage: entry, costs: 0, firstEntry: nil, lastEntry: nil)
+          currentYear = OpenStruct.new(name: date.year,
+                                       usage: entry,
+                                       costs: 0,
+                                       firstEntry: nil,
+                                       lastEntry: nil)
         end
       end
 
@@ -183,10 +210,13 @@ class Resource < ActiveRecord::Base
     for resource in resources
       resource.entryLength = resource.resourceentries.size
       res = resource.resourceentries.sort! { |a, b| a.date <=> b.date }
-      resource.chartDateRange = OpenStruct.new(startDate: res.first.date, endDate: res.last.date)
-      if get_month_diff(res.first.date, res.last.date) > 12
-        resource.chartDateRange.startDate = Date.new(res.last.date.year - 1, res.last.date.month, res.last.date.day)
-      end
+      resource.chartDateRange = OpenStruct.new(startDate: res.first.date,
+                                               endDate: res.last.date)
+      next unless get_month_diff(res.first.date, res.last.date) > 12
+
+      resource.chartDateRange.startDate = Date.new(res.last.date.year - 1,
+                                                   res.last.date.month,
+                                                   res.last.date.day)
     end
     resources
   end
@@ -200,7 +230,8 @@ class Resource < ActiveRecord::Base
   def self.set_overview_costs(overviewEntry, resource)
     fixCostsPerMonth = resource.monthlyCost + resource.annualCost / 12
     overviewEntry.costs = (overviewEntry.usage * resource.pricePerUnit)
-    overviewEntry.costs += fixCostsPerMonth * (1 + get_month_diff(overviewEntry.firstEntry, overviewEntry.lastEntry))
+    overviewEntry.costs += fixCostsPerMonth * (1 + get_month_diff(overviewEntry.firstEntry,
+                                                                  overviewEntry.lastEntry))
     overviewEntry.costs = overviewEntry.costs.round(2)
     overviewEntry.usage = overviewEntry.usage.round(2)
     overviewEntry

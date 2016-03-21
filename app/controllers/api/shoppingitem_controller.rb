@@ -10,12 +10,16 @@ class Api::ShoppingitemController < Api::RestController
   end
 
   def destroy
-    Shoppinglistitem.destroy_with_user_constraint(params[:id], params[:shoppinglist_id], current_user)
+    Shoppinglistitem.destroy_with_user_constraint(params[:id],
+                                                  params[:shoppinglist_id],
+                                                  current_user)
     respond_with(nil)
   end
 
   def update
-    item = Shoppinglistitem.find_with_user_constraint(params[:id], params[:shoppinglist_id], current_user)
+    item = Shoppinglistitem.find_with_user_constraint(params[:id],
+                                                      params[:shoppinglist_id],
+                                                      current_user)
     item.update_attributes!(item_params)
     respond_with(nil, location: nil)
   end

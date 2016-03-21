@@ -2,37 +2,60 @@ require 'test_helper'
 
 class ResourceTest < ActiveSupport::TestCase
   test 'do not save a resource without name' do
-    resource = Resource.new(startDate: Date.new, unit: 'kw/h', startValue: 0, pricePerUnit: 1)
+    resource = Resource.new(startDate: Date.new,
+                            unit: 'kw/h',
+                            startValue: 0,
+                            pricePerUnit: 1)
     assert_not resource.save
   end
 
   test 'do not save a resource without startDate' do
-    resource = Resource.new(name: 'test', unit: 'kw/h', startValue: 0, pricePerUnit: 1)
+    resource = Resource.new(name: 'test',
+                            unit: 'kw/h',
+                            startValue: 0,
+                            pricePerUnit: 1)
     assert_not resource.save
   end
 
   test 'do not save a resource without unit' do
-    resource = Resource.new(name: 'test', startDate: Date.new, startValue: 0, pricePerUnit: 1)
+    resource = Resource.new(name: 'test',
+                            startDate: Date.new,
+                            startValue: 0,
+                            pricePerUnit: 1)
     assert_not resource.save
   end
 
   test 'do not save a resource without startValue' do
-    resource = Resource.new(name: 'test', startDate: Date.new, unit: 'kw/h', pricePerUnit: 1)
+    resource = Resource.new(name: 'test',
+                            startDate: Date.new,
+                            unit: 'kw/h',
+                            pricePerUnit: 1)
     assert_not resource.save
   end
 
   test 'do not save a resource without a pricePerUnit' do
-    resource = Resource.new(name: 'test', startDate: Date.new, unit: 'kw/h', startValue: 0)
+    resource = Resource.new(name: 'test',
+                            startDate: Date.new,
+                            unit: 'kw/h',
+                            startValue: 0)
     assert_not resource.save
   end
 
   test 'do not save a resource without a negative pricePerUnit' do
-    resource = Resource.new(name: 'test', startDate: Date.new, unit: 'kw/h', startValue: 0, pricePerUnit: -1)
+    resource = Resource.new(name: 'test',
+                            startDate: Date.new,
+                            unit: 'kw/h',
+                            startValue: 0,
+                            pricePerUnit: -1)
     assert_not resource.save
   end
 
   test 'save a resource' do
-    resource = Resource.new(name: 'test', startDate: Date.new, unit: 'kw/h', startValue: 0, pricePerUnit: 1)
+    resource = Resource.new(name: 'test',
+                            startDate: Date.new,
+                            unit: 'kw/h',
+                            startValue: 0,
+                            pricePerUnit: 1)
     assert resource.save
   end
 
@@ -52,7 +75,13 @@ class ResourceTest < ActiveSupport::TestCase
   end
 
   test 'get_resource_entries' do
-    resource = Resource.new(name: 'test', startDate: Date.new, unit: 'kw/h', startValue: 0, pricePerUnit: 1, monthlyCost: 10, annualCost: 100)
+    resource = Resource.new(name: 'test',
+                            startDate: Date.new,
+                            unit: 'kw/h',
+                            startValue: 0,
+                            pricePerUnit: 1,
+                            monthlyCost: 10,
+                            annualCost: 100)
 
     re1 = Resourceentry.new(date: Date.new(2013, 12, 10), value: 100)
     re2 = Resourceentry.new(date: Date.new(2014, 1, 10), value: 250)
@@ -63,16 +92,28 @@ class ResourceTest < ActiveSupport::TestCase
     resource.resourceentries << re3
     resource.save!
 
-    entries = Resource.get_resource_entries(Date.new(2014, 1, 1), Date.new(2014, 12, 31), resource)
+    entries = Resource.get_resource_entries(Date.new(2014, 1, 1),
+                                            Date.new(2014, 12, 31),
+                                            resource)
     assert(entries.size == 2)
-    entries = Resource.get_resource_entries(Date.new(2012, 1, 1), Date.new(2014, 12, 31), resource)
+    entries = Resource.get_resource_entries(Date.new(2012, 1, 1),
+                                            Date.new(2014, 12, 31),
+                                            resource)
     assert(entries.size == 3)
-    entries = Resource.get_resource_entries(Date.new(2011, 1, 1), Date.new(2011, 12, 31), resource)
+    entries = Resource.get_resource_entries(Date.new(2011, 1, 1),
+                                            Date.new(2011, 12, 31),
+                                            resource)
     assert(entries.empty?)
   end
 
   test 'get_resource_entry_before' do
-    resource = Resource.new(name: 'test', startDate: Date.new, unit: 'kw/h', startValue: 0, pricePerUnit: 1, monthlyCost: 10, annualCost: 100)
+    resource = Resource.new(name: 'test',
+                            startDate: Date.new,
+                            unit: 'kw/h',
+                            startValue: 0,
+                            pricePerUnit: 1,
+                            monthlyCost: 10,
+                            annualCost: 100)
 
     re1 = Resourceentry.new(date: Date.new(2013, 12, 10), value: 100)
     re2 = Resourceentry.new(date: Date.new(2014, 1, 10), value: 250)
@@ -92,7 +133,13 @@ class ResourceTest < ActiveSupport::TestCase
   end
 
   test 'get_resource_entry_after' do
-    resource = Resource.new(name: 'test', startDate: Date.new, unit: 'kw/h', startValue: 0, pricePerUnit: 1, monthlyCost: 10, annualCost: 100)
+    resource = Resource.new(name: 'test',
+                            startDate: Date.new,
+                            unit: 'kw/h',
+                            startValue: 0,
+                            pricePerUnit: 1,
+                            monthlyCost: 10,
+                            annualCost: 100)
 
     re1 = Resourceentry.new(date: Date.new(2013, 12, 10), value: 100)
     re2 = Resourceentry.new(date: Date.new(2014, 1, 10), value: 250)
@@ -112,7 +159,13 @@ class ResourceTest < ActiveSupport::TestCase
   end
 
   test 'get_resource_inkl_after_and_before' do
-    resource = Resource.new(name: 'test', startDate: Date.new, unit: 'kw/h', startValue: 0, pricePerUnit: 1, monthlyCost: 10, annualCost: 100)
+    resource = Resource.new(name: 'test',
+                            startDate: Date.new,
+                            unit: 'kw/h',
+                            startValue: 0,
+                            pricePerUnit: 1,
+                            monthlyCost: 10,
+                            annualCost: 100)
 
     re1 = Resourceentry.new(date: Date.new(2013, 12, 10), value: 100)
     re2 = Resourceentry.new(date: Date.new(2014, 1, 10), value: 250)
@@ -123,11 +176,17 @@ class ResourceTest < ActiveSupport::TestCase
     resource.resourceentries << re3
     resource.save!
 
-    entries = Resource.get_resource_entries_inkl_after_and_before(Date.new(2014, 3, 3), Date.new(2014, 3, 4), resource)
+    entries = Resource.get_resource_entries_inkl_after_and_before(Date.new(2014, 3, 3),
+                                                                  Date.new(2014, 3, 4),
+                                                                  resource)
     assert(entries.size == 2)
-    entries = Resource.get_resource_entries_inkl_after_and_before(Date.new(2011, 3, 3), Date.new(2011, 3, 4), resource)
+    entries = Resource.get_resource_entries_inkl_after_and_before(Date.new(2011, 3, 3),
+                                                                  Date.new(2011, 3, 4),
+                                                                  resource)
     assert(entries.size == 1)
-    entries = Resource.get_resource_entries_inkl_after_and_before(Date.new(2013, 12, 12), Date.new(2014, 3, 4), resource)
+    entries = Resource.get_resource_entries_inkl_after_and_before(Date.new(2013, 12, 12),
+                                                                  Date.new(2014, 3, 4),
+                                                                  resource)
     assert(entries.size == 3)
   end
 end

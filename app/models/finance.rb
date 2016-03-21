@@ -9,7 +9,13 @@ class Finance
   end
 
   def self.get_overview_mate(user, mate)
-    mate_info = OpenStruct.new('name' => mate.name, 'page' => 1, 'entryLength' => '', 'id' => mate.id, 'img_path' => mate.image_path, 'value' => 0, 'entries' => [])
+    mate_info = OpenStruct.new('name' => mate.name,
+                               'page' => 1,
+                               'entryLength' => '',
+                               'id' => mate.id,
+                               'img_path' => mate.image_path,
+                               'value' => 0,
+                               'entries' => [])
 
     paymentsUserToMate = Payment.where(payer_id: user.id, payee_id: mate.id, flat_id: user.flat_id)
     mate_info.entries = mate_info.entries + getEntrysOfPayments(paymentsUserToMate, 1)
@@ -31,7 +37,13 @@ class Finance
   def self.getEntrysOfPayments(payments, sign)
     list = []
     payments.each do |payment|
-      list << OpenStruct.new('isPayment' => true, 'id' => payment.id, 'payer_id' => payment.payer.id, 'date' => payment.date, 'what' => '', 'total_price' => (payment.value * sign), 'value' => (payment.value * sign))
+      list << OpenStruct.new('isPayment' => true,
+                             'id' => payment.id,
+                             'payer_id' => payment.payer.id,
+                             'date' => payment.date,
+                             'what' => '',
+                             'total_price' => (payment.value * sign),
+                             'value' => (payment.value * sign))
     end
     list
   end
@@ -40,7 +52,13 @@ class Finance
     list = []
     bills.each do |bill|
       partialAmount = bill.value / bill.users.length
-      list << OpenStruct.new('isPayment' => false, 'id' => bill.id, 'payer_id' => bill.user.id, 'date' => bill.date, 'what' => bill.text, 'total_price' => bill.value, 'value' => partialAmount * sign)
+      list << OpenStruct.new('isPayment' => false,
+                             'id' => bill.id,
+                             'payer_id' => bill.user.id,
+                             'date' => bill.date,
+                             'what' => bill.text,
+                             'total_price' => bill.value,
+                             'value' => partialAmount * sign)
     end
     list
   end

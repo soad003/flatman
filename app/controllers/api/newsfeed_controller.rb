@@ -18,7 +18,9 @@ class Api::NewsfeedController < Api::RestController
   end
 
   def comment
-    comment = Newsitem.createComment(comment_params[:text], comment_params[:newsitem_id], current_user)
+    comment = Newsitem.createComment(comment_params[:text],
+                                     comment_params[:newsitem_id],
+                                     current_user)
     respond_with(comment, location: nil)
   end
 
@@ -83,23 +85,38 @@ class Api::NewsfeedController < Api::RestController
 
   def getHeader(ni)
     if ni.isShoppingList && ni.action == Newsitem::ACTIONS[:done]
-      return I18n.t('activerecord.newsitem.shoppinglist_done', name: quote(ni.text))
+      I18n.t('activerecord.newsitem.shoppinglist_done', name: quote(ni.text))
     elsif ni.isShoppingList
-      return I18n.t('activerecord.newsitem.shoppinglist', name: quote(ni.text), action: I18n.t('activerecord.newsitem.' + ni.action))
+      I18n.t('activerecord.newsitem.shoppinglist',
+             name: quote(ni.text),
+             action: I18n.t('activerecord.newsitem.' + ni.action))
     elsif ni.isShoppingListItem
-      return I18n.t('activerecord.newsitem.shoppinglistitem', items: quote(ni.text), list: quote(getShoppingListName(ni.key, current_user)), action: I18n.t('activerecord.newsitem.' + ni.action))
+      I18n.t('activerecord.newsitem.shoppinglistitem',
+             items: quote(ni.text),
+             list: quote(getShoppingListName(ni.key, current_user)),
+             action: I18n.t('activerecord.newsitem.' + ni.action))
     elsif ni.isBill
-      return I18n.t('activerecord.newsitem.bill', name: quote(ni.text), action: I18n.t('activerecord.newsitem.' + ni.action))
+      I18n.t('activerecord.newsitem.bill',
+             name: quote(ni.text),
+             action: I18n.t('activerecord.newsitem.' + ni.action))
     elsif ni.isPayment
-      return I18n.t('activerecord.newsitem.payment', name: quote(ni.text), action: I18n.t('activerecord.newsitem.' + ni.action))
+      I18n.t('activerecord.newsitem.payment',
+             name: quote(ni.text),
+             action: I18n.t('activerecord.newsitem.' + ni.action))
     elsif ni.isTodoList
-      return I18n.t('activerecord.newsitem.todolist', name: quote(ni.text), action: I18n.t('activerecord.newsitem.' + ni.action))
+      I18n.t('activerecord.newsitem.todolist',
+             name: quote(ni.text),
+             action: I18n.t('activerecord.newsitem.' + ni.action))
     elsif ni.isTodoListItem
-      return I18n.t('activerecord.newsitem.todolistitem', items: quote(ni.text), list: quote(getTodoName(ni.key, current_user)), action: I18n.t('activerecord.newsitem.' + ni.action))
+      I18n.t('activerecord.newsitem.todolistitem',
+             items: quote(ni.text),
+             list: quote(getTodoName(ni.key, current_user)),
+             action: I18n.t('activerecord.newsitem.' + ni.action))
     elsif ni.isUseraction
-      return I18n.t('activerecord.newsitem.matechange_' + ni.action)
+      I18n.t('activerecord.newsitem.matechange_' + ni.action)
+    else
+      ''
     end
-    ''
   end
 
   def quote(text)

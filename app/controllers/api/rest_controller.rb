@@ -1,5 +1,6 @@
 class Api::RestController < ProtectedController
-  require 'active_record/validations.rb' # solve the problem with uninitialized constant ActiveRecord::RecordInvalid
+  # solve the problem with uninitialized constant ActiveRecord::RecordInvalid
+  require 'active_record/validations.rb'
   protect_from_forgery with: :null_session
   respond_to :json
   rescue_from Exception, with: :general_error
@@ -11,7 +12,8 @@ class Api::RestController < ProtectedController
   end
 
   def respond_with_val_errors(errors)
-    render json: { errors: errors.map { |_key, value| value }.flatten, validations: errors }, status: :unprocessable_entity
+    render json: { errors: errors.map { |_key, value| value }.flatten,
+                   validations: errors }, status: :unprocessable_entity
   end
 
   def respond_with_errors(errors)
@@ -26,6 +28,7 @@ class Api::RestController < ProtectedController
     logger.fatal error.message
     logger.fatal error.backtrace
     Utility.log_exception error, info: t('errors.server_error.messages.server_error')
-    render json: { errors: [t('errors.server_error.messages.server_error')] }, status: :internal_server_error
+    render json: { errors: [t('errors.server_error.messages.server_error')] },
+           status: :internal_server_error
   end
 end

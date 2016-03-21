@@ -9,7 +9,9 @@ class Api::PaymentController < Api::RestController
   end
 
   def destroy
-    payment = Payment.find_with_user_constraint(delete_params[:id], current_user, User.find(delete_params[:mate_id]))
+    payment = Payment.find_with_user_constraint(delete_params[:id],
+                                                current_user,
+                                                User.find(delete_params[:mate_id]))
     if payment.is_editable?
       Newsitem.deletePayment(payment, current_user)
       payment.destroy!
