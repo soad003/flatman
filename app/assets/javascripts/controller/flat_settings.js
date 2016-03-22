@@ -56,12 +56,12 @@ angular.module('flatman').controller("flatSettingsCtrl",function($scope,$modal,f
 
     $scope.map = {
         center: {
-            latitude: 47.236,
-            longitude: 11.38
+            latitude: 47.268688,
+            longitude: 11.390864
         },
         marker: {
-            latitude: 47.236,
-            longitude: 11.38
+            latitude: 47.268688,
+            longitude: 11.390864
         },
         zoom: 13
     };
