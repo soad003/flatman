@@ -71,7 +71,7 @@ class Api::FlatController < Api::RestController
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def flat_params
-    params.permit(:name, :invites, :street, :city, :zip)
+    params.permit(:name, :street, :city, :zip)
   end
 
   def flat_params_name_only
