@@ -27,20 +27,19 @@
       <div class="container">
         <div class="navbar-header">
           <button type="button" class="navbar-toggle" id="trigger-overlay">
-            <span class="sr-only">Toggle navigation</span>
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
           <a class="navbar-brand" href="<%= welcome_url %>#flatman">
             <img src="<%= image_path( 'flatman_logo_30.png' ) %>" alt="Flatman" />
-            <span class="hidden-xs">Flatman</span>
+            <span class="hidden-xs"><%= t( ".navbar.flatman" ) %></span>
           </a>
         </div>
         <div class="collapse navbar-collapse">
           <ul class="nav navbar-nav navbar-right">
-            <li><a href="<%= welcome_url %>#flatman-contact">Kontakt</a></li>
-            <li><a href="<%= signin_url %>">Login</a></li>
+            <li><a href="<%= welcome_url %>#flatman-contact"><%= t( ".navbar.contact" ) %></a></li>
+            <li><a href="<%= signin_url %>"><%= t( ".navbar.login" ) %></a></li>
           </ul>
         </div>
       </div>
@@ -53,8 +52,8 @@
       <nav>
         <ul>
           <li><a href="<%= welcome_url %>#flatman"><img src="<%= image_path( 'flatman_logo_153x100.png' ) %>" alt="Flatman" /></a></li>
-          <li><a href="<%= welcome_url %>#flatman-contact">Kontakt</a></li>
-          <li><a href="<%= signin_url %>">Login</a></li>
+          <li><a href="<%= welcome_url %>#flatman-contact"><%= t( ".navbar.contact" ) %></a></li>
+          <li><a href="<%= signin_url %>"><%= t( ".navbar.login" ) %></a></li>
         </ul>
       </nav>
     </div>

@@ -1,14 +1,16 @@
-<% content_for :title, t('.page_title') %>
+<% content_for :title, t( '.page_title' ) %>
 
 <div id="flatman" class="flatman-section flatman-section__main">
   <div class="flatman-section__main-description">
-    <h3>Dein WG <br/> Superheld ist da!</h3>
-    <h1>Flatman</h1>
+    <h3><%= t( '.intro_pre_title' ) %></h3>
+    <h1><%= t( '.intro_title' ) %></h1>
     <p class="flatman-text__size--20">
-      <a href="<%= signin_url %>"><strong>Hier gleich loslegen</strong></a>
+      <a href="<%= signin_url %>">
+        <strong><%= t( '.intro_start_now' ) %></strong>
+      </a>
     </p>
     <p>
-      oder bequem die <strong>Flatman-App</strong> verwenden
+      <%= t( '.intro_get_the_app' ) %>
     </p>
     <a href="https://play.google.com/store/apps/details?id=at.flatman.android&utm_source=global_co&utm_medium=prtnr&utm_content=Mar2515&utm_campaign=PartBadge&pcampaignid=MKT-AC-global-none-all-co-pr-py-PartBadges-Oct1515-1">
       <img alt="Get it on Google Play" src="<%= image_path( 'google-play-badge.png' ) %>" class="flatman-image__badge" />
@@ -21,47 +23,39 @@
 
 <div id="flatman-shopping-lists" class="flatman-section flatman-section__shopping-lists">
   <div class="flatman-section__description">
-    <h3>Superkraft:</h3>
-    <h2>Einkaufslisten</h2>
-    <p>
-       <%=t ( '.shopping_text') %>
-    </p>
+    <h3><%= t( '.superpower_title' ) %></h3>
+    <h2><%= t( '.shopping_title') %></h2>
+    <p><%= t( '.shopping_text' ) %></p>
   </div>
 </div>
 
 <div id="flatman-finances" class="flatman-section flatman-section__finances">
   <div class="flatman-section__description">
-    <h3>Superkraft:</h3>
-    <h2>Finanzdurchblick</h2>
-    <p>
-       <%=t ( '.finance_text') %>
-    </p>
+    <h3><%= t( '.superpower_title' ) %></h3>
+    <h2><%= t( '.finance_title' ) %></h2>
+    <p><%= t( '.finance_text' ) %></p>
   </div>
 </div>
 
 <div id="flatman-dashboard" class="flatman-section flatman-section__resources">
   <div class="flatman-section__description">
-    <h3>Superkraft:</h3>
-    <h2>Überblick </h2>
-    <p>
-       <%=t ( '.resource_text') %>
-    </p>
+    <h3><%= t( '.superpower_title' ) %></h3>
+    <h2><%= t( '.resource_title' ) %></h2>
+    <p><%= t( '.resource_text' ) %></p>
   </div>
 </div>
 
 <div id="flatman-contact" class="flatman-section flatman-section__contact">
   <div class="flatman-section__contact-description">
-    <h2>Noch Fragen?</h2>
-    <p>
-      Kontaktiere uns einfach!
-    </p>
+    <h2><%= t( '.contact_title' ) %></h2>
+    <p><%= t( '.contact_text' ) %></p>
     <ul class="list-inline">
       <li class="flatman-text__size--20"><a href="#"><span class="fa fa-facebook-official"></span></a></li>
       <li class="flatman-text__size--20"><a href="#"><span class="fa fa-envelope"></span></a></li>
     </ul>
     <p>
       <br />
-      <%= link_to t('misc.titles.menus.terms_and_privacy.title'), terms_path %>
+      <%= link_to t( 'misc.titles.menus.terms_and_privacy.title' ), terms_path %>
     </p>
   </div>
 </div>

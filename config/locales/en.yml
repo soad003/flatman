@@ -230,6 +230,10 @@ en:
   layouts:
     welcome:
       default_description                 : "Flatman - Your Superhero is here!"
+      navbar:
+        flatman                           : "Flatman"
+        contact                           : "Contact"
+        login                             : "Login"
     application:
       default_description                 : "nananananananana flatman"
       navbar:
@@ -247,10 +251,20 @@ en:
 
   public:
     welcome:
-      page_title                          : "Your Superhero is here!"
+      page_title                          : "Your Flat-Superhero is here!"
+      superpower_title                    : "Superpower"
+      intro_pre_title                     : "Your Flat-Superhero is here!"
+      intro_title                         : "Flatman"
+      intro_start_now                     : "Join here"
+      intro_get_the_app                   : "or use the Flatman-App"
+      shopping_title                      : "Shoppinglists"
       shopping_text                       : "Gemeinsame Einkaufslisten helfen dir dabei, beim Einkauf nichts zu vergessen oder doppelt zu kaufen."
-      finance_text                        : "Verwalte deine Rechnungen, Schulden und Zahlungen in der WG und behalte so immer den Überblick. "
-      resource_text                       : "Behalte deinen Strom-, Wasser- und Gasverbrauch im Auge und hilf so mit die Umwelt zu schützen. "
+      finance_title                       : "Finances"
+      finance_text                        : "Verwalte deine Rechnungen, Schulden und Zahlungen in der WG und behalte so immer den Überblick."
+      resource_title                      : "Overview"
+      resource_text                       : "Behalte deinen Strom-, Wasser- und Gasverbrauch im Auge und hilf so mit die Umwelt zu schützen."
+      contact_title                       : "Question?"
+      contact_text                        : "Get in touch!"
     about:
       page_header                         : "About us"
       page_title                          : "About us"
