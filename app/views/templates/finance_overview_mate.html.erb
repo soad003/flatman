@@ -1,27 +1,41 @@
 <div class="page-header">
     <h1>
-        <span class="fa fa-bitcoin"></span>
-        <span class="hidden-xs">
-            <%=t ( ".page_header") %>
-        </span>
-        <div class="btn-group pull-right">
-            <button type="button" class="btn btn-primary dropdown-toggle pull-right" data-toggle="dropdown" id="dropdownMenu1">
-                <i class="glyphicon glyphicon-user"></i>
-                <span>{{currentOverviewMate.name}}</span>
-                <span class="caret"></span>
-            </button>
-            <ul class="dropdown-menu" role="menu">
-                <li ng-repeat="overviewMate in overviewMates">
-                    <a href="" ng-click="setCurrentOverviewMate(overviewMate)">
-                        <i class="glyphicon glyphicon-user"></i> 
-                        <span>{{overviewMate.name}}</span>
-                    </a>
-                </li>
-            </ul>
-        </div>
+    <span class="fa fa-bitcoin"></span>
+    <span class="hidden-xs">
+        <%=t ( ".page_header") %>
+    </span>
+    <div class="btn-group pull-right">
+        <button type="button" class="btn btn-primary dropdown-toggle pull-right" data-toggle="dropdown" id="dropdownMenu1">
+        <i class="glyphicon glyphicon-user"></i>
+        <span>{{currentOverviewMate.name}}</span>
+        <span class="caret"></span>
+        </button>
+        <ul class="dropdown-menu" role="menu">
+            <li ng-repeat="overviewMate in overviewMates">
+                <a href="" ng-click="setCurrentOverviewMate(overviewMate)">
+                    <i class="glyphicon glyphicon-user"></i>
+                    <span>{{overviewMate.name}}</span>
+                </a>
+            </li>
+        </ul>
+    </div>
     </h1>
 </div>
 <div class="row" ng-show="overviewMates.length !== 0">
+    <div class="col-xs-12">
+        <b>{{currentOverviewMate.name}}
+            <span ng-show="currentOverviewMate.value > 0">
+                <%=t ( '.owes_you') %>
+            </span>
+            <span ng-show="currentOverviewMate.value < 0">
+                <%=t ( '.gets') %>
+            </span>
+            <span ng-class="{'text-success':currentOverviewMate.value > 0, 'text-danger': currentOverviewMate.value < 0}">
+                {{(currentOverviewMate.value) | customCurrency : '€ '}}
+            </span>
+        </b>
+        <hr>
+    </div>
     <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
         <div class="adv-table editable-table">
             <div ng-show="{{currentOverviewMate.entries.length === 0}}">
@@ -58,9 +72,8 @@
                             <span class="visible-xs">{{entry.date| date : 'shortDate'}}</span>
                         </td>
                         <td>
-                            <span ng-hide="entry.isPayment">{{sliceText(entry.what)}}</span>
-                            <span ng-show="entry.isPayment">
-                                <%=t ( '.payment') %>
+                            <span ng-hide="entry.isPayment">{{entry.what}}</span>
+                            <span ng-show="entry.isPayment"> <%=t ( '.payment') %></span>
                         </td>
                         <td class="hidden-xs">
                             <span ng-show="entry.payer_id === current_user.id">{{current_user.name}}</span>
@@ -70,18 +83,18 @@
                             <span ng-hide="entry.isPayment">{{entry.total_price| customCurrency : '€ '}}</span>
                         </td>
                         <td class="text-right">
-                              <span class="text-success" ng-show="entry.value > 0">{{entry.value| customCurrency : '€ '}}</span>
+                            <span class="text-success" ng-show="entry.value > 0">{{entry.value| customCurrency : '€ '}}</span>
                         </td>
                         <td class="text-right">
                             <span class="text-danger" ng-show="entry.value < 0">{{math.abs(entry.value)| customCurrency : '€ '}}</span>
                         </td>
                         <td>
                             <button class="btn btn-default btn-xs pull-right" ng-show="entry.isPayment  && entry.payer_id == currentOverviewMate.id" ng-click="removePayment(entry.id)">
-                                <span class="glyphicon glyphicon-trash"></span>
+                            <span class="glyphicon glyphicon-trash"></span>
                             </button>
                             <div class="btn-group pull-right" ng-hide="entry.isPayment">
                                 <button type="button" class="btn btn-default dropdown-toggle btn-xs" data-toggle="dropdown">
-                                    <span class="glyphicon glyphicon-pencil"></span>
+                                <span class="glyphicon glyphicon-pencil"></span>
                                 </button>
                                 <ul class="dropdown-menu">
                                     <li>
@@ -102,32 +115,25 @@
                     </tr>
                 </tbody>
             </table>
-
-            <pagination on-select-page="setPage(page)" total-items="currentOverviewMate.entryLength" page="currentOverviewMate.page" items-per-page="entriesPerPage" max-size="5" class="hidden-xs pagination-sm pull-right" boundary-links="true" ng-hide="entriesPerPage >= currentOverviewMate.entryLength" rotate="true" previous-text="&lsaquo;" next-text="&rsaquo;" first-text="&laquo;" last-text="&raquo;">
-            </pagination>
-        </div>
-        <div>
-            <b>{{currentOverviewMate.name}}
-                <span ng-show="currentOverviewMate.value > 0">
-                    <%=t ( '.owes_you') %>
-                </span>
-                <span ng-show="currentOverviewMate.value < 0">
-                    <%=t ( '.gets') %>
-                </span>
-                <span ng-class="{'text-success':currentOverviewMate.value > 0, 'text-danger': currentOverviewMate.value < 0}">
-                    {{(currentOverviewMate.value) | customCurrency : '€ '}}
-                </span>
-                </b>
-                <hr>
         </div>
     </div>
-
-    <div class="form-group">
-        <div class="col-md-3 col-xs-4">
+    <div class="col-xs-12">
+        <pagination on-select-page="setPage(page)" total-items="currentOverviewMate.entryLength" page="currentOverviewMate.page" items-per-page="entriesPerPage" max-size="5" class="pagination-sm pull-right" boundary-links="true" ng-hide="entriesPerPage >= currentOverviewMate.entryLength" rotate="true" previous-text="&lsaquo;" next-text="&rsaquo;" first-text="&laquo;" last-text="&raquo;">
+        </pagination>
+    </div>
+</div>
+<div class="row">
+    <div class="col-xs-12">
+        <div class="form-group">
             <a href="" ng-click="Util.redirect_to.back()" class="btn btn-sm btn-default">
-                <i class="glyphicon glyphicon-arrow-left"></i> 
+                <i class="glyphicon glyphicon-arrow-left"></i>
                 <%=t ( '.back') %>
             </a>
         </div>
     </div>
+</div>
+
+
+<div>
+
 </div>

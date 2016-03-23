@@ -397,6 +397,7 @@ en:
       share_flat_id                      : "Or give them this key" 
       share_flat_id_description          : "they can use it to join your flat!"
     finances:
+      who_paid                           : "paid by"
       page_title                         : "Finances"
       page_header                        : "Finances"
       add_fin                            : "add"

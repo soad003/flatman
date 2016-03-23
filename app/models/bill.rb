@@ -1,13 +1,13 @@
 class Bill < ActiveRecord::Base
   has_and_belongs_to_many :users
-  belongs_to 				:billcategory
-  belongs_to 				:user
-  belongs_to :flat
+  belongs_to              :billcategory
+  belongs_to              :user
+  belongs_to              :flat
 
-  validates :date, :text, :user, presence: true
-  validates :value, numericality: { greater_than: 0 }, presence: true
-  validates :users, length: { minimum: 1 }
-  validates_associated :billcategory, message: nil
+  validates               :date, :text, :user, presence: true
+  validates               :value, numericality: { greater_than: 0 }, presence: true
+  validates               :users, length: { minimum: 1 }
+  validates_associated    :billcategory, message: nil
 
   def is_editable?
     users.all? { |u| flat.id == u.flat_id } && user.flat_id == flat.id
@@ -29,7 +29,7 @@ class Bill < ActiveRecord::Base
   def self.new_with_params(p, cat, flat)
     Bill.new.tap do |b|
       b.text = p[:text]
-      b.date = Date.parse(p[:date])
+      b.date = p[:date]
       b.value = p[:value]
       b.user_id = p[:user_id]
       b.billcategory = cat

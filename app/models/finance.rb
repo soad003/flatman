@@ -3,6 +3,7 @@ class Finance
     (user.flat.users.map do |mate|
        next unless mate.id != user.id
        overview_mate = get_overview_mate(user, mate)
+       overview_mate.entries = overview_mate.entries.sort { |a, b| b.date <=> a.date }
        overview_mate.entries = overview_mate.entries.drop(from).take(to)
        overview_mate
      end).compact
@@ -26,7 +27,6 @@ class Finance
     billsUserHasToPay = Bill.where(user_id: mate.id, id: user.bills, flat_id: user.flat_id)
     mate_info.entries = mate_info.entries + getEntrysOfBills(billsUserHasToPay, -1)
 
-    mate_info.entries.sort! { |a, b| b.date <=> a.date }
     mate_info.entries.each do |entry|
       mate_info.value += entry.value
     end
@@ -41,6 +41,7 @@ class Finance
                              'id' => payment.id,
                              'payer_id' => payment.payer.id,
                              'date' => payment.date,
+                             'created_at' => payment.created_at,
                              'what' => '',
                              'total_price' => (payment.value * sign),
                              'value' => (payment.value * sign))
@@ -55,6 +56,7 @@ class Finance
       list << OpenStruct.new('isPayment' => false,
                              'id' => bill.id,
                              'payer_id' => bill.user.id,
+                             'created_at' => bill.created_at,
                              'date' => bill.date,
                              'what' => bill.text,
                              'total_price' => bill.value,

@@ -12,6 +12,19 @@ angular.module('flatman').controller("billsOverviewCtrl", function($scope, $rout
         });
     };
 
+    $scope.sliceText = function(entry){
+        if (entry === null)
+            return "-";
+        var textlength = entry.length;
+        if (textlength < 17){
+            return entry;
+        }
+        else {
+            var words = entry.slice(0,15) +"...";
+            return words;
+        }
+    };
+
     $scope.current_page = 1;
     $scope.mates = flatService.mates.get();
     $scope.entriesPerPage = 13;

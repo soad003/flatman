@@ -395,6 +395,7 @@ de:
     finances:
       page_title                         : "Finanzen"
       page_header                        : "Finanzen"
+      who_paid                           : "gezahlt von"
       add_fin                            : "hinzufügen"
       newBill                            : "neue Rechnung"
       newPaym                            : "neue Zahlung"

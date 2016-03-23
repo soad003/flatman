@@ -1,4 +1,4 @@
-angular.module('flatman').controller("financesCtrl", function($scope, financesService, flatService, Util) {
+angular.module('flatman').controller("financesCtrl", function($scope, financesService, userService, flatService, Util) {
 
     $scope.switchChevron = function(index){
         $('#collapse' + index).on('show.bs.collapse', function () {
@@ -64,7 +64,7 @@ angular.module('flatman').controller("financesCtrl", function($scope, financesSe
     $scope.AllCategories = financesService.category.get_all(function(data) {
         $scope.chartData = financesService.category.get_chart_view(data);
     });
-
+    $scope.current_user = userService.get();
     $scope.getFlatMates = flatService.mates.get();
 
 });

@@ -176,6 +176,9 @@
                         <th class="hidden-xs">
                             <%=t ( ".cat")%>
                         </th>
+                        <th>
+                            <%=t ( ".who_paid")%>
+                        </th>
                         <th class="text-right">
                             <%=t ( ".value")%>
                         </th>
@@ -186,6 +189,9 @@
                         <td class="visible-xs">{{sliceText(finance.name)}}</td>
                         <td class="hidden-xs">{{finance.name}}</td>
                         <td class="hidden-xs">{{finance.cat_name}}</td>
+                        <td>
+                            <span ng-class="{'bold': finance.user_id === current_user.id}">{{finance.user_name.split(' ')[0]}}</span>
+                        </td>
                         <td class="text-right">{{finance.value| customCurrency : '€ '}}</td>
                         <td>
                             <div class="btn-group pull-right">
