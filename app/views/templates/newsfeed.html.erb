@@ -99,7 +99,7 @@
         </div>
       </div>
     </div>
-    <hr>
+    <hr class="hidden-xs hidden-sm">
     <div class="row">
       <form role="form" ng-submit="addMessage()" name="newsForm">
         <div class="col-sm-1 col-md-1 col-lg-1 hidden-xs">
@@ -115,7 +115,7 @@
             <button class="btn btn-primary"
               type="submit"
               ng-disabled="!newsForm.$valid">
-            <span class="fa fa-plus fa-lg"></span> <span class="hidden-xs"><%= t(".posten") %></span>
+            <span class="fa fa-plus"></span> <span class="hidden-xs"><%= t(".posten") %></span>
             </button>
             </span>
           </div>
