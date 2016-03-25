@@ -61,14 +61,12 @@
                                         </div>
                                         <div class="col-xs-10 col-sm-11">
                                             <div class="pull-left">
-                                                <span class="dhidden-xs">
-                                                    {{overviewMate.name}}
-                                                    <span ng-show="overviewMate.value > 0">
-                                                        <%=t ( '.owes_you') %>
-                                                    </span>
-                                                    <span ng-show="overviewMate.value < 0">
-                                                        <%=t ( '.gets') %>
-                                                    </span>
+                                                <span>{{overviewMate.name.split(' ')[0]}}</span>
+                                                <span ng-show="overviewMate.value > 0">
+                                                    <%=t ( '.owes_you') %>
+                                                </span>
+                                                <span ng-show="overviewMate.value < 0">
+                                                    <%=t ( '.gets') %>
                                                 </span>
                                             </div>
                                             <div class="pull-right">

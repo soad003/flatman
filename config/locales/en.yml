@@ -79,7 +79,7 @@ en:
             shoppinglists:
               invalid                     : "Please provide some name for your shopping list!"
             todos:
-              invalid                     : "Please provide some name for your Todo!"
+              invalid                     : "Please provide some name for your To-Do-List!"
         invite:
           attributes:
             email:
@@ -144,8 +144,8 @@ en:
         todo:
           attributes:
             name:
-              blank                       : "Please provide some name for your todo!"
-              invalid                     : "Please provide some name for your todo!"
+              blank                       : "Please provide some name for your To-Do-List!"
+              invalid                     : "Please provide some name for your To-Do-List!"
             todo_items:
               invalid                     : "This item looks invalid!"
 
@@ -165,8 +165,8 @@ en:
       bill                            : "%{action} the bill %{name}."
       payment                         : "%{action}  a payment from %{name}."
       shoppinglistitem                : "%{action} %{items} to the shopping list %{list}."
-      todolistitem                    : "%{action} %{items} to the todo list %{list}."
-      todolist                        : "%{action} the todo list %{name}."
+      todolistitem                    : "%{action} %{items} to the To-Do-List %{list}."
+      todolist                        : "%{action} the To-Do-List %{name}."
       deletedList                     : "Unknown"
       matechange_remove               : " has left your flat."
       matechange_add                  : " joined to your flat."
@@ -175,7 +175,7 @@ en:
       pushFinance                     : "%{name} edited the finances."
       pushShopping                    : "%{name} updated a shopping list."
       pushShoppingDone                : "%{name} was shopping."
-      pushTodo                        : "%{name} updated a todo list."
+      pushTodo                        : "%{name} updated a To-Do-List."
       pushResource                    : "%{name} updated a resource."
       pushMessage                     : "%{name} sent a message."
       pushUserAction                  : "%{name} %{action} your flat."
@@ -243,7 +243,7 @@ en:
         resources                         : "Resource"
         dashboard                         : "Dashboard"
         shopping                          : "Shopping"
-        pinboard                          : "Todo"
+        pinboard                          : "To-Do"
         newsfeed                          : "Dashboard"
 
     mail_layout:
@@ -309,8 +309,8 @@ en:
     newsfeed:
       sampletext_placeholder             : "Say something to your flat mates..."
       post                               : "Post"
-      items_to_buy                       : "items to buy"
-      todos                              : "todo"
+      items_to_buy                       : "to buy"
+      todos                              : "to do"
       view_shopping_details              : "view lists"
       you_owe                            : "you owe"
       you_get                            : "you get"
@@ -505,27 +505,27 @@ en:
       delete_checked                     : "delete checked items"
     pinboard:
       page_header                        : "Pinboard"
-      page_header_todo                   : "Todo"
+      page_header_todo                   : "To-Do"
       page_header_shop                   : "Shopping"
       add                                : "add"
       shopping                           : "Shopping"
       shoppinglist                       : "Shopping list"
       all                                : "All"
       new_list_placeholder               : "Supermarkt,... "
-      new_list_placeholder_todo          : "Repairs, Things Todo,..."
+      new_list_placeholder_todo          : "Repairs, Things To-Do,..."
       new_item_placeholder               : "beer"
       new_item_placeholder_todo          : "cleaning"
       help_title                         : "Your Flats shopping needs ..."
       help_paragraph1                    : "Use the button above to add a list, after that you can add/delete items ... "
       help_paragraph2                    : "If you are done with shopping just click ... to enter your bill and you are done!"
       help_title_todo                    : "What needs to be done or remembered?"
-      help_paragraph1_todo               : "Create todos for your Flat, easy as that ... "
+      help_paragraph1_todo               : "Create To-Do's for your Flat, easy as that ... "
       help_paragraph2_todo               : ""
       delete_list                        : "delete list"
       done                               : "done some shopping"
       delete_checked                     : "delete checked items"
-      todo                               : "Todo"
-      create_todo                        : "Give a name to your new todo list!"
+      todo                               : "To-Do"
+      create_todo                        : "Give a name to your new To-Do-List!"
       create_shopping                    : "Where do you go shopping? What do you buy?"
       private                            : "Private"
       done_shopping                      : "Are you done with your shopping trip?"

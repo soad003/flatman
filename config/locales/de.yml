@@ -79,7 +79,7 @@ de:
             shoppinglists:
               invalid                     : "Bitte gib der Einkaufsliste einen Namen!"
             todos:
-              invalid                     : "Bitte gib deinem Todo einen Namen!"
+              invalid                     : "Bitte gib deinem To-Do einen Namen!"
         invite:
           attributes:
             email:
@@ -143,7 +143,7 @@ de:
         todo:
           attributes:
             name:
-              blank                       : "Bitte gib deinem Todo einen Namen!"
+              blank                       : "Bitte gib deinem To-Do einen Namen!"
             todo_items:
               invalid                     : "Das Item sieht falsch aus!"
     resource:
@@ -161,8 +161,8 @@ de:
       shoppinglist_done               : "hat etwas von der Liste %{name} gekauft."
       shoppinglistitem                : "hat %{items} zur Einkaufsliste %{list} %{action}."
       deletedList                     : "Unbekannt"
-      todolistitem                    : "hat %{items} zur Todoliste %{list} %{action}."
-      todolist                        : "hat die Todoliste %{name} %{action}."
+      todolistitem                    : "hat %{items} zur To-Do-Liste %{list} %{action}."
+      todolist                        : "hat die To-Do-Liste %{name} %{action}."
       matechange_remove               : "ist ausgezogen."
       matechange_add                  : "ist eingezogen."
       pushMatechange_remove           : "%{name} ist ausgezogen."
@@ -170,7 +170,7 @@ de:
       pushFinance                     : "%{name} hat die Finanzen bearbeitet."
       pushShopping                    : "%{name} hat die Einkauflisten verändert."
       pushShoppingDone                : "%{name} war einkaufen."
-      pushTodo                        : "%{name} hat die Todolisten bearbeitet."
+      pushTodo                        : "%{name} hat die To-Do-Listen bearbeitet."
       pushResource                    : "%{name} hat die Strom/Gas Zähler bearbeitet."
       pushMessage                     : "%{name} hat dir eine Nachricht geschrieben."
       pushComment                     : "%{name} hat etwas kommentiert."
@@ -236,7 +236,7 @@ de:
         resources                         : "Strom/Gas"
         dashboard                         : "Dashboard"
         shopping                          : "Einkaufen"
-        pinboard                          : "Todo"
+        pinboard                          : "To-Do"
         newsfeed                          : "Dashboard"
 
 
@@ -305,11 +305,11 @@ de:
       sampletext_placeholder             : "Sag deiner WG was..."
       post                               : "Posten"
       page_header                        : "Newsfeed"
-      items_to_buy                       : "dinge zu kaufen"
+      items_to_buy                       : "zu kaufen"
       view_shopping_details              : "zu den listen"
       you_owe                            : "du schuldest"
-      todos                              : "offene Todo"
-      you_get                            : "du bekommst"
+      todos                              : "zu erledigen"
+      you_get                            : "du erhältst"
       view_finance_details               : "zeige Abrechnungen"
       items_borrowed                     : "verliehene items"
       view_resource_details              : "zeige Strom/Gas Verbrauch"
@@ -501,8 +501,8 @@ de:
       delete_checked                     : "lösche erledigte items"
     pinboard:
       page_header                        : "Pinnwand"
-      page_header_todo                   : "Todo"
-      page_header_shop                   : "Einkaufslisten"
+      page_header_todo                   : "To-Do"
+      page_header_shop                   : "Einkaufen"
       add                                : "hinzufügen"
       shopping                           : "Einkauf"
       shoppinglist                       : "Einkaufsliste"
@@ -515,13 +515,13 @@ de:
       help_paragraph1                    : "Benutze den Button rechts oben um neue Listen zu erstellen - gib deiner Liste einen Namen und los gehts. Du und deine WG-Buddies können die Listen jederzeit bearbeiten: Dinge ergänzen, löschen oder als erledigt markieren."
       help_paragraph2                    : "Du brauchst auch mal deine Privatsphäre? Kein Problem - erstelle mit nur einem Klick private Einkaufslisten, die nur für dich sichtbar sind."
       help_title_todo                    : "Was müsst ihr erledigen?"
-      help_paragraph1_todo               : "Solltet ihr wieder mal putzen, einkaufen oder die Stromrechnung bezahlen? Erstelle über den Button rechts oben Todo's für deine WG - ganz einfach - mit nur einem Klick."
-      help_paragraph2_todo               : "Du hast auch mal etwas zu erledigen, was nur dich betrifft? Kein Problem - erstelle private ToDo's, die nur für dich sichtbar sind."
+      help_paragraph1_todo               : "Solltet ihr wieder mal putzen, einkaufen oder die Stromrechnung bezahlen? Erstelle über den Button rechts oben eine neue To-Do-Liste für deine WG - ganz einfach - mit nur einem Klick."
+      help_paragraph2_todo               : "Du hast auch mal etwas zu erledigen, was nur dich betrifft? Kein Problem - erstelle private to-do's, die nur für dich sichtbar sind."
       delete_list                        : "löschen"
       done                               : "Ich war einkaufen"
       delete_checked                     : "lösche erledigte items"
-      todo                               : "Todo"
-      create_todo                        : "Gib deiner neuen Todoliste einen Namen!"
+      todo                               : "To-Do"
+      create_todo                        : "Gib deiner neuen To-Do-Liste einen Namen!"
       create_shopping                    : "Wo gehst du Einkaufen? Was soll gekauft werden?"
       private                            : "Privat"
       done_shopping                      : "Bist du fertig mit einkaufen?"
