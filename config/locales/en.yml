@@ -297,7 +297,7 @@ en:
       view_finance_details               : "show clearing"
       items_borrowed                     : "items borrowed"
       view_resource_details              : "view resources"
-      view_resource_titel                : "last 30 days"
+      view_resource_titel                : "last month"
       panel_no_resources                 : "No resources are available"
       view_details                       : "View Details"
       panel_shopping_header              : "Shopping"

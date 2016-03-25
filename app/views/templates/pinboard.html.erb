@@ -28,7 +28,7 @@
 </style>
 
 <div class="page-head dropdown">
-    <h1 class="page-header">       
+    <h1 class="page-header page-header-fixed-xs">       
         <span ng-show="filtered_all()"><span class="fa fa-thumb-tack"></span> <%= t(".page_header") %></span>
         <span ng-show="filtered_shopping()"><span class="fa fa-shopping-cart"></span> <%= t(".page_header_shop") %></span>
         <span ng-show="filtered_todo()"><span class="fa fa-list-alt"></span> <%= t(".page_header_todo") %></span>
@@ -44,22 +44,35 @@
           </label>
 
           <span ng-show="false" class="btn-separator hidden-xs"></span>
-          <button type="button" 
-                    class="btn dropdown-toggle btn-primary" 
+
+          <button ng-click="create_shoppinglist()" ng-show="filtered_shopping()" type="button" 
+                    class="btn btn-primary">
+                <span class="fa fa-plus fa-lg"></span>
+                <span class="hidden-xs"><%= t(".add") %></span>
+          </button>
+
+          <button ng-click="create_todo()" ng-show="filtered_todo()" type="button"
+                    class="btn btn-primary">
+                <span class="fa fa-plus fa-lg"></span>
+                <span class="hidden-xs"><%= t(".add") %></span>
+          </button>
+
+          <button ng-show="filtered_all()" type="button"
+                    class="btn dropdown-toggle btn-primary"
                     data-toggle="dropdown"
                     id="dropdownMenu1">
                 <span class="fa fa-plus fa-lg"></span>
                 <span class="hidden-xs"><%= t(".add") %></span>
                 <span class="caret"></span>
             </button>
-            <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
-                <li ng-show="filtered_todo() || filtered_all()">
+            <ul ng-show="filtered_all()" class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
+                <li>
                     <a href="" ng-click="create_todo()">
                         <i class="fa fa-list-alt fa-lg"></i> 
                         <%= t(".todo") %>
                     </a>
                 </li>
-                <li ng-show="filtered_shopping() || filtered_all()">
+                <li >
                     <a href="" ng-click="create_shoppinglist()">
                         <i class="fa fa-shopping-cart fa-lg"></i> 
                         <%= t(".shoppinglist") %>
@@ -70,7 +83,7 @@
     </h1>
 </div>
 
-<div class="row">
+<div class="row scrollable-content-xs">
   <ul id="isotopeContainer" isotope-container ng-cloak class="ng-cloak list-unstyled">
     <li class="col-md-4 col-sm-6 col-xs-12" ng-repeat="list in bla = (lists | filter: {type: filter_type}) track by track_via(list)" isotope-item>
         <div class="panel panel-{{get_color($index)}}">
@@ -136,18 +149,20 @@
         </div>
     </li>
   </ul>
-    <div class="jumbotron text-center" ng-show="bla.length===0 && !isLoading() && filtered_shopping()">
-      <i class="fa fa-shopping-cart fa-5x"></i>
-      <h2><%= t(".help_title") %></h2>
-      <%= t(".help_paragraph1") %><br>
-      <%= t(".help_paragraph2") %>
-    </div>
+    <div class="col-xs-12">
+      <div class="jumbotron text-center" ng-show="bla.length===0 && !isLoading() && filtered_shopping()">
+        <i class="fa fa-shopping-cart fa-5x"></i>
+        <h2><%= t(".help_title") %></h2>
+        <%= t(".help_paragraph1") %><br>
+        <%= t(".help_paragraph2") %>
+      </div>
 
-    <div class="jumbotron text-center" ng-show="bla.length===0 && !isLoading() && filtered_todo()">
-      <i class="fa fa-list-alt fa-5x"></i>
-      <h2><%= t(".help_title_todo") %></h2>
-      <%= t(".help_paragraph1_todo") %><br>
-      <%= t(".help_paragraph2_todo") %>
+      <div class="jumbotron text-center" ng-show="bla.length===0 && !isLoading() && filtered_todo()">
+        <i class="fa fa-list-alt fa-5x"></i>
+        <h2><%= t(".help_title_todo") %></h2>
+        <%= t(".help_paragraph1_todo") %><br>
+        <%= t(".help_paragraph2_todo") %>
+      </div>
     </div>
 </div>
 

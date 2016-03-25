@@ -1,27 +1,18 @@
 <div class="page-head dropdown">
-    <h1 class="page-header">
+    <h1 class="page-header page-header-fixed-xs">
         <span class="fa fa-globe"></span>
         <%=t ( '.page_header') %>
         <a href="/#/create_resource">
             <button ng-click="setUpdateResource('add', '')" class="btn btn-primary pull-right"> <i class="fa fa-plus"></i>
                 <span class="hidden-xs">
-                    <%=t ( '.page_title') %>
+                    <%=t ( '.add') %>
                 </span>
             </button>
         </a>
     </h1>
 </div>
 
-<div class="jumbotron text-center" ng-show="resources.length === 0 && !isLoading()">
-    <i class="fa fa-globe fa-5x"></i>
-    <h2>
-        <%=t ( ".help_title") %>
-    </h2>
-    <%=t ( ".help_paragraph1") %>
-        <br>
-        <%=t ( ".help_paragraph2") %>
-</div>
-<div class="row">
+<div class="row scrollable-content-xs">
     <div ng-repeat="resource in resources" resources-repeat-directive>
         <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
             <div class="row">
@@ -190,4 +181,16 @@
             <hr>
         </div>
     </div>
+    <div class="col-xs-12">
+        <div class="jumbotron text-center" ng-show="resources.length === 0 && !isLoading()">
+            <i class="fa fa-globe fa-5x"></i>
+            <h2>
+                <%=t ( ".help_title") %>
+            </h2>
+            <%=t ( ".help_paragraph1") %>
+                <br>
+                <%=t ( ".help_paragraph2") %>
+        </div>
+    </div>
+
 </div>

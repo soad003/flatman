@@ -313,7 +313,7 @@ de:
       view_finance_details               : "zeige Abrechnungen"
       items_borrowed                     : "verliehene items"
       view_resource_details              : "zeige Strom/Gas Verbrauch"
-      view_resource_titel                : "letzen 30 Tage"
+      view_resource_titel                : "letzes Monat"
       panel_no_resources                 : "keine Zähler verfügbar"
       view_details                       : "zeige Details"
       panel_shopping_header              : "Einkaufen"
@@ -343,7 +343,6 @@ de:
       addMoreEntriesForOverview          : "Es werden mindestens zwei Einträge für den Überblick benötigt."
       edit                               : "bearbeiten"
       delete                             : "löschen"
-
       questionDeleteResource             : "Bist du dir sicher, dass du die Ressource löschen willst?"
       add                                : "hinzufügen"
     create_resource:
@@ -439,7 +438,7 @@ de:
       back                               : "zurück"
       save                               : "speichern"
     create_payment:
-      page_header                        : "Zahlung eingeben"
+      page_header                        : "Zahlung erstellen"
       back                               : "zurück"
       save                               : "speichern"
       value                              : "Preis"
