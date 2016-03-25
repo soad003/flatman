@@ -1,4 +1,5 @@
 json.name           @user.name
+json.username       @user.username
 json.id				@user.id
 json.email          @user.email
 json.provider       @user.provider

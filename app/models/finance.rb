@@ -10,7 +10,7 @@ class Finance
   end
 
   def self.get_overview_mate(user, mate)
-    mate_info = OpenStruct.new('name' => mate.name,
+    mate_info = OpenStruct.new('username' => mate.username,
                                'page' => 1,
                                'entryLength' => '',
                                'id' => mate.id,

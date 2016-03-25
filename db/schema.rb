@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160323103344) do
+ActiveRecord::Schema.define(version: 20160325130919) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -197,6 +197,7 @@ ActiveRecord::Schema.define(version: 20160323103344) do
     t.string   "locale",           default: "en"
     t.string   "platform",         default: "android"
     t.boolean  "pushflag",         default: true
+    t.string   "username"
   end
 
 end

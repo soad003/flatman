@@ -4,10 +4,10 @@
             <h1 class="page-header"><span class="fa fa-cog"></span> <%= t('.page_header') %></h1>
         </section>
         <div class="row">
-            <div class="col-xs-4">
+            <div class="hidden-xs col-sm-4">
                 <img ng-src="{{user.image_path}}" class="img-thumbnail" style="width: 80px; height: 80px;">
             </div>
-            <div class="col-xs-8">
+            <div class="col-sm-8 col-xs-12">
                 <form  name="content_form" ng-submit="update_user()" class="form-horizontal" role="form">
                     <div class="form-group">
                         <label class="col-xs-4 col-sm-4 control-label"><%= t(".name")%></label>
@@ -15,6 +15,17 @@
                           <p class="form-control-static">{{user.name}} </p>
                         </div>
                     </div>
+
+                    <div class="form-group">
+                        <label class="col-xs-4 col-sm-4 control-label"><%= t(".username")%></label>
+                        <div class="col-xs-8 col-sm-8">
+                             <input type="text" class="form-control"
+                                ng-model="user.username"
+                                maxlength="30"
+                                placeholder="<%= t('.username') %>">
+                        </div>
+                    </div>
+
                     <div class="form-group">
                         <label class="col-xs-4 col-sm-4 control-label"><%= t(".email")%></label>
                         <div class="col-xs-8 col-sm-8">
@@ -57,10 +68,17 @@
                         <label class="col-xs-4 col-sm-4 control-label" for="pushflag"><%=t('.pushflag')%></label>
                         <div class="col-xs-8 col-sm-8">
                             <div class="checkbox">
-                                <input id="pushflag" ng-model="user.pushflag" type="checkbox" ng-change="update_user()" style="margin-left
+                                <input id="pushflag" ng-model="user.pushflag" type="checkbox" style="margin-left
                                 :0px;">
                             </div>
                         </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-xs-4 col-xs-offset-8">
+                         <button class = "btn btn-sm btn-success btn-block" title ="<%= t('.save_btn') %>" ng-disabled="!is_dirty()">
+                            <span class="glyphicon glyphicon-ok"></span> <%= t('.save_btn') %>
+                          </button>
+                      </div>
                     </div>
                 </form>
             </div>

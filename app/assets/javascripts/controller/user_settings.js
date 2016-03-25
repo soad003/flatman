@@ -6,6 +6,6 @@ angular.module('flatman').controller("userSettingsCtrl",function($scope,userServ
     };
 
     $scope.update_user=function(){
-        userService.update($scope.user.pushflag, function(data){$scope.content_form.$setPristine(); });
+        userService.update($scope.user.pushflag, $scope.user.username, function(data){$scope.content_form.$setPristine(); });
     };
 });

@@ -14,6 +14,12 @@ class User < ActiveRecord::Base
   has_many    :newsitems
   validates   :provider, :uid, :name, :oauth_token, :email, presence: true
 
+  before_save :set_username
+
+  def set_username
+    self.username = name.split(' ')[0] if username.blank?
+  end
+
   def has_flat?
     !flat.nil?
   end

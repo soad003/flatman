@@ -486,6 +486,7 @@ en:
       edit                               : "edit"
     user_settings:
       page_header                        : "Your Profile"
+      username                           : "username"
       name                               : "name"
       email                              : "email"
       provider                           : "via"

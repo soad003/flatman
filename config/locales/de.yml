@@ -481,6 +481,7 @@ de:
       edit                               : "bearbeiten"
     user_settings:
       page_header                        : "Dein Profil"
+      username                           : "Benutzername"
       name                               : "Name"
       email                              : "Mail"
       provider                           : "Via"

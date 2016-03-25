@@ -5,6 +5,7 @@ class Api::UserController < Api::RestController
 
   def update
     current_user.pushflag = update_params[:pushflag]
+    current_user.username = update_params[:username]
     current_user.save!
     respond_with(nil, location: nil)
   end
@@ -12,6 +13,6 @@ class Api::UserController < Api::RestController
   private
 
   def update_params
-    params.permit(:pushflag)
+    params.permit(:pushflag, :username)
   end
 end

@@ -1,4 +1,4 @@
-json.name @overviewMate.name
+json.name @overviewMate.username
 json.value @overviewMate.value
 json.img_path @overviewMate.img_path
 json.id @overviewMate.id
