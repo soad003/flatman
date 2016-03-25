@@ -76,7 +76,7 @@
                             <span ng-show="entry.isPayment"> <%=t ( '.payment') %></span>
                         </td>
                         <td class="hidden-xs">
-                            <span ng-show="entry.payer_id === current_user.id">{{current_user.name}}</span>
+                            <span class="bold" ng-show="entry.payer_id === current_user.id">{{current_user.username}}</span>
                             <span ng-show="entry.payer_id !== current_user.id">{{currentOverviewMate.name}}</span>
                         </td>
                         <td class="text-right hidden-xs">

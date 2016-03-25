@@ -63,14 +63,14 @@
                     </td>
                     <td class="hidden-xs">{{finance.cat_name}}</td>
                     <td>
-                        <span ng-class="{'bold': finance.user_id === current_user.id}">{{finance.user_name.split(' ')[0]}}</span>
+                        <span ng-class="{'bold': finance.user_id === current_user.id}">{{finance.user_name}}</span>
                     </td>
                     <td class="hidden-xs">
                         <span ng-show="finance.isPaidBy.length === mates.length">
                             <%=t ( ".all") %>
                         </span>
                         <span ng-show="finance.isPaidBy.length !== mates.length" ng-repeat="user in finance.isPaidBy" ng-class="{'bold': user.id === current_user.id}">
-                            {{user.name.split(' ')[0]}}
+                            {{user.name}}
                             <span ng-show="$index != finance.isPaidBy.length-1">,</span>
                         </span>
                     </td>

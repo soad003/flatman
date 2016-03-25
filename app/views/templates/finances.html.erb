@@ -49,7 +49,7 @@
                                         </div>
                                         <div class="col-xs-10 col-sm-11">
                                             <div class="pull-left">
-                                                <span>{{overviewMate.name.split(' ')[0]}}</span>
+                                                <span>{{overviewMate.name}}</span>
                                                 <span ng-show="overviewMate.value > 0">
                                                     <%=t ( '.owes_you') %>
                                                 </span>
@@ -176,7 +176,7 @@
                         <td class="hidden-xs">{{finance.name}}</td>
                         <td class="hidden-xs">{{finance.cat_name}}</td>
                         <td>
-                            <span ng-class="{'bold': finance.user_id === current_user.id}">{{finance.user_name.split(' ')[0]}}</span>
+                            <span ng-class="{'bold': finance.user_id === current_user.id}">{{finance.user_name}}</span>
                         </td>
                         <td class="text-right">{{finance.value| customCurrency : '€ '}}</td>
                         <td>

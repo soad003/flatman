@@ -10,6 +10,7 @@ json.subset      @bills.subset do |finance|
   json.cat_name finance.billcategory.name
   json.is_editable finance.is_editable?
   json.isPaidBy finance.users do |user|
-    json.(user, :id, :username)
+    json.id user.id
+    json.name user.username
   end
 end

@@ -1,3 +1,3 @@
 json.array!(@mates) do |entry|
-    json.(entry , :id, :username)
+    json.(entry , :id, :name)
 end
