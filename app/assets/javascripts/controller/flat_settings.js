@@ -1,4 +1,7 @@
 angular.module('flatman').controller("flatSettingsCtrl",function($scope,$modal,flatService,inviteService,Util){
+    
+    //fucking ugly hack ...
+    var clipboard = new Clipboard('.btn-clipboard');
 
     $scope.is_dirty=function(){
        return $scope.content_form.$dirty;

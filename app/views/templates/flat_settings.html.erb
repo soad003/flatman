@@ -85,20 +85,30 @@
                 <button class="btn btn-primary"
                         type="submit"
                         ng-disabled="!Inviteform.$valid">
-                  <span class="glyphicon glyphicon-plus"></span>
+                  <span class="fa fa-plus"></span>
                 </button>
               </span>
             </div>
-            <hr>
-            <div class="form-group">
-               <label class="control-label" for="token"><%= t('.share_flat_id') %></label>
-               <input type="text" class="form-control"
+          </form>
+          <hr>
+
+          <div class="form-group">
+              <label class="control-label" for="token"><%= t('.share_flat_id') %></label>
+              <div class="input-group">
+                <input type="text" class="form-control"
                       ng-model="flat.token"
                       maxlength="100"
                       id="token"
-                      title="<%= t('.share_flat_id_description') %>" disabled>
-            </div>
-          </form>
+                      title="<%= t('.share_flat_id_description') %>" readonly>
+
+                <span class="input-group-btn">
+                  <button class="btn btn-default btn-clipboard" data-clipboard-target="#token">
+                    <span class="fa fa-clipboard"></span>
+                  </button>
+                </span>
+              </div>
+          </div>
+          
       </div>
     </div>
     <div class="panel panel-danger">

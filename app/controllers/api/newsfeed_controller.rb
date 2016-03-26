@@ -70,7 +70,7 @@ class Api::NewsfeedController < Api::RestController
       return 'useraction'
     elsif ni.isTodo
       return 'todo'
-    elsif ni.isFlatman()
+    elsif ni.isFlatman
       return 'flatman'
     end
   end

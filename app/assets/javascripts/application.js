@@ -39,5 +39,6 @@
 //= require ./vendor/angular-isotope.js
 //= require ./vendor/hammerjs.min.js
 //= require ./vendor/gesturesjs.min.js
+//= require ./vendor/clipboard.min.js
 
 
