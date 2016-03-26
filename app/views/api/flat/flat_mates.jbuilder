@@ -1,3 +1,4 @@
-json.array!(@mates) do |entry|
-    json.(entry , :id, :name)
+json.array!(@mates) do |user|
+	json.id user.id
+	json.name "[#{user.username}] #{user.name}"
 end

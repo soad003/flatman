@@ -99,7 +99,7 @@ angular.module('flatman').controller("newsfeedCtrl",
 
     $scope.setNewsfeed = function (){
 		$scope.newsitemLoaded = 0;
-		$scope.newsitemCount = 9;
+		$scope.newsitemCount = 20;
 		$scope.newsfeed_length = 0;
 		$scope.news = [];
     }

@@ -76,7 +76,11 @@ html *
   width: 35px;
   height: 35px;
   text-align: center;
-  vertical-align: middle;
+}
+
+.news-image-flatman {
+  width: 45px;
+  height: 45px;
 }
 
 .news-icon {
@@ -248,5 +252,24 @@ input[type='number'] {
   }
 }
 
+
+.panel-flatman {
+  border-color: #c9a61c;
+}
+.panel-flatman > .panel-heading {
+  color: #000000;
+  background-color: #ffd530;
+  border-color: #c9a61c;
+}
+.panel-flatman > .panel-heading + .panel-collapse > .panel-body {
+  border-top-color: #c9a61c;
+}
+.panel-flatman > .panel-heading .badge {
+  color: #000000;
+  background-color: #ffffff;
+}
+.panel-flatman > .panel-footer + .panel-collapse > .panel-body {
+  border-bottom-color: #c9a61c;
+}
 
 

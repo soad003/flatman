@@ -1,7 +1,7 @@
 <div class="row" infinite-scroll="loadNews()" infinite-scroll-disabled='isLoading()'>
   <div class="col-xs-12 col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-2 col-lg-8 col-lg-offset-2">
     <div class="row">
-     <div ng-class="tileClass('shopping')">
+      <div ng-class="tileClass('shopping')">
         <div class="panel panel-info clickable padding-small padding-small-bottom" ng-click="Util.redirect_to.shopping()">
           <div class="panel-heading">
             <div class="row">
@@ -21,7 +21,6 @@
           </div>
         </div>
       </div>
-
       <div ng-class="tileClass('todo')">
         <div class="panel panel-danger clickable padding-small padding-small-bottom" ng-click="Util.redirect_to.todo()">
           <div class="panel-heading">
@@ -46,7 +45,6 @@
           </div>
         </div>
       </div>
-
       <div ng-class="tileClass('finance')">
         <div class="panel panel-warning clickable padding-small padding-small-bottom" ng-click="Util.redirect_to.finances()">
           <div class="panel-heading">
@@ -73,13 +71,12 @@
           </div>
         </div>
       </div>
-
       <div ng-hide="get_resource_usage() === 0" ng-class="tileClass('resource')">
         <div class="panel panel-success clickable padding-small padding-small-bottom" ng-click="Util.redirect_to.resources()">
           <div class="panel-heading">
             <div class="row">
               <div class="col-xs-4 announcement-icon">
-                  <i class="hidden-xs fa fa-globe fa-2x"></i>
+                <i class="hidden-xs fa fa-globe fa-2x"></i>
                 <i class="visible-xs fa fa-globe"></i>
               </div>
               <div class="col-xs-8 text-right">
@@ -107,16 +104,16 @@
         </div>
         <div class="col-xs-12 col-sm-11 col-md-11 col-lg-11">
           <div class="input-group" >
-            <input type="text" class="form-control" 
-              ng-model="newsText"
-              maxlength="240"
-              placeholder="<%= t('.sampletext_placeholder') %>" required>
+            <input type="text" class="form-control"
+            ng-model="newsText"
+            maxlength="240"
+            placeholder="<%= t('.sampletext_placeholder') %>" required>
             <span class="input-group-btn">
-            <button class="btn btn-primary"
+              <button class="btn btn-primary"
               type="submit"
               ng-disabled="!newsForm.$valid">
-            <span class="fa fa-plus fa-lg"></span> <span class="hidden-xs"><%= t(".posten") %></span>
-            </button>
+              <span class="fa fa-plus fa-lg"></span> <span class="hidden-xs"><%= t(".posten") %></span>
+              </button>
             </span>
           </div>
         </div>
@@ -124,71 +121,90 @@
     </div>
     <div class="row">
       <div class="col-xs-12" style="height:15px;"></div>
+
       <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-        <div ng-repeat="n in news track by $index" class="panel padding-small-bottom"
-          ng-class="{
-              'panel-warning' : n.type == 'finance',
-              'panel-success' : n.type == 'resource',
-              'panel-info'    : n.type == 'shopping',
-              'panel-danger'  : n.type == 'todo',
-              'panel-default' : n.type == 'message' || n.type == 'useraction'
+        <div ng-repeat="n in news track by $index">
+          
+          <div ng-show="n.type == 'flatman'" class="panel padding-small-bottom panel-flatman">
+            <div class="panel-heading">
+              <div class="row">
+                <div class="col-sm-1 col-md-1 col-lg-1 col-xs-2 news-icon">
+                  <img ng-src="<%= image_path( 'flatman_logo_border_square.png' ) %>" class="img-circle news-image-flatman"/>
+                </div>
+                <div style="word-wrap:break-word;" class="col-xs-10 col-sm-11 col-md-11 col-lg-11">
+                  <span class="news-name">flatman: </span>
+                  <span class="nowrap">{{n.text}}</span><br>
+                  <span class="news-date"><i class="fa fa-clock-o"></i> {{n.date}} </span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div ng-hide="n.type== 'flatman'" class="panel padding-small-bottom"
+            ng-class="{
+            'panel-warning' : n.type == 'finance',
+            'panel-success' : n.type == 'resource',
+            'panel-info'    : n.type == 'shopping',
+            'panel-danger'  : n.type == 'todo',
+            'panel-default' : n.type == 'message' || n.type == 'useraction'
             }">
-          <div class="panel-heading">
-            <div class="row">
-              <div class="col-sm-1 col-md-1 col-lg-1 col-xs-2 news-icon">
+            <div class="panel-heading">
+              <div class="row">
+                <div class="col-sm-1 col-md-1 col-lg-1 col-xs-2 news-icon">
                   <img ng-src="{{n.link}}" ng-show="n.type == 'message'" class="img-circle news-image"/>
                   <span class="fa fa-bitcoin fa" ng-show="n.type == 'finance'"></span>
                   <span class="fa fa-shopping-cart fa" ng-show="n.type == 'shopping'"></span>
                   <span class="fa fa-globe fa" ng-show="n.type == 'resource'"></span>
                   <span class="fa fa-list-alt fa" ng-show="n.type == 'todo'"></span>
                   <span class="fa fa-user fa" ng-show="n.type == 'useraction'"></span>
-              </div>
-              <div style="word-wrap:break-word;" class="col-xs-10 col-sm-11 col-md-11 col-lg-11">
-                <a href="" class="pull-right" ng-show="n.type === 'message' && n.user_id === current_user.id" ng-click="removeMessage(n)">
-                  <span class="glyphicon glyphicon-remove"></span>
-                </a>
-                <span ng-class="{'clickable' : !(n.type == 'message' || n.type == 'matechange')}"  ng-click="redirectToSource(n.type)">
-                  <span class="news-name">{{n.name}}<span ng-show="n.text != ''">:</span></span> 
-                  <span class="nowrap" ng-show="n.header != ''"> {{n.header}} </span>
-                  <span ng-repeat="line in getTextWithNewline(n.text) track by $index" ng-show="n.text != ''">
-                     {{line}}<br>
+                </div>
+                <div style="word-wrap:break-word;" class="col-xs-10 col-sm-11 col-md-11 col-lg-11">
+                  <a href="" class="pull-right" ng-show="n.type === 'message' && n.user_id === current_user.id" ng-click="removeMessage(n)">
+                    <span class="glyphicon glyphicon-remove"></span>
+                  </a>
+                  <span ng-class="{'clickable' : !(n.type == 'message' || n.type == 'matechange')}"  ng-click="redirectToSource(n.type)">
+                    <span class="news-name">{{n.name}}<span ng-show="n.text != ''">:</span></span>
+                    <span class="nowrap" ng-show="n.header != ''"> {{n.header}} </span>
+                    <span ng-repeat="line in getTextWithNewline(n.text) track by $index" ng-show="n.text != ''">
+                      {{line}}<br>
+                    </span>
+                    <span ng-show="n.text == ''"> <br> </span>
                   </span>
-                  <span ng-show="n.text == ''"> <br> </span>
-                </span>  
-                <span class="news-date"><i class="fa fa-clock-o"></i> {{n.date}} </span>
-                <a data-toggle="collapse" data-target="#collapseComments{{$index}}" aria-expanded="false" aria-controls="collapseComments" class="news-comment clickable"  ng-click="switchChevron($index)">
-                <i class="fa fa-comment"></i> <%= t('.comment') %> <span ng-show="n.comments.length != 0"> {{n.comments.length}}</span>
-                <span id="chevron{{$index}}" class="glyphicon glyphicon-chevron-right"></span> 
-                </a>
+                  <span class="news-date"><i class="fa fa-clock-o"></i> {{n.date}} </span>
+                  <a data-toggle="collapse" data-target="#collapseComments{{$index}}" aria-expanded="false" aria-controls="collapseComments" class="news-comment clickable"  ng-click="switchChevron($index)">
+                    <i class="fa fa-comment"></i> <%= t('.comment') %> <span ng-show="n.comments.length != 0"> {{n.comments.length}}</span>
+                    <span id="chevron{{$index}}" class="glyphicon glyphicon-chevron-right"></span>
+                  </a>
+                </div>
               </div>
             </div>
-          </div>
-          <div id="collapseComments{{$index}}" class="collapse panel-body announcement-bottom">
-            <table class="table table-condensed">
-              <tbody>
-                <tr ng-repeat="c in n.comments track by $index">
-                  <td ng-class="{'td-remove-boarder' : $index == 0}">
-                    <span class="news-name">{{c.name}}: </span> {{c.text}}  
-                    <span class="news-date" ng-show="c.date"><i class="fa fa-clock-o" ></i> {{c.date}} </span>
-                  </td>
-                </tr>
-              </tbody>
-            </table>
-            <form role="form" name="Commentform" ng-submit="addComment(n)">
-              <div class="input-group">
-                <input type="text" class="form-control"
+            <div id="collapseComments{{$index}}" class="collapse panel-body announcement-bottom">
+              <table class="table table-condensed">
+                <tbody>
+                  <tr ng-repeat="c in n.comments track by $index">
+                    <td ng-class="{'td-remove-boarder' : $index == 0}">
+                      <span class="news-name">{{c.name}}: </span> {{c.text}}
+                      <span class="news-date" ng-show="c.date"><i class="fa fa-clock-o" ></i> {{c.date}} </span>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+              <form role="form" name="Commentform" ng-submit="addComment(n)">
+                <div class="input-group">
+                  <input type="text" class="form-control"
                   ng-model="n.new_Text"
                   maxlength="250"
                   placeholder="<%= t(".comment_placeholder") %>" required>
-                <span class="input-group-btn">
-                <button class="btn btn-primary"
-                  type="submit"
-                  ng-disabled="!Commentform.$valid">
-                <span class="fa fa-plus fa-lg"></span>
-                </button>
-                </span>
-              </div>
-            </form>
+                  <span class="input-group-btn">
+                    <button class="btn btn-primary"
+                    type="submit"
+                    ng-disabled="!Commentform.$valid">
+                    <span class="fa fa-plus fa-lg"></span>
+                    </button>
+                  </span>
+                </div>
+              </form>
+            </div>
           </div>
         </div>
       </div>

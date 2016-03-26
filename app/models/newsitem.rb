@@ -11,7 +11,8 @@ class Newsitem < ActiveRecord::Base
                  resource: 'resourcelist',
                  resourceitem: 'resourcelistitem',
                  bill: 'bill',
-                 payment: 'payment' }.freeze
+                 payment: 'payment',
+                 flatman: 'flatman' }.freeze
   ACTIONS = { add: 'add',
               change: 'change',
               remove: 'remove',
@@ -57,6 +58,10 @@ class Newsitem < ActiveRecord::Base
 
   def isTodo
     isTodoList || isTodoListItem
+  end
+
+  def isFlatman
+    self[:category] == Newsitem::CATEGORIES[:flatman]
   end
 
   def isResourceList

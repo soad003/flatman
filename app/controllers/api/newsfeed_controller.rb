@@ -70,6 +70,8 @@ class Api::NewsfeedController < Api::RestController
       return 'useraction'
     elsif ni.isTodo
       return 'todo'
+    elsif ni.isFlatman()
+      return 'flatman'
     end
   end
 
@@ -79,7 +81,7 @@ class Api::NewsfeedController < Api::RestController
   end
 
   def getText(ni)
-    return ni.text if ni.isMessage
+    return ni.text if ni.isMessage || ni.isFlatman
     ''
   end
 
