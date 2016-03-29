@@ -174,8 +174,7 @@ de:
       pushResource                    : "%{name} hat die Strom/Gas Zähler bearbeitet."
       pushMessage                     : "%{name} hat dir eine Nachricht geschrieben."
       pushComment                     : "%{name} hat etwas kommentiert."
-
-
+      flatman_text_welcome            : "Willkommen bei Flatman!\nDu bist hier auf der Hauptseite gelandet. Über die WG-Einstellungen kannst du deine Mitbewohner per Email einladen oder ihnen den WG-Schlüssel schicken.\nViel Spaß!"
 
   buttons:
     confirmations:

@@ -9,15 +9,17 @@
         <strong><%= t( '.intro_start_now' ) %></strong>
       </a>
     </p>
-    <p>
-      <%= t( '.intro_get_the_app' ) %>
-    </p>
-    <a href="https://play.google.com/store/apps/details?id=at.flatman.android&utm_source=global_co&utm_medium=prtnr&utm_content=Mar2515&utm_campaign=PartBadge&pcampaignid=MKT-AC-global-none-all-co-pr-py-PartBadges-Oct1515-1">
-      <img alt="Get it on Google Play" src="<%= image_path( 'google-play-badge.png' ) %>" class="flatman-image__badge" />
-    </a>
-    <a href="#">
-      <img alt="Get it on the App Store" src="<%= image_path( 'ios-app-store-badge.svg' ) %>" class="flatman-image__badge" />
-    </a>
+    <% if !is_app_user?%>
+      <p>
+        <%= t( '.intro_get_the_app' ) %>
+      </p>
+      <a href="https://play.google.com/store/apps/details?id=at.flatman.android&utm_source=global_co&utm_medium=prtnr&utm_content=Mar2515&utm_campaign=PartBadge&pcampaignid=MKT-AC-global-none-all-co-pr-py-PartBadges-Oct1515-1">
+        <img alt="Get it on Google Play" src="<%= image_path( 'google-play-badge.png' ) %>" class="flatman-image__badge" />
+      </a>
+      <a href="#">
+        <img alt="Get it on the App Store" src="<%= image_path( 'ios-app-store-badge.svg' ) %>" class="flatman-image__badge" />
+      </a>
+    <%end%>
   </div>
 </div>
 

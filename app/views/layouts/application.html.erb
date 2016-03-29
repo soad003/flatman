@@ -69,7 +69,7 @@
         <div class="navbar-collapse collapse no-transition">
           <ul class="nav navbar-nav navbar-right">
             <li><a href="/signout"><span class="fa fa-power-off fa-fw fa-lg"></span> <%=t("misc.titles.logout")%></a></li>
-          </ul>  
+          </ul>
         </div>
         <%end%>
         <% if is_user_ready_to_go %>
@@ -147,12 +147,12 @@
           <div class="row">
             <div class="col-md-4 col-xs-6">
               &copy; flatman <%= Time.now.year %>
-              <% if is_app_user? && current_user.platform == "ios"%>
+              <!--<% if is_app_user? && current_user.platform == "ios"%>
                 <i class="fa fa-apple"></i>
               <%end%>
               <% if is_app_user? && current_user.platform == "android"%>
                 <i class="fa fa-android"></i>
-              <%end%>
+              <%end%>-->
             </div>
             <div class="col-md-4 col-xs-6 text-center">
               <%= link_to_unless(I18n.locale == :en,

@@ -180,6 +180,8 @@ en:
       pushMessage                     : "%{name} sent a message."
       pushUserAction                  : "%{name} %{action} your flat."
       pushComment                     : "%{name} commented something."
+      flatman_text_welcome            : "Hi, welcome at flatman! \n First you have to invite your flat mates via email or send them the flatkey, you find that key in your flat settings."
+
 
 
 

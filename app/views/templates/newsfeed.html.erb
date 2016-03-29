@@ -129,11 +129,13 @@
             <div class="panel-heading">
               <div class="row">
                 <div class="col-sm-1 col-md-1 col-lg-1 col-xs-2 news-icon">
-                  <img ng-src="<%= image_path( 'flatman_logo_border_square.png' ) %>" class="img-circle news-image-flatman"/>
+                  <img ng-src="<%= image_path( 'flatman_logo_border_square.png' ) %>" class="img-circle news-image"/>
                 </div>
                 <div style="word-wrap:break-word;" class="col-xs-10 col-sm-11 col-md-11 col-lg-11">
                   <span class="news-name">flatman: </span>
-                  <span class="nowrap">{{n.text}}</span><br>
+                  <span class="nowrap" ng-repeat="line in getTextWithNewline(n.text) track by $index">
+                      {{line}}<br>
+                  </span>
                   <span class="news-date"><i class="fa fa-clock-o"></i> {{n.date}} </span>
                 </div>
               </div>
@@ -165,7 +167,7 @@
                   <span ng-class="{'clickable' : !(n.type == 'message' || n.type == 'matechange')}"  ng-click="redirectToSource(n.type)">
                     <span class="news-name">{{n.name}}<span ng-show="n.text != ''">:</span></span>
                     <span class="nowrap" ng-show="n.header != ''"> {{n.header}} </span>
-                    <span ng-repeat="line in getTextWithNewline(n.text) track by $index" ng-show="n.text != ''">
+                    <span class="nowrap" ng-repeat="line in getTextWithNewline(n.text) track by $index" ng-show="n.text != ''">
                       {{line}}<br>
                     </span>
                     <span ng-show="n.text == ''"> <br> </span>

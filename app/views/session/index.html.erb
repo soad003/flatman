@@ -19,6 +19,7 @@
         <span class="fa fa-google"></span> Google
       </a>
     </li>
+    <% if !is_app_user?%>
     <p style="margin-top: 30px;">
       oder hol dir die <strong>Flatman-App</strong>:
     </p>
@@ -28,6 +29,7 @@
     <a href="#">
       <img alt="Get it on the App Store" src="<%= image_path( 'ios-app-store-badge.svg' ) %>" class="flatman-image__badge" />
     </a>
+        <% end %>
   </ul>
 </div>
 

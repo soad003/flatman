@@ -80,8 +80,13 @@ class Api::NewsfeedController < Api::RestController
     ''
   end
 
+  def getFlatmanText(key)
+    I18n.t('activerecord.newsitem.flatman_text_' + key)
+  end
+
   def getText(ni)
-    return ni.text if ni.isMessage || ni.isFlatman
+    return getFlatmanText(ni.text) if ni.isFlatman
+    return ni.text if ni.isMessage
     ''
   end
 
