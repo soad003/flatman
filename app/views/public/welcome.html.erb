@@ -16,9 +16,9 @@
       <a href="https://play.google.com/store/apps/details?id=at.flatman.android&utm_source=global_co&utm_medium=prtnr&utm_content=Mar2515&utm_campaign=PartBadge&pcampaignid=MKT-AC-global-none-all-co-pr-py-PartBadges-Oct1515-1">
         <img alt="Get it on Google Play" src="<%= image_path( 'google-play-badge.png' ) %>" class="flatman-image__badge" />
       </a>
-      <a href="#">
+      <!--<a href="#">
         <img alt="Get it on the App Store" src="<%= image_path( 'ios-app-store-badge.svg' ) %>" class="flatman-image__badge" />
-      </a>
+      </a>-->
     <%end%>
   </div>
 </div>
@@ -39,7 +39,7 @@
   </div>
 </div>
 
-<div id="flatman-dashboard" class="flatman-section flatman-section__resources">
+<div id="flatman-resources" class="flatman-section flatman-section__resources">
   <div class="flatman-section__description">
     <h3><%= t( '.superpower_title' ) %></h3>
     <h2><%= t( '.resource_title' ) %></h2>
@@ -47,18 +47,11 @@
   </div>
 </div>
 
-<div id="flatman-contact" class="flatman-section flatman-section__contact">
-  <div class="flatman-section__contact-description">
-    <h2><%= t( '.contact_title' ) %></h2>
-    <p><%= t( '.contact_text' ) %></p>
-    <ul class="list-inline">
-      <li class="flatman-text__size--20"><a href="#"><span class="fa fa-facebook-official"></span></a></li>
-      <li class="flatman-text__size--20"><a href="#"><span class="fa fa-envelope"></span></a></li>
-    </ul>
-    <p>
-      <br />
-      <%= link_to t( 'misc.titles.menus.terms_and_privacy.title' ), terms_path %>
-    </p>
+<div id="flatman-dashboard" class="flatman-section flatman-section__dashboard">
+  <div class="flatman-section__description">
+    <h3><%= t( '.superpower_title' ) %></h3>
+    <h2><%= t( '.dashboard_title' ) %></h2>
+    <p><%= t( '.dashboard_text' ) %></p>
   </div>
 </div>
 
@@ -66,7 +59,7 @@
 <script>
   $( document ).ready( function(){
     var section_colors = [
-      '#FFD530', '#d9edf7', '#fcf8e3', '#dff0d8', '#FFD530'
+      '#FFD530', '#d9edf7', '#fcf8e3', '#dff0d8', '#EBCCD1'
     ];
     $( '#pagepiling' ).pagepiling({
       sectionSelector: '.flatman-section',
@@ -76,11 +69,8 @@
         'flatman-shopping-lists',
         'flatman-finances',
         'flatman-resources',
-        'flatman-contact'
-      ],
-      afterLoad: function( anchorLink, index ){
-        $( '.overlay' ).css( 'background-color', section_colors[ index - 1 ] ).fadeOut();
-      }
+        'flatman-dashboard'
+      ]
     });
   });
 </script>

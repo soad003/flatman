@@ -3,33 +3,33 @@
 <% content_for :title, t('.page_title') %>
 
 <div id="flatman" class="flatman-section flatman-section__main">
-  <h3>Dein WG <br/> Superheld ist da!</h3>
-  <h1>Flatman</h1>
+  <h3><%= t( '.headline' ) %></h3>
+  <h1><%= t( '.title' ) %></h1>
   <p>
-    Log dich ein
+    <%= t( '.signin_with' ) %>
   </p>
   <ul class="list-inline">
     <li>
       <a href="/auth/facebook" class="btn btn-social btn-facebook">
-        <span class="fa fa-facebook"></span> Facebook
+        <span class="fa fa-facebook"></span> <%= t( '.sign_in_Facebook' ) %>
       </a>
     </li>
     <li>
       <a href="/auth/google_oauth2" class="btn btn-social btn-google-plus">
-        <span class="fa fa-google"></span> Google
+        <span class="fa fa-google"></span>  <%= t( '.sign_in_Google' ) %>
       </a>
     </li>
     <% if !is_app_user? and false%>
     <p style="margin-top: 30px;">
-      oder hol dir die <strong>Flatman-App</strong>:
+      <%= t( '.get_the_app' ) %>
     </p>
     <a href="https://play.google.com/store/apps/details?id=at.flatman.android&utm_source=global_co&utm_medium=prtnr&utm_content=Mar2515&utm_campaign=PartBadge&pcampaignid=MKT-AC-global-none-all-co-pr-py-PartBadges-Oct1515-1">
       <img alt="Get it on Google Play" src="<%= image_path( 'google-play-badge.png' ) %>" class="flatman-image__badge" />
     </a>
-    <a href="#">
+    <!--<a href="#">
       <img alt="Get it on the App Store" src="<%= image_path( 'ios-app-store-badge.svg' ) %>" class="flatman-image__badge" />
-    </a>
-        <% end %>
+    </a>-->
+    <% end %>
   </ul>
 </div>
 
