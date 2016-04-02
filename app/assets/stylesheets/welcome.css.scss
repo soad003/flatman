@@ -97,21 +97,12 @@ a:hover, a:focus,
       padding: 30px;
     }
   }
-
-  .flatman-section__contact {
-    background-image: url( image_path( 'flatman_mockup_empty.png' ) );
-
-    & .flatman-section__contact-description {
-      max-width: 270px;
-      margin: 0 auto;
-      padding: 30px;
-    }
-  }
 }
 
 .flatman-section__shopping-lists {
   background-color: #d9edf7;
-  background-image: url( image_path( 'flatman_mockup_shopping.png' ) );
+  background-image: url( image_path( 'flatman_mockup_shopping_de.png' ) );
+  &.lang-en { background-image: url( image_path( 'flatman_mockup_shopping_en.png' ) ); }
 
   & .flatman-section__description {
     background-color: #d9edf7;
@@ -120,7 +111,8 @@ a:hover, a:focus,
 
 .flatman-section__finances {
   background-color: #fcf8e3;
-  background-image: url( image_path( 'flatman_mockup_finances.png' ) );
+  background-image: url( image_path( 'flatman_mockup_finances_de.png' ) );
+  &.lang-en { background-image: url( image_path( 'flatman_mockup_finances_en.png' ) ); }
 
   & .flatman-section__description {
     background-color: #fcf8e3;
@@ -129,7 +121,8 @@ a:hover, a:focus,
 
 .flatman-section__resources {
   background-color: #dff0d8;
-  background-image: url( image_path( 'flatman_mockup_resources.png' ) );
+  background-image: url( image_path( 'flatman_mockup_resources_de.png' ) );
+  &.lang-en { background-image: url( image_path( 'flatman_mockup_resources_en.png' ) ); }
 
   & .flatman-section__description {
     background-color: #dff0d8;
@@ -138,7 +131,8 @@ a:hover, a:focus,
 
 .flatman-section__dashboard {
   background-color: #ebccd1;
-  background-image: url( image_path( 'flatman_mockup_dashboard.png' ) );
+  background-image: url( image_path( 'flatman_mockup_dashboard_de.png' ) );
+  &.lang-en { background-image: url( image_path( 'flatman_mockup_dashboard_en.png' ) ); }
 
   & .flatman-section__description {
     background-color: #ebccd1;
