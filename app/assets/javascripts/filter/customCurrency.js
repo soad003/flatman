@@ -9,6 +9,6 @@ app.filter('customCurrency', ["$filter", function ($filter) {
              return res[0] + " -" + res[1]; 
         }
 
-        return currency(amount, currencySymbol);
+        return currency(amount, ''); //currencySymbol);
     };
 }]);
