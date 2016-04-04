@@ -2,6 +2,7 @@
 
 angular.module('flatman', ['ngRoute',
                             'ngResource',
+                            'ngSanitize',
                             'google-maps',
                             'angles',
                             'ui.bootstrap',
