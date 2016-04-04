@@ -23,6 +23,7 @@
 //= require angular
 //= require underscore
 //= require angular-route
+//= require angular-sanitize
 //= require_tree ./layout
 //= require angular-resource
 //= require angular-animate

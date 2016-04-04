@@ -151,7 +151,8 @@
                   <span class="news-name">{{n.name}}<span ng-show="n.text != ''">:</span></span> 
                   <span class="nowrap" ng-show="n.header != ''"> {{n.header}} </span>
                   <span ng-repeat="line in getTextWithNewline(n.text) track by $index" ng-show="n.text != ''">
-                     {{line}}<br>
+                    <span ng-bind-html="line | linky"></span><br>
+
                   </span>
                   <span ng-show="n.text == ''"> <br> </span>
                 </span>  
