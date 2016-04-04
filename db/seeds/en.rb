@@ -52,7 +52,7 @@ Flat.create!([
     image_path: nil,
     latitude: nil,
     longitude: nil,
-    token: "Zcld_uXNTVyrWiT_jSVODg"
+    token: "ZwYRef3JO-_a64CcdQpDEw"
   }
 ])
 

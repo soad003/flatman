@@ -5,7 +5,8 @@ json.city           @flat.city
 json.zip            @flat.zip
 json.token          @flat.token
 json.users @flat.users do |user|
-    json.(user , :id, :name)
+	json.id user.id
+	json.name "[#{user.username}] #{user.name}"
 end
 json.invites @flat.invites do |inv|
     json.(inv , :id, :email)

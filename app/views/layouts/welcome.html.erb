@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="<%= I18n.locale %>">
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -25,38 +25,21 @@
 
     <nav class="navbar navbar-fixed-top">
       <div class="container">
-        <div class="navbar-header">
-          <button type="button" class="navbar-toggle" id="trigger-overlay">
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </button>
+        <div class="navbar-header pull-left">
           <a class="navbar-brand" href="<%= welcome_url %>#flatman">
             <img src="<%= image_path( 'flatman_logo_border_30.png' ) %>" alt="Flatman" />
             <span class="hidden-xs"><%= t( ".navbar.flatman" ) %></span>
           </a>
         </div>
-        <div class="collapse navbar-collapse">
-          <ul class="nav navbar-nav navbar-right">
-            <li><a href="<%= welcome_url %>#flatman-contact"><%= t( ".navbar.contact" ) %></a></li>
-            <li><a href="<%= signin_url %>"><%= t( ".navbar.login" ) %></a></li>
-          </ul>
+        <div class="navbar-header pull-right">
+          <% if current_page?( controller: 'public', action: 'welcome' ) %>
+            <a class="btn btn-link navbar-btn" href="<%= signin_url %>"><%= t( ".navbar.login" ) %></a>
+          <% else %>
+            <a class="btn btn-link navbar-btn" href="<%= welcome_url %>"><%= t( ".navbar.tour" ) %></a>
+          <% end %>
         </div>
       </div>
     </nav>
-
-    <div class="overlay overlay-hugeinc">
-      <button type="button" class="overlay-close">
-        <span class="fa fa-times fa-2x"></span>
-      </button>
-      <nav>
-        <ul>
-          <li><a href="<%= welcome_url %>#flatman"><img src="<%= image_path( 'flatman_logo_153x100.png' ) %>" alt="Flatman" /></a></li>
-          <li><a href="<%= welcome_url %>#flatman-contact"><%= t( ".navbar.contact" ) %></a></li>
-          <li><a href="<%= signin_url %>"><%= t( ".navbar.login" ) %></a></li>
-        </ul>
-      </nav>
-    </div>
     
     <div id="pagepiling">
       

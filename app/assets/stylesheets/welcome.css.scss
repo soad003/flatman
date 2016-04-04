@@ -29,11 +29,15 @@ html *
   right: 0;
 }
 
-a {
+a,
+.btn.btn-link {
   color: #000;
 }
 a:hover, a:focus,
-.nav>li>a:hover, .nav>li>a:focus {
+.nav > li > a:hover,
+.nav > li > a:focus,
+.btn.btn-link:hover,
+.btn.btn-link:focus {
   color: #000;
   background: transparent;
   text-decoration: underline;
@@ -41,86 +45,6 @@ a:hover, a:focus,
 
 .flatman-text__size--20 {
   font-size: 20px;
-}
-
-/* -------------------------------------- Full Screen Navigation */
-/* Overlay style */
-.overlay {
-  display: none;
-  position: fixed;
-  width: 100%;
-  height: 100%;
-  top: 0;
-  left: 0;
-  background-color: #FFD530;
-  opacity: 1;
-  visibility: visible;
-  z-index: 1031;
-
-  /* Overlay closing cross */
-  & .overlay-close {
-    width: 44px;
-    height: 34px;
-    position: absolute;
-    right: 15px;
-    top: 9px;
-    overflow: hidden;
-    border: none;
-    outline: none;
-    background: transparent;
-  }
-
-  /* Menu style */
-  & nav {
-    text-align: center;
-    position: relative;
-    top: 50%;
-    height: 60%;
-    font-size: 4rem;
-    -webkit-transform: translateY(-50%);
-    transform: translateY(-50%);
-
-    @media screen and (max-height: 30.5em) {
-      height: 70%;
-      font-size: 34px;
-    }
-  }
-
-  & ul {
-    list-style: none;
-    padding: 0;
-    margin: 0 auto;
-    display: inline-block;
-    height: 100%;
-    position: relative;
-
-    & li {
-      display: block;
-      height: 20%;
-      height: calc(100% / 5);
-      min-height: 54px;
-
-      @media screen and (max-height: 30.5em) {
-        min-height: 34px;
-      }
-
-      &:first-child {
-        margin-bottom: 30px;
-      }
-
-      & a {
-        font-weight: 300;
-        display: block;
-        color: #000;
-        -webkit-transition: text-decoration 0.2s;
-        transition: text-decoration 0.2s;
-
-        &:hover, &:focus {
-          text-decoration: underline;
-        }
-      }
-    }
-  }
 }
 
 /* -------------------------------------- Content Sections */
@@ -173,21 +97,12 @@ a:hover, a:focus,
       padding: 30px;
     }
   }
-
-  .flatman-section__contact {
-    background-image: url( image_path( 'flatman_mockup_empty.png' ) );
-
-    & .flatman-section__contact-description {
-      max-width: 270px;
-      margin: 0 auto;
-      padding: 30px;
-    }
-  }
 }
 
 .flatman-section__shopping-lists {
   background-color: #d9edf7;
-  background-image: url( image_path( 'flatman_mockup_shopping.png' ) );
+  background-image: url( image_path( 'flatman_mockup_shopping_de.png' ) );
+  &.lang-en { background-image: url( image_path( 'flatman_mockup_shopping_en.png' ) ); }
 
   & .flatman-section__description {
     background-color: #d9edf7;
@@ -196,7 +111,8 @@ a:hover, a:focus,
 
 .flatman-section__finances {
   background-color: #fcf8e3;
-  background-image: url( image_path( 'flatman_mockup_finances.png' ) );
+  background-image: url( image_path( 'flatman_mockup_finances_de.png' ) );
+  &.lang-en { background-image: url( image_path( 'flatman_mockup_finances_en.png' ) ); }
 
   & .flatman-section__description {
     background-color: #fcf8e3;
@@ -205,10 +121,21 @@ a:hover, a:focus,
 
 .flatman-section__resources {
   background-color: #dff0d8;
-  background-image: url( image_path( 'flatman_mockup_resources.png' ) );
+  background-image: url( image_path( 'flatman_mockup_resources_de.png' ) );
+  &.lang-en { background-image: url( image_path( 'flatman_mockup_resources_en.png' ) ); }
 
   & .flatman-section__description {
     background-color: #dff0d8;
+  }
+}
+
+.flatman-section__dashboard {
+  background-color: #ebccd1;
+  background-image: url( image_path( 'flatman_mockup_dashboard_de.png' ) );
+  &.lang-en { background-image: url( image_path( 'flatman_mockup_dashboard_en.png' ) ); }
+
+  & .flatman-section__description {
+    background-color: #ebccd1;
   }
 }
 

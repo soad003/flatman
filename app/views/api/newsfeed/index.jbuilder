@@ -1,8 +1,10 @@
 json.newsfeed_length  @feed.length
 json.data (@feed.data) do |newsitem|
   json.id newsitem.id
-  json.user_id newsitem.user.id
-  json.name newsitem.user.username
+  if !newsitem.user.nil?
+    json.user_id newsitem.user.id
+    json.name newsitem.user.username
+  end
   json.text newsitem.text
   json.date newsitem.date
   json.header newsitem.header

@@ -11,7 +11,8 @@ class Newsitem < ActiveRecord::Base
                  resource: 'resourcelist',
                  resourceitem: 'resourcelistitem',
                  bill: 'bill',
-                 payment: 'payment' }.freeze
+                 payment: 'payment',
+                 flatman: 'flatman' }.freeze
   ACTIONS = { add: 'add',
               change: 'change',
               remove: 'remove',
@@ -20,8 +21,8 @@ class Newsitem < ActiveRecord::Base
   belongs_to              :user
   belongs_to              :flat
   has_many                :newsitems, -> { order 'created_at asc' }, dependent: :destroy
-  belongs_to	:newsitem
-  validates :user, :flat, presence: true
+  belongs_to              :newsitem
+  validates               :flat, presence: true
 
   def isFinance
     isPayment || isBill
@@ -57,6 +58,10 @@ class Newsitem < ActiveRecord::Base
 
   def isTodo
     isTodoList || isTodoListItem
+  end
+
+  def isFlatman
+    self[:category] == Newsitem::CATEGORIES[:flatman]
   end
 
   def isResourceList
@@ -99,6 +104,14 @@ class Newsitem < ActiveRecord::Base
                           shoppinglist.id,
                           shoppinglist.name,
                           nil)
+  end
+
+  def self.createFlatmanEntry(flat_id, text)
+    ni = Newsitem.new(category:  Newsitem::CATEGORIES[:flatman],
+                      flat_id:  flat_id,
+                      user_id: -1,
+                      text: text)
+    ni.save!
   end
 
   def self.deleteShoppinglist(shoppinglist, user)
@@ -306,22 +319,22 @@ class Newsitem < ActiveRecord::Base
   def self.getPushMessage(newsitem, locale)
     I18n.locale = locale
     if newsitem.isShopping && newsitem.action == Newsitem::ACTIONS[:done]
-      I18n.t('activerecord.newsitem.pushShoppingDone', name: newsitem.user.name)
+      I18n.t('activerecord.newsitem.pushShoppingDone', name: newsitem.user.username)
     elsif newsitem.isFinance
-      I18n.t('activerecord.newsitem.pushFinance', name: newsitem.user.name)
+      I18n.t('activerecord.newsitem.pushFinance', name: newsitem.user.username)
     elsif newsitem.isShopping
-      I18n.t('activerecord.newsitem.pushShopping', name: newsitem.user.name)
+      I18n.t('activerecord.newsitem.pushShopping', name: newsitem.user.username)
     elsif newsitem.isTodo
-      I18n.t('activerecord.newsitem.pushTodo', name: newsitem.user.name)
+      I18n.t('activerecord.newsitem.pushTodo', name: newsitem.user.username)
     elsif newsitem.isResource
-      I18n.t('activerecord.newsitem.pushResource', name: newsitem.user.name)
+      I18n.t('activerecord.newsitem.pushResource', name: newsitem.user.username)
     elsif newsitem.isMessage
-      I18n.t('activerecord.newsitem.pushMessage', name: newsitem.user.name)
+      I18n.t('activerecord.newsitem.pushMessage', name: newsitem.user.username)
     elsif newsitem.isComment
-      I18n.t('activerecord.newsitem.pushComment', name: newsitem.user.name)
+      I18n.t('activerecord.newsitem.pushComment', name: newsitem.user.username)
     elsif newsitem.isUseraction
       I18n.t('activerecord.newsitem.pushMatechange_' + newsitem.action,
-             name: newsitem.user.name)
+             name: newsitem.user.username)
     else
       raise 'no push handler for this newsitem'
     end

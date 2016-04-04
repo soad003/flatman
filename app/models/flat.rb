@@ -1,12 +1,12 @@
 class Flat < ActiveRecord::Base
   include Tokenable
 
-  has_many	:users
-  has_many  :billcategories
-  has_many  :shareditems, -> { order 'name asc' }
-  has_many	:shoppinglists, -> { order 'created_at asc' }
-  has_many :todos, -> { order 'created_at asc' }
-  has_many	:resources
+  has_many    :users
+  has_many    :billcategories
+  has_many    :shareditems, -> { order 'name asc' }
+  has_many    :shoppinglists, -> { order 'created_at asc' }
+  has_many    :todos, -> { order 'created_at asc' }
+  has_many    :resources
   has_many    :invites
   has_many    :bills, -> { order 'created_at desc' }
   has_many    :newsitems
@@ -14,6 +14,12 @@ class Flat < ActiveRecord::Base
   validates   :name, uniqueness: { case_sensitive: false }
   # geocoded_by :full_street_address
   # after_validation :geocode
+
+  after_create :add_flatman_post
+
+  def add_flatman_post
+    Newsitem.createFlatmanEntry(id, 'welcome')
+  end
 
   def add_user(user)
     user.flat = self

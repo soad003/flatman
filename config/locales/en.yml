@@ -180,6 +180,8 @@ en:
       pushMessage                     : "%{name} sent a message."
       pushUserAction                  : "%{name} %{action} your flat."
       pushComment                     : "%{name} commented something."
+      flatman_text_welcome            : "Hi, welcome at flatman! \n First you have to invite your flat mates via email or send them the flatkey, you find that key in your flat settings."
+
 
 
 
@@ -234,6 +236,7 @@ en:
         flatman                           : "Flatman"
         contact                           : "Contact"
         login                             : "Login"
+        welcome                           : "Welcome"
     application:
       default_description                 : "nananananananana flatman"
       navbar:
@@ -261,10 +264,10 @@ en:
       shopping_text                       : "Gemeinsame Einkaufslisten helfen dir dabei, beim Einkauf nichts zu vergessen oder doppelt zu kaufen."
       finance_title                       : "Finances"
       finance_text                        : "Verwalte deine Rechnungen, Schulden und Zahlungen in der WG und behalte so immer den Überblick."
-      resource_title                      : "Overview"
+      resource_title                      : "Awarness"
       resource_text                       : "Behalte deinen Strom-, Wasser- und Gasverbrauch im Auge und hilf so mit die Umwelt zu schützen."
-      contact_title                       : "Question?"
-      contact_text                        : "Get in touch!"
+      dashboard_title                     : "Flat-Overview"
+      dashboard_text                      : "Just one view to be informed"
     about:
       page_header                         : "About us"
       page_title                          : "About us"
@@ -558,6 +561,7 @@ en:
       page_title                         : "Please sign in"
       sign_in_Facebook                   : "Facebook"
       sign_in_Google                     : "Google"
+      headline                           : "Your Flat-Superhero is here!"
       title                              : "Flatman"
       subtitle                           : "Flatman implies organized flat"
       shopping_title                     : "Organize your shopping behaviour"
@@ -567,6 +571,7 @@ en:
       resources_title                    : "Resource usage"
       resources_description              : "Keep track of your resource usage to save money and help the environment to last."
       signin_with                        : "login with"
+      get_the_app                        : "or get the Flatman-App"
 
   datetime:
     distance_in_words:
