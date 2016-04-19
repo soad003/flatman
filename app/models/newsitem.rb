@@ -302,6 +302,17 @@ class Newsitem < ActiveRecord::Base
                           nil)
   end
 
+  def self.add_flatman_posts(flat_id)
+    size = Newsitem.where(flat_id: flat_id).size
+    if size == 10
+      Newsitem.createFlatmanEntry(flat_id, 'mail_us')
+    elsif size == 30
+      Newsitem.createFlatmanEntry(flat_id, 'website')
+    elsif size == 50
+      Newsitem.createFlatmanEntry(flat_id, 'like_on_facebook')
+    end
+  end
+
   def self.saveNewsitem(user, category, action, key, text, newsitem_id)
     ni = Newsitem.new
     ni.user = user
@@ -313,6 +324,7 @@ class Newsitem < ActiveRecord::Base
     ni.newsitem_id = newsitem_id unless newsitem_id.nil?
     Newsitem.push(ni)
     ni.save!
+    Newsitem.add_flatman_posts(user.flat_id)
     ni
   end
 
