@@ -9,7 +9,6 @@ class Api::NewsfeedController < Api::RestController
 
   def create
     Newsitem.createMessage(ni_params[:text], current_user)
-    
     respond_with(nil, location: nil)
   end
 
