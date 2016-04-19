@@ -176,7 +176,8 @@ de:
       pushComment                     : "%{name} hat etwas kommentiert."
       flatman_text_welcome            : "Willkommen bei Flatman!\nDu bist hier auf der Hauptseite gelandet. Über die WG-Einstellungen kannst du deine Mitbewohner per Email einladen oder ihnen den WG-Schlüssel schicken.\nGrüße aus Innsbruck, dein Flatman-Team"
       flatman_text_mail_us            : "Hi, cool dass du Flatman verwendest, wenn du Fragen oder neue Ideen hast kannst du uns jederzeit an hallo@flatman.at eine Email schreiben.\n Liebe Grüße, dein Flatman-Team"
-      flatman_text_like_on_facebook   : "Na alles klar bei dir? Wenn dir Flatman gefällt würde es uns sehr freuen wenn du auch deinen Freunden davon erzählst oder uns auf Facebook likest.\n Vielen Dank und liebe Grüße, dein Flatman-Team"
+      flatman_text_like_on_facebook   : "Na alles klar bei dir? Wenn dir Flatman gefällt würde es uns sehr freuen wenn du auch deinen Freunden davon erzählst oder uns auf Facebook unterstützen kannst.\n Vielen Dank und liebe Grüße, dein Flatman-Team"
+      flatman_text_website            : "Hi, hast du schon gewusst, dass du auch Flatman auch über https://flatman.at erreichen kannst?\nLiebe Grüße, dein Flatman-Team"
 
   buttons:
     confirmations:

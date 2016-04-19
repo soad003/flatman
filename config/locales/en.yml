@@ -183,8 +183,7 @@ en:
       flatman_text_welcome            : "Hi, welcome to flatman! \n You’re on the main page of flatman. You can add roommates via the shared flat settings by either inviting them via Email or sending them a key. \n Greeting from Innsbruck,\nyour flatman-team"
       flatman_text_mail_us            : "Hi, cool you are using flatman, if you have any questions or new ideas just write us an email: talk@flatman.at\nYour flatman-team"
       flatman_text_like_on_facebook   : "Hi, it would be very nice if you like us on facebook or tell your friends about flatman.\n Your flatman-team"
-
-
+      flatman_text_website            : "Hi, did you know that you can access flatman also on https://flatman.at\nGreetings, you flatman-team"
 
   buttons:
     confirmations:
