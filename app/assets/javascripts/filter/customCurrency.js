@@ -5,9 +5,10 @@ app.filter('customCurrency', ["$filter", function ($filter) {
         var currency = $filter('currency');
 		var res = currency(amount, ''); //currencySymbol);
         if(res.indexOf("(") != -1){
-             res = res.replace("(", "").replace(")", "").split(" ");
-             return res[0] + " -" + res[1]; 
+             res = res.replace("(", "").replace(")", "");
+             return "-" + res;
         }
+
 
         return currency(amount, ''); //currencySymbol);
     };
