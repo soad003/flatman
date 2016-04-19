@@ -19,6 +19,10 @@ html *
     @extend .has-error;
 }
 
+.space-top{
+  margin-top: 1.0em;
+}
+
 .alert-notice {
     @extend .alert-success;
 }
