@@ -303,12 +303,14 @@ class Newsitem < ActiveRecord::Base
   end
 
   def self.add_flatman_posts(flat_id)
-    size = Newsitem.where(flat_id: flat_id).size
-    if size == 10
+    size = Newsitem.where(flat_id: flat_id)
+                   .where.not(category: Newsitem::CATEGORIES[:message])
+                   .where.not(category: Newsitem::CATEGORIES[:comment]).size
+    if size == 15
       Newsitem.createFlatmanEntry(flat_id, 'mail_us')
     elsif size == 30
       Newsitem.createFlatmanEntry(flat_id, 'website')
-    elsif size == 50
+    elsif size == 60
       Newsitem.createFlatmanEntry(flat_id, 'like_on_facebook')
     end
   end
