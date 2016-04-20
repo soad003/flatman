@@ -18,7 +18,7 @@
                             <%=t ( ".newBill") %>
                         </a>
                     </li>
-                    <li>
+                    <li ng-class="{'disabled': overviewMates.length == 0}">
                         <a href="/#/create_payment">
                             <i class="fa fa-money"></i> 
                             <%=t ( ".newPaym") %>
@@ -212,18 +212,18 @@
             </div>
         </div>
     </div>
-    <div class="col-md-5" ng-show="arePaymentsToShow() || finances.subset.length !== 0 && !isLoading()">
-        <div class="panel panel-default hidden-xs" ng-show="enoughEntries()">
+    <div class="col-xs-12 col-md-5" ng-show="arePaymentsToShow() || finances.subset.length !== 0 && !isLoading()">
+        <div class="panel panel-default" ng-show="enoughEntries()">
             <div class="panel-heading text-center">
                 <i class="fa fa-info"></i> 
-                <%=t ( ".biggest_by_cat") %>
+                <b><%=t ( ".biggest_by_cat") %></b>
             </div>
             <div class="panel-body">
                 <canvas donutchart options="" data="chartData" width="500" height="300"></canvas>
             </div>
             <div class="panel-footer">
                 <div class="row">
-                    <div class="col-md-4 col-sm-4" ng-repeat="cat in chartData" title="{{cat.value | customCurrency : '€ '}}">
+                    <div class="col-xs-4 col-md-4 col-sm-4" ng-repeat="cat in chartData" title="{{cat.value | customCurrency : '€ '}}">
                         <i class="fa fa-circle" style="color: {{cat.color}}"></i> {{cat.cat_name}}</br>({{cat.value | customCurrency : '€ '}})
                     </div>
                 </div>
