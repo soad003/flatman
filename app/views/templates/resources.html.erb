@@ -128,7 +128,7 @@
                         </button>
                     </div>
 
-                    <div class="btn-group pull-right">
+                    <div class="btn-group pull-right hidden-xs">
                         <input style="width:90px" class="btn btn-default" type="text" onfocus="blur();" show-button-bar="false" ng-change="getChartData(resource)" show-weeks="false" datepicker-popup="shortDate" ng-model="resource.chartDateRange.startDate" date-disabled="disabled(date, mode)" ng-required="true" />
                         <input class="btn btn-default" type="text" style="width:90px" onfocus="blur();" show-button-bar="false" ng-change="getChartData(resource)" datepicker-popup="shortDate" show-weeks="false" ng-model="resource.chartDateRange.endDate" date-disabled="disabled(date, mode)" ng-required="true" close-text="Close" />
                         <button ng-disabled="true" class="btn btn-default"><i class="glyphicon glyphicon-calendar"></i>

@@ -2,11 +2,11 @@ angular.module('flatman').controller("financesCtrl", function($scope, financesSe
 
     $scope.switchChevron = function(index){
         $('#collapse' + index).on('show.bs.collapse', function () {
-            $(this).parent("div").find(".glyphicon-chevron-right").removeClass("glyphicon-chevron-right").addClass("glyphicon-chevron-down");
+            $(this).parent("div").find(".glyphicon-chevron-down").removeClass("glyphicon-chevron-down").addClass("glyphicon-chevron-up");
         });
 
         $('#collapse' + index).on('hide.bs.collapse', function () {
-            $(this).parent("div").find(".glyphicon-chevron-down").removeClass("glyphicon-chevron-down").addClass("glyphicon-chevron-right");
+            $(this).parent("div").find(".glyphicon-chevron-up").removeClass("glyphicon-chevron-up").addClass("glyphicon-chevron-down");
         });
     };
 

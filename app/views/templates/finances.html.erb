@@ -35,7 +35,7 @@
         <div class="panel panel-default" ng-show="overviewMates.length != 0">
             <div class="panel-heading text-center">
                 <i class="fa fa-money"></i>
-                <%=t ( ".overview_flat_members") %>
+                <b><%=t ( ".overview_flat_members") %></b>
             </div>
             <div class="panel-body">
 <!--                 <div class="row">
@@ -62,7 +62,7 @@
                                                             < 0}">
                                                     {{Math.abs(overviewMate.value) | customCurrency : '€ '}}
                                                 </span>
-                                                <span class="glyphicon glyphicon-chevron-right"></span>
+                                                <span class="glyphicon glyphicon-chevron-down"></span>
                                             </div>
                                         </div>
                                     </div>
@@ -148,7 +148,7 @@
         <div class="panel panel-default">
             <div class="panel-heading text-center">
                 <i class="fa fa-credit-card"></i> 
-                <%=t ( ".spendings") %>
+                <b> <%=t ( ".spendings") %></b>
             </div>
             <div class="panel-body">
                 <table class="table table-striped">
