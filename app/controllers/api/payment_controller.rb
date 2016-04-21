@@ -25,7 +25,7 @@ class Api::PaymentController < Api::RestController
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def entry_params
-    params.permit(:date, :value, :payer_id)
+    params.permit(:date, :value, :payer_id, :description)
   end
 
   def delete_params

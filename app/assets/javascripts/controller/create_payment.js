@@ -1,6 +1,6 @@
 angular.module('flatman').controller("createPaymentCtrl",function($scope, financesService, flatService, userService, Util){
 	$scope.createPayment = function (){
-		financesService.payment.create($scope.newPayment.payer_id, $scope.newPayment.date, $scope.newPayment.value, 
+		financesService.payment.create($scope.newPayment.payer_id, $scope.newPayment.date, $scope.newPayment.value, $scope.newPayment.description,
 		function(data){
 				Util.redirect_to.back();
 			});

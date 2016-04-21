@@ -448,6 +448,8 @@ de:
       value_placeholder                  : "42,00"
       date                               : "Datum"
       payer                              : "Wer hat seine Schulden beglichen?"
+      description                        : "Bezeichnung"
+      description_placeholder            : "Abendessen -> Pizza"
     bills_overview:
       page_header                        : "Rechnungen"
       edit                               : "bearbeiten"

@@ -78,8 +78,8 @@ angular.module('flatman').factory("financesService", function($resource){
             }
         },
         payment: {
-            create: function(payer_id, date, value ,succH,errH) {
-                paymentService.create(null,{payer_id: payer_id, date: date, value: value}, succH,errH);
+            create: function(payer_id, date, value, description, succH,errH) {
+                paymentService.create(null,{payer_id: payer_id, date: date, value: value, description: description}, succH,errH);
             },
             destroy: function(payment_id, mate_id, succH,errH){
                 paymentService.destroy({id: payment_id, mate_id: mate_id},succH,errH);

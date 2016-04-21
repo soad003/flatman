@@ -42,7 +42,7 @@ class Finance
                              'payer_id' => payment.payer.id,
                              'date' => payment.date,
                              'created_at' => payment.created_at,
-                             'what' => '',
+                             'what' => payment.description,
                              'total_price' => (payment.value * sign),
                              'value' => (payment.value * sign))
     end

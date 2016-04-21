@@ -1,13 +1,21 @@
 <div class="hidden-print">
     <h1 class="page-header">
-        <span class="fa fa-bitcoin"></span> <%=t ( '.page_header') %>
+    <span class="fa fa-bitcoin"></span> <%=t ( '.page_header') %>
     </h1>
 </div>
-
 <div class="row">
     <div class="col-md-offset-3 col-md-6">
         <form ng-submit="createPayment()">
-
+            <div class="form-group">
+                <label for="description">
+                <%= t('.description') %></label>
+                <div class="input-group">
+                    <input autofocus="autofocus" id="description" ng-model="newPayment.description" placeholder="<%= t('.description_placeholder') %>" type="text"/>
+                    <span class="input-group-addon">
+                        <span class="glyphicon glyphicon-pencil"></span>
+                    </span>
+                </div>
+            </div>
             <div class="form-group">
                 <label for="Payer">
                     <%=t ( '.payer') %>
@@ -15,7 +23,6 @@
                 <select class="form-control" ng-model="newPayment.payer_id" ng-options="mate.id as mate.name for mate in getMatesWithoutCurrentUser()">
                 </select>
             </div>
-
             <div class="form-group">
                 <label for="value">
                     <%=t ( '.value') %>
@@ -27,7 +34,6 @@
                     </span>
                 </div>
             </div>
-
             <div class="form-group">
                 <label for="date">
                     <%=t ( '.date') %>
@@ -40,18 +46,17 @@
                     </span>
                 </div>
             </div>
-
             <div class="row">
                 <div class="col-md-3 col-xs-4">
                     <a href="" ng-click="Util.redirect_to.back()" class="btn btn-sm btn-default">
-                        <i class="glyphicon glyphicon-arrow-left"></i> 
+                        <i class="glyphicon glyphicon-arrow-left"></i>
                         <%=t ( '.back') %>
                     </a>
                 </div>
                 <div class="col-md-3 col-md-offset-6 col-xs-4 col-xs-offset-4">
                     <button type="submit" class="btn btn-sm btn-success pull-right">
-                        <span class="glyphicon glyphicon-ok"></span>
-                        <%=t ( '.save') %>
+                    <span class="glyphicon glyphicon-ok"></span>
+                    <%=t ( '.save') %>
                     </button>
                 </div>
             </div>

@@ -453,6 +453,8 @@ en:
       value_placeholder                  : "42.00"
       date                               : "date"
       payer                              : "who paid you?"
+      description                        : "Title"
+      description_placeholder            : "Dinner -> Pizza"
     bills_overview:
       page_header                        : "Bills"
       edit                               : "edit"
