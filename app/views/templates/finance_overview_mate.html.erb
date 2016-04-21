@@ -73,7 +73,7 @@
                         </td>
                         <td>
                             <span ng-hide="entry.isPayment">{{entry.what}}</span>
-                            <span ng-show="entry.isPayment"> <%=t ( '.payment') %></span>
+                            <span ng-show="entry.isPayment"> <%=t ( '.payment') %>: {{entry.what}} </span>
                         </td>
                         <td class="hidden-xs">
                             <span class="bold" ng-show="entry.payer_id === current_user.id">{{current_user.username}}</span>
