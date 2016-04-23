@@ -97,12 +97,10 @@
                                                         <tr ng-repeat="entry in overviewMate.entries">
                                                             <td class="hidden-xs">{{entry.date| date : 'shortDate'}}</td>
                                                             <td>
-                                                                <span ng-show="entry.isPayment">
-                                                                    <%=t ( '.payment') %>: {{entry.what}}
-                                                                </span>
-                                                                <span ng-hide="entry.isPayment">{{entry.what}}</span>
+                                                                <span class="hidden-xs"> {{entry.what}}</span>
+                                                                <span class="visible-xs"> {{sliceText(entry.what)}}</span>
                                                             </td>
-                                                            <td class="text-right"> 
+                                                            <td class="text-right">
                                                                 <span ng-hide="entry.isPayment"> {{entry.total_price| customCurrency : '€ '}}</span>
                                                             </td>
                                                             <td class="text-right" ng-class="{'text-success':entry.value >

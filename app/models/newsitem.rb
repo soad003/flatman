@@ -271,7 +271,7 @@ class Newsitem < ActiveRecord::Base
                           Newsitem::CATEGORIES[:payment],
                           Newsitem::ACTIONS[:add],
                           payment.id,
-                          payment.payer.name,
+                          payment.payer.username,
                           nil)
   end
 
@@ -280,7 +280,7 @@ class Newsitem < ActiveRecord::Base
                           Newsitem::CATEGORIES[:payment],
                           Newsitem::ACTIONS[:remove],
                           nil,
-                          payment.payer.name,
+                          payment.payer.username,
                           nil)
   end
 

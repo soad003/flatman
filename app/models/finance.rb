@@ -37,12 +37,14 @@ class Finance
   def self.getEntrysOfPayments(payments, sign)
     list = []
     payments.each do |payment|
+      py_str = I18n.t('templates.finances.payment')
+      py_text = payment.description.blank? ? py_str : py_str + ': ' + payment.description
       list << OpenStruct.new('isPayment' => true,
                              'id' => payment.id,
                              'payer_id' => payment.payer.id,
                              'date' => payment.date,
                              'created_at' => payment.created_at,
-                             'what' => payment.description,
+                             'what' => py_text,
                              'total_price' => (payment.value * sign),
                              'value' => (payment.value * sign))
     end
