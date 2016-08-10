@@ -20,6 +20,7 @@
 # available at http://guides.rubyonrails.org/i18n.html.
 
 en:
+  og_description                          : "You’re fed up/ done with calculating numbers at the end of the month. Finding out which roommate  paid what and who owes the other roommate money?! Flatman brings an end to the chaos of numbers in your shared flat: after grocery shopping you only need to write the amount in flatman and with whom you split the costs and flatman calculates automatically and shows it as debts on the personal account. What is even more awesome is that you can create shopping lists for different occasions like party supplies, daily stuff etc. Every roommate has access to the list and can alter or change them. While grocery shopping you can check off things on the list in the app simultaneously and always have the list at hand. It will bring an end to buying things twice. The dashboard function offers a communication platform to discuss any kind of topic: from washing dishes to planning the next party."
   errors:
     not_found:
       messages:

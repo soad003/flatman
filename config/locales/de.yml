@@ -20,6 +20,7 @@
 # available at http://guides.rubyonrails.org/i18n.html.
 
 de:
+  og_description                          : "Ihr habt die Nase voll davon, am Monatsende alle möglichen Rechnungen zusammenzusuchen und auszurechnen, welcher Mitbewohner wem, wie viel schuldet. Mit Flatman ist jetzt Schluss mit dem  Rechnungschaos in der WG: nach dem Einkauf tragt ihr einfach den Rechnungsbetrag auf Flatman ein und gebt an, welche Roomies mit zahlen – die Beträge werden dann automatisch berechnet und dem Mitbewohner als Schulden angezeigt. So habt ihr jederzeit einen Überblick über die Finanzen in eurer WG. Außerdem könnt ihr gemeinsam Einkaufslisten für verschiedene Kategorien anlegen – jeder Mitbewohner kann sie ergänzen und ihr habt die Liste auf dem Handy immer mit dabei. Beim Einkauf könnt ihr die Sachen, die schon im Einkaufskorb liegen, abhaken - so vermeidet ihr Doppelkäufe. Über ein Dashboard kann die WG alles Mögliche bequatschen: von A wie Aufräumen wär wieder mal angesagt bis zu Z wie Zeit für die nächste Party."
   errors:
     not_found:
       messages:

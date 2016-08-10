@@ -8,11 +8,10 @@
 input[type=text], input[type=email], select {
     @extend .form-control;
 }
-@import url(https://fonts.googleapis.com/css?family=Source+Sans+Pro:400);
 html *
 {
     font-family: 'Source Sans Pro', sans-serif;
-} 
+}
 
 /* fix rails bootstrap invalid field higlighting */
 .field_with_errors {

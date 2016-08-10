@@ -10,6 +10,12 @@
     <meta name="google-site-verification" content="24dGcQyKurRHX8RcO9sXp5pB-LqGotGHMVUM-U3YsgU" />
     <%= favicon_link_tag 'favicon.ico' %>
 
+    <meta property="og:image" content="<%= image_path("flatman_logo_30.png")%>" />
+    <meta property="og:title" content="Flatman"/>
+    <meta property="og:type" content="finances" />
+    <meta property="og:url" content="https://www.flatman.at" />
+    <meta property="og:description" name="description" content="<%= t('og_description') %>">
+
     <title>FlatMan<%= " » " + h(yield(:title)) if content_for?(:title) %></title>
     <%= stylesheet_link_tag "welcome", media: "all"%>
     <%= csrf_meta_tags %>
