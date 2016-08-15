@@ -5,7 +5,8 @@ class Api::FinanceController < Api::RestController
 
     @catName = Billcategory.where(flat_id: current_user.flat_id)
     billsFlat = current_user.flat.users.collect(&:bills).flatten
-                            .uniq(&:id).keep_if{|b| b.date >= dateFrom && b.date <= dateTo}
+                            .uniq(&:id)
+                            .keep_if { |b| b.date >= dateFrom && b.date <= dateTo }
     @catSum = Bill.get_categories_and_sum(@catName, billsFlat)
   end
 
