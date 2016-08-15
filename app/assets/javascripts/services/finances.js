@@ -61,7 +61,7 @@ angular.module('flatman').factory("financesService", function($resource){
         },
         category:{
             get_all: function(succH, errH){
-                return ctgService.get_all(null, succH, errH);
+                return ctgService.get_all({from: new Date('2011','01','02'), to: new Date()}, succH, errH);
             },
             get_chart_view: function(categories){
                 var colors = ["#428bca", "#5cb85c","#5bc0de", "#f0ad4e", "#d9534f", "black"];
