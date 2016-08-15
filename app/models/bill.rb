@@ -52,8 +52,8 @@ class Bill < ActiveRecord::Base
       tmp = 0
       billsFlat.each do |b|
         tmp += b.value if c.id == b.billcategory_id
-        catsum[c.name] = tmp
       end
+      catsum[c.name] = tmp if tmp > 0
     end
     catsum
   end

@@ -410,6 +410,8 @@ en:
       help_title                         : "Add bills and payments"
       help_paragraph1                    : "You just went grocery shopping for the whole flat? With the button on the upper right side you can add bills and add the roomies you wanna share the bill with. One of your roommates paid his debts? With the button on the upper right corner you can also note payments."
       biggest_by_cat                     : "largest 6 expense categories"
+      last_month_cat                     : "largest 6 categories last 30 days"
+      no_data_found                      : "No data found..."
       spendings                          : "last 5 bills"
       categories                         : "Categories"
       debts                              : "Debts/Balance"

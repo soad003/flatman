@@ -214,12 +214,25 @@
     </div>
     <div class="col-xs-12 col-md-5" ng-show="arePaymentsToShow() || finances.subset.length !== 0 && !isLoading()">
         <div class="panel panel-default" ng-show="enoughEntries()">
-            <div class="panel-heading text-center">
+            <div class="panel-heading visible-xs">
                 <i class="fa fa-info"></i> 
-                <b><%=t ( ".biggest_by_cat") %></b>
+                <b><%=t ( ".last_month_cat") %></b>
+            </div>
+            <div class="panel-heading text-right hidden-xs">
+                <span class="pull-left">
+                    <i class="fa fa-info"></i> 
+                    <b><%=t ( ".biggest_by_cat") %></b>
+                </span>
+                <div class="btn-group">
+                        <input style="width:90px" class="btn btn-default" type="text" onfocus="blur();" show-button-bar="false" ng-change="getChartData()" show-weeks="false" datepicker-popup="shortDate" ng-model="chartFrom" date-disabled="disabled(date, mode)" ng-required="true" />
+                        <input class="btn btn-default" type="text" style="width:90px" onfocus="blur();" show-button-bar="false" ng-change="getChartData()" datepicker-popup="shortDate" show-weeks="false" ng-model="chartTo" date-disabled="disabled(date, mode)" ng-required="true" close-text="Close" />
+                        <button ng-disabled="true" class="btn btn-default"><i class="glyphicon glyphicon-calendar"></i>
+                        </button>
+                </div>
             </div>
             <div class="panel-body">
-                <canvas donutchart options="" data="chartData" width="500" height="300"></canvas>
+                <canvas ng-show="chartData.length > 0" donutchart options="" data="chartData" width="500" height="300"></canvas>
+                <span ng-show="chartData.length == 0"><%=t ( ".no_data_found") %></span>
             </div>
             <div class="panel-footer">
                 <div class="row">

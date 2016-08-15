@@ -1,12 +1,15 @@
 class Api::FinanceController < Api::RestController
   def get_by_category
-    dateFrom = Date.parse(params[:from])
-    dateTo = Date.parse(params[:to])
+    
 
     @catName = Billcategory.where(flat_id: current_user.flat_id)
     billsFlat = current_user.flat.users.collect(&:bills).flatten
                             .uniq(&:id)
-                            .keep_if { |b| b.date >= dateFrom && b.date <= dateTo }
+    if (params[:from] && params[:to])
+      from = Date.parse(params[:from]) + 1.day
+      to = Date.parse(params[:to]) + 1.day
+      billsFlat = billsFlat.keep_if { |b| b.date >= from && b.date <=  to }
+    end
     @catSum = Bill.get_categories_and_sum(@catName, billsFlat)
   end
 

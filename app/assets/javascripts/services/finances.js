@@ -60,12 +60,16 @@ angular.module('flatman').factory("financesService", function($resource){
             }
         },
         category:{
+            get_in_periode: function(from, to, succH, errH){
+                return ctgService.get_all({from: from, to: to}, succH, errH);
+            },
             get_all: function(succH, errH){
-                return ctgService.get_all({from: new Date('2011','01','02'), to: new Date()}, succH, errH);
+                return ctgService.get_all(succH, errH);
             },
             get_chart_view: function(categories){
                 var colors = ["#428bca", "#5cb85c","#5bc0de", "#f0ad4e", "#d9534f", "black"];
-                return _.chain(categories).sortBy(function(item){ return item.listValue; })
+                return _.chain(categories).filter( function(item){ return item.listValue})
+                                          .sortBy(function(item){ return item.listValue; })
                                           .reverse()
                                           .take(6)
                                           .map(function(item,i){ return {color:       colors[i % (colors.length)],

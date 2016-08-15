@@ -56,14 +56,22 @@ angular.module('flatman').controller("financesCtrl", function($scope, financesSe
             $scope.overviewMates[$scope.selectedIndex].entries = data.entries;
         });
     };
+
+    $scope.getChartData = function() {
+        return financesService.category.get_in_periode($scope.chartFrom, $scope.chartTo, function(data) {
+            $scope.chartData = financesService.category.get_chart_view(data);
+        });
+    };
+
+    $scope.chartTo = new Date();
+    $scope.chartFrom = new Date();
+    $scope.chartFrom.setMonth($scope.chartTo.getMonth() - 1);
     $scope.Textcut = [];
     $scope.chartData = [];
     $scope.Math = Math;
     $scope.finances = financesService.bill.get_range(0, 5);
     $scope.overviewMates = financesService.finance.get_overview_mates(0, 5);
-    $scope.AllCategories = financesService.category.get_all(function(data) {
-        $scope.chartData = financesService.category.get_chart_view(data);
-    });
+    $scope.AllCategories = $scope.getChartData();
     $scope.current_user = userService.get();
     $scope.getFlatMates = flatService.mates.get();
 

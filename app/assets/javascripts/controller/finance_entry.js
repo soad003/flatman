@@ -15,8 +15,8 @@ angular.module('flatman').controller("financeEntryCtrl", function($scope,$routeP
     $scope.id = $routeParams.id;
 
     financesService.category.get_all(function(data){
-         $scope.categories = financesService.category.get_category_names(data);
-    });
+        $scope.categories = financesService.category.get_category_names(data);
+    }, function(){});
 
     if($scope.id){
         financesService.bill.get($scope.id,function(data){
