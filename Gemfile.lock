@@ -223,7 +223,7 @@ DEPENDENCIES
   jshint_on_rails
   launchy
   netrc
-  omniauth-facebook
+  omniauth-facebook (= 3.0.0)
   omniauth-google-oauth2
   paperclip
   paranoia (~> 2.0)
