@@ -50,7 +50,7 @@ gem 'chart-js-rails', '0.0.6'
 gem "font-awesome-rails"
 
 #authorisation fb and google
-gem 'omniauth-facebook'
+gem 'omniauth-facebook', '3.0.0'
 gem "omniauth-google-oauth2"
 
 #angular js
