@@ -1,6 +1,8 @@
 flatman
 =======
 
+CAUTION: THIS REPOSITORY IS NOT MAINTAINED. DO NOT USE
+
 Flat Manager
 Is awesome
 
